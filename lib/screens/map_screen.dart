@@ -68,7 +68,7 @@ class _MapScreenState extends State<MapScreen> {
     ).then((_) {
       _loadAllProgress();
       // El nivel detiene su propia música al salir; retomamos la del mapa.
-      AudioService.playBgm('bg_music.mp3');
+      AudioService.playBgm('game_bgm.mp3');
     });
   }
 

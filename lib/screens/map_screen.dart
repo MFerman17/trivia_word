@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/stage_progress.dart';
+import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import 'game_screen.dart';
 
@@ -15,6 +16,7 @@ class _MapScreenState extends State<MapScreen> {
   int _selectedWorld = 1;
   int _totalStars = 0;
   bool _isLoading = true;
+  bool _isMuted = AudioService.isMuted;
 
   final Map<String, StageProgress> _stagesProgress = {};
 
@@ -22,6 +24,13 @@ class _MapScreenState extends State<MapScreen> {
   void initState() {
     super.initState();
     _loadAllProgress();
+    AudioService.playBgm('bg_music.mp3');
+  }
+
+  @override
+  void dispose() {
+    AudioService.stopBgm();
+    super.dispose();
   }
 
   Future<void> _loadAllProgress() async {
@@ -56,7 +65,11 @@ class _MapScreenState extends State<MapScreen> {
           levelNumber: levelNumber,
         ),
       ),
-    ).then((_) => _loadAllProgress());
+    ).then((_) {
+      _loadAllProgress();
+      // El nivel detiene su propia música al salir; retomamos la del mapa.
+      AudioService.playBgm('bg_music.mp3');
+    });
   }
 
   @override
@@ -71,6 +84,20 @@ class _MapScreenState extends State<MapScreen> {
           style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         actions: [
+          IconButton(
+            icon: Icon(
+              _isMuted ? Icons.volume_off : Icons.volume_up,
+              color: _isMuted ? Colors.redAccent : Colors.amber,
+              size: 26,
+            ),
+            tooltip: _isMuted ? 'Activar sonido' : 'Silenciar',
+            onPressed: () {
+              AudioService.toggleMute();
+              setState(() {
+                _isMuted = AudioService.isMuted;
+              });
+            },
+          ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(

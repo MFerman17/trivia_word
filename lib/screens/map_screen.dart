@@ -24,7 +24,8 @@ class _MapScreenState extends State<MapScreen> {
   void initState() {
     super.initState();
     _loadAllProgress();
-    AudioService.playBgm('bg_music.mp3');
+    // 🎵 Corrección: Ahora reproduce game_bgm.mp3 al iniciar la pantalla del mapa
+    AudioService.playBgm('game_bgm.mp3');
   }
 
   @override
@@ -56,6 +57,9 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   void _startLevel(int worldId, int chapterId, int levelNumber) {
+    // Detenemos la música de fondo antes de entrar al nivel
+    AudioService.stopBgm();
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -67,7 +71,7 @@ class _MapScreenState extends State<MapScreen> {
       ),
     ).then((_) {
       _loadAllProgress();
-      // El nivel detiene su propia música al salir; retomamos la del mapa.
+      // 🎵 Al regresar de la partida, retomamos la música del mapa
       AudioService.playBgm('game_bgm.mp3');
     });
   }
@@ -81,7 +85,10 @@ class _MapScreenState extends State<MapScreen> {
         elevation: 0,
         title: Text(
           'Mundo $_selectedWorld - Mapa Aventura',
-          style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.bold),
+          style: GoogleFonts.poppins(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         actions: [
           IconButton(
@@ -118,7 +125,9 @@ class _MapScreenState extends State<MapScreen> {
         ],
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: Colors.amber))
+          ? const Center(
+              child: CircularProgressIndicator(color: Colors.amber),
+            )
           : Column(
               children: [
                 _buildWorldSelector(),
@@ -139,11 +148,18 @@ class _MapScreenState extends State<MapScreen> {
           int worldNum = index + 1;
           bool isSelected = worldNum == _selectedWorld;
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 8.0,
+              vertical: 8.0,
+            ),
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: isSelected ? Colors.indigoAccent : const Color(0xFF2B2B48),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                backgroundColor: isSelected
+                    ? Colors.indigoAccent
+                    : const Color(0xFF2B2B48),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               onPressed: () {
                 setState(() => _selectedWorld = worldNum);
@@ -163,7 +179,6 @@ class _MapScreenState extends State<MapScreen> {
   }
 
   Widget _buildZigZagPathMap() {
-    // Generamos la lista de todas las fases del mundo actual (3 Capítulos x 5 Niveles = 15 Nodos)
     List<StageProgress> worldStages = [];
 
     for (int c = 1; c <= 3; c++) {
@@ -186,13 +201,12 @@ class _MapScreenState extends State<MapScreen> {
     }
 
     return ListView.builder(
-      reverse: true, // Empieza el camino desde la parte inferior
+      reverse: true,
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       itemCount: worldStages.length,
       itemBuilder: (context, index) {
         StageProgress progress = worldStages[index];
 
-        // Alternar alineación del nodo: Izquierda (0), Centro (1), Derecha (2)
         int positionPattern = index % 4;
         Alignment nodeAlignment;
         if (positionPattern == 0) {
@@ -220,16 +234,24 @@ class _MapScreenState extends State<MapScreen> {
       children: [
         GestureDetector(
           onTap: progress.isUnlocked
-              ? () => _startLevel(progress.worldId, progress.chapterId, progress.levelNumber)
+              ? () => _startLevel(
+                    progress.worldId,
+                    progress.chapterId,
+                    progress.levelNumber,
+                  )
               : null,
           child: Container(
             width: 70,
             height: 70,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: progress.isUnlocked ? const Color(0xFF6C5CE7) : Colors.grey.shade800,
+              color: progress.isUnlocked
+                  ? const Color(0xFF6C5CE7)
+                  : Colors.grey.shade800,
               border: Border.all(
-                color: progress.isUnlocked ? Colors.amberAccent : Colors.grey.shade600,
+                color: progress.isUnlocked
+                    ? Colors.amberAccent
+                    : Colors.grey.shade600,
                 width: 3,
               ),
               boxShadow: progress.isUnlocked
@@ -257,7 +279,10 @@ class _MapScreenState extends State<MapScreen> {
                         ),
                         Text(
                           'C${progress.chapterId}.L${progress.levelNumber}',
-                          style: const TextStyle(color: Colors.white70, fontSize: 10),
+                          style: const TextStyle(
+                            color: Colors.white70,
+                            fontSize: 10,
+                          ),
                         ),
                       ],
                     )

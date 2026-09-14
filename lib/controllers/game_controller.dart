@@ -6,6 +6,7 @@ import '../services/audio_service.dart';
 import '../services/question_bank.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
+import '../services/cloud_service.dart'; // 👈 Importamos el servicio de la nube
 
 enum GameStatus { loading, playing, victory, defeat }
 
@@ -100,13 +101,14 @@ class GameController extends ChangeNotifier {
 
     starsEarned = playerHp == 3 ? 3 : (playerHp == 2 ? 2 : 1);
 
+    // 1. Guardar Monedas y XP en el perfil local
     if (profile != null) {
       profile!.coins += coinsReward;
       profile!.addExperience(xpReward);
-      profile!.addStars(starsEarned);
       await SaveService.savePlayerData(profile!);
     }
 
+    // 2. Guardar las estrellas del nivel actual localmente
     StageProgress currentProgress = StageProgress(
       worldId: worldId,
       chapterId: chapterId,
@@ -116,6 +118,7 @@ class GameController extends ChangeNotifier {
     );
     await SaveService.saveStageProgress(currentProgress);
 
+    // 3. Desbloquear el siguiente nivel
     int nextWorld = worldId;
     int nextChapter = chapterId;
     int nextLevel = levelNumber + 1;
@@ -137,6 +140,12 @@ class GameController extends ChangeNotifier {
       isUnlocked: true,
     );
     await SaveService.saveStageProgress(nextProgress);
+
+    // 4. ☁️ SINCRONIZAR CON LA NUBE (FIREBASE)
+    // Se ejecuta al final para asegurar que SaveService ya calculó las estrellas nuevas
+    if (profile != null) {
+      await CloudService.syncProfileToCloud(profile!);
+    }
 
     notifyListeners();
   }

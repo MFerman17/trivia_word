@@ -1,54 +1,47 @@
 import 'package:flutter/material.dart';
 import '../models/leaderboard_user.dart';
 import '../models/player_profile.dart';
+import '../controllers/leaderboard_controller.dart'; // 👈 Importamos el controlador
 
-class LeaderboardScreen extends StatelessWidget {
+class LeaderboardScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
 
   const LeaderboardScreen({super.key, this.playerProfile});
 
   @override
+  State<LeaderboardScreen> createState() => _LeaderboardScreenState();
+}
+
+class _LeaderboardScreenState extends State<LeaderboardScreen> {
+  late LeaderboardController _controller;
+  
+  // Nombre del jugador actual para resaltarlo en oro
+  late String userName;
+
+  @override
+  void initState() {
+    super.initState();
+    userName = widget.playerProfile?.name ?? 'Tú (Jugador)';
+    _controller = LeaderboardController();
+    
+    // 👈 Pedimos los datos reales a Firebase al abrir la pantalla
+    _controller.fetchLeaderboard(); 
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  // Pequeña función para dar emojis variados según el nombre (ya que en FB aún no los guardamos)
+  String _getAvatarForName(String name) {
+    const emojis = ['🧙‍♂️', '🧝‍♀️', '🥷', '👑', '🦸‍♀️', '🤖', '🎮', '🦁', '🕵️‍♂️', '🚀'];
+    return emojis[name.length % emojis.length];
+  }
+
+  @override
   Widget build(BuildContext context) {
-    // 1. Obtener la experiencia/puntuación real del jugador actual
-    final int userXp = playerProfile?.experience ?? 3120;
-    final String userName = playerProfile?.name ?? 'Tú (Jugador)';
-
-    // 2. Definir competidores ficticios del ranking
-    final List<LeaderboardUser> rawList = [
-      LeaderboardUser(rank: 0, name: 'Alex_Master', countryFlag: '🇪🇸', trophies: 4850, avatarEmoji: '🧙‍♂️'),
-      LeaderboardUser(rank: 0, name: 'Sofia_Gamer', countryFlag: '🇻🇪', trophies: 4420, avatarEmoji: '🧝‍♀️'),
-      LeaderboardUser(rank: 0, name: 'DragonSlayer', countryFlag: '🇲🇽', trophies: 4100, avatarEmoji: '🥷'),
-      LeaderboardUser(rank: 0, name: 'TriviaKing', countryFlag: '🇦🇷', trophies: 3890, avatarEmoji: '👑'),
-      LeaderboardUser(rank: 0, name: 'Luna_Rider', countryFlag: '🇨🇱', trophies: 3650, avatarEmoji: '🦸‍♀️'),
-      LeaderboardUser(rank: 0, name: 'WordCraft', countryFlag: '🇨🇴', trophies: 3400, avatarEmoji: '🤖'),
-      LeaderboardUser(rank: 0, name: userName, countryFlag: '🇪🇸', trophies: userXp, avatarEmoji: '🎮'),
-      LeaderboardUser(rank: 0, name: 'PixelHero', countryFlag: '🇵🇪', trophies: 2980, avatarEmoji: '🦁'),
-      LeaderboardUser(rank: 0, name: 'CyberSam', countryFlag: '🇺🇸', trophies: 2750, avatarEmoji: '🕵️‍♂️'),
-      LeaderboardUser(rank: 0, name: 'Vortex_99', countryFlag: '🇪🇷', trophies: 2500, avatarEmoji: '🚀'),
-    ];
-
-    // 3. Ordenar por trofeos/puntuación descendente
-    rawList.sort((a, b) => b.trophies.compareTo(a.trophies));
-
-    // 4. Asignar los rangos actualizados tras ordenar
-    final List<LeaderboardUser> leaderboard = List.generate(
-      rawList.length,
-      (index) {
-        final item = rawList[index];
-        return LeaderboardUser(
-          rank: index + 1,
-          name: item.name,
-          countryFlag: item.countryFlag,
-          trophies: item.trophies,
-          avatarEmoji: item.avatarEmoji,
-        );
-      },
-    );
-
-    // Separar podio y el resto de la lista
-    final topThree = leaderboard.take(3).toList();
-    final remainingUsers = leaderboard.skip(3).toList();
-
     return Scaffold(
       body: Container(
         width: double.infinity,
@@ -62,7 +55,7 @@ class LeaderboardScreen extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              // 1. BARRA DE ENCABEZADO
+              // 1. BARRA DE ENCABEZADO (Siempre visible)
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Row(
@@ -86,134 +79,182 @@ class LeaderboardScreen extends StatelessWidget {
                   ],
                 ),
               ),
-
               const SizedBox(height: 10),
 
-              // 2. PODIO DE LOS TOP 3
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    // PUESTO 2
-                    if (topThree.length > 1)
-                      _buildPodiumSpot(
-                        user: topThree[1],
-                        height: 110,
-                        crownColor: Colors.grey.shade300,
-                        borderColor: Colors.grey,
-                        isCurrentUser: topThree[1].name == userName,
-                      ),
-                    const SizedBox(width: 12),
-                    // PUESTO 1
-                    if (topThree.isNotEmpty)
-                      _buildPodiumSpot(
-                        user: topThree[0],
-                        height: 140,
-                        crownColor: Colors.amber,
-                        borderColor: Colors.amber,
-                        isFirst: true,
-                        isCurrentUser: topThree[0].name == userName,
-                      ),
-                    const SizedBox(width: 12),
-                    // PUESTO 3
-                    if (topThree.length > 2)
-                      _buildPodiumSpot(
-                        user: topThree[2],
-                        height: 90,
-                        crownColor: Colors.brown.shade300,
-                        borderColor: Colors.brown,
-                        isCurrentUser: topThree[2].name == userName,
-                      ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 16),
-
-              // 3. LISTA DEL RESTO DE JUGADORES
+              // 2. CONSTRUCTOR REACTIVO (Escucha a Firebase)
               Expanded(
-                child: Container(
-                  decoration: const BoxDecoration(
-                    color: Color(0xFF161329),
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    ),
-                  ),
-                  child: ListView.builder(
-                    padding: const EdgeInsets.all(16),
-                    itemCount: remainingUsers.length,
-                    itemBuilder: (context, index) {
-                      final user = remainingUsers[index];
-                      final isCurrentUser = user.name == userName;
+                child: ListenableBuilder(
+                  listenable: _controller,
+                  builder: (context, _) {
+                    // MIENTRAS CARGA DE INTERNET
+                    if (_controller.isLoading) {
+                      return const Center(
+                        child: CircularProgressIndicator(color: Colors.amber),
+                      );
+                    }
 
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 10),
-                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-                        decoration: BoxDecoration(
-                          color: isCurrentUser
-                              ? Colors.amber.withValues(alpha: 0.15)
-                              : Colors.white.withValues(alpha: 0.05),
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: isCurrentUser ? Colors.amber : Colors.white10,
-                            width: isCurrentUser ? 1.5 : 1,
-                          ),
-                        ),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              width: 30,
-                              child: Text(
-                                '#${user.rank}',
-                                style: TextStyle(
-                                  color: isCurrentUser ? Colors.amber : Colors.white70,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
-                                ),
-                              ),
-                            ),
-                            Text(user.avatarEmoji, style: const TextStyle(fontSize: 24)),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Row(
-                                children: [
-                                  Flexible(
-                                    child: Text(
-                                      user.name,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        color: isCurrentUser ? Colors.amber : Colors.white,
-                                        fontWeight: isCurrentUser ? FontWeight.bold : FontWeight.normal,
-                                        fontSize: 15,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Text(user.countryFlag, style: const TextStyle(fontSize: 16)),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                const Text('🏆 ', style: TextStyle(fontSize: 14)),
-                                Text(
-                                  '${user.trophies}',
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 15,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
+                    // SI NO HAY DATOS (Nadie ha jugado)
+                    if (_controller.topPlayers.isEmpty) {
+                      return const Center(
+                        child: Text(
+                          'Aún no hay jugadores en el ranking.',
+                          style: TextStyle(color: Colors.white70, fontSize: 16),
                         ),
                       );
-                    },
-                  ),
+                    }
+
+                    // 3. MAPEAR DATOS DE FIREBASE AL MODELO LeaderboardUser
+                    final List<LeaderboardUser> leaderboard = List.generate(
+                      _controller.topPlayers.length,
+                      (index) {
+                        final item = _controller.topPlayers[index];
+                        return LeaderboardUser(
+                          rank: index + 1,
+                          name: item['name'] ?? 'Desconocido',
+                          countryFlag: '🌍', // Por defecto hasta que se guarde el país en BD
+                          trophies: item['stars'] ?? 0, // Usamos las estrellas como ranking principal
+                          avatarEmoji: item['name'] == userName 
+                              ? '🎮' // Tu avatar fijo
+                              : _getAvatarForName(item['name'] ?? 'A'),
+                        );
+                      },
+                    );
+
+                    // Separar podio y el resto de la lista
+                    final topThree = leaderboard.take(3).toList();
+                    final remainingUsers = leaderboard.skip(3).toList();
+
+                    return Column(
+                      children: [
+                        // PODIO DE LOS TOP 3
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              // PUESTO 2
+                              if (topThree.length > 1)
+                                _buildPodiumSpot(
+                                  user: topThree[1],
+                                  height: 110,
+                                  crownColor: Colors.grey.shade300,
+                                  borderColor: Colors.grey,
+                                  isCurrentUser: topThree[1].name == userName,
+                                ),
+                              const SizedBox(width: 12),
+                              // PUESTO 1
+                              if (topThree.isNotEmpty)
+                                _buildPodiumSpot(
+                                  user: topThree[0],
+                                  height: 140,
+                                  crownColor: Colors.amber,
+                                  borderColor: Colors.amber,
+                                  isFirst: true,
+                                  isCurrentUser: topThree[0].name == userName,
+                                ),
+                              const SizedBox(width: 12),
+                              // PUESTO 3
+                              if (topThree.length > 2)
+                                _buildPodiumSpot(
+                                  user: topThree[2],
+                                  height: 90,
+                                  crownColor: Colors.brown.shade300,
+                                  borderColor: Colors.brown,
+                                  isCurrentUser: topThree[2].name == userName,
+                                ),
+                            ],
+                          ),
+                        ),
+                        const SizedBox(height: 16),
+
+                        // LISTA DEL RESTO DE JUGADORES
+                        Expanded(
+                          child: Container(
+                            decoration: const BoxDecoration(
+                              color: Color(0xFF161329),
+                              borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(30),
+                                topRight: Radius.circular(30),
+                              ),
+                            ),
+                            child: ListView.builder(
+                              padding: const EdgeInsets.all(16),
+                              itemCount: remainingUsers.length,
+                              itemBuilder: (context, index) {
+                                final user = remainingUsers[index];
+                                final isCurrentUser = user.name == userName;
+
+                                return Container(
+                                  margin: const EdgeInsets.only(bottom: 10),
+                                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                                  decoration: BoxDecoration(
+                                    color: isCurrentUser
+                                        ? Colors.amber.withValues(alpha: 0.15)
+                                        : Colors.white.withValues(alpha: 0.05),
+                                    borderRadius: BorderRadius.circular(16),
+                                    border: Border.all(
+                                      color: isCurrentUser ? Colors.amber : Colors.white10,
+                                      width: isCurrentUser ? 1.5 : 1,
+                                    ),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      SizedBox(
+                                        width: 30,
+                                        child: Text(
+                                          '#${user.rank}',
+                                          style: TextStyle(
+                                            color: isCurrentUser ? Colors.amber : Colors.white70,
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(user.avatarEmoji, style: const TextStyle(fontSize: 24)),
+                                      const SizedBox(width: 12),
+                                      Expanded(
+                                        child: Row(
+                                          children: [
+                                            Flexible(
+                                              child: Text(
+                                                user.name,
+                                                overflow: TextOverflow.ellipsis,
+                                                style: TextStyle(
+                                                  color: isCurrentUser ? Colors.amber : Colors.white,
+                                                  fontWeight: isCurrentUser ? FontWeight.bold : FontWeight.normal,
+                                                  fontSize: 15,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 8),
+                                            Text(user.countryFlag, style: const TextStyle(fontSize: 16)),
+                                          ],
+                                        ),
+                                      ),
+                                      Row(
+                                        children: [
+                                          const Text('🏆 ', style: TextStyle(fontSize: 14)),
+                                          Text(
+                                            '${user.trophies}',
+                                            style: const TextStyle(
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 15,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  },
                 ),
               ),
             ],
@@ -223,6 +264,7 @@ class LeaderboardScreen extends StatelessWidget {
     );
   }
 
+  // --- El método de diseño del podio se mantiene idéntico a tu código original ---
   Widget _buildPodiumSpot({
     required LeaderboardUser user,
     required double height,

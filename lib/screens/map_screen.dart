@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import '../controllers/map_controller.dart';
 import '../models/stage_progress.dart';
 import '../services/audio_service.dart';
-import '../services/save_service.dart';
 import 'game_screen.dart';
 
 class MapScreen extends StatefulWidget {
@@ -13,47 +13,24 @@ class MapScreen extends StatefulWidget {
 }
 
 class _MapScreenState extends State<MapScreen> {
-  int _selectedWorld = 1;
-  int _totalStars = 0;
-  bool _isLoading = true;
+  late MapController _controller;
   bool _isMuted = AudioService.isMuted;
-
-  final Map<String, StageProgress> _stagesProgress = {};
 
   @override
   void initState() {
     super.initState();
-    _loadAllProgress();
-    // 🎵 Corrección: Ahora reproduce game_bgm.mp3 al iniciar la pantalla del mapa
+    _controller = MapController();
+    _controller.loadAllProgress();
+    
+    // Inicia la música de fondo al cargar el mapa
     AudioService.playBgm('game_bgm.mp3');
   }
 
   @override
   void dispose() {
+    _controller.dispose();
     AudioService.stopBgm();
     super.dispose();
-  }
-
-  Future<void> _loadAllProgress() async {
-    setState(() => _isLoading = true);
-
-    int stars = await SaveService.getTotalStarsObtained();
-
-    for (int w = 1; w <= 4; w++) {
-      for (int c = 1; c <= 3; c++) {
-        for (int l = 1; l <= 5; l++) {
-          StageProgress p = await SaveService.getStageProgress(w, c, l);
-          _stagesProgress[p.stageKey] = p;
-        }
-      }
-    }
-
-    if (!mounted) return;
-
-    setState(() {
-      _totalStars = stars;
-      _isLoading = false;
-    });
   }
 
   void _startLevel(int worldId, int chapterId, int levelNumber) {
@@ -70,70 +47,75 @@ class _MapScreenState extends State<MapScreen> {
         ),
       ),
     ).then((_) {
-      _loadAllProgress();
-      // 🎵 Al regresar de la partida, retomamos la música del mapa
+      // Al regresar, recargamos el progreso y retomamos la música
+      _controller.loadAllProgress();
       AudioService.playBgm('game_bgm.mp3');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xFF0F0E17),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1F1D36),
-        elevation: 0,
-        title: Text(
-          'Mundo $_selectedWorld - Mapa Aventura',
-          style: GoogleFonts.poppins(
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              _isMuted ? Icons.volume_off : Icons.volume_up,
-              color: _isMuted ? Colors.redAccent : Colors.amber,
-              size: 26,
+    return ListenableBuilder(
+      listenable: _controller,
+      builder: (context, _) {
+        return Scaffold(
+          backgroundColor: const Color(0xFF0F0E17),
+          appBar: AppBar(
+            backgroundColor: const Color(0xFF1F1D36),
+            elevation: 0,
+            title: Text(
+              'Mundo ${_controller.selectedWorld} - Mapa Aventura',
+              style: GoogleFonts.poppins(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
             ),
-            tooltip: _isMuted ? 'Activar sonido' : 'Silenciar',
-            onPressed: () {
-              AudioService.toggleMute();
-              setState(() {
-                _isMuted = AudioService.isMuted;
-              });
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
-            child: Row(
-              children: [
-                const Icon(Icons.star, color: Colors.amber, size: 24),
-                const SizedBox(width: 6),
-                Text(
-                  '$_totalStars',
-                  style: GoogleFonts.poppins(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.amberAccent,
-                  ),
+            actions: [
+              IconButton(
+                icon: Icon(
+                  _isMuted ? Icons.volume_off : Icons.volume_up,
+                  color: _isMuted ? Colors.redAccent : Colors.amber,
+                  size: 26,
                 ),
-              ],
-            ),
+                tooltip: _isMuted ? 'Activar sonido' : 'Silenciar',
+                onPressed: () {
+                  AudioService.toggleMute();
+                  setState(() {
+                    _isMuted = AudioService.isMuted;
+                  });
+                },
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: Row(
+                  children: [
+                    const Icon(Icons.star, color: Colors.amber, size: 24),
+                    const SizedBox(width: 6),
+                    Text(
+                      '${_controller.totalStars}',
+                      style: GoogleFonts.poppins(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.amberAccent,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      body: _isLoading
-          ? const Center(
-              child: CircularProgressIndicator(color: Colors.amber),
-            )
-          : Column(
-              children: [
-                _buildWorldSelector(),
-                Expanded(child: _buildZigZagPathMap()),
-              ],
-            ),
+          body: _controller.isLoading
+              ? const Center(
+                  child: CircularProgressIndicator(color: Colors.amber),
+                )
+              : Column(
+                  children: [
+                    _buildWorldSelector(),
+                    Expanded(child: _buildZigZagPathMap()),
+                  ],
+                ),
+        );
+      },
     );
   }
 
@@ -146,7 +128,7 @@ class _MapScreenState extends State<MapScreen> {
         itemCount: 4,
         itemBuilder: (context, index) {
           int worldNum = index + 1;
-          bool isSelected = worldNum == _selectedWorld;
+          bool isSelected = worldNum == _controller.selectedWorld;
           return Padding(
             padding: const EdgeInsets.symmetric(
               horizontal: 8.0,
@@ -161,9 +143,7 @@ class _MapScreenState extends State<MapScreen> {
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              onPressed: () {
-                setState(() => _selectedWorld = worldNum);
-              },
+              onPressed: () => _controller.selectWorld(worldNum),
               child: Text(
                 'Mundo $worldNum',
                 style: TextStyle(
@@ -183,25 +163,14 @@ class _MapScreenState extends State<MapScreen> {
 
     for (int c = 1; c <= 3; c++) {
       for (int l = 1; l <= 5; l++) {
-        String key = 'w${_selectedWorld}_c${c}_l$l';
-        StageProgress? progress = _stagesProgress[key];
-        bool defaultUnlocked = (_selectedWorld == 1 && c == 1 && l == 1);
-
         worldStages.add(
-          progress ??
-              StageProgress(
-                worldId: _selectedWorld,
-                chapterId: c,
-                levelNumber: l,
-                stars: 0,
-                isUnlocked: defaultUnlocked,
-              ),
+          _controller.getProgressForNode(_controller.selectedWorld, c, l)
         );
       }
     }
 
     return ListView.builder(
-      reverse: true,
+      reverse: true, // Empieza desde abajo
       padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 16),
       itemCount: worldStages.length,
       itemBuilder: (context, index) {

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-// import 'firebase_options.dart'; // <-- Esto se generará cuando uses FlutterFire CLI
+import 'firebase_options.dart'; // 👈 Descomentado
 
 void main() async {
   // 1. Asegura que los bindings de Flutter estén listos
   WidgetsFlutterBinding.ensureInitialized();
   
-  // 2. Inicializa Firebase
+  // 2. Inicializa Firebase usando las opciones de tu archivo configurado
   await Firebase.initializeApp(
-    // options: DefaultFirebaseOptions.currentPlatform, // Descomenta esto tras configurar FlutterFire
+    options: DefaultFirebaseOptions.currentPlatform, // 👈 Descomentado
   );
 
   runApp(const MyApp());

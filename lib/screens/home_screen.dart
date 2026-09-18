@@ -7,6 +7,7 @@ import 'map_screen.dart';
 import 'quests_screen.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
+import '../services/cloud_service.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -39,6 +40,9 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     await SaveService.savePlayerData(_profile!);
+
+    // 👈 ¡Añade esto aquí para sincronizar automáticamente con la nube!
+    await CloudService.syncProfileToCloud(_profile!);
   }
 
   void _claimDailyReward() async {

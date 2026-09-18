@@ -24,7 +24,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyA8to2zP-ZO2mtz2NH_Tk0zlCai6ma4ac4',
+    apiKey: 'AIzaSyA8to2P-ZO2mtz2NH_Tk0zlCai6mA4ac4',
     appId: '1:506207443915:web:eeeadb7bed076770b9344e',
     messagingSenderId: '506207443915',
     projectId: 'trivia-word-f612c',
@@ -34,18 +34,22 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyA8to2zP-ZO2mtz2NH_Tk0zlCai6ma4ac4',
-    appId: '1:506207443915:web:eeeadb7bed076770b9344e', // Puedes usar el mismo temporalmente para pruebas en Android
-    messagingSenderId: '506207443915',
-    projectId: 'trivia-word-f612c',
-    storageBucket: 'trivia-word-f612c.firebasestorage.app',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA8to2zP-ZO2mtz2NH_Tk0zlCai6ma4ac4',
+    apiKey: 'AIzaSyA8to2P-ZO2mtz2NH_Tk0zlCai6mA4ac4',
     appId: '1:506207443915:web:eeeadb7bed076770b9344e',
     messagingSenderId: '506207443915',
     projectId: 'trivia-word-f612c',
+    authDomain: 'trivia-word-f612c.firebaseapp.com',
     storageBucket: 'trivia-word-f612c.firebasestorage.app',
+    measurementId: 'G-7QWHKCBGE9',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyA8to2P-ZO2mtz2NH_Tk0zlCai6mA4ac4',
+    appId: '1:506207443915:web:eeeadb7bed076770b9344e',
+    messagingSenderId: '506207443915',
+    projectId: 'trivia-word-f612c',
+    authDomain: 'trivia-word-f612c.firebaseapp.com',
+    storageBucket: 'trivia-word-f612c.firebasestorage.app',
+    measurementId: 'G-7QWHKCBGE9',
   );
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "506207443915",
+    "project_id": "trivia-word-f612c",
+    "storage_bucket": "trivia-word-f612c.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506207443915:android:08591192c5a51c24b9344e",
+        "android_client_info": {
+          "package_name": "com.example.trivia_word"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506207443915-e5t7jabf071i91ehe5rkdg03574ofnec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIaLrl3AZNwN7rHsCpwvfd6f3daxXN620"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506207443915-e5t7jabf071i91ehe5rkdg03574ofnec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

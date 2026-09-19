@@ -5,18 +5,15 @@ import 'screens/home_screen.dart'; // 👈 Importa tu pantalla de inicio
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  const firebaseApiKey = String.fromEnvironment('FIREBASE_API_KEY');
-  if (firebaseApiKey.isEmpty) {
-    throw StateError(
-      'Falta FIREBASE_API_KEY. Ejecuta Flutter con '
-      '--dart-define=FIREBASE_API_KEY=TU_CLAVE_WEB_DE_FIREBASE.',
+  
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
     );
+    debugPrint("🔥 Firebase inicializado correctamente");
+  } catch (e) {
+    debugPrint("❌ Error al inicializar Firebase: $e");
   }
-
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
 
   runApp(const MyApp());
 }

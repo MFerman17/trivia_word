@@ -6,7 +6,7 @@ import '../services/audio_service.dart';
 import '../services/question_bank.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
-import '../services/cloud_service.dart'; // 👈 Importamos el servicio de la nube
+import '../services/cloud_service.dart';
 
 enum GameStatus { loading, playing, victory, defeat }
 
@@ -30,11 +30,20 @@ class GameController extends ChangeNotifier {
   int coinsReward = 50;
   int xpReward = 40;
 
+  // 👈 Bandera para controlar si el controlador fue destruido y evitar fugas de memoria
+  bool _isDisposed = false;
+
   GameController({
     required this.worldId,
     required this.chapterId,
     required this.levelNumber,
   });
+
+  @override
+  void dispose() {
+    _isDisposed = true; // 👈 Marcamos como destruido al salir de la pantalla
+    super.dispose();
+  }
 
   Question? get currentQuestion =>
       questions.isNotEmpty && currentQuestionIndex < questions.length
@@ -48,6 +57,7 @@ class GameController extends ChangeNotifier {
     profile = await SaveService.loadPlayerData();
     questions = QuestionBank.getQuestionsForLevel(worldId, chapterId, levelNumber);
 
+    if (_isDisposed) return; // 👈 Evitamos actualizar si ya se desmontó
     status = GameStatus.playing;
     notifyListeners();
   }
@@ -76,6 +86,8 @@ class GameController extends ChangeNotifier {
     notifyListeners();
 
     Future.delayed(const Duration(milliseconds: 1200), () {
+      if (_isDisposed) return; // 👈 Seguridad vital: si salió de la pantalla, cancelamos
+
       if (playerHp <= 0) {
         _handleDefeat();
       } else if (currentQuestionIndex + 1 < questions.length) {
@@ -87,6 +99,7 @@ class GameController extends ChangeNotifier {
   }
 
   void _nextQuestion() {
+    if (_isDisposed) return;
     currentQuestionIndex++;
     isAnswered = false;
     selectedOptionIndex = null;
@@ -95,6 +108,7 @@ class GameController extends ChangeNotifier {
   }
 
   void _handleVictory() async {
+    if (_isDisposed) return;
     status = GameStatus.victory;
     AudioService.playVictorySound();
     QuestService.incrementProgress('win_battles_3');
@@ -141,23 +155,29 @@ class GameController extends ChangeNotifier {
     );
     await SaveService.saveStageProgress(nextProgress);
 
-    // 4. ☁️ SINCRONIZAR CON LA NUBE (FIREBASE)
-    // Se ejecuta al final para asegurar que SaveService ya calculó las estrellas nuevas
+    // 4. ☁️ SINCRONIZAR CON LA NUBE (Con manejo seguro de errores)
     if (profile != null) {
-      await CloudService.syncProfileToCloud(profile!);
+      try {
+        await CloudService.syncProfileToCloud(profile!);
+      } catch (e) {
+        debugPrint("⚠️ Advertencia: No se pudo sincronizar la victoria en la nube: $e");
+        // El juego local sigue intacto aunque falle el internet momentáneamente
+      }
     }
 
+    if (_isDisposed) return;
     notifyListeners();
   }
 
   void _handleDefeat() {
+    if (_isDisposed) return;
     status = GameStatus.defeat;
     AudioService.playDamage();
     notifyListeners();
   }
 
   void usePotion(Function(String) showSnackBar) async {
-    if (profile == null) return;
+    if (profile == null || _isDisposed) return;
 
     if (playerHp >= maxPlayerHp) {
       showSnackBar('¡Tu vida ya está al máximo!');
@@ -172,6 +192,8 @@ class GameController extends ChangeNotifier {
     profile!.healthPotions--;
     playerHp = (playerHp + 1).clamp(0, maxPlayerHp);
     AudioService.playPotionUse();
+    
+    if (_isDisposed) return;
     notifyListeners();
 
     await SaveService.savePlayerData(profile!);
@@ -180,7 +202,7 @@ class GameController extends ChangeNotifier {
   }
 
   void useHint(Function(String) showSnackBar) async {
-    if (profile == null || isAnswered || questions.isEmpty) return;
+    if (profile == null || isAnswered || questions.isEmpty || _isDisposed) return;
 
     if (profile!.letterHints <= 0) {
       showSnackBar('No tienes pistas disponibles. ¡Cómpralas en la tienda!');
@@ -208,6 +230,8 @@ class GameController extends ChangeNotifier {
     profile!.letterHints--;
     disabledOptionIndexes.add(optionToDisable);
     AudioService.playHintUse();
+    
+    if (_isDisposed) return;
     notifyListeners();
 
     await SaveService.savePlayerData(profile!);

@@ -40,20 +40,17 @@ class _HomeScreenState extends State<HomeScreen> {
     });
 
     await SaveService.savePlayerData(_profile!);
-
-    // 👈 ¡Añade esto aquí para sincronizar automáticamente con la nube!
     await CloudService.syncProfileToCloud(_profile!);
   }
 
   void _claimDailyReward() async {
     if (_profile == null || !_profile!.canClaimDailyReward) return;
 
-    // Configuración de la recompensa
     int rewardCoins = 100;
     int rewardPotions = 2;
 
     setState(() {
-      _triggerChestExplosion = true; // 👈 Activa la lluvia de partículas
+      _triggerChestExplosion = true;
       _profile!.coins += rewardCoins;
       _profile!.healthPotions += rewardPotions;
       _profile!.lastDailyReward = DateTime.now();
@@ -61,14 +58,12 @@ class _HomeScreenState extends State<HomeScreen> {
 
     await SaveService.savePlayerData(_profile!);
 
-    // Restablece el disparador después de un momento para permitir futuras ejecuciones
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) setState(() => _triggerChestExplosion = false);
     });
 
     if (!mounted) return;
 
-    // Diálogo emergente de recompensa
     showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -155,403 +150,400 @@ class _HomeScreenState extends State<HomeScreen> {
     bool canClaim = profile.canClaimDailyReward;
 
     return Scaffold(
-      backgroundColor: const Color(0xFF0F0E17),
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 10),
-
-              // --- TARJETA DE PERFIL DEL JUGADOR ---
-              Container(
-                padding: const EdgeInsets.all(16.0),
-                decoration: BoxDecoration(
-                  color: const Color(0xFF1F1D36),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: const Color(0x4DFFC107)),
-                ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        InkWell(
-                          onTap: () async {
-                            await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const ProfileScreen(),
-                              ),
-                            );
-                            _loadUserProfile();
-                          },
-                          borderRadius: BorderRadius.circular(8),
-                          child: Padding(
-                            padding: const EdgeInsets.all(4.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFF0A0B1E), // Azul cielo nocturno profundo
+              Color(0xFF1B1A3A), // Tinte intermedio de aventura
+              Color(0xFF130E26), // Oscuro profundo abajo
+            ],
+          ),
+        ),
+        child: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                // --- HUD SUPERIOR ESTILO MÓVIL COMERCIAL ---
+                Container(
+                  padding: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    color: Colors.black.withValues(alpha: 0.5),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: Colors.amber.withValues(alpha: 0.3), width: 1.5),
+                  ),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          InkWell(
+                            onTap: () async {
+                              await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const ProfileScreen(),
+                                ),
+                              );
+                              _loadUserProfile();
+                            },
+                            borderRadius: BorderRadius.circular(8),
+                            child: Row(
                               children: [
-                                Row(
+                                const CircleAvatar(
+                                  radius: 18,
+                                  backgroundColor: Color(0xFF2E2A54),
+                                  child: Icon(Icons.person, color: Colors.amberAccent, size: 20),
+                                ),
+                                const SizedBox(width: 8),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
                                       profile.name,
                                       style: const TextStyle(
                                         color: Colors.white,
-                                        fontSize: 20,
+                                        fontSize: 16,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    const SizedBox(width: 6),
-                                    const Icon(
-                                      Icons.edit,
-                                      color: Colors.white54,
-                                      size: 16,
+                                    Text(
+                                      'Nivel ${profile.level}',
+                                      style: const TextStyle(
+                                        color: Colors.amber,
+                                        fontSize: 12,
+                                        fontWeight: FontWeight.w600,
+                                      ),
                                     ),
                                   ],
-                                ),
-                                const SizedBox(height: 4),
-                                Text(
-                                  'Nivel ${profile.level}',
-                                  style: const TextStyle(
-                                    color: Colors.amber,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                  ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-
-                        Row(
-                          children: [
-                            const Text('⭐ ', style: TextStyle(fontSize: 16)),
-                            Text(
-                              '${profile.totalStars}',
-                              style: const TextStyle(
-                                color: Colors.amberAccent,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            const Text('🪙 ', style: TextStyle(fontSize: 16)),
-                            Text(
-                              '${profile.coins}',
-                              style: const TextStyle(
-                                color: Colors.amber,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            const SizedBox(width: 8),
-                            const Text('💎 ', style: TextStyle(fontSize: 16)),
-                            Text(
-                              '${profile.gems}',
-                              style: const TextStyle(
-                                color: Colors.cyanAccent,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-
-                    // BARRA DE EXPERIENCIA (XP)
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text(
-                              'Progreso XP',
-                              style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 12,
-                              ),
-                            ),
-                            Text(
-                              '${profile.experience} / ${profile.maxExperienceForCurrentLevel}',
-                              style: const TextStyle(
-                                color: Colors.white70,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8),
-                          child: LinearProgressIndicator(
-                            value: profile.levelProgress.clamp(0.0, 1.0),
-                            minHeight: 10,
-                            backgroundColor: Colors.white12,
-                            valueColor: const AlwaysStoppedAnimation<Color>(
-                              Colors.purpleAccent,
-                            ),
+                          Row(
+                            children: [
+                              _buildResourceBadge('⭐', '${profile.totalStars}', Colors.amberAccent),
+                              const SizedBox(width: 6),
+                              _buildResourceBadge('🪙', '${profile.coins}', Colors.amber),
+                              const SizedBox(width: 6),
+                              _buildResourceBadge('💎', '${profile.gems}', Colors.cyanAccent),
+                            ],
                           ),
+                        ],
+                      ),
+                      const SizedBox(height: 10),
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(6),
+                        child: LinearProgressIndicator(
+                          value: profile.levelProgress.clamp(0.0, 1.0),
+                          minHeight: 8,
+                          backgroundColor: Colors.white12,
+                          valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF00FFA3)),
                         ),
-                      ],
+                      ),
+                    ],
+                  ),
+                ),
+
+                const Spacer(),
+
+                // --- LOGOTIPO ÉPICO: WORDS & MONSTERS ---
+                Column(
+                  children: [
+                    ShaderMask(
+                      shaderCallback: (bounds) => const LinearGradient(
+                        colors: [Color(0xFFFF007F), Color(0xFFFFD700)],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ).createShader(bounds),
+                      child: const Text(
+                        "WORDS &\nMONSTERS",
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w900,
+                          height: 1.1,
+                          letterSpacing: 1.5,
+                          color: Colors.white,
+                          shadows: [
+                            Shadow(
+                              color: Colors.black87,
+                              offset: Offset(0, 5),
+                              blurRadius: 10,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                      decoration: BoxDecoration(
+                        color: Colors.black.withValues(alpha: 0.4),
+                        borderRadius: BorderRadius.circular(10),
+                        border: Border.all(color: Colors.cyanAccent.withValues(alpha: 0.3)),
+                      ),
+                      child: const Text(
+                        "APRENDE • JUEGA • EVOLUCIONA",
+                        style: TextStyle(
+                          color: Colors.cyanAccent,
+                          fontSize: 11,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 1.5,
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ),
 
-              const SizedBox(height: 16),
+                const Spacer(),
 
-              // --- BOTÓN COFRE DIARIO CON EFECTO DE PARTÍCULAS ---
-              ParticleExplosion(
-                trigger: _triggerChestExplosion,
-                particleEmoji: '🪙',
-                child: InkWell(
-                  onTap: canClaim ? _claimDailyReward : null,
-                  borderRadius: BorderRadius.circular(16),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 300),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 16,
-                      vertical: 12,
-                    ),
-                    decoration: BoxDecoration(
-                      color: canClaim
-                          ? const Color(0xFF2D1B4E)
-                          : const Color(0xFF1A1A24),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: canClaim ? Colors.amber : Colors.white10,
-                        width: canClaim ? 2 : 1,
+                // --- COFRE DIARIO ---
+                ParticleExplosion(
+                  trigger: _triggerChestExplosion,
+                  particleEmoji: '🪙',
+                  child: InkWell(
+                    onTap: canClaim ? _claimDailyReward : null,
+                    borderRadius: BorderRadius.circular(16),
+                    child: AnimatedContainer(
+                      duration: const Duration(milliseconds: 300),
+                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      decoration: BoxDecoration(
+                        color: canClaim ? const Color(0xFF2D1B4E) : const Color(0xFF161522),
+                        borderRadius: BorderRadius.circular(14),
+                        border: Border.all(
+                          color: canClaim ? Colors.amber : Colors.white10,
+                          width: canClaim ? 2 : 1,
+                        ),
+                        boxShadow: canClaim
+                            ? [BoxShadow(color: Colors.amber.withValues(alpha: 0.3), blurRadius: 8)]
+                            : [],
                       ),
-                      boxShadow: canClaim
-                          ? [
-                              BoxShadow(
-                                color: Colors.amber.withValues(alpha: 0.3),
-                                blurRadius: 10,
+                      child: Row(
+                        children: [
+                          Text(canClaim ? '🎁' : '🔒', style: const TextStyle(fontSize: 24)),
+                          const SizedBox(width: 10),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  canClaim ? '¡Cofre Diario Disponible!' : 'Cofre Diario Reclamado',
+                                  style: TextStyle(
+                                    color: canClaim ? Colors.amberAccent : Colors.white54,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 13,
+                                  ),
+                                ),
+                                Text(
+                                  canClaim ? 'Toca para reclamar tu recompensa' : 'Vuelve mañana por más premios',
+                                  style: const TextStyle(color: Colors.white38, fontSize: 11),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (canClaim)
+                            Container(
+                              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                              decoration: BoxDecoration(
+                                color: Colors.amber,
+                                borderRadius: BorderRadius.circular(8),
                               ),
-                            ]
-                          : [],
-                    ),
-                    child: Row(
-                      children: [
-                        Text(
-                          canClaim ? '🎁' : '🔒',
-                          style: const TextStyle(fontSize: 28),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                canClaim
-                                    ? '¡Cofre Diario Disponible!'
-                                    : 'Cofre Diario Reclamado',
+                              child: const Text(
+                                'ABRIR',
                                 style: TextStyle(
-                                  color: canClaim
-                                      ? Colors.amberAccent
-                                      : Colors.white54,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 11,
                                 ),
                               ),
-                              Text(
-                                canClaim
-                                    ? 'Toca para reclamar tu recompensa'
-                                    : 'Vuelve mañana para más premios',
-                                style: const TextStyle(
-                                  color: Colors.white38,
-                                  fontSize: 12,
-                                ),
-                              ),
-                            ],
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 12),
+
+                // --- BOTÓN PRINCIPAL: JUGAR AVENTURA ---
+                Container(
+                  height: 54,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF00FFA3), Color(0xFF00B8FF)],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: const Color(0xFF00FFA3).withValues(alpha: 0.4),
+                        blurRadius: 10,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
+                  ),
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.transparent,
+                      shadowColor: Colors.transparent,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    ),
+                    onPressed: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MapScreen()),
+                      );
+                      _loadUserProfile();
+                    },
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: const [
+                        Icon(Icons.play_arrow_rounded, color: Colors.black, size: 30),
+                        SizedBox(width: 6),
+                        Text(
+                          'JUGAR AVENTURA',
+                          style: TextStyle(
+                            fontSize: 17,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.black,
+                            letterSpacing: 1.2,
                           ),
                         ),
-                        if (canClaim)
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 10,
-                              vertical: 4,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(12),
-                            ),
-                            child: const Text(
-                              'ABRIR',
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                              ),
-                            ),
-                          ),
                       ],
                     ),
                   ),
                 ),
+
+                const SizedBox(height: 14),
+
+                // --- MENÚ INFERIOR ESTILO TARJETAS DE MODO DE JUEGO (Inspirado en la referencia) ---
+                Row(
+                  children: [
+                    _buildGameCard(
+                      title: 'TIENDA',
+                      icon: Icons.storefront_rounded,
+                      color: const Color(0xFFFF9900),
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ShopScreen(playerProfile: _profile)),
+                        );
+                        _loadUserProfile();
+                      },
+                    ),
+                    const SizedBox(width: 8),
+                    _buildGameCard(
+                      title: 'MISIONES',
+                      icon: Icons.assignment_rounded,
+                      color: const Color(0xFFFF0055),
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const QuestsScreen()),
+                        );
+                        _loadUserProfile();
+                      },
+                    ),
+                    const SizedBox(width: 8),
+                    _buildGameCard(
+                      title: 'RANKING',
+                      icon: Icons.leaderboard_rounded,
+                      color: const Color(0xFF9900FF),
+                      onTap: () async {
+                        await Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const LeaderboardScreen()),
+                        );
+                        _loadUserProfile();
+                      },
+                    ),
+                  ],
+                ),
+
+                const SizedBox(height: 6),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildResourceBadge(String emoji, String value, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+      decoration: BoxDecoration(
+        color: Colors.black.withValues(alpha: 0.6),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withValues(alpha: 0.4)),
+      ),
+      child: Row(
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 11)),
+          const SizedBox(width: 3),
+          Text(
+            value,
+            style: TextStyle(
+              color: color,
+              fontWeight: FontWeight.bold,
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildGameCard({
+    required String title,
+    required IconData icon,
+    required Color color,
+    required VoidCallback onTap,
+  }) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                color.withValues(alpha: 0.2),
+                const Color(0xFF1B1A3A),
+              ],
+            ),
+            borderRadius: BorderRadius.circular(14),
+            border: Border.all(color: color.withValues(alpha: 0.7), width: 1.5),
+            boxShadow: [
+              BoxShadow(
+                color: color.withValues(alpha: 0.15),
+                blurRadius: 8,
+                offset: const Offset(0, 4),
               ),
-
-              const Spacer(),
-
-              // --- BOTÓN JUGAR BATALLA ---
-              SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.indigoAccent,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  icon: const Icon(
-                    Icons.play_arrow,
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                  label: const Text(
-                    'JUGAR BATALLA',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const MapScreen(),
-                      ),
-                    );
-                    _loadUserProfile();
-                  },
+            ],
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: color, size: 26),
+              const SizedBox(height: 6),
+              Text(
+                title,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 11,
+                  letterSpacing: 0.5,
                 ),
               ),
-
-              const SizedBox(height: 12),
-
-              // --- BOTÓN TIENDA DE MEJORAS ---
-              SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF2B1C4C),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: const BorderSide(color: Colors.white24),
-                    ),
-                  ),
-                  icon: const Icon(
-                    Icons.shopping_cart,
-                    color: Colors.white,
-                    size: 28,
-                  ),
-                  label: const Text(
-                    'TIENDA DE MEJORAS',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ShopScreen(playerProfile: _profile),
-                      ),
-                    );
-                    _loadUserProfile();
-                  },
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              // --- BOTÓN MISIONES Y LOGROS ---
-              SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF38235D),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: const BorderSide(color: Colors.amberAccent),
-                    ),
-                  ),
-                  icon: const Icon(
-                    Icons.stars,
-                    color: Colors.amberAccent,
-                    size: 26,
-                  ),
-                  label: const Text(
-                    'MISIONES Y LOGROS',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const QuestsScreen(),
-                      ),
-                    );
-                    _loadUserProfile();
-                  },
-                ),
-              ),
-
-              const SizedBox(height: 12),
-
-              // --- BOTÓN CLASIFICACIÓN / LEADERBOARD ---
-              SizedBox(
-                width: double.infinity,
-                height: 54,
-                child: ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF2B2B48),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                      side: const BorderSide(color: Colors.white24),
-                    ),
-                  ),
-                  icon: const Icon(
-                    Icons.leaderboard,
-                    color: Colors.amberAccent,
-                    size: 26,
-                  ),
-                  label: const Text(
-                    'CLASIFICACIÓN',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () async {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LeaderboardScreen(),
-                      ),
-                    );
-                    _loadUserProfile();
-                  },
-                ),
-              ),
-
-              const SizedBox(height: 16),
             ],
           ),
         ),

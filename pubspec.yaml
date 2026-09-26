@@ -1,5 +1,5 @@
-name: trivia_word
-description: "A new Flutter project."
+name: words_and_monsters
+description: "Un juego móvil épico de trivia, palabras y monstruos."
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
 publish_to: 'none' # Remove this line if you wish to publish to pub.dev
@@ -89,3 +89,9 @@ flutter:
   # Configuración de recursos (assets)
   assets:
     - assets/audio/
+    flutter:
+  uses-material-design: true
+
+  # Configuración de recursos (Assets)
+  assets:
+    - assets/images/home_bg.jpg

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/player_profile.dart';
 import 'shop_screen.dart';
 import 'leaderboard_screen.dart';
@@ -9,6 +10,14 @@ import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
 import '../services/cloud_service.dart';
 
+// Color de contorno común para todo el estilo "juego"
+const Color kOutline = Color(0xFF0D0326);
+// Cian de las cascadas del fondo y blanco hueso para títulos
+const Color kCyan = Color(0xFF1EE3CF);
+const Color kBone = Color(0xFFF4EBDD);
+// Inclinación de botones y placa del logo
+const double kSkew = -0.2;
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -16,15 +25,60 @@ class HomeScreen extends StatefulWidget {
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   PlayerProfile? _profile;
   bool _isLoading = true;
   bool _triggerChestExplosion = false;
+
+  // Respiración del dragón
+  late AnimationController _dragonController;
+  late Animation<double> _dragonScaleAnimation;
+
+  // Flotación suave del aventurero
+  late AnimationController _floatController;
+  late Animation<double> _floatAnimation;
+
+  // Entrada del logo con rebote
+  late AnimationController _logoController;
+  late Animation<double> _logoAnimation;
 
   @override
   void initState() {
     super.initState();
     _loadUserProfile();
+
+    _dragonController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
+    )..repeat(reverse: true);
+    _dragonScaleAnimation = Tween<double>(begin: 1.0, end: 1.03).animate(
+      CurvedAnimation(parent: _dragonController, curve: Curves.easeInOut),
+    );
+
+    _floatController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 2600),
+    )..repeat(reverse: true);
+    _floatAnimation = Tween<double>(begin: 0, end: -6).animate(
+      CurvedAnimation(parent: _floatController, curve: Curves.easeInOut),
+    );
+
+    _logoController = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 1100),
+    )..forward();
+    _logoAnimation = CurvedAnimation(
+      parent: _logoController,
+      curve: Curves.elasticOut,
+    );
+  }
+
+  @override
+  void dispose() {
+    _dragonController.dispose();
+    _floatController.dispose();
+    _logoController.dispose();
+    super.dispose();
   }
 
   Future<void> _loadUserProfile() async {
@@ -72,15 +126,12 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: Colors.amber, width: 2),
         ),
-        title: const Row(
+        title: Row(
           children: [
-            Text('🎁 ', style: TextStyle(fontSize: 24)),
+            const Text('🎁 ', style: TextStyle(fontSize: 24)),
             Text(
               '¡Recompensa Diaria!',
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
+              style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: Colors.white, fontSize: 22),
             ),
           ],
         ),
@@ -100,10 +151,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   avatar: const Text('🪙'),
                   label: Text(
                     '+$rewardCoins',
-                    style: const TextStyle(
-                      color: Colors.amber,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
                   ),
                 ),
                 Chip(
@@ -111,10 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   avatar: const Text('🧪'),
                   label: Text(
                     '+$rewardPotions',
-                    style: const TextStyle(
-                      color: Colors.redAccent,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
                   ),
                 ),
               ],
@@ -124,12 +169,9 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text(
+            child: Text(
               '¡EXCELENTE!',
-              style: TextStyle(
-                color: Colors.amberAccent,
-                fontWeight: FontWeight.bold,
-              ),
+              style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: Colors.amberAccent, fontSize: 18),
             ),
           ),
         ],
@@ -147,340 +189,206 @@ class _HomeScreenState extends State<HomeScreen> {
     }
 
     final profile = _profile!;
-    bool canClaim = profile.canClaimDailyReward;
+    final bool canClaim = profile.canClaimDailyReward;
+
+    final media = MediaQuery.of(context);
+    final screenWidth = media.size.width;
+    final screenHeight = media.size.height;
+
+    // Los personajes "pisan" justo detrás del banner del cofre.
+    // 190 ≈ altura del bloque inferior (cofre + jugar + tarjetas) menos un poco
+    // para que los pies queden ocultos tras el banner.
+    final double charBottom = 190 + media.padding.bottom;
+    final double adventurerHeight = (screenHeight * 0.28).clamp(150.0, 300.0);
+    final double dragonHeight = (screenHeight * 0.33).clamp(180.0, 360.0);
+    const double dragonScale = 1.4;
+    const double dragonLift = -25;
+    const double dragonShift = 0.35;
 
     return Scaffold(
       body: Stack(
         children: [
-          // 1. IMAGEN DE FONDO ÉPICA
+          // ===========================================================
+          // CAPA 1: FONDO
+          // ===========================================================
           Positioned.fill(
             child: Image.asset(
-              'assets/images/home_bg.jpg',
+              'assets/images/bg_landscape.png',
               fit: BoxFit.cover,
+              alignment: Alignment.center,
             ),
           ),
 
-          // 2. CAPA DE OSCURECIMIENTO (Overlay) para legibilidad perfecta
+          // Oscurecimiento: suave arriba, fuerte abajo para los botones
           Positioned.fill(
-            child: Container(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withValues(alpha: 0.55),
-                    Colors.black.withValues(alpha: 0.25),
-                    Colors.black.withValues(alpha: 0.85),
-                  ],
+            child: IgnorePointer(
+              child: Container(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    stops: const [0.0, 0.45, 0.75, 1.0],
+                    colors: [
+                      Colors.black.withValues(alpha: 0.35),
+                      Colors.black.withValues(alpha: 0.05),
+                      Colors.black.withValues(alpha: 0.35),
+                      Colors.black.withValues(alpha: 0.85),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
 
-          // 3. CONTENIDO DE LA INTERFAZ
+          // ===========================================================
+          // CAPA 2: PERSONAJES
+          // ===========================================================
+          // Dragón PRIMERO: así queda detrás del aventurero y nunca le tapa la cara.
+          // Ajustes rápidos:
+          //   dragonScale  -> tamaño (1.35 = 35% más grande que la base)
+          //   dragonLift   -> cuánto se eleva sobre el banner (en píxeles)
+          //   dragonShift  -> cuánto sale por el borde derecho (0.28 = 28% del ancho)
+          Positioned(
+            right: -screenWidth * dragonShift,
+            bottom: charBottom + dragonLift,
+            child: IgnorePointer(
+              child: ScaleTransition(
+                scale: _dragonScaleAnimation,
+                alignment: Alignment.bottomCenter,
+                child: SizedBox(
+                  height: dragonHeight * dragonScale,
+                  width: dragonHeight * dragonScale * 1.49,
+                  child: Image.asset(
+                    'assets/images/dragon.png',
+                    fit: BoxFit.contain,
+                    alignment: Alignment.bottomRight,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // Aventurero DESPUÉS: queda por delante del dragón
+          Positioned(
+            left: -8,
+            bottom: charBottom,
+            child: IgnorePointer(
+              child: AnimatedBuilder(
+                animation: _floatAnimation,
+                builder: (context, child) => Transform.translate(
+                  offset: Offset(0, _floatAnimation.value),
+                  child: child,
+                ),
+                child: SizedBox(
+                  width: screenWidth * 0.46,
+                  height: adventurerHeight,
+                  child: Image.asset(
+                    'assets/images/adventurer.png',
+                    fit: BoxFit.contain,
+                    alignment: Alignment.bottomLeft,
+                  ),
+                ),
+              ),
+            ),
+          ),
+
+          // ===========================================================
+          // CAPA 3: INTERFAZ
+          // ===========================================================
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // --- HUD SUPERIOR ---
-                  Container(
-                    padding: const EdgeInsets.all(12.0),
-                    decoration: BoxDecoration(
-                      color: Colors.black.withValues(alpha: 0.5),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: Colors.amber.withValues(alpha: 0.3), width: 1.5),
-                    ),
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            InkWell(
-                              onTap: () async {
-                                await Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const ProfileScreen(),
-                                  ),
-                                );
-                                _loadUserProfile();
-                              },
-                              borderRadius: BorderRadius.circular(8),
-                              child: Row(
-                                children: [
-                                  const CircleAvatar(
-                                    radius: 18,
-                                    backgroundColor: Color(0xFF2E2A54),
-                                    child: Icon(Icons.person, color: Colors.amberAccent, size: 20),
-                                  ),
-                                  const SizedBox(width: 8),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        profile.name,
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontSize: 16,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        'Nivel ${profile.level}',
-                                        style: const TextStyle(
-                                          color: Colors.amber,
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w600,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                _buildResourceBadge('⭐', '${profile.totalStars}', Colors.amberAccent),
-                                const SizedBox(width: 6),
-                                _buildResourceBadge('🪙', '${profile.coins}', Colors.amber),
-                                const SizedBox(width: 6),
-                                _buildResourceBadge('💎', '${profile.gems}', Colors.cyanAccent),
-                              ],
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(6),
-                          child: LinearProgressIndicator(
-                            value: profile.levelProgress.clamp(0.0, 1.0),
-                            minHeight: 8,
-                            backgroundColor: Colors.white12,
-                            valueColor: const AlwaysStoppedAnimation<Color>(Color(0xFF00FFA3)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  _buildHud(profile),
 
-                  const Spacer(),
+                  const SizedBox(height: 18),
 
-                  // --- LOGOTIPO ÉPICO: WORDS & MONSTERS ---
-                  Column(
-                    children: [
-                      ShaderMask(
-                        shaderCallback: (bounds) => const LinearGradient(
-                          colors: [Color(0xFFFF007F), Color(0xFFFFD700)],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ).createShader(bounds),
-                        child: const Text(
-                          "WORDS &\nMONSTERS",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.w900,
-                            height: 1.1,
-                            letterSpacing: 1.5,
-                            color: Colors.white,
-                            shadows: [
-                              Shadow(
-                                color: Colors.black87,
-                                offset: Offset(0, 5),
-                                blurRadius: 10,
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.5),
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.cyanAccent.withValues(alpha: 0.4)),
-                        ),
-                        child: const Text(
-                          "APRENDE • JUEGA • EVOLUCIONA",
-                          style: TextStyle(
-                            color: Colors.cyanAccent,
-                            fontSize: 11,
-                            fontWeight: FontWeight.bold,
-                            letterSpacing: 1.5,
-                          ),
-                        ),
-                      ),
-                    ],
+                  // --- LOGO (arriba, liberando el centro del paisaje) ---
+                  ScaleTransition(
+                    scale: _logoAnimation,
+                    child: _buildLogo(screenWidth),
                   ),
 
                   const Spacer(),
 
                   // --- COFRE DIARIO ---
-                  ParticleExplosion(
-                    trigger: _triggerChestExplosion,
-                    particleEmoji: '🪙',
-                    child: InkWell(
-                      onTap: canClaim ? _claimDailyReward : null,
-                      borderRadius: BorderRadius.circular(16),
-                      child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 300),
-                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
-                        decoration: BoxDecoration(
-                          color: canClaim ? const Color(0xFF2D1B4E).withValues(alpha: 0.9) : const Color(0xFF161522).withValues(alpha: 0.9),
-                          borderRadius: BorderRadius.circular(14),
-                          border: Border.all(
-                            color: canClaim ? Colors.amber : Colors.white10,
-                            width: canClaim ? 2 : 1,
-                          ),
-                          boxShadow: canClaim
-                              ? [BoxShadow(color: Colors.amber.withValues(alpha: 0.3), blurRadius: 8)]
-                              : [],
-                        ),
-                        child: Row(
-                          children: [
-                            Text(canClaim ? '🎁' : '🔒', style: const TextStyle(fontSize: 24)),
-                            const SizedBox(width: 10),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    canClaim ? '¡Cofre Diario Disponible!' : 'Cofre Diario Reclamado',
-                                    style: TextStyle(
-                                      color: canClaim ? Colors.amberAccent : Colors.white54,
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 13,
-                                    ),
-                                  ),
-                                  Text(
-                                    canClaim ? 'Toca para reclamar tu recompensa' : 'Vuelve mañana para más premios',
-                                    style: const TextStyle(color: Colors.white38, fontSize: 11),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            if (canClaim)
-                              Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                                decoration: BoxDecoration(
-                                  color: Colors.amber,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Text(
-                                  'ABRIR',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w900,
-                                    fontSize: 11,
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
+                  _buildChestBanner(canClaim),
+
+                  const SizedBox(height: 12),
+
+                  // --- BOTÓN PRINCIPAL ---
+                  _buildSlantButton(
+                    height: 58,
+                    fill: kCyan,
+                    onTap: () async {
+                      await Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const MapScreen()),
+                      );
+                      _loadUserProfile();
+                    },
+                    child: Text(
+                      'JUGAR AVENTURA',
+                      style: GoogleFonts.anton(
+                        fontSize: 24,
+                        letterSpacing: 1.5,
+                        color: kOutline,
                       ),
                     ),
                   ),
 
                   const SizedBox(height: 12),
 
-                  // --- BOTÓN PRINCIPAL: JUGAR AVENTURA ---
-                  Container(
-                    height: 54,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(16),
-                      gradient: const LinearGradient(
-                        colors: [Color(0xFF00FFA3), Color(0xFF00B8FF)],
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: const Color(0xFF00FFA3).withValues(alpha: 0.4),
-                          blurRadius: 10,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
-                    ),
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
-                        shadowColor: Colors.transparent,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
-                      ),
-                      onPressed: () async {
-                        await Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const MapScreen()),
-                        );
-                        _loadUserProfile();
-                      },
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: const [
-                          Icon(Icons.play_arrow_rounded, color: Colors.black, size: 30),
-                          SizedBox(width: 6),
-                          Text(
-                            'JUGAR AVENTURA',
-                            style: TextStyle(
-                              fontSize: 17,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.black,
-                              letterSpacing: 1.2,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  const SizedBox(height: 14),
-
-                  // --- MENÚ INFERIOR ESTILO TARJETAS ---
+                  // --- MENÚ INFERIOR ---
                   Row(
                     children: [
-                      _buildGameCard(
-                        title: 'TIENDA',
-                        icon: Icons.storefront_rounded,
-                        color: const Color(0xFFFF9900),
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ShopScreen(playerProfile: _profile)),
-                          );
-                          _loadUserProfile();
-                        },
+                      Expanded(
+                        child: _buildMenuCard(
+                          title: 'TIENDA',
+                          icon: Icons.storefront_rounded,
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ShopScreen(playerProfile: _profile)),
+                            );
+                            _loadUserProfile();
+                          },
+                        ),
                       ),
-                      const SizedBox(width: 8),
-                      _buildGameCard(
-                        title: 'MISIONES',
-                        icon: Icons.assignment_rounded,
-                        color: const Color(0xFFFF0055),
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const QuestsScreen()),
-                          );
-                          _loadUserProfile();
-                        },
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: _buildMenuCard(
+                          title: 'MISIONES',
+                          icon: Icons.assignment_rounded,
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const QuestsScreen()),
+                            );
+                            _loadUserProfile();
+                          },
+                        ),
                       ),
-                      const SizedBox(width: 8),
-                      _buildGameCard(
-                        title: 'RANKING',
-                        icon: Icons.leaderboard_rounded,
-                        color: const Color(0xFF9900FF),
-                        onTap: () async {
-                          await Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => const LeaderboardScreen()),
-                          );
-                          _loadUserProfile();
-                        },
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: _buildMenuCard(
+                          title: 'RANKING',
+                          icon: Icons.leaderboard_rounded,
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const LeaderboardScreen()),
+                            );
+                            _loadUserProfile();
+                          },
+                        ),
                       ),
                     ],
                   ),
 
-                  const SizedBox(height: 6),
+                  const SizedBox(height: 4),
                 ],
               ),
             ),
@@ -490,24 +398,96 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildResourceBadge(String emoji, String value, Color color) {
+  // =================================================================
+  // HUD SUPERIOR
+  // =================================================================
+  Widget _buildHud(PlayerProfile profile) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+      padding: const EdgeInsets.all(12.0),
       decoration: BoxDecoration(
-        color: Colors.black.withValues(alpha: 0.6),
-        borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: color.withValues(alpha: 0.4)),
+        color: const Color(0xFF1A0845).withValues(alpha: 0.85),
+        borderRadius: BorderRadius.circular(18),
+        border: Border.all(color: kOutline, width: 3),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 11)),
-          const SizedBox(width: 3),
-          Text(
-            value,
-            style: TextStyle(
-              color: color,
-              fontWeight: FontWeight.bold,
-              fontSize: 12,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              InkWell(
+                onTap: () async {
+                  await Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ProfileScreen()),
+                  );
+                  _loadUserProfile();
+                },
+                borderRadius: BorderRadius.circular(8),
+                child: Row(
+                  children: [
+                    Container(
+                      width: 40,
+                      height: 40,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xFF4FC3FF), Color(0xFF1B7FE0)],
+                        ),
+                        border: Border.all(color: kOutline, width: 2.5),
+                      ),
+                      child: const Icon(Icons.person, color: Colors.white, size: 22),
+                    ),
+                    const SizedBox(width: 8),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        _outlinedText(profile.name, 17, stroke: 4),
+                        Text(
+                          'Nivel ${profile.level}',
+                          style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: Colors.amber, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              Row(
+                children: [
+                  _buildResourceBadge('⭐', '${profile.totalStars}', Colors.amberAccent),
+                  const SizedBox(width: 6),
+                  _buildResourceBadge('🪙', '${profile.coins}', Colors.amber),
+                  const SizedBox(width: 6),
+                  _buildResourceBadge('💎', '${profile.gems}', Colors.cyanAccent),
+                ],
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Container(
+            height: 12,
+            decoration: BoxDecoration(
+              color: kOutline,
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding: const EdgeInsets.all(2),
+            child: Align(
+              alignment: Alignment.centerLeft,
+              child: FractionallySizedBox(
+                // Mínimo visible para que la barra no parezca vacía/rota
+                widthFactor: profile.levelProgress.clamp(0.04, 1.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0xFF9DFF7A), Color(0xFF2FC22A)],
+                    ),
+                  ),
+                ),
+              ),
             ),
           ),
         ],
@@ -515,55 +495,268 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildGameCard({
-    required String title,
-    required IconData icon,
-    required Color color,
-    required VoidCallback onTap,
-  }) {
-    return Expanded(
-      child: InkWell(
-        onTap: onTap,
-        borderRadius: BorderRadius.circular(14),
-        child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 4),
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                color.withValues(alpha: 0.3),
-                Colors.black.withValues(alpha: 0.7),
-              ],
-            ),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: color.withValues(alpha: 0.7), width: 1.5),
-            boxShadow: [
-              BoxShadow(
-                color: color.withValues(alpha: 0.2),
-                blurRadius: 8,
-                offset: const Offset(0, 4),
+  // =================================================================
+  // LOGO: placa inclinada + "WORDS &" en blanco hueso + "MONSTERS"
+  // en letra gótica cian, con contorno y extrusión
+  // =================================================================
+  Widget _buildLogo(double screenWidth) {
+    final double size = (screenWidth * 0.14).clamp(40.0, 66.0);
+
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Transform(
+            transform: Matrix4.skewX(kSkew * 0.8),
+            alignment: Alignment.center,
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(26, 10, 26, 14),
+              decoration: BoxDecoration(
+                color: kOutline.withValues(alpha: 0.88),
+                borderRadius: BorderRadius.circular(6),
+                border: Border.all(color: kCyan, width: 2.5),
+                boxShadow: [
+                  BoxShadow(color: kCyan.withValues(alpha: 0.35), blurRadius: 20),
+                ],
               ),
-            ],
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(icon, color: color, size: 26),
-              const SizedBox(height: 6),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 11,
-                  letterSpacing: 0.5,
+              child: Transform(
+                transform: Matrix4.skewX(-kSkew * 0.8),
+                alignment: Alignment.center,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    _logoText(
+                      'WORDS &',
+                      GoogleFonts.anton(fontSize: size * 0.9, height: 1.05, letterSpacing: 3),
+                      const [Color(0xFFFFFFFF), kBone],
+                      size,
+                    ),
+                    Transform(
+                      transform: Matrix4.skewX(kSkew * 0.6),
+                      alignment: Alignment.center,
+                      child: _logoText(
+                        'MONSTERS',
+                        GoogleFonts.metalMania(fontSize: size * 1.05, height: 1.0, letterSpacing: 1),
+                        const [Color(0xFFA8FFF6), kCyan],
+                        size,
+                      ),
+                    ),
+                  ],
                 ),
               ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'APRENDE  ·  JUEGA  ·  EVOLUCIONA',
+            style: GoogleFonts.oswald(
+              fontWeight: FontWeight.w700,
+              fontSize: 13,
+              letterSpacing: 2,
+              color: kCyan,
+              shadows: const [Shadow(color: kOutline, blurRadius: 6)],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _logoText(String text, TextStyle base, List<Color> colors, double size) {
+    final strokePaint = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = size * 0.14
+      ..strokeJoin = StrokeJoin.round
+      ..color = kOutline;
+
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        Transform.translate(
+          offset: Offset(0, size * 0.08),
+          child: Text(text, style: base.copyWith(foreground: strokePaint)),
+        ),
+        Text(text, style: base.copyWith(foreground: strokePaint)),
+        ShaderMask(
+          shaderCallback: (bounds) => LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: colors,
+          ).createShader(bounds),
+          child: Text(text, style: base.copyWith(color: Colors.white)),
+        ),
+      ],
+    );
+  }
+
+  // Texto blanco con contorno oscuro (para botones y etiquetas)
+  Widget _outlinedText(String text, double fontSize, {double stroke = 5}) {
+    final base = GoogleFonts.oswald(fontWeight: FontWeight.w700, fontSize: fontSize, letterSpacing: 0.8);
+    return Stack(
+      children: [
+        Text(
+          text,
+          style: base.copyWith(
+            foreground: Paint()
+              ..style = PaintingStyle.stroke
+              ..strokeWidth = stroke
+              ..strokeJoin = StrokeJoin.round
+              ..color = kOutline,
+          ),
+        ),
+        Text(text, style: base.copyWith(color: Colors.white)),
+      ],
+    );
+  }
+
+  // =================================================================
+  // BOTÓN INCLINADO (paralelogramo). El contenido se "desinclina"
+  // para que el texto y los iconos queden rectos.
+  // =================================================================
+  Widget _buildSlantButton({
+    required Widget child,
+    required VoidCallback onTap,
+    required Color fill,
+    Color? border,
+    double height = 58,
+  }) {
+    return Transform(
+      transform: Matrix4.skewX(kSkew),
+      alignment: Alignment.center,
+      child: Material(
+        color: fill,
+        elevation: 6,
+        shadowColor: fill.withValues(alpha: 0.6),
+        clipBehavior: Clip.antiAlias,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+          side: border == null ? BorderSide.none : BorderSide(color: border, width: 2),
+        ),
+        child: InkWell(
+          onTap: onTap,
+          child: SizedBox(
+            height: height,
+            child: Center(
+              child: Transform(
+                transform: Matrix4.skewX(-kSkew),
+                alignment: Alignment.center,
+                child: child,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildMenuCard({
+    required String title,
+    required IconData icon,
+    required VoidCallback onTap,
+  }) {
+    return _buildSlantButton(
+      height: 70,
+      fill: const Color(0xE61A0845),
+      border: kCyan.withValues(alpha: 0.8),
+      onTap: onTap,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: kCyan, size: 26),
+          const SizedBox(height: 2),
+          Text(
+            title,
+            style: GoogleFonts.anton(fontSize: 15, letterSpacing: 1.2, color: kBone),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // =================================================================
+  // BANNER DEL COFRE
+  // =================================================================
+  Widget _buildChestBanner(bool canClaim) {
+    return ParticleExplosion(
+      trigger: _triggerChestExplosion,
+      particleEmoji: '🪙',
+      child: InkWell(
+        onTap: canClaim ? _claimDailyReward : null,
+        borderRadius: BorderRadius.circular(16),
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 300),
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+          decoration: BoxDecoration(
+            color: canClaim ? const Color(0xFF2D1B4E) : const Color(0xFF161522),
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              color: canClaim ? Colors.amber : kOutline,
+              width: 3,
+            ),
+            boxShadow: canClaim
+                ? [BoxShadow(color: Colors.amber.withValues(alpha: 0.45), blurRadius: 10)]
+                : [],
+          ),
+          child: Row(
+            children: [
+              Text(canClaim ? '🎁' : '🔒', style: const TextStyle(fontSize: 28)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      canClaim ? '¡Cofre diario disponible!' : 'Cofre diario reclamado',
+                      style: GoogleFonts.oswald(fontWeight: FontWeight.w700, 
+                        color: canClaim ? Colors.amberAccent : Colors.white60,
+                        fontSize: 16,
+                      ),
+                    ),
+                    Text(
+                      canClaim ? 'Toca para reclamar tu recompensa' : 'Vuelve mañana para más premios',
+                      style: const TextStyle(color: Colors.white54, fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+              if (canClaim)
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0xFFFFE37A), Color(0xFFFF9D00)],
+                    ),
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: kOutline, width: 2.5),
+                  ),
+                  child: _outlinedText('Abrir', 14, stroke: 3.5),
+                ),
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildResourceBadge(String emoji, String value, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 3),
+      decoration: BoxDecoration(
+        color: kOutline,
+        borderRadius: BorderRadius.circular(999),
+        border: Border.all(color: color.withValues(alpha: 0.6), width: 1.5),
+      ),
+      child: Row(
+        children: [
+          Text(emoji, style: const TextStyle(fontSize: 12)),
+          const SizedBox(width: 3),
+          Text(
+            value,
+            style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: color, fontSize: 14),
+          ),
+        ],
       ),
     );
   }

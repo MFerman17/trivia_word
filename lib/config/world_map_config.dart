@@ -6,13 +6,13 @@ const int kChaptersPerWorld = 3;
 
 /// Un tramo del sendero: una imagen de fondo + la posición de sus 5 nodos.
 ///
-/// Las coordenadas son RELATIVAS a la imagen original (0.0 a 1.0):
+/// Coordenadas RELATIVAS a la imagen original (0.0 a 1.0):
 ///   dx = 0 borde izquierdo, 1 borde derecho
 ///   dy = 0 borde superior, 1 borde inferior
-/// Se ordenan de ABAJO hacia ARRIBA, siguiendo el recorrido del jugador.
+/// Ordenadas de ABAJO hacia ARRIBA, siguiendo el recorrido del jugador.
 class MapSegment {
   final String asset;
-  final bool mirrored; // espejo horizontal para variar un tramo repetido
+  final bool mirrored;
   final List<Offset> nodes;
 
   const MapSegment({
@@ -21,66 +21,131 @@ class MapSegment {
     this.mirrored = false,
   });
 
-  /// Posición del nodo i ya corregida si el tramo está en espejo.
   Offset nodeAt(int i) {
     final p = nodes[i];
     return mirrored ? Offset(1 - p.dx, p.dy) : p;
   }
 }
 
-// Coordenadas APROXIMADAS estimadas a partir de las capturas.
-// Afínalas con kMapEditMode = true en map_screen.dart.
-const List<Offset> _bosqueNodes = [
-  Offset(0.42, 0.72),
-  Offset(0.55, 0.62),
-  Offset(0.46, 0.50),
-  Offset(0.53, 0.42),
-  Offset(0.51, 0.27),
+// =================================================================
+// COORDENADAS DE LOS CÍRCULOS (medidas sobre las imágenes 1248x832)
+// =================================================================
+
+// ---------- Mundo 1: Bosque ----------
+const List<Offset> _bosque1 = [
+  Offset(0.543, 0.769),
+  Offset(0.419, 0.647),
+  Offset(0.534, 0.535),
+  Offset(0.446, 0.417),
+  Offset(0.530, 0.325),
+];
+const List<Offset> _bosque2 = [
+  Offset(0.478, 0.821),
+  Offset(0.305, 0.525),
+  Offset(0.495, 0.494),
+  Offset(0.630, 0.371),
+  Offset(0.488, 0.196),
+];
+const List<Offset> _bosque3 = [
+  Offset(0.385, 0.745),
+  Offset(0.579, 0.703),
+  Offset(0.444, 0.563),
+  Offset(0.341, 0.447),
+  Offset(0.432, 0.270),
 ];
 
-const List<Offset> _cavernasNodes = [
-  Offset(0.56, 0.73),
-  Offset(0.34, 0.58),
-  Offset(0.59, 0.46),
-  Offset(0.37, 0.33),
-  Offset(0.57, 0.24),
+// ---------- Mundo 2: Cavernas ----------
+const List<Offset> _cavernas1 = [
+  Offset(0.493, 0.766),
+  Offset(0.333, 0.712),
+  Offset(0.398, 0.518),
+  Offset(0.497, 0.356),
+  Offset(0.496, 0.248),
+];
+const List<Offset> _cavernas2 = [
+  Offset(0.432, 0.778),
+  Offset(0.550, 0.647),
+  Offset(0.444, 0.482),
+  Offset(0.542, 0.331),
+  Offset(0.450, 0.194),
+];
+const List<Offset> _cavernas3 = [
+  Offset(0.584, 0.791),
+  Offset(0.504, 0.694),
+  Offset(0.589, 0.555),
+  Offset(0.486, 0.448),
+  Offset(0.542, 0.352),
 ];
 
-const List<Offset> _islasNodes = [
-  Offset(0.24, 0.84),
-  Offset(0.40, 0.72),
-  Offset(0.72, 0.59),
-  Offset(0.48, 0.42),
-  Offset(0.52, 0.24),
+// ---------- Mundo 3: Islas Flotantes ----------
+const List<Offset> _islas1 = [
+  Offset(0.409, 0.787),
+  Offset(0.486, 0.611),
+  Offset(0.464, 0.451),
+  Offset(0.589, 0.337),
+  Offset(0.491, 0.258),
+];
+const List<Offset> _islas2 = [
+  Offset(0.522, 0.733),
+  Offset(0.433, 0.601),
+  Offset(0.494, 0.502),
+  Offset(0.436, 0.382),
+  Offset(0.522, 0.286),
+];
+const List<Offset> _islas3 = [
+  Offset(0.654, 0.721),
+  Offset(0.446, 0.619),
+  Offset(0.530, 0.481),
+  Offset(0.442, 0.343),
+  Offset(0.525, 0.244),
 ];
 
-const List<Offset> _volcanNodes = [
-  Offset(0.52, 0.73),
-  Offset(0.28, 0.66),
-  Offset(0.48, 0.44),
-  Offset(0.47, 0.31),
-  Offset(0.49, 0.19),
+// ---------- Mundo 4: Volcán ----------
+const List<Offset> _volcan1 = [
+  Offset(0.493, 0.707),
+  Offset(0.421, 0.514),
+  Offset(0.591, 0.472),
+  Offset(0.386, 0.361),
+  Offset(0.577, 0.249),
+];
+const List<Offset> _volcan2 = [
+  Offset(0.475, 0.695),
+  Offset(0.508, 0.524),
+  Offset(0.447, 0.412),
+  Offset(0.494, 0.288),
+  Offset(0.491, 0.204),
+];
+const List<Offset> _volcan3 = [
+  Offset(0.492, 0.790),
+  Offset(0.216, 0.688),
+  Offset(0.581, 0.677),
+  Offset(0.412, 0.496),
+  Offset(0.478, 0.412),
 ];
 
+// =================================================================
+// MUNDOS (capítulo 1 abajo, capítulo 3 arriba)
+// Los nombres respetan mayúsculas: Flutter distingue 'Bosque_1' de 'bosque_1'.
+// =================================================================
 final Map<int, List<MapSegment>> kWorldMaps = {
-  1: [
-    MapSegment(asset: 'assets/images/bosque_1.png', nodes: _bosqueNodes),
-    MapSegment(asset: 'assets/images/bosque_2.png', nodes: _bosqueNodes),
-    MapSegment(asset: 'assets/images/bosque_3.png', nodes: _bosqueNodes),
+  1: const [
+    MapSegment(asset: 'assets/images/Bosque_1.png', nodes: _bosque1),
+    MapSegment(asset: 'assets/images/Bosque_2.png', nodes: _bosque2),
+    MapSegment(asset: 'assets/images/Bosque_3.png', nodes: _bosque3),
   ],
-  2: [
-    MapSegment(asset: 'assets/images/cavernas_1.png', nodes: _cavernasNodes),
-    MapSegment(asset: 'assets/images/cavernas_2.png', nodes: _cavernasNodes),
-    MapSegment(asset: 'assets/images/cavernas_3.png', nodes: _cavernasNodes),
+  2: const [
+    MapSegment(asset: 'assets/images/Cavernas_1.png', nodes: _cavernas1),
+    MapSegment(asset: 'assets/images/Cavernas_2.png', nodes: _cavernas2),
+    MapSegment(asset: 'assets/images/Cavernas_3.png', nodes: _cavernas3),
   ],
-  3: [
-    MapSegment(asset: 'assets/images/islas_1.png', nodes: _islasNodes),
-    MapSegment(asset: 'assets/images/islas_2.png', nodes: _islasNodes),
-    MapSegment(asset: 'assets/images/islas_3.png', nodes: _islasNodes),
+  3: const [
+    MapSegment(asset: 'assets/images/Islas_1.png', nodes: _islas1),
+    MapSegment(asset: 'assets/images/Islas_2.png', nodes: _islas2),
+    MapSegment(asset: 'assets/images/Islas_3.png', nodes: _islas3),
   ],
-  4: [
-    MapSegment(asset: 'assets/images/volcan_1.png', nodes: _volcanNodes),
-    MapSegment(asset: 'assets/images/volcan_2.png', nodes: _volcanNodes),
-    MapSegment(asset: 'assets/images/volcan_3.png', nodes: _volcanNodes),
+  4: const [
+    MapSegment(asset: 'assets/images/Volcan_1.png', nodes: _volcan1),
+    MapSegment(asset: 'assets/images/Volcan_2.png', nodes: _volcan2),
+    MapSegment(asset: 'assets/images/Volcan_3.png', nodes: _volcan3),
   ],
 };

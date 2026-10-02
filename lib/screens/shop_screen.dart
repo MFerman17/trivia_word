@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/player_profile.dart';
 import '../services/audio_service.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
+
+// Colores coherentes con el estilo del juego
+const Color kOutline = Color(0xFF0D0326);
+const Color kCyan = Color(0xFF1EE3CF);
+const Color kBone = Color(0xFFF4EBDD);
 
 class ShopScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -14,16 +20,18 @@ class ShopScreen extends StatefulWidget {
   State<ShopScreen> createState() => _ShopScreenState();
 }
 
-class _ShopScreenState extends State<ShopScreen> {
+class _ShopScreenState extends State<ShopScreen>
+    with SingleTickerProviderStateMixin {
   late PlayerProfile profile;
   bool _triggerSparkle = false;
+  late TabController _tabController;
 
   @override
   void initState() {
     super.initState();
+    _tabController = TabController(length: 3, vsync: this);
     // Cargamos el perfil recibido o uno por defecto
-    profile =
-        widget.playerProfile ??
+    profile = widget.playerProfile ??
         PlayerProfile(
           name: 'Jugador 1',
           level: 1,
@@ -31,6 +39,12 @@ class _ShopScreenState extends State<ShopScreen> {
           coins: 150,
           gems: 10,
         );
+  }
+
+  @override
+  void dispose() {
+    _tabController.dispose();
+    super.dispose();
   }
 
   // Lógica central para realizar las compras
@@ -46,7 +60,10 @@ class _ShopScreenState extends State<ShopScreen> {
     if (currentBalance < cost) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('❌ No tienes suficientes $currencyName para $title'),
+          content: Text(
+            '❌ No tienes suficientes $currencyName para $title',
+            style: GoogleFonts.oswald(fontSize: 14),
+          ),
           backgroundColor: Colors.redAccent,
           behavior: SnackBarBehavior.floating,
         ),
@@ -66,23 +83,65 @@ class _ShopScreenState extends State<ShopScreen> {
     QuestService.incrementProgress('buy_shop_item_1');
 
     // Guardar automáticamente tras modificar el saldo o los recursos
-    await SaveService.savePlayerData(
-      profile,
-    ); // o SaveService.loadPlayerData() según corresponda
+    await SaveService.savePlayerData(profile);
 
-    // 🔊 AUDIO REPRODUCIDO TRAS UNA COMPRA EXITOSA (LÍNEA 58)
+    // 🔊 AUDIO REPRODUCIDO TRAS UNA COMPRA EXITOSA
     AudioService.playBuyItem();
 
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('🎉 ¡Compraste $title con éxito!'),
-          backgroundColor: Colors.green,
+          content: Text(
+            '🎉 ¡Compraste $title con éxito!',
+            style: GoogleFonts.oswald(fontSize: 14, color: kOutline),
+          ),
+          backgroundColor: kCyan,
           behavior: SnackBarBehavior.floating,
           duration: const Duration(seconds: 2),
         ),
       );
     }
+  }
+
+  // Simulación de compra o reclamación mediante Anuncio (Ad)
+  void _watchAdForItem(String itemName, VoidCallback onReward) {
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        backgroundColor: const Color(0xFF1F1D36),
+        title: Text('VER ANUNCIO', style: GoogleFonts.anton(color: kCyan)),
+        content: Text(
+          '¿Deseas ver un breve video publicitario para reclamar "$itemName" gratis?',
+          style: GoogleFonts.oswald(color: Colors.white70, fontSize: 16),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text('Cancelar', style: GoogleFonts.oswald(color: Colors.white60)),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(backgroundColor: kCyan),
+            onPressed: () {
+              Navigator.pop(context);
+              AudioService.playButtonClick();
+              setState(() {
+                onReward();
+              });
+              _onPurchaseSuccess();
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('¡Has obtenido $itemName con éxito! 🌟',
+                      style: GoogleFonts.oswald(color: kOutline)),
+                  backgroundColor: kCyan,
+                ),
+              );
+            },
+            child: Text('Ver Video',
+                style: GoogleFonts.anton(color: kOutline, fontSize: 14)),
+          ),
+        ],
+      ),
+    );
   }
 
   void _onPurchaseSuccess() {
@@ -98,8 +157,40 @@ class _ShopScreenState extends State<ShopScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: kOutline,
+      appBar: AppBar(
+        backgroundColor: kOutline.withValues(alpha: 0.9),
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios_rounded,
+              color: Colors.white, size: 22),
+          onPressed: () {
+            AudioService.playButtonClick();
+            Navigator.pop(context, profile);
+          },
+        ),
+        title: Text(
+          'TIENDA ÉPICA',
+          style: GoogleFonts.anton(
+            color: kCyan,
+            fontSize: 22,
+            letterSpacing: 1.2,
+          ),
+        ),
+        bottom: TabBar(
+          controller: _tabController,
+          indicatorColor: kCyan,
+          labelColor: kCyan,
+          unselectedLabelColor: Colors.white60,
+          labelStyle: GoogleFonts.oswald(fontWeight: FontWeight.bold, fontSize: 14),
+          tabs: const [
+            Tab(text: 'VIDAS Y SALUD'),
+            Tab(text: 'COMODINES'),
+            Tab(text: 'ORO Y GEMAS'),
+          ],
+        ),
+      ),
       body: Container(
-        width: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             colors: [Color(0xFF0F0C20), Color(0xFF1F1D36), Color(0xFF261C4C)],
@@ -110,53 +201,17 @@ class _ShopScreenState extends State<ShopScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              // 1. ENCABEZADO Y REGRESO
-              Padding(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16.0,
-                  vertical: 12.0,
-                ),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        Icons.arrow_back_ios,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        AudioService.playButtonClick();
-                        Navigator.pop(context, profile);
-                      },
-                    ),
-                    const Expanded(
-                      child: Text(
-                        'Tienda de Mejoras',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 48,
-                    ), // Espaciador para centrar el título
-                  ],
-                ),
-              ),
-
-              // 2. RESUMEN DE SALDO (MONEDAS Y GEMAS)
+              // 1. RESUMEN DE SALDO (MONEDAS Y GEMAS)
               Container(
                 margin: const EdgeInsets.symmetric(
                   horizontal: 16.0,
-                  vertical: 8.0,
+                  vertical: 12.0,
                 ),
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(14.0),
                 decoration: BoxDecoration(
                   color: Colors.white.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: Colors.white10),
+                  border: Border.all(color: kCyan.withValues(alpha: 0.3)),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -172,76 +227,124 @@ class _ShopScreenState extends State<ShopScreen> {
                       icon: '💎',
                       label: 'Gemas',
                       amount: profile.gems,
-                      color: Colors.cyanAccent,
+                      color: kCyan,
                     ),
                   ],
                 ),
               ),
 
-              const SizedBox(height: 10),
-
-              // 3. LISTA DE ARTÍCULOS EN LA TIENDA
+              // 2. CONTENIDO DE PESTAÑAS (TabBarView)
               Expanded(
-                child: ListView(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16.0,
-                    vertical: 8.0,
-                  ),
+                child: TabBarView(
+                  controller: _tabController,
                   children: [
-                    _buildShopCategoryHeader('POTENCIADORES Y PISTAS'),
-
-                    _buildShopItemCard(
-                      iconEmoji: '🧪',
-                      title: 'Poción de Salud',
-                      description:
-                          'Restaura 1 punto de vida durante la partida.',
-                      ownedCount: profile.healthPotions,
-                      price: 50,
-                      isGem: false,
-                      accentColor: Colors.greenAccent,
-                      onBuy: () => _buyItem(
-                        cost: 50,
-                        isGem: false,
-                        title: 'Poción de Salud',
-                        onSuccess: () => profile.healthPotions++,
-                      ),
+                    // Pestaña 1: Vidas y Salud
+                    ListView(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      children: [
+                        _buildShopCategoryHeader('SUPERVIVENCIA Y ENERGÍA'),
+                        _buildShopItemCard(
+                          iconEmoji: '🧪',
+                          title: 'Poción de Salud',
+                          description: 'Restaura 1 punto de vida durante la partida.',
+                          ownedCount: profile.healthPotions,
+                          priceText: '50',
+                          isGem: false,
+                          accentColor: Colors.greenAccent,
+                          onBuy: () => _buyItem(
+                            cost: 50,
+                            isGem: false,
+                            title: 'Poción de Salud',
+                            onSuccess: () => profile.healthPotions++,
+                          ),
+                        ),
+                        _buildShopItemCard(
+                          iconEmoji: '❤',
+                          title: 'Recarga de Corazones (Ad)',
+                          description: 'Rellena tu vida viendo un corto video.',
+                          ownedCount: null,
+                          priceText: 'Ver Ad',
+                          isGem: false,
+                          isAdButton: true,
+                          accentColor: kCyan,
+                          onBuy: () => _watchAdForItem('Recarga de Corazones', () {
+                            // Acción al ver el ad (ej. restaurar vidas)
+                          }),
+                        ),
+                      ],
                     ),
 
-                    _buildShopItemCard(
-                      iconEmoji: '💡',
-                      title: 'Pista de Letra',
-                      description:
-                          'Descarta 2 opciones incorrectas en la pregunta.',
-                      ownedCount: profile.letterHints,
-                      price: 2,
-                      isGem: true,
-                      accentColor: Colors.orangeAccent,
-                      onBuy: () => _buyItem(
-                        cost: 2,
-                        isGem: true,
-                        title: 'Pista de Letra',
-                        onSuccess: () => profile.letterHints++,
-                      ),
+                    // Pestaña 2: Comodines (Palabras, Matemáticas, Trivia)
+                    ListView(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      children: [
+                        _buildShopCategoryHeader('COMODINES Y SABIDURÍA'),
+                        _buildShopItemCard(
+                          iconEmoji: '💡',
+                          title: 'Pista de Letra / Acertijo',
+                          description: 'Descarta opciones o revela pistas clave.',
+                          ownedCount: profile.letterHints,
+                          priceText: '2',
+                          isGem: true,
+                          accentColor: Colors.orangeAccent,
+                          onBuy: () => _buyItem(
+                            cost: 2,
+                            isGem: true,
+                            title: 'Pista de Letra',
+                            onSuccess: () => profile.letterHints++,
+                          ),
+                        ),
+                        _buildShopItemCard(
+                          iconEmoji: '🔍',
+                          title: 'Lupa de Sabiduría (Ad)',
+                          description: 'Consigue una pista gratis viendo un anuncio.',
+                          ownedCount: profile.letterHints,
+                          priceText: 'Ver Ad',
+                          isGem: false,
+                          isAdButton: true,
+                          accentColor: kCyan,
+                          onBuy: () => _watchAdForItem('Lupa de Sabiduría', () {
+                            profile.letterHints++;
+                          }),
+                        ),
+                      ],
                     ),
 
-                    const SizedBox(height: 16),
-                    _buildShopCategoryHeader('RECURSOS RÁPIDOS'),
-
-                    _buildShopItemCard(
-                      iconEmoji: '🪙',
-                      title: 'Bolsa de Monedas',
-                      description:
-                          'Obtén 200 monedas de oro para tus compras básicas.',
-                      ownedCount: null, // No aplica
-                      price: 5,
-                      isGem: true,
-                      accentColor: Colors.amber,
-                      onBuy: () => _buyItem(
-                        cost: 5,
-                        isGem: true,
-                        title: 'Bolsa de Monedas',
-                        onSuccess: () => profile.coins += 200,
-                      ),
+                    // Pestaña 3: Oro y Gemas
+                    ListView(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                      children: [
+                        _buildShopCategoryHeader('RECURSOS Y ECONOMÍA'),
+                        _buildShopItemCard(
+                          iconEmoji: '💰',
+                          title: 'Bolsa de Monedas',
+                          description: 'Obtén 200 monedas de oro para tus compras.',
+                          ownedCount: null,
+                          priceText: '5',
+                          isGem: true,
+                          accentColor: Colors.amber,
+                          onBuy: () => _buyItem(
+                            cost: 5,
+                            isGem: true,
+                            title: 'Bolsa de Monedas',
+                            onSuccess: () => profile.coins += 200,
+                          ),
+                        ),
+                        _buildShopItemCard(
+                          iconEmoji: '🎁',
+                          title: 'Cofre Diario Gratuito',
+                          description: 'Reclama recompensas sorpresa viendo un anuncio.',
+                          ownedCount: null,
+                          priceText: 'Gratis',
+                          isGem: false,
+                          isAdButton: true,
+                          accentColor: Colors.purpleAccent,
+                          onBuy: () => _watchAdForItem('Cofre Diario', () {
+                            profile.coins += 100;
+                            profile.gems += 5;
+                          }),
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -270,14 +373,14 @@ class _ShopScreenState extends State<ShopScreen> {
           children: [
             Text(
               label,
-              style: const TextStyle(color: Colors.white60, fontSize: 11),
+              style: GoogleFonts.oswald(color: Colors.white60, fontSize: 11),
             ),
             Text(
               '$amount',
-              style: TextStyle(
+              style: GoogleFonts.anton(
                 color: color,
                 fontSize: 18,
-                fontWeight: FontWeight.bold,
+                letterSpacing: 0.5,
               ),
             ),
           ],
@@ -291,9 +394,9 @@ class _ShopScreenState extends State<ShopScreen> {
       padding: const EdgeInsets.only(left: 4.0, bottom: 8.0, top: 8.0),
       child: Text(
         title,
-        style: const TextStyle(
-          color: Colors.amber,
-          fontSize: 12,
+        style: GoogleFonts.oswald(
+          color: kCyan,
+          fontSize: 13,
           fontWeight: FontWeight.bold,
           letterSpacing: 1.2,
         ),
@@ -306,8 +409,9 @@ class _ShopScreenState extends State<ShopScreen> {
     required String title,
     required String description,
     required int? ownedCount,
-    required int price,
+    required String priceText,
     required bool isGem,
+    bool isAdButton = false,
     required Color accentColor,
     required VoidCallback onBuy,
   }) {
@@ -322,7 +426,7 @@ class _ShopScreenState extends State<ShopScreen> {
         decoration: BoxDecoration(
           color: Colors.white.withValues(alpha: 0.05),
           borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: accentColor.withValues(alpha: 0.3)),
+          border: Border.all(color: accentColor.withValues(alpha: 0.4), width: 1.5),
         ),
         child: Row(
           children: [
@@ -347,22 +451,22 @@ class _ShopScreenState extends State<ShopScreen> {
                 children: [
                   Text(
                     title,
-                    style: const TextStyle(
+                    style: GoogleFonts.anton(
                       color: Colors.white,
                       fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
                     ),
                   ),
                   const SizedBox(height: 2),
                   Text(
                     description,
-                    style: const TextStyle(color: Colors.white60, fontSize: 11),
+                    style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12),
                   ),
                   if (ownedCount != null) ...[
-                    const SizedBox(height: 6),
+                    const SizedBox(height: 4),
                     Text(
                       'En propiedad: $ownedCount',
-                      style: TextStyle(
+                      style: GoogleFonts.oswald(
                         color: accentColor,
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
@@ -374,36 +478,35 @@ class _ShopScreenState extends State<ShopScreen> {
             ),
             const SizedBox(width: 8),
 
-            // Botón de compra
+            // Botón de compra o anuncio
             ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: accentColor.withValues(alpha: 0.2),
-                foregroundColor: accentColor,
-                side: BorderSide(color: accentColor),
+                backgroundColor: isAdButton ? kCyan : accentColor.withValues(alpha: 0.2),
+                foregroundColor: isAdButton ? kOutline : accentColor,
+                side: BorderSide(color: isAdButton ? kCyan : accentColor, width: 1.5),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 10,
-                ),
+                padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               ),
               onPressed: onBuy,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    '$price',
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
+                    priceText,
+                    style: GoogleFonts.anton(
+                      fontSize: 13,
+                      letterSpacing: 0.5,
                     ),
                   ),
-                  const SizedBox(width: 4),
-                  Text(
-                    isGem ? '💎' : '🪙',
-                    style: const TextStyle(fontSize: 13),
-                  ),
+                  if (!isAdButton) ...[
+                    const SizedBox(width: 4),
+                    Text(
+                      isGem ? '💎' : '🪙',
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ],
                 ],
               ),
             ),

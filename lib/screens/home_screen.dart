@@ -8,6 +8,7 @@ import 'map_screen.dart';
 import 'quests_screen.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
+import '../widgets/player_avatar.dart';
 import '../services/cloud_service.dart';
 
 // Color de contorno común para todo el estilo "juego"
@@ -425,20 +426,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 borderRadius: BorderRadius.circular(8),
                 child: Row(
                   children: [
-                    Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: const LinearGradient(
-                          begin: Alignment.topCenter,
-                          end: Alignment.bottomCenter,
-                          colors: [Color(0xFF4FC3FF), Color(0xFF1B7FE0)],
-                        ),
-                        border: Border.all(color: kOutline, width: 2.5),
-                      ),
-                      child: const Icon(Icons.person, color: Colors.white, size: 22),
-                    ),
+                    PlayerAvatar(profile: profile, radius: 18),
                     const SizedBox(width: 8),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,

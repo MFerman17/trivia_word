@@ -14,7 +14,11 @@ class QuestionBank {
   }
 
   /// Obtiene la lista de preguntas según el mundo, capítulo y nivel
-  static List<Question> getQuestionsForLevel(int world, int chapter, int level) {
+  static List<Question> getQuestionsForLevel(
+    int world,
+    int chapter,
+    int level,
+  ) {
     switch (world) {
       case 1:
         return _getWorld1Questions(level);
@@ -32,6 +36,9 @@ class QuestionBank {
         options: ['32', '42', '52', '40'],
         correctIndex: 1,
         category: 'Matemáticas',
+        difficulty: 1,
+        explanation:
+            'Al sumar 15 + 27, las unidades dan 12: escribimos 2 y llevamos 1. Luego 1 + 2 + 1 = 4. El resultado es 42.',
       ),
       Question(
         id: 'def_2',
@@ -39,6 +46,9 @@ class QuestionBank {
         options: ['Correr', 'Rápido', 'Bosque', 'Ayer'],
         correctIndex: 2,
         category: 'Lengua',
+        difficulty: 1,
+        explanation:
+            'Un sustantivo nombra personas, animales, lugares, cosas o ideas. “Bosque” nombra un lugar.',
       ),
       Question(
         id: 'def_3',
@@ -46,6 +56,9 @@ class QuestionBank {
         options: ['Marte', 'Saturno', 'Júpiter', 'Neptuno'],
         correctIndex: 2,
         category: 'Ciencia',
+        difficulty: 1,
+        explanation:
+            'Júpiter es el planeta más grande del sistema solar. Es un gigante gaseoso y tiene más volumen que todos los demás planetas.',
       ),
     ];
   }
@@ -59,6 +72,9 @@ class QuestionBank {
         options: ['Sustantivo', 'Adjetivo', 'Adverbio', 'Verbo'],
         correctIndex: 2,
         category: 'Gramática',
+        difficulty: 2,
+        explanation:
+            '“Rápidamente” es un adverbio de modo: explica cómo ocurre una acción. Muchos adverbios de modo terminan en “-mente”.',
       ),
       Question(
         id: 'w1_2',
@@ -66,6 +82,9 @@ class QuestionBank {
         options: ['54', '56', '64', '49'],
         correctIndex: 1,
         category: 'Matemáticas',
+        difficulty: 1,
+        explanation:
+            '8 × 7 significa sumar ocho grupos de siete. También puedes recordar que 7 × 8 = 56.',
       ),
       Question(
         id: 'w1_3',
@@ -73,6 +92,9 @@ class QuestionBank {
         options: ['CO2', 'O2', 'H2O', 'NaCl'],
         correctIndex: 2,
         category: 'Ciencia',
+        difficulty: 1,
+        explanation:
+            'Cada molécula de agua tiene dos átomos de hidrógeno (H) y uno de oxígeno (O); por eso su fórmula es H₂O.',
       ),
     ];
   }

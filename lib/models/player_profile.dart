@@ -11,6 +11,14 @@ class PlayerProfile {
   int totalStars;
   DateTime? lastDailyReward; // 👈 Campo para controlar el tiempo del cofre
 
+  // Cosmetics are visual only; these fields are persisted with the local profile.
+  String avatarCharacterId;
+  String avatarFrameId;
+  String avatarAccessoryId;
+  List<String> ownedAvatarCharacters;
+  List<String> ownedAvatarFrames;
+  List<String> ownedAvatarAccessories;
+
   PlayerProfile({
     this.name = 'Jugador 1',
     this.level = 1,
@@ -21,7 +29,16 @@ class PlayerProfile {
     this.letterHints = 2,
     this.totalStars = 0,
     this.lastDailyReward,
-  });
+    this.avatarCharacterId = 'explorador',
+    this.avatarFrameId = 'basico',
+    this.avatarAccessoryId = 'ninguno',
+    List<String>? ownedAvatarCharacters,
+    List<String>? ownedAvatarFrames,
+    List<String>? ownedAvatarAccessories,
+  })  : ownedAvatarCharacters = ownedAvatarCharacters ?? ['explorador'],
+        ownedAvatarFrames = ownedAvatarFrames ?? ['basico'],
+        ownedAvatarAccessories =
+            ownedAvatarAccessories ?? ['ninguno'];
 
   // Verifica si han pasado al menos 24 horas desde la última recolección
   bool get canClaimDailyReward {
@@ -65,6 +82,12 @@ class PlayerProfile {
       'letterHints': letterHints,
       'totalStars': totalStars,
       'lastDailyReward': lastDailyReward?.toIso8601String(),
+      'avatarCharacterId': avatarCharacterId,
+      'avatarFrameId': avatarFrameId,
+      'avatarAccessoryId': avatarAccessoryId,
+      'ownedAvatarCharacters': ownedAvatarCharacters,
+      'ownedAvatarFrames': ownedAvatarFrames,
+      'ownedAvatarAccessories': ownedAvatarAccessories,
     };
   }
 
@@ -81,6 +104,21 @@ class PlayerProfile {
       lastDailyReward: map['lastDailyReward'] != null
           ? DateTime.tryParse(map['lastDailyReward'])
           : null,
+      avatarCharacterId: map['avatarCharacterId'] ?? 'explorador',
+      avatarFrameId: map['avatarFrameId'] ?? 'basico',
+      avatarAccessoryId: map['avatarAccessoryId'] ?? 'ninguno',
+      ownedAvatarCharacters: _readStringList(
+        map['ownedAvatarCharacters'],
+        fallback: const ['explorador'],
+      ),
+      ownedAvatarFrames: _readStringList(
+        map['ownedAvatarFrames'],
+        fallback: const ['basico'],
+      ),
+      ownedAvatarAccessories: _readStringList(
+        map['ownedAvatarAccessories'],
+        fallback: const ['ninguno'],
+      ),
     );
   }
 
@@ -88,4 +126,9 @@ class PlayerProfile {
 
   factory PlayerProfile.fromJson(String source) =>
       PlayerProfile.fromMap(json.decode(source));
+}
+
+List<String> _readStringList(dynamic value, {required List<String> fallback}) {
+  if (value is! List) return List<String>.from(fallback);
+  return value.whereType<String>().toList();
 }

@@ -205,9 +205,7 @@ class _GameScreenState extends State<GameScreen> {
         if (_controller.status == GameStatus.loading) {
           return const Scaffold(
             backgroundColor: Color(0xFF0F0C29),
-            body: Center(
-              child: CircularProgressIndicator(color: Colors.amber),
-            ),
+            body: Center(child: CircularProgressIndicator(color: Colors.amber)),
           );
         }
 
@@ -287,8 +285,62 @@ class _GameScreenState extends State<GameScreen> {
                         const SizedBox(height: 24),
                         Expanded(
                           child: ListView.builder(
-                            itemCount: currentQuestion.options.length,
+                            itemCount:
+                                currentQuestion.options.length +
+                                (_controller.isAnswered ? 1 : 0),
                             itemBuilder: (context, index) {
+                              if (index == currentQuestion.options.length) {
+                                final isCorrect =
+                                    _controller.selectedOptionIndex ==
+                                    currentQuestion.correctIndex;
+
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 12),
+                                  child: Container(
+                                    width: double.infinity,
+                                    padding: const EdgeInsets.all(16),
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF182B3A),
+                                      borderRadius: BorderRadius.circular(14),
+                                      border: Border.all(
+                                        color: isCorrect
+                                            ? const Color(0xFF71D57A)
+                                            : const Color(0xFFFFC857),
+                                      ),
+                                    ),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          isCorrect
+                                              ? '¡Correcto!'
+                                              : 'Respuesta correcta: ${currentQuestion.options[currentQuestion.correctIndex]}',
+                                          style: GoogleFonts.poppins(
+                                            color: isCorrect
+                                                ? const Color(0xFF9AF2A0)
+                                                : const Color(0xFFFFD980),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                          ),
+                                        ),
+                                        const SizedBox(height: 6),
+                                        Text(
+                                          currentQuestion.explanation.isNotEmpty
+                                              ? currentQuestion.explanation
+                                              : 'La opción correcta es “${currentQuestion.options[currentQuestion.correctIndex]}”.',
+                                          style: GoogleFonts.poppins(
+                                            color: Colors.white,
+                                            fontSize: 13,
+                                            height: 1.4,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                );
+                              }
+
                               final isDisabled = _controller
                                   .disabledOptionIndexes
                                   .contains(index);
@@ -320,9 +372,9 @@ class _GameScreenState extends State<GameScreen> {
                                   onPressed: isDisabled
                                       ? null
                                       : () => _controller.selectAnswer(
-                                            index,
-                                            _showSnackBar,
-                                          ),
+                                          index,
+                                          _showSnackBar,
+                                        ),
                                   child: Text(
                                     isDisabled
                                         ? '✖ Opción descartada'
@@ -342,47 +394,74 @@ class _GameScreenState extends State<GameScreen> {
                             },
                           ),
                         ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ElevatedButton.icon(
+                        if (_controller.isAnswered)
+                          SizedBox(
+                            width: double.infinity,
+                            child: ElevatedButton.icon(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    (_controller.profile?.healthPotions ?? 0) > 0
-                                        ? Colors.redAccent.shade700
-                                        : Colors.grey.shade700,
+                                backgroundColor: Colors.amber,
+                                foregroundColor: const Color(0xFF0F0C29),
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 14,
+                                ),
                               ),
-                              onPressed: () =>
-                                  _controller.usePotion(_showSnackBar),
-                              icon: const Icon(
-                                Icons.local_hospital,
-                                color: Colors.white,
-                              ),
+                              onPressed: _controller.continueAfterAnswer,
+                              icon: const Icon(Icons.arrow_forward),
                               label: Text(
-                                'Poción (${_controller.profile?.healthPotions ?? 0})',
-                                style: const TextStyle(color: Colors.white),
+                                _controller.playerHp <= 0
+                                    ? 'VER RESULTADO'
+                                    : 'CONTINUAR',
+                                style: GoogleFonts.poppins(
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
-                            ElevatedButton.icon(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor:
-                                    (_controller.profile?.letterHints ?? 0) > 0
-                                        ? Colors.amber.shade700
-                                        : Colors.grey.shade700,
+                          )
+                        else
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      (_controller.profile?.healthPotions ??
+                                              0) >
+                                          0
+                                      ? Colors.redAccent.shade700
+                                      : Colors.grey.shade700,
+                                ),
+                                onPressed: () =>
+                                    _controller.usePotion(_showSnackBar),
+                                icon: const Icon(
+                                  Icons.local_hospital,
+                                  color: Colors.white,
+                                ),
+                                label: Text(
+                                  'Poción (${_controller.profile?.healthPotions ?? 0})',
+                                  style: const TextStyle(color: Colors.white),
+                                ),
                               ),
-                              onPressed: () =>
-                                  _controller.useHint(_showSnackBar),
-                              icon: const Icon(
-                                Icons.lightbulb,
-                                color: Colors.white,
+                              ElevatedButton.icon(
+                                style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      (_controller.profile?.letterHints ?? 0) >
+                                          0
+                                      ? Colors.amber.shade700
+                                      : Colors.grey.shade700,
+                                ),
+                                onPressed: () =>
+                                    _controller.useHint(_showSnackBar),
+                                icon: const Icon(
+                                  Icons.lightbulb,
+                                  color: Colors.white,
+                                ),
+                                label: Text(
+                                  'Pista (${_controller.profile?.letterHints ?? 0})',
+                                  style: const TextStyle(color: Colors.white),
+                                ),
                               ),
-                              label: Text(
-                                'Pista (${_controller.profile?.letterHints ?? 0})',
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
                       ],
                     ),
                   ),

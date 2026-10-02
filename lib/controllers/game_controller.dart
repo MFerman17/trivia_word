@@ -20,7 +20,7 @@ class GameController extends ChangeNotifier {
   int currentQuestionIndex = 0;
   int playerHp = 3;
   final int maxPlayerHp = 3;
-  
+
   GameStatus status = GameStatus.loading;
   bool isAnswered = false;
   int? selectedOptionIndex;
@@ -47,15 +47,19 @@ class GameController extends ChangeNotifier {
 
   Question? get currentQuestion =>
       questions.isNotEmpty && currentQuestionIndex < questions.length
-          ? questions[currentQuestionIndex]
-          : null;
+      ? questions[currentQuestionIndex]
+      : null;
 
   Future<void> loadInitialData() async {
     status = GameStatus.loading;
     notifyListeners();
 
     profile = await SaveService.loadPlayerData();
-    questions = QuestionBank.getQuestionsForLevel(worldId, chapterId, levelNumber);
+    questions = QuestionBank.getQuestionsForLevel(
+      worldId,
+      chapterId,
+      levelNumber,
+    );
 
     if (_isDisposed) return; // 👈 Evitamos actualizar si ya se desmontó
     status = GameStatus.playing;
@@ -63,7 +67,9 @@ class GameController extends ChangeNotifier {
   }
 
   void selectAnswer(int index, Function(String) onSnackBarMessage) {
-    if (isAnswered || questions.isEmpty || disabledOptionIndexes.contains(index)) {
+    if (isAnswered ||
+        questions.isEmpty ||
+        disabledOptionIndexes.contains(index)) {
       return;
     }
 
@@ -84,18 +90,18 @@ class GameController extends ChangeNotifier {
       playerHp--;
     }
     notifyListeners();
+  }
 
-    Future.delayed(const Duration(milliseconds: 1200), () {
-      if (_isDisposed) return; // 👈 Seguridad vital: si salió de la pantalla, cancelamos
+  void continueAfterAnswer() {
+    if (_isDisposed || !isAnswered) return;
 
-      if (playerHp <= 0) {
-        _handleDefeat();
-      } else if (currentQuestionIndex + 1 < questions.length) {
-        _nextQuestion();
-      } else {
-        _handleVictory();
-      }
-    });
+    if (playerHp <= 0) {
+      _handleDefeat();
+    } else if (currentQuestionIndex + 1 < questions.length) {
+      _nextQuestion();
+    } else {
+      _handleVictory();
+    }
   }
 
   void _nextQuestion() {
@@ -160,7 +166,9 @@ class GameController extends ChangeNotifier {
       try {
         await CloudService.syncProfileToCloud(profile!);
       } catch (e) {
-        debugPrint("⚠️ Advertencia: No se pudo sincronizar la victoria en la nube: $e");
+        debugPrint(
+          "⚠️ Advertencia: No se pudo sincronizar la victoria en la nube: $e",
+        );
         // El juego local sigue intacto aunque falle el internet momentáneamente
       }
     }
@@ -192,7 +200,7 @@ class GameController extends ChangeNotifier {
     profile!.healthPotions--;
     playerHp = (playerHp + 1).clamp(0, maxPlayerHp);
     AudioService.playPotionUse();
-    
+
     if (_isDisposed) return;
     notifyListeners();
 
@@ -202,7 +210,9 @@ class GameController extends ChangeNotifier {
   }
 
   void useHint(Function(String) showSnackBar) async {
-    if (profile == null || isAnswered || questions.isEmpty || _isDisposed) return;
+    if (profile == null || isAnswered || questions.isEmpty || _isDisposed) {
+  return;
+}
 
     if (profile!.letterHints <= 0) {
       showSnackBar('No tienes pistas disponibles. ¡Cómpralas en la tienda!');
@@ -230,7 +240,7 @@ class GameController extends ChangeNotifier {
     profile!.letterHints--;
     disabledOptionIndexes.add(optionToDisable);
     AudioService.playHintUse();
-    
+
     if (_isDisposed) return;
     notifyListeners();
 

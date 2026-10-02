@@ -1,0 +1,5 @@
+Trivia Word: explicaciones de respuestas
+
+Paquete incremental basado en el commit 99d5b1855e374089ed31a94f48711e3548ebeeb1 y pensado para aplicarse encima de la actualización de tienda y avatares ya instalada.
+
+Extrae este ZIP dentro de C:\Users\Usuario\Documents\src\trivia_word y acepta reemplazar únicamente los tres archivos incluidos. Luego ejecuta `flutter run` para revisar la explicación después de cada respuesta. No hagas commit hasta revisarlo.

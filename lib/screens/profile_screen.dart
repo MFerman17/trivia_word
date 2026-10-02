@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/player_profile.dart';
 import '../services/save_service.dart';
+import '../widgets/player_avatar.dart';
 
 class ProfileScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -92,18 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Stack(
                   alignment: Alignment.bottomRight,
                   children: [
-                    const CircleAvatar(
-                      radius: 50,
-                      backgroundColor: Colors.amber,
-                      child: CircleAvatar(
-                        radius: 46,
-                        backgroundColor: Color(0xFF1F1D36),
-                        child: Text(
-                          '🦸‍♂️',
-                          style: TextStyle(fontSize: 48),
-                        ),
-                      ),
-                    ),
+                    PlayerAvatar(profile: _profile, radius: 46),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(

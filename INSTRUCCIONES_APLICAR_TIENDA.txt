@@ -1,0 +1,11 @@
+Trivia Word: actualización de tienda y avatares
+
+Esta actualización se preparó sobre el commit 99d5b1855e374089ed31a94f48711e3548ebeeb1, el mismo commit que tiene la carpeta original al momento de la revisión.
+
+Para aplicarla: extrae el contenido de este ZIP dentro de C:\Users\Usuario\Documents\src\trivia_word y acepta combinar/sobrescribir únicamente los archivos incluidos. El paquete no incluye ni reemplaza lib/firebase_options.dart, android/app/google-services.json ni firebase.json.
+
+Después, abre PowerShell en la raíz del proyecto y ejecuta:
+  flutter pub get
+  flutter run
+
+No hagas commit hasta comprobar que inicia y que la tienda/avatar se ve bien.

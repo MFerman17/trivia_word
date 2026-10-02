@@ -34,6 +34,7 @@ dependencies:
   firebase_core: ^4.15.0
   firebase_auth: ^6.7.0
   cloud_firestore: ^6.10.0
+  google_mobile_ads: ^9.1.0
 
 dev_dependencies:
   flutter_test:
@@ -53,6 +54,9 @@ flutter:
     - assets/images/bg_landscape.png
     - assets/images/dragon.png
     - assets/images/adventurer.png
+    - assets/images/avatar_explorer.png
+    - assets/images/avatar_mage.png
+    - assets/images/avatar_guardian.png
     - assets/images/Bosque_1.png
     - assets/images/Bosque_2.png
     - assets/images/Bosque_3.png

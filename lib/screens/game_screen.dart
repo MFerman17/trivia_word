@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/game_controller.dart';
+import '../models/level_config.dart';
 import '../services/audio_service.dart';
 import '../widgets/particle_explosion.dart';
 
@@ -8,12 +9,14 @@ class GameScreen extends StatefulWidget {
   final int worldId;
   final int chapterId;
   final int levelNumber;
+  final bool isMiniChallenge;
 
   const GameScreen({
     super.key,
     this.worldId = 1,
     this.chapterId = 1,
     this.levelNumber = 1,
+    this.isMiniChallenge = false,
   });
 
   @override
@@ -31,6 +34,7 @@ class _GameScreenState extends State<GameScreen> {
       worldId: widget.worldId,
       chapterId: widget.chapterId,
       levelNumber: widget.levelNumber,
+      isMiniChallenge: widget.isMiniChallenge,
     );
     _controller.addListener(_onControllerUpdate);
     _controller.loadInitialData();
@@ -95,32 +99,38 @@ class _GameScreenState extends State<GameScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
-                  '+${_controller.coinsReward} Monedas',
+                  _controller.isMiniChallenge && !_controller.miniRewardGranted
+                      ? 'Recompensa de hoy ya obtenida'
+                      : '+${_controller.coinsReward} Monedas',
                   style: GoogleFonts.poppins(
                     color: Colors.yellowAccent,
                     fontSize: 16,
                   ),
                 ),
-                Text(
-                  '+${_controller.xpReward} XP',
-                  style: GoogleFonts.poppins(
-                    color: Colors.cyanAccent,
-                    fontSize: 16,
+                if (!_controller.isMiniChallenge ||
+                    _controller.miniRewardGranted)
+                  Text(
+                    '+${_controller.xpReward} XP',
+                    style: GoogleFonts.poppins(
+                      color: Colors.cyanAccent,
+                      fontSize: 16,
+                    ),
                   ),
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: List.generate(3, (index) {
-                    return Icon(
-                      index < _controller.starsEarned
-                          ? Icons.star
-                          : Icons.star_border,
-                      color: Colors.amber,
-                      size: 36,
-                    );
-                  }),
-                ),
+                if (!_controller.isMiniChallenge) ...[
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: List.generate(3, (index) {
+                      return Icon(
+                        index < _controller.starsEarned
+                            ? Icons.star
+                            : Icons.star_border,
+                        color: Colors.amber,
+                        size: 36,
+                      );
+                    }),
+                  ),
+                ],
               ],
             ),
           ),
@@ -167,8 +177,10 @@ class _GameScreenState extends State<GameScreen> {
             fontSize: 22,
           ),
         ),
-        content: const Text(
-          'Te has quedado sin vidas. ¡Inténtalo de nuevo!',
+        content: Text(
+          _controller.playerHp <= 0
+              ? 'Te has quedado sin vidas. ¡Inténtalo de nuevo!'
+              : 'El monstruo resistió tus respuestas. ¡Repasa y vuelve a intentarlo!',
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.white),
         ),
@@ -217,7 +229,9 @@ class _GameScreenState extends State<GameScreen> {
             backgroundColor: Colors.transparent,
             elevation: 0,
             title: Text(
-              'Fase ${widget.worldId}.${widget.chapterId}.${widget.levelNumber}',
+              widget.isMiniChallenge
+                  ? 'MINI-RETO ${widget.levelNumber}'
+                  : 'Fase ${widget.worldId}.${widget.chapterId}.${widget.levelNumber}',
               style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
@@ -262,6 +276,8 @@ class _GameScreenState extends State<GameScreen> {
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
+                        _buildEnemyStatus(),
+                        const SizedBox(height: 12),
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.all(20),
@@ -468,6 +484,88 @@ class _GameScreenState extends State<GameScreen> {
           ),
         );
       },
+    );
+  }
+
+  Widget _buildEnemyStatus() {
+    final config = _controller.config;
+    final difficultyLabel = switch (config.difficulty) {
+      1 => 'Fácil',
+      2 => 'Fácil+',
+      3 => 'Media',
+      4 => 'Difícil',
+      _ => 'Épico',
+    };
+    final encounterLabel = config.isMiniChallenge
+        ? 'MINI-RETO · $difficultyLabel'
+        : config.type == LevelType.worldBoss
+        ? 'JEFE DEL MUNDO'
+        : config.type == LevelType.miniBoss
+        ? 'GUARDIÁN DEL CAPÍTULO'
+        : 'DIFICULTAD $difficultyLabel';
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+      decoration: BoxDecoration(
+        color: const Color(0xFF211638),
+        borderRadius: BorderRadius.circular(14),
+        border: Border.all(color: Colors.deepPurpleAccent.withValues(alpha: 0.6)),
+      ),
+      child: Row(
+        children: [
+          Text(config.enemyEmoji, style: const TextStyle(fontSize: 34)),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  config.enemyName,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.poppins(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 14,
+                  ),
+                ),
+                Text(
+                  encounterLabel,
+                  style: GoogleFonts.poppins(
+                    color: config.type == LevelType.worldBoss
+                        ? Colors.orangeAccent
+                        : Colors.cyanAccent,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 10,
+                    letterSpacing: 0.8,
+                  ),
+                ),
+                const SizedBox(height: 5),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: LinearProgressIndicator(
+                    value: _controller.enemyHp / _controller.enemyMaxHp,
+                    minHeight: 7,
+                    backgroundColor: Colors.black45,
+                    color: Colors.redAccent,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          Text(
+            '${_controller.enemyHp}',
+            style: GoogleFonts.oswald(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

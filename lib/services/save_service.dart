@@ -8,6 +8,19 @@ class SaveService {
   // Clave única para todo el proyecto
   static const String _keyProfile = 'player_profile_json';
 
+  /// Limita la recompensa de cada mini-reto a una vez por día en este
+  /// dispositivo. Las recompensas laterales no alteran estrellas ni ranking.
+  static Future<bool> claimMiniChallengeReward(String challengeId) async {
+    final prefs = await SharedPreferences.getInstance();
+    final now = DateTime.now();
+    final date = '${now.year}-${now.month.toString().padLeft(2, '0')}-'
+        '${now.day.toString().padLeft(2, '0')}';
+    final key = 'mini_reward_$challengeId';
+    if (prefs.getString(key) == date) return false;
+    await prefs.setString(key, date);
+    return true;
+  }
+
   // =========================================================================
   // DATOS DEL JUGADOR
   // =========================================================================

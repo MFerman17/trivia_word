@@ -56,4 +56,9 @@ class MapController extends ChangeNotifier {
           isUnlocked: defaultUnlocked,
         );
   }
+
+  bool isWorldUnlocked(int world) {
+    if (world == 1) return true;
+    return getProgressForNode(world, 1, 1).isUnlocked;
+  }
 }

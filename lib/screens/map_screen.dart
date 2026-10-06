@@ -7,6 +7,7 @@ import '../controllers/map_controller.dart';
 import '../models/stage_progress.dart';
 import '../services/audio_service.dart';
 import 'game_screen.dart';
+import 'mini_challenges_screen.dart';
 
 // Colores coherentes con el estilo del juego
 const Color kOutline = Color(0xFF0D0326);
@@ -468,6 +469,36 @@ class _MapScreenState extends State<MapScreen>
           ),
           Row(
             children: [
+              IconButton(
+                tooltip: 'Mini-retos',
+                icon: const Icon(
+                  Icons.bolt_rounded,
+                  color: Colors.orangeAccent,
+                  size: 25,
+                ),
+                onPressed: () {
+                  if (!_controller.isWorldUnlocked(
+                    _controller.selectedWorld,
+                  )) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text(
+                          'Primero derrota al jefe del mundo anterior.',
+                        ),
+                      ),
+                    );
+                    return;
+                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => MiniChallengesScreen(
+                        worldId: _controller.selectedWorld,
+                      ),
+                    ),
+                  );
+                },
+              ),
               IconButton(
                 icon: Icon(
                   _isMuted

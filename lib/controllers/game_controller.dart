@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../models/player_profile.dart';
 import '../models/question.dart';
+import '../models/level_config.dart';
 import '../models/stage_progress.dart';
 import '../services/audio_service.dart';
 import '../services/question_bank.dart';
@@ -14,12 +15,21 @@ class GameController extends ChangeNotifier {
   final int worldId;
   final int chapterId;
   final int levelNumber;
+  final bool isMiniChallenge;
+  late final LevelConfig config = isMiniChallenge
+      ? QuestionBank.getConfigForMiniChallenge(worldId, levelNumber)
+      : QuestionBank.getConfigForLevel(worldId, chapterId, levelNumber);
 
   PlayerProfile? profile;
   List<Question> questions = [];
   int currentQuestionIndex = 0;
-  int playerHp = 3;
-  final int maxPlayerHp = 3;
+  late int playerHp = maxPlayerHp;
+  late final int maxPlayerHp = isMiniChallenge || config.type == LevelType.worldBoss
+      ? 4
+      : 3;
+  late int enemyHp = config.enemyHealth;
+
+  int get enemyMaxHp => config.enemyHealth;
 
   GameStatus status = GameStatus.loading;
   bool isAnswered = false;
@@ -27,8 +37,9 @@ class GameController extends ChangeNotifier {
   final List<int> disabledOptionIndexes = [];
 
   int starsEarned = 1;
-  int coinsReward = 50;
-  int xpReward = 40;
+  late final int coinsReward = isMiniChallenge ? 15 : 50;
+  late final int xpReward = isMiniChallenge ? 10 : 40;
+  bool miniRewardGranted = false;
 
   // 👈 Bandera para controlar si el controlador fue destruido y evitar fugas de memoria
   bool _isDisposed = false;
@@ -37,6 +48,7 @@ class GameController extends ChangeNotifier {
     required this.worldId,
     required this.chapterId,
     required this.levelNumber,
+    this.isMiniChallenge = false,
   });
 
   @override
@@ -55,11 +67,9 @@ class GameController extends ChangeNotifier {
     notifyListeners();
 
     profile = await SaveService.loadPlayerData();
-    questions = QuestionBank.getQuestionsForLevel(
-      worldId,
-      chapterId,
-      levelNumber,
-    );
+    questions = isMiniChallenge
+        ? QuestionBank.getQuestionsForMiniChallenge(worldId, levelNumber)
+        : QuestionBank.getQuestionsForLevel(worldId, chapterId, levelNumber);
 
     if (_isDisposed) return; // 👈 Evitamos actualizar si ya se desmontó
     status = GameStatus.playing;
@@ -85,6 +95,11 @@ class GameController extends ChangeNotifier {
     if (isCorrect) {
       AudioService.playSuccess();
       QuestService.incrementProgress('answer_trivia_10');
+      // Los enemigos normales requieren dos aciertos, los guardianes tres y
+      // los jefes finales cuatro. Así la dificultad del combate también crece.
+      final hitsToDefeat = config.correctAnswersToDefeat;
+      final damagePerAnswer = (enemyMaxHp / hitsToDefeat).ceil();
+      enemyHp = (enemyHp - damagePerAnswer).clamp(0, enemyMaxHp).toInt();
     } else {
       AudioService.playDamage();
       playerHp--;
@@ -93,14 +108,16 @@ class GameController extends ChangeNotifier {
   }
 
   void continueAfterAnswer() {
-    if (_isDisposed || !isAnswered) return;
+    if (_isDisposed || !isAnswered || status != GameStatus.playing) return;
 
     if (playerHp <= 0) {
       _handleDefeat();
+    } else if (enemyHp <= 0) {
+      _handleVictory();
     } else if (currentQuestionIndex + 1 < questions.length) {
       _nextQuestion();
     } else {
-      _handleVictory();
+      _handleDefeat();
     }
   }
 
@@ -117,9 +134,34 @@ class GameController extends ChangeNotifier {
     if (_isDisposed) return;
     status = GameStatus.victory;
     AudioService.playVictorySound();
+
+    if (isMiniChallenge) {
+      miniRewardGranted = await SaveService.claimMiniChallengeReward(
+        'w${worldId}_challenge$levelNumber',
+      );
+      if (profile != null && miniRewardGranted) {
+        profile!.coins += coinsReward;
+        profile!.addExperience(xpReward);
+        await SaveService.savePlayerData(profile!);
+        QuestService.incrementProgress('win_battles_3');
+        try {
+          await CloudService.syncProfileToCloud(profile!);
+        } catch (e) {
+          debugPrint('No se pudo sincronizar la recompensa del mini-reto: $e');
+        }
+      }
+      if (_isDisposed) return;
+      notifyListeners();
+      return;
+    }
+
     QuestService.incrementProgress('win_battles_3');
 
-    starsEarned = playerHp == 3 ? 3 : (playerHp == 2 ? 2 : 1);
+    starsEarned = playerHp >= maxPlayerHp
+        ? 3
+        : playerHp == maxPlayerHp - 1
+        ? 2
+        : 1;
 
     // 1. Guardar Monedas y XP en el perfil local
     if (profile != null) {

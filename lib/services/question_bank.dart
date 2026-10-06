@@ -33,6 +33,8 @@ class QuestionBank {
       difficulty: difficulty,
       enemyName: enemyName,
       enemyEmoji: isWorldBoss ? '🐉' : isChapterBoss ? '👹' : '👾',
+      enemyAsset: worldCreatureAsset(world),
+      backgroundAsset: worldBackgroundAsset(world, chapter),
       enemyHealth: isWorldBoss ? 180 : isChapterBoss ? 120 : 70 + difficulty * 10,
       targetQuestions: isWorldBoss ? 5 : isChapterBoss ? 4 : 3,
       correctAnswersToDefeat: isWorldBoss ? 4 : isChapterBoss ? 3 : 2,
@@ -42,9 +44,15 @@ class QuestionBank {
   /// Encuentro lateral: criatura menos resistente y recompensa limitada.
   static LevelConfig getConfigForMiniChallenge(int world, int challenge) {
     final difficulty = (world + challenge - 1).clamp(1, 5).toInt();
-    const enemies = ['Duende explorador', 'Murciélago guardián', 'Slime veloz'];
-    const emojis = ['🧌', '🦇', '🟢'];
-    final index = (challenge - 1).clamp(0, enemies.length - 1).toInt();
+    const enemiesByWorld = [
+      ['Guardián del Bosque', 'Duende del Musgo', 'Espíritu de Raíces'],
+      ['Murciélago de Cristal', 'Eco de la Caverna', 'Rastreador de Piedra'],
+      ['Familiar de las Islas', 'Duende de Nube', 'Vigía del Viento'],
+      ['Salamandra de Lava', 'Espíritu de Brasa', 'Cría de Magma'],
+    ];
+    const emojisByWorld = ['🧌', '🦇', '🪽', '🦎'];
+    final worldIndex = (world - 1).clamp(0, 3).toInt();
+    final challengeIndex = (challenge - 1).clamp(0, 2).toInt();
 
     return LevelConfig(
       title: 'Mini-reto $challenge · Mundo $world',
@@ -53,13 +61,34 @@ class QuestionBank {
       levelNumber: challenge,
       type: LevelType.normal,
       difficulty: difficulty,
-      enemyName: enemies[index],
-      enemyEmoji: emojis[index],
+      enemyName: enemiesByWorld[worldIndex][challengeIndex],
+      enemyEmoji: emojisByWorld[worldIndex],
+      enemyAsset: worldCreatureAsset(world),
+      backgroundAsset: worldBackgroundAsset(world, 1),
       enemyHealth: 60,
       targetQuestions: 3,
       isMiniChallenge: true,
       correctAnswersToDefeat: 2,
     );
+  }
+
+  static String worldCreatureAsset(int world) => switch (world) {
+    1 => 'assets/images/mini_forest_guardian.png',
+    2 => 'assets/images/mini_cave_bat.png',
+    3 => 'assets/images/mini_sky_familiar.png',
+    4 => 'assets/images/mini_lava_salamander.png',
+    _ => 'assets/images/mini_forest_guardian.png',
+  };
+
+  static String worldBackgroundAsset(int world, int chapter) {
+    final chapterNumber = chapter.clamp(1, 3).toInt();
+    return switch (world) {
+      1 => 'assets/images/Bosque_$chapterNumber.png',
+      2 => 'assets/images/Cavernas_$chapterNumber.png',
+      3 => 'assets/images/Islas_$chapterNumber.png',
+      4 => 'assets/images/Volcan_$chapterNumber.png',
+      _ => 'assets/images/Bosque_1.png',
+    };
   }
 
   static String _worldBossName(int world) => switch (world) {

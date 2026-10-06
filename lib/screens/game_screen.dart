@@ -139,10 +139,17 @@ class _GameScreenState extends State<GameScreen> {
           Center(
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-              onPressed: () {
+              onPressed: () async {
                 AudioService.playButtonClick();
                 Navigator.of(dialogContext).pop();
-                Navigator.of(context).pop();
+                if (_controller.chapterStory != null) {
+                  await Future<void>.delayed(
+                    const Duration(milliseconds: 120),
+                  );
+                  if (!mounted) return;
+                  await _showChapterStoryDialog();
+                }
+                if (mounted) Navigator.of(context).pop();
               },
               child: const Text(
                 'CONTINUAR',
@@ -151,6 +158,99 @@ class _GameScreenState extends State<GameScreen> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Future<void> _showChapterStoryDialog() async {
+    final story = _controller.chapterStory;
+    if (story == null || !mounted) return;
+
+    await showDialog<void>(
+      context: context,
+      barrierDismissible: false,
+      builder: (dialogContext) => AlertDialog(
+        backgroundColor: const Color(0xFF17132C),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(22),
+          side: const BorderSide(color: Color(0xFFFFC857), width: 2),
+        ),
+        title: Text(
+          story.heading,
+          textAlign: TextAlign.center,
+          style: GoogleFonts.anton(
+            color: const Color(0xFFFFD36B),
+            fontSize: 23,
+          ),
+        ),
+        content: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(14),
+                child: SizedBox(
+                  height: 112,
+                  width: double.infinity,
+                  child: Image.asset(
+                    _controller.config.backgroundAsset,
+                    fit: BoxFit.cover,
+                    color: Colors.black.withValues(alpha: 0.35),
+                    colorBlendMode: BlendMode.darken,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 14),
+              Text(
+                story.destination,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  color: const Color(0xFF1EE3CF),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                ),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                story.narrative,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  height: 1.45,
+                  fontSize: 13,
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                story.objective,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                  color: const Color(0xFFFFD36B),
+                  fontWeight: FontWeight.w600,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+        ),
+        actionsAlignment: MainAxisAlignment.center,
+        actions: [
+          ElevatedButton.icon(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFFFFC857),
+              foregroundColor: const Color(0xFF17132C),
+            ),
+            onPressed: () {
+              AudioService.playButtonClick();
+              Navigator.of(dialogContext).pop();
+            },
+            icon: const Icon(Icons.auto_stories_rounded),
+            label: Text(
+              'CONTINUAR',
+              style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
           ),
         ],
@@ -264,8 +364,26 @@ class _GameScreenState extends State<GameScreen> {
               const SizedBox(width: 16),
             ],
           ),
-          body: SafeArea(
-            child: currentQuestion == null
+          body: Stack(
+            fit: StackFit.expand,
+            children: [
+              Image.asset(
+                _controller.config.backgroundAsset,
+                fit: BoxFit.cover,
+                color: Colors.black.withValues(alpha: 0.62),
+                colorBlendMode: BlendMode.darken,
+              ),
+              const DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0x66100B22), Color(0xCC0F0C29)],
+                  ),
+                ),
+              ),
+              SafeArea(
+                child: currentQuestion == null
                 ? const Center(
                     child: Text(
                       'No hay preguntas para esta fase.',
@@ -481,6 +599,8 @@ class _GameScreenState extends State<GameScreen> {
                       ],
                     ),
                   ),
+              ),
+            ],
           ),
         );
       },
@@ -514,8 +634,20 @@ class _GameScreenState extends State<GameScreen> {
       ),
       child: Row(
         children: [
-          Text(config.enemyEmoji, style: const TextStyle(fontSize: 34)),
-          const SizedBox(width: 12),
+          SizedBox(
+            width: 72,
+            height: 76,
+            child: Image.asset(
+              config.enemyAsset,
+              fit: BoxFit.contain,
+              cacheWidth: 256,
+              errorBuilder: (_, _, _) => Text(
+                config.enemyEmoji,
+                style: const TextStyle(fontSize: 34),
+              ),
+            ),
+          ),
+          const SizedBox(width: 8),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,

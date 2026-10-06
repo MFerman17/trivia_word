@@ -53,6 +53,10 @@ flutter:
     - assets/audio/
     - assets/images/bg_landscape.png
     - assets/images/dragon.png
+    - assets/images/mini_forest_guardian.png
+    - assets/images/mini_cave_bat.png
+    - assets/images/mini_sky_familiar.png
+    - assets/images/mini_lava_salamander.png
     - assets/images/adventurer.png
     - assets/images/avatar_explorer.png
     - assets/images/avatar_mage.png

@@ -2,12 +2,14 @@ import 'package:flutter/foundation.dart';
 import '../models/player_profile.dart';
 import '../models/question.dart';
 import '../models/level_config.dart';
+import '../models/chapter_story.dart';
 import '../models/stage_progress.dart';
 import '../services/audio_service.dart';
 import '../services/question_bank.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../services/cloud_service.dart';
+import '../services/chapter_story_service.dart';
 
 enum GameStatus { loading, playing, victory, defeat }
 
@@ -40,6 +42,7 @@ class GameController extends ChangeNotifier {
   late final int coinsReward = isMiniChallenge ? 15 : 50;
   late final int xpReward = isMiniChallenge ? 10 : 40;
   bool miniRewardGranted = false;
+  ChapterStory? chapterStory;
 
   // 👈 Bandera para controlar si el controlador fue destruido y evitar fugas de memoria
   bool _isDisposed = false;
@@ -134,6 +137,17 @@ class GameController extends ChangeNotifier {
     if (_isDisposed) return;
     status = GameStatus.victory;
     AudioService.playVictorySound();
+
+    if (!isMiniChallenge && levelNumber == 5) {
+      final previousProgress = await SaveService.getStageProgress(
+        worldId,
+        chapterId,
+        levelNumber,
+      );
+      if (previousProgress.stars == 0) {
+        chapterStory = ChapterStoryService.afterChapter(worldId, chapterId);
+      }
+    }
 
     if (isMiniChallenge) {
       miniRewardGranted = await SaveService.claimMiniChallengeReward(

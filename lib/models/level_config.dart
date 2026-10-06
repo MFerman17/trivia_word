@@ -19,6 +19,8 @@ class LevelConfig {
   final int difficulty;
   final String enemyName;
   final String enemyEmoji;
+  final String enemyAsset;
+  final String backgroundAsset;
   final bool isMiniChallenge;
   final int correctAnswersToDefeat;
 
@@ -34,6 +36,8 @@ class LevelConfig {
     this.difficulty = 1,
     this.enemyName = 'Criatura del sendero',
     this.enemyEmoji = '👾',
+    this.enemyAsset = 'assets/images/mini_forest_guardian.png',
+    this.backgroundAsset = 'assets/images/Bosque_1.png',
     this.isMiniChallenge = false,
     this.correctAnswersToDefeat = 2,
   });

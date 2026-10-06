@@ -14,32 +14,52 @@ class MiniChallengesScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: background,
       appBar: AppBar(
-        backgroundColor: background,
+        backgroundColor: background.withValues(alpha: 0.88),
         foregroundColor: Colors.white,
         title: Text(
           'MINI-RETOS',
           style: GoogleFonts.anton(color: const Color(0xFF1EE3CF)),
         ),
       ),
-      body: ListView(
-        padding: const EdgeInsets.all(16),
+      body: Stack(
+        fit: StackFit.expand,
         children: [
-          Text(
-            'Encuentros opcionales del Mundo $worldId',
-            style: GoogleFonts.poppins(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
+          Image.asset(
+            QuestionBank.worldBackgroundAsset(worldId, 1),
+            fit: BoxFit.cover,
+            color: Colors.black.withValues(alpha: 0.68),
+            colorBlendMode: BlendMode.darken,
+          ),
+          const DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0x55100B22), Color(0xCC0F0C29)],
+              ),
             ),
           ),
-          const SizedBox(height: 6),
-          Text(
-            'Derrota a criaturas más débiles con tus conocimientos. Cada mini-reto da monedas y XP una vez al día.',
-            style: GoogleFonts.poppins(color: Colors.white70, fontSize: 13),
+          ListView(
+            padding: const EdgeInsets.all(16),
+            children: [
+              Text(
+                'Encuentros opcionales del Mundo $worldId',
+                style: GoogleFonts.poppins(
+                  color: Colors.white,
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Derrota a criaturas más débiles con tus conocimientos. Cada mini-reto da monedas y XP una vez al día.',
+                style: GoogleFonts.poppins(color: Colors.white70, fontSize: 13),
+              ),
+              const SizedBox(height: 18),
+              for (int challenge = 1; challenge <= 3; challenge++)
+                _buildChallengeCard(context, challenge),
+            ],
           ),
-          const SizedBox(height: 18),
-          for (int challenge = 1; challenge <= 3; challenge++)
-            _buildChallengeCard(context, challenge),
         ],
       ),
     );
@@ -50,13 +70,36 @@ class MiniChallengesScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 14),
       decoration: BoxDecoration(
-        color: const Color(0xFF211638),
+        gradient: const LinearGradient(
+          colors: [Color(0xE8211638), Color(0xE8130F29)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(18),
-        border: Border.all(color: const Color(0xFF1EE3CF).withValues(alpha: 0.35)),
+        border: Border.all(color: const Color(0xFF1EE3CF).withValues(alpha: 0.45)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.35),
+            blurRadius: 14,
+            offset: const Offset(0, 6),
+          ),
+        ],
       ),
       child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-        leading: Text(config.enemyEmoji, style: const TextStyle(fontSize: 34)),
+        leading: SizedBox(
+          width: 68,
+          height: 76,
+          child: Image.asset(
+            config.enemyAsset,
+            fit: BoxFit.contain,
+            cacheWidth: 256,
+            errorBuilder: (_, _, _) => Text(
+              config.enemyEmoji,
+              style: const TextStyle(fontSize: 34),
+            ),
+          ),
+        ),
         title: Text(
           config.enemyName,
           style: GoogleFonts.poppins(
@@ -69,7 +112,7 @@ class MiniChallengesScreen extends StatelessWidget {
           'Reto $challenge · Dificultad ${config.difficulty} · 15 🪙 + 10 XP diarios',
           style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11),
         ),
-        trailing: const Icon(Icons.play_circle_fill, color: Color(0xFF1EE3CF)),
+        trailing: const Icon(Icons.play_circle_fill, color: Color(0xFFFFC857), size: 30),
         onTap: () {
           Navigator.push(
             context,

@@ -470,11 +470,30 @@ class _MapScreenState extends State<MapScreen>
           Row(
             children: [
               IconButton(
-                tooltip: 'Mini-retos',
-                icon: const Icon(
-                  Icons.bolt_rounded,
-                  color: Colors.orangeAccent,
-                  size: 25,
+                tooltip: 'Retos del mundo',
+                icon: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFFFFE783), Color(0xFFEF8C20)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
+                    ),
+                    border: Border.all(color: Colors.white, width: 1.5),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.orangeAccent.withValues(alpha: 0.65),
+                        blurRadius: 12,
+                      ),
+                    ],
+                  ),
+                  child: const Icon(
+                    Icons.emoji_events_rounded,
+                    color: Color(0xFF3B1B36),
+                    size: 24,
+                  ),
                 ),
                 onPressed: () {
                   if (!_controller.isWorldUnlocked(

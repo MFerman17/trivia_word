@@ -141,6 +141,42 @@ class QuestionBank {
     );
   }
 
+  /// Busca una pregunta nueva para una penalización del monstruo, conservando
+  /// categoría y dificultad. Solo se usan preguntas no vistas en el encuentro.
+  static Question? getReplacementQuestion({
+    required Question original,
+    required int world,
+    required int chapter,
+    required int level,
+    required bool isMiniChallenge,
+    required Set<String> usedQuestionIds,
+  }) {
+    final generated = ProceduralQuestionService.forEncounter(
+      world: world,
+      chapter: chapter,
+      level: level,
+      difficulty: original.difficulty,
+      count: 96,
+      isMiniChallenge: isMiniChallenge,
+    );
+    final curated = [
+      ..._getDefaultQuestions(),
+      ..._getStarterQuestions(),
+      ..._getProgressionQuestions(),
+    ];
+    final candidates = [...generated, ...curated];
+
+    for (final candidate in candidates) {
+      if (candidate.difficulty == original.difficulty &&
+          candidate.category == original.category &&
+          !usedQuestionIds.contains(candidate.id) &&
+          candidate.prompt != original.prompt) {
+        return candidate;
+      }
+    }
+    return null;
+  }
+
   /// Cada pregunta escrita a mano se asigna una sola vez al primer encuentro
   /// disponible de su dificultad; el resto se genera con valores propios.
   static Question? _curatedQuestionForEncounter(

@@ -37,6 +37,8 @@ class GameController extends ChangeNotifier {
   bool isAnswered = false;
   int? selectedOptionIndex;
   final List<int> disabledOptionIndexes = [];
+  int incorrectAnswersSinceMonsterAttack = 0;
+  String? monsterReaction;
 
   int starsEarned = 1;
   late final int coinsReward = isMiniChallenge ? 15 : 50;
@@ -87,6 +89,7 @@ class GameController extends ChangeNotifier {
     }
 
     selectedOptionIndex = index;
+    monsterReaction = null;
     isAnswered = true;
     notifyListeners();
 
@@ -106,6 +109,7 @@ class GameController extends ChangeNotifier {
     } else {
       AudioService.playDamage();
       playerHp--;
+      incorrectAnswersSinceMonsterAttack++;
     }
     notifyListeners();
   }
@@ -117,11 +121,48 @@ class GameController extends ChangeNotifier {
       _handleDefeat();
     } else if (enemyHp <= 0) {
       _handleVictory();
+    } else if (incorrectAnswersSinceMonsterAttack >= 2) {
+      _applyMonsterRewind();
     } else if (currentQuestionIndex + 1 < questions.length) {
       _nextQuestion();
     } else {
       _handleDefeat();
     }
+  }
+
+  void _applyMonsterRewind() {
+    if (_isDisposed || questions.isEmpty) return;
+
+    final failedQuestion = currentQuestion;
+    if (failedQuestion == null) return;
+
+    // Los jefes del mundo castigan con dos pasos de retroceso; los demás
+    // monstruos hacen retroceder un paso cuando acumulas dos errores.
+    final rewindSteps = config.type == LevelType.worldBoss ? 2 : 1;
+    final targetIndex = (currentQuestionIndex - rewindSteps)
+        .clamp(0, questions.length - 1)
+        .toInt();
+    final replacement = QuestionBank.getReplacementQuestion(
+      original: failedQuestion,
+      world: worldId,
+      chapter: chapterId,
+      level: levelNumber,
+      isMiniChallenge: isMiniChallenge,
+      usedQuestionIds: questions.map((question) => question.id).toSet(),
+    );
+
+    if (replacement != null) {
+      questions[targetIndex] = replacement;
+    }
+    currentQuestionIndex = targetIndex;
+    incorrectAnswersSinceMonsterAttack = 0;
+    monsterReaction = replacement == null
+        ? '¡El monstruo te hizo retroceder! Responde de nuevo para avanzar.'
+        : '¡El monstruo te hizo retroceder! Nueva pregunta de ${replacement.category}.';
+    isAnswered = false;
+    selectedOptionIndex = null;
+    disabledOptionIndexes.clear();
+    notifyListeners();
   }
 
   void _nextQuestion() {

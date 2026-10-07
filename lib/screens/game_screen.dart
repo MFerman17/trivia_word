@@ -396,6 +396,19 @@ class _GameScreenState extends State<GameScreen> {
                       children: [
                         _buildEnemyStatus(),
                         const SizedBox(height: 12),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            'PREGUNTA ${_controller.currentQuestionIndex + 1} DE ${_controller.questions.length}',
+                            style: GoogleFonts.poppins(
+                              color: const Color(0xFFFFD36B),
+                              fontWeight: FontWeight.w700,
+                              fontSize: 11,
+                              letterSpacing: 0.8,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 6),
                         Container(
                           width: double.infinity,
                           padding: const EdgeInsets.all(20),
@@ -619,9 +632,9 @@ class _GameScreenState extends State<GameScreen> {
     final encounterLabel = config.isMiniChallenge
         ? 'MINI-RETO · $difficultyLabel'
         : config.type == LevelType.worldBoss
-        ? 'JEFE DEL MUNDO'
+        ? 'JEFE DEL MUNDO · $difficultyLabel'
         : config.type == LevelType.miniBoss
-        ? 'GUARDIÁN DEL CAPÍTULO'
+        ? 'GUARDIÁN DEL CAPÍTULO · $difficultyLabel'
         : 'DIFICULTAD $difficultyLabel';
 
     return Container(

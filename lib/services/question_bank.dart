@@ -1,14 +1,14 @@
 import '../models/level_config.dart';
 import '../models/question.dart';
+import 'procedural_question_service.dart';
 
 class QuestionBank {
-  /// Dificultad prevista por tramo: el reto sube durante cada mundo y vuelve
-  /// a subir al entrar al siguiente. El último nivel del mundo es su jefe.
+  /// La dificultad sube cada tres fases y vuelve a elevarse al avanzar de
+  /// capítulo o mundo. El último nivel de cada mundo es su jefe.
   static LevelConfig getConfigForLevel(int world, int chapter, int level) {
-    final worldLevel = ((chapter - 1) * 5 + level).clamp(1, 15).toInt();
-    final difficulty = (world + (worldLevel <= 5 ? 0 : worldLevel <= 10 ? 1 : 2))
-        .clamp(1, 5)
-        .toInt();
+    final difficultyWithinChapter = (level - 1) ~/ 3;
+    final difficulty =
+        (world + chapter + difficultyWithinChapter - 1).clamp(1, 5).toInt();
     final isWorldBoss = chapter == 3 && level == 5;
     final isChapterBoss = level == 5 && !isWorldBoss;
 
@@ -35,9 +35,13 @@ class QuestionBank {
       enemyEmoji: isWorldBoss ? '🐉' : isChapterBoss ? '👹' : '👾',
       enemyAsset: worldCreatureAsset(world),
       backgroundAsset: worldBackgroundAsset(world, chapter),
-      enemyHealth: isWorldBoss ? 180 : isChapterBoss ? 120 : 70 + difficulty * 10,
-      targetQuestions: isWorldBoss ? 5 : isChapterBoss ? 4 : 3,
-      correctAnswersToDefeat: isWorldBoss ? 4 : isChapterBoss ? 3 : 2,
+      enemyHealth: isWorldBoss
+          ? 180
+          : isChapterBoss
+          ? 120
+          : 70 + difficulty * 10,
+      targetQuestions: isWorldBoss ? 10 : isChapterBoss ? 8 : 6,
+      correctAnswersToDefeat: isWorldBoss ? 8 : isChapterBoss ? 6 : 4,
     );
   }
 
@@ -66,9 +70,9 @@ class QuestionBank {
       enemyAsset: worldCreatureAsset(world),
       backgroundAsset: worldBackgroundAsset(world, 1),
       enemyHealth: 60,
-      targetQuestions: 3,
+      targetQuestions: 4,
       isMiniChallenge: true,
-      correctAnswersToDefeat: 2,
+      correctAnswersToDefeat: 3,
     );
   }
 
@@ -106,7 +110,20 @@ class QuestionBank {
     int level,
   ) {
     final config = getConfigForLevel(world, chapter, level);
-    return _questionsForDifficulty(config.difficulty, config.targetQuestions);
+    final encounterIndex = (world - 1) * 15 + (chapter - 1) * 5 + level - 1;
+    final curated = _curatedQuestionForEncounter(
+      encounterIndex,
+      config.difficulty,
+    );
+    final generated = ProceduralQuestionService.forEncounter(
+      world: world,
+      chapter: chapter,
+      level: level,
+      difficulty: config.difficulty,
+      count: config.targetQuestions - (curated == null ? 0 : 1),
+    );
+    if (curated == null) return generated;
+    return [curated, ...generated];
   }
 
   static List<Question> getQuestionsForMiniChallenge(
@@ -114,12 +131,22 @@ class QuestionBank {
     int challenge,
   ) {
     final config = getConfigForMiniChallenge(world, challenge);
-    return _questionsForDifficulty(config.difficulty, config.targetQuestions);
+    return ProceduralQuestionService.forEncounter(
+      world: world,
+      chapter: 1,
+      level: challenge,
+      difficulty: config.difficulty,
+      count: config.targetQuestions,
+      isMiniChallenge: true,
+    );
   }
 
-  /// El banco mantiene cinco preguntas por escalón y toma la cantidad que
-  /// pide el encuentro (3, 4 o 5). El orden cambia en cada partida.
-  static List<Question> _questionsForDifficulty(int difficulty, int count) {
+  /// Cada pregunta escrita a mano se asigna una sola vez al primer encuentro
+  /// disponible de su dificultad; el resto se genera con valores propios.
+  static Question? _curatedQuestionForEncounter(
+    int encounterIndex,
+    int difficulty,
+  ) {
     final allQuestions = [
       ..._getDefaultQuestions(),
       ..._getStarterQuestions(),
@@ -127,14 +154,21 @@ class QuestionBank {
     ];
     final matching = allQuestions
         .where((question) => question.difficulty == difficulty)
-        .toList()
-      ..shuffle();
-
-    if (matching.length >= count) return matching.take(count).toList();
-
-    // Fallback defensivo si en el futuro se cambia el catálogo de dificultades.
-    final fallback = allQuestions.toList()..shuffle();
-    return fallback.take(count).toList();
+        .toList();
+    var previousEncountersAtDifficulty = 0;
+    for (var index = 0; index < encounterIndex; index++) {
+      final previousWorld = index ~/ 15 + 1;
+      final withinWorld = index % 15;
+      final previousChapter = withinWorld ~/ 5 + 1;
+      final previousLevel = withinWorld % 5 + 1;
+      if (getConfigForLevel(previousWorld, previousChapter, previousLevel)
+              .difficulty ==
+          difficulty) {
+        previousEncountersAtDifficulty++;
+      }
+    }
+    if (previousEncountersAtDifficulty >= matching.length) return null;
+    return matching[previousEncountersAtDifficulty];
   }
 
   /// Preguntas por defecto

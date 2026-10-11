@@ -181,7 +181,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
       color: WM.gold,
       onTap: ready && _claimingQuestId == null ? () => _onClaimReward(quest) : null,
       child: OutlinedGameText(
-        claimed ? 'HECHO ✔' : ready ? 'RECLAMAR' : 'EN CURSO',
+        claimed ? 'HECHO' : ready ? 'RECLAMAR' : 'EN CURSO',
         size: 15,
         font: GameFont.oswald,
       ),

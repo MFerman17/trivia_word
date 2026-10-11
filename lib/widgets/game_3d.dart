@@ -590,8 +590,12 @@ class Chip3D extends StatelessWidget {
 // CABECERA: botón atrás 3D + placa inclinada con el título.
 // ---------------------------------------------------------------------
 class GameHeader extends StatelessWidget {
-  const GameHeader({super.key, required this.title});
+  const GameHeader({super.key, required this.title, this.onBack});
   final String title;
+
+  /// Qué hacer al pulsar atrás. Si es null, simplemente cierra la pantalla.
+  /// (La Tienda lo usa para devolver el perfil actualizado a la portada.)
+  final VoidCallback? onBack;
 
   @override
   Widget build(BuildContext context) {
@@ -600,7 +604,7 @@ class GameHeader extends StatelessWidget {
       child: Row(
         children: [
           Pressable3D(
-            onTap: () => Navigator.maybePop(context),
+            onTap: onBack ?? () => Navigator.maybePop(context),
             color: const Color(0xFF3A2A7A),
             height: 40,
             depth: 5,

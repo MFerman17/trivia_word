@@ -9,10 +9,6 @@ import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
 
-const Color kOutline = Color(0xFF0D0326);
-const Color kCyan = Color(0xFF1EE3CF);
-const Color kBone = Color(0xFFF4EBDD);
-
 enum _CosmeticSlot { character, frame, accessory }
 
 class _CosmeticOption {
@@ -141,7 +137,11 @@ class _ShopScreenState extends State<ShopScreen>
   String _previewAccessory = 'ninguno';
   _CosmeticSlot _activeSlot = _CosmeticSlot.character;
   bool _isBusy = false;
-  bool _triggerSparkle = false;
+  // Qué elemento debe soltar chispas (antes era un bool y explotaban TODAS
+  // las tarjetas a la vez con cualquier compra).
+  String? _sparkleId;
+  // Qué anuncio se está cargando (antes giraban los dos botones a la vez).
+  String? _loadingAd;
 
   @override
   void initState() {
@@ -171,7 +171,8 @@ class _ShopScreenState extends State<ShopScreen>
       ..showSnackBar(
         SnackBar(
           content: Text(message, style: GoogleFonts.oswald(fontSize: 14)),
-          backgroundColor: error ? Colors.redAccent : kCyan,
+          // Fondo oscuro para que el texto blanco se lea bien
+          backgroundColor: error ? const Color(0xFFB3261E) : const Color(0xFF0A6F66),
           behavior: SnackBarBehavior.floating,
         ),
       );
@@ -252,11 +253,11 @@ class _ShopScreenState extends State<ShopScreen>
       if (!mounted) return;
       setState(() {
         _isBusy = false;
-        _triggerSparkle = true;
+        _sparkleId = 'avatar';
       });
       _showMessage(isOwned ? '¡Nuevo aspecto equipado!' : '¡Aspecto desbloqueado y equipado!');
       Future.delayed(const Duration(milliseconds: 900), () {
-        if (mounted) setState(() => _triggerSparkle = false);
+        if (mounted) setState(() => _sparkleId = null);
       });
     } catch (_) {
       if (!mounted) return;
@@ -295,12 +296,12 @@ class _ShopScreenState extends State<ShopScreen>
       if (!mounted) return;
       setState(() {
         _isBusy = false;
-        _triggerSparkle = true;
+        _sparkleId = offer.name;
       });
       AudioService.playBuyItem();
       _showMessage('¡${offer.name} añadido a tu inventario!');
       Future.delayed(const Duration(milliseconds: 900), () {
-        if (mounted) setState(() => _triggerSparkle = false);
+        if (mounted) setState(() => _sparkleId = null);
       });
     } catch (_) {
       if (!mounted) return;
@@ -314,7 +315,10 @@ class _ShopScreenState extends State<ShopScreen>
 
   Future<void> _watchAdForReward(String rewardName, VoidCallback reward) async {
     if (_isBusy) return;
-    setState(() => _isBusy = true);
+    setState(() {
+      _isBusy = true;
+      _loadingAd = rewardName;
+    });
     final previousProfile = profile.toJson();
     try {
       final earned = await AdService.showRewardedAd();
@@ -332,7 +336,12 @@ class _ShopScreenState extends State<ShopScreen>
       profile = PlayerProfile.fromJson(previousProfile);
       _showMessage('No se pudo guardar la recompensa. Inténtalo de nuevo.', error: true);
     } finally {
-      if (mounted) setState(() => _isBusy = false);
+      if (mounted) {
+        setState(() {
+          _isBusy = false;
+          _loadingAd = null;
+        });
+      }
     }
   }
 
@@ -344,25 +353,15 @@ class _ShopScreenState extends State<ShopScreen>
         child: SafeArea(
           child: Column(
             children: [
-              _buildShopHeader(),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 12),
-                child: TabBar(
-                  controller: _tabController,
-                  isScrollable: true,
-                  indicatorColor: WM.gold,
-                  indicatorWeight: 3,
-                  labelColor: WM.gold,
-                  unselectedLabelColor: Colors.white60,
-                  labelStyle: GoogleFonts.oswald(fontWeight: FontWeight.bold, fontSize: 14),
-                  tabs: const [
-                    Tab(text: 'AVATAR'),
-                    Tab(text: 'COMBOS'),
-                    Tab(text: 'RECOMPENSAS'),
-                  ],
-                ),
+              GameHeader(
+                title: 'TIENDA',
+                onBack: () {
+                  AudioService.playButtonClick();
+                  Navigator.pop(context, profile);
+                },
               ),
               _buildBalanceBanner(),
+              _buildTabs(),
               Expanded(
                 child: TabBarView(
                   controller: _tabController,
@@ -380,52 +379,30 @@ class _ShopScreenState extends State<ShopScreen>
     );
   }
 
-  Widget _buildShopHeader() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 8, 12, 6),
-      child: Row(
-        children: [
-          Pressable3D(
-            onTap: () {
-              AudioService.playButtonClick();
-              Navigator.pop(context, profile);
-            },
-            color: const Color(0xFF3A2A7A),
-            height: 40,
-            depth: 5,
-            padding: const EdgeInsets.symmetric(horizontal: 9),
-            child: const Icon(Icons.arrow_back_rounded, color: WM.bone, size: 24),
-          ),
-          const Expanded(
-            child: Center(
-              child: OutlinedGameText(
-                'TIENDA',
-                size: 26,
-                letterSpacing: 2,
-                colors: [WM.cyanLight, WM.cyan],
-              ),
-            ),
-          ),
-          const SizedBox(width: 50),
-        ],
-      ),
-    );
-  }
-
+  // ---------------------------------------------------------------
+  // SALDO: monedas y gemas en engastes 3D
+  // ---------------------------------------------------------------
   Widget _buildBalanceBanner() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 10),
       child: Panel3D(
         accent: WM.gold,
-        depth: 4,
-        radius: 15,
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        depth: 5,
+        radius: 16,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            _buildBalanceBadge('🪙', 'Monedas', profile.coins, WM.gold),
-            Container(height: 30, width: 1, color: Colors.white24),
-            _buildBalanceBadge('💎', 'Gemas', profile.gems, WM.cyan),
+            Expanded(child: _buildBalanceBadge('🪙', 'MONEDAS', profile.coins, WM.gold)),
+            Container(
+              height: 34,
+              width: 2,
+              margin: const EdgeInsets.symmetric(horizontal: 8),
+              decoration: BoxDecoration(
+                color: WM.outline,
+                borderRadius: BorderRadius.circular(2),
+              ),
+            ),
+            Expanded(child: _buildBalanceBadge('💎', 'GEMAS', profile.gems, WM.cyan)),
           ],
         ),
       ),
@@ -434,85 +411,218 @@ class _ShopScreenState extends State<ShopScreen>
 
   Widget _buildBalanceBadge(String icon, String label, int amount, Color color) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(icon, style: const TextStyle(fontSize: 22)),
-        const SizedBox(width: 8),
+        Socket3D(
+          size: 40,
+          color: color,
+          child: Text(icon, style: const TextStyle(fontSize: 18)),
+        ),
+        const SizedBox(width: 10),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
-            Text(label, style: GoogleFonts.oswald(color: Colors.white60, fontSize: 11)),
-            Text('$amount', style: GoogleFonts.anton(color: color, fontSize: 18)),
+            Text(
+              label,
+              style: GoogleFonts.oswald(
+                color: Colors.white60,
+                fontSize: 10,
+                fontWeight: FontWeight.w700,
+                letterSpacing: 1,
+              ),
+            ),
+            OutlinedGameText('$amount', size: 20, colors: [Colors.white, shade(color, 0.15)]),
           ],
         ),
       ],
     );
   }
 
+  // ---------------------------------------------------------------
+  // PESTAÑAS 3D: la activa es dorada y está "hundida" (menos canto),
+  // como un interruptor pulsado. Siguen el TabController, así que
+  // también cambian al deslizar entre pestañas con el dedo.
+  // ---------------------------------------------------------------
+  Widget _buildTabs() {
+    const labels = ['AVATAR', 'COMBOS', 'PREMIOS'];
+    return AnimatedBuilder(
+      animation: _tabController,
+      builder: (context, _) => Padding(
+        padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+        child: Row(
+          children: [
+            for (var i = 0; i < labels.length; i++) ...[
+              if (i > 0) const SizedBox(width: 10),
+              Expanded(
+                child: Pressable3D(
+                  slanted: true,
+                  height: 36,
+                  depth: _tabController.index == i ? 2 : 5,
+                  radius: 8,
+                  padding: EdgeInsets.zero,
+                  color: _tabController.index == i ? WM.gold : const Color(0xFF3A2A7A),
+                  onTap: () {
+                    AudioService.playButtonClick();
+                    _tabController.animateTo(i);
+                  },
+                  child: OutlinedGameText(labels[i], size: 14, font: GameFont.oswald),
+                ),
+              ),
+            ],
+          ],
+        ),
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // PESTAÑA AVATAR
+  // ---------------------------------------------------------------
   Widget _buildAvatarStudio() {
     final option = _optionsFor(_activeSlot).firstWhere(
       (item) => item.id == _previewFor(_activeSlot),
     );
     final owned = _ownedFor(_activeSlot).contains(option.id);
     final equipped = _equippedFor(_activeSlot) == option.id;
+    final slotName = switch (_activeSlot) {
+      _CosmeticSlot.character => 'PERSONAJE',
+      _CosmeticSlot.frame => 'MARCO',
+      _CosmeticSlot.accessory => 'ACCESORIO',
+    };
 
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
       children: [
-        Panel3D(
-          accent: WM.cyan,
-          glow: 0.25,
-          radius: 22,
-          padding: const EdgeInsets.all(18),
-          child: Row(
-            children: [
-              PlayerAvatar(
-                profile: PlayerProfile(
-                  avatarCharacterId: _previewCharacter,
-                  avatarFrameId: _previewFrame,
-                  avatarAccessoryId: _previewAccessory,
-                ),
-                radius: 44,
-              ),
-              const SizedBox(width: 18),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const OutlinedGameText('TALLER DE HÉROES', size: 17, letterSpacing: 1),
-                    const SizedBox(height: 5),
-                    Text('Combina personaje, marco y accesorio. Tu avatar no cambia tus estadísticas.',
-                        style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13)),
-                  ],
-                ),
-              ),
-            ],
+        EntranceFlip(index: 0, child: _buildAvatarPreview()),
+        const SizedBox(height: 18),
+        EntranceFlip(
+          index: 1,
+          child: _buildCosmeticSelector('PERSONAJE', _CosmeticSlot.character, _characters),
+        ),
+        EntranceFlip(
+          index: 2,
+          child: _buildCosmeticSelector('MARCO', _CosmeticSlot.frame, _frames),
+        ),
+        EntranceFlip(
+          index: 3,
+          child: _buildCosmeticSelector('ACCESORIO', _CosmeticSlot.accessory, _accessories),
+        ),
+        const SizedBox(height: 4),
+        // Deja claro sobre qué pieza actúa el botón
+        Center(
+          child: Text(
+            'Seleccionado: $slotName · ${option.name}',
+            style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12, letterSpacing: 0.5),
           ),
         ),
-        const SizedBox(height: 16),
-        _buildCosmeticSelector('PERSONAJE', _CosmeticSlot.character, _characters),
-        _buildCosmeticSelector('MARCO', _CosmeticSlot.frame, _frames),
-        _buildCosmeticSelector('ACCESORIO', _CosmeticSlot.accessory, _accessories),
-        const SizedBox(height: 10),
-        ElevatedButton.icon(
-          onPressed: _isBusy || equipped ? null : _unlockOrEquipPreview,
-          style: ElevatedButton.styleFrom(
-            backgroundColor: kCyan,
-            foregroundColor: kOutline,
-            disabledBackgroundColor: Colors.white12,
-            padding: const EdgeInsets.symmetric(vertical: 14),
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
-          ),
-          icon: Icon(owned ? Icons.check_circle_outline : Icons.lock_open_rounded),
-          label: Text(
-            equipped
-                ? 'EQUIPADO'
-                : owned
-                    ? 'EQUIPAR'
-                    : _priceLabel(option),
-            style: GoogleFonts.anton(fontSize: 16, letterSpacing: 0.8),
+        const SizedBox(height: 8),
+        SizedBox(
+          width: double.infinity,
+          child: Pressable3D(
+            onTap: _isBusy || equipped ? null : _unlockOrEquipPreview,
+            color: owned ? WM.cyan : WM.gold,
+            // Equipado = éxito (verde), no "desactivado" (gris)
+            disabledColor: equipped ? const Color(0xFF1E8C3A) : const Color(0xFF4A4660),
+            height: 54,
+            // Los emojis van en un Text normal: el texto con contorno dibuja
+            // cada letra 3 veces y un emoji saldría triplicado.
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                OutlinedGameText(
+                  equipped
+                      ? 'EQUIPADO'
+                      : owned
+                          ? 'EQUIPAR'
+                          : _isFree(option)
+                              ? 'DESBLOQUEAR GRATIS'
+                              : 'DESBLOQUEAR',
+                  size: 18,
+                  font: GameFont.oswald,
+                ),
+                if (!owned && !_isFree(option)) ...[
+                  const SizedBox(width: 10),
+                  Text(option.coins > 0 ? '🪙' : '💎', style: const TextStyle(fontSize: 18)),
+                  const SizedBox(width: 4),
+                  OutlinedGameText(
+                    '${option.coins > 0 ? option.coins : option.gems}',
+                    size: 18,
+                    font: GameFont.oswald,
+                  ),
+                ],
+              ],
+            ),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildAvatarPreview() {
+    return Panel3D(
+      accent: WM.cyan,
+      glow: 0.3,
+      radius: 22,
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 16),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 170,
+            width: 220,
+            child: Stack(
+              alignment: Alignment.bottomCenter,
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(
+                  bottom: 20,
+                  child: Container(
+                    width: 160,
+                    height: 160,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: RadialGradient(
+                        colors: [WM.cyan.withValues(alpha: 0.3), Colors.transparent],
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: CustomPaint(size: const Size(170, 46), painter: PedestalPainter()),
+                ),
+                Positioned(
+                  bottom: 26,
+                  child: ParticleExplosion(
+                    trigger: _sparkleId == 'avatar',
+                    particleEmoji: '✨',
+                    particleCount: 18,
+                    child: Bob(
+                      amplitude: 6,
+                      child: PlayerAvatar(
+                        profile: PlayerProfile(
+                          avatarCharacterId: _previewCharacter,
+                          avatarFrameId: _previewFrame,
+                          avatarAccessoryId: _previewAccessory,
+                        ),
+                        radius: 52,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          const OutlinedGameText('TALLER DE HÉROES', size: 20, letterSpacing: 1.5),
+          const SizedBox(height: 4),
+          Text(
+            'Combina personaje, marco y accesorio. Tu avatar no cambia tus estadísticas.',
+            textAlign: TextAlign.center,
+            style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
+          ),
+        ],
+      ),
     );
   }
 
@@ -521,64 +631,117 @@ class _ShopScreenState extends State<ShopScreen>
     _CosmeticSlot slot,
     List<_CosmeticOption> options,
   ) {
-    final selectedId = _previewFor(slot);
     return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
+      padding: const EdgeInsets.only(bottom: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: GoogleFonts.oswald(color: kCyan, fontWeight: FontWeight.bold, letterSpacing: 1.2)),
-          const SizedBox(height: 6),
-          Wrap(
-            spacing: 8,
-            runSpacing: 6,
-            children: options.map((item) {
-              final selected = selectedId == item.id;
-              final isOwned = _ownedFor(slot).contains(item.id);
-              return ChoiceChip(
-                selected: selected,
-                onSelected: (_) => _selectCosmetic(slot, item.id),
-                selectedColor: kCyan.withValues(alpha: 0.2),
-                backgroundColor: Colors.white.withValues(alpha: 0.05),
-                side: BorderSide(color: selected ? kCyan : Colors.white24),
-                avatar: _activeSlot == _CosmeticSlot.character
-                    ? PlayerAvatar(
-                        profile: PlayerProfile(
-                          avatarCharacterId: item.id,
-                          avatarFrameId: _previewFrame,
-                          avatarAccessoryId: _previewAccessory,
-                        ),
-                        radius: 13,
-                      )
-                    : Text(item.emoji, style: const TextStyle(fontSize: 16)),
-                label: Text(
-                  '${item.name}${isOwned ? '' : ' · ${_priceLabel(item)}'}',
-                  style: GoogleFonts.oswald(color: selected ? kBone : Colors.white70, fontSize: 12),
-                ),
-              );
-            }).toList(),
+          Padding(
+            padding: const EdgeInsets.only(left: 4, bottom: 8),
+            child: OutlinedGameText(
+              title,
+              size: 15,
+              font: GameFont.oswald,
+              letterSpacing: 1.5,
+              colors: const [WM.cyanLight, WM.cyan],
+            ),
+          ),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              for (var i = 0; i < options.length; i++) ...[
+                if (i > 0) const SizedBox(width: 10),
+                Expanded(child: _buildCosmeticTile(slot, options[i])),
+              ],
+            ],
           ),
         ],
       ),
     );
   }
 
-  String _priceLabel(_CosmeticOption option) {
-    if (option.coins > 0) return '🪙 ${option.coins}';
-    if (option.gems > 0) return '💎 ${option.gems}';
-    return 'Gratis';
+  // Cada casilla muestra el avatar COMPLETO con esa pieza puesta, así el
+  // jugador ve el resultado antes de elegir (antes era solo un emoji).
+  Widget _buildCosmeticTile(_CosmeticSlot slot, _CosmeticOption item) {
+    final selected = _previewFor(slot) == item.id;
+    final isOwned = _ownedFor(slot).contains(item.id);
+    final isEquipped = _equippedFor(slot) == item.id;
+
+    final preview = PlayerProfile(
+      avatarCharacterId: slot == _CosmeticSlot.character ? item.id : _previewCharacter,
+      avatarFrameId: slot == _CosmeticSlot.frame ? item.id : _previewFrame,
+      avatarAccessoryId: slot == _CosmeticSlot.accessory ? item.id : _previewAccessory,
+    );
+
+    final Widget status = isEquipped
+        ? Text(
+            'EQUIPADO',
+            style: GoogleFonts.anton(color: WM.green, fontSize: 11, letterSpacing: 1),
+          )
+        : isOwned
+            ? Text(
+                '✔ TUYO',
+                style: GoogleFonts.anton(color: WM.cyan, fontSize: 11, letterSpacing: 1),
+              )
+            : Chip3D(
+                emoji: item.coins > 0 ? '🪙' : '💎',
+                text: '${item.coins > 0 ? item.coins : item.gems}',
+                accent: item.coins > 0 ? WM.gold : WM.cyan,
+                fontSize: 11,
+              );
+
+    return GestureDetector(
+      onTap: () {
+        AudioService.playButtonClick();
+        _selectCosmetic(slot, item.id);
+      },
+      child: AnimatedScale(
+        duration: const Duration(milliseconds: 150),
+        scale: selected ? 1.0 : 0.94,
+        child: Panel3D(
+          accent: selected ? WM.cyan : WM.violet,
+          glow: selected ? 0.9 : 0,
+          depth: 5,
+          radius: 14,
+          padding: const EdgeInsets.fromLTRB(6, 8, 6, 8),
+          child: Column(
+            children: [
+              PlayerAvatar(profile: preview, radius: 22),
+              const SizedBox(height: 4),
+              Text(
+                item.name,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: GoogleFonts.oswald(
+                  color: selected ? WM.bone : Colors.white70,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+              const SizedBox(height: 4),
+              SizedBox(height: 22, child: Center(child: status)),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
+  bool _isFree(_CosmeticOption option) => option.coins == 0 && option.gems == 0;
+
+  // ---------------------------------------------------------------
+  // PESTAÑA COMBOS
+  // ---------------------------------------------------------------
   Widget _buildCombos() {
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
       children: [
-        _buildSectionHeading('EQUÍPATE PARA LA AVENTURA', 'Combos con descuento frente a comprar cada artículo por separado.'),
-        _buildOfferCard(_offers[0]),
-        _buildOfferCard(_offers[1]),
-        _buildOfferCard(_offers[2]),
-        _buildOfferCard(_offers[3]),
-        _buildOfferCard(_offers[4]),
+        _buildSectionHeading(
+          'EQUÍPATE PARA LA AVENTURA',
+          'Combos con descuento frente a comprar cada artículo por separado.',
+        ),
+        for (var i = 0; i < _offers.length; i++)
+          EntranceFlip(index: i, child: _buildOfferCard(_offers[i])),
         const SizedBox(height: 6),
         Text(
           'Referencia de valor: 5 gemas se cambian por 200 monedas en la tienda.',
@@ -591,7 +754,7 @@ class _ShopScreenState extends State<ShopScreen>
 
   Widget _buildSectionHeading(String title, String subtitle) {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(4, 4, 4, 12),
+      padding: const EdgeInsets.fromLTRB(4, 4, 4, 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -609,48 +772,70 @@ class _ShopScreenState extends State<ShopScreen>
   }
 
   Widget _buildOfferCard(_ShopOffer offer) {
+    final Color currency = offer.payWithGems ? WM.cyan : WM.gold;
+    final int balance = offer.payWithGems ? profile.gems : profile.coins;
+    final bool affordable = balance >= offer.price;
+
     return ParticleExplosion(
-      trigger: _triggerSparkle,
+      trigger: _sparkleId == offer.name,
       particleEmoji: '✨',
       particleCount: 16,
       child: Padding(
-        padding: const EdgeInsets.only(bottom: 11),
+        padding: const EdgeInsets.only(bottom: 14),
         child: Panel3D(
-          accent: WM.cyan,
-          depth: 5,
+          accent: currency,
+          depth: 6,
           radius: 17,
           padding: const EdgeInsets.all(13),
           child: Row(
             children: [
               Socket3D(
-                size: 52,
-                color: offer.payWithGems ? WM.cyan : WM.gold,
-                child: Text(offer.emoji, style: const TextStyle(fontSize: 25)),
+                size: 56,
+                color: currency,
+                child: Text(offer.emoji, style: const TextStyle(fontSize: 26)),
               ),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    OutlinedGameText(offer.name.toUpperCase(), size: 15, font: GameFont.anton),
-                    Text(offer.description, style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12)),
-                    if (offer.valueNote != null)
-                      Text(offer.valueNote!, style: GoogleFonts.oswald(color: WM.green, fontSize: 11)),
+                    OutlinedGameText(offer.name.toUpperCase(), size: 16),
+                    const SizedBox(height: 2),
+                    Text(
+                      offer.description,
+                      style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12),
+                    ),
+                    if (offer.valueNote != null) ...[
+                      const SizedBox(height: 3),
+                      Text(
+                        '▲ ${offer.valueNote!}',
+                        style: GoogleFonts.oswald(
+                          color: const Color(0xFF7CFF6B),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ],
                   ],
                 ),
               ),
-              const SizedBox(width: 8),
+              const SizedBox(width: 10),
+              // Si no alcanza el saldo, el botón sale gris: el jugador lo sabe
+              // antes de pulsar en vez de enterarse por un mensaje de error.
               Pressable3D(
-                onTap: _isBusy ? null : () => _purchaseOffer(offer),
-                color: WM.cyan,
-                height: 38,
-                depth: 4,
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                slanted: true,
+                onTap: _isBusy || !affordable ? null : () => _purchaseOffer(offer),
+                color: currency,
+                height: 40,
+                depth: 5,
+                radius: 8,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text('${offer.price}', style: GoogleFonts.anton(color: WM.outline, fontSize: 14)),
-                    Text(offer.payWithGems ? '💎' : '🪙', style: const TextStyle(fontSize: 11)),
+                    Text(offer.payWithGems ? '💎' : '🪙', style: const TextStyle(fontSize: 14)),
+                    const SizedBox(width: 4),
+                    OutlinedGameText('${offer.price}', size: 17),
                   ],
                 ),
               ),
@@ -661,44 +846,61 @@ class _ShopScreenState extends State<ShopScreen>
     );
   }
 
+  // ---------------------------------------------------------------
+  // PESTAÑA PREMIOS (anuncios)
+  // ---------------------------------------------------------------
   Widget _buildRewards() {
     return ListView(
-      padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
       children: [
-        _buildSectionHeading('RECOMPENSAS POR ANUNCIO', 'Mira un video opcional y recibe un recurso para tu próxima aventura.'),
-        _buildRewardCard(
-          emoji: '🧪',
-          title: 'Poción de salud',
-          description: 'Una poción extra, solo cuando el anuncio se complete.',
-          onPressed: () => _watchAdForReward('1 poción de salud', () => profile.healthPotions++),
+        _buildSectionHeading(
+          'RECOMPENSAS POR ANUNCIO',
+          'Mira un video opcional y recibe un recurso para tu próxima aventura.',
         ),
-        _buildRewardCard(
-          emoji: '💡',
-          title: 'Pista de sabiduría',
-          description: 'Una pista extra para ayudarte en una pregunta.',
-          onPressed: () => _watchAdForReward('1 pista', () => profile.letterHints++),
+        EntranceFlip(
+          index: 0,
+          child: _buildRewardCard(
+            emoji: '🧪',
+            title: 'Poción de salud',
+            description: 'Una poción extra, solo cuando el anuncio se complete.',
+            rewardName: '1 poción de salud',
+            onPressed: () => _watchAdForReward('1 poción de salud', () => profile.healthPotions++),
+          ),
         ),
-        const SizedBox(height: 10),
-        Panel3D(
-          accent: WM.gold,
-          depth: 4,
-          radius: 14,
-          padding: const EdgeInsets.all(13),
-          child: Row(
-            children: [
-              const Socket3D(
-                size: 38,
-                color: WM.gold,
-                child: Icon(Icons.info_outline_rounded, color: WM.bone, size: 20),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  'Los anuncios son opcionales. Si no hay uno disponible, no se descontará nada ni se entregará un premio.',
-                  style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12),
+        EntranceFlip(
+          index: 1,
+          child: _buildRewardCard(
+            emoji: '💡',
+            title: 'Pista de sabiduría',
+            description: 'Una pista extra para ayudarte en una pregunta.',
+            rewardName: '1 pista',
+            onPressed: () => _watchAdForReward('1 pista', () => profile.letterHints++),
+          ),
+        ),
+        const SizedBox(height: 6),
+        EntranceFlip(
+          index: 2,
+          child: Panel3D(
+            accent: WM.violet,
+            depth: 4,
+            radius: 14,
+            padding: const EdgeInsets.all(13),
+            child: Row(
+              children: [
+                const Socket3D(
+                  size: 38,
+                  color: WM.violet,
+                  child: Icon(Icons.info_outline_rounded, color: WM.bone, size: 20),
                 ),
-              ),
-            ],
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    'Los anuncios son opcionales. Si no hay uno disponible, no se descontará nada ni se entregará un premio.',
+                    style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
@@ -709,42 +911,59 @@ class _ShopScreenState extends State<ShopScreen>
     required String emoji,
     required String title,
     required String description,
+    required String rewardName,
     required VoidCallback onPressed,
   }) {
+    final bool loading = _loadingAd == rewardName;
+
     return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
+      padding: const EdgeInsets.only(bottom: 14),
       child: Panel3D(
         accent: WM.gold,
-        depth: 5,
+        depth: 6,
         radius: 17,
         padding: const EdgeInsets.all(14),
         child: Row(
           children: [
             Socket3D(
-              size: 54,
+              size: 56,
               color: WM.gold,
-              child: Text(emoji, style: const TextStyle(fontSize: 27)),
+              child: Text(emoji, style: const TextStyle(fontSize: 26)),
             ),
             const SizedBox(width: 12),
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  OutlinedGameText(title.toUpperCase(), size: 15),
+                  OutlinedGameText(title.toUpperCase(), size: 16),
+                  const SizedBox(height: 2),
                   Text(description, style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12)),
                 ],
               ),
             ),
-            const SizedBox(width: 8),
+            const SizedBox(width: 10),
             Pressable3D(
+              slanted: true,
               onTap: _isBusy ? null : onPressed,
               color: WM.gold,
-              height: 38,
-              depth: 4,
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: _isBusy
-                  ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                  : Text('VER VIDEO', style: GoogleFonts.anton(color: WM.outline, fontSize: 11)),
+              height: 40,
+              depth: 5,
+              radius: 8,
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: loading
+                  ? const SizedBox(
+                      width: 18,
+                      height: 18,
+                      child: CircularProgressIndicator(strokeWidth: 2.5, color: WM.outline),
+                    )
+                  : const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
+                        SizedBox(width: 2),
+                        OutlinedGameText('VIDEO', size: 14, font: GameFont.oswald),
+                      ],
+                    ),
             ),
           ],
         ),

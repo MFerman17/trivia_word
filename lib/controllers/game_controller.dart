@@ -37,6 +37,8 @@ class GameController extends ChangeNotifier {
   bool isAnswered = false;
   int? selectedOptionIndex;
   final List<int> disabledOptionIndexes = [];
+  final Set<String> answeredQuestionIds = {};
+  final Set<String> correctlyAnsweredQuestionIds = {};
   int incorrectAnswersSinceMonsterAttack = 0;
   String? monsterReaction;
 
@@ -97,15 +99,23 @@ class GameController extends ChangeNotifier {
     if (question == null) return;
 
     final isCorrect = (index == question.correctIndex);
+    answeredQuestionIds.add(question.id);
 
     if (isCorrect) {
       AudioService.playSuccess();
-      QuestService.incrementProgress('answer_trivia_10');
-      // Los enemigos normales requieren dos aciertos, los guardianes tres y
-      // los jefes finales cuatro. Así la dificultad del combate también crece.
-      final hitsToDefeat = config.correctAnswersToDefeat;
-      final damagePerAnswer = (enemyMaxHp / hitsToDefeat).ceil();
-      enemyHp = (enemyHp - damagePerAnswer).clamp(0, enemyMaxHp).toInt();
+      if (correctlyAnsweredQuestionIds.add(question.id)) {
+        QuestService.incrementProgress('answer_trivia_10');
+        final hitsToDefeat = config.correctAnswersToDefeat;
+        final damagePerAnswer = (enemyMaxHp / hitsToDefeat).ceil();
+        final remainingHp =
+            (enemyHp - damagePerAnswer).clamp(0, enemyMaxHp).toInt();
+        final hasUnansweredQuestions = questions.any(
+          (candidate) => !answeredQuestionIds.contains(candidate.id),
+        );
+        enemyHp = hasUnansweredQuestions && remainingHp == 0
+            ? 1
+            : remainingHp;
+      }
     } else {
       AudioService.playDamage();
       playerHp--;
@@ -119,15 +129,58 @@ class GameController extends ChangeNotifier {
 
     if (playerHp <= 0) {
       _handleDefeat();
-    } else if (enemyHp <= 0) {
-      _handleVictory();
-    } else if (incorrectAnswersSinceMonsterAttack >= 2) {
+    } else if (enemyHp > 0 && incorrectAnswersSinceMonsterAttack >= 2) {
       _applyMonsterRewind();
-    } else if (currentQuestionIndex + 1 < questions.length) {
-      _nextQuestion();
     } else {
-      _handleDefeat();
+      final nextQuestionIndex = _nextUnansweredQuestionIndex();
+      if (nextQuestionIndex >= 0) {
+        _showQuestionAt(nextQuestionIndex);
+      } else if (enemyHp <= 0) {
+        _handleVictory();
+      } else {
+        _appendQuestionOrDefeat();
+      }
     }
+  }
+
+  int _nextUnansweredQuestionIndex() {
+    for (var index = currentQuestionIndex + 1;
+        index < questions.length;
+        index++) {
+      if (!answeredQuestionIds.contains(questions[index].id)) return index;
+    }
+    for (var index = 0; index <= currentQuestionIndex; index++) {
+      if (!answeredQuestionIds.contains(questions[index].id)) return index;
+    }
+    return -1;
+  }
+
+  void _showQuestionAt(int index) {
+    if (_isDisposed) return;
+    currentQuestionIndex = index;
+    isAnswered = false;
+    selectedOptionIndex = null;
+    disabledOptionIndexes.clear();
+    notifyListeners();
+  }
+
+  void _appendQuestionOrDefeat() {
+    final additionalQuestion = QuestionBank.getAdditionalQuestion(
+      world: worldId,
+      chapter: chapterId,
+      level: levelNumber,
+      questionIndex: questions.length,
+      difficulty: config.difficulty,
+      isMiniChallenge: isMiniChallenge,
+    );
+    if (additionalQuestion == null) {
+      _handleDefeat();
+      return;
+    }
+    final additionalQuestionIndex = questions.length;
+    questions.add(additionalQuestion);
+    monsterReaction = '¡El monstruo resiste! Responde una pregunta adicional.';
+    _showQuestionAt(additionalQuestionIndex);
   }
 
   void _applyMonsterRewind() {
@@ -159,15 +212,6 @@ class GameController extends ChangeNotifier {
     monsterReaction = replacement == null
         ? '¡El monstruo te hizo retroceder! Responde de nuevo para avanzar.'
         : '¡El monstruo te hizo retroceder! Nueva pregunta de ${replacement.category}.';
-    isAnswered = false;
-    selectedOptionIndex = null;
-    disabledOptionIndexes.clear();
-    notifyListeners();
-  }
-
-  void _nextQuestion() {
-    if (_isDisposed) return;
-    currentQuestionIndex++;
     isAnswered = false;
     selectedOptionIndex = null;
     disabledOptionIndexes.clear();

@@ -433,17 +433,28 @@ class _GameScreenState extends State<GameScreen> {
                           ),
                         ],
                         const SizedBox(height: 12),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: Text(
-                            'PREGUNTA ${_controller.currentQuestionIndex + 1} DE ${_controller.questions.length}',
-                            style: GoogleFonts.poppins(
-                              color: const Color(0xFFFFD36B),
-                              fontWeight: FontWeight.w700,
-                              fontSize: 11,
-                              letterSpacing: 0.8,
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              'PREGUNTA ${_controller.currentQuestionIndex + 1} DE ${_controller.questions.length}',
+                              style: GoogleFonts.poppins(
+                                color: const Color(0xFFFFD36B),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 11,
+                                letterSpacing: 0.6,
+                              ),
                             ),
-                          ),
+                            Text(
+                              'RETO ${currentQuestion.difficulty}/5',
+                              style: GoogleFonts.poppins(
+                                color: const Color(0xFF8FE9FF),
+                                fontWeight: FontWeight.w700,
+                                fontSize: 11,
+                                letterSpacing: 0.6,
+                              ),
+                            ),
+                          ],
                         ),
                         const SizedBox(height: 6),
                         Container(
@@ -456,14 +467,30 @@ class _GameScreenState extends State<GameScreen> {
                               color: Colors.purpleAccent.withValues(alpha: 0.5),
                             ),
                           ),
-                          child: Text(
-                            currentQuestion.prompt,
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.poppins(
-                              color: Colors.white,
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
-                            ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                currentQuestion.category.toUpperCase(),
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  color: const Color(0xFF8FE9FF),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w700,
+                                  letterSpacing: 1.1,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                currentQuestion.prompt,
+                                textAlign: TextAlign.center,
+                                style: GoogleFonts.poppins(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         const SizedBox(height: 24),

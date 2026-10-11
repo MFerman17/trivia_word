@@ -3,12 +3,13 @@ import '../models/question.dart';
 import 'procedural_question_service.dart';
 
 class QuestionBank {
-  /// La dificultad sube cada tres fases y vuelve a elevarse al avanzar de
-  /// capítulo o mundo. El último nivel de cada mundo es su jefe.
+  /// La dificultad sube dentro de cada capítulo y también al avanzar de
+  /// mundo. El último nivel de cada mundo es su jefe.
   static LevelConfig getConfigForLevel(int world, int chapter, int level) {
-    final difficultyWithinChapter = (level - 1) ~/ 3;
+    // La dificultad sube también dentro de cada capítulo, no solo al cambiar
+    // de mundo: los niveles 1–2, 3–4 y 5 forman tres escalones.
     final difficulty =
-        (world + chapter + difficultyWithinChapter - 1).clamp(1, 5).toInt();
+        (world + chapter + (level - 1) ~/ 2 - 1).clamp(1, 5).toInt();
     final isWorldBoss = chapter == 3 && level == 5;
     final isChapterBoss = level == 5 && !isWorldBoss;
 
@@ -41,7 +42,7 @@ class QuestionBank {
           ? 120
           : 70 + difficulty * 10,
       targetQuestions: isWorldBoss ? 10 : isChapterBoss ? 8 : 6,
-      correctAnswersToDefeat: isWorldBoss ? 8 : isChapterBoss ? 6 : 4,
+      correctAnswersToDefeat: isWorldBoss ? 10 : isChapterBoss ? 8 : 6,
     );
   }
 
@@ -72,7 +73,7 @@ class QuestionBank {
       enemyHealth: 60,
       targetQuestions: 4,
       isMiniChallenge: true,
-      correctAnswersToDefeat: 3,
+      correctAnswersToDefeat: 4,
     );
   }
 
@@ -141,6 +142,27 @@ class QuestionBank {
     );
   }
 
+  /// Añade una pregunta cuando el jugador agotó las iniciales sin derrotar
+  /// al enemigo. El combate continúa hasta conseguir los aciertos necesarios.
+  static Question? getAdditionalQuestion({
+    required int world,
+    required int chapter,
+    required int level,
+    required int questionIndex,
+    required int difficulty,
+    required bool isMiniChallenge,
+  }) {
+    final generated = ProceduralQuestionService.forEncounter(
+      world: world,
+      chapter: chapter,
+      level: level,
+      difficulty: difficulty,
+      count: questionIndex + 1,
+      isMiniChallenge: isMiniChallenge,
+    );
+    return generated.isEmpty ? null : generated.last;
+  }
+
   /// Busca una pregunta nueva para una penalización del monstruo, conservando
   /// categoría y dificultad. Solo se usan preguntas no vistas en el encuentro.
   static Question? getReplacementQuestion({
@@ -158,6 +180,7 @@ class QuestionBank {
       difficulty: original.difficulty,
       count: 96,
       isMiniChallenge: isMiniChallenge,
+      increaseDifficulty: false,
     );
     final curated = [
       ..._getDefaultQuestions(),

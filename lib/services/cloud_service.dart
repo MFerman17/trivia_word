@@ -11,12 +11,29 @@ class CloudService {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
   static final FirebaseFirestore _db = FirebaseFirestore.instance;
   static bool _isSyncingSave = false;
+  static bool _cloudSyncDisabledForSession = false;
+  static bool _permissionDeniedLogged = false;
   static Future<void>? _googleInitialization;
 
   static bool get isGoogleAccountLinked =>
       _auth.currentUser?.providerData.any((info) => info.providerId == 'google.com') ?? false;
 
   static String? get currentAccountEmail => _auth.currentUser?.email;
+
+  static void _handleCloudError(Object error, String operation) {
+    if (error is FirebaseException && error.code == 'permission-denied') {
+      _cloudSyncDisabledForSession = true;
+      if (!_permissionDeniedLogged) {
+        _permissionDeniedLogged = true;
+        debugPrint(
+          '⚠️ Firebase negó el acceso. Se pausa la sincronización en la nube '
+          'hasta reiniciar la app; el guardado local continúa. Revisa las reglas de Firestore.',
+        );
+      }
+      return;
+    }
+    debugPrint('$operation: $error');
+  }
 
   /// Mantiene una identidad local temporal para guardar el progreso desde
   /// la primera partida, antes de que el jugador vincule su cuenta Google.
@@ -36,6 +53,7 @@ class CloudService {
   /// Descarga el guardado al abrir el juego. La copia local se conserva si
   /// Firebase no está disponible, y se combina para proteger progreso offline.
   static Future<void> restoreCloudSave() async {
+    if (_cloudSyncDisabledForSession) return;
     try {
       final user = _auth.currentUser ?? await signInAnonymously();
       if (user == null) return;
@@ -52,27 +70,31 @@ class CloudService {
       await SaveService.importCloudSave(mergedSave);
       await _writeCloudSave(user.uid, mergedSave);
     } catch (e) {
-      debugPrint('No se pudo restaurar el guardado en la nube; se conserva el local: $e');
+      _handleCloudError(
+        e,
+        'No se pudo restaurar el guardado en la nube; se conserva el local',
+      );
     }
   }
 
   /// Se llama tras cada guardado local. Si no hay conexión, SharedPreferences
   /// sigue siendo la copia de trabajo y la app intentará sincronizar al volver.
   static Future<void> syncFullSave() async {
-    if (_isSyncingSave) return;
+    if (_cloudSyncDisabledForSession || _isSyncingSave) return;
     _isSyncingSave = true;
     try {
       final user = _auth.currentUser ?? await signInAnonymously();
       if (user == null) return;
       await _writeCloudSave(user.uid, await SaveService.exportCloudSave());
     } catch (e) {
-      debugPrint('No se pudo sincronizar el progreso completo: $e');
+      _handleCloudError(e, 'No se pudo sincronizar el progreso completo');
     } finally {
       _isSyncingSave = false;
     }
   }
 
   static Future<void> _writeCloudSave(String uid, Map<String, dynamic> save) async {
+    if (_cloudSyncDisabledForSession) return;
     await _db.collection('player_saves').doc(uid).set({
       ...save,
       'updatedAt': FieldValue.serverTimestamp(),
@@ -87,40 +109,53 @@ class CloudService {
       if (currentUser == null) return GoogleAccountResult.failed;
       final localSave = await SaveService.exportCloudSave();
 
-      _googleInitialization ??= GoogleSignIn.instance.initialize();
-      await _googleInitialization;
-      final googleUser = await GoogleSignIn.instance.authenticate();
-      final idToken = googleUser.authentication.idToken;
-      if (idToken == null) return GoogleAccountResult.failed;
-      final credential = GoogleAuthProvider.credential(idToken: idToken);
-
       UserCredential authResult;
-      try {
-        authResult = currentUser.isAnonymous
-            ? await currentUser.linkWithCredential(credential)
-            : await _auth.signInWithCredential(credential);
-      } on FirebaseAuthException catch (e) {
-        if (e.code != 'credential-already-in-use' && e.code != 'email-already-in-use') {
-          rethrow;
+      if (kIsWeb) {
+        final provider = GoogleAuthProvider();
+        try {
+          authResult = currentUser.isAnonymous
+              ? await currentUser.linkWithPopup(provider)
+              : await _auth.signInWithPopup(provider);
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'credential-already-in-use' && e.credential != null) {
+            authResult = await _auth.signInWithCredential(e.credential!);
+          } else {
+            rethrow;
+          }
         }
-        authResult = await _auth.signInWithCredential(credential);
+      } else {
+        _googleInitialization ??= GoogleSignIn.instance.initialize();
+        await _googleInitialization;
+        final googleUser = await GoogleSignIn.instance.authenticate();
+        final idToken = googleUser.authentication.idToken;
+        if (idToken == null) return GoogleAccountResult.failed;
+        final credential = GoogleAuthProvider.credential(idToken: idToken);
+
+        try {
+          authResult = currentUser.isAnonymous
+              ? await currentUser.linkWithCredential(credential)
+              : await _auth.signInWithCredential(credential);
+        } on FirebaseAuthException catch (e) {
+          if (e.code != 'credential-already-in-use' && e.code != 'email-already-in-use') {
+            rethrow;
+          }
+          authResult = await _auth.signInWithCredential(credential);
+        }
       }
 
       final user = authResult.user;
       if (user == null) return GoogleAccountResult.failed;
-      final remoteDoc = await _db.collection('player_saves').doc(user.uid).get();
-      Map<String, dynamic> save = localSave;
-      if (remoteDoc.exists && remoteDoc.data() != null) {
-        final remoteSave = Map<String, dynamic>.from(remoteDoc.data()!);
-        save = SaveService.hasMeaningfulProgress(localSave)
-            ? _mergeSaves(localSave, remoteSave)
-            : remoteSave;
-      }
-      await SaveService.importCloudSave(save);
-      await _writeCloudSave(user.uid, save);
+      _cloudSyncDisabledForSession = false;
+      await _restoreAndMergeSaveForUser(user, localSave);
       return GoogleAccountResult.linked;
     } on FirebaseAuthException catch (e) {
+      if (e.code == 'popup-closed-by-user' || e.code == 'cancelled-popup-request') {
+        return GoogleAccountResult.cancelled;
+      }
       debugPrint('Google/Firebase sign-in failed (${e.code}): ${e.message}');
+      return GoogleAccountResult.failed;
+    } on FirebaseException catch (e) {
+      _handleCloudError(e, 'No se pudo restaurar el guardado tras iniciar sesión');
       return GoogleAccountResult.failed;
     } catch (e) {
       // google_sign_in throws a cancellation exception when the user closes
@@ -133,7 +168,24 @@ class CloudService {
     }
   }
 
+  static Future<void> _restoreAndMergeSaveForUser(
+    User user,
+    Map<String, dynamic> localSave,
+  ) async {
+    final remoteDoc = await _db.collection('player_saves').doc(user.uid).get();
+    Map<String, dynamic> save = localSave;
+    if (remoteDoc.exists && remoteDoc.data() != null) {
+      final remoteSave = Map<String, dynamic>.from(remoteDoc.data()!);
+      save = SaveService.hasMeaningfulProgress(localSave)
+          ? _mergeSaves(localSave, remoteSave)
+          : remoteSave;
+    }
+    await SaveService.importCloudSave(save);
+    await _writeCloudSave(user.uid, save);
+  }
+
   static Future<void> syncProfileToCloud(PlayerProfile profile) async {
+    if (_cloudSyncDisabledForSession) return;
     try {
       final user = _auth.currentUser ?? await signInAnonymously();
       if (user == null) return;
@@ -157,7 +209,7 @@ class CloudService {
       save['profile'] = profileMap;
       await _writeCloudSave(user.uid, save);
     } catch (e) {
-      debugPrint('No se pudo sincronizar el ranking: $e');
+      _handleCloudError(e, 'No se pudo sincronizar el ranking');
     }
   }
 
@@ -270,6 +322,7 @@ class CloudService {
   }
 
   static Future<List<Map<String, dynamic>>> getGlobalLeaderboard() async {
+    if (_cloudSyncDisabledForSession) return [];
     try {
       final snapshot = await _db.collection('leaderboard')
           .orderBy('stars', descending: true)
@@ -277,7 +330,7 @@ class CloudService {
           .get();
       return snapshot.docs.map((doc) => doc.data()).toList();
     } catch (e) {
-      debugPrint('No se pudo cargar el ranking: $e');
+      _handleCloudError(e, 'No se pudo cargar el ranking');
       return [];
     }
   }

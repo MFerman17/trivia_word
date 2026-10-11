@@ -5,6 +5,7 @@ import '../services/ad_service.dart';
 import '../services/audio_service.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
+import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
 
@@ -338,46 +339,29 @@ class _ShopScreenState extends State<ShopScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kOutline,
-      appBar: AppBar(
-        backgroundColor: kOutline,
-        elevation: 0,
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.white),
-          onPressed: () {
-            AudioService.playButtonClick();
-            Navigator.pop(context, profile);
-          },
-        ),
-        title: Text(
-          'MERCADO DE AVENTURA',
-          style: GoogleFonts.anton(color: kCyan, fontSize: 20, letterSpacing: 1),
-        ),
-        bottom: TabBar(
-          controller: _tabController,
-          isScrollable: true,
-          indicatorColor: kCyan,
-          labelColor: kCyan,
-          unselectedLabelColor: Colors.white60,
-          labelStyle: GoogleFonts.oswald(fontWeight: FontWeight.bold, fontSize: 14),
-          tabs: const [
-            Tab(text: 'AVATAR'),
-            Tab(text: 'COMBOS'),
-            Tab(text: 'RECOMPENSAS'),
-          ],
-        ),
-      ),
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF0F0C20), Color(0xFF1F1D36), Color(0xFF261C4C)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+      backgroundColor: WM.outline,
+      body: GameBackground(
         child: SafeArea(
           child: Column(
             children: [
+              _buildShopHeader(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: TabBar(
+                  controller: _tabController,
+                  isScrollable: true,
+                  indicatorColor: WM.gold,
+                  indicatorWeight: 3,
+                  labelColor: WM.gold,
+                  unselectedLabelColor: Colors.white60,
+                  labelStyle: GoogleFonts.oswald(fontWeight: FontWeight.bold, fontSize: 14),
+                  tabs: const [
+                    Tab(text: 'AVATAR'),
+                    Tab(text: 'COMBOS'),
+                    Tab(text: 'RECOMPENSAS'),
+                  ],
+                ),
+              ),
               _buildBalanceBanner(),
               Expanded(
                 child: TabBarView(
@@ -396,22 +380,54 @@ class _ShopScreenState extends State<ShopScreen>
     );
   }
 
-  Widget _buildBalanceBanner() {
-    return Container(
-      margin: const EdgeInsets.fromLTRB(16, 12, 16, 8),
-      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: kCyan.withValues(alpha: 0.3)),
-      ),
+  Widget _buildShopHeader() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 6),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _buildBalanceBadge('🪙', 'Monedas', profile.coins, Colors.amber),
-          Container(height: 30, width: 1, color: Colors.white24),
-          _buildBalanceBadge('💎', 'Gemas', profile.gems, kCyan),
+          Pressable3D(
+            onTap: () {
+              AudioService.playButtonClick();
+              Navigator.pop(context, profile);
+            },
+            color: const Color(0xFF3A2A7A),
+            height: 40,
+            depth: 5,
+            padding: const EdgeInsets.symmetric(horizontal: 9),
+            child: const Icon(Icons.arrow_back_rounded, color: WM.bone, size: 24),
+          ),
+          const Expanded(
+            child: Center(
+              child: OutlinedGameText(
+                'TIENDA',
+                size: 26,
+                letterSpacing: 2,
+                colors: [WM.cyanLight, WM.cyan],
+              ),
+            ),
+          ),
+          const SizedBox(width: 50),
         ],
+      ),
+    );
+  }
+
+  Widget _buildBalanceBanner() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 8),
+      child: Panel3D(
+        accent: WM.gold,
+        depth: 4,
+        radius: 15,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            _buildBalanceBadge('🪙', 'Monedas', profile.coins, WM.gold),
+            Container(height: 30, width: 1, color: Colors.white24),
+            _buildBalanceBadge('💎', 'Gemas', profile.gems, WM.cyan),
+          ],
+        ),
       ),
     );
   }
@@ -442,18 +458,11 @@ class _ShopScreenState extends State<ShopScreen>
     return ListView(
       padding: const EdgeInsets.fromLTRB(16, 8, 16, 24),
       children: [
-        Container(
+        Panel3D(
+          accent: WM.cyan,
+          glow: 0.25,
+          radius: 22,
           padding: const EdgeInsets.all(18),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(22),
-            gradient: const LinearGradient(
-              colors: [Color(0xFF28175A), Color(0xFF10152F)],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-            border: Border.all(color: kCyan.withValues(alpha: 0.55)),
-            boxShadow: [BoxShadow(color: kCyan.withValues(alpha: 0.12), blurRadius: 20)],
-          ),
           child: Row(
             children: [
               PlayerAvatar(
@@ -469,7 +478,7 @@ class _ShopScreenState extends State<ShopScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('TALLER DE HÉROES', style: GoogleFonts.anton(color: kCyan, fontSize: 17, letterSpacing: 1)),
+                    const OutlinedGameText('TALLER DE HÉROES', size: 17, letterSpacing: 1),
                     const SizedBox(height: 5),
                     Text('Combina personaje, marco y accesorio. Tu avatar no cambia tus estadísticas.',
                         style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13)),
@@ -586,7 +595,12 @@ class _ShopScreenState extends State<ShopScreen>
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(title, style: GoogleFonts.anton(color: kCyan, fontSize: 17, letterSpacing: 0.6)),
+          OutlinedGameText(
+            title,
+            size: 18,
+            colors: const [WM.cyanLight, WM.cyan],
+            letterSpacing: 1,
+          ),
           const SizedBox(height: 3),
           Text(subtitle, style: GoogleFonts.oswald(color: Colors.white60, fontSize: 13)),
         ],
@@ -599,56 +613,49 @@ class _ShopScreenState extends State<ShopScreen>
       trigger: _triggerSparkle,
       particleEmoji: '✨',
       particleCount: 16,
-      child: Container(
-        margin: const EdgeInsets.only(bottom: 11),
-        padding: const EdgeInsets.all(13),
-        decoration: BoxDecoration(
-          color: Colors.white.withValues(alpha: 0.05),
-          borderRadius: BorderRadius.circular(17),
-          border: Border.all(color: kCyan.withValues(alpha: 0.28)),
-        ),
-        child: Row(
-          children: [
-            Container(
-              width: 52,
-              height: 52,
-              decoration: BoxDecoration(
-                color: kCyan.withValues(alpha: 0.1),
-                borderRadius: BorderRadius.circular(13),
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 11),
+        child: Panel3D(
+          accent: WM.cyan,
+          depth: 5,
+          radius: 17,
+          padding: const EdgeInsets.all(13),
+          child: Row(
+            children: [
+              Socket3D(
+                size: 52,
+                color: offer.payWithGems ? WM.cyan : WM.gold,
+                child: Text(offer.emoji, style: const TextStyle(fontSize: 25)),
               ),
-              alignment: Alignment.center,
-              child: Text(offer.emoji, style: const TextStyle(fontSize: 29)),
-            ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(offer.name, style: GoogleFonts.anton(color: kBone, fontSize: 15)),
-                  Text(offer.description, style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12)),
-                  if (offer.valueNote != null)
-                    Text(offer.valueNote!, style: GoogleFonts.oswald(color: Colors.greenAccent, fontSize: 11)),
-                ],
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    OutlinedGameText(offer.name.toUpperCase(), size: 15, font: GameFont.anton),
+                    Text(offer.description, style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12)),
+                    if (offer.valueNote != null)
+                      Text(offer.valueNote!, style: GoogleFonts.oswald(color: WM.green, fontSize: 11)),
+                  ],
+                ),
               ),
-            ),
-            const SizedBox(width: 8),
-            ElevatedButton(
-              onPressed: _isBusy ? null : () => _purchaseOffer(offer),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: kCyan,
-                foregroundColor: kOutline,
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(11)),
+              const SizedBox(width: 8),
+              Pressable3D(
+                onTap: _isBusy ? null : () => _purchaseOffer(offer),
+                color: WM.cyan,
+                height: 38,
+                depth: 4,
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('${offer.price}', style: GoogleFonts.anton(color: WM.outline, fontSize: 14)),
+                    Text(offer.payWithGems ? '💎' : '🪙', style: const TextStyle(fontSize: 11)),
+                  ],
+                ),
               ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('${offer.price}', style: GoogleFonts.anton(fontSize: 15)),
-                  Text(offer.payWithGems ? '💎' : '🪙', style: const TextStyle(fontSize: 12)),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -672,16 +679,26 @@ class _ShopScreenState extends State<ShopScreen>
           onPressed: () => _watchAdForReward('1 pista', () => profile.letterHints++),
         ),
         const SizedBox(height: 10),
-        Container(
+        Panel3D(
+          accent: WM.gold,
+          depth: 4,
+          radius: 14,
           padding: const EdgeInsets.all(13),
-          decoration: BoxDecoration(
-            color: Colors.amber.withValues(alpha: 0.08),
-            borderRadius: BorderRadius.circular(14),
-            border: Border.all(color: Colors.amber.withValues(alpha: 0.3)),
-          ),
-          child: Text(
-            'Los anuncios son opcionales. Si no hay uno disponible, no se descontará nada ni se entregará un premio.',
-            style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12),
+          child: Row(
+            children: [
+              const Socket3D(
+                size: 38,
+                color: WM.gold,
+                child: Icon(Icons.info_outline_rounded, color: WM.bone, size: 20),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  'Los anuncios son opcionales. Si no hay uno disponible, no se descontará nada ni se entregará un premio.',
+                  style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12),
+                ),
+              ),
+            ],
           ),
         ),
       ],
@@ -694,41 +711,43 @@ class _ShopScreenState extends State<ShopScreen>
     required String description,
     required VoidCallback onPressed,
   }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
-        borderRadius: BorderRadius.circular(17),
-        border: Border.all(color: Colors.amber.withValues(alpha: 0.35)),
-      ),
-      child: Row(
-        children: [
-          Text(emoji, style: const TextStyle(fontSize: 32)),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(title, style: GoogleFonts.anton(color: kBone, fontSize: 15)),
-                Text(description, style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12)),
-              ],
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Panel3D(
+        accent: WM.gold,
+        depth: 5,
+        radius: 17,
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          children: [
+            Socket3D(
+              size: 54,
+              color: WM.gold,
+              child: Text(emoji, style: const TextStyle(fontSize: 27)),
             ),
-          ),
-          const SizedBox(width: 8),
-          ElevatedButton(
-            onPressed: _isBusy ? null : onPressed,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.amber,
-              foregroundColor: kOutline,
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(11)),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OutlinedGameText(title.toUpperCase(), size: 15),
+                  Text(description, style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12)),
+                ],
+              ),
             ),
-            child: _isBusy
-                ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
-                : Text('VER VIDEO', style: GoogleFonts.anton(fontSize: 12)),
-          ),
-        ],
+            const SizedBox(width: 8),
+            Pressable3D(
+              onTap: _isBusy ? null : onPressed,
+              color: WM.gold,
+              height: 38,
+              depth: 4,
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: _isBusy
+                  ? const SizedBox(width: 18, height: 18, child: CircularProgressIndicator(strokeWidth: 2))
+                  : Text('VER VIDEO', style: GoogleFonts.anton(color: WM.outline, fontSize: 11)),
+            ),
+          ],
+        ),
       ),
     );
   }

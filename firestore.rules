@@ -1,10 +1,37 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Ranking global actual: cada jugador solo puede escribir su propio UID.
+    // Ranking global: cada jugador solo puede crear o actualizar su propio UID.
     match /leaderboard/{userId} {
+      function ownsLeaderboardEntry() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function validLeaderboardEntry() {
+        let data = request.resource.data;
+        return data.keys().hasAll([
+                 'name', 'coins', 'experience', 'stars', 'updatedAt'
+               ])
+            && data.keys().hasOnly([
+                 'name', 'coins', 'experience', 'stars', 'updatedAt'
+               ])
+            && data.name is string
+            && data.name.size() >= 1
+            && data.name.size() <= 20
+            && data.coins is int
+            && data.coins >= 0
+            && data.experience is int
+            && data.experience >= 0
+            // Si añadimos mundos o niveles, ajustar este máximo (mundos x niveles x 3 estrellas).
+            && data.stars is int
+            && data.stars >= 0
+            && data.stars <= 180
+            && data.updatedAt == request.time;
+      }
+
       allow read: if request.auth != null;
-      allow write: if request.auth != null && request.auth.uid == userId;
+      allow create, update: if ownsLeaderboardEntry() && validLeaderboardEntry();
+      allow delete: if false;
     }
 
     // Guardado privado: cada jugador solo puede leer o escribir su propio avance.

@@ -191,9 +191,12 @@ class CloudService {
       if (user == null) return;
       final save = await SaveService.exportCloudSave();
       final profileMap = Map<String, dynamic>.from(save['profile'] as Map);
-      final playerName = profile.name.isNotEmpty
-          ? profile.name
+      final requestedName = profile.name.trim();
+      final nameToSend = requestedName.isNotEmpty
+          ? requestedName
           : 'Jugador_${user.uid.substring(0, 5)}';
+      // Limita por puntos de código para no cortar un carácter Unicode a la mitad.
+      final playerName = String.fromCharCodes(nameToSend.runes.take(20));
       final totalStars = _totalStars(save['stages'] as Map? ?? {});
 
       await _db.collection('leaderboard').doc(user.uid).set({

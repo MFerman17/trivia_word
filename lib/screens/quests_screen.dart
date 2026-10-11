@@ -1,9 +1,12 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/quest_model.dart';
 import '../models/player_profile.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
+import '../widgets/game_3d.dart';
 
 class QuestsScreen extends StatefulWidget {
   const QuestsScreen({super.key});
@@ -25,8 +28,8 @@ class _QuestsScreenState extends State<QuestsScreen> {
   }
 
   Future<void> _loadData() async {
-    PlayerProfile profile = await SaveService.loadPlayerData();
-    List<QuestModel> quests = await QuestService.loadQuests();
+    final profile = await SaveService.loadPlayerData();
+    final quests = await QuestService.loadQuests();
 
     if (!mounted) return;
 
@@ -37,207 +40,219 @@ class _QuestsScreenState extends State<QuestsScreen> {
     });
   }
 
-  void _onClaimReward(QuestModel quest) async {
-    if (_profile == null || !quest.isCompleted || quest.isClaimed) return;
-
-    setState(() {
-      _claimingQuestId = quest.id;
-    });
-
-    bool success = await QuestService.claimReward(quest.id, _profile!);
-
-    if (success && mounted) {
-      Future.delayed(const Duration(milliseconds: 100), () {
-        if (mounted) setState(() => _claimingQuestId = null);
-      });
-      _loadData();
+  Future<void> _onClaimReward(QuestModel quest) async {
+    // Se bloquea mientras otra recompensa se está reclamando (evita doble toque)
+    if (_profile == null ||
+        !quest.isCompleted ||
+        quest.isClaimed ||
+        _claimingQuestId != null) {
+      return;
     }
+
+    setState(() => _claimingQuestId = quest.id);
+
+    final success = await QuestService.claimReward(quest.id, _profile!);
+    if (!mounted) return;
+
+    // Antes, si fallaba, el id se quedaba puesto para siempre.
+    // Ahora se libera siempre, haya éxito o no.
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) setState(() => _claimingQuestId = null);
+    });
+    if (success) _loadData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF0F0E17),
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF1F1D36),
-        title: const Text(
-          'MISIONES Y LOGROS',
-          style: TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
+      backgroundColor: WM.outline,
+      body: GameBackground(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const GameHeader(title: 'MISIONES'),
+              Expanded(child: _buildBody()),
+            ],
+          ),
         ),
-        iconTheme: const IconThemeData(color: Colors.white),
-        elevation: 0,
       ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: [
-          Image.asset('assets/images/bg_landscape.png', fit: BoxFit.cover),
-          Container(color: const Color(0xE80F0C20)),
-          if (_isLoading)
-            const Center(child: CircularProgressIndicator(color: Colors.amber))
-          else ListView.builder(
-              padding: const EdgeInsets.all(16),
-              itemCount: _quests.length,
-              itemBuilder: (context, index) {
-                final quest = _quests[index];
-                bool isTargetTriggered = _claimingQuestId == quest.id;
+    );
+  }
 
-                return ParticleExplosion(
-                  trigger: isTargetTriggered,
-                  particleEmoji: '⭐',
-                  particleCount: 20,
-                  type: ExplosionType.burst,
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: quest.isCompleted && !quest.isClaimed
-                            ? const [Color(0xFF453516), Color(0xFF241D3D), Color(0xFF171329)]
-                            : const [Color(0xFF302951), Color(0xFF211B3A), Color(0xFF171329)],
-                      ),
-                      borderRadius: BorderRadius.circular(19),
-                      border: Border.all(
-                        color: quest.isCompleted && !quest.isClaimed
-                            ? Colors.amber
-                            : Colors.white10,
-                        width: quest.isCompleted && !quest.isClaimed ? 2 : 1,
-                      ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: (quest.isCompleted && !quest.isClaimed ? Colors.amber : Colors.deepPurpleAccent).withValues(alpha: .18),
-                          blurRadius: 18,
-                          offset: const Offset(0, 7),
-                        ),
-                      ],
-                    ),
+  Widget _buildBody() {
+    if (_isLoading) {
+      return const Center(child: CircularProgressIndicator(color: WM.cyan));
+    }
+    if (_quests.isEmpty) {
+      return Center(
+        child: Text(
+          'No hay misiones disponibles.',
+          style: GoogleFonts.oswald(color: Colors.white70, fontSize: 16),
+        ),
+      );
+    }
+
+    return ListView.builder(
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
+      itemCount: _quests.length + 1,
+      itemBuilder: (context, index) {
+        if (index == 0) {
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 18),
+            child: EntranceFlip(index: 0, child: _buildSummary()),
+          );
+        }
+        final quest = _quests[index - 1];
+        return Padding(
+          padding: const EdgeInsets.only(bottom: 16),
+          child: EntranceFlip(index: index, child: _buildQuestCard(quest)),
+        );
+      },
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // RESUMEN: cuántas misiones van completadas y cuántas por reclamar
+  // ---------------------------------------------------------------
+  Widget _buildSummary() {
+    final total = _quests.length;
+    final completed = _quests.where((q) => q.isCompleted).length;
+    final ready = _quests.where((q) => q.isCompleted && !q.isClaimed).length;
+
+    return Panel3D(
+      accent: ready > 0 ? WM.gold : WM.cyan,
+      glow: ready > 0 ? 0.7 : 0,
+      child: Row(
+        children: [
+          Socket3D(
+            size: 54,
+            color: WM.gold,
+            child: const Text('📜', style: TextStyle(fontSize: 24)),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                OutlinedGameText('$completed / $total COMPLETADAS', size: 18),
+                const SizedBox(height: 8),
+                Bar3D(
+                  value: total == 0 ? 0 : completed / total,
+                  color: WM.gold,
+                  height: 14,
+                ),
+              ],
+            ),
+          ),
+          if (ready > 0) ...[
+            const SizedBox(width: 10),
+            Pulse(
+              amount: 0.08,
+              child: Chip3D(emoji: '🎁', text: '$ready', accent: WM.gold, fontSize: 16),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // TARJETA DE MISIÓN
+  // Tres estados con colores distintos:
+  //   en curso  -> cian
+  //   lista     -> dorado + resplandor + botón latiendo
+  //   reclamada -> gris apagado
+  // ---------------------------------------------------------------
+  Widget _buildQuestCard(QuestModel quest) {
+    final bool ready = quest.isCompleted && !quest.isClaimed;
+    final bool claimed = quest.isClaimed;
+    final Color accent = ready
+        ? WM.gold
+        : claimed
+            ? const Color(0xFF6B6785)
+            : WM.cyan;
+    final int shownAmount = math.min(quest.currentAmount, quest.targetAmount);
+
+    Widget claimButton = Pressable3D(
+      slanted: true,
+      height: 40,
+      depth: 5,
+      radius: 8,
+      color: WM.gold,
+      onTap: ready && _claimingQuestId == null ? () => _onClaimReward(quest) : null,
+      child: OutlinedGameText(
+        claimed ? 'HECHO ✔' : ready ? 'RECLAMAR' : 'EN CURSO',
+        size: 15,
+        font: GameFont.oswald,
+      ),
+    );
+    if (ready) claimButton = Pulse(child: claimButton);
+
+    return ParticleExplosion(
+      trigger: _claimingQuestId == quest.id,
+      particleEmoji: '⭐',
+      particleCount: 20,
+      type: ExplosionType.burst,
+      child: Opacity(
+        opacity: claimed ? 0.6 : 1,
+        child: Panel3D(
+          accent: accent,
+          glow: ready ? 1 : 0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Socket3D(
+                    size: 56,
+                    color: accent,
+                    child: Text(quest.emoji, style: const TextStyle(fontSize: 26)),
+                  ),
+                  const SizedBox(width: 12),
+                  Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          children: [
-                            Container(
-                              width: 54,
-                              height: 54,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                gradient: const LinearGradient(colors: [Color(0xFF57427F), Color(0xFF211A3A)]),
-                                border: Border.all(color: Colors.amber.withValues(alpha: .65), width: 1.5),
-                                boxShadow: [BoxShadow(color: Colors.amber.withValues(alpha: .15), blurRadius: 12)],
-                              ),
-                              child: Center(child: Text(quest.emoji, style: const TextStyle(fontSize: 29))),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    quest.title,
-                                    style: const TextStyle(
-                                      color: Colors.white,
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text(
-                                    quest.description,
-                                    style: const TextStyle(
-                                      color: Colors.white60,
-                                      fontSize: 12,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                        OutlinedGameText(
+                          quest.title.toUpperCase(),
+                          size: 17,
+                          colors: ready
+                              ? const [Color(0xFFFFF1B0), WM.gold]
+                              : const [Colors.white, WM.bone],
                         ),
-                        const SizedBox(height: 12),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(8),
-                                child: LinearProgressIndicator(
-                                  value: quest.progress,
-                                  minHeight: 9,
-                                  backgroundColor: Colors.black38,
-                                  valueColor: AlwaysStoppedAnimation<Color>(
-                                    quest.isCompleted
-                                        ? Colors.amberAccent
-                                        : Colors.indigoAccent,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Text(
-                              '${quest.currentAmount}/${quest.targetAmount}',
-                              style: const TextStyle(
-                                color: Colors.white70,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Row(
-                              children: [
-                                if (quest.rewardCoins > 0) ...[
-                                  Text('🪙 +${quest.rewardCoins}',
-                                      style: const TextStyle(
-                                          color: Colors.amber,
-                                          fontWeight: FontWeight.bold)),
-                                  const SizedBox(width: 8),
-                                ],
-                                if (quest.rewardGems > 0)
-                                  Text('💎 +${quest.rewardGems}',
-                                      style: const TextStyle(
-                                          color: Colors.cyanAccent,
-                                          fontWeight: FontWeight.bold)),
-                              ],
-                            ),
-                            ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: quest.isClaimed
-                                    ? Colors.grey.shade800
-                                    : quest.isCompleted
-                                        ? Colors.amber
-                                        : Colors.white10,
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              onPressed: (quest.isCompleted && !quest.isClaimed)
-                                  ? () => _onClaimReward(quest)
-                                  : null,
-                              child: Text(
-                                quest.isClaimed
-                                    ? 'RECLAMADO'
-                                    : quest.isCompleted
-                                        ? 'RECLAMAR'
-                                        : 'EN PROGRESO',
-                                style: TextStyle(
-                                  color: quest.isCompleted && !quest.isClaimed
-                                      ? Colors.black
-                                      : Colors.white38,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ],
+                        const SizedBox(height: 3),
+                        Text(
+                          quest.description,
+                          style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
                         ),
                       ],
                     ),
                   ),
-                );
-              },
-            ),
-        ],
+                ],
+              ),
+              const SizedBox(height: 14),
+              Bar3D(
+                value: quest.progress,
+                color: quest.isCompleted ? WM.gold : WM.cyan,
+                height: 20,
+                label: '$shownAmount / ${quest.targetAmount}',
+              ),
+              const SizedBox(height: 14),
+              Row(
+                children: [
+                  if (quest.rewardCoins > 0) ...[
+                    Chip3D(emoji: '🪙', text: '+${quest.rewardCoins}', accent: WM.gold),
+                    const SizedBox(width: 8),
+                  ],
+                  if (quest.rewardGems > 0)
+                    Chip3D(emoji: '💎', text: '+${quest.rewardGems}', accent: WM.cyan),
+                  const Spacer(),
+                  claimButton,
+                ],
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

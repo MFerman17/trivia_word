@@ -1,8 +1,11 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../models/player_profile.dart';
 import '../services/save_service.dart';
-import '../widgets/player_avatar.dart';
 import '../services/cloud_service.dart';
+import '../widgets/player_avatar.dart';
+import '../widgets/game_3d.dart';
 
 class ProfileScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -31,7 +34,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
         _isLoading = false;
       });
     } else {
-      PlayerProfile loaded = await SaveService.loadPlayerData();
+      final loaded = await SaveService.loadPlayerData();
+      if (!mounted) return;
       setState(() {
         _profile = loaded;
         _isLoading = false;
@@ -43,230 +47,305 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     if (_isLoading) {
       return const Scaffold(
-        backgroundColor: Color(0xFF0F0C20),
-        body: Center(child: CircularProgressIndicator(color: Colors.amber)),
+        backgroundColor: WM.outline,
+        body: Center(child: CircularProgressIndicator(color: WM.cyan)),
       );
     }
 
-    final int currentXp = _profile.experience;
-    final int maxLevelXp = _profile.maxExperienceForCurrentLevel;
-    final double xpProgress = _profile.levelProgress;
-
     return Scaffold(
-      body: Container(
-        width: double.infinity,
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF0F0C20), Color(0xFF1F1D36), Color(0xFF261C4C)],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
-        ),
+      backgroundColor: WM.outline,
+      body: GameBackground(
         child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                // 1. ENCABEZADO
-                Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                      onPressed: () => Navigator.pop(context),
-                    ),
-                    const Expanded(
-                      child: Text(
-                        'Perfil de Jugador',
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(width: 48),
-                  ],
-                ),
-
-                const SizedBox(height: 20),
-
-                // 2. AVATAR Y NIVEL
-                Stack(
-                  alignment: Alignment.bottomRight,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        gradient: const SweepGradient(colors: [Colors.cyanAccent, Colors.indigoAccent, Colors.amber, Colors.cyanAccent]),
-                        boxShadow: [BoxShadow(color: Colors.cyanAccent.withValues(alpha: .24), blurRadius: 24)],
-                      ),
-                      child: PlayerAvatar(profile: _profile, radius: 46),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Text(
-                        'Nvl. ${_profile.level}',
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-
-                const SizedBox(height: 12),
-
-                // NOMBRE Y TÍTULO ACTIVO
-                Text(
-                  _profile.name,
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 22,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const Text(
-                  '🎖️ Recluta Ortográfico',
-                  style: TextStyle(
-                    color: Colors.amber,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-
-                const SizedBox(height: 20),
-
-                // BARRA DE EXPERIENCIA (XP)
-                Container(
-                  padding: const EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.05),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: Colors.white10),
-                  ),
+          child: Column(
+            children: [
+              const GameHeader(title: 'PERFIL'),
+              Expanded(
+                child: SingleChildScrollView(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 28),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          const Text(
-                            'Progreso de Nivel',
-                            style: TextStyle(color: Colors.white70, fontSize: 13),
-                          ),
-                          Text(
-                            '$currentXp / $maxLevelXp XP',
-                            style: const TextStyle(
-                              color: Colors.cyanAccent,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 13,
-                            ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(height: 8),
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(10),
-                        child: LinearProgressIndicator(
-                          value: xpProgress,
-                          minHeight: 10,
-                          backgroundColor: Colors.black38,
-                          color: Colors.cyanAccent,
-                        ),
-                      ),
+                      _buildHero(),
+                      const SizedBox(height: 18),
+                      EntranceFlip(index: 0, child: _buildXpPanel()),
+                      const SizedBox(height: 16),
+                      _buildStatsGrid(),
+                      const SizedBox(height: 20),
+                      EntranceFlip(index: 5, child: _buildGoogleButton()),
                     ],
                   ),
                 ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
-                const SizedBox(height: 12),
-                SizedBox(
-                  width: double.infinity,
-                  child: OutlinedButton.icon(
-                    onPressed: _isLinkingAccount || CloudService.isGoogleAccountLinked
-                        ? null
-                        : _connectGoogleAccount,
-                    icon: Icon(
-                      CloudService.isGoogleAccountLinked
-                          ? Icons.cloud_done_rounded
-                          : Icons.cloud_upload_rounded,
-                      color: CloudService.isGoogleAccountLinked
-                          ? Colors.greenAccent
-                          : Colors.cyanAccent,
-                    ),
-                    label: Text(
-                      CloudService.isGoogleAccountLinked
-                          ? 'AVANCE VINCULADO A GOOGLE'
-                          : _isLinkingAccount
-                              ? 'CONECTANDO CUENTA…'
-                              : 'GUARDAR AVANCE EN GOOGLE',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    style: OutlinedButton.styleFrom(
-                      side: BorderSide(
-                        color: CloudService.isGoogleAccountLinked
-                            ? Colors.greenAccent.withValues(alpha: .6)
-                            : Colors.cyanAccent.withValues(alpha: .6),
-                      ),
-                      padding: const EdgeInsets.symmetric(vertical: 13),
-                      backgroundColor: Colors.white.withValues(alpha: .04),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
+  // ---------------------------------------------------------------
+  // HÉROE: avatar flotando sobre un pedestal 3D + insignia de nivel
+  // ---------------------------------------------------------------
+  Widget _buildHero() {
+    return Column(
+      children: [
+        SizedBox(
+          width: 240,
+          height: 200,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            clipBehavior: Clip.none,
+            children: [
+              // Halo de luz detrás del personaje
+              Positioned(
+                bottom: 28,
+                child: Container(
+                  width: 180,
+                  height: 180,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [WM.cyan.withValues(alpha: 0.32), Colors.transparent],
                     ),
                   ),
                 ),
+              ),
+              Positioned(
+                bottom: 0,
+                child: CustomPaint(size: const Size(200, 56), painter: PedestalPainter()),
+              ),
+              Positioned(
+                bottom: 32,
+                child: Bob(
+                  amplitude: 7,
+                  child: PlayerAvatar(profile: _profile, radius: 60),
+                ),
+              ),
+              Positioned(
+                bottom: 14,
+                right: 4,
+                child: _buildLevelBadge(),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(height: 10),
+        OutlinedGameText(_profile.name, size: 30, letterSpacing: 1.5),
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 10,
+          runSpacing: 8,
+          alignment: WrapAlignment.center,
+          children: [
+            const Chip3D(emoji: '🎖️', text: 'RECLUTA ORTOGRÁFICO', accent: WM.gold),
+            Chip3D(emoji: '⭐', text: '${_profile.totalStars} ESTRELLAS', accent: WM.cyan),
+          ],
+        ),
+      ],
+    );
+  }
 
-                const SizedBox(height: 20),
+  // Placa dorada inclinada. La sombra SIN desenfoque (blurRadius 0)
+  // dibuja un canto sólido debajo: el truco más barato para dar volumen.
+  Widget _buildLevelBadge() {
+    return Transform(
+      transform: Matrix4.skewX(WM.skew),
+      alignment: Alignment.center,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(12, 2, 12, 4),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          border: Border.all(color: WM.outline, width: 2.5),
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFFFE37A), Color(0xFFFFB627), Color(0xFFFF9D00)],
+            stops: [0, 0.5, 1],
+          ),
+          boxShadow: const [
+            BoxShadow(color: Color(0xFF9A4F00), offset: Offset(0, 5)),
+            BoxShadow(color: Colors.black54, offset: Offset(0, 9), blurRadius: 10),
+          ],
+        ),
+        child: Transform(
+          transform: Matrix4.skewX(-WM.skew),
+          alignment: Alignment.center,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const OutlinedGameText('NVL', size: 13, font: GameFont.oswald),
+              const SizedBox(width: 4),
+              OutlinedGameText('${_profile.level}', size: 24),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 
-                // 3. TARJETAS DE ESTADÍSTICAS REALES Y RECURSOS
-                GridView.count(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisCount: 2,
-                  crossAxisSpacing: 12,
-                  mainAxisSpacing: 12,
-                  childAspectRatio: 2.15,
-                  children: [
-                    _buildStatCard(
-                      title: 'Monedas Acumuladas',
-                      value: '🪙 ${_profile.coins}',
-                      icon: Icons.monetization_on,
-                      color: Colors.amber,
-                    ),
-                    _buildStatCard(
-                      title: 'Gemas',
-                      value: '💎 ${_profile.gems}',
-                      icon: Icons.diamond,
-                      color: Colors.cyanAccent,
-                    ),
-                    _buildStatCard(
-                      title: 'Pociones de Salud',
-                      value: '🧪 ${_profile.healthPotions}',
-                      icon: Icons.health_and_safety,
-                      color: Colors.greenAccent,
-                    ),
-                    _buildStatCard(
-                      title: 'Pistas de Respuesta',
-                      value: '💡 ${_profile.letterHints}',
-                      icon: Icons.lightbulb,
-                      color: Colors.orangeAccent,
-                    ),
-                  ],
+  // ---------------------------------------------------------------
+  // EXPERIENCIA
+  // ---------------------------------------------------------------
+  Widget _buildXpPanel() {
+    final int currentXp = _profile.experience;
+    final int maxLevelXp = _profile.maxExperienceForCurrentLevel;
+    final int missing = math.max(0, maxLevelXp - currentXp);
+
+    return Panel3D(
+      accent: WM.cyan,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                'PROGRESO DE NIVEL',
+                style: GoogleFonts.oswald(
+                  color: Colors.white70,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              const Spacer(),
+              Text(
+                'NVL ${_profile.level + 1} ▸',
+                style: GoogleFonts.oswald(
+                  color: WM.cyan,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 13,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          Bar3D(
+            value: _profile.levelProgress,
+            height: 24,
+            label: '$currentXp / $maxLevelXp XP',
+          ),
+          const SizedBox(height: 8),
+          Text(
+            missing == 0 ? '¡Listo para subir de nivel!' : 'Te faltan $missing XP para subir',
+            style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // RECURSOS
+  // ---------------------------------------------------------------
+  Widget _buildStatsGrid() {
+    final stats = [
+      ('🪙', 'MONEDAS', _profile.coins, WM.gold),
+      ('💎', 'GEMAS', _profile.gems, WM.cyan),
+      ('🧪', 'POCIONES', _profile.healthPotions, const Color(0xFF5BE37A)),
+      ('💡', 'PISTAS', _profile.letterHints, const Color(0xFFFF9D4D)),
+    ];
+
+    return GridView.count(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      crossAxisCount: 2,
+      crossAxisSpacing: 12,
+      mainAxisSpacing: 14,
+      childAspectRatio: 1.55,
+      children: [
+        for (var i = 0; i < stats.length; i++)
+          EntranceFlip(
+            index: i + 1,
+            child: _buildStatCard(
+              emoji: stats[i].$1,
+              title: stats[i].$2,
+              value: stats[i].$3,
+              color: stats[i].$4,
+            ),
+          ),
+      ],
+    );
+  }
+
+  Widget _buildStatCard({
+    required String emoji,
+    required String title,
+    required int value,
+    required Color color,
+  }) {
+    return Panel3D(
+      accent: color,
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
+      child: Row(
+        children: [
+          Socket3D(
+            size: 48,
+            color: color,
+            child: Text(emoji, style: const TextStyle(fontSize: 21)),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  title,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.oswald(
+                    color: Colors.white60,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w700,
+                    letterSpacing: 1,
+                  ),
+                ),
+                OutlinedGameText(
+                  '$value',
+                  size: 24,
+                  colors: [Colors.white, shade(color, 0.15)],
                 ),
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // GUARDAR EN GOOGLE
+  // ---------------------------------------------------------------
+  Widget _buildGoogleButton() {
+    final linked = CloudService.isGoogleAccountLinked;
+    final label = linked
+        ? 'AVANCE VINCULADO A GOOGLE'
+        : _isLinkingAccount
+            ? 'CONECTANDO CUENTA…'
+            : 'GUARDAR AVANCE EN GOOGLE';
+
+    return SizedBox(
+      width: double.infinity,
+      child: Pressable3D(
+        onTap: linked || _isLinkingAccount ? null : _connectGoogleAccount,
+        color: WM.cyan,
+        // Si ya está vinculado se muestra en verde (éxito), no en gris
+        disabledColor: linked ? const Color(0xFF1E8C3A) : const Color(0xFF4A4660),
+        height: 54,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(
+              linked ? Icons.cloud_done_rounded : Icons.cloud_upload_rounded,
+              color: Colors.white,
+              size: 22,
+              shadows: const [Shadow(color: WM.outline, blurRadius: 3, offset: Offset(0, 2))],
+            ),
+            const SizedBox(width: 8),
+            Flexible(
+              child: OutlinedGameText(label, size: 16, font: GameFont.oswald),
+            ),
+          ],
         ),
       ),
     );
@@ -290,55 +369,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
         'No se pudo vincular la cuenta. Revisa la configuración de Google en Firebase.',
     };
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  Widget _buildStatCard({
-    required String title,
-    required String value,
-    required IconData icon,
-    required Color color,
-  }) {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [color.withValues(alpha: .19), const Color(0xFF211B3C), const Color(0xFF171329)],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withValues(alpha: 0.48)),
-        boxShadow: [BoxShadow(color: color.withValues(alpha: .09), blurRadius: 12, offset: const Offset(0, 5))],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              Icon(icon, color: color, size: 20),
-              const SizedBox(width: 6),
-              Expanded(
-                child: Text(
-                  title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.white60, fontSize: 11),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          Text(
-            value,
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
   }
 }

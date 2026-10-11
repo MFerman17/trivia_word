@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'screens/home_screen.dart';
+import 'services/cloud_service.dart';
+import 'services/save_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -12,6 +14,7 @@ Future<void> main() async {
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
+    SaveService.onLocalSaveChanged = CloudService.syncFullSave;
     debugPrint('🔥 Firebase inicializado correctamente');
     if (kDebugMode) {
       final o = Firebase.app().options;

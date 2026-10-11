@@ -67,9 +67,14 @@ class _QuestsScreenState extends State<QuestsScreen> {
         iconTheme: const IconThemeData(color: Colors.white),
         elevation: 0,
       ),
-      body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: Colors.amber))
-          : ListView.builder(
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset('assets/images/bg_landscape.png', fit: BoxFit.cover),
+          Container(color: const Color(0xE80F0C20)),
+          if (_isLoading)
+            const Center(child: CircularProgressIndicator(color: Colors.amber))
+          else ListView.builder(
               padding: const EdgeInsets.all(16),
               itemCount: _quests.length,
               itemBuilder: (context, index) {
@@ -85,21 +90,44 @@ class _QuestsScreenState extends State<QuestsScreen> {
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(16),
                     decoration: BoxDecoration(
-                      color: const Color(0xFF1F1D36),
-                      borderRadius: BorderRadius.circular(16),
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: quest.isCompleted && !quest.isClaimed
+                            ? const [Color(0xFF453516), Color(0xFF241D3D), Color(0xFF171329)]
+                            : const [Color(0xFF302951), Color(0xFF211B3A), Color(0xFF171329)],
+                      ),
+                      borderRadius: BorderRadius.circular(19),
                       border: Border.all(
                         color: quest.isCompleted && !quest.isClaimed
                             ? Colors.amber
                             : Colors.white10,
                         width: quest.isCompleted && !quest.isClaimed ? 2 : 1,
                       ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: (quest.isCompleted && !quest.isClaimed ? Colors.amber : Colors.deepPurpleAccent).withValues(alpha: .18),
+                          blurRadius: 18,
+                          offset: const Offset(0, 7),
+                        ),
+                      ],
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
                           children: [
-                            Text(quest.emoji, style: const TextStyle(fontSize: 28)),
+                            Container(
+                              width: 54,
+                              height: 54,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                gradient: const LinearGradient(colors: [Color(0xFF57427F), Color(0xFF211A3A)]),
+                                border: Border.all(color: Colors.amber.withValues(alpha: .65), width: 1.5),
+                                boxShadow: [BoxShadow(color: Colors.amber.withValues(alpha: .15), blurRadius: 12)],
+                              ),
+                              child: Center(child: Text(quest.emoji, style: const TextStyle(fontSize: 29))),
+                            ),
                             const SizedBox(width: 12),
                             Expanded(
                               child: Column(
@@ -133,8 +161,8 @@ class _QuestsScreenState extends State<QuestsScreen> {
                                 borderRadius: BorderRadius.circular(8),
                                 child: LinearProgressIndicator(
                                   value: quest.progress,
-                                  minHeight: 10,
-                                  backgroundColor: Colors.white10,
+                                  minHeight: 9,
+                                  backgroundColor: Colors.black38,
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                     quest.isCompleted
                                         ? Colors.amberAccent
@@ -209,6 +237,8 @@ class _QuestsScreenState extends State<QuestsScreen> {
                 );
               },
             ),
+        ],
+      ),
     );
   }
 }

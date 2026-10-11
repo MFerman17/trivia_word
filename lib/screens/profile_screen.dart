@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/player_profile.dart';
 import '../services/save_service.dart';
 import '../widgets/player_avatar.dart';
+import '../services/cloud_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -15,6 +16,7 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   late PlayerProfile _profile;
   bool _isLoading = true;
+  bool _isLinkingAccount = false;
 
   @override
   void initState() {
@@ -93,7 +95,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Stack(
                   alignment: Alignment.bottomRight,
                   children: [
-                    PlayerAvatar(profile: _profile, radius: 46),
+                    Container(
+                      padding: const EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: const SweepGradient(colors: [Colors.cyanAccent, Colors.indigoAccent, Colors.amber, Colors.cyanAccent]),
+                        boxShadow: [BoxShadow(color: Colors.cyanAccent.withValues(alpha: .24), blurRadius: 24)],
+                      ),
+                      child: PlayerAvatar(profile: _profile, radius: 46),
+                    ),
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
@@ -176,6 +186,47 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
 
+                const SizedBox(height: 12),
+                SizedBox(
+                  width: double.infinity,
+                  child: OutlinedButton.icon(
+                    onPressed: _isLinkingAccount || CloudService.isGoogleAccountLinked
+                        ? null
+                        : _connectGoogleAccount,
+                    icon: Icon(
+                      CloudService.isGoogleAccountLinked
+                          ? Icons.cloud_done_rounded
+                          : Icons.cloud_upload_rounded,
+                      color: CloudService.isGoogleAccountLinked
+                          ? Colors.greenAccent
+                          : Colors.cyanAccent,
+                    ),
+                    label: Text(
+                      CloudService.isGoogleAccountLinked
+                          ? 'AVANCE VINCULADO A GOOGLE'
+                          : _isLinkingAccount
+                              ? 'CONECTANDO CUENTA…'
+                              : 'GUARDAR AVANCE EN GOOGLE',
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    style: OutlinedButton.styleFrom(
+                      side: BorderSide(
+                        color: CloudService.isGoogleAccountLinked
+                            ? Colors.greenAccent.withValues(alpha: .6)
+                            : Colors.cyanAccent.withValues(alpha: .6),
+                      ),
+                      padding: const EdgeInsets.symmetric(vertical: 13),
+                      backgroundColor: Colors.white.withValues(alpha: .04),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(14),
+                      ),
+                    ),
+                  ),
+                ),
+
                 const SizedBox(height: 20),
 
                 // 3. TARJETAS DE ESTADÍSTICAS REALES Y RECURSOS
@@ -185,7 +236,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
                   mainAxisSpacing: 12,
-                  childAspectRatio: 1.6,
+                  childAspectRatio: 2.15,
                   children: [
                     _buildStatCard(
                       title: 'Monedas Acumuladas',
@@ -221,6 +272,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 
+  Future<void> _connectGoogleAccount() async {
+    setState(() => _isLinkingAccount = true);
+    final result = await CloudService.connectGoogleAccount();
+    if (!mounted) return;
+    final refreshedProfile = await SaveService.loadPlayerData();
+    if (!mounted) return;
+    setState(() {
+      _profile = refreshedProfile;
+      _isLinkingAccount = false;
+    });
+    final message = switch (result) {
+      GoogleAccountResult.linked =>
+        'Tu avance quedó vinculado y podrás recuperarlo en otros dispositivos.',
+      GoogleAccountResult.cancelled => 'No se realizaron cambios.',
+      GoogleAccountResult.failed =>
+        'No se pudo vincular la cuenta. Revisa la configuración de Google en Firebase.',
+    };
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+
   Widget _buildStatCard({
     required String title,
     required String value,
@@ -230,9 +301,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.05),
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [color.withValues(alpha: .19), const Color(0xFF211B3C), const Color(0xFF171329)],
+        ),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: color.withValues(alpha: 0.3)),
+        border: Border.all(color: color.withValues(alpha: 0.48)),
+        boxShadow: [BoxShadow(color: color.withValues(alpha: .09), blurRadius: 12, offset: const Offset(0, 5))],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

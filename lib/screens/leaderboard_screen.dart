@@ -40,6 +40,21 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     return emojis[name.length % emojis.length];
   }
 
+  Widget _avatarPortrait(String name, double size) {
+    const portraits = [
+      'assets/images/avatar_mage.png',
+      'assets/images/avatar_guardian.png',
+      'assets/images/avatar_explorer.png',
+    ];
+    final nameValue = name.codeUnits.fold<int>(0, (total, unit) => total + unit);
+    final portrait = portraits[nameValue % portraits.length];
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Image.asset(portrait, fit: BoxFit.contain),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,7 +67,12 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             end: Alignment.bottomCenter,
           ),
         ),
-        child: SafeArea(
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset('assets/images/bg_landscape.png', fit: BoxFit.cover),
+            Container(color: const Color(0xE80F0C20)),
+            SafeArea(
           child: Column(
             children: [
               // 1. BARRA DE ENCABEZADO (Siempre visible)
@@ -189,14 +209,17 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                                   margin: const EdgeInsets.only(bottom: 10),
                                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
                                   decoration: BoxDecoration(
-                                    color: isCurrentUser
-                                        ? Colors.amber.withValues(alpha: 0.15)
-                                        : Colors.white.withValues(alpha: 0.05),
+                                    gradient: LinearGradient(
+                                      colors: isCurrentUser
+                                          ? [Colors.amber.withValues(alpha: .22), const Color(0xFF211B3A)]
+                                          : [const Color(0xFF302951), const Color(0xFF19152D)],
+                                    ),
                                     borderRadius: BorderRadius.circular(16),
                                     border: Border.all(
                                       color: isCurrentUser ? Colors.amber : Colors.white10,
                                       width: isCurrentUser ? 1.5 : 1,
                                     ),
+                                    boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: .22), blurRadius: 12, offset: const Offset(0, 5))],
                                   ),
                                   child: Row(
                                     children: [
@@ -211,7 +234,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                                           ),
                                         ),
                                       ),
-                                      Text(user.avatarEmoji, style: const TextStyle(fontSize: 24)),
+                                      _avatarPortrait(user.name, 38),
                                       const SizedBox(width: 12),
                                       Expanded(
                                         child: Row(
@@ -259,6 +282,8 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               ),
             ],
           ),
+          ),
+          ],
         ),
       ),
     );
@@ -283,22 +308,17 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           alignment: Alignment.center,
           clipBehavior: Clip.none,
           children: [
-            Container(
-              padding: EdgeInsets.all(isFirst ? 14 : 10),
+              Container(
+              padding: EdgeInsets.all(isFirst ? 9 : 6),
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
-                color: isCurrentUser
-                    ? Colors.amber.withValues(alpha: 0.3)
-                    : Colors.white.withValues(alpha: 0.1),
+                gradient: LinearGradient(colors: [borderColor.withValues(alpha: .35), const Color(0xFF201A38)]),
                 border: Border.all(
                   color: isCurrentUser ? Colors.amber : borderColor,
                   width: isCurrentUser ? 3 : 2,
                 ),
               ),
-              child: Text(
-                user.avatarEmoji,
-                style: TextStyle(fontSize: isFirst ? 36 : 28),
-              ),
+              child: _avatarPortrait(user.name, isFirst ? 58 : 46),
             ),
             Positioned(
               top: -16,
@@ -348,6 +368,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
+            boxShadow: [BoxShadow(color: borderColor.withValues(alpha: .22), blurRadius: 15, offset: const Offset(0, 5))],
             borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(12),
               topRight: Radius.circular(12),

@@ -331,7 +331,7 @@ class _GameScreenState extends State<GameScreen> {
             title: Text(
               widget.isMiniChallenge
                   ? 'MINI-RETO ${widget.levelNumber}'
-                  : 'Fase ${widget.worldId}.${widget.chapterId}.${widget.levelNumber}',
+                  : 'COMBATE',
               style: GoogleFonts.poppins(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,

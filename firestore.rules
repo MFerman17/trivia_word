@@ -1,0 +1,61 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Ranking global actual: cada jugador solo puede escribir su propio UID.
+    match /leaderboard/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Guardado privado: cada jugador solo puede leer o escribir su propio avance.
+    match /player_saves/{userId} {
+      function ownsSave() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function validSave() {
+        let data = request.resource.data;
+        let profile = data.profile;
+        return data.keys().hasAll([
+                 'schemaVersion', 'profile', 'stages', 'quests', 'miniRewards', 'updatedAt'
+               ])
+            && data.keys().hasOnly([
+                 'schemaVersion', 'profile', 'stages', 'quests', 'miniRewards', 'updatedAt'
+               ])
+            && data.schemaVersion == 1
+            && data.updatedAt == request.time
+            && profile is map
+            && profile.keys().hasOnly([
+                 'name', 'level', 'experience', 'coins', 'gems', 'healthPotions',
+                 'letterHints', 'totalStars', 'lastDailyReward', 'avatarCharacterId',
+                 'avatarFrameId', 'avatarAccessoryId', 'ownedAvatarCharacters',
+                 'ownedAvatarFrames', 'ownedAvatarAccessories'
+               ])
+            && profile.name is string
+            && profile.level is int
+            && profile.experience is int
+            && profile.coins is int
+            && profile.gems is int
+            && profile.healthPotions is int
+            && profile.letterHints is int
+            && profile.totalStars is int
+            && profile.avatarCharacterId is string
+            && profile.avatarFrameId is string
+            && profile.avatarAccessoryId is string
+            && profile.ownedAvatarCharacters is list
+            && profile.ownedAvatarFrames is list
+            && profile.ownedAvatarAccessories is list
+            && data.stages is map
+            && data.stages.size() <= 500
+            && data.quests is list
+            && data.quests.size() <= 100
+            && data.miniRewards is map
+            && data.miniRewards.size() <= 100;
+      }
+
+      allow read: if ownsSave();
+      allow create, update: if ownsSave() && validSave();
+      allow delete: if false;
+    }
+  }
+}

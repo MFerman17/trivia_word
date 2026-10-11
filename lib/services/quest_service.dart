@@ -116,5 +116,6 @@ class QuestService {
     final prefs = await SharedPreferences.getInstance();
     final encoded = jsonEncode(quests.map((q) => q.toJson()).toList());
     await prefs.setString(_questsKey, encoded);
+    await SaveService.notifyLocalSaveChanged();
   }
 }

@@ -83,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   }
 
   Future<void> _loadUserProfile() async {
+    await CloudService.restoreCloudSave();
     PlayerProfile loadedProfile = await SaveService.loadPlayerData();
     int stars = await SaveService.getTotalStarsObtained();
     loadedProfile.totalStars = stars;

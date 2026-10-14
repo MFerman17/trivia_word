@@ -325,6 +325,56 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
+  // =================================================================
+  // REVIVIR TRAS PERDER TODAS LAS VIDAS
+  // =================================================================
+
+  /// Solo se puede revivir viendo un video UNA vez por batalla.
+  /// Así el reto se mantiene y las pociones (que se venden en la tienda)
+  /// siguen teniendo valor. Como el controlador se crea en cada batalla,
+  /// el permiso se renueva solo al empezar la siguiente.
+  bool hasUsedAdRevive = false;
+
+  /// Revivir solo tiene sentido si la derrota fue por quedarse sin vidas.
+  /// (Si el monstruo resistió porque se acabaron las preguntas, una vida
+  /// más no cambiaría nada.)
+  bool get canRevive =>
+      !_isDisposed && status == GameStatus.defeat && playerHp <= 0;
+
+  bool get canReviveWithAd => canRevive && !hasUsedAdRevive;
+
+  bool get canReviveWithPotion =>
+      canRevive && (profile?.healthPotions ?? 0) > 0;
+
+  /// Llamar SOLO cuando AdMob confirme que el jugador vio el video entero.
+  void reviveWithAd() {
+    if (!canReviveWithAd) return;
+    hasUsedAdRevive = true;
+    AudioService.playSuccess();
+    _revive();
+  }
+
+  /// Gasta una poción para volver con 1 vida. Devuelve false si no hay.
+  Future<bool> reviveWithPotion() async {
+    if (!canReviveWithPotion) return false;
+    profile!.healthPotions--;
+    AudioService.playPotionUse();
+    _revive();
+    await SaveService.savePlayerData(profile!);
+    QuestService.incrementProgress('use_potion_2');
+    return true;
+  }
+
+  void _revive() {
+    playerHp = 1;
+    status = GameStatus.playing;
+    // La derrota ocurrió justo después de una respuesta incorrecta, así que
+    // seguimos exactamente como si el jugador no hubiera caído: siguiente
+    // pregunta, o el retroceso del monstruo si acumulaba 2 errores.
+    continueAfterAnswer();
+    if (!_isDisposed) notifyListeners();
+  }
+
   void usePotion(Function(String) showSnackBar) async {
     if (profile == null || _isDisposed) return;
 

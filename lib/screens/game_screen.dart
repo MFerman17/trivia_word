@@ -1,8 +1,11 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/game_controller.dart';
 import '../models/level_config.dart';
+import '../services/ad_service.dart';
 import '../services/audio_service.dart';
+import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 
 class GameScreen extends StatefulWidget {
@@ -27,6 +30,11 @@ class _GameScreenState extends State<GameScreen> {
   late GameController _controller;
   bool _isMuted = AudioService.isMuted;
 
+  // Evita abrir dos diálogos de fin de partida a la vez: el controlador
+  // avisa (notifyListeners) muchas veces, y cada aviso con el estado
+  // "derrota" podía apilar otro diálogo encima.
+  bool _endDialogOpen = false;
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +46,10 @@ class _GameScreenState extends State<GameScreen> {
     );
     _controller.addListener(_onControllerUpdate);
     _controller.loadInitialData();
+    // Precarga un anuncio al empezar la batalla, para que si el jugador
+    // pierde y quiere revivir, el video salga al instante y no tras varios
+    // segundos de espera (justo cuando es más fácil que se rinda).
+    AdService.initialize();
   }
 
   @override
@@ -48,10 +60,17 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _onControllerUpdate() {
+    if (_endDialogOpen) return;
     if (_controller.status == GameStatus.victory) {
+      _endDialogOpen = true;
       _showVictoryDialog();
     } else if (_controller.status == GameStatus.defeat) {
-      _showDefeatDialog();
+      _endDialogOpen = true;
+      if (_controller.canRevive) {
+        _showReviveDialog();
+      } else {
+        _showDefeatDialog();
+      }
     }
   }
 
@@ -254,6 +273,220 @@ class _GameScreenState extends State<GameScreen> {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  // =================================================================
+  // ¿CONTINUAR? — se muestra al quedarse sin vidas
+  // =================================================================
+
+  /// Muestra el video recompensado. Devuelve true solo si se vio entero.
+  ///
+  /// Los anuncios de AdMob solo funcionan en Android. Para que puedas probar
+  /// el flujo completo en Chrome mientras desarrollas, en modo debug (y fuera
+  /// de Android) se simula un video de 1 segundo. En la versión publicada
+  /// (kDebugMode = false) esta simulación nunca se ejecuta.
+  Future<bool> _watchReviveAd() async {
+    final adsSupported =
+        !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+    if (!adsSupported && kDebugMode) {
+      await Future<void>.delayed(const Duration(seconds: 1));
+      return true;
+    }
+    return AdService.showRewardedAd();
+  }
+
+  void _showReviveDialog() {
+    // Estas variables viven fuera del builder para conservar su valor
+    // cada vez que el diálogo se redibuja con setDialogState.
+    bool loadingAd = false;
+    String? errorMessage;
+    const Color danger = Color(0xFFFF4D5E);
+
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      barrierColor: Colors.black.withValues(alpha: 0.75),
+      builder: (dialogContext) => StatefulBuilder(
+        builder: (dialogContext, setDialogState) {
+          final potions = _controller.profile?.healthPotions ?? 0;
+
+          void closeAndResume() {
+            _endDialogOpen = false;
+            Navigator.of(dialogContext).pop();
+          }
+
+          Future<void> onWatchAd() async {
+            AudioService.playButtonClick();
+            setDialogState(() {
+              loadingAd = true;
+              errorMessage = null;
+            });
+            final earned = await _watchReviveAd();
+            if (!mounted || !dialogContext.mounted) return;
+            if (earned) {
+              closeAndResume();
+              _controller.reviveWithAd();
+              _showSnackBar('¡Has vuelto a la batalla con 1 vida!');
+            } else {
+              // Puede que no haya anuncio disponible o que el jugador
+              // cerrara el video antes de terminar: no se da el premio.
+              setDialogState(() {
+                loadingAd = false;
+                errorMessage =
+                    'No se pudo completar el video. Inténtalo de nuevo o usa una poción.';
+              });
+            }
+          }
+
+          Future<void> onUsePotion() async {
+            AudioService.playButtonClick();
+            closeAndResume();
+            final ok = await _controller.reviveWithPotion();
+            if (mounted && ok) _showSnackBar('¡La poción te devolvió 1 vida!');
+          }
+
+          void onGiveUp() {
+            AudioService.playButtonClick();
+            Navigator.of(dialogContext).pop();
+            Navigator.of(context).pop();
+          }
+
+          return Dialog(
+            backgroundColor: Colors.transparent,
+            insetPadding: const EdgeInsets.symmetric(horizontal: 24),
+            child: Panel3D(
+              accent: danger,
+              glow: 0.6,
+              radius: 22,
+              padding: const EdgeInsets.fromLTRB(18, 18, 18, 14),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const OutlinedGameText(
+                    '¡SIN VIDAS!',
+                    size: 30,
+                    letterSpacing: 2,
+                    colors: [Color(0xFFFFB3BA), danger],
+                  ),
+                  const SizedBox(height: 12),
+                  const Bob(
+                    amplitude: 5,
+                    child: Socket3D(
+                      size: 76,
+                      color: danger,
+                      child: Text('💔', style: TextStyle(fontSize: 34)),
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  Text(
+                    '¿Quieres seguir luchando? Recupera 1 vida y continúa la batalla.',
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.oswald(color: Colors.white70, fontSize: 14),
+                  ),
+                  const SizedBox(height: 16),
+
+                  // --- Opción 1: video (la que monetiza, por eso va primero,
+                  //     en dorado y latiendo) ---
+                  if (_controller.canReviveWithAd)
+                    SizedBox(
+                      width: double.infinity,
+                      child: Pulse(
+                        amount: 0.04,
+                        child: Pressable3D(
+                          onTap: loadingAd ? null : onWatchAd,
+                          color: WM.gold,
+                          disabledColor: const Color(0xFF9A7A2A),
+                          height: 54,
+                          child: loadingAd
+                              ? const SizedBox(
+                                  width: 22,
+                                  height: 22,
+                                  child: CircularProgressIndicator(
+                                    strokeWidth: 3,
+                                    color: WM.outline,
+                                  ),
+                                )
+                              : const Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.play_circle_fill_rounded,
+                                        color: Colors.white, size: 24),
+                                    SizedBox(width: 8),
+                                    OutlinedGameText('VER VIDEO', size: 18,
+                                        font: GameFont.oswald),
+                                    SizedBox(width: 8),
+                                    // El emoji va fuera del texto con contorno
+                                    // (si no, se dibujaría triplicado)
+                                    Text('+1 ❤️', style: TextStyle(fontSize: 16)),
+                                  ],
+                                ),
+                        ),
+                      ),
+                    )
+                  else
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: Text(
+                        'Ya usaste el video en esta batalla.',
+                        style: GoogleFonts.oswald(color: Colors.white38, fontSize: 12),
+                      ),
+                    ),
+                  const SizedBox(height: 12),
+
+                  // --- Opción 2: poción ---
+                  SizedBox(
+                    width: double.infinity,
+                    child: Pressable3D(
+                      onTap: _controller.canReviveWithPotion && !loadingAd
+                          ? onUsePotion
+                          : null,
+                      color: WM.cyan,
+                      height: 48,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text('🧪', style: TextStyle(fontSize: 18)),
+                          const SizedBox(width: 8),
+                          OutlinedGameText(
+                            potions > 0 ? 'USAR POCIÓN ($potions)' : 'SIN POCIONES',
+                            size: 16,
+                            font: GameFont.oswald,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+
+                  if (errorMessage != null) ...[
+                    const SizedBox(height: 10),
+                    Text(
+                      errorMessage!,
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.oswald(color: const Color(0xFFFFB3BA), fontSize: 12),
+                    ),
+                  ],
+                  const SizedBox(height: 6),
+
+                  // --- Rendirse: discreto, para no competir con las otras ---
+                  TextButton(
+                    onPressed: loadingAd ? null : onGiveUp,
+                    child: Text(
+                      'Rendirse',
+                      style: GoogleFonts.oswald(
+                        color: Colors.white54,
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                        decorationColor: Colors.white54,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

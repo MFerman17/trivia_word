@@ -172,6 +172,7 @@ class GameController extends ChangeNotifier {
       questionIndex: questions.length,
       difficulty: config.difficulty,
       isMiniChallenge: isMiniChallenge,
+      usedQuestionIds: questions.map((question) => question.id).toSet(),
     );
     if (additionalQuestion == null) {
       _handleDefeat();

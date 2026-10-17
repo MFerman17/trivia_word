@@ -1,0 +1,147 @@
+{
+  "language": "es",
+  "difficulty": 5,
+  "version": 1,
+  "questions": [
+    {
+      "id": "es-5-001",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «retener un líquido, como una esponja»?",
+      "options": [
+        "Absorber",
+        "Absorver",
+        "Avsorber",
+        "Absórber"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Absorber» lleva b en las dos sílabas, aunque «absorción» se escribe con c."
+    },
+    {
+      "id": "es-5-002",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Saltó la ___ del jardín.»",
+      "options": [
+        "valla",
+        "vaya",
+        "baya",
+        "balla"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Valla» es una cerca; «vaya», del verbo ir; «baya», un fruto."
+    },
+    {
+      "id": "es-5-003",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «procrastinar»?",
+      "options": [
+        "Aplazar tareas sin motivo",
+        "Trabajar sin descanso",
+        "Hablar en exceso",
+        "Recordar el pasado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Procrastinar es dejar para más tarde lo que se podría hacer ahora."
+    },
+    {
+      "id": "es-5-004",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra NO lleva tilde?",
+      "options": [
+        "Examen",
+        "Árbol",
+        "Lápiz",
+        "Útil"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Examen» es llana y termina en n, así que no lleva tilde; las otras sí."
+    },
+    {
+      "id": "es-5-005",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Sinfonía es a compositor como novela es a…",
+      "options": [
+        "Novelista",
+        "Editorial",
+        "Lector",
+        "Capítulo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada obra con quien la crea: el compositor crea la sinfonía y el novelista, la novela."
+    },
+    {
+      "id": "es-5-006",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si llueve, el puente se cierra. Hoy el puente está abierto. ¿Qué podemos deducir?",
+      "options": [
+        "Hoy no llueve",
+        "Hoy llueve",
+        "Mañana lloverá",
+        "El puente está roto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si lloviera, estaría cerrado. Como está abierto, hoy no llueve."
+    },
+    {
+      "id": "es-5-007",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál NO es un palíndromo?",
+      "options": [
+        "Ratón",
+        "Oso",
+        "Reconocer",
+        "Ana"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un palíndromo se lee igual al revés; «ratón» al revés sería «nótar»."
+    },
+    {
+      "id": "es-5-008",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «estar en el ajo»?",
+      "options": [
+        "Estar al tanto de un asunto",
+        "Estar muy cansado",
+        "Estar enfadado",
+        "Estar en la cocina"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice de quien conoce un asunto o participa en él, a menudo en secreto."
+    },
+    {
+      "id": "es-5-009",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién escribió «Don Quijote de la Mancha»?",
+      "options": [
+        "Miguel de Cervantes",
+        "Lope de Vega",
+        "Francisco de Quevedo",
+        "Garcilaso de la Vega"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cervantes publicó la primera parte en 1605 y la segunda en 1615."
+    },
+    {
+      "id": "es-5-010",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un mago tiene el doble de pociones que su aprendiz. Juntos tienen 18. ¿Cuántas tiene el mago?",
+      "options": [
+        "12",
+        "9",
+        "6",
+        "14"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si el aprendiz tiene x, el mago tiene 2x: 3x = 18, x = 6, y el mago tiene 12."
+    }
+  ]
+}

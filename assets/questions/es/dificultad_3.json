@@ -1122,6 +1122,986 @@
       ],
       "correctIndex": 0,
       "explanation": "Arthur Conan Doyle publicó la primera novela de Sherlock Holmes en 1887."
+    },
+    {
+      "id": "es-3-081",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal que come de todo, plantas y carne?",
+      "options": [
+        "Omnívoro",
+        "Omníboro",
+        "Homnívoro",
+        "Omnivoro"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras terminadas en -ívoro se escriben con v: omnívoro, herbívoro, carnívoro."
+    },
+    {
+      "id": "es-3-082",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la ciencia que estudia los seres vivos?",
+      "options": [
+        "Biología",
+        "Biolojía",
+        "Viología",
+        "Biologia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras terminadas en -logía se escriben con g y llevan tilde en la í."
+    },
+    {
+      "id": "es-3-083",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el elemento químico más ligero, que forma parte del agua?",
+      "options": [
+        "Hidrógeno",
+        "Idrógeno",
+        "Hidrójeno",
+        "Hidrogeno"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras que empiezan por hidr- (agua) llevan h: hidrógeno, hidratar."
+    },
+    {
+      "id": "es-3-084",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el nombre de la acción de explotar?",
+      "options": [
+        "Explosión",
+        "Explosción",
+        "Esplosión",
+        "Explozión"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si en la familia de la palabra aparece -sivo (explosivo), se escribe -sión."
+    },
+    {
+      "id": "es-3-085",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la prueba que hacen los científicos para comprobar algo?",
+      "options": [
+        "Experimento",
+        "Esperimento",
+        "Experimiento",
+        "Exsperimento"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Experimento» se escribe con x, como «experiencia»."
+    },
+    {
+      "id": "es-3-086",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «tratar de encontrar»?",
+      "options": [
+        "Buscar",
+        "Vuscar",
+        "Buskar",
+        "Búscar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras que empiezan por bu-, bur- y bus- se escriben con b: buscar, burbuja."
+    },
+    {
+      "id": "es-3-087",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el diminutivo de «cuchara»?",
+      "options": [
+        "Cucharilla",
+        "Cuchariya",
+        "Cucharila",
+        "Cucharrilla"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los diminutivos terminados en -illo o -illa se escriben con ll."
+    },
+    {
+      "id": "es-3-088",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Quiero un poco ___ de agua.»",
+      "options": [
+        "más",
+        "mas",
+        "mes",
+        "mis"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Más», que indica cantidad, lleva tilde; «mas» sin tilde significa «pero»."
+    },
+    {
+      "id": "es-3-089",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Dile que te ___ el libro mañana.»",
+      "options": [
+        "dé",
+        "de",
+        "dè",
+        "deé"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Dé», del verbo dar, lleva tilde para distinguirlo de la preposición «de»."
+    },
+    {
+      "id": "es-3-090",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien escrito «cuándo»?",
+      "options": [
+        "¿Cuándo vienes?",
+        "¿Cuando vienes?",
+        "Cuándo llegue, avísame",
+        "Avísame cuándo llegues"
+      ],
+      "correctIndex": 0,
+      "explanation": "Solo lleva tilde cuando pregunta. En «avísame cuando llegues» indica tiempo y va sin tilde."
+    },
+    {
+      "id": "es-3-091",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el instrumento que sirve para dibujar círculos?",
+      "options": [
+        "Compás",
+        "Compas",
+        "Cómpas",
+        "Compáss"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Compás» es aguda y termina en s, por eso lleva tilde."
+    },
+    {
+      "id": "es-3-092",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «joven»?",
+      "options": [
+        "Jóvenes",
+        "Jovenes",
+        "Jovénes",
+        "Jóvens"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Joven» no lleva tilde, pero «jóvenes» es esdrújula y sí la lleva."
+    },
+    {
+      "id": "es-3-093",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Ayer el niño se ___ de la bici.»",
+      "options": [
+        "cayó",
+        "calló",
+        "cayo",
+        "callo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cayó» viene de caer; «calló», de callar."
+    },
+    {
+      "id": "es-3-094",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Desde la montaña se veía un paisaje muy ___.»",
+      "options": [
+        "bello",
+        "vello",
+        "beyo",
+        "velo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Bello» significa bonito; «vello» es el pelo fino del cuerpo."
+    },
+    {
+      "id": "es-3-095",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Voy a ___ un vídeo para mi canal.»",
+      "options": [
+        "grabar",
+        "gravar",
+        "grabár",
+        "grabbar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Grabar» es registrar imagen o sonido; «gravar» es poner un impuesto."
+    },
+    {
+      "id": "es-3-096",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Me duele la ___ izquierda de la cabeza.»",
+      "options": [
+        "sien",
+        "cien",
+        "sién",
+        "cién"
+      ],
+      "correctIndex": 0,
+      "explanation": "La «sien» es el lado de la frente; «cien» es el número 100."
+    },
+    {
+      "id": "es-3-097",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Mi hermano ___ terminado los deberes.»",
+      "options": [
+        "ha",
+        "a",
+        "ah",
+        "há"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ha», del verbo haber, lleva h; «a» es una preposición."
+    },
+    {
+      "id": "es-3-098",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase es incorrecta?",
+      "options": [
+        "Pienso de que tienes razón",
+        "Pienso que tienes razón",
+        "Creo que tienes razón",
+        "Estoy seguro de que vendrá"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice «pienso que»: ese «de» sobra. En cambio, «estoy seguro de que» es correcto."
+    },
+    {
+      "id": "es-3-099",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase usa mal el pronombre?",
+      "options": [
+        "La dije la verdad",
+        "Le dije la verdad",
+        "Les dije la verdad",
+        "Te dije la verdad"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice «le dije la verdad», también a una mujer. Usar «la» aquí es un error llamado laísmo."
+    },
+    {
+      "id": "es-3-100",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué forma verbal es incorrecta?",
+      "options": [
+        "Andé",
+        "Anduve",
+        "Caminé",
+        "Corrí"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pasado de andar es «anduve», no «andé»."
+    },
+    {
+      "id": "es-3-101",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué palabra tiene un error de acentuación?",
+      "options": [
+        "Lapiz",
+        "Lápiz",
+        "Cárcel",
+        "Fácil"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Lápiz» es llana y termina en z, así que lleva tilde."
+    },
+    {
+      "id": "es-3-102",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me alegra que ___ venido a la fiesta.»",
+      "options": [
+        "hayas",
+        "has",
+        "habías",
+        "habrás"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Me alegra que» pide subjuntivo: «hayas venido»."
+    },
+    {
+      "id": "es-3-103",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Es importante que todos ___ puntuales.»",
+      "options": [
+        "sean",
+        "son",
+        "serán",
+        "eran"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Es importante que» pide subjuntivo: «sean»."
+    },
+    {
+      "id": "es-3-104",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Antes de que ___ la película, compramos palomitas.»",
+      "options": [
+        "empezara",
+        "empieza",
+        "empezó",
+        "empezará"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Antes de que» siempre va con subjuntivo: «empezara»."
+    },
+    {
+      "id": "es-3-105",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «tenaz»?",
+      "options": [
+        "Perseverante",
+        "Débil",
+        "Perezoso",
+        "Despistado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una persona tenaz o perseverante no se rinde ante las dificultades."
+    },
+    {
+      "id": "es-3-106",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «optimista»?",
+      "options": [
+        "Pesimista",
+        "Alegre",
+        "Positivo",
+        "Realista"
+      ],
+      "correctIndex": 0,
+      "explanation": "El optimista espera lo mejor; el pesimista, lo peor."
+    },
+    {
+      "id": "es-3-107",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «sereno»?",
+      "options": [
+        "Tranquilo",
+        "Nervioso",
+        "Alterado",
+        "Ruidoso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Estar sereno es estar tranquilo y en calma."
+    },
+    {
+      "id": "es-3-108",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «inaudito»?",
+      "options": [
+        "Nunca oído, sorprendente",
+        "Que no oye",
+        "Muy ruidoso",
+        "Que habla bajo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo inaudito es tan raro que nunca se había oído antes."
+    },
+    {
+      "id": "es-3-109",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es una metáfora?",
+      "options": [
+        "Una comparación sin usar «como»",
+        "Una palabra con tilde",
+        "Un tipo de rima",
+        "Un signo de puntuación"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Tus ojos son dos luceros» es una metáfora: identifica dos cosas parecidas."
+    },
+    {
+      "id": "es-3-110",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «incrédulo»?",
+      "options": [
+        "Que le cuesta creer",
+        "Que es muy creído",
+        "Que no sabe nada",
+        "Que está enfadado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una persona incrédula duda de lo que le cuentan."
+    },
+    {
+      "id": "es-3-111",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «Quien siembra vientos recoge tempestades»?",
+      "options": [
+        "Quien causa problemas los sufre después",
+        "El viento trae lluvia",
+        "Hay que sembrar en primavera",
+        "El tiempo cambia rápido"
+      ],
+      "correctIndex": 0,
+      "explanation": "Advierte de que los problemas que provocamos acaban volviéndose contra nosotros."
+    },
+    {
+      "id": "es-3-112",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «Camarón que se duerme…»",
+      "options": [
+        "se lo lleva la corriente",
+        "no come",
+        "despierta tarde",
+        "nada mejor"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien se descuida pierde oportunidades."
+    },
+    {
+      "id": "es-3-113",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Huevo es a gallina como bellota es a…",
+      "options": [
+        "Encina",
+        "Ardilla",
+        "Cerdo",
+        "Bosque"
+      ],
+      "correctIndex": 0,
+      "explanation": "La gallina pone huevos y la encina da bellotas."
+    },
+    {
+      "id": "es-3-114",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Lento es a tortuga como rápido es a…",
+      "options": [
+        "Guepardo",
+        "Caracol",
+        "Oso",
+        "Vaca"
+      ],
+      "correctIndex": 0,
+      "explanation": "La tortuga es famosa por su lentitud y el guepardo, por su velocidad."
+    },
+    {
+      "id": "es-3-115",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Capitán es a barco como piloto es a…",
+      "options": [
+        "Avión",
+        "Puerto",
+        "Mar",
+        "Pasajero"
+      ],
+      "correctIndex": 0,
+      "explanation": "El capitán dirige el barco y el piloto, el avión."
+    },
+    {
+      "id": "es-3-116",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Biblioteca es a libros como pinacoteca es a…",
+      "options": [
+        "Cuadros",
+        "Plantas",
+        "Discos",
+        "Coches"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una pinacoteca es un museo de pinturas, como el Museo del Prado."
+    },
+    {
+      "id": "es-3-117",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un tiempo verbal? Presente, pretérito, futuro, adjetivo.",
+      "options": [
+        "Adjetivo",
+        "Presente",
+        "Pretérito",
+        "Futuro"
+      ],
+      "correctIndex": 0,
+      "explanation": "El adjetivo es una clase de palabra; los demás son tiempos verbales."
+    },
+    {
+      "id": "es-3-118",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué país no está en Europa? Francia, Portugal, Egipto, Polonia.",
+      "options": [
+        "Egipto",
+        "Francia",
+        "Portugal",
+        "Polonia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Egipto está en África; los demás son países europeos."
+    },
+    {
+      "id": "es-3-119",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número no es múltiplo de 3? 9, 12, 14, 21.",
+      "options": [
+        "14",
+        "9",
+        "12",
+        "21"
+      ],
+      "correctIndex": 0,
+      "explanation": "14 no se puede dividir entre 3 sin que sobre algo."
+    },
+    {
+      "id": "es-3-120",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 2, 5, 11, 23, …",
+      "options": [
+        "47",
+        "46",
+        "35",
+        "44"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es el doble del anterior más 1: 23 × 2 + 1 = 47."
+    },
+    {
+      "id": "es-3-121",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 100, 50, 25, …",
+      "options": [
+        "12,5",
+        "20",
+        "15",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es la mitad del anterior: 25 ÷ 2 = 12,5."
+    },
+    {
+      "id": "es-3-122",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué día sigue? Lunes, miércoles, viernes, …",
+      "options": [
+        "Domingo",
+        "Sábado",
+        "Martes",
+        "Jueves"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se salta un día cada vez: después del viernes, saltamos el sábado."
+    },
+    {
+      "id": "es-3-123",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «ESPADA»?",
+      "options": [
+        "Pesada",
+        "Pasado",
+        "Espera",
+        "Parada"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Pesada» usa las mismas seis letras que «espada»."
+    },
+    {
+      "id": "es-3-124",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «CALOR»?",
+      "options": [
+        "Coral",
+        "Clara",
+        "Color",
+        "Carro"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Coral» usa exactamente las letras de «calor»: C, A, L, O y R."
+    },
+    {
+      "id": "es-3-125",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «LÁMINA»?",
+      "options": [
+        "Animal",
+        "Lámpara",
+        "Camino",
+        "Mantel"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Animal» usa las mismas seis letras que «lámina» (la tilde no cuenta)."
+    },
+    {
+      "id": "es-3-126",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte del cuerpo se esconde dentro de «PERDEDOR»?",
+      "options": [
+        "Dedo",
+        "Pelo",
+        "Ojo",
+        "Codo"
+      ],
+      "correctIndex": 0,
+      "explanation": "PER-DEDO-R: en el centro está «dedo»."
+    },
+    {
+      "id": "es-3-127",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué insecto se esconde dentro de «MOSCATEL»?",
+      "options": [
+        "Mosca",
+        "Gato",
+        "Rata",
+        "Pato"
+      ],
+      "correctIndex": 0,
+      "explanation": "MOSCA-TEL: la palabra empieza por «mosca»."
+    },
+    {
+      "id": "es-3-128",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «murciélago»?",
+      "options": [
+        "4",
+        "5",
+        "3",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mur-cié-la-go: «ie» se pronuncia junto, así que tiene cuatro sílabas."
+    },
+    {
+      "id": "es-3-129",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las sílabas para formar un planeta: TU · NO · NEP",
+      "options": [
+        "Neptuno",
+        "Plutón",
+        "Netuno",
+        "Tunepo"
+      ],
+      "correctIndex": 0,
+      "explanation": "NEP-TU-NO: con esas tres sílabas se forma «Neptuno»."
+    },
+    {
+      "id": "es-3-130",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Me rompo si me nombras. ¿Qué soy?",
+      "options": [
+        "El silencio",
+        "El cristal",
+        "Un secreto",
+        "El hielo"
+      ],
+      "correctIndex": 0,
+      "explanation": "En cuanto decimos «silencio», ya no hay silencio."
+    },
+    {
+      "id": "es-3-131",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Todos pasan por mí y yo no paso por nadie; todos preguntan por mí y yo no pregunto por nadie. ¿Qué soy?",
+      "options": [
+        "La calle",
+        "El puente",
+        "La puerta",
+        "El río"
+      ],
+      "correctIndex": 0,
+      "explanation": "Todo el mundo pasa por la calle y pregunta por ella para orientarse."
+    },
+    {
+      "id": "es-3-132",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si A es mayor que B y B es mayor que C, ¿qué es cierto?",
+      "options": [
+        "A es mayor que C",
+        "C es mayor que A",
+        "B es el mayor",
+        "A y C son iguales"
+      ],
+      "correctIndex": 0,
+      "explanation": "De mayor a menor el orden es A, B, C; por tanto A es mayor que C."
+    },
+    {
+      "id": "es-3-133",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Ningún reptil tiene pelo. La iguana es un reptil. Entonces…",
+      "options": [
+        "La iguana no tiene pelo",
+        "La iguana tiene pelo",
+        "Algunas iguanas tienen pelo",
+        "No se puede saber"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si ningún reptil tiene pelo y la iguana es un reptil, no tiene pelo."
+    },
+    {
+      "id": "es-3-134",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Lucía es mayor que Pablo, Pablo mayor que Sara y Sara mayor que Leo. ¿Quién es el segundo más joven?",
+      "options": [
+        "Sara",
+        "Leo",
+        "Pablo",
+        "Lucía"
+      ],
+      "correctIndex": 0,
+      "explanation": "De mayor a menor: Lucía, Pablo, Sara y Leo. El más joven es Leo y el segundo, Sara."
+    },
+    {
+      "id": "es-3-135",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un libro tiene 240 páginas. Si lees 30 al día, ¿cuántos días tardas en acabarlo?",
+      "options": [
+        "8",
+        "6",
+        "7",
+        "9"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dividimos las páginas entre las que lees cada día: 240 ÷ 30 = 8."
+    },
+    {
+      "id": "es-3-136",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "En una clase de 30 alumnos, el 20 % lleva gafas. ¿Cuántos llevan gafas?",
+      "options": [
+        "6",
+        "3",
+        "10",
+        "20"
+      ],
+      "correctIndex": 0,
+      "explanation": "El 10 % de 30 es 3, así que el 20 % es el doble: 6."
+    },
+    {
+      "id": "es-3-137",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llama el paso del agua líquida a vapor?",
+      "options": [
+        "Evaporación",
+        "Condensación",
+        "Solidificación",
+        "Fusión"
+      ],
+      "correctIndex": 0,
+      "explanation": "En la evaporación el líquido pasa a gas; en la condensación, el gas vuelve a líquido."
+    },
+    {
+      "id": "es-3-138",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué planeta tiene los anillos más visibles?",
+      "options": [
+        "Saturno",
+        "Marte",
+        "Mercurio",
+        "Venus"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los anillos de Saturno están hechos de hielo y roca."
+    },
+    {
+      "id": "es-3-139",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué tipo de animal es la ballena?",
+      "options": [
+        "Un mamífero",
+        "Un pez",
+        "Un reptil",
+        "Un anfibio"
+      ],
+      "correctIndex": 0,
+      "explanation": "La ballena respira aire y amamanta a sus crías: es un mamífero."
+    },
+    {
+      "id": "es-3-140",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el órgano más grande del cuerpo humano?",
+      "options": [
+        "La piel",
+        "El hígado",
+        "El corazón",
+        "El cerebro"
+      ],
+      "correctIndex": 0,
+      "explanation": "La piel es el órgano más grande; el hígado es el órgano interno más grande."
+    },
+    {
+      "id": "es-3-141",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Alemania?",
+      "options": [
+        "Berlín",
+        "Múnich",
+        "Viena",
+        "Hamburgo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Berlín es la capital de Alemania. Viena es la capital de Austria."
+    },
+    {
+      "id": "es-3-142",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el río más largo que nace y desemboca en España?",
+      "options": [
+        "El Ebro",
+        "El Tajo",
+        "El Guadalquivir",
+        "El Duero"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Ebro nace en Cantabria y desemboca en el Mediterráneo. El Tajo y el Duero acaban en Portugal."
+    },
+    {
+      "id": "es-3-143",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué océano están las islas Canarias?",
+      "options": [
+        "Atlántico",
+        "Pacífico",
+        "Índico",
+        "Ártico"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las islas Canarias están en el océano Atlántico, frente a la costa de África."
+    },
+    {
+      "id": "es-3-144",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Portugal?",
+      "options": [
+        "Lisboa",
+        "Oporto",
+        "Coímbra",
+        "Faro"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lisboa es la capital de Portugal y está junto a la desembocadura del río Tajo."
+    },
+    {
+      "id": "es-3-145",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización construyó Machu Picchu?",
+      "options": [
+        "La inca",
+        "La azteca",
+        "La maya",
+        "La romana"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los incas construyeron Machu Picchu en los Andes de Perú, en el siglo XV."
+    },
+    {
+      "id": "es-3-146",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué siglo llegó Colón a América?",
+      "options": [
+        "En el siglo XV",
+        "En el siglo XVI",
+        "En el siglo XIV",
+        "En el siglo XII"
+      ],
+      "correctIndex": 0,
+      "explanation": "Colón llegó en 1492, y los años 1401 a 1500 forman el siglo XV."
+    },
+    {
+      "id": "es-3-147",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué ciudad fue la capital del Imperio romano?",
+      "options": [
+        "Roma",
+        "Atenas",
+        "Cartago",
+        "Alejandría"
+      ],
+      "correctIndex": 0,
+      "explanation": "Roma fue el centro del Imperio; de ahí viene su nombre."
+    },
+    {
+      "id": "es-3-148",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién escribió «Romeo y Julieta»?",
+      "options": [
+        "William Shakespeare",
+        "Miguel de Cervantes",
+        "Lope de Vega",
+        "Charles Dickens"
+      ],
+      "correctIndex": 0,
+      "explanation": "Shakespeare escribió esta obra de teatro a finales del siglo XVI."
+    },
+    {
+      "id": "es-3-149",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué pintor español pintó «Las meninas»?",
+      "options": [
+        "Diego Velázquez",
+        "Francisco de Goya",
+        "Pablo Picasso",
+        "Salvador Dalí"
+      ],
+      "correctIndex": 0,
+      "explanation": "Velázquez la pintó en 1656; está en el Museo del Prado de Madrid."
+    },
+    {
+      "id": "es-3-150",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos lados tiene un hexágono?",
+      "options": [
+        "6",
+        "5",
+        "7",
+        "8"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hexa» significa seis: el hexágono tiene seis lados, como las celdas de una colmena."
     }
   ]
 }

@@ -142,6 +142,846 @@
       ],
       "correctIndex": 0,
       "explanation": "Al juntar 3 y 2 manzanas, sumamos: 3 + 2 = 5."
+    },
+    {
+      "id": "es-1-011",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el objeto con el que te lavas los dientes?",
+      "options": [
+        "Cepillo",
+        "Cepiyo",
+        "Zepillo",
+        "Sepillo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cepillo» se escribe con c y con ll."
+    },
+    {
+      "id": "es-1-012",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el insecto que hace miel?",
+      "options": [
+        "Abeja",
+        "Aveja",
+        "Abega",
+        "Abexa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Abeja» se escribe con b y con j."
+    },
+    {
+      "id": "es-1-013",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el lugar donde estudian los niños?",
+      "options": [
+        "Escuela",
+        "Escuéla",
+        "Ezcuela",
+        "Eskuela"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Escuela» se escribe con s y c, y no lleva tilde."
+    },
+    {
+      "id": "es-1-014",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la fruta roja con semillitas por fuera?",
+      "options": [
+        "Fresa",
+        "Freza",
+        "Fressa",
+        "Frasa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Fresa» se escribe con una sola s."
+    },
+    {
+      "id": "es-1-015",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el número 7 con letras?",
+      "options": [
+        "Siete",
+        "Ciete",
+        "Sete",
+        "Siette"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Siete» empieza por s y lleva una sola t."
+    },
+    {
+      "id": "es-1-016",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el ave que dice «pío, pío»?",
+      "options": [
+        "Pájaro",
+        "Pajáro",
+        "Pájarro",
+        "Págaro"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Pájaro» lleva tilde en la primera a, una j y una sola r."
+    },
+    {
+      "id": "es-1-017",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el mueble donde se sientan varias personas?",
+      "options": [
+        "Sofá",
+        "Sofa",
+        "Sófa",
+        "Soffá"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sofá» suena fuerte al final y termina en vocal, por eso lleva tilde."
+    },
+    {
+      "id": "es-1-018",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal que ruge y tiene melena?",
+      "options": [
+        "León",
+        "Leon",
+        "Léon",
+        "Leónn"
+      ],
+      "correctIndex": 0,
+      "explanation": "«León» suena fuerte al final y termina en n: lleva tilde en la o."
+    },
+    {
+      "id": "es-1-019",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animalito que come queso?",
+      "options": [
+        "Ratón",
+        "Raton",
+        "Rátón",
+        "Ráton"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ratón» suena fuerte en la o y termina en n, así que lleva tilde ahí."
+    },
+    {
+      "id": "es-1-020",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «La pelota ___ en el suelo.»",
+      "options": [
+        "bota",
+        "vota",
+        "bote",
+        "vote"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Bota» viene de botar, saltar; «vota» viene de votar, elegir."
+    },
+    {
+      "id": "es-1-021",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «En la granja hay una ___ blanca.»",
+      "options": [
+        "vaca",
+        "baca",
+        "bacca",
+        "vacca"
+      ],
+      "correctIndex": 0,
+      "explanation": "La «vaca», el animal, va con v; la «baca» es la parte de arriba del coche."
+    },
+    {
+      "id": "es-1-022",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «¡___, abuela! ¿Cómo estás?»",
+      "options": [
+        "Hola",
+        "Ola",
+        "Olla",
+        "Hora"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hola», el saludo, se escribe con h; «ola» es la del mar."
+    },
+    {
+      "id": "es-1-023",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué palabra está mal escrita?",
+      "options": [
+        "Gerra",
+        "Guerra",
+        "Gato",
+        "Guitarra"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se escribe «guerra»: para que la g suene suave delante de la e, ponemos gu."
+    },
+    {
+      "id": "es-1-024",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase hay un error?",
+      "options": [
+        "Los perro ladran",
+        "Los perros ladran",
+        "El perro ladra",
+        "Mi perro ladra"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Los» indica que son varios, así que debe ir con «perros»."
+    },
+    {
+      "id": "es-1-025",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué palabra tiene una falta de ortografía?",
+      "options": [
+        "Girafa",
+        "Jirafa",
+        "Gigante",
+        "Jarra"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se escribe «jirafa», con j."
+    },
+    {
+      "id": "es-1-026",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Mañana ___ al cine con mis primos.»",
+      "options": [
+        "iré",
+        "fui",
+        "fue",
+        "iba"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Mañana» indica futuro, por eso decimos «iré»."
+    },
+    {
+      "id": "es-1-027",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Las niñas ___ en el parque.»",
+      "options": [
+        "juegan",
+        "juega",
+        "jugamos",
+        "juego"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Las niñas» son varias, así que el verbo va en plural: «juegan»."
+    },
+    {
+      "id": "es-1-028",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me pongo el abrigo porque hace ___.»",
+      "options": [
+        "frío",
+        "calor",
+        "bueno",
+        "sol"
+      ],
+      "correctIndex": 0,
+      "explanation": "El abrigo nos protege del frío."
+    },
+    {
+      "id": "es-1-029",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Un ___ de agua, por favor.»",
+      "options": [
+        "vaso",
+        "plato",
+        "tenedor",
+        "cuchillo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El agua se bebe en un vaso."
+    },
+    {
+      "id": "es-1-030",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer comimos ___ manzana muy rica.»",
+      "options": [
+        "una",
+        "un",
+        "unos",
+        "unas"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Manzana» es femenina y es solo una: «una manzana»."
+    },
+    {
+      "id": "es-1-031",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «día»?",
+      "options": [
+        "Noche",
+        "Tarde",
+        "Sol",
+        "Mañana"
+      ],
+      "correctIndex": 0,
+      "explanation": "El día y la noche son opuestos: cuando acaba uno empieza el otro."
+    },
+    {
+      "id": "es-1-032",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «contento»?",
+      "options": [
+        "Feliz",
+        "Triste",
+        "Enfadado",
+        "Cansado"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Contento» y «feliz» son sinónimos: significan casi lo mismo."
+    },
+    {
+      "id": "es-1-033",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «abrir»?",
+      "options": [
+        "Cerrar",
+        "Entrar",
+        "Salir",
+        "Mirar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Abrimos una puerta para pasar y la cerramos después."
+    },
+    {
+      "id": "es-1-034",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «bonito»?",
+      "options": [
+        "Precioso",
+        "Feo",
+        "Pequeño",
+        "Viejo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Bonito» y «precioso» son sinónimos; «feo» es su contrario."
+    },
+    {
+      "id": "es-1-035",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «caliente»?",
+      "options": [
+        "Frío",
+        "Rojo",
+        "Duro",
+        "Dulce"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Caliente» y «frío» son antónimos."
+    },
+    {
+      "id": "es-1-036",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es una biblioteca?",
+      "options": [
+        "Un lugar con muchos libros",
+        "Un lugar para nadar",
+        "Una tienda de ropa",
+        "Un tipo de fruta"
+      ],
+      "correctIndex": 0,
+      "explanation": "En la biblioteca puedes leer libros y llevártelos prestados."
+    },
+    {
+      "id": "es-1-037",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué hace un panadero?",
+      "options": [
+        "Hace pan",
+        "Arregla coches",
+        "Cura animales",
+        "Apaga fuegos"
+      ],
+      "correctIndex": 0,
+      "explanation": "El panadero hace pan; quien cura animales es el veterinario."
+    },
+    {
+      "id": "es-1-038",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un cachorro?",
+      "options": [
+        "Un animal bebé, como un perrito",
+        "Un perro muy viejo",
+        "Un juguete de madera",
+        "Un tipo de pájaro"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un cachorro es la cría de algunos animales, como el perro o el león."
+    },
+    {
+      "id": "es-1-039",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el dicho: «Ojos que no ven…»",
+      "options": [
+        "corazón que no siente",
+        "boca que no habla",
+        "manos que no tocan",
+        "pies que no corren"
+      ],
+      "correctIndex": 0,
+      "explanation": "Significa que lo que no sabemos no nos hace sufrir."
+    },
+    {
+      "id": "es-1-040",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Perro es a ladrar como gato es a…",
+      "options": [
+        "Maullar",
+        "Ladrar",
+        "Rugir",
+        "Cantar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada animal con su sonido: el perro ladra y el gato maúlla."
+    },
+    {
+      "id": "es-1-041",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Mano es a guante como pie es a…",
+      "options": [
+        "Zapato",
+        "Sombrero",
+        "Bufanda",
+        "Pantalón"
+      ],
+      "correctIndex": 0,
+      "explanation": "El guante cubre la mano y el zapato cubre el pie."
+    },
+    {
+      "id": "es-1-042",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Día es a sol como noche es a…",
+      "options": [
+        "Luna",
+        "Lluvia",
+        "Nube",
+        "Viento"
+      ],
+      "correctIndex": 0,
+      "explanation": "De día vemos el sol y de noche, la luna."
+    },
+    {
+      "id": "es-1-043",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es una fruta? Pera, plátano, zanahoria, uva.",
+      "options": [
+        "Zanahoria",
+        "Pera",
+        "Plátano",
+        "Uva"
+      ],
+      "correctIndex": 0,
+      "explanation": "La zanahoria es una hortaliza; las demás son frutas."
+    },
+    {
+      "id": "es-1-044",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un color? Rojo, azul, mesa, verde.",
+      "options": [
+        "Mesa",
+        "Rojo",
+        "Azul",
+        "Verde"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rojo, azul y verde son colores; la mesa es un mueble."
+    },
+    {
+      "id": "es-1-045",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal no vive en el agua? Pez, delfín, pulpo, caballo.",
+      "options": [
+        "Caballo",
+        "Pez",
+        "Delfín",
+        "Pulpo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El caballo vive en tierra; los otros viven en el mar."
+    },
+    {
+      "id": "es-1-046",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 2, 4, 6, 8, …",
+      "options": [
+        "10",
+        "9",
+        "12",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es 2 más que el anterior: 8 + 2 = 10."
+    },
+    {
+      "id": "es-1-047",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué mes viene después de enero?",
+      "options": [
+        "Febrero",
+        "Marzo",
+        "Diciembre",
+        "Abril"
+      ],
+      "correctIndex": 0,
+      "explanation": "El año empieza así: enero, febrero, marzo, abril..."
+    },
+    {
+      "id": "es-1-048",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? A, B, C, D, …",
+      "options": [
+        "E",
+        "F",
+        "G",
+        "H"
+      ],
+      "correctIndex": 0,
+      "explanation": "Es el orden del abecedario: A, B, C, D, E."
+    },
+    {
+      "id": "es-1-049",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las letras A, S, C, A y forma el lugar donde vives.",
+      "options": [
+        "Casa",
+        "Saca",
+        "Cosa",
+        "Caso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con C, A, S y A se forma «casa». «Cosa» y «caso» llevan una o."
+    },
+    {
+      "id": "es-1-050",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se esconde al final de «GIRASOL»?",
+      "options": [
+        "Sol",
+        "Mar",
+        "Pan",
+        "Luz"
+      ],
+      "correctIndex": 0,
+      "explanation": "GIRA-SOL: la palabra termina en «sol»."
+    },
+    {
+      "id": "es-1-051",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se esconde al principio de «MARIPOSA»?",
+      "options": [
+        "Mar",
+        "Sol",
+        "Pan",
+        "Ola"
+      ],
+      "correctIndex": 0,
+      "explanation": "MAR-IPOSA: las tres primeras letras forman «mar»."
+    },
+    {
+      "id": "es-1-052",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las sílabas para formar una fruta: TA · PLÁ · NO",
+      "options": [
+        "Plátano",
+        "Paleta",
+        "Plancha",
+        "Tapón"
+      ],
+      "correctIndex": 0,
+      "explanation": "PLÁ-TA-NO: con esas tres sílabas se forma «plátano»."
+    },
+    {
+      "id": "es-1-053",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «mariposa»?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ma-ri-po-sa: tiene cuatro sílabas."
+    },
+    {
+      "id": "es-1-054",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Blanca por dentro, verde por fuera; si quieres que te lo diga, espera. ¿Qué es?",
+      "options": [
+        "La pera",
+        "La manzana",
+        "El melón",
+        "La uva"
+      ],
+      "correctIndex": 0,
+      "explanation": "La respuesta se esconde en la última palabra: es-PERA."
+    },
+    {
+      "id": "es-1-055",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tiene dientes y no come, tiene barbas y no es hombre. ¿Qué es?",
+      "options": [
+        "El ajo",
+        "El peine",
+        "La cebolla",
+        "El tenedor"
+      ],
+      "correctIndex": 0,
+      "explanation": "La cabeza de ajo tiene «dientes» y unas raíces finas que parecen barbas."
+    },
+    {
+      "id": "es-1-056",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Vuela sin alas, silba sin boca y no se ve. ¿Qué es?",
+      "options": [
+        "El viento",
+        "El pájaro",
+        "El avión",
+        "La lluvia"
+      ],
+      "correctIndex": 0,
+      "explanation": "El viento mueve las cosas y hace ruido, pero no lo vemos."
+    },
+    {
+      "id": "es-1-057",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los gatos tienen bigotes. Misi es un gato. ¿Qué sabemos seguro?",
+      "options": [
+        "Misi tiene bigotes",
+        "Misi es negro",
+        "Misi es pequeño",
+        "Misi duerme mucho"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si todos los gatos tienen bigotes y Misi es un gato, Misi también los tiene."
+    },
+    {
+      "id": "es-1-058",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Hay 10 caramelos y te comes 4. ¿Cuántos quedan?",
+      "options": [
+        "6",
+        "5",
+        "14",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quitamos 4 de 10: 10 − 4 = 6."
+    },
+    {
+      "id": "es-1-059",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas patas tiene una araña?",
+      "options": [
+        "8",
+        "6",
+        "4",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las arañas tienen 8 patas; los insectos, como la hormiga, tienen 6."
+    },
+    {
+      "id": "es-1-060",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué necesitan las plantas para crecer?",
+      "options": [
+        "Agua y luz",
+        "Solo oscuridad",
+        "Leche",
+        "Arena y sal"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las plantas necesitan agua, luz y aire para fabricar su alimento."
+    },
+    {
+      "id": "es-1-061",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos animales es un mamífero?",
+      "options": [
+        "El delfín",
+        "El tiburón",
+        "La trucha",
+        "El pulpo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El delfín respira aire y alimenta a sus crías con leche, como los mamíferos."
+    },
+    {
+      "id": "es-1-062",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué se convierte el agua cuando se congela?",
+      "options": [
+        "En hielo",
+        "En vapor",
+        "En arena",
+        "En nube"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con mucho frío el agua se vuelve sólida: es el hielo."
+    },
+    {
+      "id": "es-1-063",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llama una gran extensión de agua salada?",
+      "options": [
+        "Mar",
+        "Río",
+        "Lago",
+        "Charco"
+      ],
+      "correctIndex": 0,
+      "explanation": "El agua de los mares es salada; la de los ríos, normalmente, es dulce."
+    },
+    {
+      "id": "es-1-064",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Dónde hace más frío?",
+      "options": [
+        "En el Polo Norte",
+        "En el desierto del Sáhara",
+        "En una playa tropical",
+        "En el ecuador"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Polo Norte está cubierto de hielo casi todo el año."
+    },
+    {
+      "id": "es-1-065",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de España?",
+      "options": [
+        "Madrid",
+        "Barcelona",
+        "Sevilla",
+        "Valencia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Madrid es la capital de España y está en el centro del país."
+    },
+    {
+      "id": "es-1-066",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Quiénes vivían en cuevas y cazaban mamuts?",
+      "options": [
+        "Las personas prehistóricas",
+        "Los romanos",
+        "Los piratas",
+        "Los astronautas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hace miles de años, en la Prehistoria, muchas personas vivían en cuevas."
+    },
+    {
+      "id": "es-1-067",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué usaban los caballeros medievales para protegerse?",
+      "options": [
+        "Una armadura",
+        "Un traje de baño",
+        "Un paraguas",
+        "Una mochila"
+      ],
+      "correctIndex": 0,
+      "explanation": "La armadura era de metal y protegía el cuerpo en las batallas."
+    },
+    {
+      "id": "es-1-068",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos días tiene una semana?",
+      "options": [
+        "7",
+        "5",
+        "10",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "La semana tiene 7 días, de lunes a domingo."
+    },
+    {
+      "id": "es-1-069",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿De qué color es el cielo en un día despejado?",
+      "options": [
+        "Azul",
+        "Verde",
+        "Rojo",
+        "Morado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sin nubes, el cielo se ve azul."
+    },
+    {
+      "id": "es-1-070",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué instrumento tiene teclas blancas y negras?",
+      "options": [
+        "El piano",
+        "La guitarra",
+        "El tambor",
+        "La flauta"
+      ],
+      "correctIndex": 0,
+      "explanation": "El piano tiene teclas; la guitarra tiene cuerdas."
     }
   ]
 }

@@ -1122,6 +1122,986 @@
       ],
       "correctIndex": 0,
       "explanation": "Rojo, naranja, amarillo, verde, azul, añil y violeta."
+    },
+    {
+      "id": "es-2-081",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal que salta y lleva a su cría en una bolsa?",
+      "options": [
+        "Canguro",
+        "Kanguro",
+        "Cangúro",
+        "Canguró"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Canguro» se escribe con c y no lleva tilde."
+    },
+    {
+      "id": "es-2-082",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el aparato de la cocina que mantiene frío lo que comemos?",
+      "options": [
+        "Nevera",
+        "Nebera",
+        "Nevéra",
+        "Nebéra"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Nevera» viene de «nieve» y se escribe con v."
+    },
+    {
+      "id": "es-2-083",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe lo contrario de «visible»?",
+      "options": [
+        "Invisible",
+        "Imvisible",
+        "Inbisible",
+        "Imbisible"
+      ],
+      "correctIndex": 0,
+      "explanation": "Antes de v se escribe n, nunca m: «invisible»."
+    },
+    {
+      "id": "es-2-084",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe lo que pone una gallina?",
+      "options": [
+        "Huevo",
+        "Uevo",
+        "Güevo",
+        "Huebo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras que empiezan por «hue» llevan h: huevo, hueso, huerta."
+    },
+    {
+      "id": "es-2-085",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Voy a ___ las hojas del suelo.»",
+      "options": [
+        "recoger",
+        "recojer",
+        "recojér",
+        "rrecoger"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los verbos acabados en -ger se escriben con g: recoger, proteger, coger."
+    },
+    {
+      "id": "es-2-086",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el ave de la granja que canta al amanecer?",
+      "options": [
+        "Gallo",
+        "Gayo",
+        "Galo",
+        "Gálo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Gallo» se escribe con ll."
+    },
+    {
+      "id": "es-2-087",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal parecido al caballo, con orejas largas?",
+      "options": [
+        "Burro",
+        "Buro",
+        "Vurro",
+        "Burrro"
+      ],
+      "correctIndex": 0,
+      "explanation": "Entre vocales, el sonido fuerte de la r se escribe con rr: «burro»."
+    },
+    {
+      "id": "es-2-088",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es aguda (con la fuerza en la última sílaba)?",
+      "options": [
+        "Balón",
+        "Mesa",
+        "Lápiz",
+        "Pájaro"
+      ],
+      "correctIndex": 0,
+      "explanation": "ba-LÓN lleva la fuerza en la última sílaba."
+    },
+    {
+      "id": "es-2-089",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es llana (con la fuerza en la penúltima sílaba)?",
+      "options": [
+        "Casa",
+        "Sofá",
+        "Murciélago",
+        "Camión"
+      ],
+      "correctIndex": 0,
+      "explanation": "CA-sa lleva la fuerza en la penúltima sílaba."
+    },
+    {
+      "id": "es-2-090",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el ave nocturna que dice «uh, uh»?",
+      "options": [
+        "Búho",
+        "Buho",
+        "Buhó",
+        "Bujo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Búho» lleva tilde en la u para que la u y la o se pronuncien separadas."
+    },
+    {
+      "id": "es-2-091",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal que vuela de noche y duerme boca abajo?",
+      "options": [
+        "Murciélago",
+        "Murcielago",
+        "Murciélagó",
+        "Múrcielago"
+      ],
+      "correctIndex": 0,
+      "explanation": "Es esdrújula (mur-CIÉ-la-go) y todas las esdrújulas llevan tilde."
+    },
+    {
+      "id": "es-2-092",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Hay que ___ el queso para la pasta.»",
+      "options": [
+        "rallar",
+        "rayar",
+        "rayár",
+        "ralar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Rallar» es desmenuzar con el rallador; «rayar» es hacer rayas."
+    },
+    {
+      "id": "es-2-093",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Las vacas comen ___ en el prado.»",
+      "options": [
+        "hierba",
+        "hierva",
+        "yerva",
+        "hiérba"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hierba» es la planta; «hierva» viene del verbo hervir."
+    },
+    {
+      "id": "es-2-094",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «¿___ vas a venir a la fiesta?»",
+      "options": [
+        "Tú",
+        "Tu",
+        "Te",
+        "Ti"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Tú», el pronombre, lleva tilde; «tu» sin tilde va delante de un nombre: «tu casa»."
+    },
+    {
+      "id": "es-2-095",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Esta mochila es para ___.»",
+      "options": [
+        "mí",
+        "mi",
+        "me",
+        "yo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Mí» con tilde es pronombre («para mí»); «mi» sin tilde va delante de un nombre."
+    },
+    {
+      "id": "es-2-096",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase lleva un error de concordancia?",
+      "options": [
+        "Las casas es grandes",
+        "Las casas son grandes",
+        "La casa es grande",
+        "Mi casa es grande"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Las casas» es plural, así que el verbo debe ser «son»."
+    },
+    {
+      "id": "es-2-097",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Señala la palabra con falta de ortografía.",
+      "options": [
+        "Gelado",
+        "Helado",
+        "Hielo",
+        "Hola"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Helado» se escribe con h, igual que «hielo»."
+    },
+    {
+      "id": "es-2-098",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase falta una mayúscula?",
+      "options": [
+        "Vivo en sevilla",
+        "Vivo en Madrid",
+        "Me gusta el mar",
+        "Tengo un perro"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sevilla» es el nombre propio de una ciudad: va con mayúscula."
+    },
+    {
+      "id": "es-2-099",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Cuál de estas frases está mal escrita?",
+      "options": [
+        "Ayer fuistes al parque",
+        "Ayer fuiste al parque",
+        "Ayer fuimos al parque",
+        "Ayer fueron al parque"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice «fuiste», sin s al final. «Fuistes» es un error muy frecuente."
+    },
+    {
+      "id": "es-2-100",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Nosotros ___ al fútbol todos los sábados.»",
+      "options": [
+        "jugamos",
+        "juegan",
+        "juego",
+        "jugáis"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con «nosotros» el verbo termina en -mos: «jugamos»."
+    },
+    {
+      "id": "es-2-101",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El agua ___ muy fría esta mañana.»",
+      "options": [
+        "estaba",
+        "estaban",
+        "estábamos",
+        "estás"
+      ],
+      "correctIndex": 0,
+      "explanation": "«El agua» es singular, así que el verbo también: «estaba»."
+    },
+    {
+      "id": "es-2-102",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Mi abuela me regaló ___ libro muy bonito.»",
+      "options": [
+        "un",
+        "una",
+        "unos",
+        "unas"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Libro» es masculino y singular: «un libro»."
+    },
+    {
+      "id": "es-2-103",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si estudias, ___ el examen.»",
+      "options": [
+        "aprobarás",
+        "aprobaste",
+        "aprobabas",
+        "apruebes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si la condición puede cumplirse, la consecuencia va en futuro: «aprobarás»."
+    },
+    {
+      "id": "es-2-104",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «enfadado»?",
+      "options": [
+        "Molesto",
+        "Tranquilo",
+        "Contento",
+        "Dormido"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Enfadado» y «molesto» son sinónimos."
+    },
+    {
+      "id": "es-2-105",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «subir»?",
+      "options": [
+        "Bajar",
+        "Saltar",
+        "Correr",
+        "Volar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Subir» y «bajar» son antónimos."
+    },
+    {
+      "id": "es-2-106",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «hablar»?",
+      "options": [
+        "Conversar",
+        "Callar",
+        "Escuchar",
+        "Dormir"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hablar» y «conversar» son sinónimos; «callar» es su contrario."
+    },
+    {
+      "id": "es-2-107",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «antiguo»?",
+      "options": [
+        "Moderno",
+        "Viejo",
+        "Grande",
+        "Bonito"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Antiguo» y «moderno» son antónimos; «viejo» es casi un sinónimo."
+    },
+    {
+      "id": "es-2-108",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un pentagrama?",
+      "options": [
+        "Las cinco líneas donde se escribe música",
+        "Un dibujo de cinco colores",
+        "Un polígono de cinco lados",
+        "Un poema de cinco versos"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el pentagrama se colocan las notas musicales. El polígono de cinco lados es el pentágono."
+    },
+    {
+      "id": "es-2-109",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «diminuto»?",
+      "options": [
+        "Muy pequeño",
+        "Muy rápido",
+        "Muy oscuro",
+        "Muy pesado"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Diminuto» es lo contrario de «enorme»."
+    },
+    {
+      "id": "es-2-110",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un veterinario?",
+      "options": [
+        "Médico de animales",
+        "Profesor de música",
+        "Conductor de tren",
+        "Cocinero de hotel"
+      ],
+      "correctIndex": 0,
+      "explanation": "El veterinario cuida la salud de los animales."
+    },
+    {
+      "id": "es-2-111",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «En boca cerrada…»",
+      "options": [
+        "no entran moscas",
+        "no se habla",
+        "hay silencio",
+        "no hay dientes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aconseja callar a tiempo para no meterse en problemas."
+    },
+    {
+      "id": "es-2-112",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «Dime con quién andas…»",
+      "options": [
+        "y te diré quién eres",
+        "y te diré dónde vas",
+        "y te diré qué comes",
+        "y te diré la hora"
+      ],
+      "correctIndex": 0,
+      "explanation": "Significa que nuestros amigos dicen mucho de cómo somos."
+    },
+    {
+      "id": "es-2-113",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Rueda es a coche como ala es a…",
+      "options": [
+        "Avión",
+        "Barco",
+        "Tren",
+        "Bicicleta"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las ruedas mueven el coche por la carretera y las alas sostienen el avión en el aire."
+    },
+    {
+      "id": "es-2-114",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Hambre es a comer como sed es a…",
+      "options": [
+        "Beber",
+        "Dormir",
+        "Correr",
+        "Leer"
+      ],
+      "correctIndex": 0,
+      "explanation": "Comemos cuando tenemos hambre y bebemos cuando tenemos sed."
+    },
+    {
+      "id": "es-2-115",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Libro es a páginas como árbol es a…",
+      "options": [
+        "Hojas",
+        "Pájaros",
+        "Bosque",
+        "Sombra"
+      ],
+      "correctIndex": 0,
+      "explanation": "El libro está hecho de páginas, que también se llaman hojas, y el árbol tiene hojas."
+    },
+    {
+      "id": "es-2-116",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no pertenece al grupo? Lunes, martes, enero, viernes.",
+      "options": [
+        "Enero",
+        "Lunes",
+        "Martes",
+        "Viernes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Enero es un mes; los demás son días de la semana."
+    },
+    {
+      "id": "es-2-117",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal no es un ave? Águila, pingüino, murciélago, gallina.",
+      "options": [
+        "Murciélago",
+        "Águila",
+        "Pingüino",
+        "Gallina"
+      ],
+      "correctIndex": 0,
+      "explanation": "El murciélago vuela, pero es un mamífero. El pingüino es un ave aunque no vuele."
+    },
+    {
+      "id": "es-2-118",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un adjetivo? Alto, feliz, correr, verde.",
+      "options": [
+        "Correr",
+        "Alto",
+        "Feliz",
+        "Verde"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Correr» es un verbo; los adjetivos dicen cómo es algo."
+    },
+    {
+      "id": "es-2-119",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 3, 6, 9, 12, …",
+      "options": [
+        "15",
+        "14",
+        "16",
+        "18"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se suma 3 cada vez: 12 + 3 = 15."
+    },
+    {
+      "id": "es-2-120",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 20, 18, 16, 14, …",
+      "options": [
+        "12",
+        "10",
+        "13",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se resta 2 cada vez: 14 − 2 = 12."
+    },
+    {
+      "id": "es-2-121",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué mes va justo antes de junio?",
+      "options": [
+        "Mayo",
+        "Julio",
+        "Abril",
+        "Agosto"
+      ],
+      "correctIndex": 0,
+      "explanation": "El orden es abril, mayo, junio, julio."
+    },
+    {
+      "id": "es-2-122",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «LAGO»?",
+      "options": [
+        "Algo",
+        "Gato",
+        "Loco",
+        "Gala"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Algo» usa las mismas letras que «lago»: L, A, G y O."
+    },
+    {
+      "id": "es-2-123",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «MORA»?",
+      "options": [
+        "Ramo",
+        "Remo",
+        "Mapa",
+        "Mesa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ramo» usa exactamente las letras de «mora»: M, O, R y A."
+    },
+    {
+      "id": "es-2-124",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se esconde dentro de «PARAGUAS»?",
+      "options": [
+        "Agua",
+        "Mar",
+        "Sol",
+        "Río"
+      ],
+      "correctIndex": 0,
+      "explanation": "PAR-AGUA-S: en el centro está «agua»."
+    },
+    {
+      "id": "es-2-125",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se esconde dentro de «LEONERA»?",
+      "options": [
+        "León",
+        "Oso",
+        "Lobo",
+        "Gato"
+      ],
+      "correctIndex": 0,
+      "explanation": "LEON-ERA: dentro está «león»."
+    },
+    {
+      "id": "es-2-126",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las sílabas para formar una fruta: DÍ · A · SAN",
+      "options": [
+        "Sandía",
+        "Sardina",
+        "Salida",
+        "Sanidad"
+      ],
+      "correctIndex": 0,
+      "explanation": "SAN-DÍ-A: con esas tres sílabas se forma «sandía»."
+    },
+    {
+      "id": "es-2-127",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «chocolate»?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cho-co-la-te: tiene cuatro sílabas."
+    },
+    {
+      "id": "es-2-128",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Redondo, redondo, barril sin fondo. ¿Qué es?",
+      "options": [
+        "El anillo",
+        "El barril",
+        "La rueda",
+        "El tambor"
+      ],
+      "correctIndex": 0,
+      "explanation": "El anillo es redondo y está abierto por los dos lados, como un barril sin fondo."
+    },
+    {
+      "id": "es-2-129",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Lana sube, lana baja. ¿Qué es?",
+      "options": [
+        "La navaja",
+        "La oveja",
+        "El ascensor",
+        "La escalera"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dicho deprisa, «lana baja» suena como «la navaja»."
+    },
+    {
+      "id": "es-2-130",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tengo hojas sin ser árbol y te hablo sin tener voz. ¿Qué soy?",
+      "options": [
+        "El libro",
+        "La radio",
+        "El teléfono",
+        "La planta"
+      ],
+      "correctIndex": 0,
+      "explanation": "El libro tiene hojas de papel y nos «habla» con lo que está escrito."
+    },
+    {
+      "id": "es-2-131",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los peces viven en el agua. Burbuja es un pez. ¿Dónde vive Burbuja?",
+      "options": [
+        "En el agua",
+        "En un árbol",
+        "En el desierto",
+        "En una cueva"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si todos los peces viven en el agua y Burbuja es un pez, vive en el agua."
+    },
+    {
+      "id": "es-2-132",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Ana tiene más cromos que Luis. Luis tiene más que Eva. ¿Quién tiene menos?",
+      "options": [
+        "Eva",
+        "Ana",
+        "Luis",
+        "No se sabe"
+      ],
+      "correctIndex": 0,
+      "explanation": "De más a menos cromos: Ana, Luis y Eva."
+    },
+    {
+      "id": "es-2-133",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si ayer fue viernes, ¿qué día será mañana?",
+      "options": [
+        "Domingo",
+        "Sábado",
+        "Lunes",
+        "Jueves"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si ayer fue viernes, hoy es sábado y mañana será domingo."
+    },
+    {
+      "id": "es-2-134",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un tren tiene 5 vagones con 10 personas en cada uno. ¿Cuántas personas viajan?",
+      "options": [
+        "50",
+        "15",
+        "40",
+        "60"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son 10 personas repetidas 5 veces: 5 × 10 = 50."
+    },
+    {
+      "id": "es-2-135",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Tienes 20 € y gastas 7 € en un libro. ¿Cuánto dinero te queda?",
+      "options": [
+        "13 €",
+        "27 €",
+        "12 €",
+        "14 €"
+      ],
+      "correctIndex": 0,
+      "explanation": "Restamos lo gastado: 20 − 7 = 13 €."
+    },
+    {
+      "id": "es-2-136",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué órganos usamos para respirar?",
+      "options": [
+        "Los pulmones",
+        "El corazón",
+        "El estómago",
+        "Los riñones"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los pulmones toman el oxígeno del aire que respiramos."
+    },
+    {
+      "id": "es-2-137",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la estrella más cercana a la Tierra?",
+      "options": [
+        "El Sol",
+        "La Luna",
+        "Marte",
+        "La Estrella Polar"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Sol es una estrella. La Luna es un satélite y Marte, un planeta."
+    },
+    {
+      "id": "es-2-138",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos animales es un reptil?",
+      "options": [
+        "La serpiente",
+        "La rana",
+        "El delfín",
+        "El loro"
+      ],
+      "correctIndex": 0,
+      "explanation": "La serpiente es un reptil. La rana es un anfibio; el delfín, un mamífero, y el loro, un ave."
+    },
+    {
+      "id": "es-2-139",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué come un animal herbívoro?",
+      "options": [
+        "Plantas",
+        "Carne",
+        "Insectos",
+        "Peces"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los herbívoros, como la vaca o el conejo, solo comen plantas."
+    },
+    {
+      "id": "es-2-140",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué continente está España?",
+      "options": [
+        "Europa",
+        "África",
+        "Asia",
+        "América"
+      ],
+      "correctIndex": 0,
+      "explanation": "España está en el suroeste de Europa."
+    },
+    {
+      "id": "es-2-141",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el país más grande del mundo?",
+      "options": [
+        "Rusia",
+        "China",
+        "Estados Unidos",
+        "Brasil"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rusia es el país más extenso: ocupa parte de Europa y de Asia."
+    },
+    {
+      "id": "es-2-142",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué mar baña la costa de Alicante?",
+      "options": [
+        "El Mediterráneo",
+        "El Cantábrico",
+        "El mar del Norte",
+        "El mar Rojo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Alicante está en la costa este de España, junto al mar Mediterráneo."
+    },
+    {
+      "id": "es-2-143",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llama un lugar con muy poca lluvia, mucha arena y calor?",
+      "options": [
+        "Desierto",
+        "Selva",
+        "Tundra",
+        "Pantano"
+      ],
+      "correctIndex": 0,
+      "explanation": "En los desiertos casi nunca llueve, como en el Sáhara."
+    },
+    {
+      "id": "es-2-144",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué construyeron los antiguos chinos para protegerse de los invasores?",
+      "options": [
+        "La Gran Muralla",
+        "Las pirámides",
+        "El Coliseo",
+        "La Torre de Pisa"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Gran Muralla China mide miles de kilómetros."
+    },
+    {
+      "id": "es-2-145",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué invento hizo posible el tren en el siglo XIX?",
+      "options": [
+        "La máquina de vapor",
+        "La rueda",
+        "El avión",
+        "El ordenador"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las primeras locomotoras funcionaban con máquinas de vapor."
+    },
+    {
+      "id": "es-2-146",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué pueblo del norte de Europa navegaba en barcos llamados drakkar?",
+      "options": [
+        "Los vikingos",
+        "Los romanos",
+        "Los egipcios",
+        "Los aztecas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los vikingos eran grandes navegantes de Escandinavia."
+    },
+    {
+      "id": "es-2-147",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización construyó el Coliseo?",
+      "options": [
+        "La romana",
+        "La griega",
+        "La egipcia",
+        "La china"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Coliseo está en Roma y se construyó hace casi 2.000 años."
+    },
+    {
+      "id": "es-2-148",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos meses tiene un año?",
+      "options": [
+        "12",
+        "10",
+        "11",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "El año tiene 12 meses, de enero a diciembre."
+    },
+    {
+      "id": "es-2-149",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué deporte se juega con raqueta y una pelota amarilla que pasa sobre una red?",
+      "options": [
+        "El tenis",
+        "El fútbol",
+        "El baloncesto",
+        "El golf"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el tenis se golpea la pelota con la raqueta por encima de la red."
+    },
+    {
+      "id": "es-2-150",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué ave es el símbolo de la paz?",
+      "options": [
+        "La paloma",
+        "El águila",
+        "El búho",
+        "El loro"
+      ],
+      "correctIndex": 0,
+      "explanation": "La paloma blanca se usa como símbolo de la paz."
     }
   ]
 }

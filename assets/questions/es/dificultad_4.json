@@ -1122,6 +1122,986 @@
       ],
       "correctIndex": 0,
       "explanation": "Gaudí trabajó en ella desde 1883 hasta su muerte en 1926."
+    },
+    {
+      "id": "es-4-081",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la capacidad de moverse o desplazarse?",
+      "options": [
+        "Movilidad",
+        "Mobilidad",
+        "Movibilidad",
+        "Mobibilidad"
+      ],
+      "correctIndex": 0,
+      "explanation": "Es una de las dos excepciones a la regla de -bilidad: movilidad y civilidad no llevan b."
+    },
+    {
+      "id": "es-4-082",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «mostrar en público»?",
+      "options": [
+        "Exhibir",
+        "Exibir",
+        "Exhivir",
+        "Ecshibir"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Exhibir» lleva h después de la x y b, como «exhibición»."
+    },
+    {
+      "id": "es-4-083",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer yo ___ durante tres horas sin parar.»",
+      "options": [
+        "conduje",
+        "conducí",
+        "condugé",
+        "condují"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los verbos acabados en -ducir forman el pasado con j: conduje, traduje, produje."
+    },
+    {
+      "id": "es-4-084",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que significa «calma, tranquilidad»?",
+      "options": [
+        "Sosiego",
+        "Sociego",
+        "Sosiégo",
+        "Zosiego"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sosiego» se escribe con s en las dos sílabas, como «sosegado»."
+    },
+    {
+      "id": "es-4-085",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «profundizar en algo»?",
+      "options": [
+        "Ahondar",
+        "Aondar",
+        "Ahondár",
+        "Ajondar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ahondar» lleva h, igual que «hondo», de donde procede."
+    },
+    {
+      "id": "es-4-086",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «muy abundante, desbordante»?",
+      "options": [
+        "Exuberante",
+        "Exhuberante",
+        "Esuberante",
+        "Exuverante"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Exuberante» no lleva h: «exhuberante» es un error muy frecuente."
+    },
+    {
+      "id": "es-4-087",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el sustantivo derivado de «expandir»?",
+      "options": [
+        "Expansión",
+        "Expanción",
+        "Espansión",
+        "Expansíon"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si en la familia aparece -sivo (expansivo), se escribe -sión."
+    },
+    {
+      "id": "es-4-088",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien escrito el sustantivo que significa «el motivo»?",
+      "options": [
+        "No entiendo el porqué de su enfado",
+        "No entiendo el por qué de su enfado",
+        "No entiendo el porque de su enfado",
+        "No entiendo el por que de su enfado"
+      ],
+      "correctIndex": 0,
+      "explanation": "«El porqué», junto y con tilde, es un sustantivo: equivale a «el motivo»."
+    },
+    {
+      "id": "es-4-089",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estas formas verbales está bien acentuada?",
+      "options": [
+        "Dígaselo",
+        "Digaselo",
+        "Dígasélo",
+        "Digáselo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Al añadir pronombres se convierte en esdrújula (DÍ-ga-se-lo) y lleva tilde."
+    },
+    {
+      "id": "es-4-090",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «¿___ es tu película favorita?»",
+      "options": [
+        "Cuál",
+        "Cual",
+        "Cuáles",
+        "Qual"
+      ],
+      "correctIndex": 0,
+      "explanation": "En las preguntas, «cuál» lleva tilde y va en singular con «es»."
+    },
+    {
+      "id": "es-4-091",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se escribe sin tilde?",
+      "options": [
+        "Imagen",
+        "Exámenes",
+        "Jóvenes",
+        "Orígenes"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Imagen» es llana acabada en n, sin tilde; las otras son esdrújulas."
+    },
+    {
+      "id": "es-4-092",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «régimen»?",
+      "options": [
+        "Regímenes",
+        "Régimenes",
+        "Regimenes",
+        "Régimens"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el plural la fuerza pasa a otra sílaba: re-GÍ-me-nes, esdrújula con tilde."
+    },
+    {
+      "id": "es-4-093",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Pasaba rápido las páginas: estaba ___ la revista.»",
+      "options": [
+        "hojeando",
+        "ojeando",
+        "hojiando",
+        "ogeando"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hojear» es pasar las hojas; «ojear» es echar un vistazo."
+    },
+    {
+      "id": "es-4-094",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «El pastor se apoyaba en su ___.»",
+      "options": [
+        "cayado",
+        "callado",
+        "callao",
+        "caiado"
+      ],
+      "correctIndex": 0,
+      "explanation": "El «cayado» es el bastón del pastor; «callado» es quien no habla."
+    },
+    {
+      "id": "es-4-095",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Tiró el material de ___ al contenedor.»",
+      "options": [
+        "desecho",
+        "deshecho",
+        "desheco",
+        "deseco"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Desecho» es lo que se tira; «deshecho» viene de deshacer."
+    },
+    {
+      "id": "es-4-096",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa el dicho: «Es de humanos ___.»",
+      "options": [
+        "errar",
+        "herrar",
+        "erar",
+        "herar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Errar» es equivocarse; «herrar» es poner herraduras a un caballo."
+    },
+    {
+      "id": "es-4-097",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No se debe ___ el medicamento sin agua.»",
+      "options": [
+        "ingerir",
+        "injerir",
+        "injerír",
+        "ingerír"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ingerir» es tragar; «injerir» es meter una cosa en otra o entrometerse."
+    },
+    {
+      "id": "es-4-098",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué expresión desaconseja la RAE?",
+      "options": [
+        "Bajo mi punto de vista",
+        "Desde mi punto de vista",
+        "En mi opinión",
+        "A mi juicio"
+      ],
+      "correctIndex": 0,
+      "explanation": "La RAE recomienda «desde mi punto de vista»: un punto de vista es un lugar desde el que se mira, no algo bajo lo que se está."
+    },
+    {
+      "id": "es-4-099",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase contiene un error con el verbo haber?",
+      "options": [
+        "Habemos cinco personas",
+        "Somos cinco personas",
+        "Estamos cinco personas",
+        "Hay cinco personas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice «somos» o «estamos»; «habemos» con este sentido es incorrecto."
+    },
+    {
+      "id": "es-4-100",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué forma del verbo «satisfacer» es incorrecta?",
+      "options": [
+        "Satisfació",
+        "Satisfizo",
+        "Satisface",
+        "Satisfará"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Satisfacer» se conjuga como «hacer»: hizo → satisfizo."
+    },
+    {
+      "id": "es-4-101",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Señala el plural incorrecto.",
+      "options": [
+        "Los sofases",
+        "Los sofás",
+        "Los cafés",
+        "Los menús"
+      ],
+      "correctIndex": 0,
+      "explanation": "El plural de «sofá» es «sofás»; «sofases» es incorrecto."
+    },
+    {
+      "id": "es-4-102",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me lo contó como si ___ un gran secreto.»",
+      "options": [
+        "fuera",
+        "es",
+        "será",
+        "sea"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Como si» va siempre con imperfecto de subjuntivo: «como si fuera»."
+    },
+    {
+      "id": "es-4-103",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Cuanto más lo pienso, ___ me convence.»",
+      "options": [
+        "menos",
+        "menor",
+        "mínimo",
+        "poco"
+      ],
+      "correctIndex": 0,
+      "explanation": "La estructura correcta es «cuanto más…, menos…»."
+    },
+    {
+      "id": "es-4-104",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Habría venido si me ___ invitado.»",
+      "options": [
+        "hubieran",
+        "habrían",
+        "habían",
+        "hayan"
+      ],
+      "correctIndex": 0,
+      "explanation": "Detrás de «si» no se usa el condicional: «si me hubieran invitado»."
+    },
+    {
+      "id": "es-4-105",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «exiguo»?",
+      "options": [
+        "Escaso",
+        "Enorme",
+        "Exacto",
+        "Excelente"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo exiguo es escaso o insuficiente."
+    },
+    {
+      "id": "es-4-106",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «efímero»?",
+      "options": [
+        "Duradero",
+        "Breve",
+        "Fugaz",
+        "Pasajero"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lo efímero dura poco; lo duradero, mucho."
+    },
+    {
+      "id": "es-4-107",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «diáfano»?",
+      "options": [
+        "Transparente",
+        "Oscuro",
+        "Ruidoso",
+        "Pesado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo diáfano deja pasar la luz; también se dice de una idea muy clara."
+    },
+    {
+      "id": "es-4-108",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es la empatía?",
+      "options": [
+        "Ponerse en el lugar del otro",
+        "Tener mucha energía",
+        "Ser muy simpático",
+        "Estar de acuerdo con todos"
+      ],
+      "correctIndex": 0,
+      "explanation": "La empatía es la capacidad de comprender lo que siente otra persona."
+    },
+    {
+      "id": "es-4-109",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «ambiguo»?",
+      "options": [
+        "Que puede entenderse de varias formas",
+        "Que es muy antiguo",
+        "Que está en ambos lados",
+        "Que es muy claro"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una frase ambigua admite más de una interpretación."
+    },
+    {
+      "id": "es-4-110",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es la sobremesa?",
+      "options": [
+        "La charla tras la comida",
+        "Un mueble de comedor",
+        "Un postre típico",
+        "El mantel de la mesa"
+      ],
+      "correctIndex": 0,
+      "explanation": "La sobremesa es el rato que pasamos conversando en la mesa después de comer."
+    },
+    {
+      "id": "es-4-111",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «No hay mal que por bien no venga»?",
+      "options": [
+        "De lo malo puede salir algo bueno",
+        "Todo lo malo pasa rápido",
+        "Hay que evitar el mal",
+        "El bien siempre gana"
+      ],
+      "correctIndex": 0,
+      "explanation": "Anima a ver el lado positivo de una desgracia."
+    },
+    {
+      "id": "es-4-112",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el dicho: «Hablando del rey de Roma…»",
+      "options": [
+        "por la puerta asoma",
+        "se cayó la corona",
+        "llegó el emperador",
+        "todos se callan"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice cuando aparece justo la persona de la que se estaba hablando."
+    },
+    {
+      "id": "es-4-113",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Telescopio es a lejano como microscopio es a…",
+      "options": [
+        "Diminuto",
+        "Estrella",
+        "Laboratorio",
+        "Lente"
+      ],
+      "correctIndex": 0,
+      "explanation": "El telescopio permite ver lo lejano y el microscopio, lo diminuto."
+    },
+    {
+      "id": "es-4-114",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Cordero es a oveja como ternero es a…",
+      "options": [
+        "Vaca",
+        "Cerdo",
+        "Cabra",
+        "Caballo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El cordero es la cría de la oveja y el ternero, la de la vaca."
+    },
+    {
+      "id": "es-4-115",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Novela es a capítulos como obra de teatro es a…",
+      "options": [
+        "Actos",
+        "Actores",
+        "Escenario",
+        "Telón"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una novela se divide en capítulos y una obra de teatro, en actos."
+    },
+    {
+      "id": "es-4-116",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Insomnio es a sueño como afonía es a…",
+      "options": [
+        "Voz",
+        "Oído",
+        "Garganta",
+        "Silencio"
+      ],
+      "correctIndex": 0,
+      "explanation": "El insomnio es la falta de sueño y la afonía, la pérdida de la voz."
+    },
+    {
+      "id": "es-4-117",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es sinónimo de «enfadado»?",
+      "options": [
+        "Sosegado",
+        "Irritado",
+        "Furioso",
+        "Molesto"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sosegado» significa tranquilo; las demás expresan enfado."
+    },
+    {
+      "id": "es-4-118",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué planeta no es gaseoso? Júpiter, Saturno, Marte, Neptuno.",
+      "options": [
+        "Marte",
+        "Júpiter",
+        "Saturno",
+        "Neptuno"
+      ],
+      "correctIndex": 0,
+      "explanation": "Marte es rocoso, como la Tierra; los otros tres son gigantes gaseosos."
+    },
+    {
+      "id": "es-4-119",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué obra no es de Cervantes? Don Quijote, Novelas ejemplares, La Celestina, La Galatea.",
+      "options": [
+        "La Celestina",
+        "Don Quijote",
+        "Novelas ejemplares",
+        "La Galatea"
+      ],
+      "correctIndex": 0,
+      "explanation": "«La Celestina» es de Fernando de Rojas y se publicó en 1499, antes de nacer Cervantes."
+    },
+    {
+      "id": "es-4-120",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 2, 3, 5, 7, 11, …",
+      "options": [
+        "13",
+        "12",
+        "15",
+        "14"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son los números primos: después del 11 viene el 13."
+    },
+    {
+      "id": "es-4-121",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 8, 27, 64, …",
+      "options": [
+        "125",
+        "100",
+        "81",
+        "128"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son números al cubo: 1³, 2³, 3³, 4³ y ahora 5³ = 125."
+    },
+    {
+      "id": "es-4-122",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 4, 6, 10, 16, 24, …",
+      "options": [
+        "34",
+        "32",
+        "30",
+        "36"
+      ],
+      "correctIndex": 0,
+      "explanation": "La diferencia crece de 2 en 2: +2, +4, +6, +8 y ahora +10."
+    },
+    {
+      "id": "es-4-123",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «ARGENTINO»?",
+      "options": [
+        "Ignorante",
+        "Orientan",
+        "Generación",
+        "Integrar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ignorante» usa exactamente las nueve letras de «argentino»."
+    },
+    {
+      "id": "es-4-124",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «ROTA»?",
+      "options": [
+        "Otra",
+        "Ropa",
+        "Tara",
+        "Oreja"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Otra» usa las mismas letras que «rota»: R, O, T y A."
+    },
+    {
+      "id": "es-4-125",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «ARCO»?",
+      "options": [
+        "Roca",
+        "Cara",
+        "Rico",
+        "Cero"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Roca» usa exactamente las letras de «arco»: A, R, C y O."
+    },
+    {
+      "id": "es-4-126",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se esconde al principio de «VACACIONES»?",
+      "options": [
+        "Vaca",
+        "León",
+        "Cabra",
+        "Pato"
+      ],
+      "correctIndex": 0,
+      "explanation": "VACA-CIONES: las cuatro primeras letras forman «vaca»."
+    },
+    {
+      "id": "es-4-127",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte del cuerpo se esconde al principio de «CODORNIZ»?",
+      "options": [
+        "Codo",
+        "Nariz",
+        "Dedo",
+        "Pie"
+      ],
+      "correctIndex": 0,
+      "explanation": "CODO-RNIZ: empieza por «codo»."
+    },
+    {
+      "id": "es-4-128",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «oigáis»?",
+      "options": [
+        "2",
+        "3",
+        "4",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Oi-gáis: «oi» y «ái» son diptongos, así que solo tiene dos sílabas."
+    },
+    {
+      "id": "es-4-129",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿En qué palabra hay un hiato (dos vocales en sílabas distintas)?",
+      "options": [
+        "Poeta",
+        "Cuidado",
+        "Aire",
+        "Peine"
+      ],
+      "correctIndex": 0,
+      "explanation": "Po-e-ta: la o y la e van en sílabas distintas. En las demás, las vocales forman diptongo."
+    },
+    {
+      "id": "es-4-130",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Si me tienes, quieres compartirme; si me compartes, ya no me tienes. ¿Qué soy?",
+      "options": [
+        "Un secreto",
+        "Un regalo",
+        "El dinero",
+        "La comida"
+      ],
+      "correctIndex": 0,
+      "explanation": "En cuanto cuentas un secreto, deja de ser solo tuyo."
+    },
+    {
+      "id": "es-4-131",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Puedo llenar una habitación entera sin ocupar espacio. ¿Qué soy?",
+      "options": [
+        "La luz",
+        "El agua",
+        "La arena",
+        "Un mueble"
+      ],
+      "correctIndex": 0,
+      "explanation": "La luz ilumina toda la habitación, pero no ocupa lugar."
+    },
+    {
+      "id": "es-4-132",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los X son Y, y ningún Y es Z. Por tanto…",
+      "options": [
+        "Ningún X es Z",
+        "Todos los Z son X",
+        "Algunos X son Z",
+        "Todos los Y son X"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si todos los X están dentro de Y y Y no comparte nada con Z, ningún X puede ser Z."
+    },
+    {
+      "id": "es-4-133",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Eva, Luis, Marta y Pablo en fila: Eva en el extremo izquierdo, Luis a su lado y Marta en ningún extremo. ¿Quién está a la derecha del todo?",
+      "options": [
+        "Pablo",
+        "Marta",
+        "Luis",
+        "Eva"
+      ],
+      "correctIndex": 0,
+      "explanation": "El orden es Eva, Luis, Marta y Pablo: Marta no puede ir al final, así que el último es Pablo."
+    },
+    {
+      "id": "es-4-134",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Es cierto que todos los que viven en Ronda son andaluces. ¿Qué afirmación también es cierta?",
+      "options": [
+        "Quien no es andaluz no vive en Ronda",
+        "Todos los andaluces viven en Ronda",
+        "Quien no vive en Ronda no es andaluz",
+        "Algunos de Ronda no son andaluces"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si vivir en Ronda implica ser andaluz, quien no es andaluz no puede vivir en Ronda."
+    },
+    {
+      "id": "es-4-135",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un padre y su hijo suman 36 años. El padre tiene 30 años más que el hijo. ¿Cuántos años tiene el hijo?",
+      "options": [
+        "3",
+        "6",
+        "15",
+        "33"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si el hijo tiene 3, el padre tiene 33: suman 36 y se llevan 30. Muchos responden 6 sin comprobarlo."
+    },
+    {
+      "id": "es-4-136",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Si 3 máquinas fabrican 3 piezas en 3 minutos, ¿cuántas máquinas fabrican 100 piezas en 100 minutos?",
+      "options": [
+        "3",
+        "100",
+        "33",
+        "9"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las 3 máquinas juntas hacen 1 pieza por minuto, así que en 100 minutos hacen 100 piezas."
+    },
+    {
+      "id": "es-4-137",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué partícula del átomo tiene carga negativa?",
+      "options": [
+        "El electrón",
+        "El protón",
+        "El neutrón",
+        "El núcleo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El electrón tiene carga negativa, el protón positiva y el neutrón no tiene carga."
+    },
+    {
+      "id": "es-4-138",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué vitamina produce el cuerpo al tomar el sol?",
+      "options": [
+        "La vitamina D",
+        "La vitamina C",
+        "La vitamina A",
+        "La vitamina B12"
+      ],
+      "correctIndex": 0,
+      "explanation": "La piel fabrica vitamina D con la luz del sol; ayuda a fijar el calcio en los huesos."
+    },
+    {
+      "id": "es-4-139",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué metal es líquido a temperatura ambiente?",
+      "options": [
+        "El mercurio",
+        "El hierro",
+        "El aluminio",
+        "El cobre"
+      ],
+      "correctIndex": 0,
+      "explanation": "El mercurio es líquido a temperatura ambiente; antes se usaba en los termómetros."
+    },
+    {
+      "id": "es-4-140",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué científica ganó dos premios Nobel en ciencias distintas?",
+      "options": [
+        "Marie Curie",
+        "Rosalind Franklin",
+        "Ada Lovelace",
+        "Jane Goodall"
+      ],
+      "correctIndex": 0,
+      "explanation": "Marie Curie ganó el de Física en 1903 y el de Química en 1911."
+    },
+    {
+      "id": "es-4-141",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Australia?",
+      "options": [
+        "Canberra",
+        "Sídney",
+        "Melbourne",
+        "Perth"
+      ],
+      "correctIndex": 0,
+      "explanation": "Canberra es la capital, aunque Sídney es la ciudad más grande."
+    },
+    {
+      "id": "es-4-142",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué río europeo atraviesa más países?",
+      "options": [
+        "El Danubio",
+        "El Rin",
+        "El Sena",
+        "El Volga"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Danubio pasa por diez países, desde Alemania hasta el mar Negro."
+    },
+    {
+      "id": "es-4-143",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué país, largo y estrecho, se extiende entre los Andes y el Pacífico?",
+      "options": [
+        "Chile",
+        "Argentina",
+        "Perú",
+        "Colombia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Chile mide más de 4.000 km de norte a sur y menos de 200 km de ancho de media."
+    },
+    {
+      "id": "es-4-144",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la comunidad autónoma más extensa de España?",
+      "options": [
+        "Castilla y León",
+        "Andalucía",
+        "Castilla-La Mancha",
+        "Aragón"
+      ],
+      "correctIndex": 0,
+      "explanation": "Castilla y León supera los 94.000 km²; Andalucía es la segunda."
+    },
+    {
+      "id": "es-4-145",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué año se aprobó la Constitución española actual?",
+      "options": [
+        "1978",
+        "1975",
+        "1982",
+        "1931"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se aprobó en referéndum el 6 de diciembre de 1978."
+    },
+    {
+      "id": "es-4-146",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización construyó Chichén Itzá y creó un calendario muy preciso?",
+      "options": [
+        "La maya",
+        "La inca",
+        "La egipcia",
+        "La vikinga"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los mayas habitaron el sur de México y Centroamérica."
+    },
+    {
+      "id": "es-4-147",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Quién fue el primer emperador de Roma?",
+      "options": [
+        "Augusto",
+        "Julio César",
+        "Nerón",
+        "Trajano"
+      ],
+      "correctIndex": 0,
+      "explanation": "Augusto fue el primer emperador en el 27 a. C.; Julio César nunca llegó a serlo."
+    },
+    {
+      "id": "es-4-148",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién escribió «Cien años de soledad»?",
+      "options": [
+        "Gabriel García Márquez",
+        "Mario Vargas Llosa",
+        "Pablo Neruda",
+        "Julio Cortázar"
+      ],
+      "correctIndex": 0,
+      "explanation": "García Márquez la publicó en 1967; ganó el Nobel de Literatura en 1982."
+    },
+    {
+      "id": "es-4-149",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué instrumento tocaba Paco de Lucía?",
+      "options": [
+        "La guitarra",
+        "El piano",
+        "El violín",
+        "La trompeta"
+      ],
+      "correctIndex": 0,
+      "explanation": "Paco de Lucía fue uno de los grandes guitarristas de flamenco de la historia."
+    },
+    {
+      "id": "es-4-150",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas cuerdas tiene una guitarra española clásica?",
+      "options": [
+        "6",
+        "4",
+        "5",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "La guitarra clásica tiene seis cuerdas; el bajo eléctrico suele tener cuatro."
     }
   ]
 }

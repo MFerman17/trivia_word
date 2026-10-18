@@ -142,6 +142,986 @@
       ],
       "correctIndex": 0,
       "explanation": "Viene de su nombre en latín, «aurum». Ag es la plata."
+    },
+    {
+      "id": "es-4-011",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que no se puede evitar»?",
+      "options": [
+        "Inevitable",
+        "Inebitable",
+        "Inevitavle",
+        "Inevítable"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lleva v en «-vit-», y la terminación -ble siempre se escribe con b."
+    },
+    {
+      "id": "es-4-012",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el sustantivo derivado de «absorber»?",
+      "options": [
+        "Absorción",
+        "Absorsión",
+        "Absorbción",
+        "Absorvción"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aunque «absorber» lleva b, su sustantivo es «absorción», con c y sin b."
+    },
+    {
+      "id": "es-4-013",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que nombra a quien vive en un lugar?",
+      "options": [
+        "Habitante",
+        "Abitante",
+        "Havitante",
+        "Habitánte"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Habitante», «habitar» y «hábitat» llevan h y b."
+    },
+    {
+      "id": "es-4-014",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la tienda donde se venden y arreglan relojes?",
+      "options": [
+        "Relojería",
+        "Relogería",
+        "Relojeria",
+        "Reloguería"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si la palabra base lleva j (reloj), sus derivadas la conservan: relojería, relojero."
+    },
+    {
+      "id": "es-4-015",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que significa «fuera de lo común»?",
+      "options": [
+        "Extraordinario",
+        "Estraordinario",
+        "Extraordinário",
+        "Exstraordinario"
+      ],
+      "correctIndex": 0,
+      "explanation": "El prefijo extra-, «fuera de», se escribe con x."
+    },
+    {
+      "id": "es-4-016",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el gerundio de «leer»?",
+      "options": [
+        "Leyendo",
+        "Lellendo",
+        "Leiendo",
+        "Leyiendo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cuando la i queda entre vocales se convierte en y: leer → leyendo, creer → creyendo."
+    },
+    {
+      "id": "es-4-017",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que describe algo que da vergüenza?",
+      "options": [
+        "Vergonzoso",
+        "Bergonzoso",
+        "Vergonsoso",
+        "Vergonzozo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vergonzoso» se escribe con v inicial y con z, como «vergüenza»."
+    },
+    {
+      "id": "es-4-018",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien escrito «aún»?",
+      "options": [
+        "Aún no ha llegado",
+        "Aun no ha llegado",
+        "Aún así lo intentó",
+        "Ni aún él lo sabe"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Aún» con tilde equivale a «todavía»; «aun» sin tilde equivale a «incluso» («aun así», «ni aun él»)."
+    },
+    {
+      "id": "es-4-019",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estas palabras debería llevar tilde?",
+      "options": [
+        "Raiz",
+        "Reina",
+        "Ruido",
+        "Causa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ra-íz»: la i se pronuncia separada de la a, y la tilde marca ese hiato."
+    },
+    {
+      "id": "es-4-020",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «carácter»?",
+      "options": [
+        "Caracteres",
+        "Carácteres",
+        "Caractéres",
+        "Caráctres"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el plural cambia la sílaba fuerte: ca-rac-TE-res, llana acabada en s, sin tilde."
+    },
+    {
+      "id": "es-4-021",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «No sé ___ ha llamado esta mañana.»",
+      "options": [
+        "quién",
+        "quien",
+        "quiénes",
+        "quíen"
+      ],
+      "correctIndex": 0,
+      "explanation": "En las preguntas indirectas, «quién» lleva tilde, igual que en las directas."
+    },
+    {
+      "id": "es-4-022",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal con muchas patas cuyo nombre une «cien» y «pies»?",
+      "options": [
+        "Ciempiés",
+        "Ciempies",
+        "Ciémpies",
+        "Ciempíes"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ciempiés» es aguda y termina en s: lleva tilde, aunque «pies» sola no la lleve."
+    },
+    {
+      "id": "es-4-023",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «La esponja puede ___ mucha agua.»",
+      "options": [
+        "absorber",
+        "absolver",
+        "absorver",
+        "absolber"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Absorber» es retener un líquido; «absolver» es declarar libre de culpa."
+    },
+    {
+      "id": "es-4-024",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «El cocinero ___ la pasta durante diez minutos.»",
+      "options": [
+        "coció",
+        "cosió",
+        "cozió",
+        "cocío"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Coció» viene de cocer (cocinar); «cosió», de coser con aguja e hilo."
+    },
+    {
+      "id": "es-4-025",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «El mago se negó a ___ su truco.»",
+      "options": [
+        "revelar",
+        "rebelar",
+        "rebelár",
+        "revelár"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Revelar» es descubrir un secreto; «rebelarse» es sublevarse."
+    },
+    {
+      "id": "es-4-026",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «El Sáhara es un territorio ___.»",
+      "options": [
+        "vasto",
+        "basto",
+        "bastó",
+        "vastó"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vasto» significa muy extenso; «basto» significa tosco o poco refinado."
+    },
+    {
+      "id": "es-4-027",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No ___ nadie en la sala de espera.»",
+      "options": [
+        "había",
+        "abría",
+        "havía",
+        "avía"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Había», de haber, va con h y b; «abría» viene de abrir."
+    },
+    {
+      "id": "es-4-028",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué cartel contiene un error de concordancia?",
+      "options": [
+        "Se vende pisos",
+        "Se venden pisos",
+        "Se alquila piso",
+        "Se busca camarero"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Pisos» es plural, así que el verbo también: «se venden pisos»."
+    },
+    {
+      "id": "es-4-029",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué oración es incorrecta?",
+      "options": [
+        "Me di cuenta que llovía",
+        "Me di cuenta de que llovía",
+        "Pienso que llueve",
+        "Creo que llueve"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice «darse cuenta de algo»: «me di cuenta de que». Quitar el «de» es un error llamado queísmo."
+    },
+    {
+      "id": "es-4-030",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Señala el imperativo incorrecto.",
+      "options": [
+        "Salir de aquí ahora",
+        "Salid de aquí ahora",
+        "Sal de aquí ahora",
+        "Salgan de aquí ahora"
+      ],
+      "correctIndex": 0,
+      "explanation": "Para dar una orden a «vosotros» se usa «salid», no el infinitivo «salir»."
+    },
+    {
+      "id": "es-4-031",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Cuál de estas formas verbales es incorrecta?",
+      "options": [
+        "Preveer",
+        "Prever",
+        "Proveer",
+        "Prevenir"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice «prever» (ver con antelación). «Preveer» es un error frecuente por cruce con «proveer»."
+    },
+    {
+      "id": "es-4-032",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si lo ___ sabido, te habría avisado.»",
+      "options": [
+        "hubiera",
+        "habría",
+        "había",
+        "habré"
+      ],
+      "correctIndex": 0,
+      "explanation": "Para algo que no ocurrió en el pasado: «si lo hubiera sabido, te habría avisado»."
+    },
+    {
+      "id": "es-4-033",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Busco a alguien que ___ hablar japonés.»",
+      "options": [
+        "sepa",
+        "sabe",
+        "sabrá",
+        "supo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cuando no sabemos si esa persona existe, se usa subjuntivo: «que sepa»."
+    },
+    {
+      "id": "es-4-034",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «No creo que ___ razón en esto.»",
+      "options": [
+        "tengas",
+        "tienes",
+        "tendrás",
+        "tuviste"
+      ],
+      "correctIndex": 0,
+      "explanation": "«No creo que» pide subjuntivo: «tengas»."
+    },
+    {
+      "id": "es-4-035",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «ecuánime»?",
+      "options": [
+        "Imparcial",
+        "Egoísta",
+        "Nervioso",
+        "Ingenuo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una persona ecuánime juzga con equilibrio, sin favorecer a nadie."
+    },
+    {
+      "id": "es-4-036",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «prolijo» (excesivamente detallado)?",
+      "options": [
+        "Conciso",
+        "Detallado",
+        "Extenso",
+        "Minucioso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un texto prolijo se alarga demasiado; uno conciso dice lo necesario en pocas palabras."
+    },
+    {
+      "id": "es-4-037",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «ufano»?",
+      "options": [
+        "Orgulloso",
+        "Triste",
+        "Humilde",
+        "Cansado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Estar ufano es mostrarse satisfecho u orgulloso de algo."
+    },
+    {
+      "id": "es-4-038",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «inefable»?",
+      "options": [
+        "Que no se puede expresar con palabras",
+        "Que no se puede comer",
+        "Que no tiene fin",
+        "Que no es eficaz"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una emoción inefable es tan intensa que no hay palabras para describirla."
+    },
+    {
+      "id": "es-4-039",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «perenne»?",
+      "options": [
+        "Que dura siempre",
+        "Que dura un año",
+        "Que es muy pequeño",
+        "Que es venenoso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los árboles de hoja perenne no la pierden en invierno."
+    },
+    {
+      "id": "es-4-040",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es una paradoja?",
+      "options": [
+        "Una idea que parece contradictoria",
+        "Un tipo de poema",
+        "Un error ortográfico",
+        "Una pregunta sin respuesta"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Solo sé que no sé nada» es una paradoja famosa."
+    },
+    {
+      "id": "es-4-041",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «A caballo regalado no le mires el diente»?",
+      "options": [
+        "No pongas pegas a un regalo",
+        "Cuida bien a los animales",
+        "Revisa todo antes de comprar",
+        "No aceptes regalos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Viene de mirar los dientes de un caballo para saber su edad antes de comprarlo."
+    },
+    {
+      "id": "es-4-042",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «Donde fueres, haz lo que vieres»?",
+      "options": [
+        "Adáptate a las costumbres del lugar",
+        "Viaja siempre que puedas",
+        "Observa antes de actuar",
+        "Haz lo que te digan"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aconseja respetar y seguir las costumbres del sitio donde estás."
+    },
+    {
+      "id": "es-4-043",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Sed es a deshidratación como hambre es a…",
+      "options": [
+        "Desnutrición",
+        "Comida",
+        "Cocina",
+        "Plato"
+      ],
+      "correctIndex": 0,
+      "explanation": "La falta prolongada de agua causa deshidratación, y la de alimento, desnutrición."
+    },
+    {
+      "id": "es-4-044",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Pluma es a ave como escama es a…",
+      "options": [
+        "Pez",
+        "Gato",
+        "Pájaro",
+        "Insecto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las aves están cubiertas de plumas y los peces, de escamas."
+    },
+    {
+      "id": "es-4-045",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Astrónomo es a estrellas como botánico es a…",
+      "options": [
+        "Plantas",
+        "Rocas",
+        "Animales",
+        "Insectos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada científico con lo que estudia: el botánico estudia las plantas."
+    },
+    {
+      "id": "es-4-046",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Prólogo es a libro como obertura es a…",
+      "options": [
+        "Ópera",
+        "Puerta",
+        "Novela",
+        "Pintura"
+      ],
+      "correctIndex": 0,
+      "explanation": "La obertura es la pieza musical que abre una ópera, igual que el prólogo abre un libro."
+    },
+    {
+      "id": "es-4-047",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué término no es un signo de puntuación? Coma, punto, tilde, paréntesis.",
+      "options": [
+        "Tilde",
+        "Coma",
+        "Punto",
+        "Paréntesis"
+      ],
+      "correctIndex": 0,
+      "explanation": "La tilde es un signo de acentuación, no de puntuación."
+    },
+    {
+      "id": "es-4-048",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué científico no era físico? Newton, Einstein, Darwin, Galileo.",
+      "options": [
+        "Darwin",
+        "Newton",
+        "Einstein",
+        "Galileo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Darwin era naturalista y biólogo; los otros tres fueron físicos."
+    },
+    {
+      "id": "es-4-049",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número no es primo? 7, 11, 15, 13.",
+      "options": [
+        "15",
+        "7",
+        "11",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "15 se puede dividir entre 3 y entre 5; los demás solo entre 1 y sí mismos."
+    },
+    {
+      "id": "es-4-050",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 3, 9, 27, 81, …",
+      "options": [
+        "243",
+        "162",
+        "108",
+        "324"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número se multiplica por 3: 81 × 3 = 243."
+    },
+    {
+      "id": "es-4-051",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? A, D, G, J, …",
+      "options": [
+        "M",
+        "K",
+        "L",
+        "N"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se avanza de tres en tres letras: J (k, l) M."
+    },
+    {
+      "id": "es-4-052",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 3, 6, 10, 15, …",
+      "options": [
+        "21",
+        "20",
+        "18",
+        "25"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se suma cada vez uno más: +2, +3, +4, +5 y ahora +6."
+    },
+    {
+      "id": "es-4-053",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «MÉDICO»?",
+      "options": [
+        "Décimo",
+        "Comedia",
+        "Médula",
+        "Mediano"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Décimo» usa las mismas seis letras que «médico»."
+    },
+    {
+      "id": "es-4-054",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «CARNE»?",
+      "options": [
+        "Nacer",
+        "Cerca",
+        "Nariz",
+        "Cena"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Nacer» usa exactamente las letras de «carne»: C, A, R, N y E."
+    },
+    {
+      "id": "es-4-055",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «PRESA»?",
+      "options": [
+        "Pesar",
+        "Prensa",
+        "Pasta",
+        "Prisa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Pesar» usa las mismas cinco letras que «presa»."
+    },
+    {
+      "id": "es-4-056",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se esconde dentro de «TOPÓGRAFO»?",
+      "options": [
+        "Topo",
+        "Gato",
+        "Oso",
+        "Rata"
+      ],
+      "correctIndex": 0,
+      "explanation": "TOPO-GRAFO: la palabra empieza por «topo»."
+    },
+    {
+      "id": "es-4-057",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué sentimiento se esconde al principio de «AMORTIGUAR»?",
+      "options": [
+        "Amor",
+        "Odio",
+        "Paz",
+        "Fe"
+      ],
+      "correctIndex": 0,
+      "explanation": "AMOR-TIGUAR: las cuatro primeras letras forman «amor»."
+    },
+    {
+      "id": "es-4-058",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «aeropuerto»?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "A-e-ro-puer-to: la a y la e van en sílabas distintas, así que son cinco."
+    },
+    {
+      "id": "es-4-059",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sobresdrújula?",
+      "options": [
+        "Dígamelo",
+        "Pájaro",
+        "Canción",
+        "Camino"
+      ],
+      "correctIndex": 0,
+      "explanation": "DÍ-ga-me-lo lleva la fuerza antes de la antepenúltima sílaba."
+    },
+    {
+      "id": "es-4-060",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Cuanto más grande es, menos se ve. ¿Qué es?",
+      "options": [
+        "La oscuridad",
+        "El elefante",
+        "La luz",
+        "El mar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cuanta más oscuridad hay, menos vemos."
+    },
+    {
+      "id": "es-4-061",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tiene cuello pero no cabeza, y brazos pero no manos. ¿Qué es?",
+      "options": [
+        "La camisa",
+        "La botella",
+        "La silla",
+        "El reloj"
+      ],
+      "correctIndex": 0,
+      "explanation": "La camisa tiene cuello y mangas (brazos), pero ni cabeza ni manos."
+    },
+    {
+      "id": "es-4-062",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Algunos músicos son pintores. Todos los pintores son creativos. ¿Qué es seguro?",
+      "options": [
+        "Algunos músicos son creativos",
+        "Todos los músicos son creativos",
+        "Todos los creativos pintan",
+        "Ningún músico es creativo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los músicos que pintan son creativos, así que al menos algunos músicos lo son."
+    },
+    {
+      "id": "es-4-063",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si no estudio, no apruebo. He aprobado. ¿Qué se deduce?",
+      "options": [
+        "Que estudié",
+        "Que no estudié",
+        "Que el examen era fácil",
+        "Nada"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si no estudiar lleva a suspender y he aprobado, tuve que estudiar."
+    },
+    {
+      "id": "es-4-064",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "En una carrera adelantas al que va segundo. ¿En qué posición vas ahora?",
+      "options": [
+        "Segundo",
+        "Primero",
+        "Tercero",
+        "Último"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ocupas el lugar del que adelantaste: el segundo. El primero sigue delante."
+    },
+    {
+      "id": "es-4-065",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un tren sale a las 10:45 y el viaje dura 2 h 30 min. ¿A qué hora llega?",
+      "options": [
+        "13:15",
+        "12:15",
+        "13:45",
+        "12:75"
+      ],
+      "correctIndex": 0,
+      "explanation": "10:45 + 2 h = 12:45; y 30 minutos más son las 13:15."
+    },
+    {
+      "id": "es-4-066",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un producto cuesta 80 € y sube un 25 %. ¿Cuánto cuesta ahora?",
+      "options": [
+        "100 €",
+        "105 €",
+        "85 €",
+        "120 €"
+      ],
+      "correctIndex": 0,
+      "explanation": "El 25 % de 80 es 20 (la cuarta parte): 80 + 20 = 100 €."
+    },
+    {
+      "id": "es-4-067",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la fórmula química del agua?",
+      "options": [
+        "H₂O",
+        "CO₂",
+        "O₂",
+        "NaCl"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada molécula de agua tiene dos átomos de hidrógeno y uno de oxígeno."
+    },
+    {
+      "id": "es-4-068",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Quién propuso la teoría de la evolución por selección natural?",
+      "options": [
+        "Charles Darwin",
+        "Isaac Newton",
+        "Albert Einstein",
+        "Marie Curie"
+      ],
+      "correctIndex": 0,
+      "explanation": "Darwin la publicó en 1859 en «El origen de las especies»."
+    },
+    {
+      "id": "es-4-069",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos cromosomas tiene una célula humana normal?",
+      "options": [
+        "46",
+        "23",
+        "48",
+        "44"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son 23 pares: 46 cromosomas. Óvulos y espermatozoides tienen la mitad, 23."
+    },
+    {
+      "id": "es-4-070",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte de la célula contiene el ADN?",
+      "options": [
+        "El núcleo",
+        "La membrana",
+        "El citoplasma",
+        "La pared celular"
+      ],
+      "correctIndex": 0,
+      "explanation": "El núcleo guarda el ADN, que contiene la información genética."
+    },
+    {
+      "id": "es-4-071",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Canadá?",
+      "options": [
+        "Ottawa",
+        "Toronto",
+        "Montreal",
+        "Vancouver"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ottawa es la capital, aunque Toronto es la ciudad más poblada."
+    },
+    {
+      "id": "es-4-072",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué país tiene más habitantes del mundo?",
+      "options": [
+        "India",
+        "China",
+        "Estados Unidos",
+        "Indonesia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Según la ONU, la India superó a China en población en 2023."
+    },
+    {
+      "id": "es-4-073",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué estrecho separa España de África?",
+      "options": [
+        "El de Gibraltar",
+        "El de Magallanes",
+        "El canal de la Mancha",
+        "El Bósforo"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el estrecho de Gibraltar, Europa y África están a unos 14 km."
+    },
+    {
+      "id": "es-4-074",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el desierto cálido más grande del mundo?",
+      "options": [
+        "El Sáhara",
+        "El Gobi",
+        "El de Atacama",
+        "El Kalahari"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Sáhara ocupa gran parte del norte de África."
+    },
+    {
+      "id": "es-4-075",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué año cayó el muro de Berlín?",
+      "options": [
+        "1989",
+        "1991",
+        "1975",
+        "2001"
+      ],
+      "correctIndex": 0,
+      "explanation": "El muro cayó el 9 de noviembre de 1989; Alemania se reunificó al año siguiente."
+    },
+    {
+      "id": "es-4-076",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué hecho de 1789 marcó el inicio de la Revolución francesa?",
+      "options": [
+        "La toma de la Bastilla",
+        "La coronación de Napoleón",
+        "La batalla de Waterloo",
+        "La caída de Roma"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Bastilla, una prisión de París, fue tomada el 14 de julio de 1789."
+    },
+    {
+      "id": "es-4-077",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué reyes financiaron el primer viaje de Colón?",
+      "options": [
+        "Los Reyes Católicos",
+        "Carlos V y Felipe II",
+        "Alfonso X y Fernando III",
+        "Felipe V e Isabel II"
+      ],
+      "correctIndex": 0,
+      "explanation": "Isabel de Castilla y Fernando de Aragón apoyaron el viaje de 1492."
+    },
+    {
+      "id": "es-4-078",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién compuso la Novena Sinfonía, cuyo final es el himno de Europa?",
+      "options": [
+        "Ludwig van Beethoven",
+        "Wolfgang A. Mozart",
+        "Johann S. Bach",
+        "Antonio Vivaldi"
+      ],
+      "correctIndex": 0,
+      "explanation": "El himno europeo es la «Oda a la alegría», del final de la Novena de Beethoven."
+    },
+    {
+      "id": "es-4-079",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Con qué movimiento artístico se asocia a Salvador Dalí?",
+      "options": [
+        "El surrealismo",
+        "El cubismo",
+        "El impresionismo",
+        "El barroco"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dalí fue uno de los grandes pintores surrealistas, que representaban el mundo de los sueños."
+    },
+    {
+      "id": "es-4-080",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿En qué ciudad está la Sagrada Familia, obra de Gaudí?",
+      "options": [
+        "Barcelona",
+        "Madrid",
+        "Valencia",
+        "Bilbao"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gaudí trabajó en ella desde 1883 hasta su muerte en 1926."
     }
   ]
 }

@@ -1,15 +1,28 @@
 import '../models/level_config.dart';
 import '../models/question.dart';
 import 'procedural_question_service.dart';
+import 'question_repository.dart';
 
 class QuestionBank {
+  /// Dificultad de un nivel (1 = 7-8 años ... 5 = adulto culto).
+  ///
+  /// Cada mundo cubre dos escalones: su número y el siguiente.
+  /// Sube un escalón en el minijefe de cada capítulo (nivel 5), en los
+  /// niveles 4 y 5 del capítulo 2 y en todo el capítulo 3:
+  ///   Mundo 1:  1-1-1-1-2 · 1-1-1-2-2 · 2-2-2-2-2
+  ///   Mundo 2:  2-2-2-2-3 · 2-2-2-3-3 · 3-3-3-3-3
+  ///   Mundo 3:  3-3-3-3-4 · 3-3-3-4-4 · 4-4-4-4-4
+  ///   Mundo 4:  4-4-4-4-5 · 4-4-4-5-5 · 5-5-5-5-5
+  /// Así la dificultad máxima solo aparece al final del juego.
+  static int difficultyForLevel(int world, int chapter, int level) {
+    final stepUp = chapter == 3 || (chapter == 2 && level >= 4) || level == 5;
+    return (world + (stepUp ? 1 : 0)).clamp(1, 5).toInt();
+  }
+
   /// La dificultad sube dentro de cada capítulo y también al avanzar de
   /// mundo. El último nivel de cada mundo es su jefe.
   static LevelConfig getConfigForLevel(int world, int chapter, int level) {
-    // La dificultad sube también dentro de cada capítulo, no solo al cambiar
-    // de mundo: los niveles 1–2, 3–4 y 5 forman tres escalones.
-    final difficulty =
-        (world + chapter + (level - 1) ~/ 2 - 1).clamp(1, 5).toInt();
+    final difficulty = difficultyForLevel(world, chapter, level);
     final isWorldBoss = chapter == 3 && level == 5;
     final isChapterBoss = level == 5 && !isWorldBoss;
 
@@ -48,7 +61,8 @@ class QuestionBank {
 
   /// Encuentro lateral: criatura menos resistente y recompensa limitada.
   static LevelConfig getConfigForMiniChallenge(int world, int challenge) {
-    final difficulty = (world + challenge - 1).clamp(1, 5).toInt();
+    // Dificultad del mundo; el tercer mini reto, un escalón más.
+    final difficulty = (world + (challenge == 3 ? 1 : 0)).clamp(1, 5).toInt();
     const enemiesByWorld = [
       ['Guardián del Bosque', 'Duende del Musgo', 'Espíritu de Raíces'],
       ['Murciélago de Cristal', 'Eco de la Caverna', 'Rastreador de Piedra'],
@@ -111,6 +125,13 @@ class QuestionBank {
     int level,
   ) {
     final config = getConfigForLevel(world, chapter, level);
+    final fromBank = QuestionRepository.draw(
+      difficulty: config.difficulty,
+      count: config.targetQuestions,
+    );
+    if (fromBank.length == config.targetQuestions) return fromBank;
+
+    // Reserva: si el banco no cargó o se quedó corto, el generador antiguo.
     final encounterIndex = (world - 1) * 15 + (chapter - 1) * 5 + level - 1;
     final curated = _curatedQuestionForEncounter(
       encounterIndex,
@@ -132,6 +153,12 @@ class QuestionBank {
     int challenge,
   ) {
     final config = getConfigForMiniChallenge(world, challenge);
+    final fromBank = QuestionRepository.draw(
+      difficulty: config.difficulty,
+      count: config.targetQuestions,
+    );
+    if (fromBank.length == config.targetQuestions) return fromBank;
+
     return ProceduralQuestionService.forEncounter(
       world: world,
       chapter: 1,
@@ -151,7 +178,15 @@ class QuestionBank {
     required int questionIndex,
     required int difficulty,
     required bool isMiniChallenge,
+    Set<String> usedQuestionIds = const {},
   }) {
+    final fromBank = QuestionRepository.draw(
+      difficulty: difficulty,
+      count: 1,
+      exclude: usedQuestionIds,
+    );
+    if (fromBank.isNotEmpty) return fromBank.first;
+
     final generated = ProceduralQuestionService.forEncounter(
       world: world,
       chapter: chapter,
@@ -173,6 +208,14 @@ class QuestionBank {
     required bool isMiniChallenge,
     required Set<String> usedQuestionIds,
   }) {
+    final fromBank = QuestionRepository.draw(
+      difficulty: original.difficulty,
+      count: 1,
+      exclude: {...usedQuestionIds, original.id},
+      preferCategory: original.category,
+    );
+    if (fromBank.isNotEmpty) return fromBank.first;
+
     final generated = ProceduralQuestionService.forEncounter(
       world: world,
       chapter: chapter,

@@ -1,0 +1,147 @@
+{
+  "language": "es",
+  "difficulty": 2,
+  "version": 1,
+  "questions": [
+    {
+      "id": "es-2-001",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estas palabras lleva bien la tilde?",
+      "options": [
+        "Canción",
+        "Cancion",
+        "Cánción",
+        "Cancíon"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Canción» es aguda y termina en n, por eso lleva tilde en la o."
+    },
+    {
+      "id": "es-2-002",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Una gran ___ mojó a los surfistas.»",
+      "options": [
+        "ola",
+        "hola",
+        "hora",
+        "olla"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ola» es la onda del mar; «hola» es un saludo."
+    },
+    {
+      "id": "es-2-003",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase tiene una falta de ortografía?",
+      "options": [
+        "Ayer bimos una película",
+        "Ayer vimos una película",
+        "Hoy hace mucho frío",
+        "Mañana iremos al río"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vimos» viene del verbo ver, que se escribe con v."
+    },
+    {
+      "id": "es-2-004",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «ROMA»?",
+      "options": [
+        "Amor",
+        "Remo",
+        "Rama",
+        "Mozo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Amor» usa exactamente las mismas letras que «Roma»: R, O, M y A."
+    },
+    {
+      "id": "es-2-005",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «enorme»?",
+      "options": [
+        "Muy grande",
+        "Muy viejo",
+        "Muy rápido",
+        "Muy oscuro"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Enorme» se usa para algo mucho más grande de lo normal."
+    },
+    {
+      "id": "es-2-006",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los dragones escupen fuego. Ignis es un dragón. ¿Qué podemos asegurar?",
+      "options": [
+        "Ignis escupe fuego",
+        "Ignis vuela",
+        "Ignis es verde",
+        "Ignis es malo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si todos los dragones escupen fuego e Ignis es un dragón, Ignis también lo hace."
+    },
+    {
+      "id": "es-2-007",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «Más vale tarde…»",
+      "options": [
+        "que nunca",
+        "que pronto",
+        "que mañana",
+        "que temprano"
+      ],
+      "correctIndex": 0,
+      "explanation": "Significa que es mejor hacer algo tarde que no hacerlo."
+    },
+    {
+      "id": "es-2-008",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se esconde al principio de «SOLDADO»?",
+      "options": [
+        "Sol",
+        "Mar",
+        "Luz",
+        "Pan"
+      ],
+      "correctIndex": 0,
+      "explanation": "SOL-DADO: la palabra empieza por «sol»."
+    },
+    {
+      "id": "es-2-009",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización construyó las pirámides de Guiza?",
+      "options": [
+        "La egipcia",
+        "La romana",
+        "La griega",
+        "La maya"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los antiguos egipcios las construyeron hace más de 4.500 años."
+    },
+    {
+      "id": "es-2-010",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un dragón duerme 8 horas cada noche. ¿Cuántas horas duerme en 3 noches?",
+      "options": [
+        "24",
+        "11",
+        "16",
+        "32"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son 8 horas repetidas 3 veces: 8 × 3 = 24."
+    }
+  ]
+}

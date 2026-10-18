@@ -1,0 +1,147 @@
+{
+  "language": "es",
+  "difficulty": 1,
+  "version": 1,
+  "questions": [
+    {
+      "id": "es-1-001",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "¿Cómo se escribe? «El ___ pasta en el prado.»",
+      "options": [
+        "caballo",
+        "cavallo",
+        "cabayo",
+        "kaballo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Caballo» se escribe con b y con ll."
+    },
+    {
+      "id": "es-1-002",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «alto»?",
+      "options": [
+        "Bajo",
+        "Grande",
+        "Largo",
+        "Ancho"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Alto» y «bajo» son antónimos: significan lo contrario."
+    },
+    {
+      "id": "es-1-003",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no pertenece al grupo? Perro, gato, conejo, mesa.",
+      "options": [
+        "Mesa",
+        "Perro",
+        "Gato",
+        "Conejo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Perro, gato y conejo son animales; la mesa es un mueble."
+    },
+    {
+      "id": "es-1-004",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tengo agujas pero no sé coser, y doy la hora sin hablar. ¿Qué soy?",
+      "options": [
+        "Un reloj",
+        "Un erizo",
+        "Un cactus",
+        "Un pino"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las agujas del reloj marcan las horas y los minutos."
+    },
+    {
+      "id": "es-1-005",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las sílabas para formar un animal: FAN · TE · E · LE",
+      "options": [
+        "Elefante",
+        "Elegante",
+        "Fantasma",
+        "Teléfono"
+      ],
+      "correctIndex": 0,
+      "explanation": "E-LE-FAN-TE: con esas cuatro sílabas se forma «elefante»."
+    },
+    {
+      "id": "es-1-006",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer yo ___ al parque con mi abuela.»",
+      "options": [
+        "fui",
+        "voy",
+        "iré",
+        "vamos"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ayer» indica pasado, por eso el verbo va en pasado: «fui»."
+    },
+    {
+      "id": "es-1-007",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué día viene después del martes?",
+      "options": [
+        "Miércoles",
+        "Jueves",
+        "Lunes",
+        "Domingo"
+      ],
+      "correctIndex": 0,
+      "explanation": "La semana sigue este orden: lunes, martes, miércoles, jueves..."
+    },
+    {
+      "id": "es-1-008",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte de la planta está bajo la tierra?",
+      "options": [
+        "La raíz",
+        "La flor",
+        "La hoja",
+        "El fruto"
+      ],
+      "correctIndex": 0,
+      "explanation": "La raíz sujeta la planta al suelo y absorbe el agua."
+    },
+    {
+      "id": "es-1-009",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Pájaro es a volar como pez es a…",
+      "options": [
+        "Nadar",
+        "Correr",
+        "Saltar",
+        "Cantar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada animal con su forma de moverse: el pájaro vuela y el pez nada."
+    },
+    {
+      "id": "es-1-010",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Ana tiene 3 manzanas y su hermano le da 2 más. ¿Cuántas tiene ahora?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Al juntar 3 y 2 manzanas, sumamos: 3 + 2 = 5."
+    }
+  ]
+}

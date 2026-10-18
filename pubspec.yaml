@@ -52,6 +52,7 @@ flutter:
   # Configuración de recursos (assets)
   assets:
     - assets/audio/
+    - assets/questions/es/
     - assets/images/bg_landscape.png
     - assets/images/dragon.png
     - assets/images/mini_forest_guardian.png

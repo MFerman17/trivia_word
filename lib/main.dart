@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'screens/home_screen.dart';
 import 'services/cloud_service.dart';
+import 'services/question_repository.dart';
 import 'services/save_service.dart';
 
 Future<void> main() async {
@@ -25,6 +26,9 @@ Future<void> main() async {
     initError = e;
     debugPrint('❌ Error al inicializar Firebase: $e\n$st');
   }
+
+  // Carga el banco de preguntas antes de la primera partida.
+  await QuestionRepository.load();
 
   runApp(MyApp(initError: initError));
 }

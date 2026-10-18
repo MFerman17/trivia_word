@@ -1,0 +1,147 @@
+{
+  "language": "es",
+  "difficulty": 3,
+  "version": 1,
+  "questions": [
+    {
+      "id": "es-3-001",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que significa «persona de otro país»?",
+      "options": [
+        "Extranjero",
+        "Extrangero",
+        "Estranjero",
+        "Extranjéro"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Extranjero» se escribe con x al principio y con j en «-jero»."
+    },
+    {
+      "id": "es-3-002",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien escrito «solo»?",
+      "options": [
+        "Solo quiero agua",
+        "Sólo quiero agua",
+        "Sóló quiero agua",
+        "Soló quiero agua"
+      ],
+      "correctIndex": 0,
+      "explanation": "Desde 2010 la RAE recomienda escribir «solo» sin tilde."
+    },
+    {
+      "id": "es-3-003",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Vamos ___ qué pasa mañana.»",
+      "options": [
+        "a ver",
+        "haber",
+        "aver",
+        "ha ver"
+      ],
+      "correctIndex": 0,
+      "explanation": "«A ver» viene del verbo ver; «haber» es otro verbo distinto."
+    },
+    {
+      "id": "es-3-004",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Libro es a biblioteca como cuadro es a…",
+      "options": [
+        "Museo",
+        "Pincel",
+        "Pintor",
+        "Marco"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los libros se guardan en bibliotecas y los cuadros se exponen en museos."
+    },
+    {
+      "id": "es-3-005",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra NO es sinónimo de «valiente»?",
+      "options": [
+        "Cobarde",
+        "Audaz",
+        "Intrépido",
+        "Osado"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cobarde» es lo contrario de valiente; las demás significan lo mismo."
+    },
+    {
+      "id": "es-3-006",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? A, C, E, G, …",
+      "options": [
+        "I",
+        "H",
+        "J",
+        "K"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se salta una letra cada vez: A (b) C (d) E (f) G (h) I."
+    },
+    {
+      "id": "es-3-007",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si yo ___ más tiempo, aprendería a tocar el piano.»",
+      "options": [
+        "tuviera",
+        "tengo",
+        "tendré",
+        "tuve"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con «aprendería» el «si» pide el pretérito imperfecto de subjuntivo: «tuviera»."
+    },
+    {
+      "id": "es-3-008",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Leo es más alto que Ana. Ana es más alta que Iván. ¿Quién es el más bajo?",
+      "options": [
+        "Iván",
+        "Ana",
+        "Leo",
+        "No se puede saber"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ordenados de alto a bajo: Leo, Ana, Iván."
+    },
+    {
+      "id": "es-3-009",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué gas absorben las plantas para hacer la fotosíntesis?",
+      "options": [
+        "Dióxido de carbono",
+        "Oxígeno",
+        "Nitrógeno",
+        "Helio"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las plantas toman dióxido de carbono y, con la luz, liberan oxígeno."
+    },
+    {
+      "id": "es-3-010",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué continente está Egipto?",
+      "options": [
+        "África",
+        "Asia",
+        "Europa",
+        "Oceanía"
+      ],
+      "correctIndex": 0,
+      "explanation": "Egipto está en el noreste de África, junto al río Nilo."
+    }
+  ]
+}

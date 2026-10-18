@@ -1,0 +1,147 @@
+{
+  "language": "es",
+  "difficulty": 4,
+  "version": 1,
+  "questions": [
+    {
+      "id": "es-4-001",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que significa «muy cansado»?",
+      "options": [
+        "Exhausto",
+        "Exausto",
+        "Exaústo",
+        "Hexausto"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Exhausto» lleva una h intercalada que no se pronuncia."
+    },
+    {
+      "id": "es-4-002",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué frase está bien escrita?",
+      "options": [
+        "Tú sabes que te quiero",
+        "Tu sabes que té quiero",
+        "Tú sabes que té quiero",
+        "Tu sabes que te quiero"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Tú» pronombre lleva tilde; «te» pronombre no la lleva («té» es la bebida)."
+    },
+    {
+      "id": "es-4-003",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «efímero»?",
+      "options": [
+        "Que dura poco",
+        "Que es muy caro",
+        "Que brilla mucho",
+        "Que está escondido"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo efímero pasa rápido, como una pompa de jabón."
+    },
+    {
+      "id": "es-4-004",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Médico es a hospital como juez es a…",
+      "options": [
+        "Tribunal",
+        "Ley",
+        "Abogado",
+        "Cárcel"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada profesión con su lugar de trabajo: el juez trabaja en el tribunal."
+    },
+    {
+      "id": "es-4-005",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es un anagrama de «ESPONJA»?",
+      "options": [
+        "Japonés",
+        "Jabones",
+        "Espejos",
+        "Pajares"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Japonés» y «esponja» usan las mismas 7 letras (la tilde no cuenta)."
+    },
+    {
+      "id": "es-4-006",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «dar gato por liebre»?",
+      "options": [
+        "Engañar con algo de menor valor",
+        "Cambiar de opinión",
+        "Ayudar a un amigo",
+        "Llegar tarde"
+      ],
+      "correctIndex": 0,
+      "explanation": "Viene de vender carne de gato haciéndola pasar por liebre, que valía más."
+    },
+    {
+      "id": "es-4-007",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Ningún fantasma tiene sombra. Algunos guardianes son fantasmas. Entonces…",
+      "options": [
+        "Algunos guardianes no tienen sombra",
+        "Ningún guardián tiene sombra",
+        "Todos los guardianes tienen sombra",
+        "Los fantasmas son guardianes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los guardianes que son fantasmas no tienen sombra; de los demás no sabemos nada."
+    },
+    {
+      "id": "es-4-008",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 2, 6, 12, 20, 30, …",
+      "options": [
+        "42",
+        "40",
+        "36",
+        "44"
+      ],
+      "correctIndex": 0,
+      "explanation": "La diferencia crece de 2 en 2: +4, +6, +8, +10 y ahora +12."
+    },
+    {
+      "id": "es-4-009",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué año llegó Colón a América?",
+      "options": [
+        "1492",
+        "1592",
+        "1392",
+        "1500"
+      ],
+      "correctIndex": 0,
+      "explanation": "Colón llegó a una isla del Caribe el 12 de octubre de 1492."
+    },
+    {
+      "id": "es-4-010",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el símbolo químico del oro?",
+      "options": [
+        "Au",
+        "Ag",
+        "Or",
+        "Go"
+      ],
+      "correctIndex": 0,
+      "explanation": "Viene de su nombre en latín, «aurum». Ag es la plata."
+    }
+  ]
+}

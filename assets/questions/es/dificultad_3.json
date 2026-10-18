@@ -142,6 +142,986 @@
       ],
       "correctIndex": 0,
       "explanation": "Egipto está en el noreste de África, junto al río Nilo."
+    },
+    {
+      "id": "es-3-011",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Mañana voy a ___ una carta a mi abuela.»",
+      "options": [
+        "escribir",
+        "escrivir",
+        "escrebir",
+        "escribír"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los verbos acabados en -bir se escriben con b (escribir, recibir), salvo hervir, servir y vivir."
+    },
+    {
+      "id": "es-3-012",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el conjunto de maletas que llevas en un viaje?",
+      "options": [
+        "Equipaje",
+        "Equipage",
+        "Ekipaje",
+        "Equipaxe"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras terminadas en -aje se escriben con j: equipaje, viaje, garaje."
+    },
+    {
+      "id": "es-3-013",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que nombra una foto o un dibujo?",
+      "options": [
+        "Imagen",
+        "Imajen",
+        "Ymagen",
+        "Imagén"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras terminadas en -gen se escriben con g: imagen, origen, margen."
+    },
+    {
+      "id": "es-3-014",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el gas oscuro que sale de algo que se quema?",
+      "options": [
+        "Humo",
+        "Umo",
+        "Jumo",
+        "Húmo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras que empiezan por «hum-» seguido de vocal llevan h: humo, humano, húmedo."
+    },
+    {
+      "id": "es-3-015",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la prueba que haces en clase para demostrar lo aprendido?",
+      "options": [
+        "Examen",
+        "Esamen",
+        "Exámen",
+        "Eksamen"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Examen» se escribe con x y, al ser llana acabada en n, sin tilde."
+    },
+    {
+      "id": "es-3-016",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la cualidad de la persona responsable?",
+      "options": [
+        "Responsabilidad",
+        "Responsavilidad",
+        "Responsabilidá",
+        "Rresponsabilidad"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras terminadas en -bilidad se escriben con b, excepto movilidad y civilidad."
+    },
+    {
+      "id": "es-3-017",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que nombra cada parte de un libro de texto?",
+      "options": [
+        "Lección",
+        "Lecion",
+        "Lexión",
+        "Lessión"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Lección» lleva cc, como «lector»: la primera c suena a k y la segunda a z."
+    },
+    {
+      "id": "es-3-018",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien usada la tilde?",
+      "options": [
+        "Él trajo el libro",
+        "El trajo él libro",
+        "Él trajo él libro",
+        "El trajo el libro"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Él» pronombre lleva tilde; «el» artículo, delante de un nombre, no."
+    },
+    {
+      "id": "es-3-019",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «No sé ___ hora es.»",
+      "options": [
+        "qué",
+        "que",
+        "cuál de",
+        "quién"
+      ],
+      "correctIndex": 0,
+      "explanation": "En las preguntas, también en las indirectas («no sé qué hora es»), «qué» lleva tilde."
+    },
+    {
+      "id": "es-3-020",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra lleva tilde para que dos vocales se pronuncien separadas?",
+      "options": [
+        "Día",
+        "Dio",
+        "Fue",
+        "Pie"
+      ],
+      "correctIndex": 0,
+      "explanation": "En «dí-a» la i y la a van en sílabas distintas; la tilde marca ese hiato."
+    },
+    {
+      "id": "es-3-021",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Yo no lo ___.»",
+      "options": [
+        "sé",
+        "se",
+        "sè",
+        "seé"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sé», del verbo saber, lleva tilde; «se», el pronombre, no."
+    },
+    {
+      "id": "es-3-022",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos monosílabos está bien escrito?",
+      "options": [
+        "Fue",
+        "Fué",
+        "Dió",
+        "Vió"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los monosílabos como fue, dio o vio nunca llevan tilde."
+    },
+    {
+      "id": "es-3-023",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «¿___ no viniste ayer?»",
+      "options": [
+        "Por qué",
+        "Porque",
+        "Porqué",
+        "Por que"
+      ],
+      "correctIndex": 0,
+      "explanation": "En las preguntas se escribe «por qué», separado y con tilde."
+    },
+    {
+      "id": "es-3-024",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No vine a clase ___ estaba enfermo.»",
+      "options": [
+        "porque",
+        "por qué",
+        "porqué",
+        "por que"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Porque», junto y sin tilde, introduce una causa."
+    },
+    {
+      "id": "es-3-025",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No es azul, ___ verde.»",
+      "options": [
+        "sino",
+        "si no",
+        "sinó",
+        "si nó"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sino», junto, opone dos ideas: no es esto, sino aquello."
+    },
+    {
+      "id": "es-3-026",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No creo que ___ nadie en casa.»",
+      "options": [
+        "haya",
+        "halla",
+        "aya",
+        "allá"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Haya» viene de haber; «halla», de hallar (encontrar), y «allá» indica un lugar."
+    },
+    {
+      "id": "es-3-027",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Esperaré ___ las cinco.»",
+      "options": [
+        "hasta",
+        "asta",
+        "astha",
+        "hastá"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hasta» indica un límite; «asta» es el palo de una bandera o el cuerno de un animal."
+    },
+    {
+      "id": "es-3-028",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué oración contiene un error gramatical?",
+      "options": [
+        "Hubieron muchos problemas",
+        "Hubo muchos problemas",
+        "Había muchos problemas",
+        "Habrá muchos problemas"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Haber» con este sentido va siempre en singular: «hubo problemas»."
+    },
+    {
+      "id": "es-3-029",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Señala la frase con una falta de ortografía.",
+      "options": [
+        "Iva a llegar tarde",
+        "Iba a llegar tarde",
+        "Voy a llegar tarde",
+        "Iban a llegar tarde"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Iba», del verbo ir, se escribe con b."
+    },
+    {
+      "id": "es-3-030",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Cuál de estas frases es incorrecta?",
+      "options": [
+        "Me se cayó el vaso",
+        "Se me cayó el vaso",
+        "Se cayó el vaso",
+        "El vaso se cayó"
+      ],
+      "correctIndex": 0,
+      "explanation": "El orden correcto es «se me», nunca «me se»."
+    },
+    {
+      "id": "es-3-031",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué palabra está mal acentuada?",
+      "options": [
+        "Caracter",
+        "Carácter",
+        "Fácil",
+        "Débil"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Carácter» es llana y termina en r, así que lleva tilde."
+    },
+    {
+      "id": "es-3-032",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ojalá ___ tiempo para ir al concierto.»",
+      "options": [
+        "tenga",
+        "tengo",
+        "tendré",
+        "tuve"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ojalá» expresa un deseo y pide subjuntivo: «tenga»."
+    },
+    {
+      "id": "es-3-033",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Cuando ___ mayor, seré astronauta.»",
+      "options": [
+        "sea",
+        "soy",
+        "seré",
+        "era"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cuando» referido al futuro va con subjuntivo: «cuando sea mayor»."
+    },
+    {
+      "id": "es-3-034",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Le dije que ___ la puerta al salir.»",
+      "options": [
+        "cerrara",
+        "cierra",
+        "cerraré",
+        "cerró"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una petición contada en pasado pide subjuntivo: «le dije que cerrara»."
+    },
+    {
+      "id": "es-3-035",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «astuto»?",
+      "options": [
+        "Sagaz",
+        "Torpe",
+        "Ingenuo",
+        "Distraído"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Astuto» y «sagaz» describen a alguien hábil para engañar o para no dejarse engañar."
+    },
+    {
+      "id": "es-3-036",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «escaso»?",
+      "options": [
+        "Abundante",
+        "Pequeño",
+        "Raro",
+        "Poco"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo escaso es poco; algo abundante es mucho."
+    },
+    {
+      "id": "es-3-037",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «obstáculo»?",
+      "options": [
+        "Impedimento",
+        "Camino",
+        "Ayuda",
+        "Salida"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un obstáculo o impedimento es algo que dificulta avanzar."
+    },
+    {
+      "id": "es-3-038",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «unánime»?",
+      "options": [
+        "Que todos opinan igual",
+        "Que tiene un solo color",
+        "Que está solo",
+        "Que es muy rápido"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una decisión unánime es la que toman todos sin excepción."
+    },
+    {
+      "id": "es-3-039",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «ileso»?",
+      "options": [
+        "Que no ha sufrido daño",
+        "Que está muy enfermo",
+        "Que no sabe leer",
+        "Que está perdido"
+      ],
+      "correctIndex": 0,
+      "explanation": "Salir ileso es salir sin heridas de un accidente o de un peligro."
+    },
+    {
+      "id": "es-3-040",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un sinónimo?",
+      "options": [
+        "Palabra de significado parecido",
+        "Palabra de significado contrario",
+        "Palabra que suena igual",
+        "Palabra muy larga"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Feliz» y «contento» son sinónimos; las de significado contrario son antónimos."
+    },
+    {
+      "id": "es-3-041",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «Más vale pájaro en mano que ciento volando»?",
+      "options": [
+        "Mejor algo seguro que mucho dudoso",
+        "Los pájaros vuelan alto",
+        "Hay que cuidar a los animales",
+        "Es mejor tener muchas cosas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aconseja no arriesgar lo que ya tenemos por algo mejor pero inseguro."
+    },
+    {
+      "id": "es-3-042",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «Agua que no has de beber…»",
+      "options": [
+        "déjala correr",
+        "bébela despacio",
+        "guárdala bien",
+        "no la mires"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aconseja no meterse en asuntos que no nos interesan."
+    },
+    {
+      "id": "es-3-043",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Semilla es a árbol como huevo es a…",
+      "options": [
+        "Pájaro",
+        "Nido",
+        "Cáscara",
+        "Yema"
+      ],
+      "correctIndex": 0,
+      "explanation": "De la semilla nace el árbol y del huevo nace el pájaro."
+    },
+    {
+      "id": "es-3-044",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Termómetro es a temperatura como reloj es a…",
+      "options": [
+        "Tiempo",
+        "Calor",
+        "Muñeca",
+        "Alarma"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada instrumento con lo que mide: el termómetro, la temperatura; el reloj, el tiempo."
+    },
+    {
+      "id": "es-3-045",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Arquitecto es a edificio como compositor es a…",
+      "options": [
+        "Canción",
+        "Piano",
+        "Orquesta",
+        "Escenario"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada creador con su obra: el arquitecto diseña edificios y el compositor, canciones."
+    },
+    {
+      "id": "es-3-046",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Mucho es a poco como siempre es a…",
+      "options": [
+        "Nunca",
+        "A veces",
+        "Todo",
+        "Pronto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son opuestos: lo contrario de «siempre» es «nunca»."
+    },
+    {
+      "id": "es-3-047",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es sinónimo de «alegre»?",
+      "options": [
+        "Melancólico",
+        "Contento",
+        "Jovial",
+        "Risueño"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Melancólico» significa triste; las demás expresan alegría."
+    },
+    {
+      "id": "es-3-048",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número no es par? 12, 18, 25, 30.",
+      "options": [
+        "25",
+        "12",
+        "18",
+        "30"
+      ],
+      "correctIndex": 0,
+      "explanation": "25 no se puede dividir entre 2 sin que sobre algo: es impar."
+    },
+    {
+      "id": "es-3-049",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es esdrújula? Brújula, lámpara, música, árbol.",
+      "options": [
+        "Árbol",
+        "Brújula",
+        "Lámpara",
+        "Música"
+      ],
+      "correctIndex": 0,
+      "explanation": "ÁR-bol es llana; las demás llevan la fuerza en la antepenúltima sílaba."
+    },
+    {
+      "id": "es-3-050",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 4, 9, 16, …",
+      "options": [
+        "25",
+        "20",
+        "24",
+        "32"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son números al cuadrado: 1×1, 2×2, 3×3, 4×4 y ahora 5×5 = 25."
+    },
+    {
+      "id": "es-3-051",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 1, 2, 3, 5, 8, …",
+      "options": [
+        "13",
+        "11",
+        "12",
+        "16"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es la suma de los dos anteriores: 5 + 8 = 13."
+    },
+    {
+      "id": "es-3-052",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? B, D, F, H, …",
+      "options": [
+        "J",
+        "I",
+        "K",
+        "L"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se salta una letra cada vez: B (c) D (e) F (g) H (i) J."
+    },
+    {
+      "id": "es-3-053",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «MONJA»?",
+      "options": [
+        "Jamón",
+        "Manjar",
+        "Mango",
+        "Joyas"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Jamón» y «monja» usan las mismas cinco letras."
+    },
+    {
+      "id": "es-3-054",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «ROSA»?",
+      "options": [
+        "Osar",
+        "Rosca",
+        "Sopa",
+        "Cosa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Osar» usa exactamente las letras de «rosa»: R, O, S y A."
+    },
+    {
+      "id": "es-3-055",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «PIRATA»?",
+      "options": [
+        "Patria",
+        "Piedra",
+        "Patata",
+        "Pintar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Patria» usa las mismas seis letras que «pirata»."
+    },
+    {
+      "id": "es-3-056",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué flor se esconde dentro de «ROSALEDA»?",
+      "options": [
+        "Rosa",
+        "Lirio",
+        "Dalia",
+        "Tulipán"
+      ],
+      "correctIndex": 0,
+      "explanation": "ROSA-LEDA: la palabra empieza por «rosa»."
+    },
+    {
+      "id": "es-3-057",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué metal precioso se esconde dentro de «TESORO»?",
+      "options": [
+        "Oro",
+        "Plata",
+        "Hierro",
+        "Cobre"
+      ],
+      "correctIndex": 0,
+      "explanation": "TES-ORO: al final está «oro»."
+    },
+    {
+      "id": "es-3-058",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿En qué sílaba recae la fuerza de «teléfono»?",
+      "options": [
+        "En la antepenúltima",
+        "En la última",
+        "En la penúltima",
+        "En la primera"
+      ],
+      "correctIndex": 0,
+      "explanation": "te-LÉ-fo-no: la fuerza va en la antepenúltima; por eso es esdrújula."
+    },
+    {
+      "id": "es-3-059",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las sílabas para formar un instrumento: TA · GUI · RRA",
+      "options": [
+        "Guitarra",
+        "Garra",
+        "Tirar",
+        "Guirnalda"
+      ],
+      "correctIndex": 0,
+      "explanation": "GUI-TA-RRA: con esas tres sílabas se forma «guitarra»."
+    },
+    {
+      "id": "es-3-060",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Soy alta cuando soy joven y baja cuando soy vieja; brillo mientras vivo. ¿Qué soy?",
+      "options": [
+        "Una vela",
+        "Un árbol",
+        "Una montaña",
+        "Una estrella"
+      ],
+      "correctIndex": 0,
+      "explanation": "La vela se va consumiendo mientras arde, así que cada vez es más baja."
+    },
+    {
+      "id": "es-3-061",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Cuanto más seca, más moja. ¿Qué es?",
+      "options": [
+        "La toalla",
+        "La esponja",
+        "El sol",
+        "El paraguas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cuanto más secamos con la toalla, más mojada queda ella."
+    },
+    {
+      "id": "es-3-062",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los atletas entrenan. Algunos atletas son nadadores. ¿Qué es seguro?",
+      "options": [
+        "Algunos nadadores entrenan",
+        "Todos los nadadores son atletas",
+        "Ningún nadador entrena",
+        "Todos los que entrenan nadan"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los nadadores que son atletas entrenan, así que al menos algunos nadadores entrenan."
+    },
+    {
+      "id": "es-3-063",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "El tesoro está en una caja roja, azul o verde. No está en la roja ni en la verde. ¿Dónde está?",
+      "options": [
+        "En la azul",
+        "En la roja",
+        "En la verde",
+        "En ninguna"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si descartamos la roja y la verde, solo queda la azul."
+    },
+    {
+      "id": "es-3-064",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los gatos de esta calle son negros. Tom es blanco. ¿Qué podemos afirmar?",
+      "options": [
+        "Tom no es de esta calle",
+        "Tom es negro",
+        "Tom es de esta calle",
+        "Todos los gatos son blancos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si fuera de esta calle sería negro. Como es blanco, no es de esta calle."
+    },
+    {
+      "id": "es-3-065",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Una camiseta cuesta 20 € y tiene un 50 % de descuento. ¿Cuánto cuesta ahora?",
+      "options": [
+        "10 €",
+        "15 €",
+        "5 €",
+        "40 €"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un 50 % es la mitad: la mitad de 20 € son 10 €."
+    },
+    {
+      "id": "es-3-066",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un dragón vuela 30 km cada hora. ¿Cuántos km recorre en 4 horas?",
+      "options": [
+        "120 km",
+        "34 km",
+        "90 km",
+        "100 km"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son 30 km repetidos 4 veces: 30 × 4 = 120 km."
+    },
+    {
+      "id": "es-3-067",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la unidad básica de la que están formados todos los seres vivos?",
+      "options": [
+        "La célula",
+        "El átomo",
+        "El órgano",
+        "El tejido"
+      ],
+      "correctIndex": 0,
+      "explanation": "Todos los seres vivos están formados por células; los átomos forman también lo que no está vivo."
+    },
+    {
+      "id": "es-3-068",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué planeta es conocido como el planeta rojo?",
+      "options": [
+        "Marte",
+        "Júpiter",
+        "Venus",
+        "Saturno"
+      ],
+      "correctIndex": 0,
+      "explanation": "Marte se ve rojizo por el óxido de hierro de su superficie."
+    },
+    {
+      "id": "es-3-069",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué gas necesitamos respirar para vivir?",
+      "options": [
+        "Oxígeno",
+        "Dióxido de carbono",
+        "Helio",
+        "Nitrógeno"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las células usan el oxígeno para obtener energía; expulsamos dióxido de carbono."
+    },
+    {
+      "id": "es-3-070",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿A qué temperatura hierve el agua a nivel del mar?",
+      "options": [
+        "100 °C",
+        "50 °C",
+        "0 °C",
+        "200 °C"
+      ],
+      "correctIndex": 0,
+      "explanation": "A nivel del mar el agua hierve a 100 °C y se congela a 0 °C."
+    },
+    {
+      "id": "es-3-071",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Italia?",
+      "options": [
+        "Roma",
+        "Milán",
+        "Venecia",
+        "Nápoles"
+      ],
+      "correctIndex": 0,
+      "explanation": "Roma es la capital de Italia desde 1871."
+    },
+    {
+      "id": "es-3-072",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué río pasa por Sevilla?",
+      "options": [
+        "El Guadalquivir",
+        "El Ebro",
+        "El Tajo",
+        "El Duero"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Guadalquivir atraviesa Andalucía y pasa por Córdoba y Sevilla."
+    },
+    {
+      "id": "es-3-073",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el continente más grande?",
+      "options": [
+        "Asia",
+        "África",
+        "América",
+        "Europa"
+      ],
+      "correctIndex": 0,
+      "explanation": "Asia es el continente más extenso y el más poblado."
+    },
+    {
+      "id": "es-3-074",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué cordillera separa España de Francia?",
+      "options": [
+        "Los Pirineos",
+        "Los Alpes",
+        "Los Andes",
+        "Sierra Nevada"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los Pirineos forman la frontera natural entre España y Francia."
+    },
+    {
+      "id": "es-3-075",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización creó los Juegos Olímpicos?",
+      "options": [
+        "La griega",
+        "La romana",
+        "La egipcia",
+        "La china"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los primeros Juegos se celebraron en Olimpia, en la antigua Grecia."
+    },
+    {
+      "id": "es-3-076",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué gran viaje completaron Magallanes y Elcano?",
+      "options": [
+        "La primera vuelta al mundo",
+        "El descubrimiento de América",
+        "La llegada a la Luna",
+        "La conquista del Polo Sur"
+      ],
+      "correctIndex": 0,
+      "explanation": "La expedición salió en 1519 y Elcano regresó en 1522 tras dar la vuelta al mundo."
+    },
+    {
+      "id": "es-3-077",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué lengua hablaban los antiguos romanos?",
+      "options": [
+        "Latín",
+        "Griego",
+        "Árabe",
+        "Celta"
+      ],
+      "correctIndex": 0,
+      "explanation": "Del latín proceden el español, el francés, el italiano y otras lenguas."
+    },
+    {
+      "id": "es-3-078",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién pintó «La Gioconda»?",
+      "options": [
+        "Leonardo da Vinci",
+        "Pablo Picasso",
+        "Diego Velázquez",
+        "Vincent van Gogh"
+      ],
+      "correctIndex": 0,
+      "explanation": "Leonardo da Vinci la pintó a principios del siglo XVI; está en el Louvre de París."
+    },
+    {
+      "id": "es-3-079",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas notas tiene la escala musical do, re, mi…?",
+      "options": [
+        "7",
+        "5",
+        "8",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "Do, re, mi, fa, sol, la y si."
+    },
+    {
+      "id": "es-3-080",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué escritor creó al detective Sherlock Holmes?",
+      "options": [
+        "Arthur Conan Doyle",
+        "Agatha Christie",
+        "Julio Verne",
+        "Charles Dickens"
+      ],
+      "correctIndex": 0,
+      "explanation": "Arthur Conan Doyle publicó la primera novela de Sherlock Holmes en 1887."
     }
   ]
 }

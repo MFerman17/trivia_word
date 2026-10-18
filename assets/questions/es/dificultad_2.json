@@ -142,6 +142,986 @@
       ],
       "correctIndex": 0,
       "explanation": "Son 8 horas repetidas 3 veces: 8 × 3 = 24."
+    },
+    {
+      "id": "es-2-011",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «De pequeño, yo ___ en el coro del colegio.»",
+      "options": [
+        "cantaba",
+        "cantava",
+        "kantaba",
+        "cantabá"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los verbos acabados en -ar forman este pasado con -aba, siempre con b."
+    },
+    {
+      "id": "es-2-012",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal con caparazón que camina muy despacio?",
+      "options": [
+        "Tortuga",
+        "Tortúga",
+        "Tortuja",
+        "Tortuca"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Tortuga» se escribe con g y sin tilde."
+    },
+    {
+      "id": "es-2-013",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el lugar donde se cuece el pan o una pizza?",
+      "options": [
+        "Horno",
+        "Orno",
+        "Hornno",
+        "Jorno"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Horno» empieza por h, aunque no suena."
+    },
+    {
+      "id": "es-2-014",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el agua que cae del cielo cuando hay tormenta?",
+      "options": [
+        "Lluvia",
+        "Yuvia",
+        "Llubia",
+        "Lluvía"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Lluvia» se escribe con ll y con v."
+    },
+    {
+      "id": "es-2-015",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra debe escribirse con mayúscula inicial?",
+      "options": [
+        "madrid",
+        "ciudad",
+        "río",
+        "montaña"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los nombres propios de lugares, como Madrid, empiezan siempre con mayúscula."
+    },
+    {
+      "id": "es-2-016",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la persona que apaga incendios?",
+      "options": [
+        "Bombero",
+        "Bonbero",
+        "Vombero",
+        "Bomvero"
+      ],
+      "correctIndex": 0,
+      "explanation": "Antes de b siempre se escribe m, nunca n: «bombero»."
+    },
+    {
+      "id": "es-2-017",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «lápiz»?",
+      "options": [
+        "Lápices",
+        "Lápizes",
+        "Lapices",
+        "Lápiz"
+      ],
+      "correctIndex": 0,
+      "explanation": "La z cambia a c delante de e: lápiz → lápices, y conserva la tilde."
+    },
+    {
+      "id": "es-2-018",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es esdrújula (con la fuerza en la antepenúltima sílaba)?",
+      "options": [
+        "Música",
+        "Canción",
+        "Árbol",
+        "Ratón"
+      ],
+      "correctIndex": 0,
+      "explanation": "MÚ-si-ca lleva la fuerza en la antepenúltima sílaba. Las esdrújulas siempre llevan tilde."
+    },
+    {
+      "id": "es-2-019",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la asignatura que estudia los números?",
+      "options": [
+        "Matemáticas",
+        "Matematicas",
+        "Matemátícas",
+        "Matématicas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Es esdrújula (ma-te-MÁ-ti-cas), por eso lleva tilde."
+    },
+    {
+      "id": "es-2-020",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra NO necesita tilde?",
+      "options": [
+        "Reloj",
+        "Café",
+        "Jardín",
+        "Sillón"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Reloj» es aguda, pero termina en j (no en vocal, n ni s), así que no lleva tilde."
+    },
+    {
+      "id": "es-2-021",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la forma correcta de escribir la palabra «arbol»?",
+      "options": [
+        "Árbol",
+        "Arból",
+        "Arbol",
+        "Árból"
+      ],
+      "correctIndex": 0,
+      "explanation": "ÁR-bol es llana y termina en l, así que lleva tilde en la a."
+    },
+    {
+      "id": "es-2-022",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Mi madre ha ___ una tarta de chocolate.»",
+      "options": [
+        "hecho",
+        "echo",
+        "echado",
+        "hechado"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hecho», con h, viene de hacer; «echo», sin h, viene de echar."
+    },
+    {
+      "id": "es-2-023",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Hay que ___ la carta en el buzón.»",
+      "options": [
+        "echar",
+        "hechar",
+        "hacer",
+        "echár"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Echar», con el sentido de meter o lanzar, se escribe sin h."
+    },
+    {
+      "id": "es-2-024",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Ayer Lucía ___ fiebre y no fue al colegio.»",
+      "options": [
+        "tuvo",
+        "tubo",
+        "tubó",
+        "tuvó"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Tuvo» viene del verbo tener; un «tubo» es un cilindro hueco."
+    },
+    {
+      "id": "es-2-025",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No sé si ___ más leche en la nevera.»",
+      "options": [
+        "hay",
+        "ahí",
+        "ay",
+        "hai"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hay» viene de haber; «ahí» indica un lugar y «ay» expresa dolor."
+    },
+    {
+      "id": "es-2-026",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase hay una palabra mal escrita?",
+      "options": [
+        "El abión despegó a las ocho",
+        "El avión despegó a las ocho",
+        "El tren salió puntual",
+        "El barco llegó tarde"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Avión» se escribe con v."
+    },
+    {
+      "id": "es-2-027",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase está mal construida?",
+      "options": [
+        "Ellos comisteis pasta",
+        "Ellos comieron pasta",
+        "Nosotros comimos pasta",
+        "Tú comiste pasta"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con «ellos» el verbo es «comieron»; «comisteis» va con «vosotros»."
+    },
+    {
+      "id": "es-2-028",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Cuál de estas palabras tiene un error?",
+      "options": [
+        "Bibir",
+        "Vivir",
+        "Beber",
+        "Volar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vivir» se escribe con v las dos veces."
+    },
+    {
+      "id": "es-2-029",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si mañana ___ sol, iremos a la playa.»",
+      "options": [
+        "hace",
+        "hizo",
+        "hacía",
+        "hará"
+      ],
+      "correctIndex": 0,
+      "explanation": "Detrás de un «si» que pone una condición no se usa el futuro: «si hace sol»."
+    },
+    {
+      "id": "es-2-030",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Los libros ___ en la estantería.»",
+      "options": [
+        "están",
+        "está",
+        "estoy",
+        "estás"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Los libros» son varios, así que el verbo va en plural: «están»."
+    },
+    {
+      "id": "es-2-031",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me duele ___ cabeza.»",
+      "options": [
+        "la",
+        "el",
+        "los",
+        "un"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cabeza» es femenina y singular: «me duele la cabeza»."
+    },
+    {
+      "id": "es-2-032",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Cuando era pequeño, ___ en un pueblo.»",
+      "options": [
+        "vivía",
+        "viviré",
+        "vivo",
+        "viviría"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cuando era pequeño» habla de algo que duró en el pasado: «vivía»."
+    },
+    {
+      "id": "es-2-033",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «rápido»?",
+      "options": [
+        "Veloz",
+        "Lento",
+        "Torpe",
+        "Pesado"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Rápido» y «veloz» son sinónimos; «lento» es su contrario."
+    },
+    {
+      "id": "es-2-034",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «generoso»?",
+      "options": [
+        "Tacaño",
+        "Amable",
+        "Simpático",
+        "Alegre"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una persona tacaña no quiere compartir; la generosa, sí."
+    },
+    {
+      "id": "es-2-035",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «empezar»?",
+      "options": [
+        "Comenzar",
+        "Terminar",
+        "Esperar",
+        "Olvidar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Empezar» y «comenzar» son sinónimos."
+    },
+    {
+      "id": "es-2-036",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «valiente»?",
+      "options": [
+        "Miedoso",
+        "Fuerte",
+        "Atrevido",
+        "Listo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Miedoso» es lo opuesto a valiente; «atrevido» es casi su sinónimo."
+    },
+    {
+      "id": "es-2-037",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un diccionario?",
+      "options": [
+        "Un libro que explica palabras",
+        "Un libro de cuentos",
+        "Un mapa del mundo",
+        "Una lista de la compra"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el diccionario las palabras están en orden alfabético con su significado."
+    },
+    {
+      "id": "es-2-038",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «agotado»?",
+      "options": [
+        "Muy cansado",
+        "Muy contento",
+        "Muy limpio",
+        "Muy despierto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Estar agotado es no tener fuerzas, como al terminar una carrera."
+    },
+    {
+      "id": "es-2-039",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es una isla?",
+      "options": [
+        "Tierra rodeada de agua",
+        "Una montaña muy alta",
+        "Un río muy largo",
+        "Un desierto de arena"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una isla es un trozo de tierra con agua por todos sus lados."
+    },
+    {
+      "id": "es-2-040",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «Perro ladrador…»",
+      "options": [
+        "poco mordedor",
+        "mucho comedor",
+        "nunca durmió",
+        "siempre ganó"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien amenaza mucho, normalmente no llega a hacer nada."
+    },
+    {
+      "id": "es-2-041",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «No por mucho madrugar…»",
+      "options": [
+        "amanece más temprano",
+        "se llega antes",
+        "se duerme mejor",
+        "sale el sol"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hay cosas que no llegan antes por mucha prisa que nos demos."
+    },
+    {
+      "id": "es-2-042",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Abeja es a colmena como pájaro es a…",
+      "options": [
+        "Nido",
+        "Árbol",
+        "Pluma",
+        "Cielo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada animal con su casa: la abeja vive en la colmena y el pájaro, en el nido."
+    },
+    {
+      "id": "es-2-043",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Pintor es a pincel como escritor es a…",
+      "options": [
+        "Lápiz",
+        "Libro",
+        "Papel",
+        "Lector"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada uno con su herramienta: el pintor usa el pincel y el escritor, el lápiz."
+    },
+    {
+      "id": "es-2-044",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Frío es a invierno como calor es a…",
+      "options": [
+        "Verano",
+        "Otoño",
+        "Primavera",
+        "Noche"
+      ],
+      "correctIndex": 0,
+      "explanation": "El invierno es la estación más fría y el verano, la más calurosa."
+    },
+    {
+      "id": "es-2-045",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Ojo es a ver como oído es a…",
+      "options": [
+        "Oír",
+        "Hablar",
+        "Oler",
+        "Tocar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada sentido con su órgano: con los ojos vemos y con los oídos oímos."
+    },
+    {
+      "id": "es-2-046",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un medio de transporte? Tren, avión, barco, sofá.",
+      "options": [
+        "Sofá",
+        "Tren",
+        "Avión",
+        "Barco"
+      ],
+      "correctIndex": 0,
+      "explanation": "El sofá es un mueble; los demás sirven para viajar."
+    },
+    {
+      "id": "es-2-047",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un verbo? Correr, saltar, rápido, comer.",
+      "options": [
+        "Rápido",
+        "Correr",
+        "Saltar",
+        "Comer"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Rápido» es un adjetivo: describe cómo es algo. Las demás son acciones."
+    },
+    {
+      "id": "es-2-048",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál no es un planeta? Marte, Venus, Luna, Júpiter.",
+      "options": [
+        "Luna",
+        "Marte",
+        "Venus",
+        "Júpiter"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Luna es un satélite: gira alrededor de la Tierra, no del Sol."
+    },
+    {
+      "id": "es-2-049",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un instrumento musical? Violín, flauta, tambor, martillo.",
+      "options": [
+        "Martillo",
+        "Violín",
+        "Flauta",
+        "Tambor"
+      ],
+      "correctIndex": 0,
+      "explanation": "El martillo es una herramienta; los demás producen música."
+    },
+    {
+      "id": "es-2-050",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 5, 10, 15, 20, …",
+      "options": [
+        "25",
+        "30",
+        "22",
+        "21"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se suma 5 cada vez: 20 + 5 = 25."
+    },
+    {
+      "id": "es-2-051",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 2, 4, 8, …",
+      "options": [
+        "16",
+        "10",
+        "12",
+        "14"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es el doble del anterior: 8 × 2 = 16."
+    },
+    {
+      "id": "es-2-052",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué estación viene después de la primavera?",
+      "options": [
+        "Verano",
+        "Otoño",
+        "Invierno",
+        "Navidad"
+      ],
+      "correctIndex": 0,
+      "explanation": "El orden es primavera, verano, otoño e invierno."
+    },
+    {
+      "id": "es-2-053",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? Z, Y, X, W, …",
+      "options": [
+        "V",
+        "U",
+        "T",
+        "A"
+      ],
+      "correctIndex": 0,
+      "explanation": "Es el abecedario al revés: Z, Y, X, W, V."
+    },
+    {
+      "id": "es-2-054",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «SACO»?",
+      "options": [
+        "Cosa",
+        "Cesta",
+        "Sala",
+        "Cara"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cosa» usa las mismas letras que «saco»: S, A, C y O."
+    },
+    {
+      "id": "es-2-055",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «RATA»?",
+      "options": [
+        "Atar",
+        "Tapa",
+        "Rama",
+        "Arte"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Atar» usa exactamente las letras de «rata»: R, A, T y A."
+    },
+    {
+      "id": "es-2-056",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte del cuerpo se esconde al principio de «MANOPLA»?",
+      "options": [
+        "Mano",
+        "Pie",
+        "Ojo",
+        "Brazo"
+      ],
+      "correctIndex": 0,
+      "explanation": "MANO-PLA: la palabra empieza por «mano»."
+    },
+    {
+      "id": "es-2-057",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se esconde dentro de «RATONERA»?",
+      "options": [
+        "Ratón",
+        "Gato",
+        "Perro",
+        "Pato"
+      ],
+      "correctIndex": 0,
+      "explanation": "RATON-ERA: dentro está «ratón»."
+    },
+    {
+      "id": "es-2-058",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las sílabas para formar un animal: CO · DRI · LO · CO",
+      "options": [
+        "Cocodrilo",
+        "Cordero",
+        "Codorniz",
+        "Colibrí"
+      ],
+      "correctIndex": 0,
+      "explanation": "CO-CO-DRI-LO: con esas cuatro sílabas se forma «cocodrilo»."
+    },
+    {
+      "id": "es-2-059",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «helicóptero»?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "He-li-cóp-te-ro: tiene cinco sílabas."
+    },
+    {
+      "id": "es-2-060",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Oro parece, plata no es. ¿Qué es?",
+      "options": [
+        "El plátano",
+        "La moneda",
+        "El limón",
+        "El sol"
+      ],
+      "correctIndex": 0,
+      "explanation": "La respuesta está escondida: «plata no es» suena como «plátano es»."
+    },
+    {
+      "id": "es-2-061",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Cuanto más le quitas, más grande se hace. ¿Qué es?",
+      "options": [
+        "Un agujero",
+        "Una piedra",
+        "Un globo",
+        "Una sombra"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si sacas tierra de un agujero, el agujero crece."
+    },
+    {
+      "id": "es-2-062",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tiene ojos y no ve, tiene agua y no la bebe. ¿Qué es?",
+      "options": [
+        "El coco",
+        "La patata",
+        "El pez",
+        "La sandía"
+      ],
+      "correctIndex": 0,
+      "explanation": "El coco tiene tres marcas que parecen ojos y agua en su interior."
+    },
+    {
+      "id": "es-2-063",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Pedro llegó antes que Marta, y Marta antes que Juan. ¿Quién llegó el último?",
+      "options": [
+        "Juan",
+        "Pedro",
+        "Marta",
+        "No se sabe"
+      ],
+      "correctIndex": 0,
+      "explanation": "El orden de llegada es Pedro, Marta y, por último, Juan."
+    },
+    {
+      "id": "es-2-064",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si hoy es lunes, ¿qué día será pasado mañana?",
+      "options": [
+        "Miércoles",
+        "Martes",
+        "Jueves",
+        "Domingo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mañana será martes y pasado mañana, miércoles."
+    },
+    {
+      "id": "es-2-065",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un pastel se corta en 8 trozos iguales y se comen 3. ¿Cuántos trozos quedan?",
+      "options": [
+        "5",
+        "3",
+        "4",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quitamos los trozos comidos: 8 − 3 = 5."
+    },
+    {
+      "id": "es-2-066",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Cada caja tiene 6 huevos. ¿Cuántos huevos hay en 4 cajas?",
+      "options": [
+        "24",
+        "10",
+        "20",
+        "18"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son 6 huevos repetidos 4 veces: 6 × 4 = 24."
+    },
+    {
+      "id": "es-2-067",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el planeta más cercano al Sol?",
+      "options": [
+        "Mercurio",
+        "Venus",
+        "Tierra",
+        "Marte"
+      ],
+      "correctIndex": 0,
+      "explanation": "El orden desde el Sol empieza así: Mercurio, Venus, Tierra, Marte."
+    },
+    {
+      "id": "es-2-068",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué órgano bombea la sangre por todo el cuerpo?",
+      "options": [
+        "El corazón",
+        "El estómago",
+        "Los pulmones",
+        "El hígado"
+      ],
+      "correctIndex": 0,
+      "explanation": "El corazón es un músculo que late y empuja la sangre."
+    },
+    {
+      "id": "es-2-069",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos animales pone huevos?",
+      "options": [
+        "La gallina",
+        "La vaca",
+        "El perro",
+        "El caballo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las aves, como la gallina, nacen de huevos."
+    },
+    {
+      "id": "es-2-070",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué estado está el agua cuando hierve y sale de la olla?",
+      "options": [
+        "Gaseoso",
+        "Sólido",
+        "Líquido",
+        "Congelado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Al hervir, el agua se convierte en vapor, que es un gas."
+    },
+    {
+      "id": "es-2-071",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el océano más grande del mundo?",
+      "options": [
+        "El Pacífico",
+        "El Atlántico",
+        "El Índico",
+        "El Ártico"
+      ],
+      "correctIndex": 0,
+      "explanation": "El océano Pacífico es el más grande y el más profundo."
+    },
+    {
+      "id": "es-2-072",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué país tiene forma de bota en el mapa?",
+      "options": [
+        "Italia",
+        "Francia",
+        "Portugal",
+        "Grecia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Italia tiene forma de bota que parece dar una patada a Sicilia."
+    },
+    {
+      "id": "es-2-073",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué país está la Torre Eiffel?",
+      "options": [
+        "Francia",
+        "Italia",
+        "Alemania",
+        "Inglaterra"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Torre Eiffel está en París, la capital de Francia."
+    },
+    {
+      "id": "es-2-074",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la montaña más alta del mundo?",
+      "options": [
+        "El Everest",
+        "El Teide",
+        "El Mont Blanc",
+        "El Aconcagua"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Everest, en el Himalaya, mide unos 8.849 metros."
+    },
+    {
+      "id": "es-2-075",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué pueblo construyó el acueducto de Segovia?",
+      "options": [
+        "Los romanos",
+        "Los egipcios",
+        "Los vikingos",
+        "Los mayas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los romanos lo construyeron hace casi 2.000 años para llevar agua a la ciudad."
+    },
+    {
+      "id": "es-2-076",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Quién fue el primer ser humano en pisar la Luna?",
+      "options": [
+        "Neil Armstrong",
+        "Yuri Gagarin",
+        "Cristóbal Colón",
+        "Isaac Newton"
+      ],
+      "correctIndex": 0,
+      "explanation": "Neil Armstrong pisó la Luna en 1969. Gagarin fue el primero en viajar al espacio."
+    },
+    {
+      "id": "es-2-077",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué época vivieron los caballeros y se construían castillos?",
+      "options": [
+        "La Edad Media",
+        "La Prehistoria",
+        "La Edad Moderna",
+        "El siglo XXI"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Edad Media duró unos mil años, aproximadamente del año 500 al 1500."
+    },
+    {
+      "id": "es-2-078",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos minutos tiene una hora?",
+      "options": [
+        "60",
+        "100",
+        "30",
+        "24"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una hora tiene 60 minutos y un día, 24 horas."
+    },
+    {
+      "id": "es-2-079",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos jugadores de cada equipo hay en un campo de fútbol?",
+      "options": [
+        "11",
+        "10",
+        "9",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada equipo juega con 11 jugadores, incluido el portero."
+    },
+    {
+      "id": "es-2-080",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos colores tiene el arcoíris?",
+      "options": [
+        "7",
+        "5",
+        "6",
+        "8"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rojo, naranja, amarillo, verde, azul, añil y violeta."
     }
   ]
 }

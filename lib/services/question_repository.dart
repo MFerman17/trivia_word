@@ -10,7 +10,7 @@ import '../models/question.dart';
 /// Banco de preguntas definitivo.
 ///
 /// Las preguntas viven en archivos JSON, uno por idioma y dificultad:
-///   assets/questions/<idioma>/dificultad_<1-5>.json
+///   `assets/questions/IDIOMA/dificultad_N.json` (N de 1 a 5)
 /// Así se pueden revisar y corregir sin tocar el código.
 ///
 /// En los archivos la respuesta correcta va SIEMPRE la primera

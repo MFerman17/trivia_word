@@ -30,7 +30,7 @@ class WM {
   static const double skew = -0.2;
 }
 
-/// Aclara (amount > 0) u oscurece (amount < 0) un color.
+/// Aclara (`amount` positivo) u oscurece (`amount` negativo) un color.
 Color shade(Color c, double amount) {
   final hsl = HSLColor.fromColor(c);
   return hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0)).toColor();

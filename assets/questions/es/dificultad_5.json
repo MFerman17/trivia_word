@@ -142,6 +142,986 @@
       ],
       "correctIndex": 0,
       "explanation": "Si el aprendiz tiene x, el mago tiene 2x: 3x = 18, x = 6, y el mago tiene 12."
+    },
+    {
+      "id": "es-5-011",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que trata un tema a fondo, sin omitir nada»?",
+      "options": [
+        "Exhaustivo",
+        "Exaustivo",
+        "Exhaustibo",
+        "Exahustivo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Exhaustivo» lleva h intercalada, igual que «exhausto»."
+    },
+    {
+      "id": "es-5-012",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la persona que está en la adolescencia?",
+      "options": [
+        "Adolescente",
+        "Adolecente",
+        "Adolescénte",
+        "Adoslecente"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lleva «sc», como «adolescencia». «Adolecer» es otro verbo: tener un defecto."
+    },
+    {
+      "id": "es-5-013",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que surge de forma natural, sin preparación»?",
+      "options": [
+        "Espontáneo",
+        "Expontáneo",
+        "Espontaneo",
+        "Espontánio"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Espontáneo» se escribe con s, no con x, y es esdrújula."
+    },
+    {
+      "id": "es-5-014",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «marcar con una línea por debajo»?",
+      "options": [
+        "Subrayar",
+        "Subrrayar",
+        "Subrallar",
+        "Suvrayar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tras el prefijo sub-, la r suena fuerte pero se escribe una sola: subrayar."
+    },
+    {
+      "id": "es-5-015",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que nombra el conjunto de bienes culturales de un pueblo?",
+      "options": [
+        "Acervo",
+        "Acerbo",
+        "Asecvo",
+        "Acérvo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Acervo», con v, es un conjunto de bienes; «acerbo», con b, significa áspero o cruel."
+    },
+    {
+      "id": "es-5-016",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer yo ___ la maleta al volver del viaje.»",
+      "options": [
+        "deshice",
+        "deshací",
+        "desice",
+        "deshize"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Deshacer» se conjuga como «hacer»: hice → deshice. Conserva la h de «hacer»."
+    },
+    {
+      "id": "es-5-017",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que tiene mucho vello»?",
+      "options": [
+        "Velludo",
+        "Belludo",
+        "Veyudo",
+        "Vellúdo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Viene de «vello», con v y ll."
+    },
+    {
+      "id": "es-5-018",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe, según la RAE, el texto con los diálogos de una película?",
+      "options": [
+        "Guion",
+        "Guión",
+        "Güion",
+        "Guíon"
+      ],
+      "correctIndex": 0,
+      "explanation": "Desde 2010, «guion» se considera monosílabo a efectos de tilde y se escribe sin ella."
+    },
+    {
+      "id": "es-5-019",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien escrito el demostrativo?",
+      "options": [
+        "Este libro es mío",
+        "Éste libro es mío",
+        "Esté libro es mío",
+        "Ésté libro es mío"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los demostrativos no llevan tilde según la RAE. «Esté», con tilde, es una forma del verbo estar."
+    },
+    {
+      "id": "es-5-020",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adverbio formado por «fácil» y «-mente»?",
+      "options": [
+        "Fácilmente",
+        "Facilmente",
+        "Fácilménte",
+        "Facílmente"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los adverbios en -mente conservan la tilde del adjetivo: fácil → fácilmente."
+    },
+    {
+      "id": "es-5-021",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el número 22 con letras?",
+      "options": [
+        "Veintidós",
+        "Veintidos",
+        "Veintídos",
+        "Véintidós"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Veintidós» es aguda acabada en s: lleva tilde, aunque «dos» sola no la lleve."
+    },
+    {
+      "id": "es-5-022",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «¡___ me alegro de verte!»",
+      "options": [
+        "Cuánto",
+        "Cuanto",
+        "Cuántos",
+        "Cuantó"
+      ],
+      "correctIndex": 0,
+      "explanation": "En las exclamaciones, «cuánto» lleva tilde, igual que en las preguntas."
+    },
+    {
+      "id": "es-5-023",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «La ___ circula por el tallo de la planta.»",
+      "options": [
+        "savia",
+        "sabia",
+        "sávia",
+        "sabía"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Savia» es el líquido de las plantas; «sabia», una persona con mucho saber."
+    },
+    {
+      "id": "es-5-024",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Firmaron la ___ de los derechos de autor.»",
+      "options": [
+        "cesión",
+        "sesión",
+        "sección",
+        "seción"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cesión» es la acción de ceder; «sesión», una reunión o una función."
+    },
+    {
+      "id": "es-5-025",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Si conduces sin carné, estás ___ la ley.»",
+      "options": [
+        "infringiendo",
+        "infligiendo",
+        "infrigiendo",
+        "inflingiendo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Infringir» es quebrantar una norma; «infligir» es causar un daño o imponer un castigo."
+    },
+    {
+      "id": "es-5-026",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No tenemos ___ a internet en la casa rural.»",
+      "options": [
+        "acceso",
+        "absceso",
+        "acseso",
+        "axceso"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Acceso» es la entrada o el paso; «absceso» es una acumulación de pus."
+    },
+    {
+      "id": "es-5-027",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué locución considera la RAE poco recomendable?",
+      "options": [
+        "En base a los datos",
+        "Según los datos",
+        "Con base en los datos",
+        "A partir de los datos"
+      ],
+      "correctIndex": 0,
+      "explanation": "La RAE prefiere «con base en», «sobre la base de» o «según» en lugar de «en base a»."
+    },
+    {
+      "id": "es-5-028",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué participio es incorrecto?",
+      "options": [
+        "Rompido",
+        "Roto",
+        "Escrito",
+        "Vuelto"
+      ],
+      "correctIndex": 0,
+      "explanation": "El participio de «romper» es «roto»; «rompido» se considera incorrecto."
+    },
+    {
+      "id": "es-5-029",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase hay un error con el pronombre?",
+      "options": [
+        "Se los dije a ellos",
+        "Se lo dije a ellos",
+        "Se lo conté a ellas",
+        "Se la di a ellos"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Lo» se refiere a lo dicho, que es singular; el plural de «ellos» ya está en «se»: «se lo dije»."
+    },
+    {
+      "id": "es-5-030",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Cuál de estas formas verbales es un error frecuente?",
+      "options": [
+        "Cabió",
+        "Cupo",
+        "Anduvo",
+        "Condujo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pasado de «caber» es «cupo»; «cabió» es incorrecto."
+    },
+    {
+      "id": "es-5-031",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si ___ estudiado más, ahora no estaría preocupado.»",
+      "options": [
+        "hubiera",
+        "habría",
+        "había",
+        "hubiese sido"
+      ],
+      "correctIndex": 0,
+      "explanation": "Para una condición que no se cumplió en el pasado: «si hubiera estudiado». Detrás de «si» no va el condicional."
+    },
+    {
+      "id": "es-5-032",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me pidió que se lo ___ cuanto antes.»",
+      "options": [
+        "devolviera",
+        "devolvía",
+        "devolveré",
+        "devuelvo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una petición contada en pasado pide imperfecto de subjuntivo: «que se lo devolviera»."
+    },
+    {
+      "id": "es-5-033",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «No es que no ___, es que no puedo.»",
+      "options": [
+        "quiera",
+        "quiero",
+        "querré",
+        "quise"
+      ],
+      "correctIndex": 0,
+      "explanation": "La construcción «no es que…» exige subjuntivo: «no es que no quiera»."
+    },
+    {
+      "id": "es-5-034",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «pusilánime»?",
+      "options": [
+        "Cobarde",
+        "Valiente",
+        "Generoso",
+        "Enfermo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una persona pusilánime es tímida y falta de ánimo ante las dificultades."
+    },
+    {
+      "id": "es-5-035",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «locuaz»?",
+      "options": [
+        "Taciturno",
+        "Hablador",
+        "Elocuente",
+        "Gracioso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una persona locuaz habla mucho; una taciturna habla poco y es reservada."
+    },
+    {
+      "id": "es-5-036",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «baladí»?",
+      "options": [
+        "Insignificante",
+        "Valioso",
+        "Alegre",
+        "Musical"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo baladí tiene poca importancia. No tiene relación con las baladas."
+    },
+    {
+      "id": "es-5-037",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «nimio»?",
+      "options": [
+        "Insignificante",
+        "Enorme",
+        "Infantil",
+        "Brillante"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un detalle nimio es tan pequeño que apenas tiene importancia."
+    },
+    {
+      "id": "es-5-038",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «idiosincrasia»?",
+      "options": [
+        "Rasgos propios de una persona o grupo",
+        "Falta de inteligencia",
+        "Mezcla de idiomas",
+        "Enfermedad crónica"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se escribe con s al final: idiosincrasia, no «idiosincracia»."
+    },
+    {
+      "id": "es-5-039",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un sibarita?",
+      "options": [
+        "Amante de los placeres refinados",
+        "Persona muy religiosa",
+        "Habitante de Siberia",
+        "Persona tacaña"
+      ],
+      "correctIndex": 0,
+      "explanation": "El nombre viene de Síbaris, una ciudad griega famosa por el lujo de sus habitantes."
+    },
+    {
+      "id": "es-5-040",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «A buen entendedor, pocas palabras bastan»?",
+      "options": [
+        "Al listo no hay que explicárselo todo",
+        "Hay que hablar poco",
+        "Los sabios no hablan",
+        "Escuchar es mejor que hablar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien es perspicaz capta la idea con solo una insinuación."
+    },
+    {
+      "id": "es-5-041",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa la expresión «rizar el rizo»?",
+      "options": [
+        "Complicar algo innecesariamente",
+        "Peinarse con cuidado",
+        "Repetir algo muchas veces",
+        "Cortarse el pelo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice de quien complica algo que ya funcionaba o era suficientemente bueno."
+    },
+    {
+      "id": "es-5-042",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Hidrografía es a ríos como orografía es a…",
+      "options": [
+        "Montañas",
+        "Mares",
+        "Climas",
+        "Ciudades"
+      ],
+      "correctIndex": 0,
+      "explanation": "La hidrografía estudia las aguas y la orografía, el relieve: montañas y sierras."
+    },
+    {
+      "id": "es-5-043",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Daltonismo es a colores como anosmia es a…",
+      "options": [
+        "Olores",
+        "Sonidos",
+        "Sabores",
+        "Sueño"
+      ],
+      "correctIndex": 0,
+      "explanation": "El daltonismo afecta a la percepción de los colores y la anosmia es la pérdida del olfato."
+    },
+    {
+      "id": "es-5-044",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Ictiología es a peces como ornitología es a…",
+      "options": [
+        "Aves",
+        "Insectos",
+        "Reptiles",
+        "Mamíferos"
+      ],
+      "correctIndex": 0,
+      "explanation": "La ictiología estudia los peces y la ornitología, las aves."
+    },
+    {
+      "id": "es-5-045",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Hipérbole es a exagerar como eufemismo es a…",
+      "options": [
+        "Suavizar",
+        "Repetir",
+        "Comparar",
+        "Contradecir"
+      ],
+      "correctIndex": 0,
+      "explanation": "La hipérbole exagera; el eufemismo suaviza una expresión que resultaría dura."
+    },
+    {
+      "id": "es-5-046",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es sinónimo de «efímero»?",
+      "options": [
+        "Perenne",
+        "Fugaz",
+        "Pasajero",
+        "Breve"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Perenne» significa duradero, lo contrario de efímero."
+    },
+    {
+      "id": "es-5-047",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué autor no pertenece a la Generación del 27? Lorca, Alberti, Cernuda, Unamuno.",
+      "options": [
+        "Unamuno",
+        "Lorca",
+        "Alberti",
+        "Cernuda"
+      ],
+      "correctIndex": 0,
+      "explanation": "Unamuno pertenece a la Generación del 98."
+    },
+    {
+      "id": "es-5-048",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número no es un cuadrado perfecto? 49, 64, 80, 81.",
+      "options": [
+        "80",
+        "49",
+        "64",
+        "81"
+      ],
+      "correctIndex": 0,
+      "explanation": "49 = 7², 64 = 8² y 81 = 9²; 80 no es el cuadrado de ningún número entero."
+    },
+    {
+      "id": "es-5-049",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 2, 6, 24, 120, …",
+      "options": [
+        "720",
+        "240",
+        "600",
+        "144"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se multiplica por 2, 3, 4, 5 y ahora por 6: 120 × 6 = 720."
+    },
+    {
+      "id": "es-5-050",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? E, F, M, A, M, J, J, …",
+      "options": [
+        "A",
+        "S",
+        "O",
+        "J"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son las iniciales de los meses: enero, febrero… julio y agosto."
+    },
+    {
+      "id": "es-5-051",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 3, 5, 9, 17, 33, …",
+      "options": [
+        "65",
+        "49",
+        "66",
+        "64"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es el doble del anterior menos 1: 33 × 2 − 1 = 65."
+    },
+    {
+      "id": "es-5-052",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «CONSERVADORA»?",
+      "options": [
+        "Conversadora",
+        "Conservadores",
+        "Conservatorio",
+        "Observadora"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Conversadora» usa exactamente las doce letras de «conservadora»."
+    },
+    {
+      "id": "es-5-053",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «ALEGRÍA»?",
+      "options": [
+        "Galería",
+        "Lágrima",
+        "Álgebra",
+        "Régimen"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Galería» y «alegría» tienen las mismas siete letras."
+    },
+    {
+      "id": "es-5-054",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «SALERO»?",
+      "options": [
+        "Aleros",
+        "Laureles",
+        "Saltero",
+        "Rosales"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Aleros» usa las mismas seis letras que «salero»."
+    },
+    {
+      "id": "es-5-055",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal marino se esconde al principio de «FOCALIZAR»?",
+      "options": [
+        "Foca",
+        "Orca",
+        "Delfín",
+        "Morsa"
+      ],
+      "correctIndex": 0,
+      "explanation": "FOCA-LIZAR: las cuatro primeras letras forman «foca»."
+    },
+    {
+      "id": "es-5-056",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué planeta se esconde dentro de «AMARTELADO» (muy enamorado)?",
+      "options": [
+        "Marte",
+        "Venus",
+        "Tierra",
+        "Saturno"
+      ],
+      "correctIndex": 0,
+      "explanation": "A-MARTE-LADO: en su interior está «Marte»."
+    },
+    {
+      "id": "es-5-057",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «averiguáis»?",
+      "options": [
+        "4",
+        "5",
+        "6",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "A-ve-ri-guáis: «uái» es un triptongo, tres vocales en una sola sílaba."
+    },
+    {
+      "id": "es-5-058",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es aguda y no lleva tilde?",
+      "options": [
+        "Pared",
+        "Árbol",
+        "Camión",
+        "Lápiz"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pa-RED es aguda y acaba en d. «Camión» es aguda pero acaba en n; «árbol» y «lápiz» son llanas."
+    },
+    {
+      "id": "es-5-059",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tengo ciudades pero no casas, montañas pero no árboles, y agua pero no peces. ¿Qué soy?",
+      "options": [
+        "Un mapa",
+        "Un sueño",
+        "Una nube",
+        "Un desierto"
+      ],
+      "correctIndex": 0,
+      "explanation": "En un mapa aparecen ciudades, montañas y ríos, pero solo dibujados."
+    },
+    {
+      "id": "es-5-060",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué se puede romper sin tocarlo?",
+      "options": [
+        "Una promesa",
+        "Un cristal",
+        "Un plato",
+        "Una rama"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una promesa se rompe al no cumplirla, sin necesidad de tocar nada."
+    },
+    {
+      "id": "es-5-061",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Algunos A son B y ningún B es C. ¿Qué es seguro?",
+      "options": [
+        "Algunos A no son C",
+        "Ningún A es C",
+        "Todos los A son C",
+        "Algunos C son A"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los A que son B no pueden ser C; de los demás A no sabemos nada."
+    },
+    {
+      "id": "es-5-062",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "«Si llueve, llevo paraguas.» Hoy llevo paraguas. ¿Qué se puede afirmar con certeza?",
+      "options": [
+        "Nada sobre si llueve",
+        "Que llueve",
+        "Que no llueve",
+        "Que lloverá"
+      ],
+      "correctIndex": 0,
+      "explanation": "Puedo llevar paraguas por otros motivos. Deducir que llueve es una falacia clásica."
+    },
+    {
+      "id": "es-5-063",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Un hombre mira un retrato: «No tengo hermanos, pero el padre de ese hombre es el hijo de mi padre». ¿Quién es?",
+      "options": [
+        "Su hijo",
+        "Él mismo",
+        "Su padre",
+        "Su sobrino"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sin hermanos, «el hijo de mi padre» es él mismo; así que el del retrato es su hijo."
+    },
+    {
+      "id": "es-5-064",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un bate y una pelota cuestan 1,10 € en total. El bate cuesta 1 € más que la pelota. ¿Cuánto cuesta la pelota?",
+      "options": [
+        "0,05 €",
+        "0,10 €",
+        "0,15 €",
+        "1 €"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si la pelota costara 0,10 €, el bate costaría 1,10 € y sumarían 1,20 €. Con 0,05 €, el bate cuesta 1,05 €."
+    },
+    {
+      "id": "es-5-065",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un nenúfar duplica su tamaño cada día y tarda 48 días en cubrir un lago. ¿Cuántos días tarda en cubrir la mitad?",
+      "options": [
+        "47",
+        "24",
+        "46",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si al día 48 cubre todo el lago y duplica cada día, el día anterior cubría justo la mitad."
+    },
+    {
+      "id": "es-5-066",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el elemento químico más abundante del universo?",
+      "options": [
+        "El hidrógeno",
+        "El helio",
+        "El oxígeno",
+        "El carbono"
+      ],
+      "correctIndex": 0,
+      "explanation": "Alrededor de tres cuartas partes de la materia ordinaria del universo es hidrógeno."
+    },
+    {
+      "id": "es-5-067",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿A qué velocidad aproximada viaja la luz en el vacío?",
+      "options": [
+        "300.000 km/s",
+        "300.000 km/h",
+        "30.000 km/s",
+        "3.000 km/s"
+      ],
+      "correctIndex": 0,
+      "explanation": "La luz recorre unos 300.000 kilómetros por segundo: tarda unos 8 minutos en llegar del Sol."
+    },
+    {
+      "id": "es-5-068",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué orgánulo se considera la «central energética» de la célula?",
+      "options": [
+        "La mitocondria",
+        "El ribosoma",
+        "El núcleo",
+        "El aparato de Golgi"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las mitocondrias producen la mayor parte de la energía que usa la célula."
+    },
+    {
+      "id": "es-5-069",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué grupo sanguíneo se considera donante universal de glóbulos rojos?",
+      "options": [
+        "0 negativo",
+        "AB positivo",
+        "A positivo",
+        "B negativo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El 0 negativo puede donarse a casi cualquier persona; el AB positivo es el receptor universal."
+    },
+    {
+      "id": "es-5-070",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Turquía?",
+      "options": [
+        "Ankara",
+        "Estambul",
+        "Esmirna",
+        "Antalya"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ankara es la capital desde 1923, aunque Estambul es la ciudad más grande."
+    },
+    {
+      "id": "es-5-071",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el país más pequeño del mundo?",
+      "options": [
+        "El Vaticano",
+        "Mónaco",
+        "San Marino",
+        "Andorra"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Ciudad del Vaticano ocupa menos de medio kilómetro cuadrado."
+    },
+    {
+      "id": "es-5-072",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "El lago Titicaca está en Bolivia y en otro país. ¿Cuál?",
+      "options": [
+        "Perú",
+        "Chile",
+        "Ecuador",
+        "Argentina"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Titicaca, en los Andes, está entre Perú y Bolivia."
+    },
+    {
+      "id": "es-5-073",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el punto más alto de España?",
+      "options": [
+        "El Teide",
+        "El Mulhacén",
+        "El Aneto",
+        "El Veleta"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Teide, en Tenerife, mide 3.715 m. El Mulhacén es el más alto de la península."
+    },
+    {
+      "id": "es-5-074",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué año se proclamó la Segunda República española?",
+      "options": [
+        "1931",
+        "1936",
+        "1923",
+        "1939"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se proclamó el 14 de abril de 1931."
+    },
+    {
+      "id": "es-5-075",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué dinastía reinó en España después de los Austrias?",
+      "options": [
+        "Los Borbones",
+        "Los Trastámara",
+        "Los Habsburgo",
+        "Los Saboya"
+      ],
+      "correctIndex": 0,
+      "explanation": "Felipe V inició la dinastía Borbón en 1700. Los Habsburgo son los propios Austrias."
+    },
+    {
+      "id": "es-5-076",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué tratado de 1494 repartió entre Castilla y Portugal las tierras por descubrir?",
+      "options": [
+        "El de Tordesillas",
+        "El de Utrecht",
+        "El de Versalles",
+        "El de Westfalia"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Tratado de Tordesillas trazó una línea en el Atlántico para dividir las zonas de exploración."
+    },
+    {
+      "id": "es-5-077",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿De qué faraón se descubrió en 1922 una tumba casi intacta?",
+      "options": [
+        "Tutankamón",
+        "Ramsés II",
+        "Keops",
+        "Akenatón"
+      ],
+      "correctIndex": 0,
+      "explanation": "Howard Carter encontró la tumba de Tutankamón en el Valle de los Reyes."
+    },
+    {
+      "id": "es-5-078",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién escribió «La casa de Bernarda Alba»?",
+      "options": [
+        "Federico García Lorca",
+        "Antonio Machado",
+        "Rafael Alberti",
+        "Ramón del Valle-Inclán"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lorca la terminó en 1936, poco antes de su muerte."
+    },
+    {
+      "id": "es-5-079",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién pintó el «Guernica»?",
+      "options": [
+        "Pablo Picasso",
+        "Joan Miró",
+        "Salvador Dalí",
+        "Francisco de Goya"
+      ],
+      "correctIndex": 0,
+      "explanation": "Picasso lo pintó en 1937; hoy se expone en el Museo Reina Sofía de Madrid."
+    },
+    {
+      "id": "es-5-080",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién compuso «Las cuatro estaciones»?",
+      "options": [
+        "Antonio Vivaldi",
+        "Johann Sebastian Bach",
+        "Joseph Haydn",
+        "Frédéric Chopin"
+      ],
+      "correctIndex": 0,
+      "explanation": "Vivaldi compuso estos cuatro conciertos para violín hacia 1720."
     }
   ]
 }

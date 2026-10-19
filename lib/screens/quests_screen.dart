@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/quest_model.dart';
 import '../models/player_profile.dart';
+import '../services/audio_service.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
@@ -53,6 +54,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
 
     final success = await QuestService.claimReward(quest.id, _profile!);
     if (!mounted) return;
+    if (success) AudioService.playCoins();
 
     // Antes, si fallaba, el id se quedaba puesto para siempre.
     // Ahora se libera siempre, haya éxito o no.

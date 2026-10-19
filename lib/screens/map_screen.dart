@@ -59,7 +59,7 @@ class _MapScreenState extends State<MapScreen>
       CurvedAnimation(parent: _pulse, curve: Curves.easeInOut),
     );
 
-    AudioService.playBgm('game_bgm.mp3');
+    AudioService.playMapMusic();
   }
 
   @override
@@ -87,7 +87,7 @@ class _MapScreenState extends State<MapScreen>
       // Al volver, recarga progreso y vuelve a centrar en el nivel actual
       _scrolledWorld = null;
       _controller.loadAllProgress();
-      AudioService.playBgm('game_bgm.mp3');
+      AudioService.playMapMusic();
     });
   }
 

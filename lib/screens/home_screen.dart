@@ -6,6 +6,7 @@ import 'leaderboard_screen.dart';
 import 'profile_screen.dart';
 import 'map_screen.dart';
 import 'quests_screen.dart';
+import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
@@ -47,6 +48,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   void initState() {
     super.initState();
     _loadUserProfile();
+    // Música propia de la portada (y de las pantallas que se abren desde aquí).
+    AudioService.playMenuMusic();
 
     _dragonController = AnimationController(
       vsync: this,
@@ -105,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     int rewardCoins = 100;
     int rewardPotions = 2;
 
+    AudioService.playCoins();
     setState(() {
       _triggerChestExplosion = true;
       _profile!.coins += rewardCoins;
@@ -329,6 +333,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         context,
                         MaterialPageRoute(builder: (context) => const MapScreen()),
                       );
+                      // Al volver del mapa, vuelve la música de la portada.
+                      AudioService.playMenuMusic();
                       _loadUserProfile();
                     },
                     child: Text(

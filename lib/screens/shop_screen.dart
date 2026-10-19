@@ -251,6 +251,8 @@ class _ShopScreenState extends State<ShopScreen>
     try {
       await _saveProfile();
       if (!mounted) return;
+      // Equipar algo que ya tienes suena distinto que desbloquearlo.
+      isOwned ? AudioService.playEquip() : AudioService.playBuyItem();
       setState(() {
         _isBusy = false;
         _sparkleId = 'avatar';
@@ -325,6 +327,7 @@ class _ShopScreenState extends State<ShopScreen>
       if (!mounted) return;
 
       if (earned) {
+        AudioService.playCoins();
         setState(reward);
         await _saveProfile();
         if (mounted) _showMessage('¡Recompensa recibida: $rewardName!');
@@ -692,7 +695,7 @@ class _ShopScreenState extends State<ShopScreen>
 
     return GestureDetector(
       onTap: () {
-        AudioService.playButtonClick();
+        AudioService.playSelect();
         _selectCosmetic(slot, item.id);
       },
       child: AnimatedScale(

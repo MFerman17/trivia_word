@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'screens/home_screen.dart';
 import 'services/cloud_service.dart';
+import 'services/audio_service.dart';
 import 'services/question_repository.dart';
 import 'services/save_service.dart';
 
@@ -29,17 +30,48 @@ Future<void> main() async {
 
   // Carga el banco de preguntas antes de la primera partida.
   await QuestionRepository.load();
+  // Prepara el audio (música en bucle, volumen, silencio guardado).
+  await AudioService.init();
 
   runApp(MyApp(initError: initError));
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key, this.initError});
 
   final Object? initError;
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+/// Vigila si la app pasa a segundo plano para pausar la música
+/// (por ejemplo, al recibir una llamada o cambiar de app).
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+      AudioService.pauseForBackground();
+    } else if (state == AppLifecycleState.resumed) {
+      AudioService.resumeFromBackground();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final initError = widget.initError;
     return MaterialApp(
       title: 'Trivia Word',
       debugShowCheckedModeBanner: false,

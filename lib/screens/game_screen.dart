@@ -85,6 +85,14 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _showVictoryDialog() {
+    // Una campanilla por cada estrella ganada, después de la fanfarria.
+    if (!_controller.isMiniChallenge) {
+      for (var i = 0; i < _controller.starsEarned; i++) {
+        Future.delayed(Duration(milliseconds: 1100 + i * 380), () {
+          if (mounted) AudioService.playStar();
+        });
+      }
+    }
     showDialog(
       context: context,
       barrierDismissible: false,

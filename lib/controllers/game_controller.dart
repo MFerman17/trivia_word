@@ -80,6 +80,7 @@ class GameController extends ChangeNotifier {
 
     if (_isDisposed) return; // 👈 Evitamos actualizar si ya se desmontó
     status = GameStatus.playing;
+    AudioService.playBattleMusic(boss: isBossBattle);
     notifyListeners();
   }
 
@@ -117,7 +118,7 @@ class GameController extends ChangeNotifier {
             : remainingHp;
       }
     } else {
-      AudioService.playDamage();
+      AudioService.playWrong();
       playerHp--;
       incorrectAnswersSinceMonsterAttack++;
     }
@@ -322,7 +323,7 @@ class GameController extends ChangeNotifier {
   void _handleDefeat() {
     if (_isDisposed) return;
     status = GameStatus.defeat;
-    AudioService.playDamage();
+    AudioService.playDefeatSound();
     notifyListeners();
   }
 
@@ -344,6 +345,10 @@ class GameController extends ChangeNotifier {
 
   bool get canReviveWithAd => canRevive && !hasUsedAdRevive;
 
+  /// Minijefes y jefes de mundo tienen su propia música, más intensa.
+  bool get isBossBattle =>
+      config.type == LevelType.miniBoss || config.type == LevelType.worldBoss;
+
   bool get canReviveWithPotion =>
       canRevive && (profile?.healthPotions ?? 0) > 0;
 
@@ -351,7 +356,7 @@ class GameController extends ChangeNotifier {
   void reviveWithAd() {
     if (!canReviveWithAd) return;
     hasUsedAdRevive = true;
-    AudioService.playSuccess();
+    AudioService.playRevive();
     _revive();
   }
 
@@ -359,7 +364,7 @@ class GameController extends ChangeNotifier {
   Future<bool> reviveWithPotion() async {
     if (!canReviveWithPotion) return false;
     profile!.healthPotions--;
-    AudioService.playPotionUse();
+    AudioService.playRevive();
     _revive();
     await SaveService.savePlayerData(profile!);
     QuestService.incrementProgress('use_potion_2');
@@ -369,6 +374,7 @@ class GameController extends ChangeNotifier {
   void _revive() {
     playerHp = 1;
     status = GameStatus.playing;
+    AudioService.playBattleMusic(boss: isBossBattle);
     // La derrota ocurrió justo después de una respuesta incorrecta, así que
     // seguimos exactamente como si el jugador no hubiera caído: siguiente
     // pregunta, o el retroceso del monstruo si acumulaba 2 errores.

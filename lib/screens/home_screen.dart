@@ -11,6 +11,7 @@ import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
 import '../services/cloud_service.dart';
+import '../l10n/l10n.dart';
 
 // Color de contorno común para todo el estilo "juego"
 const Color kOutline = Color(0xFF0D0326);
@@ -136,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           children: [
             const Text('🎁 ', style: TextStyle(fontSize: 24)),
             Text(
-              '¡Recompensa Diaria!',
+              context.l10n.dailyRewardTitle,
               style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: Colors.white, fontSize: 22),
             ),
           ],
@@ -144,8 +145,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
-              'Has reclamado tu cofre diario. ¡Vuelve mañana por más!',
+            Text(
+              context.l10n.dailyRewardBody,
               style: TextStyle(color: Colors.white70),
             ),
             const SizedBox(height: 16),
@@ -176,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           TextButton(
             onPressed: () => Navigator.pop(context),
             child: Text(
-              '¡EXCELENTE!',
+              context.l10n.excellent,
               style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: Colors.amberAccent, fontSize: 18),
             ),
           ),
@@ -338,7 +339,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       _loadUserProfile();
                     },
                     child: Text(
-                      'JUGAR AVENTURA',
+                      context.l10n.playAdventure,
                       style: GoogleFonts.anton(
                         fontSize: 24,
                         letterSpacing: 1.5,
@@ -354,7 +355,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     children: [
                       Expanded(
                         child: _buildMenuCard(
-                          title: 'TIENDA',
+                          title: context.l10n.menuShop,
                           icon: Icons.storefront_rounded,
                           onTap: () async {
                             await Navigator.push(
@@ -368,7 +369,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       const SizedBox(width: 10),
                       Expanded(
                         child: _buildMenuCard(
-                          title: 'MISIONES',
+                          title: context.l10n.menuQuests,
                           icon: Icons.assignment_rounded,
                           onTap: () async {
                             await Navigator.push(
@@ -382,7 +383,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       const SizedBox(width: 10),
                       Expanded(
                         child: _buildMenuCard(
-                          title: 'RANKING',
+                          title: context.l10n.menuRanking,
                           icon: Icons.leaderboard_rounded,
                           onTap: () async {
                             await Navigator.push(
@@ -440,7 +441,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       children: [
                         _outlinedText(profile.name, 17, stroke: 4),
                         Text(
-                          'Nivel ${profile.level}',
+                          context.l10n.levelLabel(profile.level),
                           style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: Colors.amber, fontSize: 13),
                         ),
                       ],
@@ -543,7 +544,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           const SizedBox(height: 8),
           Text(
-            'APRENDE  ·  JUEGA  ·  EVOLUCIONA',
+            context.l10n.tagline,
             style: GoogleFonts.oswald(
               fontWeight: FontWeight.w700,
               fontSize: 13,
@@ -701,14 +702,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      canClaim ? '¡Cofre diario disponible!' : 'Cofre diario reclamado',
+                      canClaim ? context.l10n.chestAvailable : context.l10n.chestClaimed,
                       style: GoogleFonts.oswald(fontWeight: FontWeight.w700, 
                         color: canClaim ? Colors.amberAccent : Colors.white60,
                         fontSize: 16,
                       ),
                     ),
                     Text(
-                      canClaim ? 'Toca para reclamar tu recompensa' : 'Vuelve mañana para más premios',
+                      canClaim ? context.l10n.chestTapToClaim : context.l10n.chestComeBack,
                       style: const TextStyle(color: Colors.white54, fontSize: 12),
                     ),
                   ],
@@ -726,7 +727,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: kOutline, width: 2.5),
                   ),
-                  child: _outlinedText('Abrir', 14, stroke: 3.5),
+                  child: _outlinedText(context.l10n.chestOpen, 14, stroke: 3.5),
                 ),
             ],
           ),

@@ -1,0 +1,138 @@
+{
+  "@@locale": "es",
+  "dailyRewardTitle": "¡Recompensa diaria!",
+  "dailyRewardBody": "Has reclamado tu cofre diario. ¡Vuelve mañana por más!",
+  "excellent": "¡EXCELENTE!",
+  "playAdventure": "JUGAR AVENTURA",
+  "menuShop": "TIENDA",
+  "menuQuests": "MISIONES",
+  "menuRanking": "RANKING",
+  "levelLabel": "Nivel {level}",
+  "@levelLabel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "tagline": "APRENDE  ·  JUEGA  ·  EVOLUCIONA",
+  "chestAvailable": "¡Cofre diario disponible!",
+  "chestClaimed": "Cofre diario reclamado",
+  "chestTapToClaim": "Toca para reclamar tu recompensa",
+  "chestComeBack": "Vuelve mañana para más premios",
+  "chestOpen": "Abrir",
+  "chapterLabel": "Capítulo {chapter}",
+  "@chapterLabel": {
+    "placeholders": {
+      "chapter": {
+        "type": "int"
+      }
+    }
+  },
+  "worldLabel": "MUNDO {world}",
+  "@worldLabel": {
+    "placeholders": {
+      "world": {
+        "type": "int"
+      }
+    }
+  },
+  "worldChallengesTooltip": "Retos del mundo",
+  "worldLocked": "Primero derrota al jefe del mundo anterior.",
+  "profileTitle": "PERFIL",
+  "rankRecruit": "RECLUTA ORTOGRÁFICO",
+  "starsCount": "{count, plural, =1{1 ESTRELLA} other{{count} ESTRELLAS}}",
+  "@starsCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "levelShort": "NVL",
+  "levelProgress": "PROGRESO DE NIVEL",
+  "nextLevel": "NVL {level} ▸",
+  "@nextLevel": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "xpProgress": "{current} / {max} XP",
+  "@xpProgress": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "max": {
+        "type": "int"
+      }
+    }
+  },
+  "readyToLevelUp": "¡Listo para subir de nivel!",
+  "xpMissing": "Te faltan {xp} XP para subir",
+  "@xpMissing": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "statCoins": "MONEDAS",
+  "statGems": "GEMAS",
+  "statPotions": "POCIONES",
+  "statHints": "PISTAS",
+  "googleLinked": "AVANCE VINCULADO A GOOGLE",
+  "googleLinking": "CONECTANDO CUENTA…",
+  "googleSave": "GUARDAR AVANCE EN GOOGLE",
+  "googleLinkedMsg": "Tu avance quedó vinculado y podrás recuperarlo en otros dispositivos.",
+  "googleCancelledMsg": "No se realizaron cambios.",
+  "googleFailedMsg": "No se pudo vincular la cuenta. Revisa la configuración de Google en Firebase.",
+  "languageTitle": "IDIOMA",
+  "moreLanguagesSoon": "Pronto habrá más idiomas.",
+  "questsTitle": "MISIONES",
+  "noQuests": "No hay misiones disponibles.",
+  "questsCompleted": "{completed} / {total} COMPLETADAS",
+  "@questsCompleted": {
+    "placeholders": {
+      "completed": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "questDone": "HECHO",
+  "questClaim": "RECLAMAR",
+  "questInProgress": "EN CURSO",
+  "rankingTitle": "RANKING",
+  "unknownPlayer": "Desconocido",
+  "noHeroesYet": "AÚN NO HAY HÉROES",
+  "beFirst": "¡Juega y sé el primero en el ranking!",
+  "onlyPodium": "¡Solo hay héroes en el podio!",
+  "you": "TÚ",
+  "yourPosition": "TU POSICIÓN",
+  "miniChallengesTitle": "MINI-RETOS",
+  "miniOptional": "Encuentros opcionales del Mundo {world}",
+  "@miniOptional": {
+    "placeholders": {
+      "world": {
+        "type": "int"
+      }
+    }
+  },
+  "miniDescription": "Derrota a criaturas más débiles con tus conocimientos. Cada mini-reto da monedas y XP una vez al día.",
+  "miniChallengeInfo": "Reto {challenge} · Dificultad {difficulty} · 15 🪙 + 10 XP diarios",
+  "@miniChallengeInfo": {
+    "placeholders": {
+      "challenge": {
+        "type": "int"
+      },
+      "difficulty": {
+        "type": "int"
+      }
+    }
+  }
+}

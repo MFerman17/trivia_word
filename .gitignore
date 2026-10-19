@@ -44,3 +44,6 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 lib/firebase_options.dart
+
+# Traducciones generadas por Flutter a partir de lib/l10n/*.arb
+lib/l10n/app_localizations*.dart

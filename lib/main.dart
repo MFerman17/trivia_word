@@ -1,10 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+import 'l10n/l10n.dart';
 import 'screens/home_screen.dart';
 import 'services/cloud_service.dart';
 import 'services/audio_service.dart';
+import 'services/locale_service.dart';
 import 'services/question_repository.dart';
 import 'services/save_service.dart';
 
@@ -28,8 +31,9 @@ Future<void> main() async {
     debugPrint('❌ Error al inicializar Firebase: $e\n$st');
   }
 
-  // Carga el banco de preguntas antes de la primera partida.
-  await QuestionRepository.load();
+  // Idioma del juego (guardado o el del teléfono) y su banco de preguntas.
+  await LocaleService.init();
+  await QuestionRepository.load(language: LocaleService.languageCode);
   // Prepara el audio (música en bucle, volumen, silencio guardado).
   await AudioService.init();
 
@@ -72,20 +76,37 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   Widget build(BuildContext context) {
     final initError = widget.initError;
-    return MaterialApp(
-      title: 'Trivia Word',
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.dark(),
-      home: initError == null
-          ? const HomeScreen()
-          : Scaffold(
-              body: Center(
-                child: Padding(
-                  padding: const EdgeInsets.all(24),
-                  child: Text('No se pudo iniciar la app:\n$initError'),
+    // Al cambiar de idioma en el Perfil, toda la app se redibuja.
+    return ValueListenableBuilder<Locale>(
+      valueListenable: LocaleService.locale,
+      builder: (context, locale, _) => MaterialApp(
+        title: 'Words & Monsters',
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData.dark(),
+        locale: locale,
+        supportedLocales: LocaleService.supportedLocales,
+        localizationsDelegates: const [
+          AppLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        // Guarda los textos actuales para el código sin `context`.
+        builder: (context, child) {
+          L10n.current = AppLocalizations.of(context);
+          return child ?? const SizedBox.shrink();
+        },
+        home: initError == null
+            ? const HomeScreen()
+            : Scaffold(
+                body: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: Text('No se pudo iniciar la app:\n$initError'),
+                  ),
                 ),
               ),
-            ),
+      ),
     );
   }
 }

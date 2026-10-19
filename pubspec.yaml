@@ -26,6 +26,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  # Traducciones (textos de la app en varios idiomas)
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
   cupertino_icons: ^1.0.8
   audioplayers: ^6.8.1
@@ -44,6 +48,9 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  # Genera lib/l10n/app_localizations*.dart a partir de los .arb (ver l10n.yaml)
+  generate: true
+
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.

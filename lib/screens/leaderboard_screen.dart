@@ -7,6 +7,7 @@ import '../controllers/leaderboard_controller.dart';
 import '../services/save_service.dart';
 import '../widgets/player_avatar.dart';
 import '../widgets/game_3d.dart';
+import '../l10n/l10n.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -70,7 +71,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              const GameHeader(title: 'RANKING'),
+              GameHeader(title: context.l10n.rankingTitle),
               Expanded(
                 child: ListenableBuilder(
                   listenable: _controller,
@@ -86,7 +87,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                       _controller.topPlayers.length,
                       (index) {
                         final item = _controller.topPlayers[index];
-                        final String name = item['name'] ?? 'Desconocido';
+                        final String name = item['name'] ?? context.l10n.unknownPlayer;
                         return LeaderboardUser(
                           rank: index + 1,
                           name: name,
@@ -132,10 +133,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             children: [
               const Text('🏆', style: TextStyle(fontSize: 48)),
               const SizedBox(height: 8),
-              const OutlinedGameText('AÚN NO HAY HÉROES', size: 22),
+              OutlinedGameText(context.l10n.noHeroesYet, size: 22),
               const SizedBox(height: 6),
               Text(
-                '¡Juega y sé el primero en el ranking!',
+                context.l10n.beFirst,
                 style: GoogleFonts.oswald(color: Colors.white70, fontSize: 14),
               ),
             ],
@@ -337,7 +338,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             if (rest.isEmpty)
               Center(
                 child: Text(
-                  '¡Solo hay héroes en el podio!',
+                  context.l10n.onlyPodium,
                   style: GoogleFonts.oswald(color: Colors.white54, fontSize: 14),
                 ),
               )
@@ -392,7 +393,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                 ),
                 if (isMe)
                   Text(
-                    'TÚ',
+                    context.l10n.you,
                     style: GoogleFonts.anton(color: WM.cyan, fontSize: 11, letterSpacing: 2),
                   ),
               ],
@@ -440,7 +441,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       child: Row(
         children: [
           Text(
-            'TU POSICIÓN',
+            context.l10n.yourPosition,
             style: GoogleFonts.oswald(
               color: Colors.white70,
               fontWeight: FontWeight.w700,

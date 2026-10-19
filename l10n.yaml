@@ -1,0 +1,8 @@
+# Configuración de traducciones (Flutter gen-l10n).
+# Los textos están en lib/l10n/app_<idioma>.arb. El español es el idioma base:
+# toda clave nueva se añade primero en app_es.arb.
+arb-dir: lib/l10n
+template-arb-file: app_es.arb
+output-localization-file: app_localizations.dart
+output-dir: lib/l10n
+nullable-getter: false

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../services/question_bank.dart';
 import 'game_screen.dart';
+import '../l10n/l10n.dart';
 
 class MiniChallengesScreen extends StatelessWidget {
   final int worldId;
@@ -17,7 +18,7 @@ class MiniChallengesScreen extends StatelessWidget {
         backgroundColor: background.withValues(alpha: 0.88),
         foregroundColor: Colors.white,
         title: Text(
-          'MINI-RETOS',
+          context.l10n.miniChallengesTitle,
           style: GoogleFonts.anton(color: const Color(0xFF1EE3CF)),
         ),
       ),
@@ -43,7 +44,7 @@ class MiniChallengesScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             children: [
               Text(
-                'Encuentros opcionales del Mundo $worldId',
+                context.l10n.miniOptional(worldId),
                 style: GoogleFonts.poppins(
                   color: Colors.white,
                   fontSize: 18,
@@ -52,7 +53,7 @@ class MiniChallengesScreen extends StatelessWidget {
               ),
               const SizedBox(height: 6),
               Text(
-                'Derrota a criaturas más débiles con tus conocimientos. Cada mini-reto da monedas y XP una vez al día.',
+                context.l10n.miniDescription,
                 style: GoogleFonts.poppins(color: Colors.white70, fontSize: 13),
               ),
               const SizedBox(height: 18),
@@ -109,7 +110,7 @@ class MiniChallengesScreen extends StatelessWidget {
           ),
         ),
         subtitle: Text(
-          'Reto $challenge · Dificultad ${config.difficulty} · 15 🪙 + 10 XP diarios',
+          context.l10n.miniChallengeInfo(challenge, config.difficulty),
           style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11),
         ),
         trailing: const Icon(Icons.play_circle_fill, color: Color(0xFFFFC857), size: 30),

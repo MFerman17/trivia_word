@@ -6,6 +6,9 @@ import '../services/save_service.dart';
 import '../services/cloud_service.dart';
 import '../widgets/player_avatar.dart';
 import '../widgets/game_3d.dart';
+import '../l10n/l10n.dart';
+import '../services/audio_service.dart';
+import '../services/locale_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -58,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              const GameHeader(title: 'PERFIL'),
+              GameHeader(title: context.l10n.profileTitle),
               Expanded(
                 child: SingleChildScrollView(
                   padding: const EdgeInsets.fromLTRB(16, 4, 16, 28),
@@ -71,6 +74,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       _buildStatsGrid(),
                       const SizedBox(height: 20),
                       EntranceFlip(index: 5, child: _buildGoogleButton()),
+                      const SizedBox(height: 16),
+                      EntranceFlip(index: 6, child: _buildLanguagePanel()),
                     ],
                   ),
                 ),
@@ -136,8 +141,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
           runSpacing: 8,
           alignment: WrapAlignment.center,
           children: [
-            const Chip3D(emoji: '🎖️', text: 'RECLUTA ORTOGRÁFICO', accent: WM.gold),
-            Chip3D(emoji: '⭐', text: '${_profile.totalStars} ESTRELLAS', accent: WM.cyan),
+            Chip3D(emoji: '🎖️', text: context.l10n.rankRecruit, accent: WM.gold),
+            Chip3D(emoji: '⭐', text: context.l10n.starsCount(_profile.totalStars), accent: WM.cyan),
           ],
         ),
       ],
@@ -173,7 +178,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const OutlinedGameText('NVL', size: 13, font: GameFont.oswald),
+              OutlinedGameText(context.l10n.levelShort, size: 13, font: GameFont.oswald),
               const SizedBox(width: 4),
               OutlinedGameText('${_profile.level}', size: 24),
             ],
@@ -199,7 +204,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Row(
             children: [
               Text(
-                'PROGRESO DE NIVEL',
+                context.l10n.levelProgress,
                 style: GoogleFonts.oswald(
                   color: Colors.white70,
                   fontWeight: FontWeight.w700,
@@ -209,7 +214,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               const Spacer(),
               Text(
-                'NVL ${_profile.level + 1} ▸',
+                context.l10n.nextLevel(_profile.level + 1),
                 style: GoogleFonts.oswald(
                   color: WM.cyan,
                   fontWeight: FontWeight.w700,
@@ -222,11 +227,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Bar3D(
             value: _profile.levelProgress,
             height: 24,
-            label: '$currentXp / $maxLevelXp XP',
+            label: context.l10n.xpProgress(currentXp, maxLevelXp),
           ),
           const SizedBox(height: 8),
           Text(
-            missing == 0 ? '¡Listo para subir de nivel!' : 'Te faltan $missing XP para subir',
+            missing == 0 ? context.l10n.readyToLevelUp : context.l10n.xpMissing(missing),
             style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
           ),
         ],
@@ -239,10 +244,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   // ---------------------------------------------------------------
   Widget _buildStatsGrid() {
     final stats = [
-      ('🪙', 'MONEDAS', _profile.coins, WM.gold),
-      ('💎', 'GEMAS', _profile.gems, WM.cyan),
-      ('🧪', 'POCIONES', _profile.healthPotions, const Color(0xFF5BE37A)),
-      ('💡', 'PISTAS', _profile.letterHints, const Color(0xFFFF9D4D)),
+      ('🪙', context.l10n.statCoins, _profile.coins, WM.gold),
+      ('💎', context.l10n.statGems, _profile.gems, WM.cyan),
+      ('🧪', context.l10n.statPotions, _profile.healthPotions, const Color(0xFF5BE37A)),
+      ('💡', context.l10n.statHints, _profile.letterHints, const Color(0xFFFF9D4D)),
     ];
 
     return GridView.count(
@@ -319,10 +324,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget _buildGoogleButton() {
     final linked = CloudService.isGoogleAccountLinked;
     final label = linked
-        ? 'AVANCE VINCULADO A GOOGLE'
+        ? context.l10n.googleLinked
         : _isLinkingAccount
-            ? 'CONECTANDO CUENTA…'
-            : 'GUARDAR AVANCE EN GOOGLE';
+            ? context.l10n.googleLinking
+            : context.l10n.googleSave;
 
     return SizedBox(
       width: double.infinity,
@@ -362,12 +367,74 @@ class _ProfileScreenState extends State<ProfileScreen> {
       _isLinkingAccount = false;
     });
     final message = switch (result) {
-      GoogleAccountResult.linked =>
-        'Tu avance quedó vinculado y podrás recuperarlo en otros dispositivos.',
-      GoogleAccountResult.cancelled => 'No se realizaron cambios.',
-      GoogleAccountResult.failed =>
-        'No se pudo vincular la cuenta. Revisa la configuración de Google en Firebase.',
+      GoogleAccountResult.linked => context.l10n.googleLinkedMsg,
+      GoogleAccountResult.cancelled => context.l10n.googleCancelledMsg,
+      GoogleAccountResult.failed => context.l10n.googleFailedMsg,
     };
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
+  }
+
+  // ---------------------------------------------------------------
+  // IDIOMA
+  // ---------------------------------------------------------------
+  // Solo aparecen los idiomas que tienen textos Y banco de preguntas
+  // (ver LocaleService). Al elegir uno, toda la app se redibuja.
+  Widget _buildLanguagePanel() {
+    final languages = LocaleService.availableLanguages;
+    final current = LocaleService.languageCode;
+
+    return Panel3D(
+      accent: WM.violet,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            context.l10n.languageTitle,
+            style: GoogleFonts.oswald(
+              color: Colors.white70,
+              fontWeight: FontWeight.w700,
+              fontSize: 13,
+              letterSpacing: 1.2,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: [
+              for (final code in languages)
+                SizedBox(
+                  width: 140,
+                  child: Pressable3D(
+                    // El idioma activo se ve "pulsado" en verde y no se puede tocar.
+                    onTap: code == current ? null : () => _changeLanguage(code),
+                    color: WM.cyan,
+                    disabledColor: const Color(0xFF1E8C3A),
+                    height: 44,
+                    child: OutlinedGameText(
+                      LocaleService.nativeNames[code] ?? code.toUpperCase(),
+                      size: 16,
+                      font: GameFont.oswald,
+                    ),
+                  ),
+                ),
+            ],
+          ),
+          if (languages.length < 2) ...[
+            const SizedBox(height: 8),
+            Text(
+              context.l10n.moreLanguagesSoon,
+              style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+
+  Future<void> _changeLanguage(String code) async {
+    AudioService.playSelect();
+    await LocaleService.setLanguage(code);
+    if (mounted) setState(() {});
   }
 }

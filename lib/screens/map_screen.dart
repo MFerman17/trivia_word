@@ -8,6 +8,7 @@ import '../models/stage_progress.dart';
 import '../services/audio_service.dart';
 import 'game_screen.dart';
 import 'mini_challenges_screen.dart';
+import '../l10n/l10n.dart';
 
 // Colores coherentes con el estilo del juego
 const Color kOutline = Color(0xFF0D0326);
@@ -405,7 +406,7 @@ class _MapScreenState extends State<MapScreen>
                 alignment: Alignment.center,
                 transform: Matrix4.skewX(-kSkew),
                 child: Text(
-                  'Capítulo $chapter',
+                  context.l10n.chapterLabel(chapter),
                   style: GoogleFonts.metalMania(
                     color: color,
                     fontSize: 18,
@@ -458,7 +459,7 @@ class _MapScreenState extends State<MapScreen>
                 onPressed: () => Navigator.pop(context),
               ),
               Text(
-                'MUNDO ${_controller.selectedWorld}',
+                context.l10n.worldLabel(_controller.selectedWorld),
                 style: GoogleFonts.anton(
                   color: kCyan,
                   fontSize: 20,
@@ -470,7 +471,7 @@ class _MapScreenState extends State<MapScreen>
           Row(
             children: [
               IconButton(
-                tooltip: 'Retos del mundo',
+                tooltip: context.l10n.worldChallengesTooltip,
                 icon: Container(
                   width: 40,
                   height: 40,
@@ -500,9 +501,9 @@ class _MapScreenState extends State<MapScreen>
                     _controller.selectedWorld,
                   )) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
+                      SnackBar(
                         content: Text(
-                          'Primero derrota al jefe del mundo anterior.',
+                          context.l10n.worldLocked,
                         ),
                       ),
                     );
@@ -604,7 +605,7 @@ class _MapScreenState extends State<MapScreen>
                 ),
                 child: Center(
                   child: Text(
-                    'MUNDO $worldNum',
+                    context.l10n.worldLabel(worldNum),
                     style: GoogleFonts.anton(
                       color: isSelected ? kOutline : Colors.white70,
                       fontSize: 14,

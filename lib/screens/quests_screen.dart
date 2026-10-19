@@ -8,6 +8,7 @@ import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/game_3d.dart';
+import '../l10n/l10n.dart';
 
 class QuestsScreen extends StatefulWidget {
   const QuestsScreen({super.key});
@@ -72,7 +73,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
         child: SafeArea(
           child: Column(
             children: [
-              const GameHeader(title: 'MISIONES'),
+              GameHeader(title: context.l10n.questsTitle),
               Expanded(child: _buildBody()),
             ],
           ),
@@ -88,7 +89,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
     if (_quests.isEmpty) {
       return Center(
         child: Text(
-          'No hay misiones disponibles.',
+          context.l10n.noQuests,
           style: GoogleFonts.oswald(color: Colors.white70, fontSize: 16),
         ),
       );
@@ -136,7 +137,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                OutlinedGameText('$completed / $total COMPLETADAS', size: 18),
+                OutlinedGameText(context.l10n.questsCompleted(completed, total), size: 18),
                 const SizedBox(height: 8),
                 Bar3D(
                   value: total == 0 ? 0 : completed / total,
@@ -183,7 +184,11 @@ class _QuestsScreenState extends State<QuestsScreen> {
       color: WM.gold,
       onTap: ready && _claimingQuestId == null ? () => _onClaimReward(quest) : null,
       child: OutlinedGameText(
-        claimed ? 'HECHO' : ready ? 'RECLAMAR' : 'EN CURSO',
+        claimed
+            ? context.l10n.questDone
+            : ready
+                ? context.l10n.questClaim
+                : context.l10n.questInProgress,
         size: 15,
         font: GameFont.oswald,
       ),

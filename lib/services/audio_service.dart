@@ -104,7 +104,8 @@ class AudioService {
   }
 
   // Música de cada pantalla, con reservas mientras no existan los archivos.
-  static Future<void> playMenuMusic() => playBgm(menuMusic, fallbacks: [mapMusic]);
+  static Future<void> playMenuMusic() =>
+      playBgm(menuMusic, fallbacks: ['bg_music.mp3', mapMusic]);
   static Future<void> playMapMusic() => playBgm(mapMusic);
   static Future<void> playBattleMusic({bool boss = false}) => boss
       ? playBgm(bossMusic, fallbacks: [battleMusic, mapMusic])
@@ -119,7 +120,7 @@ class AudioService {
     if (isMuted) return;
     final player = _sfxPlayers[_nextSfx];
     _nextSfx = (_nextSfx + 1) % _sfxPlayers.length;
-    for (final file in [soundFileName, if (fallback != null) fallback]) {
+    for (final file in [soundFileName, ?fallback]) {
       try {
         await player.stop();
         await player.play(AssetSource('audio/$file'), volume: _sfxVolume);

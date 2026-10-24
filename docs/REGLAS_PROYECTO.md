@@ -4,12 +4,15 @@ Reglas que siguen todas las IA que trabajan en este repositorio (Claude y ChatGP
 Las mismas están en las instrucciones del Proyecto "Words & Monsters" de ChatGPT.
 
 ## Qué es
+
 Juego móvil de trivia en Flutter, para todas las edades. Multilenguaje: idioma base español de España, luego inglés y otros.
 Estilo fantasía oscura. Primero se publica en Android.
 4 mundos (Bosque, Cavernas, Islas Flotantes, Volcán) x 3 capítulos x 5 niveles.
-El nivel 5 de cada capítulo es un minijefe; el 5 del capítulo 3, el jefe del mundo.
+El nivel 5 de cada capítulo es una pelea tipo Street Fighter (guardián); la del capítulo 3 es la batalla final del mundo.
+Para entrar a cada pelea hace falta un mínimo de estrellas en ese mundo (ver lib/services/fighter_service.dart).
 
 ## Estilo visual (obligatorio en pantallas nuevas o rediseñadas)
+
 - Usa SIEMPRE las piezas de lib/widgets/game_3d.dart: GameBackground, GameHeader,
   Panel3D, Pressable3D, Bar3D, Socket3D, Chip3D, OutlinedGameText, Bob, Pulse, EntranceFlip.
 - Colores solo desde la clase WM (cian #1EE3CF, contorno #0D0326, hueso #F4EBDD, oro...).
@@ -18,6 +21,7 @@ El nivel 5 de cada capítulo es un minijefe; el 5 del capítulo 3, el jefe del m
   Pon el emoji en un Text normal al lado.
 
 ## Imágenes
+
 - Estilo: ilustración de fantasía semirrealista para juego móvil, colores saturados,
   luz desde arriba, igual que las imágenes de referencia.
 - Avatares: busto de frente, cuadrado, fondo transparente real, sin marco ni círculo.
@@ -25,10 +29,12 @@ El nivel 5 de cada capítulo es un minijefe; el 5 del capítulo 3, el jefe del m
 - Contenido apto para niños.
 
 ## Archivos que NO se tocan sin pedirlo explícitamente
+
 lib/firebase_options.dart, android/app/google-services.json, firebase.json,
 .firebaserc, firestore.rules.
 
 ## Forma de trabajar
+
 - Cada tarea en su propia rama; nunca directamente en main.
 - Nunca dos IA cambiando los mismos archivos a la vez.
 - Antes de escribir código, explicar el plan en español sencillo y esperar el visto bueno.

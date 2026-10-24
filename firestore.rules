@@ -10,28 +10,29 @@ service cloud.firestore {
       function validLeaderboardEntry() {
         let data = request.resource.data;
         return data.keys().hasAll([
-                 'name', 'coins', 'experience', 'stars', 'updatedAt'
-               ])
-            && data.keys().hasOnly([
-                 'name', 'coins', 'experience', 'stars', 'updatedAt'
-               ])
-            && data.name is string
-            && data.name.size() >= 1
-            && data.name.size() <= 20
-            && data.coins is int
-            && data.coins >= 0
-            && data.experience is int
-            && data.experience >= 0
-            // Si añadimos mundos o niveles, ajustar este máximo (mundos x niveles x 3 estrellas).
-            && data.stars is int
-            && data.stars >= 0
-            && data.stars <= 180
-            && data.updatedAt == request.time;
+            'name', 'coins', 'experience', 'stars', 'updatedAt'
+          ])
+          && data.keys().hasOnly([
+            'name', 'coins', 'experience', 'stars', 'updatedAt'
+          ])
+          && data.name is string
+          && data.name.size() >= 1
+          && data.name.size() <= 20
+          && data.coins is int
+          && data.coins >= 0
+          && data.experience is int
+          && data.experience >= 0
+          // Si añadimos mundos o niveles, ajustar este máximo (mundos x niveles x 3 estrellas).
+          && data.stars is int
+          && data.stars >= 0
+          && data.stars <= 180
+          && data.updatedAt == request.time;
       }
 
       allow read: if request.auth != null;
       allow create, update: if ownsLeaderboardEntry() && validLeaderboardEntry();
-      allow delete: if false;
+      // Permite al jugador borrar su propia entrada (requisito de borrado de datos de Google Play).
+      allow delete: if ownsLeaderboardEntry();
     }
 
     // Guardado privado: cada jugador solo puede leer o escribir su propio avance.
@@ -44,50 +45,59 @@ service cloud.firestore {
         let data = request.resource.data;
         let profile = data.profile;
         return data.keys().hasAll([
-                 'schemaVersion', 'profile', 'stages', 'quests', 'miniRewards', 'updatedAt'
-               ])
-            && data.keys().hasOnly([
-                 'schemaVersion', 'profile', 'stages', 'quests', 'miniRewards', 'updatedAt'
-               ])
-            && data.schemaVersion == 1
-            && data.updatedAt == request.time
-            && profile is map
-            && profile.keys().hasOnly([
-                 'name', 'level', 'experience', 'coins', 'gems', 'healthPotions',
-                 'letterHints', 'totalStars', 'lastDailyReward', 'avatarCharacterId',
-                 'avatarFrameId', 'avatarAccessoryId', 'ownedAvatarCharacters',
-                 'ownedAvatarFrames', 'ownedAvatarAccessories', 'fighterUpgrades'
-               ])
-            && profile.name is string
-            && profile.level is int
-            && profile.experience is int
-            && profile.coins is int
-            && profile.gems is int
-            && profile.healthPotions is int
-            && profile.letterHints is int
-            && profile.totalStars is int
-            && profile.avatarCharacterId is string
-            && profile.avatarFrameId is string
-            && profile.avatarAccessoryId is string
-            && profile.ownedAvatarCharacters is list
-            && profile.ownedAvatarFrames is list
-            && profile.ownedAvatarAccessories is list
-            // Mejoras de luchador (opcional): { health, power, super } de 0 a 5.
-            && (!('fighterUpgrades' in profile) || (
-                 profile.fighterUpgrades is map
-                 && profile.fighterUpgrades.keys().hasOnly(['health', 'power', 'super'])
-                 && profile.fighterUpgrades.size() <= 3))
-            && data.stages is map
-            && data.stages.size() <= 500
-            && data.quests is list
-            && data.quests.size() <= 100
-            && data.miniRewards is map
-            && data.miniRewards.size() <= 100;
+            'schemaVersion', 'profile', 'stages', 'quests', 'miniRewards', 'updatedAt'
+          ])
+          && data.keys().hasOnly([
+            'schemaVersion', 'profile', 'stages', 'quests', 'miniRewards', 'updatedAt'
+          ])
+          && data.schemaVersion == 1
+          && data.updatedAt == request.time
+          && profile is map
+          && profile.keys().hasOnly([
+            'name', 'level', 'experience', 'coins', 'gems', 'healthPotions',
+            'letterHints', 'totalStars', 'lastDailyReward', 'avatarCharacterId',
+            'avatarFrameId', 'avatarAccessoryId', 'ownedAvatarCharacters',
+            'ownedAvatarFrames', 'ownedAvatarAccessories'
+          ])
+          && profile.name is string
+          && profile.name.size() <= 20
+          && profile.level is int
+          && profile.level >= 0
+          && profile.experience is int
+          && profile.experience >= 0
+          && profile.coins is int
+          && profile.coins >= 0
+          && profile.gems is int
+          && profile.gems >= 0
+          && profile.healthPotions is int
+          && profile.healthPotions >= 0
+          && profile.letterHints is int
+          && profile.letterHints >= 0
+          // Mismo máximo que el ranking (mundos x niveles x 3 estrellas).
+          && profile.totalStars is int
+          && profile.totalStars >= 0
+          && profile.totalStars <= 180
+          && profile.avatarCharacterId is string
+          && profile.avatarFrameId is string
+          && profile.avatarAccessoryId is string
+          && profile.ownedAvatarCharacters is list
+          && profile.ownedAvatarCharacters.size() <= 100
+          && profile.ownedAvatarFrames is list
+          && profile.ownedAvatarFrames.size() <= 100
+          && profile.ownedAvatarAccessories is list
+          && profile.ownedAvatarAccessories.size() <= 100
+          && data.stages is map
+          && data.stages.size() <= 500
+          && data.quests is list
+          && data.quests.size() <= 100
+          && data.miniRewards is map
+          && data.miniRewards.size() <= 100;
       }
 
       allow read: if ownsSave();
       allow create, update: if ownsSave() && validSave();
-      allow delete: if false;
+      // Permite al jugador borrar su propio guardado (requisito de borrado de datos de Google Play).
+      allow delete: if ownsSave();
     }
   }
 }

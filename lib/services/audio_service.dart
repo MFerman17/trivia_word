@@ -37,6 +37,23 @@ class AudioService {
   /// "Silencio total": lo usan los botones de altavoz del mapa y del combate.
   static bool get isMuted => !musicOn && !sfxOn;
 
+  /// Ajuste de volumen propio de cada pista, para que todas suenen
+  /// equilibradas aunque los archivos vengan grabados más fuertes o más
+  /// flojos. 1.0 = sin cambio. Medido en LUFS (sonoridad percibida):
+  ///  - Portada bg_music: -11,4 LUFS (referencia).
+  ///  - Mapa map_bgm: -7,8 LUFS, bastante más fuerte. Con 0.55 baja unos
+  ///    5 dB y queda a -13 LUFS, un poco más suave que la portada.
+  ///  - Combate y jefe (-10,7 y -9,9) se dejan algo más fuertes a propósito.
+  static const Map<String, double> _trackGain = {
+    'map_bgm.mp3': 0.55,
+  };
+
+  /// Archivo que suena de verdad (puede ser una reserva de [_currentTrack]).
+  static String? _playingFile;
+
+  static double get _effectiveMusicVolume =>
+      musicVolume * (_trackGain[_playingFile] ?? 1.0);
+
   static String? _currentTrack;
   static List<String> _currentFallbacks = const [];
   static bool _initialized = false;
@@ -113,7 +130,8 @@ class AudioService {
       try {
         await _bgmPlayer.stop();
         if (request != _bgmRequest) return; // Ya se pidió otra música.
-        await _bgmPlayer.play(AssetSource('audio/$file'), volume: musicVolume);
+        _playingFile = file;
+        await _bgmPlayer.play(AssetSource('audio/$file'), volume: _effectiveMusicVolume);
         return;
       } catch (e) {
         debugPrint('🎵 No se pudo reproducir la música $file: $e');
@@ -293,7 +311,7 @@ class AudioService {
   static Future<void> setMusicVolume(double value, {bool save = false}) async {
     musicVolume = value.clamp(0.0, 1.0);
     try {
-      await _bgmPlayer.setVolume(musicVolume);
+      await _bgmPlayer.setVolume(_effectiveMusicVolume);
     } catch (_) {}
     if (save) await _save();
   }

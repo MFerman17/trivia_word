@@ -57,6 +57,17 @@ class MapController extends ChangeNotifier {
         );
   }
 
+  /// Estrellas ganadas en un mundo (para el candado de las peleas).
+  int starsInWorld(int world) {
+    var total = 0;
+    for (var c = 1; c <= 3; c++) {
+      for (var l = 1; l <= 5; l++) {
+        total += getProgressForNode(world, c, l).stars;
+      }
+    }
+    return total;
+  }
+
   bool isWorldUnlocked(int world) {
     if (world == 1) return true;
     return getProgressForNode(world, 1, 1).isUnlocked;

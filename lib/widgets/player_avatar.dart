@@ -17,6 +17,12 @@ class PlayerAvatar extends StatelessWidget {
     'guardian': 'assets/images/avatar_guardian.png',
   };
 
+  /// Imagen de cuerpo entero para las peleas: assets/images/fighters/ID.png
+  /// (por ejemplo, fighters/explorador.png). Si aún no existe, la pantalla
+  /// de pelea usa el aventurero de la portada.
+  static String fighterAssetFor(String characterId) =>
+      'assets/images/fighters/$characterId.png';
+
   static const Map<String, String> _characterFallbacks = {
     'explorador': '🧝',
     'maga': '🧙‍♀️',

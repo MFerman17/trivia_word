@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../models/player_profile.dart';
 import '../services/ad_service.dart';
 import '../services/audio_service.dart';
+import '../services/fighter_service.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../widgets/game_3d.dart';
@@ -122,7 +123,12 @@ const List<_ShopOffer> _offers = [
 class ShopScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
 
-  const ShopScreen({super.key, this.playerProfile});
+  /// Pestaña con la que se abre (0 = Avatar). La pelea abre directamente
+  /// la de mejoras con [fighterTab] cuando el jugador pierde.
+  final int initialTab;
+  static const int fighterTab = 3;
+
+  const ShopScreen({super.key, this.playerProfile, this.initialTab = 0});
 
   @override
   State<ShopScreen> createState() => _ShopScreenState();
@@ -150,7 +156,11 @@ class _ShopScreenState extends State<ShopScreen>
     _previewCharacter = profile.avatarCharacterId;
     _previewFrame = profile.avatarFrameId;
     _previewAccessory = profile.avatarAccessoryId;
-    _tabController = TabController(length: 3, vsync: this);
+    _tabController = TabController(
+      length: 4,
+      vsync: this,
+      initialIndex: widget.initialTab.clamp(0, 3).toInt(),
+    );
     AdService.initialize();
   }
 
@@ -372,6 +382,7 @@ class _ShopScreenState extends State<ShopScreen>
                     _buildAvatarStudio(),
                     _buildCombos(),
                     _buildRewards(),
+                    _buildFighter(),
                   ],
                 ),
               ),
@@ -448,15 +459,15 @@ class _ShopScreenState extends State<ShopScreen>
   // también cambian al deslizar entre pestañas con el dedo.
   // ---------------------------------------------------------------
   Widget _buildTabs() {
-    const labels = ['AVATAR', 'COMBOS', 'PREMIOS'];
+    const labels = ['AVATAR', 'COMBOS', 'PREMIOS', 'LUCHADOR'];
     return AnimatedBuilder(
       animation: _tabController,
       builder: (context, _) => Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 8),
+        padding: const EdgeInsets.fromLTRB(14, 0, 14, 8),
         child: Row(
           children: [
             for (var i = 0; i < labels.length; i++) ...[
-              if (i > 0) const SizedBox(width: 10),
+              if (i > 0) const SizedBox(width: 8),
               Expanded(
                 child: Pressable3D(
                   slanted: true,
@@ -469,7 +480,10 @@ class _ShopScreenState extends State<ShopScreen>
                     AudioService.playButtonClick();
                     _tabController.animateTo(i);
                   },
-                  child: OutlinedGameText(labels[i], size: 14, font: GameFont.oswald),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: OutlinedGameText(labels[i], size: 14, font: GameFont.oswald),
+                  ),
                 ),
               ),
             ],
@@ -753,6 +767,125 @@ class _ShopScreenState extends State<ShopScreen>
         ),
       ],
     );
+  }
+
+  // ---------------------------------------------------------------
+  // PESTAÑA LUCHADOR: mejoras para las peleas
+  // ---------------------------------------------------------------
+  Widget _buildFighter() {
+    return ListView(
+      padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
+      children: [
+        _buildSectionHeading(
+          'PREPÁRATE PARA PELEAR',
+          'Mejoras permanentes para los guardianes y la batalla final de cada mundo.',
+        ),
+        for (var i = 0; i < FighterUpgrade.values.length; i++)
+          EntranceFlip(index: i, child: _buildUpgradeCard(FighterUpgrade.values[i])),
+        const SizedBox(height: 6),
+        Text(
+          'Vida: ${FighterService.playerMaxHp(profile)} por round · '
+          'Fuerza: ×${FighterService.powerMultiplier(profile).toStringAsFixed(1)} · '
+          'SUPER: ${(1 / FighterService.superFillPerHit(profile)).ceil()} aciertos',
+          textAlign: TextAlign.center,
+          style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildUpgradeCard(FighterUpgrade upgrade) {
+    final level = FighterService.levelOf(profile, upgrade);
+    final cost = FighterService.nextCost(profile, upgrade);
+    final maxed = cost == null;
+    final affordable = cost != null && profile.coins >= cost;
+    final accent = switch (upgrade) {
+      FighterUpgrade.health => const Color(0xFFFF4D5E),
+      FighterUpgrade.power => const Color(0xFFFF9D00),
+      FighterUpgrade.superCharge => const Color(0xFF00B8FF),
+    };
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
+      child: Panel3D(
+        accent: accent,
+        glow: affordable ? 0.4 : 0,
+        child: Row(
+          children: [
+            Socket3D(
+              size: 54,
+              color: accent,
+              child: Text(upgrade.emoji, style: const TextStyle(fontSize: 24)),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OutlinedGameText(upgrade.title, size: 18, font: GameFont.oswald),
+                  Text(
+                    upgrade.description,
+                    style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12),
+                  ),
+                  const SizedBox(height: 6),
+                  // Nivel actual en bloques (como las barras de un RPG).
+                  Row(
+                    children: [
+                      for (var i = 0; i < FighterService.maxUpgradeLevel; i++)
+                        Container(
+                          width: 18,
+                          height: 8,
+                          margin: const EdgeInsets.only(right: 4),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(3),
+                            color: i < level ? accent : WM.outline,
+                            border: Border.all(color: WM.outline, width: 1.5),
+                          ),
+                        ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 8),
+            SizedBox(
+              width: 92,
+              child: Pressable3D(
+                onTap: affordable && !_isBusy ? () => _buyUpgrade(upgrade) : null,
+                color: WM.gold,
+                height: 42,
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: maxed
+                    ? const OutlinedGameText('MÁX', size: 15, font: GameFont.oswald)
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text('🪙', style: TextStyle(fontSize: 13)),
+                          const SizedBox(width: 3),
+                          Flexible(
+                            child: OutlinedGameText('$cost', size: 15, font: GameFont.oswald),
+                          ),
+                        ],
+                      ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<void> _buyUpgrade(FighterUpgrade upgrade) async {
+    setState(() => _isBusy = true);
+    final ok = await FighterService.buy(profile, upgrade);
+    if (!mounted) return;
+    setState(() => _isBusy = false);
+    if (ok) {
+      AudioService.playEquip();
+      _showMessage('¡${upgrade.title} mejorada a nivel ${FighterService.levelOf(profile, upgrade)}!');
+    } else {
+      _showMessage('No tienes suficientes monedas.', error: true);
+    }
   }
 
   Widget _buildSectionHeading(String title, String subtitle) {

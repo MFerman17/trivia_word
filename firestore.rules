@@ -56,7 +56,7 @@ service cloud.firestore {
                  'name', 'level', 'experience', 'coins', 'gems', 'healthPotions',
                  'letterHints', 'totalStars', 'lastDailyReward', 'avatarCharacterId',
                  'avatarFrameId', 'avatarAccessoryId', 'ownedAvatarCharacters',
-                 'ownedAvatarFrames', 'ownedAvatarAccessories'
+                 'ownedAvatarFrames', 'ownedAvatarAccessories', 'fighterUpgrades'
                ])
             && profile.name is string
             && profile.level is int
@@ -72,6 +72,11 @@ service cloud.firestore {
             && profile.ownedAvatarCharacters is list
             && profile.ownedAvatarFrames is list
             && profile.ownedAvatarAccessories is list
+            // Mejoras de luchador (opcional): { health, power, super } de 0 a 5.
+            && (!('fighterUpgrades' in profile) || (
+                 profile.fighterUpgrades is map
+                 && profile.fighterUpgrades.keys().hasOnly(['health', 'power', 'super'])
+                 && profile.fighterUpgrades.size() <= 3))
             && data.stages is map
             && data.stages.size() <= 500
             && data.quests is list

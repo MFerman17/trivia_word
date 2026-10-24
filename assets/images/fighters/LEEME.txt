@@ -1,0 +1,4 @@
+Poses de lucha de cuerpo entero (vista lateral, mirando a la DERECHA),
+PNG con fondo transparente, unos 512x768 px.
+Nombre = id del personaje: explorador.png, maga.png, guardian.png
+Mientras no existan, la pelea usa assets/images/adventurer.png.

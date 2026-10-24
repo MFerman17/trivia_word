@@ -9,6 +9,9 @@ import '../services/audio_service.dart';
 import 'game_screen.dart';
 import 'mini_challenges_screen.dart';
 import '../l10n/l10n.dart';
+import '../services/fighter_service.dart';
+import '../widgets/game_3d.dart';
+import 'fight_screen.dart';
 
 // Colores coherentes con el estilo del juego
 const Color kOutline = Color(0xFF0D0326);
@@ -75,16 +78,36 @@ class _MapScreenState extends State<MapScreen>
 
   void _startLevel(int worldId, int chapterId, int levelNumber) {
     AudioService.playNodeSelect();
+
+    // El último nivel de cada capítulo es una pelea: pide estrellas.
+    final isFight = FighterService.isFightLevel(levelNumber);
+    if (isFight) {
+      final missing = FightGate.missingStars(
+        chapter: chapterId,
+        starsInWorld: _controller.starsInWorld(worldId),
+      );
+      if (missing > 0) {
+        _showFightLocked(chapterId, missing);
+        return;
+      }
+    }
+
     AudioService.stopBgm(); // El combate pone su propia música al cargar.
 
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => GameScreen(
-          worldId: worldId,
-          chapterId: chapterId,
-          levelNumber: levelNumber,
-        ),
+        builder: (context) => isFight
+            ? FightScreen(
+                worldId: worldId,
+                chapterId: chapterId,
+                levelNumber: levelNumber,
+              )
+            : GameScreen(
+                worldId: worldId,
+                chapterId: chapterId,
+                levelNumber: levelNumber,
+              ),
       ),
     ).then((_) {
       // Al volver, recarga progreso y vuelve a centrar en el nivel actual
@@ -93,6 +116,62 @@ class _MapScreenState extends State<MapScreen>
       AudioService.playMapMusic();
     });
   }
+  /// Aviso cuando aún no hay estrellas suficientes para una pelea.
+  void _showFightLocked(int chapter, int missing) {
+    final required = FighterService.starsRequired(chapter);
+    final isFinal = chapter == 3;
+    showDialog<void>(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.7),
+      builder: (dialogContext) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 28),
+        child: Panel3D(
+          accent: isFinal ? const Color(0xFFFF8A3D) : WM.violet,
+          radius: 22,
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 14),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              OutlinedGameText(
+                isFinal ? 'BATALLA FINAL' : 'PELEA DE GUARDIÁN',
+                size: 24,
+                letterSpacing: 1.5,
+                colors: const [Color(0xFFFFF1B0), WM.gold],
+              ),
+              const SizedBox(height: 10),
+              const Text('🔒', style: TextStyle(fontSize: 40)),
+              const SizedBox(height: 8),
+              Text(
+                'Necesitas $required ★ en este mundo para entrar. '
+                'Te faltan $missing.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.oswald(color: Colors.white, fontSize: 15),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                'Repite niveles para conseguir 3 ★ (sin fallar ninguna) y '
+                'mejora tu luchador en la Tienda mientras tanto.',
+                textAlign: TextAlign.center,
+                style: GoogleFonts.oswald(color: Colors.white60, fontSize: 13),
+              ),
+              const SizedBox(height: 14),
+              SizedBox(
+                width: double.infinity,
+                child: Pressable3D(
+                  onTap: () => Navigator.of(dialogContext).pop(),
+                  color: WM.cyan,
+                  height: 46,
+                  child: const OutlinedGameText('ENTENDIDO', size: 17, font: GameFont.oswald),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
 
   // =================================================================
   // TAMAÑO REAL DE LAS IMÁGENES
@@ -668,13 +747,19 @@ class _MapScreenState extends State<MapScreen>
       ),
       child: Center(
         child: unlocked
-            ? Text(
-                '$number',
-                style: GoogleFonts.anton(
-                  color: completed ? kCyan : kOutline,
-                  fontSize: nodeSize * 0.38,
-                ),
-              )
+            ? FighterService.isFightLevel(progress.levelNumber)
+                // Pelea: espadas (guardián) o corona (batalla final).
+                ? Text(
+                    progress.chapterId == 3 ? '👑' : '⚔️',
+                    style: TextStyle(fontSize: nodeSize * 0.4),
+                  )
+                : Text(
+                    '$number',
+                    style: GoogleFonts.anton(
+                      color: completed ? kCyan : kOutline,
+                      fontSize: nodeSize * 0.38,
+                    ),
+                  )
             : Icon(Icons.lock_rounded,
                 color: Colors.white38, size: nodeSize * 0.4),
       ),
@@ -698,6 +783,8 @@ class _MapScreenState extends State<MapScreen>
               : null,
           child: circle,
         ),
+        if (unlocked && FighterService.isFightLevel(progress.levelNumber) && progress.stars == 0)
+          _fightRequirementBadge(progress),
         if (unlocked) ...[
           const SizedBox(height: 3),
           Row(
@@ -713,6 +800,30 @@ class _MapScreenState extends State<MapScreen>
           ),
         ],
       ],
+    );
+  }
+
+  /// Etiqueta "★ 6/8" bajo una pelea que aún no se ha ganado.
+  Widget _fightRequirementBadge(StageProgress progress) {
+    final have = _controller.starsInWorld(progress.worldId);
+    final need = FighterService.starsRequired(progress.chapterId);
+    final ok = have >= need;
+    return Container(
+      margin: const EdgeInsets.only(top: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 1),
+      decoration: BoxDecoration(
+        color: kOutline.withValues(alpha: 0.85),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: ok ? const Color(0xFF5BE37A) : Colors.white38, width: 1.5),
+      ),
+      child: Text(
+        '★ ${have > need ? need : have}/$need',
+        style: GoogleFonts.oswald(
+          color: ok ? const Color(0xFF9AF2A0) : Colors.white70,
+          fontSize: 11,
+          fontWeight: FontWeight.w700,
+        ),
+      ),
     );
   }
 }

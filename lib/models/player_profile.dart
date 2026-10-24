@@ -19,6 +19,9 @@ class PlayerProfile {
   List<String> ownedAvatarFrames;
   List<String> ownedAvatarAccessories;
 
+  /// Nivel de cada mejora de luchador (ver FighterService): health, power, super.
+  Map<String, int> fighterUpgrades;
+
   PlayerProfile({
     this.name = 'Jugador 1',
     this.level = 1,
@@ -35,7 +38,9 @@ class PlayerProfile {
     List<String>? ownedAvatarCharacters,
     List<String>? ownedAvatarFrames,
     List<String>? ownedAvatarAccessories,
-  })  : ownedAvatarCharacters = ownedAvatarCharacters ?? ['explorador'],
+    Map<String, int>? fighterUpgrades,
+  })  : fighterUpgrades = fighterUpgrades ?? {},
+        ownedAvatarCharacters = ownedAvatarCharacters ?? ['explorador'],
         ownedAvatarFrames = ownedAvatarFrames ?? ['basico'],
         ownedAvatarAccessories =
             ownedAvatarAccessories ?? ['ninguno'];
@@ -88,6 +93,11 @@ class PlayerProfile {
       'ownedAvatarCharacters': ownedAvatarCharacters,
       'ownedAvatarFrames': ownedAvatarFrames,
       'ownedAvatarAccessories': ownedAvatarAccessories,
+      // Solo se guarda si hay alguna mejora comprada. Así los jugadores sin
+      // mejoras siguen guardando en la nube aunque las reglas de Firestore
+      // aún no conozcan este campo.
+      if (fighterUpgrades.values.any((level) => level > 0))
+        'fighterUpgrades': fighterUpgrades,
     };
   }
 
@@ -119,6 +129,7 @@ class PlayerProfile {
         map['ownedAvatarAccessories'],
         fallback: const ['ninguno'],
       ),
+      fighterUpgrades: _readIntMap(map['fighterUpgrades']),
     );
   }
 
@@ -131,4 +142,13 @@ class PlayerProfile {
 List<String> _readStringList(dynamic value, {required List<String> fallback}) {
   if (value is! List) return List<String>.from(fallback);
   return value.whereType<String>().toList();
+}
+
+Map<String, int> _readIntMap(dynamic value) {
+  if (value is! Map) return {};
+  return {
+    for (final entry in value.entries)
+      if (entry.key is String && entry.value is num)
+        entry.key as String: (entry.value as num).toInt(),
+  };
 }

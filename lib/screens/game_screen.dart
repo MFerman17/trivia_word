@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../controllers/game_controller.dart';
 import '../models/level_config.dart';
+import '../models/question.dart';
 import '../services/ad_service.dart';
 import '../services/audio_service.dart';
+import '../widgets/battle_arena.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 
@@ -35,6 +37,15 @@ class _GameScreenState extends State<GameScreen> {
   // "derrota" podía apilar otro diálogo encima.
   bool _endDialogOpen = false;
 
+  // Contadores que avisan al escenario (BattleArena) de lo que pasó:
+  // al subir, se lanza la animación de golpe o de ataque.
+  int _hitCount = 0;
+  int _attackCount = 0;
+  int _lastDamage = 0;
+  bool _wasAnswered = false;
+  int _previousEnemyHp = 0;
+  int _hpBeforeAnswer = 0;
+
   @override
   void initState() {
     super.initState();
@@ -60,6 +71,7 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _onControllerUpdate() {
+    _detectBattleEvents();
     if (_endDialogOpen) return;
     if (_controller.status == GameStatus.victory) {
       _endDialogOpen = true;
@@ -72,6 +84,30 @@ class _GameScreenState extends State<GameScreen> {
         _showDefeatDialog();
       }
     }
+  }
+
+  /// Mira qué cambió desde el último aviso del controlador: si se acaba de
+  /// responder, decide si el monstruo recibe un golpe o ataca.
+  void _detectBattleEvents() {
+    final answered = _controller.isAnswered;
+    final question = _controller.currentQuestion;
+    if (answered && !_wasAnswered && question != null) {
+      // El controlador avisa al marcar la respuesta y OTRA VEZ al restar la
+      // vida al monstruo; por eso se guarda la vida de antes y el daño se
+      // recalcula en cada aviso mientras la pregunta sigue respondida.
+      _hpBeforeAnswer = _previousEnemyHp;
+      if (_controller.selectedOptionIndex == question.correctIndex) {
+        _hitCount++;
+      } else {
+        _attackCount++;
+      }
+    }
+    if (answered) {
+      _lastDamage = (_hpBeforeAnswer - _controller.enemyHp).clamp(0, 9999).toInt();
+    } else {
+      _previousEnemyHp = _controller.enemyHp;
+    }
+    _wasAnswered = answered;
   }
 
   void _showSnackBar(String message) {
@@ -558,61 +594,23 @@ class _GameScreenState extends State<GameScreen> {
       builder: (context, _) {
         if (_controller.status == GameStatus.loading) {
           return const Scaffold(
-            backgroundColor: Color(0xFF0F0C29),
-            body: Center(child: CircularProgressIndicator(color: Colors.amber)),
+            backgroundColor: WM.outline,
+            body: Center(child: CircularProgressIndicator(color: WM.cyan)),
           );
         }
 
         final currentQuestion = _controller.currentQuestion;
 
         return Scaffold(
-          backgroundColor: const Color(0xFF0F0C29),
-          appBar: AppBar(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-            title: Text(
-              widget.isMiniChallenge
-                  ? 'MINI-RETO ${widget.levelNumber}'
-                  : 'COMBATE',
-              style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            actions: [
-              IconButton(
-                icon: Icon(
-                  _isMuted ? Icons.volume_off : Icons.volume_up,
-                  color: _isMuted ? Colors.redAccent : Colors.amber,
-                ),
-                onPressed: () {
-                  AudioService.toggleMute();
-                  setState(() {
-                    _isMuted = AudioService.isMuted;
-                  });
-                },
-              ),
-              Row(
-                children: List.generate(_controller.maxPlayerHp, (index) {
-                  return Icon(
-                    index < _controller.playerHp
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    color: Colors.redAccent,
-                    size: 24,
-                  );
-                }),
-              ),
-              const SizedBox(width: 16),
-            ],
-          ),
+          backgroundColor: WM.outline,
           body: Stack(
             fit: StackFit.expand,
             children: [
+              // Fondo del mundo, oscurecido para que destaquen monstruo y texto.
               Image.asset(
                 _controller.config.backgroundAsset,
                 fit: BoxFit.cover,
-                color: Colors.black.withValues(alpha: 0.62),
+                color: Colors.black.withValues(alpha: 0.5),
                 colorBlendMode: BlendMode.darken,
               ),
               const DecoratedBox(
@@ -620,304 +618,27 @@ class _GameScreenState extends State<GameScreen> {
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
-                    colors: [Color(0x66100B22), Color(0xCC0F0C29)],
+                    stops: [0, 0.35, 1],
+                    colors: [Color(0x33100B22), Color(0x66100B22), Color(0xEE0D0326)],
                   ),
                 ),
               ),
               SafeArea(
-                child: currentQuestion == null
-                ? const Center(
-                    child: Text(
-                      'No hay preguntas para esta fase.',
-                      style: TextStyle(color: Colors.white),
+                child: Column(
+                  children: [
+                    _buildTopBar(),
+                    Expanded(
+                      child: currentQuestion == null
+                          ? Center(
+                              child: Text(
+                                'No hay preguntas para esta fase.',
+                                style: GoogleFonts.oswald(color: Colors.white),
+                              ),
+                            )
+                          : _buildBattle(currentQuestion),
                     ),
-                  )
-                : Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      children: [
-                        _buildEnemyStatus(),
-                        if (_controller.monsterReaction != null) ...[
-                          const SizedBox(height: 8),
-                          Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 12,
-                              vertical: 9,
-                            ),
-                            decoration: BoxDecoration(
-                              color: const Color(0xCC5B1B35),
-                              borderRadius: BorderRadius.circular(12),
-                              border: Border.all(
-                                color: Colors.redAccent.withValues(alpha: 0.8),
-                              ),
-                            ),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.crisis_alert_rounded,
-                                  color: Colors.orangeAccent,
-                                  size: 20,
-                                ),
-                                const SizedBox(width: 8),
-                                Expanded(
-                                  child: Text(
-                                    _controller.monsterReaction!,
-                                    style: GoogleFonts.poppins(
-                                      color: Colors.white,
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w600,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'PREGUNTA ${_controller.currentQuestionIndex + 1} DE ${_controller.questions.length}',
-                              style: GoogleFonts.poppins(
-                                color: const Color(0xFFFFD36B),
-                                fontWeight: FontWeight.w700,
-                                fontSize: 11,
-                                letterSpacing: 0.6,
-                              ),
-                            ),
-                            Text(
-                              'RETO ${currentQuestion.difficulty}/5',
-                              style: GoogleFonts.poppins(
-                                color: const Color(0xFF8FE9FF),
-                                fontWeight: FontWeight.w700,
-                                fontSize: 11,
-                                letterSpacing: 0.6,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 6),
-                        Container(
-                          width: double.infinity,
-                          padding: const EdgeInsets.all(20),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF1E1B4B),
-                            borderRadius: BorderRadius.circular(16),
-                            border: Border.all(
-                              color: Colors.purpleAccent.withValues(alpha: 0.5),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                currentQuestion.category.toUpperCase(),
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                  color: const Color(0xFF8FE9FF),
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w700,
-                                  letterSpacing: 1.1,
-                                ),
-                              ),
-                              const SizedBox(height: 8),
-                              Text(
-                                currentQuestion.prompt,
-                                textAlign: TextAlign.center,
-                                style: GoogleFonts.poppins(
-                                  color: Colors.white,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 24),
-                        Expanded(
-                          child: ListView.builder(
-                            itemCount:
-                                currentQuestion.options.length +
-                                (_controller.isAnswered ? 1 : 0),
-                            itemBuilder: (context, index) {
-                              if (index == currentQuestion.options.length) {
-                                final isCorrect =
-                                    _controller.selectedOptionIndex ==
-                                    currentQuestion.correctIndex;
-
-                                return Padding(
-                                  padding: const EdgeInsets.only(bottom: 12),
-                                  child: Container(
-                                    width: double.infinity,
-                                    padding: const EdgeInsets.all(16),
-                                    decoration: BoxDecoration(
-                                      color: const Color(0xFF182B3A),
-                                      borderRadius: BorderRadius.circular(14),
-                                      border: Border.all(
-                                        color: isCorrect
-                                            ? const Color(0xFF71D57A)
-                                            : const Color(0xFFFFC857),
-                                      ),
-                                    ),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          isCorrect
-                                              ? '¡Correcto!'
-                                              : 'Respuesta correcta: ${currentQuestion.options[currentQuestion.correctIndex]}',
-                                          style: GoogleFonts.poppins(
-                                            color: isCorrect
-                                                ? const Color(0xFF9AF2A0)
-                                                : const Color(0xFFFFD980),
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 15,
-                                          ),
-                                        ),
-                                        const SizedBox(height: 6),
-                                        Text(
-                                          currentQuestion.explanation.isNotEmpty
-                                              ? currentQuestion.explanation
-                                              : 'La opción correcta es “${currentQuestion.options[currentQuestion.correctIndex]}”.',
-                                          style: GoogleFonts.poppins(
-                                            color: Colors.white,
-                                            fontSize: 13,
-                                            height: 1.4,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }
-
-                              final isDisabled = _controller
-                                  .disabledOptionIndexes
-                                  .contains(index);
-
-                              Color buttonColor = const Color(0xFF2E1065);
-                              if (_controller.isAnswered) {
-                                if (index == currentQuestion.correctIndex) {
-                                  buttonColor = Colors.green;
-                                } else if (index ==
-                                    _controller.selectedOptionIndex) {
-                                  buttonColor = Colors.red;
-                                }
-                              } else if (isDisabled) {
-                                buttonColor = Colors.grey.shade800;
-                              }
-
-                              return Padding(
-                                padding: const EdgeInsets.only(bottom: 12.0),
-                                child: ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: buttonColor,
-                                    padding: const EdgeInsets.symmetric(
-                                      vertical: 16,
-                                    ),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(12),
-                                    ),
-                                  ),
-                                  onPressed: isDisabled
-                                      ? null
-                                      : () => _controller.selectAnswer(
-                                          index,
-                                          _showSnackBar,
-                                        ),
-                                  child: Text(
-                                    isDisabled
-                                        ? '✖ Opción descartada'
-                                        : currentQuestion.options[index],
-                                    style: GoogleFonts.poppins(
-                                      color: isDisabled
-                                          ? Colors.white38
-                                          : Colors.white,
-                                      fontSize: 16,
-                                      decoration: isDisabled
-                                          ? TextDecoration.lineThrough
-                                          : null,
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                        ),
-                        if (_controller.isAnswered)
-                          SizedBox(
-                            width: double.infinity,
-                            child: ElevatedButton.icon(
-                              style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.amber,
-                                foregroundColor: const Color(0xFF0F0C29),
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 14,
-                                ),
-                              ),
-                              onPressed: _controller.continueAfterAnswer,
-                              icon: const Icon(Icons.arrow_forward),
-                              label: Text(
-                                _controller.playerHp <= 0
-                                    ? 'VER RESULTADO'
-                                    : 'CONTINUAR',
-                                style: GoogleFonts.poppins(
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          )
-                        else
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      (_controller.profile?.healthPotions ??
-                                              0) >
-                                          0
-                                      ? Colors.redAccent.shade700
-                                      : Colors.grey.shade700,
-                                ),
-                                onPressed: () =>
-                                    _controller.usePotion(_showSnackBar),
-                                icon: const Icon(
-                                  Icons.local_hospital,
-                                  color: Colors.white,
-                                ),
-                                label: Text(
-                                  'Poción (${_controller.profile?.healthPotions ?? 0})',
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                              ElevatedButton.icon(
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor:
-                                      (_controller.profile?.letterHints ?? 0) >
-                                          0
-                                      ? Colors.amber.shade700
-                                      : Colors.grey.shade700,
-                                ),
-                                onPressed: () =>
-                                    _controller.useHint(_showSnackBar),
-                                icon: const Icon(
-                                  Icons.lightbulb,
-                                  color: Colors.white,
-                                ),
-                                label: Text(
-                                  'Pista (${_controller.profile?.letterHints ?? 0})',
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ],
-                          ),
-                      ],
-                    ),
-                  ),
+                  ],
+                ),
               ),
             ],
           ),
@@ -926,97 +647,378 @@ class _GameScreenState extends State<GameScreen> {
     );
   }
 
-  Widget _buildEnemyStatus() {
+  // ---------------------------------------------------------------
+  // BARRA SUPERIOR: volver, título, sonido y vidas
+  // ---------------------------------------------------------------
+  Widget _buildTopBar() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 8, 12, 4),
+      child: Row(
+        children: [
+          Pressable3D(
+            onTap: () => Navigator.maybePop(context),
+            color: const Color(0xFF3A2A7A),
+            height: 38,
+            depth: 5,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: const Icon(Icons.arrow_back_rounded, color: WM.bone, size: 22),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: OutlinedGameText(
+              widget.isMiniChallenge ? 'MINI-RETO ${widget.levelNumber}' : 'COMBATE',
+              size: 20,
+              letterSpacing: 1.5,
+            ),
+          ),
+          IconButton(
+            visualDensity: VisualDensity.compact,
+            icon: Icon(
+              _isMuted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
+              color: _isMuted ? Colors.redAccent : WM.gold,
+            ),
+            onPressed: () {
+              AudioService.toggleMute();
+              setState(() => _isMuted = AudioService.isMuted);
+            },
+          ),
+          // Vidas: el corazón que se pierde "late" al vaciarse.
+          for (var i = 0; i < _controller.maxPlayerHp; i++)
+            AnimatedScale(
+              scale: i < _controller.playerHp ? 1 : 0.8,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.elasticOut,
+              child: Icon(
+                i < _controller.playerHp ? Icons.favorite_rounded : Icons.favorite_border_rounded,
+                color: const Color(0xFFFF4D5E),
+                size: 24,
+                shadows: const [Shadow(color: WM.outline, blurRadius: 3, offset: Offset(0, 2))],
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // COMBATE: escenario con el monstruo + pregunta + respuestas
+  // ---------------------------------------------------------------
+  Widget _buildBattle(Question currentQuestion) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+      child: Column(
+        children: [
+          BattleArena(
+            enemyAsset: _controller.config.enemyAsset,
+            enemyEmoji: _controller.config.enemyEmoji,
+            enemyName: _controller.config.enemyName,
+            encounterLabel: _encounterLabel(),
+            isBoss: _controller.isBossBattle,
+            enemyHp: _controller.enemyHp,
+            enemyMaxHp: _controller.enemyMaxHp,
+            hitCount: _hitCount,
+            attackCount: _attackCount,
+            lastDamage: _lastDamage,
+            profile: _controller.profile,
+            // Más bajo mientras se lee la explicación, para que quepa.
+            compact: _controller.isAnswered,
+          ),
+          if (_controller.monsterReaction != null) ...[
+            const SizedBox(height: 8),
+            _buildMonsterReaction(),
+          ],
+          const SizedBox(height: 10),
+          _buildQuestionCard(currentQuestion),
+          const SizedBox(height: 12),
+          Expanded(child: _buildAnswers(currentQuestion)),
+          const SizedBox(height: 8),
+          _buildBottomActions(),
+        ],
+      ),
+    );
+  }
+
+  String _encounterLabel() {
     final config = _controller.config;
     final difficultyLabel = switch (config.difficulty) {
-      1 => 'Fácil',
-      2 => 'Fácil+',
-      3 => 'Media',
-      4 => 'Difícil',
-      _ => 'Épico',
+      1 => 'FÁCIL',
+      2 => 'FÁCIL+',
+      3 => 'MEDIA',
+      4 => 'DIFÍCIL',
+      _ => 'ÉPICO',
     };
-    final encounterLabel = config.isMiniChallenge
-        ? 'MINI-RETO · $difficultyLabel'
-        : config.type == LevelType.worldBoss
-        ? 'JEFE DEL MUNDO · $difficultyLabel'
-        : config.type == LevelType.miniBoss
-        ? 'GUARDIÁN DEL CAPÍTULO · $difficultyLabel'
-        : 'DIFICULTAD $difficultyLabel';
+    if (config.isMiniChallenge) return 'MINI-RETO · $difficultyLabel';
+    if (config.type == LevelType.worldBoss) return 'JEFE DEL MUNDO · $difficultyLabel';
+    if (config.type == LevelType.miniBoss) return 'GUARDIÁN · $difficultyLabel';
+    return difficultyLabel;
+  }
 
+  Widget _buildMonsterReaction() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: const Color(0xFF211638),
-        borderRadius: BorderRadius.circular(14),
-        border: Border.all(color: Colors.deepPurpleAccent.withValues(alpha: 0.6)),
+        color: const Color(0xDD5B1B35),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: WM.outline, width: 2.5),
       ),
       child: Row(
         children: [
-          SizedBox(
-            width: 72,
-            height: 76,
-            child: Image.asset(
-              config.enemyAsset,
-              fit: BoxFit.contain,
-              cacheWidth: 256,
-              errorBuilder: (_, _, _) => Text(
-                config.enemyEmoji,
-                style: const TextStyle(fontSize: 34),
-              ),
-            ),
-          ),
+          const Icon(Icons.crisis_alert_rounded, color: Colors.orangeAccent, size: 20),
           const SizedBox(width: 8),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  config.enemyName,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: GoogleFonts.poppins(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 14,
-                  ),
-                ),
-                Text(
-                  encounterLabel,
-                  style: GoogleFonts.poppins(
-                    color: config.type == LevelType.worldBoss
-                        ? Colors.orangeAccent
-                        : Colors.cyanAccent,
-                    fontWeight: FontWeight.w700,
-                    fontSize: 10,
-                    letterSpacing: 0.8,
-                  ),
-                ),
-                const SizedBox(height: 5),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: LinearProgressIndicator(
-                    value: _controller.enemyHp / _controller.enemyMaxHp,
-                    minHeight: 7,
-                    backgroundColor: Colors.black45,
-                    color: Colors.redAccent,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 10),
-          Text(
-            '${_controller.enemyHp}',
-            style: GoogleFonts.oswald(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
-              fontSize: 16,
+            child: Text(
+              _controller.monsterReaction!,
+              style: GoogleFonts.oswald(color: Colors.white, fontSize: 13),
             ),
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildQuestionCard(Question currentQuestion) {
+    return Panel3D(
+      accent: WM.violet,
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 14),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text(
+                'PREGUNTA ${_controller.currentQuestionIndex + 1}/${_controller.questions.length}',
+                style: GoogleFonts.oswald(
+                  color: WM.gold,
+                  fontWeight: FontWeight.w700,
+                  fontSize: 12,
+                  letterSpacing: 0.8,
+                ),
+              ),
+              const Spacer(),
+              Flexible(
+                child: Text(
+                  currentQuestion.category.toUpperCase(),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: GoogleFonts.oswald(
+                    color: WM.cyan,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 12,
+                    letterSpacing: 0.8,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          // La pregunta entra girando cada vez que cambia.
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 350),
+            transitionBuilder: (child, animation) => FadeTransition(
+              opacity: animation,
+              child: ScaleTransition(
+                scale: Tween(begin: 0.92, end: 1.0).animate(animation),
+                child: child,
+              ),
+            ),
+            child: Text(
+              currentQuestion.prompt,
+              key: ValueKey(currentQuestion.id),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.oswald(
+                color: Colors.white,
+                fontSize: 19,
+                fontWeight: FontWeight.w600,
+                height: 1.25,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildAnswers(Question currentQuestion) {
+    final options = currentQuestion.options;
+    return ListView(
+      padding: EdgeInsets.zero,
+      children: [
+        for (var index = 0; index < options.length; index++)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: _buildAnswerButton(currentQuestion, index),
+          ),
+        if (_controller.isAnswered) _buildExplanation(currentQuestion),
+      ],
+    );
+  }
+
+  Widget _buildAnswerButton(Question question, int index) {
+    final isDisabled = _controller.disabledOptionIndexes.contains(index);
+    final answered = _controller.isAnswered;
+    final isCorrect = index == question.correctIndex;
+    final isSelected = index == _controller.selectedOptionIndex;
+
+    // Colores: morado normal, verde la correcta, rojo la elegida si falló.
+    const Color color = Color(0xFF5B3FC4);
+    Color disabledColor = const Color(0xFF3A3452);
+    if (answered && isCorrect) {
+      disabledColor = const Color(0xFF2FC22A);
+    } else if (answered && isSelected) {
+      disabledColor = const Color(0xFFE0344A);
+    }
+
+    return Pressable3D(
+      onTap: answered || isDisabled
+          ? null
+          : () => _controller.selectAnswer(index, _showSnackBar),
+      color: color,
+      disabledColor: disabledColor,
+      height: 52,
+      padding: const EdgeInsets.symmetric(horizontal: 14),
+      child: Row(
+        children: [
+          // Letra de la opción en un engaste pequeño.
+          Container(
+            width: 28,
+            height: 28,
+            alignment: Alignment.center,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              color: WM.outline.withValues(alpha: 0.55),
+              border: Border.all(color: Colors.white24, width: 1.5),
+            ),
+            child: answered && (isCorrect || isSelected)
+                ? Icon(
+                    isCorrect ? Icons.check_rounded : Icons.close_rounded,
+                    color: Colors.white,
+                    size: 18,
+                  )
+                : Text(
+                    String.fromCharCode(65 + index),
+                    style: GoogleFonts.anton(color: WM.bone, fontSize: 14),
+                  ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Text(
+              isDisabled ? 'Opción descartada' : question.options[index],
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: GoogleFonts.oswald(
+                color: isDisabled || (answered && !isCorrect && !isSelected)
+                    ? Colors.white38
+                    : Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                decoration: isDisabled ? TextDecoration.lineThrough : null,
+                shadows: const [Shadow(color: WM.outline, blurRadius: 2, offset: Offset(0, 1.5))],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildExplanation(Question question) {
+    final isCorrect = _controller.selectedOptionIndex == question.correctIndex;
+    final correctText = question.options[question.correctIndex];
+    return EntranceFlip(
+      index: 0,
+      child: Panel3D(
+        accent: isCorrect ? const Color(0xFF5BE37A) : WM.gold,
+        padding: const EdgeInsets.all(14),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              isCorrect ? '¡Correcto!' : 'Respuesta correcta: $correctText',
+              style: GoogleFonts.oswald(
+                color: isCorrect ? const Color(0xFF9AF2A0) : const Color(0xFFFFD980),
+                fontWeight: FontWeight.w700,
+                fontSize: 16,
+              ),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              question.explanation.isNotEmpty
+                  ? question.explanation
+                  : 'La opción correcta es “$correctText”.',
+              style: GoogleFonts.oswald(color: Colors.white, fontSize: 14, height: 1.35),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBottomActions() {
+    if (_controller.isAnswered) {
+      return SizedBox(
+        width: double.infinity,
+        child: Pulse(
+          amount: 0.03,
+          child: Pressable3D(
+            onTap: _controller.continueAfterAnswer,
+            color: WM.gold,
+            height: 50,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                OutlinedGameText(
+                  _controller.playerHp <= 0 ? 'VER RESULTADO' : 'CONTINUAR',
+                  size: 18,
+                  font: GameFont.oswald,
+                ),
+                const SizedBox(width: 6),
+                const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 22),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
+
+    final potions = _controller.profile?.healthPotions ?? 0;
+    final hints = _controller.profile?.letterHints ?? 0;
+    return Row(
+      children: [
+        Expanded(
+          child: Pressable3D(
+            onTap: () => _controller.usePotion(_showSnackBar),
+            color: potions > 0 ? const Color(0xFFE0344A) : const Color(0xFF4A4660),
+            height: 44,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('🧪', style: TextStyle(fontSize: 16)),
+                const SizedBox(width: 6),
+                OutlinedGameText('POCIÓN ($potions)', size: 14, font: GameFont.oswald),
+              ],
+            ),
+          ),
+        ),
+        const SizedBox(width: 12),
+        Expanded(
+          child: Pressable3D(
+            onTap: () => _controller.useHint(_showSnackBar),
+            color: hints > 0 ? const Color(0xFFFF9D00) : const Color(0xFF4A4660),
+            height: 44,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Text('💡', style: TextStyle(fontSize: 16)),
+                const SizedBox(width: 6),
+                OutlinedGameText('PISTA ($hints)', size: 14, font: GameFont.oswald),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

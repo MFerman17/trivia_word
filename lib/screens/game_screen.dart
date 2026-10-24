@@ -196,6 +196,7 @@ class _GameScreenState extends State<GameScreen> {
     final story = _controller.chapterStory;
     if (story == null || !mounted) return;
 
+    AudioService.playPageFlip();
     await showDialog<void>(
       context: context,
       barrierDismissible: false,

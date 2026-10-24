@@ -134,5 +134,36 @@
         "type": "int"
       }
     }
-  }
+  },
+  "settingsTitle": "AJUSTES",
+  "settingsSound": "SONIDO",
+  "settingsMusic": "Música",
+  "settingsEffects": "Efectos",
+  "settingsHelp": "PREGUNTAS FRECUENTES",
+  "settingsVersion": "Words & Monsters · versión {version}",
+  "@settingsVersion": {
+    "placeholders": {
+      "version": {
+        "type": "String"
+      }
+    }
+  },
+  "faqSoundQ": "No se oye la música o los efectos",
+  "faqSoundA": "Revisa que Música y Efectos estén activados aquí arriba y que el volumen del teléfono esté subido y sin modo silencio. En el mapa y en el combate, el botón del altavoz silencia todo.",
+  "faqProgressQ": "¿Cómo no pierdo mi avance si cambio de teléfono?",
+  "faqProgressA": "Entra en tu Perfil y pulsa «Guardar avance en Google». En el teléfono nuevo, haz lo mismo con la misma cuenta y tu avance se recupera.",
+  "faqAdQ": "El video para revivir o ganar monedas no carga",
+  "faqAdA": "Los videos necesitan internet y a veces no hay ninguno disponible. Espera un momento y vuelve a intentarlo. Para revivir también puedes usar una poción.",
+  "faqCoinsQ": "¿Cómo consigo monedas y pociones?",
+  "faqCoinsA": "Ganando niveles, con los mini retos diarios, completando misiones, abriendo el cofre diario de la portada y viendo videos en la tienda.",
+  "faqRepeatQ": "¿Se repiten las preguntas?",
+  "faqRepeatA": "No hasta que hayas visto todas las de esa dificultad. Al avanzar de mundo, las preguntas son más difíciles y de temas distintos.",
+  "faqRankingQ": "No aparezco en el ranking",
+  "faqRankingA": "El ranking necesita internet y se actualiza al terminar un nivel. Juega un nivel con conexión y vuelve a abrirlo.",
+  "faqLanguageQ": "¿Cómo cambio el idioma?",
+  "faqLanguageA": "En esta pantalla, en el apartado Idioma. Cada idioma tiene sus propias preguntas, escritas para ese idioma.",
+  "faqErrorQ": "Creo que una pregunta tiene un error",
+  "faqErrorA": "Anota el texto de la pregunta y escríbenos desde la ficha del juego en Google Play. Revisamos cada aviso.",
+  "faqCrashQ": "El juego va lento o se cierra",
+  "faqCrashA": "Cierra el juego del todo y ábrelo de nuevo. Si sigue pasando, actualízalo desde Google Play y comprueba que el teléfono tenga espacio libre. Tu avance se guarda solo."
 }

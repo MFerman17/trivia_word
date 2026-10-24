@@ -94,7 +94,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         // Guarda los textos actuales para el código sin `context`.
         builder: (context, child) {
           L10n.current = AppLocalizations.of(context);
-          return child ?? const SizedBox.shrink();
+          // En Chrome la música no puede empezar hasta el primer toque del
+          // jugador: en cada toque se comprueba que la música está sonando.
+          return Listener(
+            behavior: HitTestBehavior.translucent,
+            onPointerDown: (_) => AudioService.ensureMusicPlaying(),
+            child: child ?? const SizedBox.shrink(),
+          );
         },
         home: initError == null
             ? const HomeScreen()

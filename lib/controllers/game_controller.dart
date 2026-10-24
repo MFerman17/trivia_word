@@ -81,6 +81,10 @@ class GameController extends ChangeNotifier {
     if (_isDisposed) return; // 👈 Evitamos actualizar si ya se desmontó
     status = GameStatus.playing;
     AudioService.playBattleMusic(boss: isBossBattle);
+    // Rugido del monstruo al aparecer (los jefes tienen su propia entrada).
+    Future.delayed(const Duration(milliseconds: 400), () {
+      if (!_isDisposed) AudioService.playBattleStart(boss: isBossBattle);
+    });
     notifyListeners();
   }
 
@@ -121,6 +125,10 @@ class GameController extends ChangeNotifier {
       AudioService.playWrong();
       playerHp--;
       incorrectAnswersSinceMonsterAttack++;
+      // Alarma cuando solo queda una vida.
+      if (playerHp == 1) {
+        Future.delayed(const Duration(milliseconds: 700), AudioService.playLowHealth);
+      }
     }
     notifyListeners();
   }
@@ -220,6 +228,16 @@ class GameController extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Suma XP y, si el jugador sube de nivel, suena la fanfarria de nivel
+  /// después de las estrellas de la pantalla de victoria.
+  void _addExperienceWithSound(int xp) {
+    final levelBefore = profile!.level;
+    profile!.addExperience(xp);
+    if (profile!.level > levelBefore) {
+      Future.delayed(const Duration(milliseconds: 2600), AudioService.playLevelUp);
+    }
+  }
+
   void _handleVictory() async {
     if (_isDisposed) return;
     status = GameStatus.victory;
@@ -242,7 +260,7 @@ class GameController extends ChangeNotifier {
       );
       if (profile != null && miniRewardGranted) {
         profile!.coins += coinsReward;
-        profile!.addExperience(xpReward);
+        _addExperienceWithSound(xpReward);
         await SaveService.savePlayerData(profile!);
         QuestService.incrementProgress('win_battles_3');
         try {
@@ -267,7 +285,7 @@ class GameController extends ChangeNotifier {
     // 1. Guardar Monedas y XP en el perfil local
     if (profile != null) {
       profile!.coins += coinsReward;
-      profile!.addExperience(xpReward);
+      _addExperienceWithSound(xpReward);
       await SaveService.savePlayerData(profile!);
     }
 

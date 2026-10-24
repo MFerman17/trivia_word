@@ -7,8 +7,6 @@ import '../services/cloud_service.dart';
 import '../widgets/player_avatar.dart';
 import '../widgets/game_3d.dart';
 import '../l10n/l10n.dart';
-import '../services/audio_service.dart';
-import '../services/locale_service.dart';
 
 class ProfileScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -74,8 +72,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       _buildStatsGrid(),
                       const SizedBox(height: 20),
                       EntranceFlip(index: 5, child: _buildGoogleButton()),
-                      const SizedBox(height: 16),
-                      EntranceFlip(index: 6, child: _buildLanguagePanel()),
                     ],
                   ),
                 ),
@@ -372,69 +368,5 @@ class _ProfileScreenState extends State<ProfileScreen> {
       GoogleAccountResult.failed => context.l10n.googleFailedMsg,
     };
     ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
-  }
-
-  // ---------------------------------------------------------------
-  // IDIOMA
-  // ---------------------------------------------------------------
-  // Solo aparecen los idiomas que tienen textos Y banco de preguntas
-  // (ver LocaleService). Al elegir uno, toda la app se redibuja.
-  Widget _buildLanguagePanel() {
-    final languages = LocaleService.availableLanguages;
-    final current = LocaleService.languageCode;
-
-    return Panel3D(
-      accent: WM.violet,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            context.l10n.languageTitle,
-            style: GoogleFonts.oswald(
-              color: Colors.white70,
-              fontWeight: FontWeight.w700,
-              fontSize: 13,
-              letterSpacing: 1.2,
-            ),
-          ),
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            children: [
-              for (final code in languages)
-                SizedBox(
-                  width: 140,
-                  child: Pressable3D(
-                    // El idioma activo se ve "pulsado" en verde y no se puede tocar.
-                    onTap: code == current ? null : () => _changeLanguage(code),
-                    color: WM.cyan,
-                    disabledColor: const Color(0xFF1E8C3A),
-                    height: 44,
-                    child: OutlinedGameText(
-                      LocaleService.nativeNames[code] ?? code.toUpperCase(),
-                      size: 16,
-                      font: GameFont.oswald,
-                    ),
-                  ),
-                ),
-            ],
-          ),
-          if (languages.length < 2) ...[
-            const SizedBox(height: 8),
-            Text(
-              context.l10n.moreLanguagesSoon,
-              style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
-            ),
-          ],
-        ],
-      ),
-    );
-  }
-
-  Future<void> _changeLanguage(String code) async {
-    AudioService.playSelect();
-    await LocaleService.setLanguage(code);
-    if (mounted) setState(() {});
   }
 }

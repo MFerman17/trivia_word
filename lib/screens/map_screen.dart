@@ -68,12 +68,14 @@ class _MapScreenState extends State<MapScreen>
     _controller.dispose();
     _pulse.dispose();
     _scroll.dispose();
-    AudioService.stopBgm();
+    // Aquí antes se paraba la música. Como dispose ocurre DESPUÉS de volver
+    // a la portada, cortaba la música de la portada recién empezada.
     super.dispose();
   }
 
   void _startLevel(int worldId, int chapterId, int levelNumber) {
-    AudioService.stopBgm();
+    AudioService.playNodeSelect();
+    AudioService.stopBgm(); // El combate pone su propia música al cargar.
 
     Navigator.push(
       context,

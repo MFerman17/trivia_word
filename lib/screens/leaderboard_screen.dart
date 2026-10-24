@@ -8,6 +8,7 @@ import '../services/save_service.dart';
 import '../widgets/player_avatar.dart';
 import '../widgets/game_3d.dart';
 import '../l10n/l10n.dart';
+import '../services/audio_service.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -28,6 +29,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
   @override
   void initState() {
     super.initState();
+    AudioService.playPodium();
     _me = widget.playerProfile;
     // La portada abre esta pantalla SIN pasar el perfil, así que antes el
     // nombre quedaba como "Tú (Jugador)" y nunca se resaltaba al jugador.

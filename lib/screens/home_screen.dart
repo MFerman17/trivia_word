@@ -6,6 +6,7 @@ import 'leaderboard_screen.dart';
 import 'profile_screen.dart';
 import 'map_screen.dart';
 import 'quests_screen.dart';
+import 'settings_screen.dart';
 import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
@@ -109,7 +110,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     int rewardCoins = 100;
     int rewardPotions = 2;
 
-    AudioService.playCoins();
+    AudioService.playChestOpen();
     setState(() {
       _triggerChestExplosion = true;
       _profile!.coins += rewardCoins;
@@ -310,7 +311,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 children: [
                   _buildHud(profile),
 
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 8),
+
+                  // --- AJUSTES (sonido, idioma, ayuda) ---
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: _buildSettingsButton(),
+                  ),
 
                   // --- LOGO (arriba, liberando el centro del paisaje) ---
                   ScaleTransition(
@@ -640,6 +647,42 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               ),
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  // Botón redondo de engranaje con canto sólido debajo (efecto 3D).
+  Widget _buildSettingsButton() {
+    return Tooltip(
+      message: context.l10n.settingsTitle,
+      child: GestureDetector(
+        onTap: () async {
+          AudioService.playButtonClick();
+          await Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const SettingsScreen()),
+          );
+          // Al volver: por si cambió el idioma o el sonido.
+          if (mounted) setState(() {});
+        },
+        child: Container(
+          width: 46,
+          height: 46,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFF3A2A7A), Color(0xFF1A0845)],
+            ),
+            border: Border.all(color: kOutline, width: 3),
+            boxShadow: const [
+              BoxShadow(color: Color(0xFF0A6F66), offset: Offset(0, 4)),
+              BoxShadow(color: Colors.black54, offset: Offset(0, 7), blurRadius: 8),
+            ],
+          ),
+          child: const Icon(Icons.settings_rounded, color: kCyan, size: 26),
         ),
       ),
     );

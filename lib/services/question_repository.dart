@@ -3,8 +3,10 @@ import 'dart:math';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../l10n/app_localizations.dart';
 import '../models/question.dart';
 
 /// Banco de preguntas definitivo.
@@ -32,7 +34,8 @@ class QuestionRepository {
   /// carpeta en assets/questions/ y registrarla en pubspec.yaml.
   static const List<String> availableLanguages = ['es'];
 
-  /// Lista cerrada de categorías: id del JSON -> nombre que ve el jugador.
+  /// Lista cerrada de categorías: id del JSON -> nombre en español.
+  /// El nombre que ve el jugador sale de los .arb (ver [categoryName]).
   static const Map<String, String> categoryNames = {
     // Lengua
     'ortografia': 'Ortografía',
@@ -59,6 +62,37 @@ class QuestionRepository {
     'historia': 'Historia',
     'cultura_general': 'Cultura general',
   };
+
+  /// Nombre de la categoría en el idioma del banco cargado.
+  /// (Se usa el idioma del banco y no el de la pantalla porque al cambiar de
+  /// idioma el banco se recarga un instante antes de redibujar la app.)
+  static String categoryName(String id) {
+    final l = lookupAppLocalizations(Locale(_language));
+    return switch (id) {
+      'ortografia' => l.catOrtografia,
+      'tildes' => l.catTildes,
+      'homofonos' => l.catHomofonos,
+      'detectar_error' => l.catDetectarError,
+      'completar_frase' => l.catCompletarFrase,
+      'sinonimos_antonimos' => l.catSinonimosAntonimos,
+      'significado' => l.catSignificado,
+      'refranes' => l.catRefranes,
+      'analogias' => l.catAnalogias,
+      'intruso' => l.catIntruso,
+      'series' => l.catSeries,
+      'anagramas' => l.catAnagramas,
+      'palabra_oculta' => l.catPalabraOculta,
+      'silabas' => l.catSilabas,
+      'adivinanzas' => l.catAdivinanzas,
+      'deduccion' => l.catDeduccion,
+      'problemas' => l.catProblemas,
+      'ciencia' => l.catCiencia,
+      'geografia' => l.catGeografia,
+      'historia' => l.catHistoria,
+      'cultura_general' => l.catCulturaGeneral,
+      _ => categoryNames[id] ?? id,
+    };
+  }
 
   static const String _seenKeyPrefix = 'seen_questions_';
   static const String _recentCategoriesKeyPrefix = 'recent_categories_';
@@ -125,7 +159,7 @@ class QuestionRepository {
         prompt: json['prompt'] as String,
         options: List<String>.from(json['options'] as List),
         correctIndex: (json['correctIndex'] as num?)?.toInt() ?? 0,
-        category: categoryNames[categoryId] ?? categoryId,
+        category: categoryName(categoryId),
         difficulty: difficulty,
         explanation: json['explanation'] as String? ?? '',
         type: QuestionType.values.asNameMap()[json['type']] ??

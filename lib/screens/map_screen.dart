@@ -139,7 +139,7 @@ class _MapScreenState extends State<MapScreen>
             mainAxisSize: MainAxisSize.min,
             children: [
               OutlinedGameText(
-                isFinal ? 'BATALLA FINAL' : 'PELEA DE GUARDIÁN',
+                isFinal ? context.l10n.finalBattle : context.l10n.guardianFight,
                 size: 24,
                 letterSpacing: 1.5,
                 colors: const [Color(0xFFFFF1B0), WM.gold],
@@ -148,15 +148,13 @@ class _MapScreenState extends State<MapScreen>
               const Text('🔒', style: TextStyle(fontSize: 40)),
               const SizedBox(height: 8),
               Text(
-                'Necesitas $required ★ en este mundo para entrar. '
-                'Te faltan $missing.',
+                context.l10n.starsNeeded(required, missing),
                 textAlign: TextAlign.center,
                 style: GoogleFonts.oswald(color: Colors.white, fontSize: 15),
               ),
               const SizedBox(height: 6),
               Text(
-                'Repite niveles para conseguir 3 ★ (sin fallar ninguna) y '
-                'mejora tu luchador en la Tienda mientras tanto.',
+                context.l10n.starsHowTo,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.oswald(color: Colors.white60, fontSize: 13),
               ),
@@ -167,7 +165,7 @@ class _MapScreenState extends State<MapScreen>
                   onTap: () => Navigator.of(dialogContext).pop(),
                   color: WM.cyan,
                   height: 46,
-                  child: const OutlinedGameText('ENTENDIDO', size: 17, font: GameFont.oswald),
+                  child: OutlinedGameText(context.l10n.gotIt, size: 17, font: GameFont.oswald),
                 ),
               ),
             ],

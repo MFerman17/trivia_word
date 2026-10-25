@@ -11,6 +11,7 @@ import '../services/save_service.dart';
 import '../services/cloud_service.dart';
 import '../services/chapter_story_service.dart';
 import '../services/lives_service.dart';
+import '../l10n/l10n.dart';
 
 enum GameStatus { loading, playing, victory, defeat }
 
@@ -197,7 +198,7 @@ class GameController extends ChangeNotifier {
     }
     final additionalQuestionIndex = questions.length;
     questions.add(additionalQuestion);
-    monsterReaction = '¡El monstruo resiste! Responde una pregunta adicional.';
+    monsterReaction = L10n.current.monsterResists;
     _showQuestionAt(additionalQuestionIndex);
   }
 
@@ -228,8 +229,8 @@ class GameController extends ChangeNotifier {
     currentQuestionIndex = targetIndex;
     incorrectAnswersSinceMonsterAttack = 0;
     monsterReaction = replacement == null
-        ? '¡El monstruo te hizo retroceder! Responde de nuevo para avanzar.'
-        : '¡El monstruo te hizo retroceder! Nueva pregunta de ${replacement.category}.';
+        ? L10n.current.monsterPushedBack
+        : L10n.current.monsterPushedBackCategory(replacement.category);
     isAnswered = false;
     selectedOptionIndex = null;
     disabledOptionIndexes.clear();
@@ -417,12 +418,12 @@ class GameController extends ChangeNotifier {
     if (profile == null || _isDisposed) return;
 
     if (playerHp >= maxPlayerHp) {
-      showSnackBar('¡Tu vida ya está al máximo!');
+      showSnackBar(L10n.current.lifeAlreadyFull);
       return;
     }
 
     if (profile!.healthPotions <= 0) {
-      showSnackBar('No tienes pociones disponibles. ¡Cómpralas en la tienda!');
+      showSnackBar(L10n.current.noPotionsAvailable);
       return;
     }
 
@@ -436,7 +437,7 @@ class GameController extends ChangeNotifier {
 
     await SaveService.savePlayerData(profile!);
     QuestService.incrementProgress('use_potion_2');
-    showSnackBar('¡Has recuperado 1 vida!');
+    showSnackBar(L10n.current.lifeRecovered);
   }
 
   void useHint(Function(String) showSnackBar) async {
@@ -445,7 +446,7 @@ class GameController extends ChangeNotifier {
 }
 
     if (profile!.letterHints <= 0) {
-      showSnackBar('No tienes pistas disponibles. ¡Cómpralas en la tienda!');
+      showSnackBar(L10n.current.noHintsAvailable);
       return;
     }
 
@@ -460,7 +461,7 @@ class GameController extends ChangeNotifier {
     }
 
     if (incorrectIndexes.isEmpty) {
-      showSnackBar('No hay más opciones para descartar.');
+      showSnackBar(L10n.current.noMoreOptions);
       return;
     }
 
@@ -475,6 +476,6 @@ class GameController extends ChangeNotifier {
     notifyListeners();
 
     await SaveService.savePlayerData(profile!);
-    showSnackBar('¡Se ha descartado una opción incorrecta!');
+    showSnackBar(L10n.current.optionRemoved);
   }
 }

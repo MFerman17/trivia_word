@@ -165,5 +165,457 @@
   "faqErrorQ": "Creo que una pregunta tiene un error",
   "faqErrorA": "Anota el texto de la pregunta y escríbenos desde la ficha del juego en Google Play. Revisamos cada aviso.",
   "faqCrashQ": "El juego va lento o se cierra",
-  "faqCrashA": "Cierra el juego del todo y ábrelo de nuevo. Si sigue pasando, actualízalo desde Google Play y comprueba que el teléfono tenga espacio libre. Tu avance se guarda solo."
+  "faqCrashA": "Cierra el juego del todo y ábrelo de nuevo. Si sigue pasando, actualízalo desde Google Play y comprueba que el teléfono tenga espacio libre. Tu avance se guarda solo.",
+  "shopTitle": "TIENDA",
+  "coinsLabel": "MONEDAS",
+  "gemsLabel": "GEMAS",
+  "shopTabAvatar": "AVATAR",
+  "shopTabCombos": "COMBOS",
+  "shopTabRewards": "PREMIOS",
+  "shopTabFighter": "LUCHADOR",
+  "slotCharacter": "PERSONAJE",
+  "slotFrame": "MARCO",
+  "slotAccessory": "ACCESORIO",
+  "shopSelected": "Seleccionado: {slot} · {item}",
+  "@shopSelected": {
+    "placeholders": {
+      "slot": {
+        "type": "String"
+      },
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "equipped": "EQUIPADO",
+  "equip": "EQUIPAR",
+  "unlockFree": "DESBLOQUEAR GRATIS",
+  "unlock": "DESBLOQUEAR",
+  "owned": "✔ TUYO",
+  "heroWorkshop": "TALLER DE HÉROES",
+  "heroWorkshopHint": "Combina personaje, marco y accesorio. Tu avatar no cambia tus estadísticas.",
+  "charExplorer": "Explorador",
+  "charMage": "Maga",
+  "charGuardian": "Guardián",
+  "frameCyan": "Cian",
+  "frameForest": "Bosque",
+  "frameMagma": "Magma",
+  "accNone": "Ninguno",
+  "accCompass": "Brújula",
+  "accDragon": "Dragón",
+  "notEnoughCurrency": "No tienes suficientes monedas o gemas.",
+  "notEnoughCoins": "No tienes suficientes monedas.",
+  "notEnoughGems": "No tienes suficientes gemas.",
+  "lookEquipped": "¡Nuevo aspecto equipado!",
+  "lookUnlocked": "¡Aspecto desbloqueado y equipado!",
+  "lookSaveFailed": "No se pudo guardar el aspecto. Inténtalo de nuevo.",
+  "offerAdded": "¡{item} añadido a tu inventario!",
+  "@offerAdded": {
+    "placeholders": {
+      "item": {
+        "type": "String"
+      }
+    }
+  },
+  "purchaseFailed": "No se pudo completar la compra.",
+  "rewardReceived": "¡Recompensa recibida: {reward}!",
+  "@rewardReceived": {
+    "placeholders": {
+      "reward": {
+        "type": "String"
+      }
+    }
+  },
+  "noAdsNow": "No hay anuncios disponibles ahora. Prueba de nuevo más tarde.",
+  "rewardSaveFailed": "No se pudo guardar la recompensa. Inténtalo de nuevo.",
+  "combosTitle": "EQUÍPATE PARA LA AVENTURA",
+  "combosSubtitle": "Combos con descuento frente a comprar cada artículo por separado.",
+  "valueReference": "Referencia de valor: 5 gemas se cambian por 200 monedas en la tienda.",
+  "offerExplorerKit": "Kit del Explorador",
+  "offerExplorerKitDesc": "1 poción + 2 pistas",
+  "offerExplorerKitNote": "Ahorra 30 monedas frente al valor por separado.",
+  "offerExpeditionKit": "Kit de Expedición",
+  "offerExpeditionKitDesc": "3 pociones + 4 pistas",
+  "offerExpeditionKitNote": "Ahorra 70 monedas frente al valor por separado.",
+  "offerPotionTrio": "Trío de pociones",
+  "offerPotionTrioDesc": "3 pociones de salud",
+  "offerPotionTrioNote": "Ahorra 15 monedas frente a comprarlas por unidad.",
+  "offerHintTrio": "Trío de pistas",
+  "offerHintTrioDesc": "3 pistas para tus partidas",
+  "offerHintTrioNote": "Una gema menos que comprar las 3 por unidad.",
+  "offerGoldBag": "Mochila de oro",
+  "offerGoldBagDesc": "550 monedas para tus próximas compras",
+  "offerGoldBagNote": "Incluye 70 monedas extra frente al cambio habitual.",
+  "fighterTitle": "PREPÁRATE PARA PELEAR",
+  "fighterSubtitle": "Mejoras permanentes para los guardianes y la batalla final de cada mundo.",
+  "fighterStats": "Vida: {hp} por round · Fuerza: ×{power} · SUPER: {hits} aciertos",
+  "@fighterStats": {
+    "placeholders": {
+      "hp": {
+        "type": "int"
+      },
+      "power": {
+        "type": "String"
+      },
+      "hits": {
+        "type": "int"
+      }
+    }
+  },
+  "maxLevel": "MÁX",
+  "upgradeDone": "¡{upgrade} mejorada a nivel {level}!",
+  "@upgradeDone": {
+    "placeholders": {
+      "upgrade": {
+        "type": "String"
+      },
+      "level": {
+        "type": "int"
+      }
+    }
+  },
+  "upgradeHealth": "VIDA",
+  "upgradeHealthDesc": "Más vida en cada round de pelea.",
+  "upgradePower": "FUERZA",
+  "upgradePowerDesc": "Tus golpes quitan más vida.",
+  "upgradeSuper": "SUPER",
+  "upgradeSuperDesc": "La barra de SUPER se llena antes.",
+  "adRewardsTitle": "RECOMPENSAS POR ANUNCIO",
+  "adRewardsSubtitle": "Mira un video opcional y recibe un recurso para tu próxima aventura.",
+  "adPotionTitle": "Poción de salud",
+  "adPotionDesc": "Una poción extra, solo cuando el anuncio se complete.",
+  "adPotionReward": "1 poción de salud",
+  "adHintTitle": "Pista de sabiduría",
+  "adHintDesc": "Una pista extra para ayudarte en una pregunta.",
+  "adHintReward": "1 pista",
+  "adsOptionalNote": "Los anuncios son opcionales. Si no hay uno disponible, no se descontará nada ni se entregará un premio.",
+  "videoLabel": "VIDEO",
+  "epicVictory": "¡VICTORIA ÉPICA!",
+  "dailyRewardTaken": "Recompensa de hoy ya obtenida",
+  "coinsReward": "+{coins} Monedas",
+  "@coinsReward": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "xpReward": "+{xp} XP",
+  "@xpReward": {
+    "placeholders": {
+      "xp": {
+        "type": "int"
+      }
+    }
+  },
+  "continueButton": "CONTINUAR",
+  "backInBattle": "¡Has vuelto a la batalla con 1 vida!",
+  "videoFailed": "No se pudo completar el video. Inténtalo de nuevo o usa una poción.",
+  "potionRevived": "¡La poción te devolvió 1 vida!",
+  "outOfLives": "¡SIN VIDAS!",
+  "keepFighting": "¿Quieres seguir luchando? Recupera 1 vida y continúa la batalla.",
+  "watchVideo": "VER VIDEO",
+  "videoAlreadyUsed": "Ya usaste el video en esta batalla.",
+  "usePotionCount": "USAR POCIÓN ({count})",
+  "@usePotionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "noPotions": "SIN POCIONES",
+  "giveUp": "Rendirse",
+  "defeatTitle": "¡DERROTA!",
+  "defeatNoLives": "Te has quedado sin vidas. ¡Inténtalo de nuevo!",
+  "defeatMonsterResisted": "El monstruo resistió tus respuestas. ¡Repasa y vuelve a intentarlo!",
+  "retry": "REINTENTAR",
+  "noQuestionsPhase": "No hay preguntas para esta fase.",
+  "miniChallengeTitle": "MINI-RETO {number}",
+  "@miniChallengeTitle": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "battleTitle": "COMBATE",
+  "diffEasy": "FÁCIL",
+  "diffEasyPlus": "FÁCIL+",
+  "diffMedium": "MEDIA",
+  "diffHard": "DIFÍCIL",
+  "diffEpic": "ÉPICO",
+  "encounterMini": "MINI-RETO · {difficulty}",
+  "@encounterMini": {
+    "placeholders": {
+      "difficulty": {
+        "type": "String"
+      }
+    }
+  },
+  "encounterWorldBoss": "JEFE DEL MUNDO · {difficulty}",
+  "@encounterWorldBoss": {
+    "placeholders": {
+      "difficulty": {
+        "type": "String"
+      }
+    }
+  },
+  "encounterGuardian": "GUARDIÁN · {difficulty}",
+  "@encounterGuardian": {
+    "placeholders": {
+      "difficulty": {
+        "type": "String"
+      }
+    }
+  },
+  "questionCounter": "PREGUNTA {current}/{total}",
+  "@questionCounter": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "optionDiscarded": "Opción descartada",
+  "correct": "¡Correcto!",
+  "correctAnswerIs": "Respuesta correcta: {answer}",
+  "@correctAnswerIs": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "correctOptionIs": "La opción correcta es “{answer}”.",
+  "@correctOptionIs": {
+    "placeholders": {
+      "answer": {
+        "type": "String"
+      }
+    }
+  },
+  "seeResult": "VER RESULTADO",
+  "potionCount": "POCIÓN ({count})",
+  "@potionCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "hintCount": "PISTA ({count})",
+  "@hintCount": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "monsterResists": "¡El monstruo resiste! Responde una pregunta adicional.",
+  "monsterPushedBack": "¡El monstruo te hizo retroceder! Responde de nuevo para avanzar.",
+  "monsterPushedBackCategory": "¡El monstruo te hizo retroceder! Nueva pregunta de {category}.",
+  "@monsterPushedBackCategory": {
+    "placeholders": {
+      "category": {
+        "type": "String"
+      }
+    }
+  },
+  "lifeAlreadyFull": "¡Tu vida ya está al máximo!",
+  "noPotionsAvailable": "No tienes pociones disponibles. ¡Cómpralas en la tienda!",
+  "lifeRecovered": "¡Has recuperado 1 vida!",
+  "noHintsAvailable": "No tienes pistas disponibles. ¡Cómpralas en la tienda!",
+  "noMoreOptions": "No hay más opciones para descartar.",
+  "optionRemoved": "¡Se ha descartado una opción incorrecta!",
+  "fightKick": "¡PATADA RÁPIDA!",
+  "fightPunch": "¡PUÑETAZO!",
+  "fightWeakHit": "GOLPE",
+  "fightCombo": "{count} HITS COMBO",
+  "@fightCombo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "fightSuper": "¡ATAQUE SUPER!",
+  "fightTimeUp": "¡TIEMPO!",
+  "fightGotHit": "¡TE GOLPEÓ!",
+  "superReady": "¡SUPER!",
+  "superLabel": "SUPER",
+  "roundFinal": "ROUND FINAL",
+  "roundNumber": "ROUND {number}",
+  "@roundNumber": {
+    "placeholders": {
+      "number": {
+        "type": "int"
+      }
+    }
+  },
+  "monsterEnraged": "¡EL MONSTRUO ESTÁ FURIOSO!",
+  "fight": "¡PELEA!",
+  "roundWon": "¡GANAS EL ROUND!",
+  "roundLost": "PIERDES EL ROUND",
+  "worldCleared": "¡MUNDO SUPERADO!",
+  "victory": "¡VICTORIA!",
+  "flawlessWin": "Sin perder un solo round",
+  "won21": "Ganaste 2 a 1",
+  "bestCombo": "Mejor combo: {count} aciertos seguidos",
+  "@bestCombo": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "reducedReward": "Ya habías ganado esta pelea: premio reducido.",
+  "defeat": "DERROTA",
+  "fightDefeatTip": "El monstruo ganó esta vez. Responde más rápido para dar patadas, guarda el SUPER para rematar y mejora tu luchador en la Tienda.",
+  "rematch": "REVANCHA",
+  "upgradeFighter": "MEJORAR LUCHADOR",
+  "backToMap": "Volver al mapa",
+  "finalBattle": "BATALLA FINAL",
+  "guardianFight": "PELEA DE GUARDIÁN",
+  "starsNeeded": "Necesitas {required} ★ en este mundo para entrar. Te faltan {missing}.",
+  "@starsNeeded": {
+    "placeholders": {
+      "required": {
+        "type": "int"
+      },
+      "missing": {
+        "type": "int"
+      }
+    }
+  },
+  "starsHowTo": "Repite niveles para conseguir 3 ★ (sin fallar ninguna) y mejora tu luchador en la Tienda mientras tanto.",
+  "gotIt": "ENTENDIDO",
+  "livesFull": "LLENO",
+  "noVideosNow": "No hay videos disponibles ahora. Prueba más tarde.",
+  "refillToPlay": "Recarga tus vidas para seguir jugando.",
+  "nextLifeIn": "Siguiente vida en {time}",
+  "@nextLifeIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "watchVideoPlusOne": "VER VIDEO  +1",
+  "usePotionPlusOne": "USAR POCIÓN ({count})  +1",
+  "@usePotionPlusOne": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "gemsRefillAll": "{gems} GEMAS  LLENAR TODO",
+  "@gemsRefillAll": {
+    "placeholders": {
+      "gems": {
+        "type": "int"
+      }
+    }
+  },
+  "wait": "Esperar",
+  "story11Heading": "¡Capítulo 1 completado!",
+  "story11Destination": "Capítulo 2 · El corazón del bosque",
+  "story11Narrative": "El guardián reconoce tu valor y aparta las raíces que bloqueaban el camino. Al otro lado, una luz azul late bajo los árboles: algo antiguo está despertando.",
+  "story11Objective": "Sigue las luces y descubre qué protege el bosque.",
+  "story12Heading": "¡Capítulo 2 completado!",
+  "story12Destination": "Capítulo 3 · La puerta de piedra",
+  "story12Narrative": "Las piedras del bosque se alinean y forman un portal. El mapa muestra cavernas llenas de cristales; allí se esconde la pista sobre la fuerza que despierta en los mundos.",
+  "story12Objective": "Cruza el portal y busca la señal del siguiente mundo.",
+  "story13Heading": "¡Bosque protegido!",
+  "story13Destination": "Mundo 2 · Las Cavernas",
+  "story13Narrative": "Con el dragón vencido, el bosque recupera su brillo. Una corriente de cristales señala el camino hacia las cavernas, donde una nueva criatura guarda el siguiente fragmento.",
+  "story13Objective": "Explora las cavernas y reúne sus fragmentos de conocimiento.",
+  "story21Heading": "¡Capítulo 1 completado!",
+  "story21Destination": "Capítulo 2 · El eco de los cristales",
+  "story21Narrative": "El guardián de la entrada deja de rugir. Su eco revela un túnel secreto y, en sus paredes, cristales que repiten una melodía cada vez que resuelves un acertijo.",
+  "story21Objective": "Sigue la melodía hasta la cámara central.",
+  "story22Heading": "¡Capítulo 2 completado!",
+  "story22Destination": "Capítulo 3 · El puente subterráneo",
+  "story22Narrative": "La cámara se ilumina y un puente aparece sobre el abismo. Al fondo espera el coloso, pero las marcas del puente muestran que solo la observación permitirá cruzarlo.",
+  "story22Objective": "Alcanza el otro lado y prepárate para el coloso.",
+  "story23Heading": "¡Cavernas superadas!",
+  "story23Destination": "Mundo 3 · Las Islas Flotantes",
+  "story23Narrative": "El coloso abre la salida hacia el cielo. Las islas flotantes se acercan entre las nubes y una criatura alada lleva el siguiente fragmento a lo más alto.",
+  "story23Objective": "Sube por las islas y recupera el fragmento celeste.",
+  "story31Heading": "¡Capítulo 1 completado!",
+  "story31Destination": "Capítulo 2 · Las corrientes del cielo",
+  "story31Narrative": "La primera isla vuelve a elevarse. Un mapa de viento aparece en el suelo y señala una ruta cambiante entre las nubes; tendrás que leer sus señales para avanzar.",
+  "story31Objective": "Encuentra la corriente que conduce a la isla central.",
+  "story32Heading": "¡Capítulo 2 completado!",
+  "story32Destination": "Capítulo 3 · La tormenta de cristal",
+  "story32Narrative": "La ruta segura termina ante una tormenta azul. En su centro brilla el último fragmento del cielo, custodiado por el señor de las islas.",
+  "story32Objective": "Atraviesa la tormenta y reúne los fragmentos celestes.",
+  "story33Heading": "¡Islas recuperadas!",
+  "story33Destination": "Mundo 4 · El Volcán",
+  "story33Narrative": "La tormenta se disipa y las islas vuelven a su sitio. Desde lo alto ves un resplandor rojo: el volcán está despertando y amenaza con cubrir de ceniza todos los caminos.",
+  "story33Objective": "Llega al volcán antes de que la última ruta desaparezca.",
+  "story41Heading": "¡Capítulo 1 completado!",
+  "story41Destination": "Capítulo 2 · El río de magma",
+  "story41Narrative": "La salamandra se aparta y deja al descubierto un sendero entre rocas negras. Un río de magma corta el camino; sus antiguas señales indican cuándo es seguro avanzar.",
+  "story41Objective": "Lee las señales y cruza el río de magma.",
+  "story42Heading": "¡Capítulo 2 completado!",
+  "story42Destination": "Capítulo 3 · El corazón del volcán",
+  "story42Narrative": "El río se calma y la montaña guarda silencio. En lo profundo, el titán protege el corazón del volcán; resolver sus pruebas puede detener la erupción.",
+  "story42Objective": "Enfrenta al titán y protege los cuatro mundos.",
+  "story43Heading": "¡Aventura completada!",
+  "story43Destination": "Los cuatro mundos están a salvo",
+  "story43Narrative": "El corazón del volcán se apaga y una luz recorre el bosque, las cavernas y las islas. Tus respuestas ayudaron a reunir los fragmentos y a restaurar el equilibrio.",
+  "story43Objective": "Tu leyenda queda escrita. Puedes volver a los mundos para mejorar tus estrellas.",
+  "questWinBattles": "Guerrero Novato",
+  "questWinBattlesDesc": "Gana 3 batallas en el mapa",
+  "questAnswerTrivia": "Mente Brillante",
+  "questAnswerTriviaDesc": "Responde correctamente 10 preguntas de trivia",
+  "questUsePotion": "Primeros Auxilios",
+  "questUsePotionDesc": "Utiliza 2 pociones de vida durante un combate",
+  "questBuyItem": "Cliente Frecuente",
+  "questBuyItemDesc": "Realiza 1 compra de poción o mejora en la tienda",
+  "enemyChapterGuardian": "Guardián del capítulo",
+  "enemyPathCreature": "Criatura del sendero",
+  "bossWorld1": "Dragón del Bosque",
+  "bossWorld2": "Coloso de las Cavernas",
+  "bossWorld3": "Señor de las Islas",
+  "bossWorld4": "Titán del Volcán",
+  "bossWorldDefault": "Guardián del Mundo",
+  "mini11": "Guardián del Bosque",
+  "mini12": "Duende del Musgo",
+  "mini13": "Espíritu de Raíces",
+  "mini21": "Murciélago de Cristal",
+  "mini22": "Eco de la Caverna",
+  "mini23": "Rastreador de Piedra",
+  "mini31": "Familiar de las Islas",
+  "mini32": "Duende de Nube",
+  "mini33": "Vigía del Viento",
+  "mini41": "Salamandra de Lava",
+  "mini42": "Espíritu de Brasa",
+  "mini43": "Cría de Magma",
+  "catOrtografia": "Ortografía",
+  "catTildes": "Tildes",
+  "catHomofonos": "Homófonos",
+  "catDetectarError": "Detecta el error",
+  "catCompletarFrase": "Completa la frase",
+  "catSinonimosAntonimos": "Sinónimos y antónimos",
+  "catSignificado": "Significado",
+  "catRefranes": "Refranes y expresiones",
+  "catAnalogias": "Analogías",
+  "catIntruso": "La palabra intrusa",
+  "catSeries": "Series",
+  "catAnagramas": "Anagramas",
+  "catPalabraOculta": "Palabra oculta",
+  "catSilabas": "Sílabas",
+  "catAdivinanzas": "Adivinanzas",
+  "catDeduccion": "Deducción",
+  "catProblemas": "Problemas narrados",
+  "catCiencia": "Ciencia",
+  "catGeografia": "Geografía",
+  "catHistoria": "Historia",
+  "catCulturaGeneral": "Cultura general"
 }

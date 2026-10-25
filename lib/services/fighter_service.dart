@@ -5,18 +5,17 @@ import 'cloud_service.dart';
 import 'save_service.dart';
 
 /// Mejoras del luchador que se compran con monedas en la Tienda.
+/// (El nombre y la descripción de cada una están traducidos en los .arb.)
 enum FighterUpgrade {
-  health('health', '❤️', 'VIDA', 'Más vida en cada round de pelea.'),
-  power('power', '👊', 'FUERZA', 'Tus golpes quitan más vida.'),
-  superCharge('super', '⚡', 'SUPER', 'La barra de SUPER se llena antes.');
+  health('health', '❤️'),
+  power('power', '👊'),
+  superCharge('super', '⚡');
 
-  const FighterUpgrade(this.id, this.emoji, this.title, this.description);
+  const FighterUpgrade(this.id, this.emoji);
 
   /// Clave con la que se guarda en el perfil (no cambiarla nunca).
   final String id;
   final String emoji;
-  final String title;
-  final String description;
 }
 
 /// Reglas de las peleas tipo "Street Fighter" y de las mejoras.

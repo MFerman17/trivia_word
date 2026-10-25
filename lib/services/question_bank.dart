@@ -2,6 +2,7 @@ import '../models/level_config.dart';
 import '../models/question.dart';
 import 'procedural_question_service.dart';
 import 'question_repository.dart';
+import '../l10n/l10n.dart';
 
 class QuestionBank {
   /// Dificultad de un nivel (1 = 7-8 años ... 5 = adulto culto).
@@ -35,8 +36,8 @@ class QuestionBank {
     final enemyName = isWorldBoss
         ? _worldBossName(world)
         : isChapterBoss
-        ? 'Guardián del capítulo'
-        : 'Criatura del sendero';
+        ? L10n.current.enemyChapterGuardian
+        : L10n.current.enemyPathCreature;
 
     return LevelConfig(
       title: 'Mundo $world - Fase $chapter.$level',
@@ -63,11 +64,12 @@ class QuestionBank {
   static LevelConfig getConfigForMiniChallenge(int world, int challenge) {
     // Dificultad del mundo; el tercer mini reto, un escalón más.
     final difficulty = (world + (challenge == 3 ? 1 : 0)).clamp(1, 5).toInt();
-    const enemiesByWorld = [
-      ['Guardián del Bosque', 'Duende del Musgo', 'Espíritu de Raíces'],
-      ['Murciélago de Cristal', 'Eco de la Caverna', 'Rastreador de Piedra'],
-      ['Familiar de las Islas', 'Duende de Nube', 'Vigía del Viento'],
-      ['Salamandra de Lava', 'Espíritu de Brasa', 'Cría de Magma'],
+    final l = L10n.current;
+    final enemiesByWorld = [
+      [l.mini11, l.mini12, l.mini13],
+      [l.mini21, l.mini22, l.mini23],
+      [l.mini31, l.mini32, l.mini33],
+      [l.mini41, l.mini42, l.mini43],
     ];
     const emojisByWorld = ['🧌', '🦇', '🪽', '🦎'];
     final worldIndex = (world - 1).clamp(0, 3).toInt();
@@ -111,11 +113,11 @@ class QuestionBank {
   }
 
   static String _worldBossName(int world) => switch (world) {
-    1 => 'Dragón del Bosque',
-    2 => 'Coloso de las Cavernas',
-    3 => 'Señor de las Islas',
-    4 => 'Titán del Volcán',
-    _ => 'Guardián del Mundo',
+    1 => L10n.current.bossWorld1,
+    2 => L10n.current.bossWorld2,
+    3 => L10n.current.bossWorld3,
+    4 => L10n.current.bossWorld4,
+    _ => L10n.current.bossWorldDefault,
   };
 
   /// Obtiene la lista de preguntas según el mundo, capítulo y nivel

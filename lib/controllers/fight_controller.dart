@@ -17,6 +17,7 @@ import '../services/question_bank.dart';
 import '../services/question_repository.dart';
 import '../services/save_service.dart';
 import '../services/lives_service.dart';
+import '../l10n/l10n.dart';
 
 /// Fases de la pelea, en el orden en que ocurren.
 enum FightPhase {
@@ -218,20 +219,20 @@ class FightController extends ChangeNotifier {
     if (speed > 0.66) {
       action = FightAction.kick;
       multiplier = 1.5;
-      actionLabel = '¡PATADA RÁPIDA!';
+      actionLabel = L10n.current.fightKick;
     } else if (speed > 0.33) {
       action = FightAction.punch;
       multiplier = 1.0;
-      actionLabel = '¡PUÑETAZO!';
+      actionLabel = L10n.current.fightPunch;
     } else {
       action = FightAction.punch;
       multiplier = 0.7;
-      actionLabel = 'GOLPE';
+      actionLabel = L10n.current.fightWeakHit;
     }
 
     combo++;
     bestCombo = math.max(bestCombo, combo);
-    if (combo >= 3) actionLabel = '$combo HITS COMBO';
+    if (combo >= 3) actionLabel = L10n.current.fightCombo(combo);
     superMeter = math.min(1, superMeter + FighterService.superFillPerHit(profile));
 
     final damage =
@@ -246,7 +247,7 @@ class FightController extends ChangeNotifier {
     if (phase != FightPhase.question || !superReady) return;
     _clock?.cancel();
     superMeter = 0;
-    actionLabel = '¡ATAQUE SUPER!';
+    actionLabel = L10n.current.fightSuper;
     final damage = (rules.superDamage * FighterService.powerMultiplier(profile)).round();
     AudioService.playLevelUp();
     // La pregunta actual se cambia por otra al terminar la animación.
@@ -268,7 +269,9 @@ class FightController extends ChangeNotifier {
     final damage = (rules.enemyDamage * (isEnraged ? rules.enragedMultiplier : 1)).round();
     lastDamage = damage;
     lastAction = action;
-    actionLabel = action == FightAction.timeout ? '¡TIEMPO!' : '¡TE GOLPEÓ!';
+    actionLabel = action == FightAction.timeout
+        ? L10n.current.fightTimeUp
+        : L10n.current.fightGotHit;
     actionId++;
     playerHp = math.max(0, playerHp - damage);
     phase = FightPhase.feedback;

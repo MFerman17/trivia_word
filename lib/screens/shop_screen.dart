@@ -9,20 +9,19 @@ import '../services/save_service.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
+import '../l10n/l10n.dart';
 
 enum _CosmeticSlot { character, frame, accessory }
 
 class _CosmeticOption {
   const _CosmeticOption({
     required this.id,
-    required this.name,
     required this.emoji,
     this.coins = 0,
     this.gems = 0,
   });
 
   final String id;
-  final String name;
   final String emoji;
   final int coins;
   final int gems;
@@ -30,93 +29,80 @@ class _CosmeticOption {
 
 class _ShopOffer {
   const _ShopOffer({
-    required this.name,
-    required this.description,
+    required this.id,
     required this.emoji,
     required this.price,
     required this.payWithGems,
     this.potions = 0,
     this.hints = 0,
     this.coins = 0,
-    this.valueNote,
   });
 
-  final String name;
-  final String description;
+  /// Identificador: con él se busca el nombre traducido (ver _offerTexts).
+  final String id;
   final String emoji;
   final int price;
   final bool payWithGems;
   final int potions;
   final int hints;
   final int coins;
-  final String? valueNote;
 }
 
 const List<_CosmeticOption> _characters = [
-  _CosmeticOption(id: 'explorador', name: 'Explorador', emoji: '🧝'),
-  _CosmeticOption(id: 'maga', name: 'Maga', emoji: '🧙‍♀️', gems: 5),
-  _CosmeticOption(id: 'guardian', name: 'Guardián', emoji: '🛡️', coins: 220),
+  _CosmeticOption(id: 'explorador', emoji: '🧝'),
+  _CosmeticOption(id: 'maga', emoji: '🧙‍♀️', gems: 5),
+  _CosmeticOption(id: 'guardian', emoji: '🛡️', coins: 220),
 ];
 
 const List<_CosmeticOption> _frames = [
-  _CosmeticOption(id: 'basico', name: 'Cian', emoji: '🔹'),
-  _CosmeticOption(id: 'bosque', name: 'Bosque', emoji: '🌿', coins: 150),
-  _CosmeticOption(id: 'magma', name: 'Magma', emoji: '🔥', gems: 6),
+  _CosmeticOption(id: 'basico', emoji: '🔹'),
+  _CosmeticOption(id: 'bosque', emoji: '🌿', coins: 150),
+  _CosmeticOption(id: 'magma', emoji: '🔥', gems: 6),
 ];
 
 const List<_CosmeticOption> _accessories = [
-  _CosmeticOption(id: 'ninguno', name: 'Ninguno', emoji: '—'),
-  _CosmeticOption(id: 'brujula', name: 'Brújula', emoji: '🧭', coins: 100),
-  _CosmeticOption(id: 'dragoncito', name: 'Dragón', emoji: '🐉', gems: 8),
+  _CosmeticOption(id: 'ninguno', emoji: '—'),
+  _CosmeticOption(id: 'brujula', emoji: '🧭', coins: 100),
+  _CosmeticOption(id: 'dragoncito', emoji: '🐉', gems: 8),
 ];
 
 const List<_ShopOffer> _offers = [
   _ShopOffer(
-    name: 'Kit del Explorador',
-    description: '1 poción + 2 pistas',
+    id: 'explorerKit',
     emoji: '🧭',
     price: 180,
     payWithGems: false,
     potions: 1,
     hints: 2,
-    valueNote: 'Ahorra 30 monedas frente al valor por separado.',
   ),
   _ShopOffer(
-    name: 'Kit de Expedición',
-    description: '3 pociones + 4 pistas',
+    id: 'expeditionKit',
     emoji: '🎒',
     price: 400,
     payWithGems: false,
     potions: 3,
     hints: 4,
-    valueNote: 'Ahorra 70 monedas frente al valor por separado.',
   ),
   _ShopOffer(
-    name: 'Trío de pociones',
-    description: '3 pociones de salud',
+    id: 'potionTrio',
     emoji: '🧪',
     price: 135,
     payWithGems: false,
     potions: 3,
-    valueNote: 'Ahorra 15 monedas frente a comprarlas por unidad.',
   ),
   _ShopOffer(
-    name: 'Trío de pistas',
-    description: '3 pistas para tus partidas',
+    id: 'hintTrio',
     emoji: '💡',
     price: 5,
     payWithGems: true,
     hints: 3,
-    valueNote: 'Una gema menos que comprar las 3 por unidad.',
   ),
   _ShopOffer(
-    name: 'Mochila de oro',
-    description: '550 monedas para tus próximas compras',
+    id: 'goldBag',
     emoji: '💰',
     price: 12,
     payWithGems: true,
     coins: 550,
-    valueNote: 'Incluye 70 monedas extra frente al cambio habitual.',
   ),
 ];
 
@@ -172,6 +158,65 @@ class _ShopScreenState extends State<ShopScreen>
 
   Future<void> _saveProfile() async {
     await SaveService.savePlayerData(profile);
+  }
+
+  // ---------------------------------------------------------------
+  // TEXTOS TRADUCIDOS de artículos, combos y mejoras (por su id)
+  // ---------------------------------------------------------------
+  String _cosmeticName(String id) {
+    final l = context.l10n;
+    return switch (id) {
+      'explorador' => l.charExplorer,
+      'maga' => l.charMage,
+      'guardian' => l.charGuardian,
+      'basico' => l.frameCyan,
+      'bosque' => l.frameForest,
+      'magma' => l.frameMagma,
+      'ninguno' => l.accNone,
+      'brujula' => l.accCompass,
+      'dragoncito' => l.accDragon,
+      _ => id,
+    };
+  }
+
+  ({String name, String description, String note}) _offerTexts(_ShopOffer offer) {
+    final l = context.l10n;
+    return switch (offer.id) {
+      'explorerKit' => (
+          name: l.offerExplorerKit,
+          description: l.offerExplorerKitDesc,
+          note: l.offerExplorerKitNote,
+        ),
+      'expeditionKit' => (
+          name: l.offerExpeditionKit,
+          description: l.offerExpeditionKitDesc,
+          note: l.offerExpeditionKitNote,
+        ),
+      'potionTrio' => (
+          name: l.offerPotionTrio,
+          description: l.offerPotionTrioDesc,
+          note: l.offerPotionTrioNote,
+        ),
+      'hintTrio' => (
+          name: l.offerHintTrio,
+          description: l.offerHintTrioDesc,
+          note: l.offerHintTrioNote,
+        ),
+      _ => (
+          name: l.offerGoldBag,
+          description: l.offerGoldBagDesc,
+          note: l.offerGoldBagNote,
+        ),
+    };
+  }
+
+  ({String title, String description}) _upgradeTexts(FighterUpgrade upgrade) {
+    final l = context.l10n;
+    return switch (upgrade) {
+      FighterUpgrade.health => (title: l.upgradeHealth, description: l.upgradeHealthDesc),
+      FighterUpgrade.power => (title: l.upgradePower, description: l.upgradePowerDesc),
+      FighterUpgrade.superCharge => (title: l.upgradeSuper, description: l.upgradeSuperDesc),
+    };
   }
 
   void _showMessage(String message, {bool error = false}) {
@@ -236,7 +281,7 @@ class _ShopScreenState extends State<ShopScreen>
     if (_equippedFor(slot) == id) return;
     if (!isOwned &&
         (profile.coins < option.coins || profile.gems < option.gems)) {
-      _showMessage('No tienes suficientes monedas o gemas.', error: true);
+      _showMessage(context.l10n.notEnoughCurrency, error: true);
       return;
     }
     final previousProfile = profile.toJson();
@@ -267,7 +312,7 @@ class _ShopScreenState extends State<ShopScreen>
         _isBusy = false;
         _sparkleId = 'avatar';
       });
-      _showMessage(isOwned ? '¡Nuevo aspecto equipado!' : '¡Aspecto desbloqueado y equipado!');
+      _showMessage(isOwned ? context.l10n.lookEquipped : context.l10n.lookUnlocked);
       Future.delayed(const Duration(milliseconds: 900), () {
         if (mounted) setState(() => _sparkleId = null);
       });
@@ -277,7 +322,7 @@ class _ShopScreenState extends State<ShopScreen>
         profile = PlayerProfile.fromJson(previousProfile);
         _isBusy = false;
       });
-      _showMessage('No se pudo guardar el aspecto. Inténtalo de nuevo.', error: true);
+      _showMessage(context.l10n.lookSaveFailed, error: true);
     }
   }
 
@@ -285,7 +330,10 @@ class _ShopScreenState extends State<ShopScreen>
     if (_isBusy) return;
     final balance = offer.payWithGems ? profile.gems : profile.coins;
     if (balance < offer.price) {
-      _showMessage('No tienes suficientes ${offer.payWithGems ? 'gemas' : 'monedas'}.', error: true);
+      _showMessage(
+        offer.payWithGems ? context.l10n.notEnoughGems : context.l10n.notEnoughCoins,
+        error: true,
+      );
       return;
     }
     final previousProfile = profile.toJson();
@@ -308,10 +356,10 @@ class _ShopScreenState extends State<ShopScreen>
       if (!mounted) return;
       setState(() {
         _isBusy = false;
-        _sparkleId = offer.name;
+        _sparkleId = offer.id;
       });
       AudioService.playBuyItem();
-      _showMessage('¡${offer.name} añadido a tu inventario!');
+      _showMessage(context.l10n.offerAdded(_offerTexts(offer).name));
       Future.delayed(const Duration(milliseconds: 900), () {
         if (mounted) setState(() => _sparkleId = null);
       });
@@ -321,7 +369,7 @@ class _ShopScreenState extends State<ShopScreen>
         profile = PlayerProfile.fromJson(previousProfile);
         _isBusy = false;
       });
-      _showMessage('No se pudo completar la compra.', error: true);
+      _showMessage(context.l10n.purchaseFailed, error: true);
     }
   }
 
@@ -340,14 +388,14 @@ class _ShopScreenState extends State<ShopScreen>
         AudioService.playCoins();
         setState(reward);
         await _saveProfile();
-        if (mounted) _showMessage('¡Recompensa recibida: $rewardName!');
+        if (mounted) _showMessage(context.l10n.rewardReceived(rewardName));
       } else {
-        _showMessage('No hay anuncios disponibles ahora. Prueba de nuevo más tarde.', error: true);
+        _showMessage(context.l10n.noAdsNow, error: true);
       }
     } catch (_) {
       if (!mounted) return;
       profile = PlayerProfile.fromJson(previousProfile);
-      _showMessage('No se pudo guardar la recompensa. Inténtalo de nuevo.', error: true);
+      _showMessage(context.l10n.rewardSaveFailed, error: true);
     } finally {
       if (mounted) {
         setState(() {
@@ -367,7 +415,7 @@ class _ShopScreenState extends State<ShopScreen>
           child: Column(
             children: [
               GameHeader(
-                title: 'TIENDA',
+                title: context.l10n.shopTitle,
                 onBack: () {
                   AudioService.playButtonClick();
                   Navigator.pop(context, profile);
@@ -406,7 +454,7 @@ class _ShopScreenState extends State<ShopScreen>
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         child: Row(
           children: [
-            Expanded(child: _buildBalanceBadge('🪙', 'MONEDAS', profile.coins, WM.gold)),
+            Expanded(child: _buildBalanceBadge('🪙', context.l10n.coinsLabel, profile.coins, WM.gold)),
             Container(
               height: 34,
               width: 2,
@@ -416,7 +464,7 @@ class _ShopScreenState extends State<ShopScreen>
                 borderRadius: BorderRadius.circular(2),
               ),
             ),
-            Expanded(child: _buildBalanceBadge('💎', 'GEMAS', profile.gems, WM.cyan)),
+            Expanded(child: _buildBalanceBadge('💎', context.l10n.gemsLabel, profile.gems, WM.cyan)),
           ],
         ),
       ),
@@ -459,7 +507,12 @@ class _ShopScreenState extends State<ShopScreen>
   // también cambian al deslizar entre pestañas con el dedo.
   // ---------------------------------------------------------------
   Widget _buildTabs() {
-    const labels = ['AVATAR', 'COMBOS', 'PREMIOS', 'LUCHADOR'];
+    final labels = [
+      context.l10n.shopTabAvatar,
+      context.l10n.shopTabCombos,
+      context.l10n.shopTabRewards,
+      context.l10n.shopTabFighter,
+    ];
     return AnimatedBuilder(
       animation: _tabController,
       builder: (context, _) => Padding(
@@ -503,9 +556,9 @@ class _ShopScreenState extends State<ShopScreen>
     final owned = _ownedFor(_activeSlot).contains(option.id);
     final equipped = _equippedFor(_activeSlot) == option.id;
     final slotName = switch (_activeSlot) {
-      _CosmeticSlot.character => 'PERSONAJE',
-      _CosmeticSlot.frame => 'MARCO',
-      _CosmeticSlot.accessory => 'ACCESORIO',
+      _CosmeticSlot.character => context.l10n.slotCharacter,
+      _CosmeticSlot.frame => context.l10n.slotFrame,
+      _CosmeticSlot.accessory => context.l10n.slotAccessory,
     };
 
     return ListView(
@@ -515,21 +568,21 @@ class _ShopScreenState extends State<ShopScreen>
         const SizedBox(height: 18),
         EntranceFlip(
           index: 1,
-          child: _buildCosmeticSelector('PERSONAJE', _CosmeticSlot.character, _characters),
+          child: _buildCosmeticSelector(context.l10n.slotCharacter, _CosmeticSlot.character, _characters),
         ),
         EntranceFlip(
           index: 2,
-          child: _buildCosmeticSelector('MARCO', _CosmeticSlot.frame, _frames),
+          child: _buildCosmeticSelector(context.l10n.slotFrame, _CosmeticSlot.frame, _frames),
         ),
         EntranceFlip(
           index: 3,
-          child: _buildCosmeticSelector('ACCESORIO', _CosmeticSlot.accessory, _accessories),
+          child: _buildCosmeticSelector(context.l10n.slotAccessory, _CosmeticSlot.accessory, _accessories),
         ),
         const SizedBox(height: 4),
         // Deja claro sobre qué pieza actúa el botón
         Center(
           child: Text(
-            'Seleccionado: $slotName · ${option.name}',
+            context.l10n.shopSelected(slotName, _cosmeticName(option.id)),
             style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12, letterSpacing: 0.5),
           ),
         ),
@@ -549,12 +602,12 @@ class _ShopScreenState extends State<ShopScreen>
               children: [
                 OutlinedGameText(
                   equipped
-                      ? 'EQUIPADO'
+                      ? context.l10n.equipped
                       : owned
-                          ? 'EQUIPAR'
+                          ? context.l10n.equip
                           : _isFree(option)
-                              ? 'DESBLOQUEAR GRATIS'
-                              : 'DESBLOQUEAR',
+                              ? context.l10n.unlockFree
+                              : context.l10n.unlock,
                   size: 18,
                   font: GameFont.oswald,
                 ),
@@ -631,10 +684,10 @@ class _ShopScreenState extends State<ShopScreen>
             ),
           ),
           const SizedBox(height: 10),
-          const OutlinedGameText('TALLER DE HÉROES', size: 20, letterSpacing: 1.5),
+          OutlinedGameText(context.l10n.heroWorkshop, size: 20, letterSpacing: 1.5),
           const SizedBox(height: 4),
           Text(
-            'Combina personaje, marco y accesorio. Tu avatar no cambia tus estadísticas.',
+            context.l10n.heroWorkshopHint,
             textAlign: TextAlign.center,
             style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
           ),
@@ -692,12 +745,12 @@ class _ShopScreenState extends State<ShopScreen>
 
     final Widget status = isEquipped
         ? Text(
-            'EQUIPADO',
+            context.l10n.equipped,
             style: GoogleFonts.anton(color: WM.green, fontSize: 11, letterSpacing: 1),
           )
         : isOwned
             ? Text(
-                '✔ TUYO',
+                context.l10n.owned,
                 style: GoogleFonts.anton(color: WM.cyan, fontSize: 11, letterSpacing: 1),
               )
             : Chip3D(
@@ -726,7 +779,7 @@ class _ShopScreenState extends State<ShopScreen>
               PlayerAvatar(profile: preview, radius: 22),
               const SizedBox(height: 4),
               Text(
-                item.name,
+                _cosmeticName(item.id),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.oswald(
@@ -754,14 +807,14 @@ class _ShopScreenState extends State<ShopScreen>
       padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
       children: [
         _buildSectionHeading(
-          'EQUÍPATE PARA LA AVENTURA',
-          'Combos con descuento frente a comprar cada artículo por separado.',
+          context.l10n.combosTitle,
+          context.l10n.combosSubtitle,
         ),
         for (var i = 0; i < _offers.length; i++)
           EntranceFlip(index: i, child: _buildOfferCard(_offers[i])),
         const SizedBox(height: 6),
         Text(
-          'Referencia de valor: 5 gemas se cambian por 200 monedas en la tienda.',
+          context.l10n.valueReference,
           textAlign: TextAlign.center,
           style: GoogleFonts.oswald(color: Colors.white38, fontSize: 11),
         ),
@@ -777,16 +830,18 @@ class _ShopScreenState extends State<ShopScreen>
       padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
       children: [
         _buildSectionHeading(
-          'PREPÁRATE PARA PELEAR',
-          'Mejoras permanentes para los guardianes y la batalla final de cada mundo.',
+          context.l10n.fighterTitle,
+          context.l10n.fighterSubtitle,
         ),
         for (var i = 0; i < FighterUpgrade.values.length; i++)
           EntranceFlip(index: i, child: _buildUpgradeCard(FighterUpgrade.values[i])),
         const SizedBox(height: 6),
         Text(
-          'Vida: ${FighterService.playerMaxHp(profile)} por round · '
-          'Fuerza: ×${FighterService.powerMultiplier(profile).toStringAsFixed(1)} · '
-          'SUPER: ${(1 / FighterService.superFillPerHit(profile)).ceil()} aciertos',
+          context.l10n.fighterStats(
+            FighterService.playerMaxHp(profile),
+            FighterService.powerMultiplier(profile).toStringAsFixed(1),
+            (1 / FighterService.superFillPerHit(profile)).ceil(),
+          ),
           textAlign: TextAlign.center,
           style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
         ),
@@ -822,9 +877,9 @@ class _ShopScreenState extends State<ShopScreen>
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  OutlinedGameText(upgrade.title, size: 18, font: GameFont.oswald),
+                  OutlinedGameText(_upgradeTexts(upgrade).title, size: 18, font: GameFont.oswald),
                   Text(
-                    upgrade.description,
+                    _upgradeTexts(upgrade).description,
                     style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12),
                   ),
                   const SizedBox(height: 6),
@@ -856,7 +911,7 @@ class _ShopScreenState extends State<ShopScreen>
                 height: 42,
                 padding: const EdgeInsets.symmetric(horizontal: 6),
                 child: maxed
-                    ? const OutlinedGameText('MÁX', size: 15, font: GameFont.oswald)
+                    ? OutlinedGameText(context.l10n.maxLevel, size: 15, font: GameFont.oswald)
                     : Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -882,9 +937,12 @@ class _ShopScreenState extends State<ShopScreen>
     setState(() => _isBusy = false);
     if (ok) {
       AudioService.playEquip();
-      _showMessage('¡${upgrade.title} mejorada a nivel ${FighterService.levelOf(profile, upgrade)}!');
+      _showMessage(context.l10n.upgradeDone(
+        _upgradeTexts(upgrade).title,
+        FighterService.levelOf(profile, upgrade),
+      ));
     } else {
-      _showMessage('No tienes suficientes monedas.', error: true);
+      _showMessage(context.l10n.notEnoughCoins, error: true);
     }
   }
 
@@ -913,7 +971,7 @@ class _ShopScreenState extends State<ShopScreen>
     final bool affordable = balance >= offer.price;
 
     return ParticleExplosion(
-      trigger: _sparkleId == offer.name,
+      trigger: _sparkleId == offer.id,
       particleEmoji: '✨',
       particleCount: 16,
       child: Padding(
@@ -935,16 +993,16 @@ class _ShopScreenState extends State<ShopScreen>
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    OutlinedGameText(offer.name.toUpperCase(), size: 16),
+                    OutlinedGameText(_offerTexts(offer).name.toUpperCase(), size: 16),
                     const SizedBox(height: 2),
                     Text(
-                      offer.description,
+                      _offerTexts(offer).description,
                       style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12),
                     ),
-                    if (offer.valueNote != null) ...[
+                    ...[
                       const SizedBox(height: 3),
                       Text(
-                        '▲ ${offer.valueNote!}',
+                        '▲ ${_offerTexts(offer).note}',
                         style: GoogleFonts.oswald(
                           color: const Color(0xFF7CFF6B),
                           fontSize: 11,
@@ -990,27 +1048,29 @@ class _ShopScreenState extends State<ShopScreen>
       padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
       children: [
         _buildSectionHeading(
-          'RECOMPENSAS POR ANUNCIO',
-          'Mira un video opcional y recibe un recurso para tu próxima aventura.',
+          context.l10n.adRewardsTitle,
+          context.l10n.adRewardsSubtitle,
         ),
         EntranceFlip(
           index: 0,
           child: _buildRewardCard(
             emoji: '🧪',
-            title: 'Poción de salud',
-            description: 'Una poción extra, solo cuando el anuncio se complete.',
-            rewardName: '1 poción de salud',
-            onPressed: () => _watchAdForReward('1 poción de salud', () => profile.healthPotions++),
+            title: context.l10n.adPotionTitle,
+            description: context.l10n.adPotionDesc,
+            rewardName: context.l10n.adPotionReward,
+            onPressed: () =>
+                _watchAdForReward(context.l10n.adPotionReward, () => profile.healthPotions++),
           ),
         ),
         EntranceFlip(
           index: 1,
           child: _buildRewardCard(
             emoji: '💡',
-            title: 'Pista de sabiduría',
-            description: 'Una pista extra para ayudarte en una pregunta.',
-            rewardName: '1 pista',
-            onPressed: () => _watchAdForReward('1 pista', () => profile.letterHints++),
+            title: context.l10n.adHintTitle,
+            description: context.l10n.adHintDesc,
+            rewardName: context.l10n.adHintReward,
+            onPressed: () =>
+                _watchAdForReward(context.l10n.adHintReward, () => profile.letterHints++),
           ),
         ),
         const SizedBox(height: 6),
@@ -1031,7 +1091,7 @@ class _ShopScreenState extends State<ShopScreen>
                 const SizedBox(width: 10),
                 Expanded(
                   child: Text(
-                    'Los anuncios son opcionales. Si no hay uno disponible, no se descontará nada ni se entregará un premio.',
+                    context.l10n.adsOptionalNote,
                     style: GoogleFonts.oswald(color: Colors.white70, fontSize: 12),
                   ),
                 ),
@@ -1092,12 +1152,12 @@ class _ShopScreenState extends State<ShopScreen>
                       height: 18,
                       child: CircularProgressIndicator(strokeWidth: 2.5, color: WM.outline),
                     )
-                  : const Row(
+                  : Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
-                        SizedBox(width: 2),
-                        OutlinedGameText('VIDEO', size: 14, font: GameFont.oswald),
+                        const Icon(Icons.play_arrow_rounded, color: Colors.white, size: 18),
+                        const SizedBox(width: 2),
+                        OutlinedGameText(context.l10n.videoLabel, size: 14, font: GameFont.oswald),
                       ],
                     ),
             ),

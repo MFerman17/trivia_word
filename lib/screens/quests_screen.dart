@@ -166,6 +166,19 @@ class _QuestsScreenState extends State<QuestsScreen> {
   //   lista     -> dorado + resplandor + botón latiendo
   //   reclamada -> gris apagado
   // ---------------------------------------------------------------
+  /// Título y descripción en el idioma actual, según el id de la misión.
+  /// (El texto guardado en la misión se usa solo si el id es desconocido.)
+  ({String title, String description}) _questTexts(QuestModel quest) {
+    final l = context.l10n;
+    return switch (quest.id) {
+      'win_battles_3' => (title: l.questWinBattles, description: l.questWinBattlesDesc),
+      'answer_trivia_10' => (title: l.questAnswerTrivia, description: l.questAnswerTriviaDesc),
+      'use_potion_2' => (title: l.questUsePotion, description: l.questUsePotionDesc),
+      'buy_shop_item_1' => (title: l.questBuyItem, description: l.questBuyItemDesc),
+      _ => (title: quest.title, description: quest.description),
+    };
+  }
+
   Widget _buildQuestCard(QuestModel quest) {
     final bool ready = quest.isCompleted && !quest.isClaimed;
     final bool claimed = quest.isClaimed;
@@ -221,7 +234,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         OutlinedGameText(
-                          quest.title.toUpperCase(),
+                          _questTexts(quest).title.toUpperCase(),
                           size: 17,
                           colors: ready
                               ? const [Color(0xFFFFF1B0), WM.gold]
@@ -229,7 +242,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
                         ),
                         const SizedBox(height: 3),
                         Text(
-                          quest.description,
+                          _questTexts(quest).description,
                           style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
                         ),
                       ],

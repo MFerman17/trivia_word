@@ -9,6 +9,7 @@ import '../services/audio_service.dart';
 import '../widgets/battle_arena.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
+import '../l10n/l10n.dart';
 
 class GameScreen extends StatefulWidget {
   final int worldId;
@@ -138,8 +139,8 @@ class _GameScreenState extends State<GameScreen> {
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: Colors.amber, width: 2),
         ),
-        title: const Text(
-          '¡VICTORIA ÉPICA!',
+        title: Text(
+          context.l10n.epicVictory,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.amber,
@@ -163,8 +164,8 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 Text(
                   _controller.isMiniChallenge && !_controller.miniRewardGranted
-                      ? 'Recompensa de hoy ya obtenida'
-                      : '+${_controller.coinsReward} Monedas',
+                      ? context.l10n.dailyRewardTaken
+                      : context.l10n.coinsReward(_controller.coinsReward),
                   style: GoogleFonts.poppins(
                     color: Colors.yellowAccent,
                     fontSize: 16,
@@ -173,7 +174,7 @@ class _GameScreenState extends State<GameScreen> {
                 if (!_controller.isMiniChallenge ||
                     _controller.miniRewardGranted)
                   Text(
-                    '+${_controller.xpReward} XP',
+                    context.l10n.xpReward(_controller.xpReward),
                     style: GoogleFonts.poppins(
                       color: Colors.cyanAccent,
                       fontSize: 16,
@@ -214,8 +215,8 @@ class _GameScreenState extends State<GameScreen> {
                 }
                 if (mounted) Navigator.of(context).pop();
               },
-              child: const Text(
-                'CONTINUAR',
+              child: Text(
+                context.l10n.continueButton,
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
@@ -313,7 +314,7 @@ class _GameScreenState extends State<GameScreen> {
             },
             icon: const Icon(Icons.auto_stories_rounded),
             label: Text(
-              'CONTINUAR',
+              context.l10n.continueButton,
               style: GoogleFonts.poppins(fontWeight: FontWeight.bold),
             ),
           ),
@@ -373,14 +374,14 @@ class _GameScreenState extends State<GameScreen> {
             if (earned) {
               closeAndResume();
               _controller.reviveWithAd();
-              _showSnackBar('¡Has vuelto a la batalla con 1 vida!');
+              _showSnackBar(context.l10n.backInBattle);
             } else {
               // Puede que no haya anuncio disponible o que el jugador
               // cerrara el video antes de terminar: no se da el premio.
               setDialogState(() {
                 loadingAd = false;
                 errorMessage =
-                    'No se pudo completar el video. Inténtalo de nuevo o usa una poción.';
+                    context.l10n.videoFailed;
               });
             }
           }
@@ -389,7 +390,7 @@ class _GameScreenState extends State<GameScreen> {
             AudioService.playButtonClick();
             closeAndResume();
             final ok = await _controller.reviveWithPotion();
-            if (mounted && ok) _showSnackBar('¡La poción te devolvió 1 vida!');
+            if (mounted && ok) _showSnackBar(context.l10n.potionRevived);
           }
 
           void onGiveUp() {
@@ -409,8 +410,8 @@ class _GameScreenState extends State<GameScreen> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  const OutlinedGameText(
-                    '¡SIN VIDAS!',
+                  OutlinedGameText(
+                    context.l10n.outOfLives,
                     size: 30,
                     letterSpacing: 2,
                     colors: [Color(0xFFFFB3BA), danger],
@@ -426,7 +427,7 @@ class _GameScreenState extends State<GameScreen> {
                   ),
                   const SizedBox(height: 12),
                   Text(
-                    '¿Quieres seguir luchando? Recupera 1 vida y continúa la batalla.',
+                    context.l10n.keepFighting,
                     textAlign: TextAlign.center,
                     style: GoogleFonts.oswald(color: Colors.white70, fontSize: 14),
                   ),
@@ -453,18 +454,18 @@ class _GameScreenState extends State<GameScreen> {
                                     color: WM.outline,
                                   ),
                                 )
-                              : const Row(
+                              : Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(Icons.play_circle_fill_rounded,
+                                    const Icon(Icons.play_circle_fill_rounded,
                                         color: Colors.white, size: 24),
-                                    SizedBox(width: 8),
-                                    OutlinedGameText('VER VIDEO', size: 18,
+                                    const SizedBox(width: 8),
+                                    OutlinedGameText(context.l10n.watchVideo, size: 18,
                                         font: GameFont.oswald),
-                                    SizedBox(width: 8),
+                                    const SizedBox(width: 8),
                                     // El emoji va fuera del texto con contorno
                                     // (si no, se dibujaría triplicado)
-                                    Text('+1 ❤️', style: TextStyle(fontSize: 16)),
+                                    const Text('+1 ❤️', style: TextStyle(fontSize: 16)),
                                   ],
                                 ),
                         ),
@@ -474,7 +475,7 @@ class _GameScreenState extends State<GameScreen> {
                     Padding(
                       padding: const EdgeInsets.only(bottom: 4),
                       child: Text(
-                        'Ya usaste el video en esta batalla.',
+                        context.l10n.videoAlreadyUsed,
                         style: GoogleFonts.oswald(color: Colors.white38, fontSize: 12),
                       ),
                     ),
@@ -495,7 +496,7 @@ class _GameScreenState extends State<GameScreen> {
                           const Text('🧪', style: TextStyle(fontSize: 18)),
                           const SizedBox(width: 8),
                           OutlinedGameText(
-                            potions > 0 ? 'USAR POCIÓN ($potions)' : 'SIN POCIONES',
+                            potions > 0 ? context.l10n.usePotionCount(potions) : context.l10n.noPotions,
                             size: 16,
                             font: GameFont.oswald,
                           ),
@@ -518,7 +519,7 @@ class _GameScreenState extends State<GameScreen> {
                   TextButton(
                     onPressed: loadingAd ? null : onGiveUp,
                     child: Text(
-                      'Rendirse',
+                      context.l10n.giveUp,
                       style: GoogleFonts.oswald(
                         color: Colors.white54,
                         fontSize: 14,
@@ -546,8 +547,8 @@ class _GameScreenState extends State<GameScreen> {
           borderRadius: BorderRadius.circular(20),
           side: const BorderSide(color: Colors.redAccent, width: 2),
         ),
-        title: const Text(
-          '¡DERROTA!',
+        title: Text(
+          context.l10n.defeatTitle,
           textAlign: TextAlign.center,
           style: TextStyle(
             color: Colors.redAccent,
@@ -557,8 +558,8 @@ class _GameScreenState extends State<GameScreen> {
         ),
         content: Text(
           _controller.playerHp <= 0
-              ? 'Te has quedado sin vidas. ¡Inténtalo de nuevo!'
-              : 'El monstruo resistió tus respuestas. ¡Repasa y vuelve a intentarlo!',
+              ? context.l10n.defeatNoLives
+              : context.l10n.defeatMonsterResisted,
           textAlign: TextAlign.center,
           style: TextStyle(color: Colors.white),
         ),
@@ -573,8 +574,8 @@ class _GameScreenState extends State<GameScreen> {
                 Navigator.of(dialogContext).pop();
                 Navigator.of(context).pop();
               },
-              child: const Text(
-                'REINTENTAR',
+              child: Text(
+                context.l10n.retry,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -631,7 +632,7 @@ class _GameScreenState extends State<GameScreen> {
                       child: currentQuestion == null
                           ? Center(
                               child: Text(
-                                'No hay preguntas para esta fase.',
+                                context.l10n.noQuestionsPhase,
                                 style: GoogleFonts.oswald(color: Colors.white),
                               ),
                             )
@@ -666,7 +667,9 @@ class _GameScreenState extends State<GameScreen> {
           const SizedBox(width: 10),
           Expanded(
             child: OutlinedGameText(
-              widget.isMiniChallenge ? 'MINI-RETO ${widget.levelNumber}' : 'COMBATE',
+              widget.isMiniChallenge
+                  ? context.l10n.miniChallengeTitle(widget.levelNumber)
+                  : context.l10n.battleTitle,
               size: 20,
               letterSpacing: 1.5,
             ),
@@ -741,15 +744,19 @@ class _GameScreenState extends State<GameScreen> {
   String _encounterLabel() {
     final config = _controller.config;
     final difficultyLabel = switch (config.difficulty) {
-      1 => 'FÁCIL',
-      2 => 'FÁCIL+',
-      3 => 'MEDIA',
-      4 => 'DIFÍCIL',
-      _ => 'ÉPICO',
+      1 => context.l10n.diffEasy,
+      2 => context.l10n.diffEasyPlus,
+      3 => context.l10n.diffMedium,
+      4 => context.l10n.diffHard,
+      _ => context.l10n.diffEpic,
     };
-    if (config.isMiniChallenge) return 'MINI-RETO · $difficultyLabel';
-    if (config.type == LevelType.worldBoss) return 'JEFE DEL MUNDO · $difficultyLabel';
-    if (config.type == LevelType.miniBoss) return 'GUARDIÁN · $difficultyLabel';
+    if (config.isMiniChallenge) return context.l10n.encounterMini(difficultyLabel);
+    if (config.type == LevelType.worldBoss) {
+      return context.l10n.encounterWorldBoss(difficultyLabel);
+    }
+    if (config.type == LevelType.miniBoss) {
+      return context.l10n.encounterGuardian(difficultyLabel);
+    }
     return difficultyLabel;
   }
 
@@ -787,7 +794,10 @@ class _GameScreenState extends State<GameScreen> {
           Row(
             children: [
               Text(
-                'PREGUNTA ${_controller.currentQuestionIndex + 1}/${_controller.questions.length}',
+                context.l10n.questionCounter(
+                  _controller.currentQuestionIndex + 1,
+                  _controller.questions.length,
+                ),
                 style: GoogleFonts.oswald(
                   color: WM.gold,
                   fontWeight: FontWeight.w700,
@@ -903,7 +913,7 @@ class _GameScreenState extends State<GameScreen> {
           const SizedBox(width: 10),
           Expanded(
             child: Text(
-              isDisabled ? 'Opción descartada' : question.options[index],
+              isDisabled ? context.l10n.optionDiscarded : question.options[index],
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: GoogleFonts.oswald(
@@ -934,7 +944,7 @@ class _GameScreenState extends State<GameScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              isCorrect ? '¡Correcto!' : 'Respuesta correcta: $correctText',
+              isCorrect ? context.l10n.correct : context.l10n.correctAnswerIs(correctText),
               style: GoogleFonts.oswald(
                 color: isCorrect ? const Color(0xFF9AF2A0) : const Color(0xFFFFD980),
                 fontWeight: FontWeight.w700,
@@ -945,7 +955,7 @@ class _GameScreenState extends State<GameScreen> {
             Text(
               question.explanation.isNotEmpty
                   ? question.explanation
-                  : 'La opción correcta es “$correctText”.',
+                  : context.l10n.correctOptionIs(correctText),
               style: GoogleFonts.oswald(color: Colors.white, fontSize: 14, height: 1.35),
             ),
           ],
@@ -968,7 +978,7 @@ class _GameScreenState extends State<GameScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 OutlinedGameText(
-                  _controller.playerHp <= 0 ? 'VER RESULTADO' : 'CONTINUAR',
+                  _controller.playerHp <= 0 ? context.l10n.seeResult : context.l10n.continueButton,
                   size: 18,
                   font: GameFont.oswald,
                 ),
@@ -996,7 +1006,7 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 const Text('🧪', style: TextStyle(fontSize: 16)),
                 const SizedBox(width: 6),
-                OutlinedGameText('POCIÓN ($potions)', size: 14, font: GameFont.oswald),
+                OutlinedGameText(context.l10n.potionCount(potions), size: 14, font: GameFont.oswald),
               ],
             ),
           ),
@@ -1013,7 +1023,7 @@ class _GameScreenState extends State<GameScreen> {
               children: [
                 const Text('💡', style: TextStyle(fontSize: 16)),
                 const SizedBox(width: 6),
-                OutlinedGameText('PISTA ($hints)', size: 14, font: GameFont.oswald),
+                OutlinedGameText(context.l10n.hintCount(hints), size: 14, font: GameFont.oswald),
               ],
             ),
           ),

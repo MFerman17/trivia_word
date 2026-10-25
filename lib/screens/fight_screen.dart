@@ -11,6 +11,7 @@ import '../widgets/game_3d.dart';
 import '../widgets/monster_poses.dart';
 import '../widgets/player_avatar.dart';
 import 'shop_screen.dart';
+import '../l10n/l10n.dart';
 
 /// Pelea tipo "Street Fighter": el avatar del jugador contra el monstruo,
 /// en vista lateral, al mejor de 3 rounds. Las preguntas son los golpes.
@@ -215,7 +216,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
           const SizedBox(width: 4),
           Expanded(
             child: _fighterBar(
-              name: profile?.name ?? 'TÚ',
+              name: profile?.name ?? context.l10n.you,
               hp: _fight.playerHp,
               maxHp: _fight.playerMaxHp,
               rounds: _fight.playerRounds,
@@ -847,7 +848,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               const Text('⚡', style: TextStyle(fontSize: 15)),
               const SizedBox(width: 4),
               OutlinedGameText(
-                _fight.superReady ? '¡SUPER!' : 'SUPER',
+                _fight.superReady ? context.l10n.superReady : context.l10n.superLabel,
                 size: 15,
                 font: GameFont.oswald,
               ),
@@ -870,11 +871,11 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     switch (_fight.phase) {
       case FightPhase.roundIntro:
         final isLast = _fight.playerRounds == 1 && _fight.enemyRounds == 1;
-        big = isLast ? 'ROUND FINAL' : 'ROUND ${_fight.round}';
-        small = _fight.isEnraged ? '¡EL MONSTRUO ESTÁ FURIOSO!' : '¡PELEA!';
+        big = isLast ? context.l10n.roundFinal : context.l10n.roundNumber(_fight.round);
+        small = _fight.isEnraged ? context.l10n.monsterEnraged : context.l10n.fight;
       case FightPhase.roundEnd:
         big = 'K.O.';
-        small = _fight.enemyHp <= 0 ? '¡GANAS EL ROUND!' : 'PIERDES EL ROUND';
+        small = _fight.enemyHp <= 0 ? context.l10n.roundWon : context.l10n.roundLost;
         colors = _fight.enemyHp <= 0
             ? const [Color(0xFFFFF1B0), WM.gold]
             : const [Color(0xFFFFC2C8), Color(0xFFFF4D5E)];
@@ -956,7 +957,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
             mainAxisSize: MainAxisSize.min,
             children: [
               OutlinedGameText(
-                f.isFinal ? '¡MUNDO SUPERADO!' : '¡VICTORIA!',
+                f.isFinal ? context.l10n.worldCleared : context.l10n.victory,
                 size: 30,
                 letterSpacing: 2,
                 colors: const [Color(0xFFFFF1B0), WM.gold],
@@ -981,12 +982,12 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               ),
               const SizedBox(height: 6),
               Text(
-                f.enemyRounds == 0 ? 'Sin perder un solo round' : 'Ganaste 2 a 1',
+                f.enemyRounds == 0 ? context.l10n.flawlessWin : context.l10n.won21,
                 style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
               ),
               if (f.bestCombo >= 3)
                 Text(
-                  'Mejor combo: ${f.bestCombo} aciertos seguidos',
+                  context.l10n.bestCombo(f.bestCombo),
                   style: GoogleFonts.oswald(color: WM.cyan, fontSize: 13),
                 ),
               const SizedBox(height: 12),
@@ -1004,7 +1005,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               if (!f.firstWin) ...[
                 const SizedBox(height: 8),
                 Text(
-                  'Ya habías ganado esta pelea: premio reducido.',
+                  context.l10n.reducedReward,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.oswald(color: Colors.white38, fontSize: 12),
                 ),
@@ -1034,7 +1035,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                   },
                   color: WM.gold,
                   height: 50,
-                  child: const OutlinedGameText('CONTINUAR', size: 18, font: GameFont.oswald),
+                  child: OutlinedGameText(context.l10n.continueButton, size: 18, font: GameFont.oswald),
                 ),
               ),
             ],
@@ -1061,17 +1062,15 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const OutlinedGameText(
-                'DERROTA',
+              OutlinedGameText(
+                context.l10n.defeat,
                 size: 32,
                 letterSpacing: 2,
-                colors: [Color(0xFFFFB3BA), danger],
+                colors: const [Color(0xFFFFB3BA), danger],
               ),
               const SizedBox(height: 10),
               Text(
-                'El monstruo ganó esta vez. Responde más rápido para dar '
-                'patadas, guarda el SUPER para rematar y mejora tu luchador '
-                'en la Tienda.',
+                context.l10n.fightDefeatTip,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.oswald(color: Colors.white70, fontSize: 14),
               ),
@@ -1086,7 +1085,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                   },
                   color: danger,
                   height: 48,
-                  child: const OutlinedGameText('REVANCHA', size: 18, font: GameFont.oswald),
+                  child: OutlinedGameText(context.l10n.rematch, size: 18, font: GameFont.oswald),
                 ),
               ),
               const SizedBox(height: 10),
@@ -1109,12 +1108,12 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                   },
                   color: WM.cyan,
                   height: 44,
-                  child: const Row(
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text('👊', style: TextStyle(fontSize: 16)),
-                      SizedBox(width: 6),
-                      OutlinedGameText('MEJORAR LUCHADOR', size: 16, font: GameFont.oswald),
+                      const Text('👊', style: TextStyle(fontSize: 16)),
+                      const SizedBox(width: 6),
+                      OutlinedGameText(context.l10n.upgradeFighter, size: 16, font: GameFont.oswald),
                     ],
                   ),
                 ),
@@ -1126,7 +1125,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                   Navigator.of(context).pop();
                 },
                 child: Text(
-                  'Volver al mapa',
+                  context.l10n.backToMap,
                   style: GoogleFonts.oswald(
                     color: Colors.white54,
                     decoration: TextDecoration.underline,

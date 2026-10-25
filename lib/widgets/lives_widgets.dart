@@ -9,6 +9,7 @@ import '../services/audio_service.dart';
 import '../services/lives_service.dart';
 import '../services/save_service.dart';
 import 'game_3d.dart';
+import '../l10n/l10n.dart';
 
 /// "mm:ss" para el contador de la siguiente vida.
 String formatLifeTimer(Duration d) {
@@ -88,7 +89,7 @@ class _LivesBadgeState extends State<LivesBadge> {
                 ),
                 const SizedBox(width: 4),
                 Text(
-                  _next == null ? 'LLENO' : formatLifeTimer(_next!),
+                  _next == null ? context.l10n.livesFull : formatLifeTimer(_next!),
                   style: GoogleFonts.oswald(
                     color: _next == null ? Colors.white70 : WM.bone,
                     fontSize: 12,
@@ -222,7 +223,7 @@ class _OutOfLivesDialogState extends State<_OutOfLivesDialog> {
     } else {
       setState(() {
         _busy = false;
-        _error = 'No hay videos disponibles ahora. Prueba más tarde.';
+        _error = context.l10n.noVideosNow;
       });
     }
   }
@@ -242,26 +243,26 @@ class _OutOfLivesDialogState extends State<_OutOfLivesDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const OutlinedGameText(
-              '¡SIN VIDAS!',
+            OutlinedGameText(
+              context.l10n.outOfLives,
               size: 28,
               letterSpacing: 2,
-              colors: [Color(0xFFFFB3BA), danger],
+              colors: const [Color(0xFFFFB3BA), danger],
             ),
             const SizedBox(height: 8),
             const Text('💔', style: TextStyle(fontSize: 40)),
             const SizedBox(height: 6),
             Text(
               next == null
-                  ? 'Recarga tus vidas para seguir jugando.'
-                  : 'Siguiente vida en ${formatLifeTimer(next)}',
+                  ? context.l10n.refillToPlay
+                  : context.l10n.nextLifeIn(formatLifeTimer(next)),
               textAlign: TextAlign.center,
               style: GoogleFonts.oswald(color: Colors.white, fontSize: 16),
             ),
             const SizedBox(height: 14),
             _option(
               emoji: '🎬',
-              label: 'VER VIDEO  +1',
+              label: context.l10n.watchVideoPlusOne,
               color: WM.gold,
               loading: _busy,
               onTap: _busy ? null : _watchAd,
@@ -269,14 +270,14 @@ class _OutOfLivesDialogState extends State<_OutOfLivesDialog> {
             const SizedBox(height: 10),
             _option(
               emoji: '🧪',
-              label: _potions > 0 ? 'USAR POCIÓN ($_potions)  +1' : 'SIN POCIONES',
+              label: _potions > 0 ? context.l10n.usePotionPlusOne(_potions) : context.l10n.noPotions,
               color: WM.cyan,
               onTap: _potions > 0 && !_busy ? _usePotion : null,
             ),
             const SizedBox(height: 10),
             _option(
               emoji: '💎',
-              label: '${LivesService.gemsForFullRefill} GEMAS  LLENAR TODO',
+              label: context.l10n.gemsRefillAll(LivesService.gemsForFullRefill),
               color: WM.violet,
               onTap: _gems >= LivesService.gemsForFullRefill && !_busy ? _useGems : null,
             ),
@@ -291,7 +292,7 @@ class _OutOfLivesDialogState extends State<_OutOfLivesDialog> {
             TextButton(
               onPressed: _busy ? null : _close,
               child: Text(
-                'Esperar',
+                context.l10n.wait,
                 style: GoogleFonts.oswald(
                   color: Colors.white54,
                   decoration: TextDecoration.underline,

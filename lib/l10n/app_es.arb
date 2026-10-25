@@ -1,33 +1,74 @@
 {
   "@@locale": "es",
   "dailyRewardTitle": "¡Recompensa diaria!",
+  "@dailyRewardTitle": {
+    "description": "EN: Daily reward!"
+  },
   "dailyRewardBody": "Has reclamado tu cofre diario. ¡Vuelve mañana por más!",
+  "@dailyRewardBody": {
+    "description": "EN: You claimed your daily chest. Come back tomorrow for more!"
+  },
   "excellent": "¡EXCELENTE!",
+  "@excellent": {
+    "description": "EN: AWESOME!"
+  },
   "playAdventure": "JUGAR AVENTURA",
+  "@playAdventure": {
+    "description": "EN: PLAY ADVENTURE"
+  },
   "menuShop": "TIENDA",
+  "@menuShop": {
+    "description": "EN: SHOP"
+  },
   "menuQuests": "MISIONES",
+  "@menuQuests": {
+    "description": "EN: QUESTS"
+  },
   "menuRanking": "RANKING",
+  "@menuRanking": {
+    "description": "EN: RANKING"
+  },
   "levelLabel": "Nivel {level}",
   "@levelLabel": {
     "placeholders": {
       "level": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: Level {level}"
   },
   "tagline": "APRENDE  ·  JUEGA  ·  EVOLUCIONA",
+  "@tagline": {
+    "description": "EN: LEARN  ·  PLAY  ·  LEVEL UP"
+  },
   "chestAvailable": "¡Cofre diario disponible!",
+  "@chestAvailable": {
+    "description": "EN: Daily chest available!"
+  },
   "chestClaimed": "Cofre diario reclamado",
+  "@chestClaimed": {
+    "description": "EN: Daily chest claimed"
+  },
   "chestTapToClaim": "Toca para reclamar tu recompensa",
+  "@chestTapToClaim": {
+    "description": "EN: Tap to claim your reward"
+  },
   "chestComeBack": "Vuelve mañana para más premios",
+  "@chestComeBack": {
+    "description": "EN: Come back tomorrow for more rewards"
+  },
   "chestOpen": "Abrir",
+  "@chestOpen": {
+    "description": "EN: Open"
+  },
   "chapterLabel": "Capítulo {chapter}",
   "@chapterLabel": {
     "placeholders": {
       "chapter": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: Chapter {chapter}"
   },
   "worldLabel": "MUNDO {world}",
   "@worldLabel": {
@@ -35,29 +76,50 @@
       "world": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: WORLD {world}"
   },
   "worldChallengesTooltip": "Retos del mundo",
+  "@worldChallengesTooltip": {
+    "description": "EN: World challenges"
+  },
   "worldLocked": "Primero derrota al jefe del mundo anterior.",
+  "@worldLocked": {
+    "description": "EN: Defeat the previous world's boss first."
+  },
   "profileTitle": "PERFIL",
+  "@profileTitle": {
+    "description": "EN: PROFILE"
+  },
   "rankRecruit": "RECLUTA ORTOGRÁFICO",
+  "@rankRecruit": {
+    "description": "EN: SPELLING RECRUIT"
+  },
   "starsCount": "{count, plural, =1{1 ESTRELLA} other{{count} ESTRELLAS}}",
   "@starsCount": {
     "placeholders": {
       "count": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: {count, plural, =1{1 STAR} other{{count} STARS}}"
   },
   "levelShort": "NVL",
+  "@levelShort": {
+    "description": "EN: LVL"
+  },
   "levelProgress": "PROGRESO DE NIVEL",
+  "@levelProgress": {
+    "description": "EN: LEVEL PROGRESS"
+  },
   "nextLevel": "NVL {level} ▸",
   "@nextLevel": {
     "placeholders": {
       "level": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: LVL {level} ▸"
   },
   "xpProgress": "{current} / {max} XP",
   "@xpProgress": {
@@ -68,31 +130,78 @@
       "max": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: {current} / {max} XP"
   },
   "readyToLevelUp": "¡Listo para subir de nivel!",
+  "@readyToLevelUp": {
+    "description": "EN: Ready to level up!"
+  },
   "xpMissing": "Te faltan {xp} XP para subir",
   "@xpMissing": {
     "placeholders": {
       "xp": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: {xp} XP to the next level"
   },
   "statCoins": "MONEDAS",
+  "@statCoins": {
+    "description": "EN: COINS"
+  },
   "statGems": "GEMAS",
+  "@statGems": {
+    "description": "EN: GEMS"
+  },
   "statPotions": "POCIONES",
+  "@statPotions": {
+    "description": "EN: POTIONS"
+  },
   "statHints": "PISTAS",
+  "@statHints": {
+    "description": "EN: HINTS"
+  },
   "googleLinked": "AVANCE VINCULADO A GOOGLE",
+  "@googleLinked": {
+    "description": "EN: PROGRESS LINKED TO GOOGLE"
+  },
   "googleLinking": "CONECTANDO CUENTA…",
+  "@googleLinking": {
+    "description": "EN: CONNECTING ACCOUNT…"
+  },
   "googleSave": "GUARDAR AVANCE EN GOOGLE",
+  "@googleSave": {
+    "description": "EN: SAVE PROGRESS WITH GOOGLE"
+  },
   "googleLinkedMsg": "Tu avance quedó vinculado y podrás recuperarlo en otros dispositivos.",
+  "@googleLinkedMsg": {
+    "description": "EN: Your progress is linked and you can recover it on other devices."
+  },
   "googleCancelledMsg": "No se realizaron cambios.",
+  "@googleCancelledMsg": {
+    "description": "EN: No changes were made."
+  },
   "googleFailedMsg": "No se pudo vincular la cuenta. Revisa la configuración de Google en Firebase.",
+  "@googleFailedMsg": {
+    "description": "EN: The account could not be linked. Check the Google settings in Firebase."
+  },
   "languageTitle": "IDIOMA",
+  "@languageTitle": {
+    "description": "EN: LANGUAGE"
+  },
   "moreLanguagesSoon": "Pronto habrá más idiomas.",
+  "@moreLanguagesSoon": {
+    "description": "EN: More languages coming soon."
+  },
   "questsTitle": "MISIONES",
+  "@questsTitle": {
+    "description": "EN: QUESTS"
+  },
   "noQuests": "No hay misiones disponibles.",
+  "@noQuests": {
+    "description": "EN: No quests available."
+  },
   "questsCompleted": "{completed} / {total} COMPLETADAS",
   "@questsCompleted": {
     "placeholders": {
@@ -102,28 +211,66 @@
       "total": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: {completed} / {total} COMPLETED"
   },
   "questDone": "HECHO",
+  "@questDone": {
+    "description": "EN: DONE"
+  },
   "questClaim": "RECLAMAR",
+  "@questClaim": {
+    "description": "EN: CLAIM"
+  },
   "questInProgress": "EN CURSO",
+  "@questInProgress": {
+    "description": "EN: IN PROGRESS"
+  },
   "rankingTitle": "RANKING",
+  "@rankingTitle": {
+    "description": "EN: RANKING"
+  },
   "unknownPlayer": "Desconocido",
+  "@unknownPlayer": {
+    "description": "EN: Unknown"
+  },
   "noHeroesYet": "AÚN NO HAY HÉROES",
+  "@noHeroesYet": {
+    "description": "EN: NO HEROES YET"
+  },
   "beFirst": "¡Juega y sé el primero en el ranking!",
+  "@beFirst": {
+    "description": "EN: Play and be the first on the leaderboard!"
+  },
   "onlyPodium": "¡Solo hay héroes en el podio!",
+  "@onlyPodium": {
+    "description": "EN: Only heroes on the podium!"
+  },
   "you": "TÚ",
+  "@you": {
+    "description": "EN: YOU"
+  },
   "yourPosition": "TU POSICIÓN",
+  "@yourPosition": {
+    "description": "EN: YOUR RANK"
+  },
   "miniChallengesTitle": "MINI-RETOS",
+  "@miniChallengesTitle": {
+    "description": "EN: MINI CHALLENGES"
+  },
   "miniOptional": "Encuentros opcionales del Mundo {world}",
   "@miniOptional": {
     "placeholders": {
       "world": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: Optional encounters in World {world}"
   },
   "miniDescription": "Derrota a criaturas más débiles con tus conocimientos. Cada mini-reto da monedas y XP una vez al día.",
+  "@miniDescription": {
+    "description": "EN: Defeat weaker creatures with your knowledge. Each mini challenge gives coins and XP once a day."
+  },
   "miniChallengeInfo": "Reto {challenge} · Dificultad {difficulty} · 15 🪙 + 10 XP diarios",
   "@miniChallengeInfo": {
     "placeholders": {
@@ -133,49 +280,150 @@
       "difficulty": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: Challenge {challenge} · Difficulty {difficulty} · 15 🪙 + 10 XP daily"
   },
   "settingsTitle": "AJUSTES",
+  "@settingsTitle": {
+    "description": "EN: SETTINGS"
+  },
   "settingsSound": "SONIDO",
+  "@settingsSound": {
+    "description": "EN: SOUND"
+  },
   "settingsMusic": "Música",
+  "@settingsMusic": {
+    "description": "EN: Music"
+  },
   "settingsEffects": "Efectos",
+  "@settingsEffects": {
+    "description": "EN: Sound effects"
+  },
   "settingsHelp": "PREGUNTAS FRECUENTES",
+  "@settingsHelp": {
+    "description": "EN: FAQ"
+  },
   "settingsVersion": "Words & Monsters · versión {version}",
   "@settingsVersion": {
     "placeholders": {
       "version": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: Words & Monsters · version {version}"
   },
   "faqSoundQ": "No se oye la música o los efectos",
+  "@faqSoundQ": {
+    "description": "EN: I can't hear music or sound effects"
+  },
   "faqSoundA": "Revisa que Música y Efectos estén activados aquí arriba y que el volumen del teléfono esté subido y sin modo silencio. En el mapa y en el combate, el botón del altavoz silencia todo.",
+  "@faqSoundA": {
+    "description": "EN: Make sure Music and Sound effects are on above, and that your phone volume is up and not on silent. On the map and in battle, the speaker button mutes everything."
+  },
   "faqProgressQ": "¿Cómo no pierdo mi avance si cambio de teléfono?",
+  "@faqProgressQ": {
+    "description": "EN: How do I keep my progress if I change phones?"
+  },
   "faqProgressA": "Entra en tu Perfil y pulsa «Guardar avance en Google». En el teléfono nuevo, haz lo mismo con la misma cuenta y tu avance se recupera.",
+  "@faqProgressA": {
+    "description": "EN: Open your Profile and tap “Save progress with Google”. On the new phone, do the same with the same account and your progress comes back."
+  },
   "faqAdQ": "El video para revivir o ganar monedas no carga",
+  "@faqAdQ": {
+    "description": "EN: The video to revive or earn coins won't load"
+  },
   "faqAdA": "Los videos necesitan internet y a veces no hay ninguno disponible. Espera un momento y vuelve a intentarlo. Para revivir también puedes usar una poción.",
+  "@faqAdA": {
+    "description": "EN: Videos need an internet connection and sometimes none are available. Wait a moment and try again. You can also use a potion to revive."
+  },
   "faqCoinsQ": "¿Cómo consigo monedas y pociones?",
+  "@faqCoinsQ": {
+    "description": "EN: How do I get coins and potions?"
+  },
   "faqCoinsA": "Ganando niveles, con los mini retos diarios, completando misiones, abriendo el cofre diario de la portada y viendo videos en la tienda.",
+  "@faqCoinsA": {
+    "description": "EN: By winning levels, playing the daily mini challenges, completing quests, opening the daily chest on the home screen and watching videos in the shop."
+  },
   "faqRepeatQ": "¿Se repiten las preguntas?",
+  "@faqRepeatQ": {
+    "description": "EN: Do questions repeat?"
+  },
   "faqRepeatA": "No hasta que hayas visto todas las de esa dificultad. Al avanzar de mundo, las preguntas son más difíciles y de temas distintos.",
+  "@faqRepeatA": {
+    "description": "EN: Not until you have seen every question of that difficulty. As you move to new worlds, questions get harder and cover different topics."
+  },
   "faqRankingQ": "No aparezco en el ranking",
+  "@faqRankingQ": {
+    "description": "EN: I don't show up on the leaderboard"
+  },
   "faqRankingA": "El ranking necesita internet y se actualiza al terminar un nivel. Juega un nivel con conexión y vuelve a abrirlo.",
+  "@faqRankingA": {
+    "description": "EN: The leaderboard needs an internet connection and updates when you finish a level. Play a level while online and open it again."
+  },
   "faqLanguageQ": "¿Cómo cambio el idioma?",
+  "@faqLanguageQ": {
+    "description": "EN: How do I change the language?"
+  },
   "faqLanguageA": "En esta pantalla, en el apartado Idioma. Cada idioma tiene sus propias preguntas, escritas para ese idioma.",
+  "@faqLanguageA": {
+    "description": "EN: On this screen, in the Language section. Each language has its own questions, written for that language."
+  },
   "faqErrorQ": "Creo que una pregunta tiene un error",
+  "@faqErrorQ": {
+    "description": "EN: I think a question has a mistake"
+  },
   "faqErrorA": "Anota el texto de la pregunta y escríbenos desde la ficha del juego en Google Play. Revisamos cada aviso.",
+  "@faqErrorA": {
+    "description": "EN: Write down the question text and contact us from the game's Google Play page. We review every report."
+  },
   "faqCrashQ": "El juego va lento o se cierra",
+  "@faqCrashQ": {
+    "description": "EN: The game is slow or closes"
+  },
   "faqCrashA": "Cierra el juego del todo y ábrelo de nuevo. Si sigue pasando, actualízalo desde Google Play y comprueba que el teléfono tenga espacio libre. Tu avance se guarda solo.",
+  "@faqCrashA": {
+    "description": "EN: Close the game completely and open it again. If it keeps happening, update it from Google Play and check your phone has free space. Your progress saves automatically."
+  },
   "shopTitle": "TIENDA",
+  "@shopTitle": {
+    "description": "EN: SHOP"
+  },
   "coinsLabel": "MONEDAS",
+  "@coinsLabel": {
+    "description": "EN: COINS"
+  },
   "gemsLabel": "GEMAS",
+  "@gemsLabel": {
+    "description": "EN: GEMS"
+  },
   "shopTabAvatar": "AVATAR",
+  "@shopTabAvatar": {
+    "description": "EN: AVATAR"
+  },
   "shopTabCombos": "COMBOS",
+  "@shopTabCombos": {
+    "description": "EN: BUNDLES"
+  },
   "shopTabRewards": "PREMIOS",
+  "@shopTabRewards": {
+    "description": "EN: REWARDS"
+  },
   "shopTabFighter": "LUCHADOR",
+  "@shopTabFighter": {
+    "description": "EN: FIGHTER"
+  },
   "slotCharacter": "PERSONAJE",
+  "@slotCharacter": {
+    "description": "EN: CHARACTER"
+  },
   "slotFrame": "MARCO",
+  "@slotFrame": {
+    "description": "EN: FRAME"
+  },
   "slotAccessory": "ACCESORIO",
+  "@slotAccessory": {
+    "description": "EN: ACCESSORY"
+  },
   "shopSelected": "Seleccionado: {slot} · {item}",
   "@shopSelected": {
     "placeholders": {
@@ -185,69 +433,207 @@
       "item": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: Selected: {slot} · {item}"
   },
   "equipped": "EQUIPADO",
+  "@equipped": {
+    "description": "EN: EQUIPPED"
+  },
   "equip": "EQUIPAR",
+  "@equip": {
+    "description": "EN: EQUIP"
+  },
   "unlockFree": "DESBLOQUEAR GRATIS",
+  "@unlockFree": {
+    "description": "EN: UNLOCK FOR FREE"
+  },
   "unlock": "DESBLOQUEAR",
+  "@unlock": {
+    "description": "EN: UNLOCK"
+  },
   "owned": "✔ TUYO",
+  "@owned": {
+    "description": "EN: ✔ OWNED"
+  },
   "heroWorkshop": "TALLER DE HÉROES",
+  "@heroWorkshop": {
+    "description": "EN: HERO WORKSHOP"
+  },
   "heroWorkshopHint": "Combina personaje, marco y accesorio. Tu avatar no cambia tus estadísticas.",
+  "@heroWorkshopHint": {
+    "description": "EN: Mix character, frame and accessory. Your avatar doesn't change your stats."
+  },
   "charExplorer": "Explorador",
+  "@charExplorer": {
+    "description": "EN: Explorer"
+  },
   "charMage": "Maga",
+  "@charMage": {
+    "description": "EN: Mage"
+  },
   "charGuardian": "Guardián",
+  "@charGuardian": {
+    "description": "EN: Guardian"
+  },
   "frameCyan": "Cian",
+  "@frameCyan": {
+    "description": "EN: Cyan"
+  },
   "frameForest": "Bosque",
+  "@frameForest": {
+    "description": "EN: Forest"
+  },
   "frameMagma": "Magma",
+  "@frameMagma": {
+    "description": "EN: Magma"
+  },
   "accNone": "Ninguno",
+  "@accNone": {
+    "description": "EN: None"
+  },
   "accCompass": "Brújula",
+  "@accCompass": {
+    "description": "EN: Compass"
+  },
   "accDragon": "Dragón",
+  "@accDragon": {
+    "description": "EN: Dragon"
+  },
   "notEnoughCurrency": "No tienes suficientes monedas o gemas.",
+  "@notEnoughCurrency": {
+    "description": "EN: You don't have enough coins or gems."
+  },
   "notEnoughCoins": "No tienes suficientes monedas.",
+  "@notEnoughCoins": {
+    "description": "EN: You don't have enough coins."
+  },
   "notEnoughGems": "No tienes suficientes gemas.",
+  "@notEnoughGems": {
+    "description": "EN: You don't have enough gems."
+  },
   "lookEquipped": "¡Nuevo aspecto equipado!",
+  "@lookEquipped": {
+    "description": "EN: New look equipped!"
+  },
   "lookUnlocked": "¡Aspecto desbloqueado y equipado!",
+  "@lookUnlocked": {
+    "description": "EN: Look unlocked and equipped!"
+  },
   "lookSaveFailed": "No se pudo guardar el aspecto. Inténtalo de nuevo.",
+  "@lookSaveFailed": {
+    "description": "EN: Couldn't save the look. Please try again."
+  },
   "offerAdded": "¡{item} añadido a tu inventario!",
   "@offerAdded": {
     "placeholders": {
       "item": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: {item} added to your inventory!"
   },
   "purchaseFailed": "No se pudo completar la compra.",
+  "@purchaseFailed": {
+    "description": "EN: The purchase couldn't be completed."
+  },
   "rewardReceived": "¡Recompensa recibida: {reward}!",
   "@rewardReceived": {
     "placeholders": {
       "reward": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: Reward received: {reward}!"
   },
   "noAdsNow": "No hay anuncios disponibles ahora. Prueba de nuevo más tarde.",
+  "@noAdsNow": {
+    "description": "EN: No ads available right now. Please try again later."
+  },
   "rewardSaveFailed": "No se pudo guardar la recompensa. Inténtalo de nuevo.",
+  "@rewardSaveFailed": {
+    "description": "EN: Couldn't save the reward. Please try again."
+  },
   "combosTitle": "EQUÍPATE PARA LA AVENTURA",
+  "@combosTitle": {
+    "description": "EN: GEAR UP FOR THE ADVENTURE"
+  },
   "combosSubtitle": "Combos con descuento frente a comprar cada artículo por separado.",
+  "@combosSubtitle": {
+    "description": "EN: Discounted bundles compared to buying each item separately."
+  },
   "valueReference": "Referencia de valor: 5 gemas se cambian por 200 monedas en la tienda.",
+  "@valueReference": {
+    "description": "EN: Value reference: 5 gems are worth 200 coins in the shop."
+  },
   "offerExplorerKit": "Kit del Explorador",
+  "@offerExplorerKit": {
+    "description": "EN: Explorer Kit"
+  },
   "offerExplorerKitDesc": "1 poción + 2 pistas",
+  "@offerExplorerKitDesc": {
+    "description": "EN: 1 potion + 2 hints"
+  },
   "offerExplorerKitNote": "Ahorra 30 monedas frente al valor por separado.",
+  "@offerExplorerKitNote": {
+    "description": "EN: Save 30 coins compared to buying separately."
+  },
   "offerExpeditionKit": "Kit de Expedición",
+  "@offerExpeditionKit": {
+    "description": "EN: Expedition Kit"
+  },
   "offerExpeditionKitDesc": "3 pociones + 4 pistas",
+  "@offerExpeditionKitDesc": {
+    "description": "EN: 3 potions + 4 hints"
+  },
   "offerExpeditionKitNote": "Ahorra 70 monedas frente al valor por separado.",
+  "@offerExpeditionKitNote": {
+    "description": "EN: Save 70 coins compared to buying separately."
+  },
   "offerPotionTrio": "Trío de pociones",
+  "@offerPotionTrio": {
+    "description": "EN: Potion Trio"
+  },
   "offerPotionTrioDesc": "3 pociones de salud",
+  "@offerPotionTrioDesc": {
+    "description": "EN: 3 health potions"
+  },
   "offerPotionTrioNote": "Ahorra 15 monedas frente a comprarlas por unidad.",
+  "@offerPotionTrioNote": {
+    "description": "EN: Save 15 coins compared to buying them one by one."
+  },
   "offerHintTrio": "Trío de pistas",
+  "@offerHintTrio": {
+    "description": "EN: Hint Trio"
+  },
   "offerHintTrioDesc": "3 pistas para tus partidas",
+  "@offerHintTrioDesc": {
+    "description": "EN: 3 hints for your games"
+  },
   "offerHintTrioNote": "Una gema menos que comprar las 3 por unidad.",
+  "@offerHintTrioNote": {
+    "description": "EN: One gem less than buying the 3 one by one."
+  },
   "offerGoldBag": "Mochila de oro",
+  "@offerGoldBag": {
+    "description": "EN: Bag of Gold"
+  },
   "offerGoldBagDesc": "550 monedas para tus próximas compras",
+  "@offerGoldBagDesc": {
+    "description": "EN: 550 coins for your next purchases"
+  },
   "offerGoldBagNote": "Incluye 70 monedas extra frente al cambio habitual.",
+  "@offerGoldBagNote": {
+    "description": "EN: Includes 70 extra coins compared to the usual exchange."
+  },
   "fighterTitle": "PREPÁRATE PARA PELEAR",
+  "@fighterTitle": {
+    "description": "EN: GET READY TO FIGHT"
+  },
   "fighterSubtitle": "Mejoras permanentes para los guardianes y la batalla final de cada mundo.",
+  "@fighterSubtitle": {
+    "description": "EN: Permanent upgrades for the guardians and each world's final battle."
+  },
   "fighterStats": "Vida: {hp} por round · Fuerza: ×{power} · SUPER: {hits} aciertos",
   "@fighterStats": {
     "placeholders": {
@@ -260,9 +646,13 @@
       "hits": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: Health: {hp} per round · Power: ×{power} · SUPER: {hits} hits"
   },
   "maxLevel": "MÁX",
+  "@maxLevel": {
+    "description": "EN: MAX"
+  },
   "upgradeDone": "¡{upgrade} mejorada a nivel {level}!",
   "@upgradeDone": {
     "placeholders": {
@@ -272,33 +662,89 @@
       "level": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: {upgrade} upgraded to level {level}!"
   },
   "upgradeHealth": "VIDA",
+  "@upgradeHealth": {
+    "description": "EN: HEALTH"
+  },
   "upgradeHealthDesc": "Más vida en cada round de pelea.",
+  "@upgradeHealthDesc": {
+    "description": "EN: More health in every fight round."
+  },
   "upgradePower": "FUERZA",
+  "@upgradePower": {
+    "description": "EN: POWER"
+  },
   "upgradePowerDesc": "Tus golpes quitan más vida.",
+  "@upgradePowerDesc": {
+    "description": "EN: Your hits deal more damage."
+  },
   "upgradeSuper": "SUPER",
+  "@upgradeSuper": {
+    "description": "EN: SUPER"
+  },
   "upgradeSuperDesc": "La barra de SUPER se llena antes.",
+  "@upgradeSuperDesc": {
+    "description": "EN: The SUPER bar fills up faster."
+  },
   "adRewardsTitle": "RECOMPENSAS POR ANUNCIO",
+  "@adRewardsTitle": {
+    "description": "EN: AD REWARDS"
+  },
   "adRewardsSubtitle": "Mira un video opcional y recibe un recurso para tu próxima aventura.",
+  "@adRewardsSubtitle": {
+    "description": "EN: Watch an optional video and get an item for your next adventure."
+  },
   "adPotionTitle": "Poción de salud",
+  "@adPotionTitle": {
+    "description": "EN: Health potion"
+  },
   "adPotionDesc": "Una poción extra, solo cuando el anuncio se complete.",
+  "@adPotionDesc": {
+    "description": "EN: An extra potion, only when the ad is completed."
+  },
   "adPotionReward": "1 poción de salud",
+  "@adPotionReward": {
+    "description": "EN: 1 health potion"
+  },
   "adHintTitle": "Pista de sabiduría",
+  "@adHintTitle": {
+    "description": "EN: Wisdom hint"
+  },
   "adHintDesc": "Una pista extra para ayudarte en una pregunta.",
+  "@adHintDesc": {
+    "description": "EN: An extra hint to help you with a question."
+  },
   "adHintReward": "1 pista",
+  "@adHintReward": {
+    "description": "EN: 1 hint"
+  },
   "adsOptionalNote": "Los anuncios son opcionales. Si no hay uno disponible, no se descontará nada ni se entregará un premio.",
+  "@adsOptionalNote": {
+    "description": "EN: Ads are optional. If none is available, nothing is charged and no reward is given."
+  },
   "videoLabel": "VIDEO",
+  "@videoLabel": {
+    "description": "EN: VIDEO"
+  },
   "epicVictory": "¡VICTORIA ÉPICA!",
+  "@epicVictory": {
+    "description": "EN: EPIC VICTORY!"
+  },
   "dailyRewardTaken": "Recompensa de hoy ya obtenida",
+  "@dailyRewardTaken": {
+    "description": "EN: Today's reward already claimed"
+  },
   "coinsReward": "+{coins} Monedas",
   "@coinsReward": {
     "placeholders": {
       "coins": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: +{coins} Coins"
   },
   "xpReward": "+{xp} XP",
   "@xpReward": {
@@ -306,52 +752,119 @@
       "xp": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: +{xp} XP"
   },
   "continueButton": "CONTINUAR",
+  "@continueButton": {
+    "description": "EN: CONTINUE"
+  },
   "backInBattle": "¡Has vuelto a la batalla con 1 vida!",
+  "@backInBattle": {
+    "description": "EN: You're back in the battle with 1 life!"
+  },
   "videoFailed": "No se pudo completar el video. Inténtalo de nuevo o usa una poción.",
+  "@videoFailed": {
+    "description": "EN: The video couldn't be completed. Try again or use a potion."
+  },
   "potionRevived": "¡La poción te devolvió 1 vida!",
+  "@potionRevived": {
+    "description": "EN: The potion gave you 1 life back!"
+  },
   "outOfLives": "¡SIN VIDAS!",
+  "@outOfLives": {
+    "description": "EN: OUT OF LIVES!"
+  },
   "keepFighting": "¿Quieres seguir luchando? Recupera 1 vida y continúa la batalla.",
+  "@keepFighting": {
+    "description": "EN: Want to keep fighting? Get 1 life back and continue the battle."
+  },
   "watchVideo": "VER VIDEO",
+  "@watchVideo": {
+    "description": "EN: WATCH VIDEO"
+  },
   "videoAlreadyUsed": "Ya usaste el video en esta batalla.",
+  "@videoAlreadyUsed": {
+    "description": "EN: You already used the video in this battle."
+  },
   "usePotionCount": "USAR POCIÓN ({count})",
   "@usePotionCount": {
     "placeholders": {
       "count": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: USE POTION ({count})"
   },
   "noPotions": "SIN POCIONES",
+  "@noPotions": {
+    "description": "EN: NO POTIONS"
+  },
   "giveUp": "Rendirse",
+  "@giveUp": {
+    "description": "EN: Give up"
+  },
   "defeatTitle": "¡DERROTA!",
+  "@defeatTitle": {
+    "description": "EN: DEFEAT!"
+  },
   "defeatNoLives": "Te has quedado sin vidas. ¡Inténtalo de nuevo!",
+  "@defeatNoLives": {
+    "description": "EN: You ran out of lives. Try again!"
+  },
   "defeatMonsterResisted": "El monstruo resistió tus respuestas. ¡Repasa y vuelve a intentarlo!",
+  "@defeatMonsterResisted": {
+    "description": "EN: The monster resisted your answers. Review and try again!"
+  },
   "retry": "REINTENTAR",
+  "@retry": {
+    "description": "EN: RETRY"
+  },
   "noQuestionsPhase": "No hay preguntas para esta fase.",
+  "@noQuestionsPhase": {
+    "description": "EN: There are no questions for this stage."
+  },
   "miniChallengeTitle": "MINI-RETO {number}",
   "@miniChallengeTitle": {
     "placeholders": {
       "number": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: MINI CHALLENGE {number}"
   },
   "battleTitle": "COMBATE",
+  "@battleTitle": {
+    "description": "EN: BATTLE"
+  },
   "diffEasy": "FÁCIL",
+  "@diffEasy": {
+    "description": "EN: EASY"
+  },
   "diffEasyPlus": "FÁCIL+",
+  "@diffEasyPlus": {
+    "description": "EN: EASY+"
+  },
   "diffMedium": "MEDIA",
+  "@diffMedium": {
+    "description": "EN: MEDIUM"
+  },
   "diffHard": "DIFÍCIL",
+  "@diffHard": {
+    "description": "EN: HARD"
+  },
   "diffEpic": "ÉPICO",
+  "@diffEpic": {
+    "description": "EN: EPIC"
+  },
   "encounterMini": "MINI-RETO · {difficulty}",
   "@encounterMini": {
     "placeholders": {
       "difficulty": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: MINI CHALLENGE · {difficulty}"
   },
   "encounterWorldBoss": "JEFE DEL MUNDO · {difficulty}",
   "@encounterWorldBoss": {
@@ -359,7 +872,8 @@
       "difficulty": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: WORLD BOSS · {difficulty}"
   },
   "encounterGuardian": "GUARDIÁN · {difficulty}",
   "@encounterGuardian": {
@@ -367,7 +881,8 @@
       "difficulty": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: GUARDIAN · {difficulty}"
   },
   "questionCounter": "PREGUNTA {current}/{total}",
   "@questionCounter": {
@@ -378,17 +893,25 @@
       "total": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: QUESTION {current}/{total}"
   },
   "optionDiscarded": "Opción descartada",
+  "@optionDiscarded": {
+    "description": "EN: Option discarded"
+  },
   "correct": "¡Correcto!",
+  "@correct": {
+    "description": "EN: Correct!"
+  },
   "correctAnswerIs": "Respuesta correcta: {answer}",
   "@correctAnswerIs": {
     "placeholders": {
       "answer": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: Correct answer: {answer}"
   },
   "correctOptionIs": "La opción correcta es “{answer}”.",
   "@correctOptionIs": {
@@ -396,16 +919,21 @@
       "answer": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: The correct option is “{answer}”."
   },
   "seeResult": "VER RESULTADO",
+  "@seeResult": {
+    "description": "EN: SEE RESULT"
+  },
   "potionCount": "POCIÓN ({count})",
   "@potionCount": {
     "placeholders": {
       "count": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: POTION ({count})"
   },
   "hintCount": "PISTA ({count})",
   "@hintCount": {
@@ -413,73 +941,177 @@
       "count": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: HINT ({count})"
   },
   "monsterResists": "¡El monstruo resiste! Responde una pregunta adicional.",
+  "@monsterResists": {
+    "description": "EN: The monster resists! Answer one more question."
+  },
   "monsterPushedBack": "¡El monstruo te hizo retroceder! Responde de nuevo para avanzar.",
+  "@monsterPushedBack": {
+    "description": "EN: The monster pushed you back! Answer again to move forward."
+  },
   "monsterPushedBackCategory": "¡El monstruo te hizo retroceder! Nueva pregunta de {category}.",
   "@monsterPushedBackCategory": {
     "placeholders": {
       "category": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: The monster pushed you back! New {category} question."
   },
   "lifeAlreadyFull": "¡Tu vida ya está al máximo!",
+  "@lifeAlreadyFull": {
+    "description": "EN: Your lives are already full!"
+  },
   "noPotionsAvailable": "No tienes pociones disponibles. ¡Cómpralas en la tienda!",
+  "@noPotionsAvailable": {
+    "description": "EN: You have no potions. Buy them in the shop!"
+  },
   "lifeRecovered": "¡Has recuperado 1 vida!",
+  "@lifeRecovered": {
+    "description": "EN: You got 1 life back!"
+  },
   "noHintsAvailable": "No tienes pistas disponibles. ¡Cómpralas en la tienda!",
+  "@noHintsAvailable": {
+    "description": "EN: You have no hints. Buy them in the shop!"
+  },
   "noMoreOptions": "No hay más opciones para descartar.",
+  "@noMoreOptions": {
+    "description": "EN: There are no more options to discard."
+  },
   "optionRemoved": "¡Se ha descartado una opción incorrecta!",
+  "@optionRemoved": {
+    "description": "EN: A wrong option has been removed!"
+  },
   "fightKick": "¡PATADA RÁPIDA!",
+  "@fightKick": {
+    "description": "EN: QUICK KICK!"
+  },
   "fightPunch": "¡PUÑETAZO!",
+  "@fightPunch": {
+    "description": "EN: PUNCH!"
+  },
   "fightWeakHit": "GOLPE",
+  "@fightWeakHit": {
+    "description": "EN: HIT"
+  },
   "fightCombo": "{count} HITS COMBO",
   "@fightCombo": {
     "placeholders": {
       "count": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: {count} HIT COMBO"
   },
   "fightSuper": "¡ATAQUE SUPER!",
+  "@fightSuper": {
+    "description": "EN: SUPER ATTACK!"
+  },
   "fightTimeUp": "¡TIEMPO!",
+  "@fightTimeUp": {
+    "description": "EN: TIME'S UP!"
+  },
   "fightGotHit": "¡TE GOLPEÓ!",
+  "@fightGotHit": {
+    "description": "EN: YOU GOT HIT!"
+  },
   "superReady": "¡SUPER!",
+  "@superReady": {
+    "description": "EN: SUPER!"
+  },
   "superLabel": "SUPER",
+  "@superLabel": {
+    "description": "EN: SUPER"
+  },
   "roundFinal": "ROUND FINAL",
+  "@roundFinal": {
+    "description": "EN: FINAL ROUND"
+  },
   "roundNumber": "ROUND {number}",
   "@roundNumber": {
     "placeholders": {
       "number": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: ROUND {number}"
   },
   "monsterEnraged": "¡EL MONSTRUO ESTÁ FURIOSO!",
+  "@monsterEnraged": {
+    "description": "EN: THE MONSTER IS ENRAGED!"
+  },
   "fight": "¡PELEA!",
+  "@fight": {
+    "description": "EN: FIGHT!"
+  },
   "roundWon": "¡GANAS EL ROUND!",
+  "@roundWon": {
+    "description": "EN: YOU WIN THE ROUND!"
+  },
   "roundLost": "PIERDES EL ROUND",
+  "@roundLost": {
+    "description": "EN: YOU LOSE THE ROUND"
+  },
   "worldCleared": "¡MUNDO SUPERADO!",
+  "@worldCleared": {
+    "description": "EN: WORLD CLEARED!"
+  },
   "victory": "¡VICTORIA!",
+  "@victory": {
+    "description": "EN: VICTORY!"
+  },
   "flawlessWin": "Sin perder un solo round",
+  "@flawlessWin": {
+    "description": "EN: Without losing a single round"
+  },
   "won21": "Ganaste 2 a 1",
+  "@won21": {
+    "description": "EN: You won 2 to 1"
+  },
   "bestCombo": "Mejor combo: {count} aciertos seguidos",
   "@bestCombo": {
     "placeholders": {
       "count": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: Best combo: {count} correct in a row"
   },
   "reducedReward": "Ya habías ganado esta pelea: premio reducido.",
+  "@reducedReward": {
+    "description": "EN: You had already won this fight: reduced reward."
+  },
   "defeat": "DERROTA",
+  "@defeat": {
+    "description": "EN: DEFEAT"
+  },
   "fightDefeatTip": "El monstruo ganó esta vez. Responde más rápido para dar patadas, guarda el SUPER para rematar y mejora tu luchador en la Tienda.",
+  "@fightDefeatTip": {
+    "description": "EN: The monster won this time. Answer faster to kick, save the SUPER to finish it off and upgrade your fighter in the Shop."
+  },
   "rematch": "REVANCHA",
+  "@rematch": {
+    "description": "EN: REMATCH"
+  },
   "upgradeFighter": "MEJORAR LUCHADOR",
+  "@upgradeFighter": {
+    "description": "EN: UPGRADE FIGHTER"
+  },
   "backToMap": "Volver al mapa",
+  "@backToMap": {
+    "description": "EN: Back to the map"
+  },
   "finalBattle": "BATALLA FINAL",
+  "@finalBattle": {
+    "description": "EN: FINAL BATTLE"
+  },
   "guardianFight": "PELEA DE GUARDIÁN",
+  "@guardianFight": {
+    "description": "EN: GUARDIAN FIGHT"
+  },
   "starsNeeded": "Necesitas {required} ★ en este mundo para entrar. Te faltan {missing}.",
   "@starsNeeded": {
     "placeholders": {
@@ -489,133 +1121,446 @@
       "missing": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: You need {required} ★ in this world to enter. {missing} to go."
   },
   "starsHowTo": "Repite niveles para conseguir 3 ★ (sin fallar ninguna) y mejora tu luchador en la Tienda mientras tanto.",
+  "@starsHowTo": {
+    "description": "EN: Replay levels to get 3 ★ (no mistakes) and upgrade your fighter in the Shop meanwhile."
+  },
   "gotIt": "ENTENDIDO",
+  "@gotIt": {
+    "description": "EN: GOT IT"
+  },
   "livesFull": "LLENO",
+  "@livesFull": {
+    "description": "EN: FULL"
+  },
   "noVideosNow": "No hay videos disponibles ahora. Prueba más tarde.",
+  "@noVideosNow": {
+    "description": "EN: No videos available right now. Try again later."
+  },
   "refillToPlay": "Recarga tus vidas para seguir jugando.",
+  "@refillToPlay": {
+    "description": "EN: Refill your lives to keep playing."
+  },
   "nextLifeIn": "Siguiente vida en {time}",
   "@nextLifeIn": {
     "placeholders": {
       "time": {
         "type": "String"
       }
-    }
+    },
+    "description": "EN: Next life in {time}"
   },
   "watchVideoPlusOne": "VER VIDEO  +1",
+  "@watchVideoPlusOne": {
+    "description": "EN: WATCH VIDEO  +1"
+  },
   "usePotionPlusOne": "USAR POCIÓN ({count})  +1",
   "@usePotionPlusOne": {
     "placeholders": {
       "count": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: USE POTION ({count})  +1"
   },
-  "gemsRefillAll": "{gems} GEMAS  LLENAR TODO",
+  "gemsRefillAll": "{gems} GEMAS  LLENAR VIDAS",
   "@gemsRefillAll": {
     "placeholders": {
       "gems": {
         "type": "int"
       }
-    }
+    },
+    "description": "EN: {gems} GEMS  REFILL LIVES"
   },
   "wait": "Esperar",
+  "@wait": {
+    "description": "EN: Wait"
+  },
   "story11Heading": "¡Capítulo 1 completado!",
+  "@story11Heading": {
+    "description": "EN: Chapter 1 complete!"
+  },
   "story11Destination": "Capítulo 2 · El corazón del bosque",
+  "@story11Destination": {
+    "description": "EN: Chapter 2 · The heart of the forest"
+  },
   "story11Narrative": "El guardián reconoce tu valor y aparta las raíces que bloqueaban el camino. Al otro lado, una luz azul late bajo los árboles: algo antiguo está despertando.",
+  "@story11Narrative": {
+    "description": "EN: The guardian recognizes your courage and moves aside the roots blocking the path. On the other side, a blue light pulses beneath the trees: something ancient is waking up."
+  },
   "story11Objective": "Sigue las luces y descubre qué protege el bosque.",
+  "@story11Objective": {
+    "description": "EN: Follow the lights and discover what the forest protects."
+  },
   "story12Heading": "¡Capítulo 2 completado!",
+  "@story12Heading": {
+    "description": "EN: Chapter 2 complete!"
+  },
   "story12Destination": "Capítulo 3 · La puerta de piedra",
+  "@story12Destination": {
+    "description": "EN: Chapter 3 · The stone gate"
+  },
   "story12Narrative": "Las piedras del bosque se alinean y forman un portal. El mapa muestra cavernas llenas de cristales; allí se esconde la pista sobre la fuerza que despierta en los mundos.",
+  "@story12Narrative": {
+    "description": "EN: The forest stones line up and form a portal. The map shows caverns full of crystals; there lies the clue to the power awakening in the worlds."
+  },
   "story12Objective": "Cruza el portal y busca la señal del siguiente mundo.",
+  "@story12Objective": {
+    "description": "EN: Cross the portal and look for the sign of the next world."
+  },
   "story13Heading": "¡Bosque protegido!",
+  "@story13Heading": {
+    "description": "EN: Forest protected!"
+  },
   "story13Destination": "Mundo 2 · Las Cavernas",
+  "@story13Destination": {
+    "description": "EN: World 2 · The Caverns"
+  },
   "story13Narrative": "Con el dragón vencido, el bosque recupera su brillo. Una corriente de cristales señala el camino hacia las cavernas, donde una nueva criatura guarda el siguiente fragmento.",
+  "@story13Narrative": {
+    "description": "EN: With the dragon defeated, the forest shines again. A stream of crystals points the way to the caverns, where a new creature guards the next fragment."
+  },
   "story13Objective": "Explora las cavernas y reúne sus fragmentos de conocimiento.",
+  "@story13Objective": {
+    "description": "EN: Explore the caverns and gather their fragments of knowledge."
+  },
   "story21Heading": "¡Capítulo 1 completado!",
+  "@story21Heading": {
+    "description": "EN: Chapter 1 complete!"
+  },
   "story21Destination": "Capítulo 2 · El eco de los cristales",
+  "@story21Destination": {
+    "description": "EN: Chapter 2 · The echo of the crystals"
+  },
   "story21Narrative": "El guardián de la entrada deja de rugir. Su eco revela un túnel secreto y, en sus paredes, cristales que repiten una melodía cada vez que resuelves un acertijo.",
+  "@story21Narrative": {
+    "description": "EN: The guardian at the entrance stops roaring. Its echo reveals a secret tunnel and, on its walls, crystals that repeat a melody every time you solve a riddle."
+  },
   "story21Objective": "Sigue la melodía hasta la cámara central.",
+  "@story21Objective": {
+    "description": "EN: Follow the melody to the central chamber."
+  },
   "story22Heading": "¡Capítulo 2 completado!",
+  "@story22Heading": {
+    "description": "EN: Chapter 2 complete!"
+  },
   "story22Destination": "Capítulo 3 · El puente subterráneo",
+  "@story22Destination": {
+    "description": "EN: Chapter 3 · The underground bridge"
+  },
   "story22Narrative": "La cámara se ilumina y un puente aparece sobre el abismo. Al fondo espera el coloso, pero las marcas del puente muestran que solo la observación permitirá cruzarlo.",
+  "@story22Narrative": {
+    "description": "EN: The chamber lights up and a bridge appears over the abyss. The colossus waits at the far end, but the marks on the bridge show that only careful observation will let you cross."
+  },
   "story22Objective": "Alcanza el otro lado y prepárate para el coloso.",
+  "@story22Objective": {
+    "description": "EN: Reach the other side and get ready for the colossus."
+  },
   "story23Heading": "¡Cavernas superadas!",
+  "@story23Heading": {
+    "description": "EN: Caverns conquered!"
+  },
   "story23Destination": "Mundo 3 · Las Islas Flotantes",
+  "@story23Destination": {
+    "description": "EN: World 3 · The Floating Islands"
+  },
   "story23Narrative": "El coloso abre la salida hacia el cielo. Las islas flotantes se acercan entre las nubes y una criatura alada lleva el siguiente fragmento a lo más alto.",
+  "@story23Narrative": {
+    "description": "EN: The colossus opens the way to the sky. The floating islands drift closer through the clouds, and a winged creature carries the next fragment to the very top."
+  },
   "story23Objective": "Sube por las islas y recupera el fragmento celeste.",
+  "@story23Objective": {
+    "description": "EN: Climb the islands and recover the sky fragment."
+  },
   "story31Heading": "¡Capítulo 1 completado!",
+  "@story31Heading": {
+    "description": "EN: Chapter 1 complete!"
+  },
   "story31Destination": "Capítulo 2 · Las corrientes del cielo",
+  "@story31Destination": {
+    "description": "EN: Chapter 2 · The sky currents"
+  },
   "story31Narrative": "La primera isla vuelve a elevarse. Un mapa de viento aparece en el suelo y señala una ruta cambiante entre las nubes; tendrás que leer sus señales para avanzar.",
+  "@story31Narrative": {
+    "description": "EN: The first island rises again. A wind map appears on the ground, showing a shifting route through the clouds; you'll have to read its signs to move on."
+  },
   "story31Objective": "Encuentra la corriente que conduce a la isla central.",
+  "@story31Objective": {
+    "description": "EN: Find the current that leads to the central island."
+  },
   "story32Heading": "¡Capítulo 2 completado!",
+  "@story32Heading": {
+    "description": "EN: Chapter 2 complete!"
+  },
   "story32Destination": "Capítulo 3 · La tormenta de cristal",
+  "@story32Destination": {
+    "description": "EN: Chapter 3 · The crystal storm"
+  },
   "story32Narrative": "La ruta segura termina ante una tormenta azul. En su centro brilla el último fragmento del cielo, custodiado por el señor de las islas.",
+  "@story32Narrative": {
+    "description": "EN: The safe route ends before a blue storm. At its center shines the last sky fragment, guarded by the lord of the islands."
+  },
   "story32Objective": "Atraviesa la tormenta y reúne los fragmentos celestes.",
+  "@story32Objective": {
+    "description": "EN: Cross the storm and gather the sky fragments."
+  },
   "story33Heading": "¡Islas recuperadas!",
+  "@story33Heading": {
+    "description": "EN: Islands restored!"
+  },
   "story33Destination": "Mundo 4 · El Volcán",
+  "@story33Destination": {
+    "description": "EN: World 4 · The Volcano"
+  },
   "story33Narrative": "La tormenta se disipa y las islas vuelven a su sitio. Desde lo alto ves un resplandor rojo: el volcán está despertando y amenaza con cubrir de ceniza todos los caminos.",
+  "@story33Narrative": {
+    "description": "EN: The storm fades and the islands return to their places. From up high you see a red glow: the volcano is waking up and threatens to cover every path in ash."
+  },
   "story33Objective": "Llega al volcán antes de que la última ruta desaparezca.",
+  "@story33Objective": {
+    "description": "EN: Reach the volcano before the last route disappears."
+  },
   "story41Heading": "¡Capítulo 1 completado!",
+  "@story41Heading": {
+    "description": "EN: Chapter 1 complete!"
+  },
   "story41Destination": "Capítulo 2 · El río de magma",
+  "@story41Destination": {
+    "description": "EN: Chapter 2 · The river of magma"
+  },
   "story41Narrative": "La salamandra se aparta y deja al descubierto un sendero entre rocas negras. Un río de magma corta el camino; sus antiguas señales indican cuándo es seguro avanzar.",
+  "@story41Narrative": {
+    "description": "EN: The salamander steps aside, revealing a trail between black rocks. A river of magma cuts the path; its ancient signs show when it's safe to move forward."
+  },
   "story41Objective": "Lee las señales y cruza el río de magma.",
+  "@story41Objective": {
+    "description": "EN: Read the signs and cross the river of magma."
+  },
   "story42Heading": "¡Capítulo 2 completado!",
+  "@story42Heading": {
+    "description": "EN: Chapter 2 complete!"
+  },
   "story42Destination": "Capítulo 3 · El corazón del volcán",
+  "@story42Destination": {
+    "description": "EN: Chapter 3 · The heart of the volcano"
+  },
   "story42Narrative": "El río se calma y la montaña guarda silencio. En lo profundo, el titán protege el corazón del volcán; resolver sus pruebas puede detener la erupción.",
+  "@story42Narrative": {
+    "description": "EN: The river calms down and the mountain falls silent. Deep inside, the titan guards the heart of the volcano; solving its trials could stop the eruption."
+  },
   "story42Objective": "Enfrenta al titán y protege los cuatro mundos.",
+  "@story42Objective": {
+    "description": "EN: Face the titan and protect the four worlds."
+  },
   "story43Heading": "¡Aventura completada!",
+  "@story43Heading": {
+    "description": "EN: Adventure complete!"
+  },
   "story43Destination": "Los cuatro mundos están a salvo",
+  "@story43Destination": {
+    "description": "EN: The four worlds are safe"
+  },
   "story43Narrative": "El corazón del volcán se apaga y una luz recorre el bosque, las cavernas y las islas. Tus respuestas ayudaron a reunir los fragmentos y a restaurar el equilibrio.",
+  "@story43Narrative": {
+    "description": "EN: The heart of the volcano goes dark and a light sweeps across the forest, the caverns and the islands. Your answers helped gather the fragments and restore the balance."
+  },
   "story43Objective": "Tu leyenda queda escrita. Puedes volver a los mundos para mejorar tus estrellas.",
+  "@story43Objective": {
+    "description": "EN: Your legend is written. You can return to the worlds to improve your stars."
+  },
   "questWinBattles": "Guerrero Novato",
+  "@questWinBattles": {
+    "description": "EN: Rookie Warrior"
+  },
   "questWinBattlesDesc": "Gana 3 batallas en el mapa",
+  "@questWinBattlesDesc": {
+    "description": "EN: Win 3 battles on the map"
+  },
   "questAnswerTrivia": "Mente Brillante",
+  "@questAnswerTrivia": {
+    "description": "EN: Brilliant Mind"
+  },
   "questAnswerTriviaDesc": "Responde correctamente 10 preguntas de trivia",
+  "@questAnswerTriviaDesc": {
+    "description": "EN: Answer 10 trivia questions correctly"
+  },
   "questUsePotion": "Primeros Auxilios",
+  "@questUsePotion": {
+    "description": "EN: First Aid"
+  },
   "questUsePotionDesc": "Utiliza 2 pociones de vida durante un combate",
+  "@questUsePotionDesc": {
+    "description": "EN: Use 2 health potions during battles"
+  },
   "questBuyItem": "Cliente Frecuente",
+  "@questBuyItem": {
+    "description": "EN: Regular Customer"
+  },
   "questBuyItemDesc": "Realiza 1 compra de poción o mejora en la tienda",
+  "@questBuyItemDesc": {
+    "description": "EN: Make 1 purchase of a potion or upgrade in the shop"
+  },
   "enemyChapterGuardian": "Guardián del capítulo",
+  "@enemyChapterGuardian": {
+    "description": "EN: Chapter Guardian"
+  },
   "enemyPathCreature": "Criatura del sendero",
+  "@enemyPathCreature": {
+    "description": "EN: Path Creature"
+  },
   "bossWorld1": "Dragón del Bosque",
+  "@bossWorld1": {
+    "description": "EN: Forest Dragon"
+  },
   "bossWorld2": "Coloso de las Cavernas",
+  "@bossWorld2": {
+    "description": "EN: Cavern Colossus"
+  },
   "bossWorld3": "Señor de las Islas",
+  "@bossWorld3": {
+    "description": "EN: Lord of the Islands"
+  },
   "bossWorld4": "Titán del Volcán",
+  "@bossWorld4": {
+    "description": "EN: Volcano Titan"
+  },
   "bossWorldDefault": "Guardián del Mundo",
+  "@bossWorldDefault": {
+    "description": "EN: World Guardian"
+  },
   "mini11": "Guardián del Bosque",
+  "@mini11": {
+    "description": "EN: Forest Guardian"
+  },
   "mini12": "Duende del Musgo",
+  "@mini12": {
+    "description": "EN: Moss Goblin"
+  },
   "mini13": "Espíritu de Raíces",
+  "@mini13": {
+    "description": "EN: Root Spirit"
+  },
   "mini21": "Murciélago de Cristal",
+  "@mini21": {
+    "description": "EN: Crystal Bat"
+  },
   "mini22": "Eco de la Caverna",
+  "@mini22": {
+    "description": "EN: Cavern Echo"
+  },
   "mini23": "Rastreador de Piedra",
+  "@mini23": {
+    "description": "EN: Stone Tracker"
+  },
   "mini31": "Familiar de las Islas",
+  "@mini31": {
+    "description": "EN: Island Familiar"
+  },
   "mini32": "Duende de Nube",
+  "@mini32": {
+    "description": "EN: Cloud Sprite"
+  },
   "mini33": "Vigía del Viento",
+  "@mini33": {
+    "description": "EN: Wind Watcher"
+  },
   "mini41": "Salamandra de Lava",
+  "@mini41": {
+    "description": "EN: Lava Salamander"
+  },
   "mini42": "Espíritu de Brasa",
+  "@mini42": {
+    "description": "EN: Ember Spirit"
+  },
   "mini43": "Cría de Magma",
+  "@mini43": {
+    "description": "EN: Magma Hatchling"
+  },
   "catOrtografia": "Ortografía",
+  "@catOrtografia": {
+    "description": "EN: Spelling"
+  },
   "catTildes": "Tildes",
+  "@catTildes": {
+    "description": "EN: Accent marks"
+  },
   "catHomofonos": "Homófonos",
+  "@catHomofonos": {
+    "description": "EN: Homophones"
+  },
   "catDetectarError": "Detecta el error",
+  "@catDetectarError": {
+    "description": "EN: Spot the mistake"
+  },
   "catCompletarFrase": "Completa la frase",
+  "@catCompletarFrase": {
+    "description": "EN: Complete the sentence"
+  },
   "catSinonimosAntonimos": "Sinónimos y antónimos",
+  "@catSinonimosAntonimos": {
+    "description": "EN: Synonyms and antonyms"
+  },
   "catSignificado": "Significado",
+  "@catSignificado": {
+    "description": "EN: Meaning"
+  },
   "catRefranes": "Refranes y expresiones",
+  "@catRefranes": {
+    "description": "EN: Sayings and idioms"
+  },
   "catAnalogias": "Analogías",
+  "@catAnalogias": {
+    "description": "EN: Analogies"
+  },
   "catIntruso": "La palabra intrusa",
+  "@catIntruso": {
+    "description": "EN: Odd one out"
+  },
   "catSeries": "Series",
+  "@catSeries": {
+    "description": "EN: Series"
+  },
   "catAnagramas": "Anagramas",
+  "@catAnagramas": {
+    "description": "EN: Anagrams"
+  },
   "catPalabraOculta": "Palabra oculta",
+  "@catPalabraOculta": {
+    "description": "EN: Hidden word"
+  },
   "catSilabas": "Sílabas",
+  "@catSilabas": {
+    "description": "EN: Syllables"
+  },
   "catAdivinanzas": "Adivinanzas",
+  "@catAdivinanzas": {
+    "description": "EN: Riddles"
+  },
   "catDeduccion": "Deducción",
+  "@catDeduccion": {
+    "description": "EN: Deduction"
+  },
   "catProblemas": "Problemas narrados",
+  "@catProblemas": {
+    "description": "EN: Word problems"
+  },
   "catCiencia": "Ciencia",
+  "@catCiencia": {
+    "description": "EN: Science"
+  },
   "catGeografia": "Geografía",
+  "@catGeografia": {
+    "description": "EN: Geography"
+  },
   "catHistoria": "Historia",
-  "catCulturaGeneral": "Cultura general"
+  "@catHistoria": {
+    "description": "EN: History"
+  },
+  "catCulturaGeneral": "Cultura general",
+  "@catCulturaGeneral": {
+    "description": "EN: General knowledge"
+  }
 }

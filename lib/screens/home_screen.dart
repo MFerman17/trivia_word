@@ -14,6 +14,7 @@ import '../widgets/player_avatar.dart';
 import '../services/cloud_service.dart';
 import '../l10n/l10n.dart';
 import '../widgets/lives_widgets.dart';
+import '../services/ad_service.dart';
 
 // Color de contorno común para todo el estilo "juego"
 const Color kOutline = Color(0xFF0D0326);
@@ -53,6 +54,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     _loadUserProfile();
     // Música propia de la portada (y de las pantallas que se abren desde aquí).
     AudioService.playMenuMusic();
+    // Anuncios: en Europa, el aviso de consentimiento sale al abrir el juego
+    // (no en mitad de una batalla). También deja un video precargado.
+    AdService.initialize();
 
     _dragonController = AnimationController(
       vsync: this,

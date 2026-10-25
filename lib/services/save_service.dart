@@ -138,6 +138,23 @@ class SaveService {
     return true;
   }
 
+  /// Borra del teléfono todo el avance (perfil, niveles, misiones, vidas,
+  /// historial de preguntas...). Se conservan el idioma y el sonido, que son
+  /// preferencias del dispositivo y no datos del jugador.
+  static Future<void> clearLocalData() async {
+    final prefs = await SharedPreferences.getInstance();
+    const keep = {
+      'app_language',
+      'audio_music_on',
+      'audio_sfx_on',
+      'audio_music_volume',
+      'audio_sfx_volume',
+    };
+    for (final key in prefs.getKeys().toList()) {
+      if (!keep.contains(key)) await prefs.remove(key);
+    }
+  }
+
   // =========================================================================
   // DATOS DEL JUGADOR
   // =========================================================================

@@ -617,5 +617,16 @@
   "catCiencia": "Ciencia",
   "catGeografia": "Geografía",
   "catHistoria": "Historia",
-  "catCulturaGeneral": "Cultura general"
+  "catCulturaGeneral": "Cultura general",
+  "settingsData": "CUENTA Y DATOS",
+  "privacyPolicyLabel": "Política de privacidad:",
+  "deleteData": "BORRAR MIS DATOS",
+  "deleteDataHint": "Borra tu avance del teléfono y de la nube, y tu puesto en el ranking.",
+  "deleteDataConfirmTitle": "¿BORRAR TODO?",
+  "deleteDataConfirmBody": "Se borrarán para siempre tu nivel, estrellas, monedas, gemas, aspectos, mejoras y tu puesto en el ranking. No se puede deshacer.",
+  "deleteDataConfirm": "SÍ, BORRAR",
+  "cancel": "Cancelar",
+  "deleteDataDone": "Tus datos se han borrado. El juego empieza de nuevo.",
+  "deleteDataFailed": "No se pudieron borrar los datos. Comprueba tu conexión e inténtalo de nuevo.",
+  "adPrivacyOptions": "PRIVACIDAD DE ANUNCIOS"
 }

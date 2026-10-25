@@ -50,6 +50,44 @@ class CloudService {
     }
   }
 
+  // =================================================================
+  // BORRAR TODOS LOS DATOS (requisito de Google Play)
+  // =================================================================
+
+  /// Borra el avance del jugador en la nube (guardado y ranking), su cuenta
+  /// de Firebase y los datos del teléfono. El juego vuelve a empezar desde
+  /// cero. Se conservan solo el idioma y los ajustes de sonido.
+  ///
+  /// Devuelve false si no se pudo borrar lo de la nube (por ejemplo, sin
+  /// internet): en ese caso NO se borra nada del teléfono, para que el
+  /// jugador pueda intentarlo de nuevo sin quedarse con datos a medias.
+  static Future<bool> deleteAllData() async {
+    final user = _auth.currentUser;
+    if (user != null) {
+      try {
+        // Las reglas de Firestore permiten a cada jugador borrar lo suyo.
+        await _db.collection('leaderboard').doc(user.uid).delete();
+        await _db.collection('player_saves').doc(user.uid).delete();
+      } catch (e) {
+        debugPrint('No se pudieron borrar los datos de la nube: $e');
+        return false;
+      }
+      try {
+        await user.delete(); // borra la cuenta (anónima o de Google) en Firebase
+      } catch (e) {
+        // Firebase puede pedir un inicio de sesión reciente para borrar una
+        // cuenta de Google. Los datos ya están borrados: basta con cerrar sesión.
+        debugPrint('No se pudo borrar la cuenta, se cierra la sesión: $e');
+      }
+      try {
+        await _auth.signOut();
+        await GoogleSignIn.instance.signOut();
+      } catch (_) {}
+    }
+    await SaveService.clearLocalData();
+    return true;
+  }
+
   /// Descarga el guardado al abrir el juego. La copia local se conserva si
   /// Firebase no está disponible, y se combina para proteger progreso offline.
   static Future<void> restoreCloudSave() async {

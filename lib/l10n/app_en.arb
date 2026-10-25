@@ -338,5 +338,16 @@
   "catCiencia": "Science",
   "catGeografia": "Geography",
   "catHistoria": "History",
-  "catCulturaGeneral": "General knowledge"
+  "catCulturaGeneral": "General knowledge",
+  "settingsData": "ACCOUNT AND DATA",
+  "privacyPolicyLabel": "Privacy policy:",
+  "deleteData": "DELETE MY DATA",
+  "deleteDataHint": "Deletes your progress from this phone and the cloud, and your leaderboard entry.",
+  "deleteDataConfirmTitle": "DELETE EVERYTHING?",
+  "deleteDataConfirmBody": "Your level, stars, coins, gems, looks, upgrades and leaderboard entry will be deleted forever. This can't be undone.",
+  "deleteDataConfirm": "YES, DELETE",
+  "cancel": "Cancel",
+  "deleteDataDone": "Your data has been deleted. The game starts over.",
+  "deleteDataFailed": "Your data couldn't be deleted. Check your connection and try again.",
+  "adPrivacyOptions": "AD PRIVACY OPTIONS"
 }

@@ -1,0 +1,7 @@
+# Copia este archivo como "key.properties" (en esta misma carpeta android/)
+# y rellena tus datos. key.properties NO se sube a GitHub.
+storePassword=CONTRASEÑA_DEL_ALMACEN
+keyPassword=CONTRASEÑA_DE_LA_LLAVE
+keyAlias=upload
+# Ruta a tu llave. Ejemplo en Windows (con barras normales /):
+storeFile=C:/Users/TU_USUARIO/llaves/words-and-monsters-upload.jks

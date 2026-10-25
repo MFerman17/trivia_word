@@ -2,9 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../l10n/l10n.dart';
+import '../services/ad_service.dart';
 import '../services/audio_service.dart';
+import '../services/cloud_service.dart';
+import '../services/lives_service.dart';
 import '../services/locale_service.dart';
+import '../services/question_repository.dart';
 import '../widgets/game_3d.dart';
+import 'home_screen.dart';
+
+/// Dirección pública de la política de privacidad (GitHub Pages, carpeta docs/).
+const String privacyPolicyUrl = 'https://mferman17.github.io/trivia_word/privacidad.html';
 
 /// Versión que se muestra al pie de Ajustes.
 /// Al publicar una versión nueva, cambiarla aquí y en pubspec.yaml.
@@ -22,6 +30,17 @@ class SettingsScreen extends StatefulWidget {
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
+  /// Botón de privacidad de anuncios: solo donde Google lo exige (Europa).
+  bool _showAdPrivacy = false;
+
+  @override
+  void initState() {
+    super.initState();
+    AdService.privacyOptionsRequired().then((required) {
+      if (mounted && required) setState(() => _showAdPrivacy = true);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,6 +59,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     EntranceFlip(index: 1, child: _buildLanguagePanel()),
                     const SizedBox(height: 16),
                     EntranceFlip(index: 2, child: _buildFaqPanel()),
+                    const SizedBox(height: 16),
+                    EntranceFlip(index: 3, child: _buildDataPanel()),
                     const SizedBox(height: 18),
                     Center(
                       child: Text(
@@ -236,6 +257,148 @@ class _SettingsScreenState extends State<SettingsScreen> {
     AudioService.playSelect();
     await LocaleService.setLanguage(code);
     if (mounted) setState(() {});
+  }
+
+  // ---------------------------------------------------------------
+  // CUENTA Y DATOS: política de privacidad y borrado de datos.
+  // Google Play exige que el jugador pueda borrar sus datos desde la app.
+  // ---------------------------------------------------------------
+  Widget _buildDataPanel() {
+    const danger = Color(0xFFFF4D5E);
+    return Panel3D(
+      accent: danger,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          _sectionTitle(context.l10n.settingsData),
+          Text(
+            context.l10n.privacyPolicyLabel,
+            style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
+          ),
+          // Seleccionable para poder copiar la dirección.
+          SelectableText(
+            privacyPolicyUrl,
+            style: GoogleFonts.oswald(color: WM.cyan, fontSize: 13),
+          ),
+          if (_showAdPrivacy) ...[
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: Pressable3D(
+                onTap: AdService.showPrivacyOptions,
+                color: WM.violet,
+                height: 42,
+                child: OutlinedGameText(
+                  context.l10n.adPrivacyOptions,
+                  size: 15,
+                  font: GameFont.oswald,
+                ),
+              ),
+            ),
+          ],
+          const SizedBox(height: 12),
+          SizedBox(
+            width: double.infinity,
+            child: Pressable3D(
+              onTap: _deleting ? null : _confirmDeleteData,
+              color: danger,
+              height: 46,
+              child: _deleting
+                  ? const SizedBox(
+                      width: 22,
+                      height: 22,
+                      child: CircularProgressIndicator(strokeWidth: 3, color: WM.outline),
+                    )
+                  : OutlinedGameText(context.l10n.deleteData, size: 16, font: GameFont.oswald),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            context.l10n.deleteDataHint,
+            style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
+          ),
+        ],
+      ),
+    );
+  }
+
+  bool _deleting = false;
+
+  Future<void> _confirmDeleteData() async {
+    const danger = Color(0xFFFF4D5E);
+    final confirmed = await showDialog<bool>(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.75),
+      builder: (dialogContext) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 28),
+        child: Panel3D(
+          accent: danger,
+          radius: 22,
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 10),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              OutlinedGameText(
+                context.l10n.deleteDataConfirmTitle,
+                size: 24,
+                colors: const [Color(0xFFFFB3BA), danger],
+              ),
+              const SizedBox(height: 10),
+              Text(
+                context.l10n.deleteDataConfirmBody,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.oswald(color: Colors.white, fontSize: 14),
+              ),
+              const SizedBox(height: 14),
+              SizedBox(
+                width: double.infinity,
+                child: Pressable3D(
+                  onTap: () => Navigator.of(dialogContext).pop(true),
+                  color: danger,
+                  height: 46,
+                  child: OutlinedGameText(
+                    context.l10n.deleteDataConfirm,
+                    size: 16,
+                    font: GameFont.oswald,
+                  ),
+                ),
+              ),
+              TextButton(
+                onPressed: () => Navigator.of(dialogContext).pop(false),
+                child: Text(
+                  context.l10n.cancel,
+                  style: GoogleFonts.oswald(color: Colors.white70, fontSize: 14),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    if (confirmed != true || !mounted) return;
+
+    setState(() => _deleting = true);
+    final ok = await CloudService.deleteAllData();
+    if (!mounted) return;
+    if (!ok) {
+      setState(() => _deleting = false);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.deleteDataFailed)),
+      );
+      return;
+    }
+    // Vuelve a cargar lo que estaba en memoria (vidas e historial de preguntas).
+    await LivesService.init();
+    await QuestionRepository.load(language: LocaleService.languageCode);
+    if (!mounted) return;
+    final message = context.l10n.deleteDataDone;
+    // Empieza de nuevo desde la portada, sin pantallas anteriores.
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (_) => const HomeScreen()),
+      (_) => false,
+    );
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(message)));
   }
 
   // ---------------------------------------------------------------

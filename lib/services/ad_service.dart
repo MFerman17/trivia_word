@@ -27,11 +27,57 @@ class AdService {
 
   static Future<void> _initialize() async {
     try {
+      // En Europa (RGPD) hay que preguntar antes de mostrar anuncios. El
+      // formulario lo gestiona Google (UMP) y solo aparece donde la ley lo
+      // exige; su texto se configura en AdMob → Privacidad y mensajes.
+      await _gatherConsent();
+      if (!await ConsentInformation.instance.canRequestAds()) return;
       await MobileAds.instance.initialize();
       await _loadRewardedAd();
     } catch (error) {
       debugPrint('No se pudo inicializar AdMob: $error');
     }
+  }
+
+  /// Pide (si hace falta) el consentimiento de anuncios del jugador.
+  static Future<void> _gatherConsent() {
+    final done = Completer<void>();
+    ConsentInformation.instance.requestConsentInfoUpdate(
+      ConsentRequestParameters(),
+      () {
+        ConsentForm.loadAndShowConsentFormIfRequired((FormError? error) {
+          if (error != null) debugPrint('Formulario de consentimiento: ${error.message}');
+          if (!done.isCompleted) done.complete();
+        });
+      },
+      (FormError error) {
+        debugPrint('No se pudo actualizar el consentimiento: ${error.message}');
+        if (!done.isCompleted) done.complete();
+      },
+    );
+    return done.future;
+  }
+
+  /// true si el jugador debe poder cambiar su consentimiento desde Ajustes
+  /// (Google lo exige en los países donde se pidió).
+  static Future<bool> privacyOptionsRequired() async {
+    if (defaultTargetPlatform != TargetPlatform.android) return false;
+    try {
+      return await ConsentInformation.instance.getPrivacyOptionsRequirementStatus() ==
+          PrivacyOptionsRequirementStatus.required;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  /// Vuelve a mostrar el formulario de privacidad de anuncios.
+  static Future<void> showPrivacyOptions() {
+    final done = Completer<void>();
+    ConsentForm.showPrivacyOptionsForm((FormError? error) {
+      if (error != null) debugPrint('Opciones de privacidad: ${error.message}');
+      if (!done.isCompleted) done.complete();
+    });
+    return done.future;
   }
 
   static Future<void> _loadRewardedAd() async {

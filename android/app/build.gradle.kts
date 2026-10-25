@@ -1,3 +1,6 @@
+import java.util.Properties
+import java.io.FileInputStream
+
 plugins {
     id("com.android.application")
     // START: FlutterFire Configuration
@@ -7,8 +10,17 @@ plugins {
     id("dev.flutter.flutter-gradle-plugin")
 }
 
+// Datos de la llave de publicación (android/key.properties). Ese archivo y la
+// llave .jks NO se suben a GitHub (están en .gitignore): si se pierden, no se
+// pueden publicar actualizaciones. Guárdalos también en un lugar seguro.
+val keystoreProperties = Properties()
+val keystorePropertiesFile = rootProject.file("key.properties")
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+}
+
 android {
-    namespace = "com.example.trivia_word"
+    namespace = "com.mferman.wordsandmonsters"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -18,8 +30,8 @@ android {
     }
 
     defaultConfig {
-        // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-        applicationId = "com.example.trivia_word"
+        // Identificador PERMANENTE en Google Play: no cambiarlo nunca.
+        applicationId = "com.mferman.wordsandmonsters"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
         minSdk = flutter.minSdkVersion
@@ -30,11 +42,27 @@ android {
             .getOrElse("ca-app-pub-3940256099942544~3347511713")
     }
 
+    signingConfigs {
+        create("release") {
+            if (keystorePropertiesFile.exists()) {
+                keyAlias = keystoreProperties["keyAlias"] as String
+                keyPassword = keystoreProperties["keyPassword"] as String
+                storeFile = file(keystoreProperties["storeFile"] as String)
+                storePassword = keystoreProperties["storePassword"] as String
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            // Con key.properties se firma con la llave de publicación (para
+            // Google Play). Sin él, con la de pruebas, para que
+            // `flutter run --release` siga funcionando en tu PC.
+            signingConfig = if (keystorePropertiesFile.exists()) {
+                signingConfigs.getByName("release")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../services/cloud_service.dart';
 import '../services/chapter_story_service.dart';
+import '../services/lives_service.dart';
 
 enum GameStatus { loading, playing, victory, defeat }
 
@@ -25,10 +26,13 @@ class GameController extends ChangeNotifier {
   PlayerProfile? profile;
   List<Question> questions = [];
   int currentQuestionIndex = 0;
-  late int playerHp = maxPlayerHp;
-  late final int maxPlayerHp = isMiniChallenge || config.type == LevelType.worldBoss
-      ? 4
-      : 3;
+  /// Las vidas del combate son las vidas GLOBALES del jugador
+  /// (LivesService): lo que se pierde aquí sigue perdido en el siguiente nivel.
+  late int playerHp = LivesService.lives.value;
+  final int maxPlayerHp = LivesService.maxLives;
+
+  /// Fallos en este nivel: deciden las estrellas (0 = 3★, 1 = 2★, más = 1★).
+  int mistakes = 0;
   late int enemyHp = config.enemyHealth;
 
   int get enemyMaxHp => config.enemyHealth;
@@ -79,6 +83,8 @@ class GameController extends ChangeNotifier {
         : QuestionBank.getQuestionsForLevel(worldId, chapterId, levelNumber);
 
     if (_isDisposed) return; // 👈 Evitamos actualizar si ya se desmontó
+    LivesService.refresh();
+    playerHp = LivesService.lives.value;
     status = GameStatus.playing;
     AudioService.playBattleMusic(boss: isBossBattle);
     // Rugido del monstruo al aparecer (los jefes tienen su propia entrada).
@@ -123,7 +129,9 @@ class GameController extends ChangeNotifier {
       }
     } else {
       AudioService.playWrong();
-      playerHp--;
+      mistakes++;
+      LivesService.loseLife(); // se guarda al momento: salir no la devuelve
+      playerHp = LivesService.lives.value;
       incorrectAnswersSinceMonsterAttack++;
       // Alarma cuando solo queda una vida.
       if (playerHp == 1) {
@@ -234,6 +242,8 @@ class GameController extends ChangeNotifier {
     final levelBefore = profile!.level;
     profile!.addExperience(xp);
     if (profile!.level > levelBefore) {
+      // Premio por subir de nivel: vidas llenas.
+      LivesService.refillAll();
       Future.delayed(const Duration(milliseconds: 2600), AudioService.playLevelUp);
     }
   }
@@ -276,9 +286,11 @@ class GameController extends ChangeNotifier {
 
     QuestService.incrementProgress('win_battles_3');
 
-    starsEarned = playerHp >= maxPlayerHp
+    // Antes las estrellas dependían de las vidas que quedaban; ahora las
+    // vidas vienen del nivel anterior, así que cuentan los fallos de ESTE.
+    starsEarned = mistakes == 0
         ? 3
-        : playerHp == maxPlayerHp - 1
+        : mistakes == 1
         ? 2
         : 1;
 
@@ -390,6 +402,7 @@ class GameController extends ChangeNotifier {
   }
 
   void _revive() {
+    LivesService.setLives(1);
     playerHp = 1;
     status = GameStatus.playing;
     AudioService.playBattleMusic(boss: isBossBattle);
@@ -414,7 +427,8 @@ class GameController extends ChangeNotifier {
     }
 
     profile!.healthPotions--;
-    playerHp = (playerHp + 1).clamp(0, maxPlayerHp);
+    LivesService.addLives(1);
+    playerHp = LivesService.lives.value;
     AudioService.playPotionUse();
 
     if (_isDisposed) return;

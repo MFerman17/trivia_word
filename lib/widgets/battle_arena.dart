@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../models/player_profile.dart';
 import 'game_3d.dart';
+import 'monster_poses.dart';
 import 'player_avatar.dart';
 
 /// Escenario del combate: el monstruo grande, "de pie" sobre un pedestal,
@@ -244,6 +245,16 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
     final attackT = _attack.value;
     final defeatT = Curves.easeIn.transform(_defeat.value);
 
+    // Pose del monstruo: cae al perder, ataca al fallar tú, se dobla al
+    // recibir tu golpe; si no, quieto.
+    final String pose = _defeat.value > 0
+        ? 'lose'
+        : attackT > 0 && attackT < 0.75
+            ? 'attack'
+            : hitT > 0.05 && hitT < 0.8
+                ? 'hit'
+                : 'idle';
+
     // Respiración y flotación.
     final bob = math.sin(t) * 6;
     final breathe = 1 + math.sin(t * 2) * 0.025;
@@ -346,15 +357,32 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
                         Colors.white.withValues(alpha: 0.85 * flash),
                         BlendMode.srcATop,
                       ),
-                      child: Image.asset(
-                        widget.enemyAsset,
-                        fit: BoxFit.contain,
-                        alignment: Alignment.bottomCenter,
-                        cacheWidth: 512,
-                        errorBuilder: (_, _, _) => Center(
-                          child: Text(
-                            widget.enemyEmoji,
-                            style: TextStyle(fontSize: monsterHeight * 0.5),
+                      // Pose según lo que pasa; fundido corto entre poses.
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 90),
+                        layoutBuilder: (current, previous) => Stack(
+                          alignment: Alignment.bottomCenter,
+                          children: [...previous, ?current],
+                        ),
+                        child: Image.asset(
+                          MonsterPoses.assetFor(widget.enemyAsset, pose),
+                          key: ValueKey(pose),
+                          fit: BoxFit.contain,
+                          alignment: Alignment.bottomCenter,
+                          cacheWidth: 512,
+                          gaplessPlayback: true,
+                          // Sin poses todavía: la imagen normal del monstruo.
+                          errorBuilder: (_, _, _) => Image.asset(
+                            widget.enemyAsset,
+                            fit: BoxFit.contain,
+                            alignment: Alignment.bottomCenter,
+                            cacheWidth: 512,
+                            errorBuilder: (_, _, _) => Center(
+                              child: Text(
+                                widget.enemyEmoji,
+                                style: TextStyle(fontSize: monsterHeight * 0.5),
+                              ),
+                            ),
                           ),
                         ),
                       ),

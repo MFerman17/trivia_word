@@ -16,6 +16,7 @@ import '../services/quest_service.dart';
 import '../services/question_bank.dart';
 import '../services/question_repository.dart';
 import '../services/save_service.dart';
+import '../services/lives_service.dart';
 
 /// Fases de la pelea, en el orden en que ocurren.
 enum FightPhase {
@@ -377,6 +378,7 @@ class FightController extends ChangeNotifier {
       p.gems += gemsEarned;
       p.addExperience(xpEarned);
       if (p.level > levelBefore) {
+        LivesService.refillAll(); // premio por subir de nivel
         Future.delayed(const Duration(milliseconds: 2600), AudioService.playLevelUp);
       }
       await SaveService.savePlayerData(p);
@@ -417,6 +419,9 @@ class FightController extends ChangeNotifier {
   }
 
   void _handleDefeat() {
+    // Perder una pelea cuesta una vida global (la vida de cada round es
+    // otra cosa: se rellena en cada round).
+    LivesService.loseLife();
     phase = FightPhase.defeat;
     notifyListeners();
     AudioService.playDefeatSound();

@@ -121,7 +121,7 @@ class FightRules {
   /// Segundos para responder cada pregunta: menos en mundos avanzados
   /// y en la final.
   int get secondsPerQuestion =>
-      (isFinal ? 12 - (world - 1) : 15 - (world - 1)).clamp(8, 15).toInt();
+    (isFinal ? 20 - 2 * (world - 1) : 25 - 2 * (world - 1)).clamp(12, 25).toInt();
 
   /// Daño base de un acierto (antes de velocidad y FUERZA).
   int get baseDamage => 22;

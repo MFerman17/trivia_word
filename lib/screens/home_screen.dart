@@ -13,6 +13,7 @@ import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
 import '../services/cloud_service.dart';
 import '../l10n/l10n.dart';
+import '../widgets/lives_widgets.dart';
 
 // Color de contorno común para todo el estilo "juego"
 const Color kOutline = Color(0xFF0D0326);
@@ -314,9 +315,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                   const SizedBox(height: 8),
 
                   // --- AJUSTES (sonido, idioma, ayuda) ---
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: _buildSettingsButton(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Vidas globales y tiempo para la siguiente.
+                      LivesBadge(onTap: () => showOutOfLivesDialogIfEmpty(context)),
+                      _buildSettingsButton(),
+                    ],
                   ),
 
                   // --- LOGO (arriba, liberando el centro del paisaje) ---

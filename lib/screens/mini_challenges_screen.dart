@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../services/question_bank.dart';
 import 'game_screen.dart';
 import '../l10n/l10n.dart';
+import '../widgets/lives_widgets.dart';
 
 class MiniChallengesScreen extends StatelessWidget {
   final int worldId;
@@ -114,7 +115,10 @@ class MiniChallengesScreen extends StatelessWidget {
           style: GoogleFonts.poppins(color: Colors.white70, fontSize: 11),
         ),
         trailing: const Icon(Icons.play_circle_fill, color: Color(0xFFFFC857), size: 30),
-        onTap: () {
+        onTap: () async {
+          // Sin vidas no se puede jugar: se ofrece recargarlas.
+          if (!await ensureLives(context)) return;
+          if (!context.mounted) return;
           Navigator.push(
             context,
             MaterialPageRoute(

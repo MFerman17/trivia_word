@@ -12,6 +12,7 @@ import '../l10n/l10n.dart';
 import '../services/fighter_service.dart';
 import '../widgets/game_3d.dart';
 import 'fight_screen.dart';
+import '../widgets/lives_widgets.dart';
 
 // Colores coherentes con el estilo del juego
 const Color kOutline = Color(0xFF0D0326);
@@ -76,8 +77,12 @@ class _MapScreenState extends State<MapScreen>
     super.dispose();
   }
 
-  void _startLevel(int worldId, int chapterId, int levelNumber) {
+  Future<void> _startLevel(int worldId, int chapterId, int levelNumber) async {
     AudioService.playNodeSelect();
+
+    // Sin vidas no se puede jugar: se ofrece recargarlas.
+    if (!await ensureLives(context)) return;
+    if (!mounted) return;
 
     // El último nivel de cada capítulo es una pelea: pide estrellas.
     final isFight = FighterService.isFightLevel(levelNumber);
@@ -227,10 +232,24 @@ class _MapScreenState extends State<MapScreen>
                 _buildCustomAppBar(),
                 _buildWorldSelector(),
                 Expanded(
-                  child: _controller.isLoading
-                      ? const Center(
-                          child: CircularProgressIndicator(color: kCyan))
-                      : _buildTrailMap(segments),
+                  child: Stack(
+                    children: [
+                      Positioned.fill(
+                        child: _controller.isLoading
+                            ? const Center(
+                                child: CircularProgressIndicator(color: kCyan))
+                            : _buildTrailMap(segments),
+                      ),
+                      // Vidas globales, flotando sobre el mapa.
+                      Positioned(
+                        top: 8,
+                        left: 12,
+                        child: LivesBadge(
+                          onTap: () => showOutOfLivesDialogIfEmpty(context),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

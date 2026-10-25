@@ -8,6 +8,7 @@ import '../models/question.dart';
 import '../services/audio_service.dart';
 import '../services/fighter_service.dart';
 import '../widgets/game_3d.dart';
+import '../widgets/monster_poses.dart';
 import '../widgets/player_avatar.dart';
 import 'shop_screen.dart';
 
@@ -103,6 +104,34 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
         context,
         onError: (_, _) {}, // Si falta una pose, se usa la de reserva.
       );
+    }
+    for (final pose in MonsterPoses.poses) {
+      precacheImage(
+        AssetImage(MonsterPoses.assetFor(_fight.config.enemyAsset, pose)),
+        context,
+        onError: (_, _) {},
+      );
+    }
+  }
+
+  /// Pose del monstruo: la contraria a la del jugador en cada momento.
+  String _enemyPose({
+    required double t,
+    required bool active,
+    required bool playerAttacks,
+    required bool enemyAttacks,
+  }) {
+    switch (_fight.phase) {
+      case FightPhase.victory:
+        return 'lose';
+      case FightPhase.defeat:
+        return 'win';
+      case FightPhase.roundEnd:
+        return _fight.enemyHp <= 0 ? 'lose' : 'win';
+      default:
+        if (active && enemyAttacks && t < 0.75) return 'attack';
+        if (active && playerAttacks && t > 0.2 && t < 0.85) return 'hit';
+        return 'idle';
     }
   }
 
@@ -451,8 +480,21 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                         height: fighterHeight * (_fight.isFinal ? 1.12 : 1.0),
                         isPlayer: false,
                         hurt: playerAttacks && active && t > 0.25 && t < 0.7,
-                        tilt: enemyAttacks ? -lunge * 0.12 : 0,
+                        tilt: enemyAttacks ? -lunge * 0.06 : 0,
                         glow: _fight.isEnraged,
+                        pose: _enemyPose(
+                          t: t,
+                          active: active,
+                          playerAttacks: playerAttacks,
+                          enemyAttacks: enemyAttacks,
+                        ),
+                        squash: !active
+                            ? 0.0
+                            : enemyAttacks
+                                ? math.sin((t / 0.35).clamp(0.0, 1.0) * math.pi) * 0.07
+                                : playerAttacks && t > 0.2
+                                    ? -math.sin(((t - 0.2) / 0.4).clamp(0.0, 1.0) * math.pi) * 0.06
+                                    : 0.0,
                       ),
                     ),
                   ),
@@ -479,7 +521,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     final profile = _fight.profile;
     final asset = isPlayer
         ? PlayerAvatar.fighterAssetFor(profile?.avatarCharacterId ?? 'explorador', pose: pose)
-        : _fight.config.enemyAsset;
+        : MonsterPoses.assetFor(_fight.config.enemyAsset, pose);
 
     Widget image = Image.asset(
       asset,
@@ -488,25 +530,29 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
       fit: BoxFit.contain,
       cacheHeight: 768,
       gaplessPlayback: true,
-      // Si falta la pose de lucha de ese personaje, se usa el aventurero
-      // de la portada.
+      // Si falta la pose: el jugador usa el aventurero de la portada y el
+      // monstruo su imagen normal.
       errorBuilder: (_, _, _) => isPlayer
           ? Image.asset('assets/images/adventurer.png', height: height, fit: BoxFit.contain)
-          : Text(_fight.config.enemyEmoji, style: TextStyle(fontSize: height * 0.5)),
+          : Image.asset(
+              _fight.config.enemyAsset,
+              height: height,
+              fit: BoxFit.contain,
+              errorBuilder: (_, _, _) =>
+                  Text(_fight.config.enemyEmoji, style: TextStyle(fontSize: height * 0.5)),
+            ),
     );
 
     // Cambio de pose con un fundido muy corto (90 ms): se nota el
     // movimiento sin que parezca un salto brusco entre dibujos.
-    if (isPlayer) {
-      image = AnimatedSwitcher(
-        duration: const Duration(milliseconds: 90),
-        layoutBuilder: (current, previous) => Stack(
-          alignment: Alignment.bottomCenter,
-          children: [...previous, ?current],
-        ),
-        child: image,
-      );
-    }
+    image = AnimatedSwitcher(
+      duration: const Duration(milliseconds: 90),
+      layoutBuilder: (current, previous) => Stack(
+        alignment: Alignment.bottomCenter,
+        children: [...previous, ?current],
+      ),
+      child: image,
+    );
 
     // Destello rojo al recibir el golpe (solo sobre la silueta).
     image = ColorFiltered(
@@ -552,9 +598,9 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               alignment: Alignment.bottomCenter,
               transform: Matrix4.identity()
                 ..setEntry(3, 2, 0.0012)
-                // Se miran el uno al otro. Las poses del jugador ya están de
-                // perfil, así que solo se giran un poco.
-                ..rotateY(isPlayer ? 0.08 : -0.25)
+                // Se miran el uno al otro. Las poses ya están de perfil,
+                // así que solo se giran un poco.
+                ..rotateY(isPlayer ? 0.08 : -0.12)
                 ..rotateZ(tilt)
                 ..scaleByDouble(1 - squash * 0.6, 1 + squash, 1, 1),
               child: image,

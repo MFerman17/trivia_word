@@ -10,6 +10,7 @@ import 'services/audio_service.dart';
 import 'services/locale_service.dart';
 import 'services/question_repository.dart';
 import 'services/save_service.dart';
+import 'services/lives_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +37,8 @@ Future<void> main() async {
   await QuestionRepository.load(language: LocaleService.languageCode);
   // Prepara el audio (música en bucle, volumen, silencio guardado).
   await AudioService.init();
+  // Vidas globales (suma las que se recargaron con la app cerrada).
+  await LivesService.init();
 
   runApp(MyApp(initError: initError));
 }

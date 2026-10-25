@@ -1,0 +1,6 @@
+Poses de los monstruos (vista lateral, mirando a la IZQUIERDA),
+PNG con fondo transparente, 768x768 px, patas tocando el borde inferior.
+Nombre = nombre de la imagen del monstruo + _pose.png
+  ej.: mini_forest_guardian_idle.png, mini_forest_guardian_attack.png...
+  pose: idle (quieto), attack (ataca), hit (recibe), win (gana), lose (pierde)
+Si falta una pose, se usa la imagen normal del monstruo.

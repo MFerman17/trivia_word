@@ -13,11 +13,11 @@ aquí está lo que hay que hacer **fuera del código** (Firebase, AdMob, Play Co
 - Botón **Borrar mis datos** en Ajustes → Cuenta y datos (lo exige Google Play).
 - Páginas públicas en `docs/`: `privacidad.html` y `borrar-datos.html`.
 
-## 0. Antes de nada: correo de contacto
+## 0. Correo de contacto
 
-En `docs/privacidad.html` y `docs/borrar-datos.html` aparece `CORREO_DE_CONTACTO`.
-Hay que cambiarlo por el correo público de soporte (Google Play también lo
-muestra en la ficha). Puede ser uno nuevo solo para el juego.
+Correo público de soporte: **wordsandmonsters.soporte@gmail.com**. Ya está en
+`docs/privacidad.html` y `docs/borrar-datos.html`. Úsalo también como correo
+de contacto en la ficha de Google Play y en AdMob.
 
 ## 1. Firebase: registrar el nuevo identificador
 

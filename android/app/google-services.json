@@ -50,6 +50,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "506207443915-nk8je0d3ab74cnvfbqibfs39vbqbmcgl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mferman.wordsandmonsters",
+            "certificate_hash": "49fbaa2f58886a70dafe33098220d0c02ac8aad5"
+          }
+        },
+        {
           "client_id": "506207443915-e5t7jabf071i91ehe5rkdg03574ofnec.apps.googleusercontent.com",
           "client_type": 3
         }

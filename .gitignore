@@ -47,3 +47,7 @@ lib/firebase_options.dart
 
 # Traducciones generadas por Flutter a partir de lib/l10n/*.arb
 lib/l10n/app_localizations*.dart
+
+# Archivos temporales de compilación de Android/Kotlin
+android/.kotlin/
+hs_err_pid*.log

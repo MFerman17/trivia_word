@@ -15,7 +15,7 @@ aquí está lo que hay que hacer **fuera del código** (Firebase, AdMob, Play Co
 
 ## 0. Correo de contacto
 
-Correo público de soporte: **wordsandmonsters.soporte@gmail.com**. Ya está en
+Correo público de soporte: `wordsandmonsters.soporte@gmail.com`. Ya está en
 `docs/privacidad.html` y `docs/borrar-datos.html`. Úsalo también como correo
 de contacto en la ficha de Google Play y en AdMob.
 

@@ -66,7 +66,13 @@ identificador viejo).
    dart pub global run flutterfire_cli:flutterfire configure
    ```
 
-   Elige el mismo proyecto y solo Android.
+   Elige el mismo proyecto y marca **android, ios y web** (no solo
+   android: el juego también se prueba en Chrome y necesita la configuración
+   web). Si pregunta si reutilizar `firebase.json`, responde **no**.
+
+   Si `flutterfire` da problemas, basta con cambiar a mano el `appId` de
+   Android en `lib/firebase_options.dart` y en `firebase.json` por el
+   `mobilesdk_app_id` de la app nueva que aparece en `google-services.json`.
 7. Más adelante añade también (en la misma app de Firebase → Añadir huella):
    - el SHA-1 de tu **llave de subida** (paso 2), y
    - el SHA-1 de **firma de apps de Google Play** (Play Console → Prueba y
@@ -118,16 +124,15 @@ no podrás publicar actualizaciones con facilidad: guárdala en dos sitios
 
 ## 4. Icono
 
-Pide a ChatGPT el icono (prompt abajo), súbelo como `assets/icon/icono.png`
-(1024×1024) y yo genero todos los tamaños de Android y el de 512×512 para la
-ficha.
+Hecho. A partir de `assets/icon/icono.png` (1024×1024) se generaron:
 
-> App icon for a mobile game called "Words & Monsters": a cute but fierce
-> fantasy monster face peeking from behind an open glowing spellbook with
-> floating letters, semi-realistic dark fantasy mobile game style, saturated
-> colors, cyan (#1EE3CF) and gold accents on a deep purple background
-> (#0D0326), centered composition with generous margins, no text, no border,
-> square 1024x1024 PNG.
+- `android/app/src/main/res/mipmap-*/ic_launcher.png`: icono clásico.
+- `mipmap-*/ic_launcher_foreground.png` + `mipmap-anydpi-v26/ic_launcher.xml`:
+  icono adaptable de Android 8+ (cada fabricante lo recorta con su forma).
+- `assets/icon/play_store_512.png`: el de 512×512 para la ficha de Google Play.
+
+Si se cambia el icono, basta con reemplazar `icono.png` y pedir que se
+vuelvan a generar.
 
 ## 5. Compilar el paquete para Google Play
 

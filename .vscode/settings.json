@@ -1,3 +1,9 @@
 {
-    "java.configuration.updateBuildConfiguration": "automatic"
+    // Este proyecto es Flutter: la compilación de Android la hace `flutter build`.
+    // La extensión de Java de VS Code intenta abrir cada paquete de Flutter como
+    // un proyecto de Gradle independiente y llena "Problems" de falsos errores.
+    // Con esto deja de hacerlo.
+    "java.import.gradle.enabled": false,
+    "java.import.maven.enabled": false,
+    "java.configuration.updateBuildConfiguration": "disabled"
 }

@@ -29,6 +29,49 @@
             {
               "client_id": "506207443915-e5t7jabf071i91ehe5rkdg03574ofnec.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "506207443915-tjs6d76lobdi4lhm61hs4t0n6htkb062.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.triviaWord"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506207443915:android:1a4cc925b18b866eb9344e",
+        "android_client_info": {
+          "package_name": "com.mferman.wordsandmonsters"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506207443915-e5t7jabf071i91ehe5rkdg03574ofnec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCIaLrl3AZNwN7rHsCpwvfd6f3daxXN620"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506207443915-e5t7jabf071i91ehe5rkdg03574ofnec.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "506207443915-tjs6d76lobdi4lhm61hs4t0n6htkb062.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.triviaWord"
+              }
             }
           ]
         }

@@ -39,14 +39,35 @@ identificador viejo).
 
    Copia el `SHA1` de la variante `debug`.
 4. Descarga el nuevo `google-services.json` y reemplaza el de `android/app/`.
-5. Regenera `lib/firebase_options.dart`:
+5. Instala FlutterFire CLI (solo hace falta una vez):
+
+   ```powershell
+   dart pub global activate flutterfire_cli
+   ```
+
+   En Windows, Dart guarda sus comandos globales en
+   `$env:LOCALAPPDATA\Pub\Cache\bin`. Si PowerShell sigue sin reconocer
+   `flutterfire`, añade esa carpeta a la variable `Path` de usuario y vuelve
+   a abrir PowerShell o VS Code. Para usarla solo en la sesión actual:
+
+   ```powershell
+   $env:Path += ";$env:LOCALAPPDATA\Pub\Cache\bin"
+   ```
+
+6. Regenera `lib/firebase_options.dart`:
 
    ```powershell
    flutterfire configure
    ```
 
+   Si no quieres modificar `Path`, puedes ejecutar la CLI directamente:
+
+   ```powershell
+   dart pub global run flutterfire_cli:flutterfire configure
+   ```
+
    Elige el mismo proyecto y solo Android.
-6. Más adelante añade también (en la misma app de Firebase → Añadir huella):
+7. Más adelante añade también (en la misma app de Firebase → Añadir huella):
    - el SHA-1 de tu **llave de subida** (paso 2), y
    - el SHA-1 de **firma de apps de Google Play** (Play Console → Prueba y
      publicación → Configuración → Integridad de la app). Sin este último,

@@ -35,7 +35,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCIaLrl3AZNwN7rHsCpwvfd6f3daxXN620',
-    appId: '1:506207443915:android:08591192c5a51c24b9344e',
+    appId: '1:506207443915:android:1a4cc925b18b866eb9344e',
     messagingSenderId: '506207443915',
     projectId: 'trivia-word-f612c',
     storageBucket: 'trivia-word-f612c.firebasestorage.app',

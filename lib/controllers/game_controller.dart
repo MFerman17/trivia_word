@@ -13,6 +13,7 @@ import '../services/chapter_story_service.dart';
 import '../services/lives_service.dart';
 import '../l10n/l10n.dart';
 import '../services/vibration_service.dart';
+import '../config/world_map_config.dart';
 
 enum GameStatus { loading, playing, victory, defeat }
 
@@ -118,7 +119,7 @@ class GameController extends ChangeNotifier {
       AudioService.playSuccess();
       Future.delayed(const Duration(milliseconds: 180), () => VibrationService.hit());
       if (correctlyAnsweredQuestionIds.add(question.id)) {
-        QuestService.incrementProgress('answer_trivia_10');
+        QuestService.track(QuestEvent.correctAnswer);
         final hitsToDefeat = config.correctAnswersToDefeat;
         final damagePerAnswer = (enemyMaxHp / hitsToDefeat).ceil();
         final remainingHp =
@@ -257,7 +258,7 @@ class GameController extends ChangeNotifier {
     status = GameStatus.victory;
     AudioService.playVictorySound();
 
-    if (!isMiniChallenge && levelNumber == 5) {
+    if (!isMiniChallenge && levelNumber == kLevelsPerChapter) {
       final previousProgress = await SaveService.getStageProgress(
         worldId,
         chapterId,
@@ -276,7 +277,8 @@ class GameController extends ChangeNotifier {
         profile!.coins += coinsReward;
         _addExperienceWithSound(xpReward);
         await SaveService.savePlayerData(profile!);
-        QuestService.incrementProgress('win_battles_3');
+        QuestService.track(QuestEvent.levelWon);
+        QuestService.track(QuestEvent.miniChallengeWon);
         try {
           await CloudService.syncProfileToCloud(profile!);
         } catch (e) {
@@ -288,7 +290,7 @@ class GameController extends ChangeNotifier {
       return;
     }
 
-    QuestService.incrementProgress('win_battles_3');
+    QuestService.track(QuestEvent.levelWon);
 
     // Antes las estrellas dependían de las vidas que quedaban; ahora las
     // vidas vienen del nivel anterior, así que cuentan los fallos de ESTE.
@@ -305,6 +307,12 @@ class GameController extends ChangeNotifier {
       await SaveService.savePlayerData(profile!);
     }
 
+    // Misiones de estrellas: solo cuentan las estrellas NUEVAS
+    // (repetir un nivel de 3★ no suma otra vez).
+    final before = await SaveService.getStageProgress(worldId, chapterId, levelNumber);
+    if (starsEarned == 3) QuestService.track(QuestEvent.perfectLevel);
+    QuestService.track(QuestEvent.starsEarned, amount: starsEarned - before.stars);
+
     // 2. Guardar las estrellas del nivel actual localmente
     StageProgress currentProgress = StageProgress(
       worldId: worldId,
@@ -320,7 +328,7 @@ class GameController extends ChangeNotifier {
     int nextChapter = chapterId;
     int nextLevel = levelNumber + 1;
 
-    if (nextLevel > 5) {
+    if (nextLevel > kLevelsPerChapter) {
       nextLevel = 1;
       nextChapter++;
       if (nextChapter > 3) {
@@ -401,7 +409,7 @@ class GameController extends ChangeNotifier {
     AudioService.playRevive();
     _revive();
     await SaveService.savePlayerData(profile!);
-    QuestService.incrementProgress('use_potion_2');
+    QuestService.track(QuestEvent.potionUsed);
     return true;
   }
 
@@ -439,7 +447,7 @@ class GameController extends ChangeNotifier {
     notifyListeners();
 
     await SaveService.savePlayerData(profile!);
-    QuestService.incrementProgress('use_potion_2');
+    QuestService.track(QuestEvent.potionUsed);
     showSnackBar(L10n.current.lifeRecovered);
   }
 
@@ -474,6 +482,7 @@ class GameController extends ChangeNotifier {
     profile!.letterHints--;
     disabledOptionIndexes.add(optionToDisable);
     AudioService.playHintUse();
+    QuestService.track(QuestEvent.hintUsed);
 
     if (_isDisposed) return;
     notifyListeners();

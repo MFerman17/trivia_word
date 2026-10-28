@@ -95,22 +95,54 @@ class _QuestsScreenState extends State<QuestsScreen> {
       );
     }
 
+    // Primero las diarias y después los logros, cada grupo con su título.
+    // Dentro de cada grupo, las listas para reclamar suben arriba y las ya
+    // reclamadas bajan al final.
+    int order(QuestModel q) => q.isClaimed ? 2 : (q.isCompleted ? 0 : 1);
+    List<QuestModel> sorted(Iterable<QuestModel> list) =>
+        list.toList()..sort((a, b) => order(a).compareTo(order(b)));
+    final daily = sorted(_quests.where((q) => q.daily));
+    final achievements = sorted(_quests.where((q) => !q.daily));
+
+    final items = <Widget>[
+      Padding(
+        padding: const EdgeInsets.only(bottom: 18),
+        child: _buildSummary(),
+      ),
+      if (daily.isNotEmpty) _buildGroupHeader(context.l10n.questsDailyHeader, context.l10n.questsDailyHint),
+      for (final q in daily) _buildQuestCard(q),
+      if (achievements.isNotEmpty) _buildGroupHeader(context.l10n.questsAchievementsHeader, null),
+      for (final q in achievements) _buildQuestCard(q),
+    ];
+
     return ListView.builder(
       padding: const EdgeInsets.fromLTRB(16, 6, 16, 28),
-      itemCount: _quests.length + 1,
-      itemBuilder: (context, index) {
-        if (index == 0) {
-          return Padding(
-            padding: const EdgeInsets.only(bottom: 18),
-            child: EntranceFlip(index: 0, child: _buildSummary()),
-          );
-        }
-        final quest = _quests[index - 1];
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 16),
-          child: EntranceFlip(index: index, child: _buildQuestCard(quest)),
-        );
-      },
+      itemCount: items.length,
+      itemBuilder: (context, index) => Padding(
+        padding: const EdgeInsets.only(bottom: 16),
+        child: EntranceFlip(index: index, child: items[index]),
+      ),
+    );
+  }
+
+  Widget _buildGroupHeader(String title, String? subtitle) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          OutlinedGameText(title, size: 18, colors: const [WM.cyanLight, WM.cyan]),
+          if (subtitle != null) ...[
+            const SizedBox(width: 10),
+            Expanded(
+              child: Text(
+                subtitle,
+                style: GoogleFonts.oswald(color: Colors.white54, fontSize: 12),
+              ),
+            ),
+          ],
+        ],
+      ),
     );
   }
 
@@ -175,6 +207,18 @@ class _QuestsScreenState extends State<QuestsScreen> {
       'answer_trivia_10' => (title: l.questAnswerTrivia, description: l.questAnswerTriviaDesc),
       'use_potion_2' => (title: l.questUsePotion, description: l.questUsePotionDesc),
       'buy_shop_item_1' => (title: l.questBuyItem, description: l.questBuyItemDesc),
+      'daily_answer_15' => (title: l.questDailyAnswer, description: l.questDailyAnswerDesc),
+      'daily_win_3' => (title: l.questDailyWin, description: l.questDailyWinDesc),
+      'daily_perfect_1' => (title: l.questDailyPerfect, description: l.questDailyPerfectDesc),
+      'daily_hint_2' => (title: l.questDailyHint, description: l.questDailyHintDesc),
+      'win_fights_3' => (title: l.questWinFights, description: l.questWinFightsDesc),
+      'perfect_10' => (title: l.questPerfect, description: l.questPerfectDesc),
+      'stars_50' => (title: l.questStars, description: l.questStarsDesc),
+      'answer_trivia_100' => (title: l.questAnswer100, description: l.questAnswer100Desc),
+      'win_battles_25' => (title: l.questWin25, description: l.questWin25Desc),
+      'mini_challenge_3' => (title: l.questMiniChallenge, description: l.questMiniChallengeDesc),
+      'use_hint_5' => (title: l.questUseHints, description: l.questUseHintsDesc),
+      'buy_upgrade_1' => (title: l.questBuyUpgrade, description: l.questBuyUpgradeDesc),
       _ => (title: quest.title, description: quest.description),
     };
   }
@@ -233,6 +277,19 @@ class _QuestsScreenState extends State<QuestsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+                        if (quest.daily)
+                          Padding(
+                            padding: const EdgeInsets.only(bottom: 3),
+                            child: Text(
+                              context.l10n.questDailyTag,
+                              style: GoogleFonts.oswald(
+                                color: WM.gold,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: 1.4,
+                              ),
+                            ),
+                          ),
                         OutlinedGameText(
                           _questTexts(quest).title.toUpperCase(),
                           size: 17,

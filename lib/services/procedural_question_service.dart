@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import '../models/question.dart';
+import '../config/world_map_config.dart';
 
 class _KnowledgeFact {
   final String prompt;
@@ -261,8 +262,10 @@ class ProceduralQuestionService {
     bool increaseDifficulty = true,
   }) {
     final encounterIndex = isMiniChallenge
-        ? 60 + (world - 1) * 3 + (level - 1)
-        : (world - 1) * 15 + (chapter - 1) * 5 + (level - 1);
+        ? 200 + (world - 1) * 3 + (level - 1)
+        : (world - 1) * kChaptersPerWorld * kLevelsPerChapter +
+            (chapter - 1) * kLevelsPerChapter +
+            (level - 1);
 
     return List.generate(count, (questionIndex) {
       final serial = encounterIndex * 10 + questionIndex;

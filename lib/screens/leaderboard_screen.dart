@@ -9,6 +9,7 @@ import '../widgets/player_avatar.dart';
 import '../widgets/game_3d.dart';
 import '../l10n/l10n.dart';
 import '../services/audio_service.dart';
+import '../data/countries.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -93,7 +94,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                         return LeaderboardUser(
                           rank: index + 1,
                           name: name,
-                          countryFlag: '🌍',
+                          countryFlag: Countries.flag(item['country'] as String?),
                           trophies: item['stars'] ?? 0, // las estrellas son el ranking
                           avatarEmoji: name == _userName ? '🎮' : _getAvatarForName(name),
                         );
@@ -208,11 +209,21 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
             const SizedBox(height: 12),
           _medalAvatar(user, isFirst ? 76 : 62, medal, isMe),
           const SizedBox(height: 6),
-          OutlinedGameText(
-            user.name,
-            size: isFirst ? 16 : 14,
-            font: GameFont.oswald,
-            colors: isMe ? const [Color(0xFFFFF1B0), WM.gold] : const [Colors.white, WM.bone],
+          // Bandera fuera del texto con contorno (los emojis saldrían triplicados).
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(user.countryFlag, style: TextStyle(fontSize: isFirst ? 16 : 14)),
+              const SizedBox(width: 4),
+              Flexible(
+                child: OutlinedGameText(
+                  user.name,
+                  size: isFirst ? 16 : 14,
+                  font: GameFont.oswald,
+                  colors: isMe ? const [Color(0xFFFFF1B0), WM.gold] : const [Colors.white, WM.bone],
+                ),
+              ),
+            ],
           ),
           const SizedBox(height: 4),
           Chip3D(emoji: '⭐', text: '${user.trophies}', accent: medal, fontSize: 12),
@@ -387,11 +398,19 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                OutlinedGameText(
-                  user.name,
-                  size: 16,
-                  font: GameFont.oswald,
-                  colors: isMe ? const [Color(0xFFFFF1B0), WM.gold] : const [Colors.white, WM.bone],
+                Row(
+                  children: [
+                    Text(user.countryFlag, style: const TextStyle(fontSize: 16)),
+                    const SizedBox(width: 6),
+                    Flexible(
+                      child: OutlinedGameText(
+                        user.name,
+                        size: 16,
+                        font: GameFont.oswald,
+                        colors: isMe ? const [Color(0xFFFFF1B0), WM.gold] : const [Colors.white, WM.bone],
+                      ),
+                    ),
+                  ],
                 ),
                 if (isMe)
                   Text(

@@ -3,29 +3,36 @@ import '../models/question.dart';
 import 'procedural_question_service.dart';
 import 'question_repository.dart';
 import '../l10n/l10n.dart';
+import '../config/world_map_config.dart';
 
 class QuestionBank {
   /// Dificultad de un nivel (1 = 7-8 años ... 5 = adulto culto).
   ///
-  /// Cada mundo cubre dos escalones: su número y el siguiente.
-  /// Sube un escalón en el minijefe de cada capítulo (nivel 5), en los
-  /// niveles 4 y 5 del capítulo 2 y en todo el capítulo 3:
-  ///   Mundo 1:  1-1-1-1-2 · 1-1-1-2-2 · 2-2-2-2-2
-  ///   Mundo 2:  2-2-2-2-3 · 2-2-2-3-3 · 3-3-3-3-3
-  ///   Mundo 3:  3-3-3-3-4 · 3-3-3-4-4 · 4-4-4-4-4
-  ///   Mundo 4:  4-4-4-4-5 · 4-4-4-5-5 · 5-5-5-5-5
-  /// Así la dificultad máxima solo aparece al final del juego.
+  /// Cada mundo empieza en su número y sube DOS escalones (antes uno), para
+  /// que incluso el Bosque sea un reto al final:
+  ///   - Capítulo 1: niveles 1-4 en la base, 5-10 un escalón más.
+  ///   - Capítulo 2: todo un escalón más.
+  ///   - Capítulo 3: niveles 1-5 un escalón más, 6-10 (con la final) dos.
+  ///   Mundo 1:  1111 222222 · 2222222222 · 22222 33333
+  ///   Mundo 2:  2222 333333 · 3333333333 · 33333 44444
+  ///   Mundo 3:  3333 444444 · 4444444444 · 44444 55555
+  ///   Mundo 4:  4444 555555 · 5555555555 · 55555 55555
   static int difficultyForLevel(int world, int chapter, int level) {
-    final stepUp = chapter == 3 || (chapter == 2 && level >= 4) || level == 5;
-    return (world + (stepUp ? 1 : 0)).clamp(1, 5).toInt();
+    final half = kLevelsPerChapter ~/ 2;
+    final int bump = switch (chapter) {
+      1 => level <= 4 ? 0 : 1,
+      2 => 1,
+      _ => level <= half ? 1 : 2,
+    };
+    return (world + bump).clamp(1, 5).toInt();
   }
 
   /// La dificultad sube dentro de cada capítulo y también al avanzar de
   /// mundo. El último nivel de cada mundo es su jefe.
   static LevelConfig getConfigForLevel(int world, int chapter, int level) {
     final difficulty = difficultyForLevel(world, chapter, level);
-    final isWorldBoss = chapter == 3 && level == 5;
-    final isChapterBoss = level == 5 && !isWorldBoss;
+    final isWorldBoss = chapter == 3 && level == kLevelsPerChapter;
+    final isChapterBoss = level == kLevelsPerChapter && !isWorldBoss;
 
     final type = isWorldBoss
         ? LevelType.worldBoss
@@ -134,7 +141,10 @@ class QuestionBank {
     if (fromBank.length == config.targetQuestions) return fromBank;
 
     // Reserva: si el banco no cargó o se quedó corto, el generador antiguo.
-    final encounterIndex = (world - 1) * 15 + (chapter - 1) * 5 + level - 1;
+    final encounterIndex = (world - 1) * kChaptersPerWorld * kLevelsPerChapter +
+        (chapter - 1) * kLevelsPerChapter +
+        level -
+        1;
     final curated = _curatedQuestionForEncounter(
       encounterIndex,
       config.difficulty,

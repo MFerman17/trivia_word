@@ -242,6 +242,8 @@ class CloudService {
         'coins': profile.coins,
         'experience': profile.experience,
         'stars': totalStars,
+        // País para la bandera del ranking (solo si el jugador lo eligió).
+        if (profile.country.length == 2) 'country': profile.country,
         'updatedAt': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
 

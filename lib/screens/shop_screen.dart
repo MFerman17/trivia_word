@@ -352,7 +352,7 @@ class _ShopScreenState extends State<ShopScreen>
 
     try {
       await _saveProfile();
-      QuestService.incrementProgress('buy_shop_item_1');
+      QuestService.track(QuestEvent.shopPurchase);
       if (!mounted) return;
       setState(() {
         _isBusy = false;
@@ -937,6 +937,7 @@ class _ShopScreenState extends State<ShopScreen>
     setState(() => _isBusy = false);
     if (ok) {
       AudioService.playEquip();
+      QuestService.track(QuestEvent.upgradeBought);
       _showMessage(context.l10n.upgradeDone(
         _upgradeTexts(upgrade).title,
         FighterService.levelOf(profile, upgrade),

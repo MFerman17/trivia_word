@@ -15,6 +15,7 @@ import '../services/cloud_service.dart';
 import '../l10n/l10n.dart';
 import '../widgets/lives_widgets.dart';
 import '../services/ad_service.dart';
+import 'welcome_screen.dart';
 
 // Color de contorno común para todo el estilo "juego"
 const Color kOutline = Color(0xFF0D0326);
@@ -107,7 +108,23 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     await SaveService.savePlayerData(_profile!);
     await CloudService.syncProfileToCloud(_profile!);
+
+    // Primera vez (o jugador de antes sin país): pedir alias y país.
+    if (mounted && _profile!.needsWelcome && !_welcomeShown) {
+      _welcomeShown = true;
+      await Navigator.push(
+        context,
+        MaterialPageRoute(
+          fullscreenDialog: true,
+          builder: (_) => WelcomeScreen(profile: _profile!),
+        ),
+      );
+      if (mounted) setState(() {});
+    }
   }
+
+  /// Para no abrir la bienvenida dos veces si el perfil se recarga.
+  bool _welcomeShown = false;
 
   void _claimDailyReward() async {
     if (_profile == null || !_profile!.canClaimDailyReward) return;

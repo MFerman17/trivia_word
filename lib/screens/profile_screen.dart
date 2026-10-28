@@ -7,6 +7,9 @@ import '../services/cloud_service.dart';
 import '../widgets/player_avatar.dart';
 import '../widgets/game_3d.dart';
 import '../l10n/l10n.dart';
+import '../data/countries.dart';
+import '../services/audio_service.dart';
+import 'welcome_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -130,7 +133,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
         ),
         const SizedBox(height: 10),
-        OutlinedGameText(_profile.name, size: 30, letterSpacing: 1.5),
+        // Alias con bandera; al tocarlo se edita (alias y país).
+        GestureDetector(
+          onTap: _editAlias,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(Countries.flag(_profile.country), style: const TextStyle(fontSize: 24)),
+              const SizedBox(width: 8),
+              Flexible(child: OutlinedGameText(_profile.name, size: 30, letterSpacing: 1.5)),
+              const SizedBox(width: 8),
+              const Icon(Icons.edit_rounded, color: WM.cyan, size: 22),
+            ],
+          ),
+        ),
         const SizedBox(height: 10),
         Wrap(
           spacing: 10,
@@ -350,6 +366,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _editAlias() async {
+    AudioService.playButtonClick();
+    final saved = await Navigator.push<bool>(
+      context,
+      MaterialPageRoute(builder: (_) => WelcomeScreen(profile: _profile, editing: true)),
+    );
+    if (!mounted) return;
+    setState(() {});
+    if (saved == true) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.profileSaved)),
+      );
+    }
   }
 
   Future<void> _connectGoogleAccount() async {

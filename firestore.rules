@@ -13,7 +13,7 @@ service cloud.firestore {
             'name', 'coins', 'experience', 'stars', 'updatedAt'
           ])
           && data.keys().hasOnly([
-            'name', 'coins', 'experience', 'stars', 'updatedAt'
+            'name', 'coins', 'experience', 'stars', 'updatedAt', 'country'
           ])
           && data.name is string
           && data.name.size() >= 1
@@ -22,10 +22,13 @@ service cloud.firestore {
           && data.coins >= 0
           && data.experience is int
           && data.experience >= 0
-          // Si añadimos mundos o niveles, ajustar este máximo (mundos x niveles x 3 estrellas).
+          // Si añadimos mundos o niveles, ajustar este máximo
+          // (4 mundos x 30 niveles x 3 estrellas = 360).
           && data.stars is int
           && data.stars >= 0
-          && data.stars <= 180
+          && data.stars <= 360
+          // País (opcional): código ISO de 2 letras para la bandera.
+          && (!('country' in data) || (data.country is string && data.country.size() == 2))
           && data.updatedAt == request.time;
       }
 
@@ -57,7 +60,8 @@ service cloud.firestore {
             'name', 'level', 'experience', 'coins', 'gems', 'healthPotions',
             'letterHints', 'totalStars', 'lastDailyReward', 'avatarCharacterId',
             'avatarFrameId', 'avatarAccessoryId', 'ownedAvatarCharacters',
-            'ownedAvatarFrames', 'ownedAvatarAccessories', 'fighterUpgrades'
+            'ownedAvatarFrames', 'ownedAvatarAccessories', 'fighterUpgrades',
+            'country'
           ])
           && profile.name is string
           && profile.name.size() <= 20
@@ -76,7 +80,7 @@ service cloud.firestore {
           // Mismo máximo que el ranking (mundos x niveles x 3 estrellas).
           && profile.totalStars is int
           && profile.totalStars >= 0
-          && profile.totalStars <= 180
+          && profile.totalStars <= 360
           && profile.avatarCharacterId is string
           && profile.avatarFrameId is string
           && profile.avatarAccessoryId is string
@@ -91,6 +95,8 @@ service cloud.firestore {
                profile.fighterUpgrades is map
                && profile.fighterUpgrades.keys().hasOnly(['health', 'power', 'super'])
                && profile.fighterUpgrades.size() <= 3))
+          // País del jugador (opcional), código ISO de 2 letras.
+          && (!('country' in profile) || (profile.country is string && profile.country.size() == 2))
           && data.stages is map
           && data.stages.size() <= 500
           && data.quests is list

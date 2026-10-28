@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 
-/// Niveles por capítulo y capítulos por mundo (3 x 5 = 15 niveles).
-const int kLevelsPerChapter = 5;
+/// Niveles por capítulo y capítulos por mundo (3 x 10 = 30 niveles).
+/// El último nivel de cada capítulo es una pelea (ver FighterService).
+const int kLevelsPerChapter = 10;
 const int kChaptersPerWorld = 3;
+
+/// Cada imagen de sendero tiene 5 plataformas dibujadas. Un capítulo de 10
+/// niveles usa su imagen dos veces: la normal (niveles 1-5) y encima la
+/// misma en espejo (niveles 6-10), así el camino no parece repetido.
+const int kNodesPerSegment = 5;
+const int kSegmentsPerChapter = kLevelsPerChapter ~/ kNodesPerSegment;
 
 /// Un tramo del sendero: una imagen de fondo + la posición de sus 5 nodos.
 ///

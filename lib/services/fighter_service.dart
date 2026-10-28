@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import '../models/player_profile.dart';
 import 'cloud_service.dart';
 import 'save_service.dart';
+import '../config/world_map_config.dart';
 
 /// Mejoras del luchador que se compran con monedas en la Tienda.
 /// (El nombre y la descripción de cada una están traducidos en los .arb.)
@@ -84,17 +85,18 @@ class FighterService {
   // =================================================================
 
   /// En el mapa, el nivel 5 de cada capítulo es una pelea.
-  static bool isFightLevel(int level) => level == 5;
+  static bool isFightLevel(int level) => level == kLevelsPerChapter;
 
-  /// Estrellas del mundo necesarias para entrar a la pelea de cada capítulo.
-  ///  - Capítulo 1: 8 de las 12 posibles en los 4 niveles anteriores.
-  ///  - Capítulo 2: 18 de 27 (incluye la primera pelea).
-  ///  - Batalla final: 30 de 42.
-  /// Es alrededor de 2/3: obliga a repetir algún nivel para sacar 3★.
+  /// Estrellas del mundo necesarias para entrar a la pelea de cada capítulo
+  /// (con 10 niveles por capítulo, unas 2/3 de las posibles hasta ese punto):
+  ///  - Capítulo 1: 18 de las 27 de los 9 niveles anteriores.
+  ///  - Capítulo 2: 40 de 57 (incluye la primera pelea).
+  ///  - Batalla final: 60 de 87.
+  /// Obliga a repetir algún nivel para sacar 3★.
   static int starsRequired(int chapter) => switch (chapter) {
-        1 => 8,
-        2 => 18,
-        _ => 30,
+        1 => 18,
+        2 => 40,
+        _ => 60,
       };
 }
 

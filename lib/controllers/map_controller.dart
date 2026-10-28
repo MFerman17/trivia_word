@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import '../models/stage_progress.dart';
 import '../services/save_service.dart';
+import '../config/world_map_config.dart';
 
 class MapController extends ChangeNotifier {
   int selectedWorld = 1;
@@ -18,9 +19,26 @@ class MapController extends ChangeNotifier {
     stagesProgress.clear();
 
     for (int w = 1; w <= 4; w++) {
-      for (int c = 1; c <= 3; c++) {
-        for (int l = 1; l <= 5; l++) {
+      for (int c = 1; c <= kChaptersPerWorld; c++) {
+        for (int l = 1; l <= kLevelsPerChapter; l++) {
           StageProgress p = await SaveService.getStageProgress(w, c, l);
+          // Al pasar de 5 a 10 niveles por capítulo, quien ya había ganado el
+          // antiguo nivel 5 tendría el 6 bloqueado. Regla: un nivel ganado
+          // siempre deja abierto el siguiente del mismo capítulo.
+          if (l > 1 && !p.isUnlocked) {
+            final previous = stagesProgress['w${w}_c${c}_l${l - 1}'];
+            if (previous != null && previous.stars > 0) {
+              p = StageProgress(
+                worldId: w,
+                chapterId: c,
+                levelNumber: l,
+                stars: p.stars,
+                highScore: p.highScore,
+                isUnlocked: true,
+              );
+              await SaveService.saveStageProgress(p);
+            }
+          }
           stagesProgress[p.stageKey] = p;
         }
       }
@@ -60,8 +78,8 @@ class MapController extends ChangeNotifier {
   /// Estrellas ganadas en un mundo (para el candado de las peleas).
   int starsInWorld(int world) {
     var total = 0;
-    for (var c = 1; c <= 3; c++) {
-      for (var l = 1; l <= 5; l++) {
+    for (var c = 1; c <= kChaptersPerWorld; c++) {
+      for (var l = 1; l <= kLevelsPerChapter; l++) {
         total += getProgressForNode(world, c, l).stars;
       }
     }

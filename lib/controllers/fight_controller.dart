@@ -244,7 +244,7 @@ class FightController extends ChangeNotifier {
         (rules.baseDamage * multiplier * FighterService.powerMultiplier(profile)).round();
     _hitEnemy(damage, action);
     AudioService.playSuccess();
-    QuestService.incrementProgress('answer_trivia_10');
+    QuestService.track(QuestEvent.correctAnswer);
   }
 
   /// Ataque especial: se lanza cuando la barra está llena, sin pregunta.
@@ -398,7 +398,10 @@ class FightController extends ChangeNotifier {
       }
       await SaveService.savePlayerData(p);
     }
-    QuestService.incrementProgress('win_battles_3');
+    QuestService.track(QuestEvent.levelWon);
+    QuestService.track(QuestEvent.fightWon);
+    if (starsEarned == 3) QuestService.track(QuestEvent.perfectLevel);
+    QuestService.track(QuestEvent.starsEarned, amount: starsEarned - previous.stars);
 
     await SaveService.saveStageProgress(StageProgress(
       worldId: worldId,

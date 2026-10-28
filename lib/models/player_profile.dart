@@ -22,6 +22,12 @@ class PlayerProfile {
   /// Nivel de cada mejora de luchador (ver FighterService): health, power, super.
   Map<String, int> fighterUpgrades;
 
+  /// País del jugador (código ISO de 2 letras, p. ej. "ES"). Vacío = aún no
+  /// eligió alias y país: el juego le muestra la pantalla de bienvenida.
+  String country;
+
+  bool get needsWelcome => country.isEmpty;
+
   PlayerProfile({
     this.name = 'Jugador 1',
     this.level = 1,
@@ -39,6 +45,7 @@ class PlayerProfile {
     List<String>? ownedAvatarFrames,
     List<String>? ownedAvatarAccessories,
     Map<String, int>? fighterUpgrades,
+    this.country = '',
   })  : fighterUpgrades = fighterUpgrades ?? {},
         ownedAvatarCharacters = ownedAvatarCharacters ?? ['explorador'],
         ownedAvatarFrames = ownedAvatarFrames ?? ['basico'],
@@ -98,6 +105,7 @@ class PlayerProfile {
       // aún no conozcan este campo.
       if (fighterUpgrades.values.any((level) => level > 0))
         'fighterUpgrades': fighterUpgrades,
+      if (country.isNotEmpty) 'country': country,
     };
   }
 
@@ -130,6 +138,7 @@ class PlayerProfile {
         fallback: const ['ninguno'],
       ),
       fighterUpgrades: _readIntMap(map['fighterUpgrades']),
+      country: map['country'] is String ? map['country'] as String : '',
     );
   }
 

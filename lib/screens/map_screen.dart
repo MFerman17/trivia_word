@@ -363,7 +363,15 @@ class _MapScreenState extends State<MapScreen>
         final world = _controller.selectedWorld;
         final currentIndex = _currentLevelIndex(world, segments.length);
 
+        // Tramos de ARRIBA a ABAJO: capítulo 3 parte 2, capítulo 3 parte 1...
+        // La parte 2 de cada capítulo es su imagen en espejo (niveles 6-10).
+        final parts = <({int chapter, int part})>[
+          for (int c = segments.length; c >= 1; c--)
+            for (int p = kSegmentsPerChapter - 1; p >= 0; p--) (chapter: c, part: p),
+        ];
+
         _scheduleScrollToCurrent(
+          parts,
           segments,
           heights,
           constraints.maxHeight,
@@ -375,15 +383,16 @@ class _MapScreenState extends State<MapScreen>
           child: Center(
             child: Column(
               children: [
-                for (int c = segments.length; c >= 1; c--)
+                for (var i = 0; i < parts.length; i++)
                   _buildSegment(
-                    chapter: c,
-                    segment: segments[c - 1],
+                    chapter: parts[i].chapter,
+                    part: parts[i].part,
+                    segment: _segmentFor(segments[parts[i].chapter - 1], parts[i].part),
                     width: width,
-                    height: heights[c - 1],
+                    height: heights[parts[i].chapter - 1],
                     nodeSize: nodeSize,
-                    isTop: c == segments.length,
-                    isBottom: c == 1,
+                    isTop: i == 0,
+                    isBottom: i == parts.length - 1,
                     currentIndex: currentIndex,
                   ),
               ],
@@ -407,8 +416,14 @@ class _MapScreenState extends State<MapScreen>
     return current;
   }
 
+  /// La imagen de un tramo: la parte 0 es la original; la 1, en espejo.
+  MapSegment _segmentFor(MapSegment base, int part) => part == 0
+      ? base
+      : MapSegment(asset: base.asset, nodes: base.nodes, mirrored: !base.mirrored);
+
   /// Centra la pantalla en el nivel actual al abrir el mundo.
   void _scheduleScrollToCurrent(
+    List<({int chapter, int part})> parts,
     List<MapSegment> segments,
     List<double> heights,
     double viewportHeight,
@@ -419,14 +434,18 @@ class _MapScreenState extends State<MapScreen>
     _scrolledWorld = world;
 
     final chapter = currentIndex ~/ kLevelsPerChapter + 1;
-    final i = currentIndex % kLevelsPerChapter;
+    final inChapter = currentIndex % kLevelsPerChapter;
+    final part = inChapter ~/ kNodesPerSegment;
+    final node = inChapter % kNodesPerSegment;
 
+    // Suma la altura de los tramos que hay encima del tramo del nivel actual.
     double offset = 0;
-    for (int c = segments.length; c > chapter; c--) {
-      offset += heights[c - 1];
+    for (final p in parts) {
+      if (p.chapter == chapter && p.part == part) break;
+      offset += heights[p.chapter - 1];
     }
-    final nodeY =
-        offset + segments[chapter - 1].nodeAt(i).dy * heights[chapter - 1];
+    final segment = _segmentFor(segments[chapter - 1], part);
+    final nodeY = offset + segment.nodeAt(node).dy * heights[chapter - 1];
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!_scroll.hasClients) return;
@@ -441,6 +460,7 @@ class _MapScreenState extends State<MapScreen>
   // =================================================================
   Widget _buildSegment({
     required int chapter,
+    required int part,
     required MapSegment segment,
     required double width,
     required double height,
@@ -450,8 +470,10 @@ class _MapScreenState extends State<MapScreen>
     required int currentIndex,
   }) {
     final world = _controller.selectedWorld;
-    final chapterLocked =
-        !_controller.getProgressForNode(world, chapter, 1).isUnlocked;
+    // Este tramo se oscurece si su primer nivel aún está bloqueado.
+    final chapterLocked = !_controller
+        .getProgressForNode(world, chapter, part * kNodesPerSegment + 1)
+        .isUnlocked;
 
     return SizedBox(
       width: width,
@@ -497,16 +519,17 @@ class _MapScreenState extends State<MapScreen>
               ),
             ),
 
-          // Cartel del capítulo, al inicio (abajo) de cada tramo
-          _chapterBanner(chapter, chapterLocked),
+          // Cartel del capítulo, al inicio (abajo) de su primer tramo
+          if (part == 0) _chapterBanner(chapter, chapterLocked),
 
           // Nodos sobre los círculos del sendero
           for (int i = 0;
-              i < segment.nodes.length && i < kLevelsPerChapter;
+              i < segment.nodes.length && i < kNodesPerSegment;
               i++)
             _positionedNode(
               chapter: chapter,
-              index: i,
+              index: part * kNodesPerSegment + i,
+              nodeIndex: i,
               segment: segment,
               width: width,
               height: height,
@@ -520,14 +543,15 @@ class _MapScreenState extends State<MapScreen>
 
   Widget _positionedNode({
     required int chapter,
-    required int index,
+    required int index, // nivel dentro del capítulo (0..9)
+    required int nodeIndex, // plataforma dentro de la imagen (0..4)
     required MapSegment segment,
     required double width,
     required double height,
     required double nodeSize,
     required int currentIndex,
   }) {
-    final pos = segment.nodeAt(index);
+    final pos = segment.nodeAt(nodeIndex);
     final progress = _controller.getProgressForNode(
       _controller.selectedWorld,
       chapter,

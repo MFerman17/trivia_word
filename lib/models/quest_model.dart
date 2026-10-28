@@ -9,6 +9,12 @@ class QuestModel {
   final String emoji;
   bool isClaimed;
 
+  /// Las misiones diarias se reinician cada día (ver [QuestService]).
+  final bool daily;
+
+  /// Día (aaaa-mm-dd) al que pertenece el progreso de una misión diaria.
+  String day;
+
   QuestModel({
     required this.id,
     required this.title,
@@ -19,6 +25,8 @@ class QuestModel {
     this.rewardGems = 0,
     this.emoji = '🎯',
     this.isClaimed = false,
+    this.daily = false,
+    this.day = '',
   });
 
   bool get isCompleted => currentAmount >= targetAmount;
@@ -30,6 +38,7 @@ class QuestModel {
       'id': id,
       'currentAmount': currentAmount,
       'isClaimed': isClaimed,
+      if (daily) 'day': day,
     };
   }
 
@@ -44,6 +53,8 @@ class QuestModel {
       rewardGems: template.rewardGems,
       emoji: template.emoji,
       isClaimed: json['isClaimed'] ?? false,
+      daily: template.daily,
+      day: json['day'] as String? ?? '',
     );
   }
 }

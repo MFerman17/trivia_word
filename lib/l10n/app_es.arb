@@ -1730,5 +1730,177 @@
   "encourage10": "¡Concéntrate, tú puedes con esto!",
   "@encourage10": {
     "description": "EN: Focus, you've got this!"
+  },
+  "welcomeTitle": "¡BIENVENIDO, HÉROE!",
+  "@welcomeTitle": {
+    "description": "EN: WELCOME, HERO!"
+  },
+  "welcomeBody": "Antes de empezar la aventura, dinos cómo quieres que te llamen y de dónde eres.",
+  "@welcomeBody": {
+    "description": "EN: Before the adventure begins, tell us what to call you and where you're from."
+  },
+  "editProfileTitle": "EDITAR PERFIL",
+  "@editProfileTitle": {
+    "description": "EN: EDIT PROFILE"
+  },
+  "aliasLabel": "TU ALIAS",
+  "@aliasLabel": {
+    "description": "EN: YOUR ALIAS"
+  },
+  "aliasHint": "Ej.: DragonSlayer",
+  "@aliasHint": {
+    "description": "EN: E.g.: DragonSlayer"
+  },
+  "aliasRules": "De 3 a 16 letras o números. Así te verán en el ranking.",
+  "@aliasRules": {
+    "description": "EN: 3 to 16 letters or numbers. This is how others will see you on the leaderboard."
+  },
+  "aliasInvalid": "El alias debe tener de 3 a 16 letras, números, espacios o _ . -",
+  "@aliasInvalid": {
+    "description": "EN: Your alias must have 3 to 16 letters, numbers, spaces or _ . -"
+  },
+  "aliasNotAllowed": "Ese alias no está permitido. Prueba con otro.",
+  "@aliasNotAllowed": {
+    "description": "EN: That alias isn't allowed. Try another one."
+  },
+  "countryLabel": "TU PAÍS",
+  "@countryLabel": {
+    "description": "EN: YOUR COUNTRY"
+  },
+  "chooseCountry": "Elige tu país",
+  "@chooseCountry": {
+    "description": "EN: Choose your country"
+  },
+  "searchCountry": "Buscar país…",
+  "@searchCountry": {
+    "description": "EN: Search country…"
+  },
+  "countryRequired": "Elige tu país para continuar.",
+  "@countryRequired": {
+    "description": "EN: Choose your country to continue."
+  },
+  "startPlaying": "¡A JUGAR!",
+  "@startPlaying": {
+    "description": "EN: LET'S PLAY!"
+  },
+  "saveButton": "GUARDAR",
+  "@saveButton": {
+    "description": "EN: SAVE"
+  },
+  "profileSaved": "¡Perfil actualizado!",
+  "@profileSaved": {
+    "description": "EN: Profile updated!"
+  },
+  "questsDailyHeader": "MISIONES DIARIAS",
+  "@questsDailyHeader": {
+    "description": "EN: DAILY MISSIONS"
+  },
+  "questsDailyHint": "Se renuevan cada día",
+  "@questsDailyHint": {
+    "description": "EN: They renew every day"
+  },
+  "questsAchievementsHeader": "LOGROS",
+  "@questsAchievementsHeader": {
+    "description": "EN: ACHIEVEMENTS"
+  },
+  "questDailyTag": "DIARIA",
+  "@questDailyTag": {
+    "description": "EN: DAILY"
+  },
+  "questDailyAnswer": "Calentamiento",
+  "@questDailyAnswer": {
+    "description": "EN: Warm-up"
+  },
+  "questDailyAnswerDesc": "Acierta 15 preguntas hoy",
+  "@questDailyAnswerDesc": {
+    "description": "EN: Answer 15 questions correctly today"
+  },
+  "questDailyWin": "Racha del día",
+  "@questDailyWin": {
+    "description": "EN: Daily streak"
+  },
+  "questDailyWinDesc": "Gana 3 niveles hoy",
+  "@questDailyWinDesc": {
+    "description": "EN: Win 3 levels today"
+  },
+  "questDailyPerfect": "Sin fallos",
+  "@questDailyPerfect": {
+    "description": "EN: Flawless"
+  },
+  "questDailyPerfectDesc": "Gana un nivel con 3 estrellas hoy",
+  "@questDailyPerfectDesc": {
+    "description": "EN: Win a level with 3 stars today"
+  },
+  "questDailyHint": "Pequeña ayuda",
+  "@questDailyHint": {
+    "description": "EN: A little help"
+  },
+  "questDailyHintDesc": "Usa 2 pistas hoy",
+  "@questDailyHintDesc": {
+    "description": "EN: Use 2 hints today"
+  },
+  "questWinFights": "Cazamonstruos",
+  "@questWinFights": {
+    "description": "EN: Monster Hunter"
+  },
+  "questWinFightsDesc": "Vence a 3 monstruos de capítulo",
+  "@questWinFightsDesc": {
+    "description": "EN: Defeat 3 chapter monsters"
+  },
+  "questPerfect": "Perfeccionista",
+  "@questPerfect": {
+    "description": "EN: Perfectionist"
+  },
+  "questPerfectDesc": "Gana 10 niveles con 3 estrellas",
+  "@questPerfectDesc": {
+    "description": "EN: Win 10 levels with 3 stars"
+  },
+  "questStars": "Coleccionista de estrellas",
+  "@questStars": {
+    "description": "EN: Star Collector"
+  },
+  "questStarsDesc": "Consigue 50 estrellas en el mapa",
+  "@questStarsDesc": {
+    "description": "EN: Collect 50 stars on the map"
+  },
+  "questAnswer100": "Enciclopedia",
+  "@questAnswer100": {
+    "description": "EN: Encyclopedia"
+  },
+  "questAnswer100Desc": "Acierta 100 preguntas",
+  "@questAnswer100Desc": {
+    "description": "EN: Answer 100 questions correctly"
+  },
+  "questWin25": "Veterano",
+  "@questWin25": {
+    "description": "EN: Veteran"
+  },
+  "questWin25Desc": "Gana 25 niveles",
+  "@questWin25Desc": {
+    "description": "EN: Win 25 levels"
+  },
+  "questMiniChallenge": "Retador",
+  "@questMiniChallenge": {
+    "description": "EN: Challenger"
+  },
+  "questMiniChallengeDesc": "Supera 3 mini-retos",
+  "@questMiniChallengeDesc": {
+    "description": "EN: Beat 3 mini-challenges"
+  },
+  "questUseHints": "Estratega",
+  "@questUseHints": {
+    "description": "EN: Strategist"
+  },
+  "questUseHintsDesc": "Usa 5 pistas",
+  "@questUseHintsDesc": {
+    "description": "EN: Use 5 hints"
+  },
+  "questBuyUpgrade": "Entrenamiento",
+  "@questBuyUpgrade": {
+    "description": "EN: Training"
+  },
+  "questBuyUpgradeDesc": "Compra una mejora de luchador",
+  "@questBuyUpgradeDesc": {
+    "description": "EN: Buy a fighter upgrade"
   }
 }

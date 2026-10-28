@@ -18,6 +18,8 @@ import '../services/question_repository.dart';
 import '../services/save_service.dart';
 import '../services/lives_service.dart';
 import '../l10n/l10n.dart';
+import '../services/vibration_service.dart';
+import '../services/cheer_service.dart';
 
 /// Fases de la pelea, en el orden en que ocurren.
 enum FightPhase {
@@ -106,6 +108,9 @@ class FightController extends ChangeNotifier {
   int actionId = 0;
   int lastDamage = 0;
   String actionLabel = '';
+
+  /// Frase de ánimo que acompaña al golpe (cambia en cada uno).
+  String cheer = '';
 
   // --- Resultado ---
   int starsEarned = 0;
@@ -255,16 +260,20 @@ class FightController extends ChangeNotifier {
   }
 
   void _hitEnemy(int damage, FightAction action) {
+    cheer = CheerService.next(correct: true);
     lastDamage = damage;
     lastAction = action;
     actionId++;
     enemyHp = math.max(0, enemyHp - damage);
     phase = FightPhase.feedback;
     notifyListeners();
+    // Vibra justo cuando el golpe llega al monstruo (a mitad de la embestida).
+    _after(220, () => VibrationService.hit(strong: action == FightAction.special));
     _after(action == FightAction.special ? 1500 : 1300, _afterExchange);
   }
 
   void _enemyStrikes(FightAction action) {
+    cheer = CheerService.next(correct: false);
     combo = 0;
     final damage = (rules.enemyDamage * (isEnraged ? rules.enragedMultiplier : 1)).round();
     lastDamage = damage;
@@ -277,6 +286,7 @@ class FightController extends ChangeNotifier {
     phase = FightPhase.feedback;
     notifyListeners();
     AudioService.playWrong();
+    _after(220, () => VibrationService.hit(strong: true));
     if (playerHp > 0 && playerHp <= playerMaxHp * 0.25) {
       _after(700, AudioService.playLowHealth);
     }
@@ -339,7 +349,9 @@ class FightController extends ChangeNotifier {
     }
     phase = FightPhase.roundEnd;
     notifyListeners();
-    AudioService.playSfx('monster_roar.mp3');
+    // Antes sonaba siempre el rugido del monstruo, también cuando ganabas.
+    // Ahora: al ganar el round, sonido de triunfo; al perderlo, el rugido.
+    playerWon ? AudioService.playRoundWin() : AudioService.playSfx('monster_roar.mp3');
 
     _after(2400, () {
       if (playerRounds >= rules.roundsToWin) {

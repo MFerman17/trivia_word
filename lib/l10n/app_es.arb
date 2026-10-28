@@ -1606,5 +1606,129 @@
   "adPrivacyOptions": "PRIVACIDAD DE ANUNCIOS",
   "@adPrivacyOptions": {
     "description": "EN: AD PRIVACY OPTIONS"
+  },
+  "worldName1": "Bosque",
+  "@worldName1": {
+    "description": "EN: Forest"
+  },
+  "worldName2": "Cavernas",
+  "@worldName2": {
+    "description": "EN: Caverns"
+  },
+  "worldName3": "Islas Flotantes",
+  "@worldName3": {
+    "description": "EN: Floating Islands"
+  },
+  "worldName4": "Volcán",
+  "@worldName4": {
+    "description": "EN: Volcano"
+  },
+  "worldButton": "{number} · {name}",
+  "@worldButton": {
+    "description": "EN: {number} · {name}",
+    "placeholders": {
+      "number": {
+        "type": "int"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "exploreWorld": "¡A EXPLORAR!",
+  "@exploreWorld": {
+    "description": "EN: LET'S EXPLORE!"
+  },
+  "settingsVibration": "Vibración en los golpes",
+  "@settingsVibration": {
+    "description": "EN: Vibration on hits"
+  },
+  "praise1": "¡Me sorprende tu inteligencia!",
+  "@praise1": {
+    "description": "EN: Your intelligence amazes me!"
+  },
+  "praise2": "¡Eres un genio de las palabras!",
+  "@praise2": {
+    "description": "EN: You're a word genius!"
+  },
+  "praise3": "¡Impresionante, sigue así!",
+  "@praise3": {
+    "description": "EN: Impressive, keep it up!"
+  },
+  "praise4": "¡Ese monstruo no sabe con quién se metió!",
+  "@praise4": {
+    "description": "EN: That monster has no idea who it's dealing with!"
+  },
+  "praise5": "¡Brillante respuesta!",
+  "@praise5": {
+    "description": "EN: Brilliant answer!"
+  },
+  "praise6": "¡Tu mente es tu mejor arma!",
+  "@praise6": {
+    "description": "EN: Your mind is your best weapon!"
+  },
+  "praise7": "¡Qué rapidez mental!",
+  "@praise7": {
+    "description": "EN: What a quick mind!"
+  },
+  "praise8": "¡Así se hace, héroe!",
+  "@praise8": {
+    "description": "EN: That's how it's done, hero!"
+  },
+  "praise9": "¡Nada se te escapa!",
+  "@praise9": {
+    "description": "EN: Nothing gets past you!"
+  },
+  "praise10": "¡Estás imparable!",
+  "@praise10": {
+    "description": "EN: You're unstoppable!"
+  },
+  "praise11": "¡Sabiduría nivel leyenda!",
+  "@praise11": {
+    "description": "EN: Legendary wisdom!"
+  },
+  "praise12": "¡Otro golpe certero!",
+  "@praise12": {
+    "description": "EN: Another perfect hit!"
+  },
+  "encourage1": "Puedes hacerlo mejor, ¡confío en ti!",
+  "@encourage1": {
+    "description": "EN: You can do better, I believe in you!"
+  },
+  "encourage2": "¡Ánimo! El próximo es tuyo.",
+  "@encourage2": {
+    "description": "EN: Chin up! The next one is yours."
+  },
+  "encourage3": "Hasta los héroes fallan. ¡Sigue!",
+  "@encourage3": {
+    "description": "EN: Even heroes miss. Keep going!"
+  },
+  "encourage4": "Respira y vuelve a intentarlo.",
+  "@encourage4": {
+    "description": "EN: Take a breath and try again."
+  },
+  "encourage5": "Cada error te hace más sabio.",
+  "@encourage5": {
+    "description": "EN: Every mistake makes you wiser."
+  },
+  "encourage6": "¡No te rindas, casi lo tenías!",
+  "@encourage6": {
+    "description": "EN: Don't give up, you almost had it!"
+  },
+  "encourage7": "El monstruo se ríe… ¡demuéstrale quién manda!",
+  "@encourage7": {
+    "description": "EN: The monster is laughing… show it who's boss!"
+  },
+  "encourage8": "Lee con calma: la respuesta está ahí.",
+  "@encourage8": {
+    "description": "EN: Read calmly: the answer is right there."
+  },
+  "encourage9": "Un tropiezo no es una derrota.",
+  "@encourage9": {
+    "description": "EN: One slip isn't a defeat."
+  },
+  "encourage10": "¡Concéntrate, tú puedes con esto!",
+  "@encourage10": {
+    "description": "EN: Focus, you've got this!"
   }
 }

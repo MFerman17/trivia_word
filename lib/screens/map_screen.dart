@@ -13,6 +13,8 @@ import '../services/fighter_service.dart';
 import '../widgets/game_3d.dart';
 import 'fight_screen.dart';
 import '../widgets/lives_widgets.dart';
+import '../services/chapter_story_service.dart';
+import '../services/question_bank.dart';
 
 // Colores coherentes con el estilo del juego
 const Color kOutline = Color(0xFF0D0326);
@@ -114,12 +116,99 @@ class _MapScreenState extends State<MapScreen>
                 levelNumber: levelNumber,
               ),
       ),
-    ).then((_) {
+    ).then((result) async {
       // Al volver, recarga progreso y vuelve a centrar en el nivel actual
       _scrolledWorld = null;
-      _controller.loadAllProgress();
+      await _controller.loadAllProgress();
       AudioService.playMapMusic();
+      // La pelea final devuelve el número del mundo siguiente: se pasa a él
+      // y se cuenta su historia, para que el jugador sepa que ya avanzó.
+      if (result is int && mounted) {
+        _controller.selectWorld(result);
+        _showNewWorld(result);
+      }
     });
+  }
+
+  /// Presentación del mundo nuevo, con su paisaje y su historia.
+  void _showNewWorld(int world) {
+    final story = ChapterStoryService.afterChapter(world - 1, 3);
+    showDialog<void>(
+      context: context,
+      barrierColor: Colors.black.withValues(alpha: 0.8),
+      builder: (dialogContext) => Dialog(
+        backgroundColor: Colors.transparent,
+        insetPadding: const EdgeInsets.symmetric(horizontal: 22),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(22),
+          child: Stack(
+            children: [
+              // Paisaje del mundo nuevo de fondo, oscurecido.
+              Positioned.fill(
+                child: Image.asset(
+                  QuestionBank.worldBackgroundAsset(world, 1),
+                  fit: BoxFit.cover,
+                  color: Colors.black.withValues(alpha: 0.55),
+                  colorBlendMode: BlendMode.darken,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(20, 22, 20, 14),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    OutlinedGameText(
+                      context.l10n.worldButton(world, _worldName(world)).toUpperCase(),
+                      size: 26,
+                      letterSpacing: 1.5,
+                      colors: const [Color(0xFFA8FFF6), kCyan],
+                    ),
+                    if (story != null) ...[
+                      const SizedBox(height: 10),
+                      Text(
+                        story.heading,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.metalMania(color: WM.gold, fontSize: 21),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        story.narrative,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.oswald(color: Colors.white, fontSize: 14, height: 1.35),
+                      ),
+                      const SizedBox(height: 8),
+                      Text(
+                        story.objective,
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.oswald(color: kCyan, fontSize: 13, fontWeight: FontWeight.w600),
+                      ),
+                    ],
+                    const SizedBox(height: 16),
+                    SizedBox(
+                      width: double.infinity,
+                      child: Pressable3D(
+                        onTap: () {
+                          AudioService.playButtonClick();
+                          Navigator.of(dialogContext).pop();
+                        },
+                        color: kCyan,
+                        height: 48,
+                        child: OutlinedGameText(
+                          context.l10n.exploreWorld,
+                          size: 17,
+                          font: GameFont.oswald,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+    AudioService.playPageFlip();
   }
   /// Aviso cuando aún no hay estrellas suficientes para una pelea.
   void _showFightLocked(int chapter, int missing) {
@@ -666,6 +755,14 @@ class _MapScreenState extends State<MapScreen>
   // =================================================================
   // SELECTOR DE MUNDOS HORIZONTAL
   // =================================================================
+  /// Nombre de cada mundo en el idioma actual.
+  String _worldName(int world) => switch (world) {
+        1 => context.l10n.worldName1,
+        2 => context.l10n.worldName2,
+        3 => context.l10n.worldName3,
+        _ => context.l10n.worldName4,
+      };
+
   Widget _buildWorldSelector() {
     return Container(
       height: 65,
@@ -703,7 +800,10 @@ class _MapScreenState extends State<MapScreen>
                 ),
                 child: Center(
                   child: Text(
-                    context.l10n.worldLabel(worldNum),
+                    // Cada mundo con el nombre de su historia: "1 · BOSQUE".
+                    context.l10n
+                        .worldButton(worldNum, _worldName(worldNum))
+                        .toUpperCase(),
                     style: GoogleFonts.anton(
                       color: isSelected ? kOutline : Colors.white70,
                       fontSize: 14,

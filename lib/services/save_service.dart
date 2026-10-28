@@ -149,6 +149,7 @@ class SaveService {
       'audio_sfx_on',
       'audio_music_volume',
       'audio_sfx_volume',
+      'vibration_on',
     };
     for (final key in prefs.getKeys().toList()) {
       if (!keep.contains(key)) await prefs.remove(key);

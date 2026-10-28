@@ -10,6 +10,7 @@ import '../widgets/battle_arena.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 import '../l10n/l10n.dart';
+import '../services/cheer_service.dart';
 
 class GameScreen extends StatefulWidget {
   final int worldId;
@@ -46,6 +47,10 @@ class _GameScreenState extends State<GameScreen> {
   bool _wasAnswered = false;
   int _previousEnemyHp = 0;
   int _hpBeforeAnswer = 0;
+
+  // Frase de ánimo de la última respuesta.
+  String? _cheer;
+  bool _cheerPositive = true;
 
   @override
   void initState() {
@@ -99,8 +104,12 @@ class _GameScreenState extends State<GameScreen> {
       _hpBeforeAnswer = _previousEnemyHp;
       if (_controller.selectedOptionIndex == question.correctIndex) {
         _hitCount++;
+        _cheerPositive = true;
+        _cheer = CheerService.next(correct: true);
       } else {
         _attackCount++;
+        _cheerPositive = false;
+        _cheer = CheerService.next(correct: false);
       }
     }
     if (answered) {
@@ -722,6 +731,9 @@ class _GameScreenState extends State<GameScreen> {
             hitCount: _hitCount,
             attackCount: _attackCount,
             lastDamage: _lastDamage,
+            // La frase se ve mientras se lee la explicación de la respuesta.
+            cheer: _controller.isAnswered ? _cheer : null,
+            cheerPositive: _cheerPositive,
             profile: _controller.profile,
             // Más bajo mientras se lee la explicación, para que quepa.
             compact: _controller.isAnswered,

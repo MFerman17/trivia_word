@@ -106,12 +106,12 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
         onError: (_, _) {}, // Si falta una pose, se usa la de reserva.
       );
     }
-    for (final pose in MonsterPoses.poses) {
-      precacheImage(
-        AssetImage(MonsterPoses.assetFor(_fight.config.enemyAsset, pose)),
-        context,
-        onError: (_, _) {},
-      );
+    for (final asset in [
+      for (final pose in MonsterPoses.poses) MonsterPoses.assetFor(_fight.config.enemyAsset, pose),
+      MonsterPoses.assetWithDamage(_fight.config.enemyAsset, 'idle', 1),
+      MonsterPoses.assetWithDamage(_fight.config.enemyAsset, 'idle', 2),
+    ]) {
+      precacheImage(AssetImage(asset), context, onError: (_, _) {});
     }
   }
 
@@ -522,7 +522,12 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     final profile = _fight.profile;
     final asset = isPlayer
         ? PlayerAvatar.fighterAssetFor(profile?.avatarCharacterId ?? 'explorador', pose: pose)
-        : MonsterPoses.assetFor(_fight.config.enemyAsset, pose);
+        // El monstruo quieto muestra moretones según la vida del round.
+        : MonsterPoses.assetWithDamage(
+            _fight.config.enemyAsset,
+            pose,
+            MonsterPoses.damageLevel(_fight.enemyHp, _fight.enemyMaxHp),
+          );
 
     Widget image = Image.asset(
       asset,
@@ -535,12 +540,18 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
       // monstruo su imagen normal.
       errorBuilder: (_, _, _) => isPlayer
           ? Image.asset('assets/images/adventurer.png', height: height, fit: BoxFit.contain)
+          // Monstruo: sin moretones → pose normal → imagen base → emoji.
           : Image.asset(
-              _fight.config.enemyAsset,
+              MonsterPoses.assetFor(_fight.config.enemyAsset, pose),
               height: height,
               fit: BoxFit.contain,
-              errorBuilder: (_, _, _) =>
-                  Text(_fight.config.enemyEmoji, style: TextStyle(fontSize: height * 0.5)),
+              errorBuilder: (_, _, _) => Image.asset(
+                _fight.config.enemyAsset,
+                height: height,
+                fit: BoxFit.contain,
+                errorBuilder: (_, _, _) =>
+                    Text(_fight.config.enemyEmoji, style: TextStyle(fontSize: height * 0.5)),
+              ),
             ),
     );
 
@@ -893,14 +904,39 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                 duration: const Duration(milliseconds: 380),
                 curve: Curves.elasticOut,
                 builder: (context, s, child) => Transform.scale(scale: s, child: child),
-                child: OutlinedGameText(
-                  _fight.actionLabel,
-                  size: 26,
-                  letterSpacing: 1.5,
-                  colors: _fight.lastAction == FightAction.enemyHit ||
-                          _fight.lastAction == FightAction.timeout
-                      ? const [Color(0xFFFFC2C8), Color(0xFFFF4D5E)]
-                      : const [Color(0xFFFFF1B0), WM.gold],
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    OutlinedGameText(
+                      _fight.actionLabel,
+                      size: 26,
+                      letterSpacing: 1.5,
+                      colors: _fight.lastAction == FightAction.enemyHit ||
+                              _fight.lastAction == FightAction.timeout
+                          ? const [Color(0xFFFFC2C8), Color(0xFFFF4D5E)]
+                          : const [Color(0xFFFFF1B0), WM.gold],
+                    ),
+                    if (_fight.cheer.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Container(
+                        constraints: const BoxConstraints(maxWidth: 300),
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 5),
+                        decoration: BoxDecoration(
+                          color: WM.outline.withValues(alpha: 0.85),
+                          borderRadius: BorderRadius.circular(14),
+                        ),
+                        child: Text(
+                          _fight.cheer,
+                          textAlign: TextAlign.center,
+                          style: GoogleFonts.oswald(
+                            color: Colors.white,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ],
                 ),
               ),
             ),
@@ -941,6 +977,10 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
   // =================================================================
   void _showVictoryDialog() {
     final f = _fight;
+    // Primera vez que se vence al jefe final de un mundo (que no sea el
+    // último): el mapa pasará solo al mundo siguiente y contará su historia.
+    final int? nextWorld =
+        f.isFinal && f.firstWin && f.worldId < 4 ? f.worldId + 1 : null;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -1010,7 +1050,8 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                   style: GoogleFonts.oswald(color: Colors.white38, fontSize: 12),
                 ),
               ],
-              if (f.chapterStory != null) ...[
+              // La historia del mundo nuevo la cuenta el mapa al llegar.
+              if (f.chapterStory != null && nextWorld == null) ...[
                 const SizedBox(height: 14),
                 Text(
                   f.chapterStory!.heading,
@@ -1031,7 +1072,8 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                   onTap: () {
                     AudioService.playButtonClick();
                     Navigator.of(dialogContext).pop();
-                    Navigator.of(context).pop();
+                    // Devuelve al mapa el mundo al que hay que pasar (o nada).
+                    Navigator.of(context).pop(nextWorld);
                   },
                   color: WM.gold,
                   height: 50,

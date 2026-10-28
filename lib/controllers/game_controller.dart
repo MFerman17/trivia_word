@@ -12,6 +12,7 @@ import '../services/cloud_service.dart';
 import '../services/chapter_story_service.dart';
 import '../services/lives_service.dart';
 import '../l10n/l10n.dart';
+import '../services/vibration_service.dart';
 
 enum GameStatus { loading, playing, victory, defeat }
 
@@ -115,6 +116,7 @@ class GameController extends ChangeNotifier {
 
     if (isCorrect) {
       AudioService.playSuccess();
+      Future.delayed(const Duration(milliseconds: 180), () => VibrationService.hit());
       if (correctlyAnsweredQuestionIds.add(question.id)) {
         QuestService.incrementProgress('answer_trivia_10');
         final hitsToDefeat = config.correctAnswersToDefeat;
@@ -130,6 +132,7 @@ class GameController extends ChangeNotifier {
       }
     } else {
       AudioService.playWrong();
+      Future.delayed(const Duration(milliseconds: 150), () => VibrationService.hit(strong: true));
       mistakes++;
       LivesService.loseLife(); // se guarda al momento: salir no la devuelve
       playerHp = LivesService.lives.value;

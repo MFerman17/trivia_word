@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Vibrar cuando hay golpes en el combate y en las peleas -->
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application
         android:label="Words &amp; Monsters"
         android:name="${applicationName}"

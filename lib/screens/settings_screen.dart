@@ -8,6 +8,7 @@ import '../services/cloud_service.dart';
 import '../services/lives_service.dart';
 import '../services/locale_service.dart';
 import '../services/question_repository.dart';
+import '../services/vibration_service.dart';
 import '../widgets/game_3d.dart';
 import 'home_screen.dart';
 
@@ -136,6 +137,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
               AudioService.setSfxVolume(value, save: true);
               AudioService.playButtonClick();
             },
+          ),
+          const SizedBox(height: 8),
+          // Vibración: al activarla, el teléfono da un golpe de prueba.
+          Row(
+            children: [
+              Socket3D(
+                size: 44,
+                color: VibrationService.enabled ? WM.cyan : const Color(0xFF4A4660),
+                child: const Text('📳', style: TextStyle(fontSize: 19)),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  context.l10n.settingsVibration,
+                  style: GoogleFonts.oswald(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              Switch(
+                value: VibrationService.enabled,
+                onChanged: (value) async {
+                  await VibrationService.setEnabled(value);
+                  if (mounted) setState(() {});
+                },
+                activeThumbColor: WM.bone,
+                activeTrackColor: WM.cyan,
+                inactiveThumbColor: Colors.white54,
+                inactiveTrackColor: WM.outline,
+              ),
+            ],
           ),
         ],
       ),

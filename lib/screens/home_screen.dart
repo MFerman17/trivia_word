@@ -216,7 +216,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final double dragonHeight = (screenHeight * 0.33).clamp(180.0, 360.0);
     const double dragonScale = 1.4;
     const double dragonLift = -25;
-    const double dragonShift = 0.35;
+    const double dragonShift = 0.48; // antes 0.35: más a la derecha
 
     return Scaffold(
       body: Stack(
@@ -324,7 +324,14 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     children: [
                       // Vidas globales y tiempo para la siguiente.
                       LivesBadge(onTap: () => showOutOfLivesDialogIfEmpty(context)),
-                      _buildSettingsButton(),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _buildSoundButton(),
+                          const SizedBox(width: 10),
+                          _buildSettingsButton(),
+                        ],
+                      ),
                     ],
                   ),
 
@@ -661,6 +668,42 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     );
   }
 
+  // Fondo de los botones redondos de la portada (altavoz y engranaje).
+  BoxDecoration _roundButtonDecoration() => BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF3A2A7A), Color(0xFF1A0845)],
+        ),
+        border: Border.all(color: kOutline, width: 3),
+        boxShadow: const [
+          BoxShadow(color: Color(0xFF0A6F66), offset: Offset(0, 4)),
+          BoxShadow(color: Colors.black54, offset: Offset(0, 7), blurRadius: 8),
+        ],
+      );
+
+  // Altavoz: silencia o activa música y efectos, igual que en el mapa.
+  Widget _buildSoundButton() {
+    final muted = AudioService.isMuted;
+    return GestureDetector(
+      onTap: () {
+        AudioService.toggleMute();
+        setState(() {});
+      },
+      child: Container(
+        width: 46,
+        height: 46,
+        decoration: _roundButtonDecoration(),
+        child: Icon(
+          muted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
+          color: muted ? Colors.redAccent : kCyan,
+          size: 24,
+        ),
+      ),
+    );
+  }
+
   // Botón redondo de engranaje con canto sólido debajo (efecto 3D).
   Widget _buildSettingsButton() {
     return Tooltip(
@@ -678,19 +721,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         child: Container(
           width: 46,
           height: 46,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            gradient: const LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [Color(0xFF3A2A7A), Color(0xFF1A0845)],
-            ),
-            border: Border.all(color: kOutline, width: 3),
-            boxShadow: const [
-              BoxShadow(color: Color(0xFF0A6F66), offset: Offset(0, 4)),
-              BoxShadow(color: Colors.black54, offset: Offset(0, 7), blurRadius: 8),
-            ],
-          ),
+          decoration: _roundButtonDecoration(),
           child: const Icon(Icons.settings_rounded, color: kCyan, size: 26),
         ),
       ),

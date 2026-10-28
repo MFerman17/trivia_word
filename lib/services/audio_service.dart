@@ -87,8 +87,49 @@ class AudioService {
       for (final player in _sfxPlayers) {
         await player.setReleaseMode(ReleaseMode.stop);
       }
+      await _configureAudioFocus();
     } catch (e) {
       debugPrint('🎵 Error al inicializar AudioService: $e');
+    }
+  }
+
+  /// En Android, cada reproductor "pide el turno" del audio del teléfono
+  /// (audio focus). Por defecto, al sonar un efecto (un clic, un acierto),
+  /// el efecto se quedaba el turno y Android pausaba la música. Por eso la
+  /// música se cortaba al responder o al tocar botones en la portada.
+  ///
+  /// Ahora: la música pide el turno (como cualquier juego) y los efectos
+  /// suenan ENCIMA sin pedirlo, así nunca la interrumpen.
+  static Future<void> _configureAudioFocus() async {
+    if (kIsWeb) return; // En el navegador no existe ese turno.
+    try {
+      await _bgmPlayer.setAudioContext(AudioContext(
+        android: const AudioContextAndroid(
+          contentType: AndroidContentType.music,
+          usageType: AndroidUsageType.game,
+          audioFocus: AndroidAudioFocus.gain,
+        ),
+        iOS: AudioContextIOS(
+          category: AVAudioSessionCategory.ambient,
+          options: const {AVAudioSessionOptions.mixWithOthers},
+        ),
+      ));
+      final effects = AudioContext(
+        android: const AudioContextAndroid(
+          contentType: AndroidContentType.sonification,
+          usageType: AndroidUsageType.game,
+          audioFocus: AndroidAudioFocus.none,
+        ),
+        iOS: AudioContextIOS(
+          category: AVAudioSessionCategory.ambient,
+          options: const {AVAudioSessionOptions.mixWithOthers},
+        ),
+      );
+      for (final player in _sfxPlayers) {
+        await player.setAudioContext(effects);
+      }
+    } catch (e) {
+      debugPrint('🎵 No se pudo configurar el turno de audio: $e');
     }
   }
 
@@ -227,6 +268,10 @@ class AudioService {
   static Future<void> playBattleStart({bool boss = false}) => boss
       ? playSfx('boss_intro.mp3', fallback: 'monster_roar.mp3')
       : playSfx('monster_roar.mp3');
+
+  /// K.O. a favor en una pelea: sonido de triunfo. Si existe
+  /// round_win.mp3 se usa ese; si no, la fanfarria de subir de nivel.
+  static Future<void> playRoundWin() => playSfx('round_win.mp3', fallback: 'level_up.mp3');
 
   /// Aviso de que al jugador le queda una sola vida.
   static Future<void> playLowHealth() => playSfx('low_health.mp3');

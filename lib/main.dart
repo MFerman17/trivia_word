@@ -11,6 +11,7 @@ import 'services/locale_service.dart';
 import 'services/question_repository.dart';
 import 'services/save_service.dart';
 import 'services/lives_service.dart';
+import 'services/vibration_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,6 +40,8 @@ Future<void> main() async {
   await AudioService.init();
   // Vidas globales (suma las que se recargaron con la app cerrada).
   await LivesService.init();
+  // Vibración en los golpes (se puede desactivar en Ajustes).
+  await VibrationService.init();
 
   runApp(MyApp(initError: initError));
 }

@@ -4,3 +4,8 @@ Nombre = nombre de la imagen del monstruo + _pose.png
   ej.: mini_forest_guardian_idle.png, mini_forest_guardian_attack.png...
   pose: idle (quieto), attack (ataca), hit (recibe), win (gana), lose (pierde)
 Si falta una pose, se usa la imagen normal del monstruo.
+
+Moretones (opcional): versiones de la pose "quieto" con el monstruo golpeado.
+  NOMBRE_idle_hurt1.png  -> algo golpeado (vida por debajo del 66 %)
+  NOMBRE_idle_hurt2.png  -> muy golpeado (vida por debajo del 33 %)
+Mismo tamaño y misma posición que NOMBRE_idle.png.

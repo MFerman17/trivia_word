@@ -34,6 +34,8 @@ class BattleArena extends StatefulWidget {
     required this.hitCount,
     required this.attackCount,
     required this.lastDamage,
+    this.cheer,
+    this.cheerPositive = true,
     this.profile,
     this.compact = false,
   });
@@ -48,6 +50,10 @@ class BattleArena extends StatefulWidget {
   final int hitCount;
   final int attackCount;
   final int lastDamage;
+
+  /// Frase de ánimo tras responder (null = no se muestra).
+  final String? cheer;
+  final bool cheerPositive;
   final PlayerProfile? profile;
 
   /// Más bajo mientras se lee la explicación de la respuesta.
@@ -154,6 +160,14 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
                     bottom: 0,
                     child: _buildPlayer(),
                   ),
+                // Frase tras responder: verde si acertó, naranja si falló.
+                if (widget.cheer != null)
+                  Positioned(
+                    top: 50,
+                    left: 0,
+                    right: 0,
+                    child: IgnorePointer(child: Center(child: _buildCheer())),
+                  ),
                 // Destello rojo cuando el monstruo golpea.
                 if (attackT > 0 && attackT < 1)
                   Positioned.fill(
@@ -178,6 +192,40 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
             ),
           );
         },
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // GLOBO CON LA FRASE DE ÁNIMO (entra con un pequeño rebote)
+  // ---------------------------------------------------------------
+  Widget _buildCheer() {
+    final color = widget.cheerPositive ? const Color(0xFF2FC22A) : const Color(0xFFFF8A3D);
+    return TweenAnimationBuilder<double>(
+      key: ValueKey(widget.cheer),
+      tween: Tween(begin: 0.6, end: 1),
+      duration: const Duration(milliseconds: 450),
+      curve: Curves.elasticOut,
+      builder: (context, s, child) => Transform.scale(scale: s, child: child),
+      child: Container(
+        constraints: const BoxConstraints(maxWidth: 300),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 7),
+        decoration: BoxDecoration(
+          color: WM.outline.withValues(alpha: 0.9),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: color, width: 2.5),
+          boxShadow: [BoxShadow(color: color.withValues(alpha: 0.4), blurRadius: 12)],
+        ),
+        child: Text(
+          widget.cheer!,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
+            shadows: [Shadow(color: color, blurRadius: 6)],
+          ),
+        ),
       ),
     );
   }
@@ -244,6 +292,8 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
     final hitT = _hit.value;
     final attackT = _attack.value;
     final defeatT = Curves.easeIn.transform(_defeat.value);
+    // Moretones: cuanto menos vida, más golpeado se ve.
+    final damage = MonsterPoses.damageLevel(widget.enemyHp, widget.enemyMaxHp);
 
     // Pose del monstruo: cae al perder, ataca al fallar tú, se dobla al
     // recibir tu golpe; si no, quieto.
@@ -364,23 +414,30 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
                           alignment: Alignment.bottomCenter,
                           children: [...previous, ?current],
                         ),
+                        // Si quieto y herido: la versión con moretones. Si falta
+                        // esa imagen, la pose normal; si falta, la imagen base.
                         child: Image.asset(
-                          MonsterPoses.assetFor(widget.enemyAsset, pose),
-                          key: ValueKey(pose),
+                          MonsterPoses.assetWithDamage(widget.enemyAsset, pose, damage),
+                          key: ValueKey('$pose-$damage'),
                           fit: BoxFit.contain,
                           alignment: Alignment.bottomCenter,
                           cacheWidth: 512,
                           gaplessPlayback: true,
-                          // Sin poses todavía: la imagen normal del monstruo.
                           errorBuilder: (_, _, _) => Image.asset(
-                            widget.enemyAsset,
+                            MonsterPoses.assetFor(widget.enemyAsset, pose),
                             fit: BoxFit.contain,
                             alignment: Alignment.bottomCenter,
                             cacheWidth: 512,
-                            errorBuilder: (_, _, _) => Center(
-                              child: Text(
-                                widget.enemyEmoji,
-                                style: TextStyle(fontSize: monsterHeight * 0.5),
+                            errorBuilder: (_, _, _) => Image.asset(
+                              widget.enemyAsset,
+                              fit: BoxFit.contain,
+                              alignment: Alignment.bottomCenter,
+                              cacheWidth: 512,
+                              errorBuilder: (_, _, _) => Center(
+                                child: Text(
+                                  widget.enemyEmoji,
+                                  style: TextStyle(fontSize: monsterHeight * 0.5),
+                                ),
                               ),
                             ),
                           ),

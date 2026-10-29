@@ -19,7 +19,7 @@ class AudioService {
 
   static final AudioPlayer _bgmPlayer = AudioPlayer();
   static final List<AudioPlayer> _sfxPlayers =
-      List.generate(4, (_) => AudioPlayer());
+      List.generate(6, (_) => AudioPlayer());
   static int _nextSfx = 0;
 
   // --- Preferencias guardadas ---
@@ -233,8 +233,7 @@ class AudioService {
   /// Reproduce un efecto. Si el archivo no existe, prueba con [fallback].
   static Future<void> playSfx(String soundFileName, {String? fallback}) async {
     if (!sfxOn || sfxVolume <= 0) return;
-    final player = _sfxPlayers[_nextSfx];
-    _nextSfx = (_nextSfx + 1) % _sfxPlayers.length;
+    final player = _pickSfxPlayer();
     for (final file in [soundFileName, ?fallback]) {
       try {
         await player.stop();
@@ -244,6 +243,23 @@ class AudioService {
         debugPrint('🔊 No se pudo reproducir el efecto $file: $e');
       }
     }
+  }
+
+  /// Elige un reproductor LIBRE para el efecto. Solo si los 6 están sonando
+  /// a la vez se reutiliza el siguiente de la rueda (cortando su efecto).
+  /// Antes se usaba siempre el siguiente de la rueda, aunque estuviera
+  /// sonando, y eso podía cortar un efecto largo (rugido, victoria).
+  static AudioPlayer _pickSfxPlayer() {
+    for (int i = 0; i < _sfxPlayers.length; i++) {
+      final index = (_nextSfx + i) % _sfxPlayers.length;
+      if (_sfxPlayers[index].state != PlayerState.playing) {
+        _nextSfx = (index + 1) % _sfxPlayers.length;
+        return _sfxPlayers[index];
+      }
+    }
+    final player = _sfxPlayers[_nextSfx];
+    _nextSfx = (_nextSfx + 1) % _sfxPlayers.length;
+    return player;
   }
 
   // --- Combate ---

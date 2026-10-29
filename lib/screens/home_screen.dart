@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/player_profile.dart';
@@ -225,15 +226,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     final screenWidth = media.size.width;
     final screenHeight = media.size.height;
 
-    // Los personajes "pisan" justo detrás del banner del cofre.
-    // 190 ≈ altura del bloque inferior (cofre + jugar + tarjetas) menos un poco
-    // para que los pies queden ocultos tras el banner.
-    final double charBottom = 190 + media.padding.bottom;
     final double adventurerHeight = (screenHeight * 0.28).clamp(150.0, 300.0);
     final double dragonHeight = (screenHeight * 0.33).clamp(180.0, 360.0);
-    const double dragonScale = 1.4;
-    const double dragonLift = -25;
-    const double dragonShift = 0.48; // antes 0.35: más a la derecha
 
     return Scaffold(
       body: Stack(
@@ -264,58 +258,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Colors.black.withValues(alpha: 0.35),
                       Colors.black.withValues(alpha: 0.85),
                     ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // ===========================================================
-          // CAPA 2: PERSONAJES
-          // ===========================================================
-          // Dragón PRIMERO: así queda detrás del aventurero y nunca le tapa la cara.
-          // Ajustes rápidos:
-          //   dragonScale  -> tamaño (1.35 = 35% más grande que la base)
-          //   dragonLift   -> cuánto se eleva sobre el banner (en píxeles)
-          //   dragonShift  -> cuánto sale por el borde derecho (0.28 = 28% del ancho)
-          Positioned(
-            right: -screenWidth * dragonShift,
-            bottom: charBottom + dragonLift,
-            child: IgnorePointer(
-              child: ScaleTransition(
-                scale: _dragonScaleAnimation,
-                alignment: Alignment.bottomCenter,
-                child: SizedBox(
-                  height: dragonHeight * dragonScale,
-                  width: dragonHeight * dragonScale * 1.49,
-                  child: Image.asset(
-                    'assets/images/dragon.png',
-                    fit: BoxFit.contain,
-                    alignment: Alignment.bottomRight,
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // Aventurero DESPUÉS: queda por delante del dragón
-          Positioned(
-            left: -8,
-            bottom: charBottom,
-            child: IgnorePointer(
-              child: AnimatedBuilder(
-                animation: _floatAnimation,
-                builder: (context, child) => Transform.translate(
-                  offset: Offset(0, _floatAnimation.value),
-                  child: child,
-                ),
-                child: SizedBox(
-                  width: screenWidth * 0.46,
-                  height: adventurerHeight,
-                  child: Image.asset(
-                    'assets/images/adventurer.png',
-                    fit: BoxFit.contain,
-                    alignment: Alignment.bottomLeft,
                   ),
                 ),
               ),
@@ -358,7 +300,16 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     child: _buildLogo(screenWidth),
                   ),
 
-                  const Spacer(),
+                  // --- PERSONAJES ---
+                  // Ocupan SOLO el hueco libre entre el logo y el cofre, así
+                  // el dragón nunca puede quedar detrás del nombre del juego.
+                  Expanded(
+                    child: _buildCharacters(
+                      screenWidth: screenWidth,
+                      adventurerHeight: adventurerHeight,
+                      dragonHeight: dragonHeight,
+                    ),
+                  ),
 
                   // --- COFRE DIARIO ---
                   _buildChestBanner(canClaim),
@@ -444,6 +395,104 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ],
       ),
+    );
+  }
+
+  // =================================================================
+  // PERSONAJES: aventurero delante y dragón detrás
+  // =================================================================
+  // Viven dentro del hueco entre el logo y el cofre (no en toda la pantalla).
+  // Si el móvil es bajito y no caben a su tamaño ideal, se encogen en vez de
+  // subirse encima del logo. Los pies quedan ocultos tras el banner del cofre
+  // porque el banner se pinta después (más abajo en la columna).
+  //
+  // Ajustes rápidos:
+  //   kDragonScale  -> tamaño ideal (1.4 = 40% más grande que la base)
+  //   kDragonSink   -> cuántos píxeles se esconden los pies tras el cofre
+  //   kDragonShift  -> parte del dragón que sale por el borde derecho (0.33 = 33%)
+  //   kTopGap       -> aire mínimo entre el lema del logo y el dragón
+  static const double kDragonScale = 1.4;
+  static const double kDragonSink = 43;
+  static const double kAdventurerSink = 18;
+  static const double kDragonShift = 0.33; // antes 0.24: más a la derecha
+  static const double kTopGap = 6;
+  static const double kDragonAspect = 1.49; // ancho / alto de dragon.png
+
+  Widget _buildCharacters({
+    required double screenWidth,
+    required double adventurerHeight,
+    required double dragonHeight,
+  }) {
+    // La columna tiene 16 px de margen lateral; los personajes lo ignoran
+    // para poder pegarse (o salirse) de los bordes de la pantalla.
+    const double sidePadding = 16;
+
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final double free = constraints.maxHeight;
+
+        // Alto máximo para que la parte de arriba (incluido el "respiro"
+        // del 3% de la animación) quede por debajo del logo.
+        final double dragonMax = (free + kDragonSink - kTopGap) / 1.03;
+        final double dragonH =
+            math.max(0.0, math.min(dragonHeight * kDragonScale, dragonMax));
+        final double dragonW = dragonH * kDragonAspect;
+
+        // El aventurero flota 6 px hacia arriba: se reservan.
+        final double adventurerMax = free + kAdventurerSink - kTopGap - 6;
+        final double adventurerH =
+            math.max(0.0, math.min(adventurerHeight, adventurerMax));
+
+        return Stack(
+          clipBehavior: Clip.none,
+          children: [
+            // Dragón PRIMERO: queda detrás del aventurero.
+            Positioned(
+              right: -sidePadding - dragonW * kDragonShift,
+              bottom: -kDragonSink,
+              child: IgnorePointer(
+                child: ScaleTransition(
+                  scale: _dragonScaleAnimation,
+                  alignment: Alignment.bottomCenter,
+                  child: SizedBox(
+                    height: dragonH,
+                    width: dragonW,
+                    child: Image.asset(
+                      'assets/images/dragon.png',
+                      fit: BoxFit.contain,
+                      alignment: Alignment.bottomRight,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            // Aventurero DESPUÉS: queda por delante del dragón.
+            Positioned(
+              left: -sidePadding - 8,
+              bottom: -kAdventurerSink,
+              child: IgnorePointer(
+                child: AnimatedBuilder(
+                  animation: _floatAnimation,
+                  builder: (context, child) => Transform.translate(
+                    offset: Offset(0, _floatAnimation.value),
+                    child: child,
+                  ),
+                  child: SizedBox(
+                    width: screenWidth * 0.46,
+                    height: adventurerH,
+                    child: Image.asset(
+                      'assets/images/adventurer.png',
+                      fit: BoxFit.contain,
+                      alignment: Alignment.bottomLeft,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
     );
   }
 

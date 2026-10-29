@@ -29,6 +29,98 @@ const bool kMapEditMode = false;
 /// Ancho máximo del mapa (evita que en web/tablet la imagen sea enorme).
 const double kMaxMapWidth = 700;
 
+/// Alto de cada tramo respecto al ancho de la pantalla (1.3 = 30% más alto
+/// que ancho). Las imágenes son apaisadas (1248x832): vistas enteras, cada
+/// tramo medía ~260 px de alto y los niveles quedaban amontonados. Ahora la
+/// imagen se amplía y se recortan los lados (el sendero está en el centro).
+const double kSegmentHeightFactor = 1.3;
+
+/// Alto de la franja con el nombre del capítulo, entre capítulo y capítulo.
+const double kChapterBannerHeight = 46;
+
+/// Aire mínimo entre dos niveles (además del tamaño del círculo).
+const double kNodeGap = 10;
+
+/// Cómo se dibuja un tramo: qué parte de la imagen se ve y dónde va cada nivel.
+class _SegmentLayout {
+  /// Tamaño al que se dibuja la imagen completa (mayor que la pantalla).
+  final double imageWidth;
+  final double imageHeight;
+
+  /// Desplazamiento de la imagen respecto al tramo visible (recorte).
+  final double imageLeft;
+  final double imageTop;
+
+  /// Centro de cada nivel, en píxeles dentro del tramo.
+  final List<Offset> nodes;
+
+  /// Tamaño de los círculos en este tramo.
+  final double nodeSize;
+
+  const _SegmentLayout({
+    required this.imageWidth,
+    required this.imageHeight,
+    required this.imageLeft,
+    required this.imageTop,
+    required this.nodes,
+    required this.nodeSize,
+  });
+
+  /// 1. La imagen se escala para cubrir el tramo (como BoxFit.cover).
+  /// 2. El recorte horizontal se centra en el sendero, no en el centro de la
+  ///    imagen, para que ningún nivel quede fuera.
+  /// 3. Los niveles se quedan EXACTAMENTE sobre sus plataformas. Si en una
+  ///    imagen dos plataformas están muy juntas, se achican un poco los
+  ///    círculos de ese tramo en vez de moverlos (moverlos los sacaba de
+  ///    sus plataformas, sobre todo en Islas y Volcán).
+  factory _SegmentLayout.compute({
+    required MapSegment segment,
+    required double aspect,
+    required double width,
+    required double height,
+    required double nodeSize,
+  }) {
+    final imageWidth = math.max(width, height * aspect);
+    final imageHeight = imageWidth / aspect;
+
+    final count = math.min(segment.nodes.length, kNodesPerSegment);
+    final raw = [for (int i = 0; i < count; i++) segment.nodeAt(i)];
+
+    double minX = 1, maxX = 0;
+    for (final p in raw) {
+      minX = math.min(minX, p.dx);
+      maxX = math.max(maxX, p.dx);
+    }
+    final visible = width / imageWidth; // fracción de la imagen que se ve
+    final center = ((minX + maxX) / 2).clamp(visible / 2, 1 - visible / 2).toDouble();
+    final imageLeft = (center - visible / 2) * imageWidth;
+    final imageTop = (imageHeight - height) / 2;
+
+    final pts = [
+      for (final p in raw)
+        Offset(p.dx * imageWidth - imageLeft, p.dy * imageHeight - imageTop),
+    ];
+
+    // Distancia entre los dos niveles más cercanos del tramo.
+    double closest = double.infinity;
+    for (int i = 0; i < pts.length; i++) {
+      for (int j = i + 1; j < pts.length; j++) {
+        closest = math.min(closest, (pts[j] - pts[i]).distance);
+      }
+    }
+    final size = math.min(nodeSize, closest - kNodeGap).clamp(34.0, nodeSize).toDouble();
+
+    return _SegmentLayout(
+      imageWidth: imageWidth,
+      imageHeight: imageHeight,
+      imageLeft: imageLeft,
+      imageTop: imageTop,
+      nodes: pts,
+      nodeSize: size,
+    );
+  }
+}
+
 class MapScreen extends StatefulWidget {
   const MapScreen({super.key});
 
@@ -358,8 +450,8 @@ class _MapScreenState extends State<MapScreen>
     return LayoutBuilder(
       builder: (context, constraints) {
         final width = math.min(constraints.maxWidth, kMaxMapWidth);
-        final heights = [for (final a in aspects) width / a!];
-        final nodeSize = (width * 0.13).clamp(44.0, 64.0);
+        final height = width * kSegmentHeightFactor;
+        final nodeSize = (width * 0.13).clamp(44.0, 60.0).toDouble();
         final world = _controller.selectedWorld;
         final currentIndex = _currentLevelIndex(world, segments.length);
 
@@ -369,32 +461,44 @@ class _MapScreenState extends State<MapScreen>
           for (int c = segments.length; c >= 1; c--)
             for (int p = kSegmentsPerChapter - 1; p >= 0; p--) (chapter: c, part: p),
         ];
+        final layouts = [
+          for (final p in parts)
+            _SegmentLayout.compute(
+              segment: _segmentFor(segments[p.chapter - 1], p.part),
+              aspect: aspects[p.chapter - 1]!,
+              width: width,
+              height: height,
+              nodeSize: nodeSize,
+            ),
+        ];
 
-        _scheduleScrollToCurrent(
-          parts,
-          segments,
-          heights,
-          constraints.maxHeight,
-          currentIndex,
-        );
+        _scheduleScrollToCurrent(parts, layouts, height, constraints.maxHeight, currentIndex);
 
         return SingleChildScrollView(
           controller: _scroll,
           child: Center(
             child: Column(
               children: [
-                for (var i = 0; i < parts.length; i++)
+                for (var i = 0; i < parts.length; i++) ...[
                   _buildSegment(
                     chapter: parts[i].chapter,
                     part: parts[i].part,
                     segment: _segmentFor(segments[parts[i].chapter - 1], parts[i].part),
+                    layout: layouts[i],
                     width: width,
-                    height: heights[parts[i].chapter - 1],
-                    nodeSize: nodeSize,
+                    height: height,
                     isTop: i == 0,
-                    isBottom: i == parts.length - 1,
                     currentIndex: currentIndex,
                   ),
+                  // Nombre del capítulo en su propia franja, debajo de su
+                  // primer tramo: ya no tapa ningún nivel.
+                  if (parts[i].part == 0)
+                    _chapterBanner(
+                      parts[i].chapter,
+                      !_controller.getProgressForNode(world, parts[i].chapter, 1).isUnlocked,
+                      width,
+                    ),
+                ],
               ],
             ),
           ),
@@ -403,7 +507,7 @@ class _MapScreenState extends State<MapScreen>
     );
   }
 
-  /// Índice global (0..14) del último nivel desbloqueado.
+  /// Índice global (0..29) del último nivel desbloqueado.
   int _currentLevelIndex(int world, int chapters) {
     int current = 0;
     for (int c = 1; c <= chapters; c++) {
@@ -424,8 +528,8 @@ class _MapScreenState extends State<MapScreen>
   /// Centra la pantalla en el nivel actual al abrir el mundo.
   void _scheduleScrollToCurrent(
     List<({int chapter, int part})> parts,
-    List<MapSegment> segments,
-    List<double> heights,
+    List<_SegmentLayout> layouts,
+    double segmentHeight,
     double viewportHeight,
     int currentIndex,
   ) {
@@ -438,14 +542,17 @@ class _MapScreenState extends State<MapScreen>
     final part = inChapter ~/ kNodesPerSegment;
     final node = inChapter % kNodesPerSegment;
 
-    // Suma la altura de los tramos que hay encima del tramo del nivel actual.
+    // Suma lo que hay encima del tramo del nivel actual (tramos y franjas).
     double offset = 0;
-    for (final p in parts) {
+    var index = 0;
+    for (; index < parts.length; index++) {
+      final p = parts[index];
       if (p.chapter == chapter && p.part == part) break;
-      offset += heights[p.chapter - 1];
+      offset += segmentHeight;
+      if (p.part == 0) offset += kChapterBannerHeight;
     }
-    final segment = _segmentFor(segments[chapter - 1], part);
-    final nodeY = offset + segment.nodeAt(node).dy * heights[chapter - 1];
+    if (index >= layouts.length) return;
+    final nodeY = offset + layouts[index].nodes[node].dy;
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!_scroll.hasClients) return;
@@ -462,11 +569,10 @@ class _MapScreenState extends State<MapScreen>
     required int chapter,
     required int part,
     required MapSegment segment,
+    required _SegmentLayout layout,
     required double width,
     required double height,
-    required double nodeSize,
     required bool isTop,
-    required bool isBottom,
     required int currentIndex,
   }) {
     final world = _controller.selectedWorld;
@@ -479,9 +585,15 @@ class _MapScreenState extends State<MapScreen>
       width: width,
       height: height,
       child: Stack(
+        clipBehavior: Clip.hardEdge,
         children: [
-          // Fondo
-          Positioned.fill(
+          // Fondo: la imagen completa, más grande que el tramo y recortada
+          // por los lados (ver _SegmentLayout).
+          Positioned(
+            left: -layout.imageLeft,
+            top: -layout.imageTop,
+            width: layout.imageWidth,
+            height: layout.imageHeight,
             child: Transform.flip(
               flipX: segment.mirrored,
               child: Image.asset(
@@ -505,35 +617,26 @@ class _MapScreenState extends State<MapScreen>
             ),
           ),
 
-          // Niebla que disimula la unión entre tramos
+          // Niebla que funde el tramo con el de al lado o con la franja
           if (!isTop) _mistBand(atTop: true),
-          if (!isBottom) _mistBand(atTop: false),
+          _mistBand(atTop: false),
 
           // Modo calibración
           if (kMapEditMode)
             Positioned.fill(
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTapDown: (d) =>
-                    _logTap(chapter, segment, d.localPosition, width, height),
+                onTapDown: (d) => _logTap(chapter, segment, layout, d.localPosition),
               ),
             ),
 
-          // Cartel del capítulo, al inicio (abajo) de su primer tramo
-          if (part == 0) _chapterBanner(chapter, chapterLocked),
-
           // Nodos sobre los círculos del sendero
-          for (int i = 0;
-              i < segment.nodes.length && i < kNodesPerSegment;
-              i++)
+          for (int i = 0; i < layout.nodes.length; i++)
             _positionedNode(
               chapter: chapter,
               index: part * kNodesPerSegment + i,
-              nodeIndex: i,
-              segment: segment,
-              width: width,
-              height: height,
-              nodeSize: nodeSize,
+              position: layout.nodes[i],
+              nodeSize: layout.nodeSize,
               currentIndex: currentIndex,
             ),
         ],
@@ -544,14 +647,10 @@ class _MapScreenState extends State<MapScreen>
   Widget _positionedNode({
     required int chapter,
     required int index, // nivel dentro del capítulo (0..9)
-    required int nodeIndex, // plataforma dentro de la imagen (0..4)
-    required MapSegment segment,
-    required double width,
-    required double height,
+    required Offset position,
     required double nodeSize,
     required int currentIndex,
   }) {
-    final pos = segment.nodeAt(nodeIndex);
     final progress = _controller.getProgressForNode(
       _controller.selectedWorld,
       chapter,
@@ -559,10 +658,12 @@ class _MapScreenState extends State<MapScreen>
     );
     final globalIndex = (chapter - 1) * kLevelsPerChapter + index;
 
+    // Caja algo más ancha que el círculo para que quepa la placa de estrellas.
+    final boxWidth = nodeSize + 24;
     return Positioned(
-      left: pos.dx * width - nodeSize / 2,
-      top: pos.dy * height - nodeSize / 2,
-      width: nodeSize,
+      left: position.dx - boxWidth / 2,
+      top: position.dy - nodeSize / 2,
+      width: boxWidth,
       child: _buildPathNode(
         progress,
         globalIndex + 1,
@@ -578,7 +679,7 @@ class _MapScreenState extends State<MapScreen>
       right: 0,
       top: atTop ? 0 : null,
       bottom: atTop ? null : 0,
-      height: 90,
+      height: 60,
       child: IgnorePointer(
         child: DecoratedBox(
           decoration: BoxDecoration(
@@ -596,13 +697,13 @@ class _MapScreenState extends State<MapScreen>
     );
   }
 
-  Widget _chapterBanner(int chapter, bool locked) {
+  Widget _chapterBanner(int chapter, bool locked, double width) {
     final color = locked ? Colors.white38 : kCyan;
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 14,
-      child: IgnorePointer(
+    return SizedBox(
+      width: width,
+      height: kChapterBannerHeight,
+      child: ColoredBox(
+        color: kOutline,
         child: Center(
           child: Transform(
             alignment: Alignment.center,
@@ -635,12 +736,12 @@ class _MapScreenState extends State<MapScreen>
   void _logTap(
     int chapter,
     MapSegment segment,
+    _SegmentLayout layout,
     Offset local,
-    double width,
-    double height,
   ) {
-    var dx = local.dx / width;
-    final dy = local.dy / height;
+    // Se convierte el toque a coordenadas de la imagen COMPLETA (sin recorte).
+    var dx = (local.dx + layout.imageLeft) / layout.imageWidth;
+    final dy = (local.dy + layout.imageTop) / layout.imageHeight;
     if (segment.mirrored) dx = 1 - dx; // se guarda en coordenadas sin espejo
     final text =
         'Offset(${dx.toStringAsFixed(2)}, ${dy.toStringAsFixed(2)})';
@@ -911,36 +1012,60 @@ class _MapScreenState extends State<MapScreen>
       circle = ScaleTransition(scale: _pulseScale, child: circle);
     }
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        GestureDetector(
-          onTap: unlocked
-              ? () => _startLevel(
-                    progress.worldId,
-                    progress.chapterId,
-                    progress.levelNumber,
-                  )
-              : null,
-          child: circle,
-        ),
-        if (unlocked && FighterService.isFightLevel(progress.levelNumber) && progress.stars == 0)
-          _fightRequirementBadge(progress),
-        if (unlocked) ...[
-          const SizedBox(height: 3),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: List.generate(3, (starIndex) {
-              final earned = starIndex < progress.stars;
-              return Icon(
-                earned ? Icons.star_rounded : Icons.star_border_rounded,
-                size: 15,
-                color: earned ? Colors.amberAccent : Colors.white38,
-              );
-            }),
-          ),
+    // Placa pegada a la parte de abajo del círculo: así se ve claramente a
+    // qué nivel pertenecen las estrellas. En una pelea aún sin ganar, la
+    // placa muestra las estrellas que pide.
+    final Widget? plate = !unlocked
+        ? null
+        : (FighterService.isFightLevel(progress.levelNumber) && progress.stars == 0)
+            ? _fightRequirementBadge(progress)
+            : _starsPlate(progress.stars);
+
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: unlocked
+          ? () => _startLevel(
+                progress.worldId,
+                progress.chapterId,
+                progress.levelNumber,
+              )
+          : null,
+      child: Stack(
+        clipBehavior: Clip.none,
+        alignment: Alignment.topCenter,
+        children: [
+          // Hueco del círculo + lo que asoma la placa por debajo.
+          SizedBox(height: nodeSize + (plate == null ? 0 : 10)),
+          circle,
+          if (plate != null) Positioned(top: nodeSize - 10, child: plate),
         ],
-      ],
+      ),
+    );
+  }
+
+  /// Las 3 estrellas de un nivel, sobre una placa oscura con borde.
+  Widget _starsPlate(int stars) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+      decoration: BoxDecoration(
+        color: kOutline.withValues(alpha: 0.92),
+        borderRadius: BorderRadius.circular(10),
+        border: Border.all(
+          color: stars > 0 ? Colors.amberAccent : Colors.white30,
+          width: 1.5,
+        ),
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: List.generate(3, (starIndex) {
+          final earned = starIndex < stars;
+          return Icon(
+            earned ? Icons.star_rounded : Icons.star_border_rounded,
+            size: 14,
+            color: earned ? Colors.amberAccent : Colors.white38,
+          );
+        }),
+      ),
     );
   }
 
@@ -950,7 +1075,6 @@ class _MapScreenState extends State<MapScreen>
     final need = FighterService.starsRequired(progress.chapterId);
     final ok = have >= need;
     return Container(
-      margin: const EdgeInsets.only(top: 3),
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 1),
       decoration: BoxDecoration(
         color: kOutline.withValues(alpha: 0.85),

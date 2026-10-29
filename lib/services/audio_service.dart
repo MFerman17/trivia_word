@@ -94,42 +94,50 @@ class AudioService {
   }
 
   /// En Android, cada reproductor "pide el turno" del audio del teléfono
-  /// (audio focus). Por defecto, al sonar un efecto (un clic, un acierto),
-  /// el efecto se quedaba el turno y Android pausaba la música. Por eso la
-  /// música se cortaba al responder o al tocar botones en la portada.
+  /// (audio focus). Por defecto, al sonar un efecto (un clic, un acierto, el
+  /// rugido), el efecto se quedaba el turno y Android pausaba la música.
   ///
   /// Ahora: la música pide el turno (como cualquier juego) y los efectos
   /// suenan ENCIMA sin pedirlo, así nunca la interrumpen.
+  ///
+  /// OJO (error corregido): antes el ajuste de iPhone llevaba la opción
+  /// `mixWithOthers` con la categoría `ambient`. audioplayers lo prohíbe con
+  /// un `assert`, que en la APK de prueba (debug) lanza un error; el error se
+  /// capturaba en silencio y NO se aplicaba nada, ni siquiera lo de Android.
+  /// `ambient` ya se mezcla con otros sonidos por sí sola, así que la opción
+  /// sobraba.
+  static final AudioContext _musicContext = AudioContext(
+    android: const AudioContextAndroid(
+      contentType: AndroidContentType.music,
+      usageType: AndroidUsageType.game,
+      audioFocus: AndroidAudioFocus.gain,
+    ),
+    iOS: AudioContextIOS(category: AVAudioSessionCategory.ambient),
+  );
+
+  static final AudioContext _effectsContext = AudioContext(
+    android: const AudioContextAndroid(
+      contentType: AndroidContentType.sonification,
+      usageType: AndroidUsageType.game,
+      audioFocus: AndroidAudioFocus.none,
+    ),
+    iOS: AudioContextIOS(category: AVAudioSessionCategory.ambient),
+  );
+
   static Future<void> _configureAudioFocus() async {
     if (kIsWeb) return; // En el navegador no existe ese turno.
+    // Cada reproductor por separado: si uno falla, los demás se configuran igual.
     try {
-      await _bgmPlayer.setAudioContext(AudioContext(
-        android: const AudioContextAndroid(
-          contentType: AndroidContentType.music,
-          usageType: AndroidUsageType.game,
-          audioFocus: AndroidAudioFocus.gain,
-        ),
-        iOS: AudioContextIOS(
-          category: AVAudioSessionCategory.ambient,
-          options: const {AVAudioSessionOptions.mixWithOthers},
-        ),
-      ));
-      final effects = AudioContext(
-        android: const AudioContextAndroid(
-          contentType: AndroidContentType.sonification,
-          usageType: AndroidUsageType.game,
-          audioFocus: AndroidAudioFocus.none,
-        ),
-        iOS: AudioContextIOS(
-          category: AVAudioSessionCategory.ambient,
-          options: const {AVAudioSessionOptions.mixWithOthers},
-        ),
-      );
-      for (final player in _sfxPlayers) {
-        await player.setAudioContext(effects);
-      }
+      await _bgmPlayer.setAudioContext(_musicContext);
     } catch (e) {
-      debugPrint('🎵 No se pudo configurar el turno de audio: $e');
+      debugPrint('🎵 No se pudo configurar el turno de la música: $e');
+    }
+    for (final player in _sfxPlayers) {
+      try {
+        await player.setAudioContext(_effectsContext);
+      } catch (e) {
+        debugPrint('🔊 No se pudo configurar el turno de un efecto: $e');
+      }
     }
   }
 
@@ -172,7 +180,11 @@ class AudioService {
         await _bgmPlayer.stop();
         if (request != _bgmRequest) return; // Ya se pidió otra música.
         _playingFile = file;
-        await _bgmPlayer.play(AssetSource('audio/$file'), volume: _effectiveMusicVolume);
+        await _bgmPlayer.play(
+          AssetSource('audio/$file'),
+          volume: _effectiveMusicVolume,
+          ctx: kIsWeb ? null : _musicContext,
+        );
         return;
       } catch (e) {
         debugPrint('🎵 No se pudo reproducir la música $file: $e');
@@ -237,7 +249,13 @@ class AudioService {
     for (final file in [soundFileName, ?fallback]) {
       try {
         await player.stop();
-        await player.play(AssetSource('audio/$file'), volume: sfxVolume);
+        // Se repite el contexto en cada efecto (no cuesta nada si ya está
+        // puesto): un efecto NUNCA debe quitarle el turno a la música.
+        await player.play(
+          AssetSource('audio/$file'),
+          volume: sfxVolume,
+          ctx: kIsWeb ? null : _effectsContext,
+        );
         return;
       } catch (e) {
         debugPrint('🔊 No se pudo reproducir el efecto $file: $e');

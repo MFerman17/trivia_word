@@ -15,38 +15,76 @@ class MapController extends ChangeNotifier {
     isLoading = true;
     notifyListeners();
 
-    int stars = await SaveService.getTotalStarsObtained();
     stagesProgress.clear();
 
     for (int w = 1; w <= 4; w++) {
       for (int c = 1; c <= kChaptersPerWorld; c++) {
         for (int l = 1; l <= kLevelsPerChapter; l++) {
-          StageProgress p = await SaveService.getStageProgress(w, c, l);
-          // Al pasar de 5 a 10 niveles por capítulo, quien ya había ganado el
-          // antiguo nivel 5 tendría el 6 bloqueado. Regla: un nivel ganado
-          // siempre deja abierto el siguiente del mismo capítulo.
-          if (l > 1 && !p.isUnlocked) {
-            final previous = stagesProgress['w${w}_c${c}_l${l - 1}'];
-            if (previous != null && previous.stars > 0) {
-              p = StageProgress(
-                worldId: w,
-                chapterId: c,
-                levelNumber: l,
-                stars: p.stars,
-                highScore: p.highScore,
-                isUnlocked: true,
-              );
-              await SaveService.saveStageProgress(p);
-            }
-          }
+          final p = await SaveService.getStageProgress(w, c, l);
           stagesProgress[p.stageKey] = p;
         }
       }
     }
+    await _migrateFrom5Levels();
 
-    totalStars = stars;
+    totalStars = await SaveService.getTotalStarsObtained();
     isLoading = false;
     notifyListeners();
+  }
+
+  /// Partidas guardadas cuando los capítulos tenían 5 niveles.
+  ///
+  /// Los niveles se guardan por número dentro del capítulo, así que el
+  /// antiguo capítulo 2 (niveles 1-5) aparece ahora como los niveles 11-15
+  /// y el capítulo 3 como los 21-25, con los niveles 6-10 de cada capítulo
+  /// vacíos y bloqueados en medio.
+  ///
+  /// Se reconoce así: el capítulo SIGUIENTE ya está abierto pero el nivel 10
+  /// de este no se ha ganado. Con 10 niveles eso es imposible (el siguiente
+  /// capítulo solo se abre al ganar el 10), así que es progreso antiguo.
+  /// Arreglo: se abren los niveles 6-10 y la pelea que se ganó en el antiguo
+  /// nivel 5 pasa al nivel 10 con sus estrellas. Los niveles 6-9 quedan
+  /// abiertos para jugarlos.
+  ///
+  /// Además, un nivel ganado siempre deja abierto el siguiente del capítulo.
+  Future<void> _migrateFrom5Levels() async {
+    Future<void> put(int w, int c, int l, {required int stars}) async {
+      final old = getProgressForNode(w, c, l);
+      final p = StageProgress(
+        worldId: w,
+        chapterId: c,
+        levelNumber: l,
+        stars: stars,
+        highScore: old.highScore,
+        isUnlocked: true,
+      );
+      stagesProgress[p.stageKey] = p;
+      await SaveService.saveStageProgress(p);
+    }
+
+    for (int w = 1; w <= 4; w++) {
+      for (int c = 1; c <= kChaptersPerWorld; c++) {
+        final next = c < kChaptersPerWorld
+            ? getProgressForNode(w, c + 1, 1)
+            : (w < 4 ? getProgressForNode(w + 1, 1, 1) : null);
+        final last = getProgressForNode(w, c, kLevelsPerChapter);
+        final oldFight = getProgressForNode(w, c, kNodesPerSegment);
+        if (next != null && next.isUnlocked && last.stars == 0 && oldFight.stars > 0) {
+          for (int l = kNodesPerSegment + 1; l < kLevelsPerChapter; l++) {
+            final p = getProgressForNode(w, c, l);
+            if (!p.isUnlocked) await put(w, c, l, stars: p.stars);
+          }
+          await put(w, c, kLevelsPerChapter, stars: oldFight.stars);
+        }
+
+        for (int l = 2; l <= kLevelsPerChapter; l++) {
+          final p = getProgressForNode(w, c, l);
+          if (!p.isUnlocked && getProgressForNode(w, c, l - 1).stars > 0) {
+            await put(w, c, l, stars: p.stars);
+          }
+        }
+      }
+    }
   }
 
   /// Cambia el mundo seleccionado en el mapa

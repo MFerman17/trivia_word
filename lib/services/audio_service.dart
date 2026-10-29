@@ -19,8 +19,20 @@ class AudioService {
 
   static final AudioPlayer _bgmPlayer = AudioPlayer();
   static final List<AudioPlayer> _sfxPlayers =
-      List.generate(4, (_) => AudioPlayer());
+      List.generate(6, (_) => AudioPlayer());
   static int _nextSfx = 0;
+
+  /// Contexto de audio compartido por TODOS los reproductores.
+  ///
+  /// ¿Por qué hace falta? En Android, cada reproductor pide por defecto el
+  /// "foco de audio" en exclusiva. Así que cada vez que sonaba un efecto
+  /// (acierto, fallo, clic...) el efecto le quitaba el foco a la música y
+  /// Android la pausaba: por eso el audio "se cortaba" al jugar.
+  /// Con [AudioContextConfigFocus.mixWithOthers] nadie pide el foco en
+  /// exclusiva y música y efectos suenan mezclados, como en cualquier juego.
+  static final AudioContext _gameAudioContext = AudioContextConfig(
+    focus: AudioContextConfigFocus.mixWithOthers,
+  ).build();
 
   // --- Preferencias guardadas ---
   static const String _musicOnKey = 'audio_music_on';
@@ -75,6 +87,14 @@ class AudioService {
     if (_initialized) return;
     _initialized = true;
     try {
+      // Primero el contexto de audio (ver [_gameAudioContext]): se fija como
+      // global y además en cada reproductor, por si alguno ya estaba creado.
+      await AudioPlayer.global.setAudioContext(_gameAudioContext);
+      await _bgmPlayer.setAudioContext(_gameAudioContext);
+      for (final player in _sfxPlayers) {
+        await player.setAudioContext(_gameAudioContext);
+      }
+
       final prefs = await SharedPreferences.getInstance();
       final legacyMuted = prefs.getBool(_legacyMuteKey) ?? false;
       musicOn = prefs.getBool(_musicOnKey) ?? !legacyMuted;
@@ -192,8 +212,7 @@ class AudioService {
   /// Reproduce un efecto. Si el archivo no existe, prueba con [fallback].
   static Future<void> playSfx(String soundFileName, {String? fallback}) async {
     if (!sfxOn || sfxVolume <= 0) return;
-    final player = _sfxPlayers[_nextSfx];
-    _nextSfx = (_nextSfx + 1) % _sfxPlayers.length;
+    final player = _pickSfxPlayer();
     for (final file in [soundFileName, ?fallback]) {
       try {
         await player.stop();
@@ -203,6 +222,23 @@ class AudioService {
         debugPrint('🔊 No se pudo reproducir el efecto $file: $e');
       }
     }
+  }
+
+  /// Elige un reproductor LIBRE para el efecto. Solo si los 6 están sonando
+  /// a la vez se reutiliza el siguiente de la rueda (cortando su efecto).
+  /// Antes se usaba siempre el siguiente de la rueda, aunque estuviera
+  /// sonando, y eso podía cortar un efecto largo (rugido, victoria).
+  static AudioPlayer _pickSfxPlayer() {
+    for (int i = 0; i < _sfxPlayers.length; i++) {
+      final index = (_nextSfx + i) % _sfxPlayers.length;
+      if (_sfxPlayers[index].state != PlayerState.playing) {
+        _nextSfx = (index + 1) % _sfxPlayers.length;
+        return _sfxPlayers[index];
+      }
+    }
+    final player = _sfxPlayers[_nextSfx];
+    _nextSfx = (_nextSfx + 1) % _sfxPlayers.length;
+    return player;
   }
 
   // --- Combate ---

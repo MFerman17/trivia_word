@@ -11,10 +11,14 @@ import 'mini_challenges_screen.dart';
 import '../l10n/l10n.dart';
 import '../services/fighter_service.dart';
 import '../widgets/game_3d.dart';
+import '../widgets/flying_monsters.dart';
 import 'fight_screen.dart';
 import '../widgets/lives_widgets.dart';
 import '../services/chapter_story_service.dart';
 import '../services/question_bank.dart';
+import '../services/save_service.dart';
+import '../services/minigame_service.dart';
+import 'minigame_screen.dart';
 
 // Colores coherentes con el estilo del juego
 const Color kOutline = Color(0xFF0D0326);
@@ -142,6 +146,34 @@ class _MapScreenState extends State<MapScreen>
   /// Mundo al que ya se hizo scroll automático (para no repetirlo en cada build).
   int? _scrolledWorld;
 
+  /// Portales de minijuego ya jugados hoy (se ven apagados).
+  Set<String> _portalsPlayed = {};
+
+  Future<void> _loadPortals() async {
+    final played = await MinigameService.playedTodayKeys();
+    if (mounted) setState(() => _portalsPlayed = played);
+  }
+
+  Future<void> _openPortal(int world, int chapter, int level) async {
+    if (await MinigameService.playedToday(world, chapter, level)) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context)
+        ..hideCurrentSnackBar()
+        ..showSnackBar(SnackBar(content: Text(context.l10n.portalPlayedToday)));
+      return;
+    }
+    if (!mounted) return;
+    AudioService.playNodeSelect();
+    await Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MinigameScreen(world: world, chapter: chapter, level: level),
+      ),
+    );
+    AudioService.playMapMusic();
+    _loadPortals();
+  }
+
   bool _isMuted = AudioService.isMuted;
 
   @override
@@ -149,6 +181,7 @@ class _MapScreenState extends State<MapScreen>
     super.initState();
     _controller = MapController();
     _controller.loadAllProgress();
+    _loadPortals();
 
     _pulse = AnimationController(
       vsync: this,
@@ -186,8 +219,15 @@ class _MapScreenState extends State<MapScreen>
         starsInWorld: _controller.starsInWorld(worldId),
       );
       if (missing > 0) {
-        _showFightLocked(chapterId, missing);
-        return;
+        // Con una llave dorada se puede entrar igualmente.
+        final useKey = await _showFightLocked(chapterId, missing);
+        if (!useKey || !mounted) return;
+        final profile = await SaveService.loadPlayerData();
+        if (profile.goldenKeys <= 0) return;
+        profile.goldenKeys--;
+        await SaveService.savePlayerData(profile);
+        AudioService.playEquip();
+        if (!mounted) return;
       }
     }
 
@@ -303,10 +343,13 @@ class _MapScreenState extends State<MapScreen>
     AudioService.playPageFlip();
   }
   /// Aviso cuando aún no hay estrellas suficientes para una pelea.
-  void _showFightLocked(int chapter, int missing) {
+  /// Devuelve true si el jugador decide usar una llave dorada.
+  Future<bool> _showFightLocked(int chapter, int missing) async {
     final required = FighterService.starsRequired(chapter);
     final isFinal = chapter == 3;
-    showDialog<void>(
+    final keys = (await SaveService.loadPlayerData()).goldenKeys;
+    if (!mounted) return false;
+    final result = await showDialog<bool>(
       context: context,
       barrierColor: Colors.black.withValues(alpha: 0.7),
       builder: (dialogContext) => Dialog(
@@ -340,10 +383,40 @@ class _MapScreenState extends State<MapScreen>
                 style: GoogleFonts.oswald(color: Colors.white60, fontSize: 13),
               ),
               const SizedBox(height: 14),
+              if (keys > 0) ...[
+                SizedBox(
+                  width: double.infinity,
+                  child: Pressable3D(
+                    onTap: () => Navigator.of(dialogContext).pop(true),
+                    color: WM.gold,
+                    height: 46,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Text('🗝️', style: TextStyle(fontSize: 18)),
+                        const SizedBox(width: 8),
+                        OutlinedGameText(
+                          context.l10n.useGoldenKey(keys),
+                          size: 16,
+                          font: GameFont.oswald,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ] else ...[
+                Text(
+                  context.l10n.goldenKeyHint,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.oswald(color: WM.gold, fontSize: 12),
+                ),
+                const SizedBox(height: 10),
+              ],
               SizedBox(
                 width: double.infinity,
                 child: Pressable3D(
-                  onTap: () => Navigator.of(dialogContext).pop(),
+                  onTap: () => Navigator.of(dialogContext).pop(false),
                   color: WM.cyan,
                   height: 46,
                   child: OutlinedGameText(context.l10n.gotIt, size: 17, font: GameFont.oswald),
@@ -354,6 +427,7 @@ class _MapScreenState extends State<MapScreen>
         ),
       ),
     );
+    return result ?? false;
   }
 
 
@@ -419,6 +493,14 @@ class _MapScreenState extends State<MapScreen>
                                 child: CircularProgressIndicator(color: kCyan))
                             : _buildTrailMap(segments),
                       ),
+                      // Monstruos que cruzan volando (tócalos: sueltan monedas).
+                      if (!_controller.isLoading)
+                        Positioned.fill(
+                          child: FlyingMonsters(
+                            key: ValueKey(_controller.selectedWorld),
+                            world: _controller.selectedWorld,
+                          ),
+                        ),
                       // Vidas globales, flotando sobre el mapa.
                       Positioned(
                         top: 8,
@@ -630,6 +712,16 @@ class _MapScreenState extends State<MapScreen>
               ),
             ),
 
+          // Portal de minijuego junto al último nivel del tramo (5 o 10).
+          if (layout.nodes.length == kNodesPerSegment)
+            _positionedPortal(
+              world: world,
+              chapter: chapter,
+              level: (part + 1) * kNodesPerSegment,
+              layout: layout,
+              width: width,
+            ),
+
           // Nodos sobre los círculos del sendero
           for (int i = 0; i < layout.nodes.length; i++)
             _positionedNode(
@@ -640,6 +732,81 @@ class _MapScreenState extends State<MapScreen>
               currentIndex: currentIndex,
             ),
         ],
+      ),
+    );
+  }
+
+  /// El portal se coloca al lado del último nivel del tramo, en el lado
+  /// donde queda más lejos de los demás niveles (para no taparlos).
+  Widget _positionedPortal({
+    required int world,
+    required int chapter,
+    required int level,
+    required _SegmentLayout layout,
+    required double width,
+  }) {
+    const double size = 50;
+    final anchor = layout.nodes.last;
+    final shift = layout.nodeSize * 0.9 + size / 2;
+    Offset best = anchor;
+    double bestScore = -1;
+    for (final candidate in [
+      Offset(anchor.dx + shift, anchor.dy + 6),
+      Offset(anchor.dx - shift, anchor.dy + 6),
+      Offset(anchor.dx + shift * 0.7, anchor.dy + shift * 0.8),
+      Offset(anchor.dx - shift * 0.7, anchor.dy + shift * 0.8),
+    ]) {
+      final x = candidate.dx.clamp(size / 2 + 4, width - size / 2 - 4).toDouble();
+      final point = Offset(x, candidate.dy);
+      final score = layout.nodes.map((n) => (n - point).distance).reduce(math.min);
+      if (score > bestScore) {
+        bestScore = score;
+        best = point;
+      }
+    }
+
+    final unlocked = _controller.getProgressForNode(world, chapter, level).stars > 0;
+    final played = _portalsPlayed.contains(MinigameService.portalKey(world, chapter, level));
+    final active = unlocked && !played;
+
+    Widget portal = Container(
+      width: size,
+      height: size,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        gradient: RadialGradient(
+          colors: active
+              ? const [Color(0xFFE9A8FF), Color(0xFF7A2BD6)]
+              : [Colors.white24, kOutline.withValues(alpha: 0.8)],
+        ),
+        border: Border.all(color: active ? WM.gold : Colors.white24, width: 2.5),
+        boxShadow: active
+            ? [BoxShadow(color: const Color(0xFFB45CFF).withValues(alpha: 0.7), blurRadius: 16)]
+            : null,
+      ),
+      child: Center(
+        child: Text(
+          !unlocked ? '🔒' : (played ? '✔️' : '🌀'),
+          style: TextStyle(fontSize: unlocked && !played ? 26 : 18),
+        ),
+      ),
+    );
+    if (active) portal = ScaleTransition(scale: _pulseScale, child: portal);
+
+    return Positioned(
+      left: best.dx - size / 2,
+      top: best.dy - size / 2,
+      child: GestureDetector(
+        onTap: () {
+          if (!unlocked) {
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(SnackBar(content: Text(context.l10n.portalLocked(level))));
+            return;
+          }
+          _openPortal(world, chapter, level);
+        },
+        child: portal,
       ),
     );
   }

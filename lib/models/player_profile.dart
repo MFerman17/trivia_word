@@ -26,6 +26,9 @@ class PlayerProfile {
   /// eligió alias y país: el juego le muestra la pantalla de bienvenida.
   String country;
 
+  /// Llaves doradas: abren una pelea aunque falten estrellas (tienda).
+  int goldenKeys;
+
   bool get needsWelcome => country.isEmpty;
 
   PlayerProfile({
@@ -46,6 +49,7 @@ class PlayerProfile {
     List<String>? ownedAvatarAccessories,
     Map<String, int>? fighterUpgrades,
     this.country = '',
+    this.goldenKeys = 0,
   })  : fighterUpgrades = fighterUpgrades ?? {},
         ownedAvatarCharacters = ownedAvatarCharacters ?? ['explorador'],
         ownedAvatarFrames = ownedAvatarFrames ?? ['basico'],
@@ -106,6 +110,8 @@ class PlayerProfile {
       if (fighterUpgrades.values.any((level) => level > 0))
         'fighterUpgrades': fighterUpgrades,
       if (country.isNotEmpty) 'country': country,
+      // Solo si tiene alguna (mismo motivo que fighterUpgrades).
+      if (goldenKeys > 0) 'goldenKeys': goldenKeys,
     };
   }
 
@@ -139,6 +145,7 @@ class PlayerProfile {
       ),
       fighterUpgrades: _readIntMap(map['fighterUpgrades']),
       country: map['country'] is String ? map['country'] as String : '',
+      goldenKeys: map['goldenKeys'] is int ? map['goldenKeys'] as int : 0,
     );
   }
 

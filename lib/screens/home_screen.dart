@@ -1,6 +1,7 @@
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/player_profile.dart';
 import 'shop_screen.dart';
 import 'leaderboard_screen.dart';
@@ -99,6 +100,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     PlayerProfile loadedProfile = await SaveService.loadPlayerData();
     int stars = await SaveService.getTotalStarsObtained();
     loadedProfile.totalStars = stars;
+    await _loadBonusChest();
 
     if (!mounted) return;
 
@@ -126,6 +128,67 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   /// Para no abrir la bienvenida dos veces si el perfil se recarga.
   bool _welcomeShown = false;
+
+  // ---------------------------------------------------------------
+  // COFRE EXTRA (con video)
+  // ---------------------------------------------------------------
+  // Después de abrir el cofre diario se ofrece un segundo cofre a cambio de
+  // ver un video. Uno por cada cofre diario: se guarda cuándo se abrió y
+  // vuelve a estar disponible cuando se abre el siguiente cofre diario.
+  // Se guarda solo en el teléfono (no hace falta subirlo a la nube).
+  static const String _bonusChestKey = 'bonus_chest_at';
+  static const int bonusChestCoins = 80;
+  static const int bonusChestHints = 1;
+  DateTime? _bonusChestAt;
+  bool _loadingBonusAd = false;
+
+  bool get _bonusChestAvailable {
+    final daily = _profile?.lastDailyReward;
+    if (daily == null || _profile!.canClaimDailyReward) return false;
+    return _bonusChestAt == null || _bonusChestAt!.isBefore(daily);
+  }
+
+  Future<void> _loadBonusChest() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final raw = prefs.getString(_bonusChestKey);
+      _bonusChestAt = raw == null ? null : DateTime.tryParse(raw);
+    } catch (_) {}
+  }
+
+  Future<void> _claimBonusChest() async {
+    if (_loadingBonusAd || !_bonusChestAvailable) return;
+    setState(() => _loadingBonusAd = true);
+    final earned = await AdService.showRewardedAd();
+    if (!mounted) return;
+    setState(() => _loadingBonusAd = false);
+    if (!earned) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(context.l10n.noAdsNow)),
+      );
+      return;
+    }
+    final now = DateTime.now();
+    AudioService.playChestOpen();
+    setState(() {
+      _bonusChestAt = now;
+      _triggerChestExplosion = true;
+      _profile!.coins += bonusChestCoins;
+      _profile!.letterHints += bonusChestHints;
+    });
+    await SaveService.savePlayerData(_profile!);
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setString(_bonusChestKey, now.toIso8601String());
+    } catch (_) {}
+    Future.delayed(const Duration(milliseconds: 100), () {
+      if (mounted) setState(() => _triggerChestExplosion = false);
+    });
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text(context.l10n.bonusChestReward(bonusChestCoins, bonusChestHints))),
+    );
+  }
 
   void _claimDailyReward() async {
     if (_profile == null || !_profile!.canClaimDailyReward) return;
@@ -822,49 +885,62 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   // BANNER DEL COFRE
   // =================================================================
   Widget _buildChestBanner(bool canClaim) {
+    final bonus = !canClaim && _bonusChestAvailable;
     return ParticleExplosion(
       trigger: _triggerChestExplosion,
       particleEmoji: '🪙',
       child: InkWell(
-        onTap: canClaim ? _claimDailyReward : null,
+        onTap: canClaim
+            ? _claimDailyReward
+            : bonus
+                ? _claimBonusChest
+                : null,
         borderRadius: BorderRadius.circular(16),
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 300),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
           decoration: BoxDecoration(
-            color: canClaim ? const Color(0xFF2D1B4E) : const Color(0xFF161522),
+            color: canClaim || bonus ? const Color(0xFF2D1B4E) : const Color(0xFF161522),
             borderRadius: BorderRadius.circular(16),
             border: Border.all(
-              color: canClaim ? Colors.amber : kOutline,
+              color: canClaim || bonus ? Colors.amber : kOutline,
               width: 3,
             ),
-            boxShadow: canClaim
+            boxShadow: canClaim || bonus
                 ? [BoxShadow(color: Colors.amber.withValues(alpha: 0.45), blurRadius: 10)]
                 : [],
           ),
           child: Row(
             children: [
-              Text(canClaim ? '🎁' : '🔒', style: const TextStyle(fontSize: 28)),
+              Text(canClaim ? '🎁' : bonus ? '📺' : '🔒', style: const TextStyle(fontSize: 28)),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      canClaim ? context.l10n.chestAvailable : context.l10n.chestClaimed,
+                      canClaim
+                          ? context.l10n.chestAvailable
+                          : bonus
+                              ? context.l10n.bonusChestTitle
+                              : context.l10n.chestClaimed,
                       style: GoogleFonts.oswald(fontWeight: FontWeight.w700, 
-                        color: canClaim ? Colors.amberAccent : Colors.white60,
+                        color: canClaim || bonus ? Colors.amberAccent : Colors.white60,
                         fontSize: 16,
                       ),
                     ),
                     Text(
-                      canClaim ? context.l10n.chestTapToClaim : context.l10n.chestComeBack,
+                      canClaim
+                          ? context.l10n.chestTapToClaim
+                          : bonus
+                              ? context.l10n.bonusChestBody(bonusChestCoins, bonusChestHints)
+                              : context.l10n.chestComeBack,
                       style: const TextStyle(color: Colors.white54, fontSize: 12),
                     ),
                   ],
                 ),
               ),
-              if (canClaim)
+              if (canClaim || bonus)
                 Container(
                   padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
                   decoration: BoxDecoration(
@@ -876,7 +952,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     borderRadius: BorderRadius.circular(10),
                     border: Border.all(color: kOutline, width: 2.5),
                   ),
-                  child: _outlinedText(context.l10n.chestOpen, 14, stroke: 3.5),
+                  child: _loadingBonusAd
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2.5, color: kOutline),
+                        )
+                      : _outlinedText(
+                          canClaim ? context.l10n.chestOpen : context.l10n.bonusChestWatch,
+                          14,
+                          stroke: 3.5,
+                        ),
                 ),
             ],
           ),

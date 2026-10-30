@@ -773,7 +773,8 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
 
   Widget _buildActionRow(bool enabled) {
     final potions = _fight.profile?.healthPotions ?? 0;
-    final hints = _fight.profile?.letterHints ?? 0;
+    final freeHint = _fight.freeHintAvailable;
+    final hints = (_fight.profile?.letterHints ?? 0) + (freeHint ? 1 : 0);
     return Row(
       children: [
         Expanded(
@@ -789,7 +790,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
         const SizedBox(width: 8),
         Expanded(
           child: _smallAction(
-            emoji: '💡',
+            emoji: freeHint ? '🦉' : '💡',
             label: '$hints',
             color: const Color(0xFFFF9D00),
             onTap: enabled && hints > 0 ? _fight.useHint : null,

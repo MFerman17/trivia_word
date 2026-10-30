@@ -10,6 +10,7 @@ import '../services/quest_service.dart';
 import '../services/save_service.dart';
 import '../services/cloud_service.dart';
 import '../services/chapter_story_service.dart';
+import '../services/companion_service.dart';
 import '../services/lives_service.dart';
 import '../l10n/l10n.dart';
 import '../services/vibration_service.dart';
@@ -50,8 +51,15 @@ class GameController extends ChangeNotifier {
   String? monsterReaction;
 
   int starsEarned = 1;
-  late final int coinsReward = isMiniChallenge ? 15 : 50;
-  late final int xpReward = isMiniChallenge ? 10 : 40;
+  /// Premios del nivel, con el bonus del compañero (brújula / libro).
+  int get coinsReward => CompanionService.coins(profile, isMiniChallenge ? 15 : 50);
+  int get xpReward => CompanionService.xp(profile, isMiniChallenge ? 10 : 40);
+
+  /// Búho: una pista gratis por nivel. Hada: el primer fallo no quita vida.
+  bool _freeHintUsed = false;
+  bool _shieldUsed = false;
+  bool get freeHintAvailable =>
+      !_freeHintUsed && CompanionService.has(profile, CompanionPower.freeHint);
   bool miniRewardGranted = false;
   ChapterStory? chapterStory;
 
@@ -135,7 +143,14 @@ class GameController extends ChangeNotifier {
       AudioService.playWrong();
       Future.delayed(const Duration(milliseconds: 150), () => VibrationService.hit(strong: true));
       mistakes++;
-      LivesService.loseLife(); // se guarda al momento: salir no la devuelve
+      if (!_shieldUsed && CompanionService.has(profile, CompanionPower.shield)) {
+        // El hada para el golpe: el fallo cuenta para las estrellas, pero
+        // no cuesta vida.
+        _shieldUsed = true;
+        monsterReaction = L10n.current.companionShieldSaved;
+      } else {
+        LivesService.loseLife(); // se guarda al momento: salir no la devuelve
+      }
       playerHp = LivesService.lives.value;
       incorrectAnswersSinceMonsterAttack++;
       // Alarma cuando solo queda una vida.
@@ -456,7 +471,7 @@ class GameController extends ChangeNotifier {
   return;
 }
 
-    if (profile!.letterHints <= 0) {
+    if (profile!.letterHints <= 0 && !freeHintAvailable) {
       showSnackBar(L10n.current.noHintsAvailable);
       return;
     }
@@ -479,7 +494,11 @@ class GameController extends ChangeNotifier {
     incorrectIndexes.shuffle();
     int optionToDisable = incorrectIndexes.first;
 
-    profile!.letterHints--;
+    if (freeHintAvailable) {
+      _freeHintUsed = true; // la del búho no gasta pistas
+    } else {
+      profile!.letterHints--;
+    }
     disabledOptionIndexes.add(optionToDisable);
     AudioService.playHintUse();
     QuestService.track(QuestEvent.hintUsed);

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../models/player_profile.dart';
 import '../services/ad_service.dart';
 import '../services/audio_service.dart';
+import '../services/companion_service.dart';
 import '../services/fighter_service.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
@@ -36,6 +37,7 @@ class _ShopOffer {
     this.potions = 0,
     this.hints = 0,
     this.coins = 0,
+    this.keys = 0,
   });
 
   /// Identificador: con él se busca el nombre traducido (ver _offerTexts).
@@ -46,6 +48,7 @@ class _ShopOffer {
   final int potions;
   final int hints;
   final int coins;
+  final int keys;
 }
 
 const List<_CosmeticOption> _characters = [
@@ -60,10 +63,11 @@ const List<_CosmeticOption> _frames = [
   _CosmeticOption(id: 'magma', emoji: '🔥', gems: 6),
 ];
 
-const List<_CosmeticOption> _accessories = [
-  _CosmeticOption(id: 'ninguno', emoji: '—'),
-  _CosmeticOption(id: 'brujula', emoji: '🧭', coins: 100),
-  _CosmeticOption(id: 'dragoncito', emoji: '🐉', gems: 8),
+/// Compañeros (antes "accesorios"): cada uno da un poder al equiparlo.
+/// La lista y los poderes viven en CompanionService.
+final List<_CosmeticOption> _accessories = [
+  for (final c in CompanionService.all)
+    _CosmeticOption(id: c.id, emoji: c.emoji, coins: c.coins, gems: c.gems),
 ];
 
 const List<_ShopOffer> _offers = [
@@ -96,6 +100,13 @@ const List<_ShopOffer> _offers = [
     price: 5,
     payWithGems: true,
     hints: 3,
+  ),
+  _ShopOffer(
+    id: 'goldenKey',
+    emoji: '🗝️',
+    price: 10,
+    payWithGems: true,
+    keys: 1,
   ),
   _ShopOffer(
     id: 'goldBag',
@@ -174,8 +185,26 @@ class _ShopScreenState extends State<ShopScreen>
       'magma' => l.frameMagma,
       'ninguno' => l.accNone,
       'brujula' => l.accCompass,
+      'libro' => l.accBook,
+      'buho' => l.accOwl,
       'dragoncito' => l.accDragon,
+      'hada' => l.accFairy,
+      'fenix' => l.accPhoenix,
       _ => id,
+    };
+  }
+
+  /// Qué hace cada compañero, con sus números reales.
+  String _companionPower(String id) {
+    final l = context.l10n;
+    return switch (CompanionService.byId(id).power) {
+      CompanionPower.none => l.companionPowerNone,
+      CompanionPower.coins => l.companionPowerCoins(CompanionService.coinBonusPercent),
+      CompanionPower.xp => l.companionPowerXp(CompanionService.xpBonusPercent),
+      CompanionPower.freeHint => l.companionPowerFreeHint,
+      CompanionPower.fireDamage => l.companionPowerFire(CompanionService.fireBonusPercent),
+      CompanionPower.shield => l.companionPowerShield,
+      CompanionPower.phoenix => l.companionPowerPhoenix(CompanionService.phoenixHealthPercent),
     };
   }
 
@@ -201,6 +230,11 @@ class _ShopScreenState extends State<ShopScreen>
           name: l.offerHintTrio,
           description: l.offerHintTrioDesc,
           note: l.offerHintTrioNote,
+        ),
+      'goldenKey' => (
+          name: l.offerGoldenKey,
+          description: l.offerGoldenKeyDesc,
+          note: l.offerGoldenKeyNote(profile.goldenKeys),
         ),
       _ => (
           name: l.offerGoldBag,
@@ -347,6 +381,7 @@ class _ShopScreenState extends State<ShopScreen>
       profile.healthPotions += offer.potions;
       profile.letterHints += offer.hints;
       profile.coins += offer.coins;
+      profile.goldenKeys += offer.keys;
       _isBusy = true;
     });
 
@@ -578,6 +613,46 @@ class _ShopScreenState extends State<ShopScreen>
           index: 3,
           child: _buildCosmeticSelector(context.l10n.slotAccessory, _CosmeticSlot.accessory, _accessories),
         ),
+        // Poder del compañero elegido: así se entiende para qué sirve.
+        Padding(
+          padding: const EdgeInsets.only(bottom: 12),
+          child: Panel3D(
+            accent: WM.gold,
+            depth: 4,
+            radius: 14,
+            padding: const EdgeInsets.fromLTRB(12, 10, 12, 10),
+            child: Row(
+              children: [
+                Text(
+                  CompanionService.byId(_previewAccessory).emoji,
+                  style: const TextStyle(fontSize: 26),
+                ),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        context.l10n.companionPowerTitle(_cosmeticName(_previewAccessory)),
+                        style: GoogleFonts.oswald(
+                          color: WM.gold,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          letterSpacing: 1,
+                        ),
+                      ),
+                      const SizedBox(height: 2),
+                      Text(
+                        _companionPower(_previewAccessory),
+                        style: GoogleFonts.oswald(color: Colors.white, fontSize: 14),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
         const SizedBox(height: 4),
         // Deja claro sobre qué pieza actúa el botón
         Center(
@@ -716,15 +791,24 @@ class _ShopScreenState extends State<ShopScreen>
               colors: const [WM.cyanLight, WM.cyan],
             ),
           ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              for (var i = 0; i < options.length; i++) ...[
-                if (i > 0) const SizedBox(width: 10),
-                Expanded(child: _buildCosmeticTile(slot, options[i])),
-              ],
-            ],
-          ),
+          // Filas de 4 como máximo (los compañeros ya son 7).
+          for (var start = 0; start < options.length; start += _perRow(options))
+            Padding(
+              padding: EdgeInsets.only(top: start == 0 ? 0 : 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  for (var i = start; i < start + _perRow(options); i++) ...[
+                    if (i > start) const SizedBox(width: 10),
+                    Expanded(
+                      child: i < options.length
+                          ? _buildCosmeticTile(slot, options[i])
+                          : const SizedBox.shrink(),
+                    ),
+                  ],
+                ],
+              ),
+            ),
         ],
       ),
     );
@@ -796,6 +880,8 @@ class _ShopScreenState extends State<ShopScreen>
       ),
     );
   }
+
+  int _perRow(List<_CosmeticOption> options) => options.length < 4 ? options.length : 4;
 
   bool _isFree(_CosmeticOption option) => option.coins == 0 && option.gems == 0;
 

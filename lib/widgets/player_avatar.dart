@@ -39,7 +39,11 @@ class PlayerAvatar extends StatelessWidget {
   static const Map<String, String> _accessories = {
     'ninguno': '',
     'brujula': '🧭',
+    'libro': '📖',
+    'buho': '🦉',
     'dragoncito': '🐉',
+    'hada': '🧚',
+    'fenix': '🔥',
   };
 
   @override

@@ -1004,7 +1004,9 @@ class _GameScreenState extends State<GameScreen> {
     }
 
     final potions = _controller.profile?.healthPotions ?? 0;
-    final hints = _controller.profile?.letterHints ?? 0;
+    // Con el búho equipado se suma su pista gratis del nivel.
+    final freeHint = _controller.freeHintAvailable;
+    final hints = (_controller.profile?.letterHints ?? 0) + (freeHint ? 1 : 0);
     return Row(
       children: [
         Expanded(
@@ -1033,7 +1035,7 @@ class _GameScreenState extends State<GameScreen> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('💡', style: TextStyle(fontSize: 16)),
+                Text(freeHint ? '🦉' : '💡', style: const TextStyle(fontSize: 16)),
                 const SizedBox(width: 6),
                 OutlinedGameText(context.l10n.hintCount(hints), size: 14, font: GameFont.oswald),
               ],

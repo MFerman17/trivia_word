@@ -420,7 +420,7 @@
   "@slotFrame": {
     "description": "EN: FRAME"
   },
-  "slotAccessory": "ACCESORIO",
+  "slotAccessory": "COMPAÑERO",
   "@slotAccessory": {
     "description": "EN: ACCESSORY"
   },
@@ -1902,5 +1902,202 @@
   "questBuyUpgradeDesc": "Compra una mejora de luchador",
   "@questBuyUpgradeDesc": {
     "description": "EN: Buy a fighter upgrade"
+  },
+  "companionShieldSaved": "¡Tu hada paró el golpe! No pierdes vida.",
+  "@companionShieldSaved": {
+    "description": "EN: Your fairy blocked the hit! You keep your life."
+  },
+  "companionPhoenixRevive": "¡EL FÉNIX TE LEVANTA!",
+  "@companionPhoenixRevive": {
+    "description": "EN: THE PHOENIX REVIVES YOU!"
+  },
+  "accBook": "Libro",
+  "@accBook": {
+    "description": "EN: Book"
+  },
+  "accOwl": "Búho",
+  "@accOwl": {
+    "description": "EN: Owl"
+  },
+  "accFairy": "Hada",
+  "@accFairy": {
+    "description": "EN: Fairy"
+  },
+  "accPhoenix": "Fénix",
+  "@accPhoenix": {
+    "description": "EN: Phoenix"
+  },
+  "companionPowerTitle": "PODER DE {name}",
+  "@companionPowerTitle": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "description": "EN: POWER OF {name}"
+  },
+  "companionPowerNone": "Sin compañero: ningún poder extra.",
+  "@companionPowerNone": {
+    "description": "EN: No companion: no extra power."
+  },
+  "companionPowerCoins": "+{percent}% de monedas al ganar niveles y peleas.",
+  "@companionPowerCoins": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    },
+    "description": "EN: +{percent}% coins when you win levels and fights."
+  },
+  "companionPowerXp": "+{percent}% de experiencia: subes de nivel más rápido.",
+  "@companionPowerXp": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    },
+    "description": "EN: +{percent}% experience: level up faster."
+  },
+  "companionPowerFreeHint": "Una pista gratis en cada nivel y cada pelea.",
+  "@companionPowerFreeHint": {
+    "description": "EN: One free hint in every level and fight."
+  },
+  "companionPowerFire": "+{percent}% de daño en las peleas contra monstruos.",
+  "@companionPowerFire": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    },
+    "description": "EN: +{percent}% damage in monster fights."
+  },
+  "companionPowerShield": "El primer fallo de cada nivel no te quita vida.",
+  "@companionPowerShield": {
+    "description": "EN: Your first mistake in each level doesn't cost a life."
+  },
+  "companionPowerPhoenix": "Una vez por pelea, si caes, te levanta con el {percent}% de vida.",
+  "@companionPowerPhoenix": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Once per fight, if you fall, it revives you with {percent}% health."
+  },
+  "offerGoldenKey": "Llave dorada",
+  "@offerGoldenKey": {
+    "description": "EN: Golden key"
+  },
+  "offerGoldenKeyDesc": "Abre una pelea de capítulo aunque te falten estrellas.",
+  "@offerGoldenKeyDesc": {
+    "description": "EN: Opens a chapter fight even if you lack stars."
+  },
+  "offerGoldenKeyNote": "Tienes {count}",
+  "@offerGoldenKeyNote": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "description": "EN: You have {count}"
+  },
+  "useGoldenKey": "USAR LLAVE ({count})",
+  "@useGoldenKey": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "description": "EN: USE KEY ({count})"
+  },
+  "goldenKeyHint": "Con una llave dorada de la Tienda puedes entrar ya.",
+  "@goldenKeyHint": {
+    "description": "EN: With a golden key from the Shop you can enter now."
+  },
+  "bonusChestTitle": "¡Cofre extra!",
+  "@bonusChestTitle": {
+    "description": "EN: Bonus chest!"
+  },
+  "bonusChestBody": "Mira un video: +{coins} 🪙 y +{hints} 💡",
+  "@bonusChestBody": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "hints": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Watch a video: +{coins} 🪙 and +{hints} 💡"
+  },
+  "bonusChestWatch": "VER VIDEO",
+  "@bonusChestWatch": {
+    "description": "EN: WATCH"
+  },
+  "bonusChestReward": "¡Cofre extra! +{coins} monedas y +{hints} pista",
+  "@bonusChestReward": {
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      },
+      "hints": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Bonus chest! +{coins} coins and +{hints} hint"
+  },
+  "minigameMemory": "MEMORIA",
+  "@minigameMemory": {
+    "description": "EN: MEMORY"
+  },
+  "minigameHangman": "AHORCADO",
+  "@minigameHangman": {
+    "description": "EN: HANGMAN"
+  },
+  "minigameWon": "¡GANASTE!",
+  "@minigameWon": {
+    "description": "EN: YOU WON!"
+  },
+  "minigameLost": "¡Casi!",
+  "@minigameLost": {
+    "description": "EN: So close!"
+  },
+  "minigameComeBack": "Este portal se recarga mañana.",
+  "@minigameComeBack": {
+    "description": "EN: This portal recharges tomorrow."
+  },
+  "memoryRules": "Encuentra las 6 parejas antes de quedarte sin intentos.",
+  "@memoryRules": {
+    "description": "EN: Find the 6 pairs before you run out of tries."
+  },
+  "triesLeft": "{count} intentos",
+  "@triesLeft": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    },
+    "description": "EN: {count} tries"
+  },
+  "hangmanRules": "Adivina la palabra letra a letra. Con 6 fallos, el monstruo gana.",
+  "@hangmanRules": {
+    "description": "EN: Guess the word letter by letter. 6 misses and the monster wins."
+  },
+  "portalPlayedToday": "Ya jugaste este portal hoy. ¡Vuelve mañana!",
+  "@portalPlayedToday": {
+    "description": "EN: You already played this portal today. Come back tomorrow!"
+  },
+  "portalLocked": "Gana el nivel {level} para abrir este portal.",
+  "@portalLocked": {
+    "placeholders": {
+      "level": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Win level {level} to open this portal."
+  },
+  "flyerNoMoreToday": "¡Hoy ya no suelta más!",
+  "@flyerNoMoreToday": {
+    "description": "EN: No more loot today!"
   }
 }

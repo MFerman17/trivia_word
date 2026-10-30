@@ -61,7 +61,7 @@ service cloud.firestore {
             'letterHints', 'totalStars', 'lastDailyReward', 'avatarCharacterId',
             'avatarFrameId', 'avatarAccessoryId', 'ownedAvatarCharacters',
             'ownedAvatarFrames', 'ownedAvatarAccessories', 'fighterUpgrades',
-            'country'
+            'country', 'goldenKeys'
           ])
           && profile.name is string
           && profile.name.size() <= 20
@@ -97,6 +97,8 @@ service cloud.firestore {
                && profile.fighterUpgrades.size() <= 3))
           // País del jugador (opcional), código ISO de 2 letras.
           && (!('country' in profile) || (profile.country is string && profile.country.size() == 2))
+          // Llaves doradas (opcional).
+          && (!('goldenKeys' in profile) || (profile.goldenKeys is int && profile.goldenKeys >= 0 && profile.goldenKeys <= 99))
           && data.stages is map
           && data.stages.size() <= 500
           && data.quests is list

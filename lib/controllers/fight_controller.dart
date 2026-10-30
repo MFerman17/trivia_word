@@ -11,6 +11,7 @@ import '../models/stage_progress.dart';
 import '../services/audio_service.dart';
 import '../services/chapter_story_service.dart';
 import '../services/cloud_service.dart';
+import '../services/companion_service.dart';
 import '../services/fighter_service.dart';
 import '../services/quest_service.dart';
 import '../services/question_bank.dart';
@@ -116,6 +117,12 @@ class FightController extends ChangeNotifier {
   int starsEarned = 0;
   int coinsEarned = 0;
   int xpEarned = 0;
+
+  /// Búho: una pista gratis por pelea. Fénix: te levanta una vez por pelea.
+  bool _freeHintUsed = false;
+  bool _phoenixUsed = false;
+  bool get freeHintAvailable =>
+      !_freeHintUsed && CompanionService.has(profile, CompanionPower.freeHint);
   int gemsEarned = 0;
   bool firstWin = false;
 
@@ -241,7 +248,9 @@ class FightController extends ChangeNotifier {
     superMeter = math.min(1, superMeter + FighterService.superFillPerHit(profile));
 
     final damage =
-        (rules.baseDamage * multiplier * FighterService.powerMultiplier(profile)).round();
+        (rules.baseDamage * multiplier * FighterService.powerMultiplier(profile) *
+                CompanionService.fightDamage(profile))
+            .round();
     _hitEnemy(damage, action);
     AudioService.playSuccess();
     QuestService.track(QuestEvent.correctAnswer);
@@ -253,7 +262,10 @@ class FightController extends ChangeNotifier {
     _clock?.cancel();
     superMeter = 0;
     actionLabel = L10n.current.fightSuper;
-    final damage = (rules.superDamage * FighterService.powerMultiplier(profile)).round();
+    final damage = (rules.superDamage *
+            FighterService.powerMultiplier(profile) *
+            CompanionService.fightDamage(profile))
+        .round();
     AudioService.playLevelUp();
     // La pregunta actual se cambia por otra al terminar la animación.
     _hitEnemy(damage, FightAction.special);
@@ -283,6 +295,12 @@ class FightController extends ChangeNotifier {
         : L10n.current.fightGotHit;
     actionId++;
     playerHp = math.max(0, playerHp - damage);
+    if (playerHp <= 0 && !_phoenixUsed && CompanionService.has(profile, CompanionPower.phoenix)) {
+      // El fénix te levanta una vez por pelea con parte de la vida.
+      _phoenixUsed = true;
+      playerHp = (playerMaxHp * CompanionService.phoenixHealthPercent / 100).round();
+      actionLabel = L10n.current.companionPhoenixRevive;
+    }
     phase = FightPhase.feedback;
     notifyListeners();
     AudioService.playWrong();
@@ -321,7 +339,8 @@ class FightController extends ChangeNotifier {
   Future<void> useHint() async {
     final p = profile;
     final q = question;
-    if (phase != FightPhase.question || p == null || q == null || p.letterHints <= 0) {
+    if (phase != FightPhase.question || p == null || q == null ||
+        (p.letterHints <= 0 && !freeHintAvailable)) {
       return;
     }
     final wrong = [
@@ -331,7 +350,11 @@ class FightController extends ChangeNotifier {
     if (wrong.length <= 1) return; // Siempre quedan al menos dos opciones.
     wrong.shuffle();
     disabledOptions.add(wrong.first);
-    p.letterHints--;
+    if (freeHintAvailable) {
+      _freeHintUsed = true; // la del búho no gasta pistas
+    } else {
+      p.letterHints--;
+    }
     AudioService.playHintUse();
     notifyListeners();
     await SaveService.savePlayerData(p);
@@ -381,8 +404,9 @@ class FightController extends ChangeNotifier {
     firstWin = previous.stars == 0;
     // Repetir una pelea ya ganada da la cuarta parte y sin gemas, para que
     // compense más avanzar que repetir siempre la misma.
-    coinsEarned = firstWin ? rules.coinsReward : (rules.coinsReward / 4).round();
-    xpEarned = firstWin ? rules.xpReward : (rules.xpReward / 4).round();
+    coinsEarned = CompanionService.coins(
+        profile, firstWin ? rules.coinsReward : (rules.coinsReward / 4).round());
+    xpEarned = CompanionService.xp(profile, firstWin ? rules.xpReward : (rules.xpReward / 4).round());
     gemsEarned = firstWin ? rules.gemsReward : 0;
     if (firstWin) chapterStory = ChapterStoryService.afterChapter(worldId, chapterId);
 

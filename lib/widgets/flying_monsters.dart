@@ -77,7 +77,7 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
   static const Duration flight = Duration(milliseconds: 7000);
   static const Duration shotTime = Duration(milliseconds: 900);
   static const Duration markTime = Duration(milliseconds: 3500);
-  static const double size = 86;
+  static const double size = 100;
 
   final math.Random _rnd = math.Random();
   late final Ticker _ticker;
@@ -144,7 +144,8 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
 
   void _spawn() {
     if (!mounted) return;
-    final dragon = _rnd.nextDouble() < 0.3;
+    // Cada mundo tiene su propia criatura voladora (ver assets/images/flyers).
+    const dragon = false;
     final shots = [0.25 + _rnd.nextDouble() * 0.2, if (_rnd.nextBool()) 0.6 + _rnd.nextDouble() * 0.2];
     setState(() {
       _flyer = _Flyer(
@@ -152,7 +153,7 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
         fromLeft: _rnd.nextBool(),
         y: 0.15 + _rnd.nextDouble() * 0.45,
         wave: 18 + _rnd.nextDouble() * 22,
-        asset: dragon ? 'assets/images/dragon.png' : 'assets/images/monsters/${_monsterName}_idle.png',
+        asset: 'assets/images/flyers/flyer_w${widget.world.clamp(1, 4)}_1.png',
         isDragon: dragon,
         shots: shots,
       );
@@ -274,18 +275,34 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
   Widget _buildFlyer(_Flyer f, Offset pos) {
     final hit = f.hitAt != null;
     final spin = hit ? (_now - f.hitAt!).inMilliseconds / 1000 * 6 : 0.0;
-    // Los monstruos miran a la izquierda: si vuelan hacia la derecha se voltean.
-    final image = Transform.flip(
-      flipX: f.fromLeft,
+    // Aleteo: se alternan dos dibujos (alas arriba / alas abajo) cada 140 ms.
+    // Si aún no existen las imágenes de la criatura voladora del mundo, se
+    // usa el monstruo del mundo, que "aletea" estirándose un poco.
+    final flapUp = (_now.inMilliseconds ~/ 140).isEven;
+    final frame = 'assets/images/flyers/flyer_w${widget.world.clamp(1, 4)}_${flapUp || hit ? 1 : 2}.png';
+    final fallback = Transform.scale(
+      scaleY: hit ? 1 : (flapUp ? 1.0 : 0.88),
       child: Image.asset(
-        hit && !f.isDragon ? 'assets/images/monsters/${_monsterName}_hit.png' : f.asset,
-        width: f.isDragon ? size * 1.5 : size,
+        'assets/images/monsters/${_monsterName}_${hit ? 'hit' : 'idle'}.png',
+        width: size,
         height: size,
         fit: BoxFit.contain,
         errorBuilder: (_, _, _) => const Text('🐉', style: TextStyle(fontSize: 50)),
       ),
     );
-    final w = f.isDragon ? size * 1.5 : size;
+    // Las criaturas miran a la izquierda: si vuelan hacia la derecha se voltean.
+    final image = Transform.flip(
+      flipX: f.fromLeft,
+      child: Image.asset(
+        frame,
+        width: size,
+        height: size,
+        fit: BoxFit.contain,
+        gaplessPlayback: true,
+        errorBuilder: (_, _, _) => fallback,
+      ),
+    );
+    const w = size;
     return Positioned(
       left: pos.dx - w / 2,
       top: pos.dy - size / 2,

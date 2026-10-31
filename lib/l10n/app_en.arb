@@ -441,10 +441,10 @@
   "offerGoldenKeyNote": "You have {count}",
   "useGoldenKey": "USE KEY ({count})",
   "goldenKeyHint": "With a golden key from the Shop you can enter now.",
-  "bonusChestTitle": "Bonus chest!",
-  "bonusChestBody": "Watch a video: +{coins} 🪙 and +{hints} 💡",
+  "bonusChestTitle": "Video chests! ({left}/{total})",
+  "bonusChestBody": "Watch a video to win {reward}",
   "bonusChestWatch": "WATCH",
-  "bonusChestReward": "Bonus chest! +{coins} coins and +{hints} hint",
+  "bonusChestReward": "Chest opened! {reward}",
   "minigameMemory": "MEMORY",
   "minigameHangman": "HANGMAN",
   "minigameWon": "YOU WON!",
@@ -455,5 +455,6 @@
   "hangmanRules": "Guess the word letter by letter. 6 misses and the monster wins.",
   "portalPlayedToday": "You already played this portal today. Come back tomorrow!",
   "portalLocked": "Win level {level} to open this portal.",
-  "flyerNoMoreToday": "No more loot today!"
+  "flyerNoMoreToday": "No more loot today!",
+  "nextChestIn": "Next chest in {time}"
 }

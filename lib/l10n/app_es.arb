@@ -2014,37 +2014,39 @@
   "@goldenKeyHint": {
     "description": "EN: With a golden key from the Shop you can enter now."
   },
-  "bonusChestTitle": "¡Cofre extra!",
+  "bonusChestTitle": "¡Cofres por video! ({left}/{total})",
   "@bonusChestTitle": {
-    "description": "EN: Bonus chest!"
-  },
-  "bonusChestBody": "Mira un video: +{coins} 🪙 y +{hints} 💡",
-  "@bonusChestBody": {
     "placeholders": {
-      "coins": {
+      "left": {
         "type": "int"
       },
-      "hints": {
+      "total": {
         "type": "int"
       }
     },
-    "description": "EN: Watch a video: +{coins} 🪙 and +{hints} 💡"
+    "description": "EN: Video chests! ({left}/{total})"
   },
-  "bonusChestWatch": "VER VIDEO",
+  "bonusChestBody": "Mira un video y gana {reward}",
+  "@bonusChestBody": {
+    "placeholders": {
+      "reward": {
+        "type": "String"
+      }
+    },
+    "description": "EN: Watch a video to win {reward}"
+  },
+  "bonusChestWatch": "VER",
   "@bonusChestWatch": {
     "description": "EN: WATCH"
   },
-  "bonusChestReward": "¡Cofre extra! +{coins} monedas y +{hints} pista",
+  "bonusChestReward": "¡Cofre abierto! {reward}",
   "@bonusChestReward": {
     "placeholders": {
-      "coins": {
-        "type": "int"
-      },
-      "hints": {
-        "type": "int"
+      "reward": {
+        "type": "String"
       }
     },
-    "description": "EN: Bonus chest! +{coins} coins and +{hints} hint"
+    "description": "EN: Chest opened! {reward}"
   },
   "minigameMemory": "MEMORIA",
   "@minigameMemory": {
@@ -2099,5 +2101,14 @@
   "flyerNoMoreToday": "¡Hoy ya no suelta más!",
   "@flyerNoMoreToday": {
     "description": "EN: No more loot today!"
+  },
+  "nextChestIn": "Próximo cofre en {time}",
+  "@nextChestIn": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    },
+    "description": "EN: Next chest in {time}"
   }
 }

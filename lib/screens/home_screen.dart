@@ -130,29 +130,57 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   bool _welcomeShown = false;
 
   // ---------------------------------------------------------------
-  // COFRE EXTRA (con video)
+  // COFRES POR VIDEO
   // ---------------------------------------------------------------
-  // Después de abrir el cofre diario se ofrece un segundo cofre a cambio de
-  // ver un video. Uno por cada cofre diario: se guarda cuándo se abrió y
-  // vuelve a estar disponible cuando se abre el siguiente cofre diario.
-  // Se guarda solo en el teléfono (no hace falta subirlo a la nube).
-  static const String _bonusChestKey = 'bonus_chest_at';
-  static const int bonusChestCoins = 80;
-  static const int bonusChestHints = 1;
-  DateTime? _bonusChestAt;
+  // Cuando el cofre diario ya se abrió, la misma franja ofrece cofres extra
+  // a cambio de ver un video: hasta [videoChestsPerDay] al día, cada uno con
+  // un premio distinto. Así el jugador no ve anuncios por todas partes, solo
+  // cuando él quiere un premio, y cada video visto genera ingresos.
+  // Se cuentan por día en el teléfono (no hace falta subirlo a la nube).
+  static const int videoChestsPerDay = 3;
+  static const List<({int coins, int hints, int potions, int gems})> _videoRewards = [
+    (coins: 80, hints: 1, potions: 0, gems: 0),
+    (coins: 40, hints: 0, potions: 1, gems: 0),
+    (coins: 50, hints: 0, potions: 0, gems: 1),
+  ];
+  int _videoChestsToday = 0;
   bool _loadingBonusAd = false;
 
-  bool get _bonusChestAvailable {
-    final daily = _profile?.lastDailyReward;
-    if (daily == null || _profile!.canClaimDailyReward) return false;
-    return _bonusChestAt == null || _bonusChestAt!.isBefore(daily);
+  String get _videoKey {
+    final now = DateTime.now();
+    return 'video_chests_${now.year}-${now.month}-${now.day}';
+  }
+
+  /// Hay cofre por video si el diario ya se abrió y queda alguno hoy.
+  bool get _bonusChestAvailable =>
+      _profile != null &&
+      !_profile!.canClaimDailyReward &&
+      _videoChestsToday < videoChestsPerDay;
+
+  ({int coins, int hints, int potions, int gems}) get _nextVideoReward =>
+      _videoRewards[_videoChestsToday.clamp(0, _videoRewards.length - 1).toInt()];
+
+  /// Premio en texto corto: "+80 🪙 +1 💡".
+  String _rewardText(({int coins, int hints, int potions, int gems}) r) => [
+        if (r.coins > 0) '+${r.coins} 🪙',
+        if (r.hints > 0) '+${r.hints} 💡',
+        if (r.potions > 0) '+${r.potions} 🧪',
+        if (r.gems > 0) '+${r.gems} 💎',
+      ].join('  ');
+
+  /// Tiempo hasta el próximo cofre diario ("5 h 20 min").
+  String _timeToNextChest() {
+    final last = _profile?.lastDailyReward;
+    if (last == null) return '';
+    final left = last.add(const Duration(hours: 24)).difference(DateTime.now());
+    if (left.isNegative) return '';
+    return '${left.inHours} h ${left.inMinutes % 60} min';
   }
 
   Future<void> _loadBonusChest() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      final raw = prefs.getString(_bonusChestKey);
-      _bonusChestAt = raw == null ? null : DateTime.tryParse(raw);
+      _videoChestsToday = prefs.getInt(_videoKey) ?? 0;
     } catch (_) {}
   }
 
@@ -168,25 +196,27 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       );
       return;
     }
-    final now = DateTime.now();
+    final reward = _nextVideoReward;
     AudioService.playChestOpen();
     setState(() {
-      _bonusChestAt = now;
+      _videoChestsToday++;
       _triggerChestExplosion = true;
-      _profile!.coins += bonusChestCoins;
-      _profile!.letterHints += bonusChestHints;
+      _profile!.coins += reward.coins;
+      _profile!.letterHints += reward.hints;
+      _profile!.healthPotions += reward.potions;
+      _profile!.gems += reward.gems;
     });
     await SaveService.savePlayerData(_profile!);
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_bonusChestKey, now.toIso8601String());
+      await prefs.setInt(_videoKey, _videoChestsToday);
     } catch (_) {}
     Future.delayed(const Duration(milliseconds: 100), () {
       if (mounted) setState(() => _triggerChestExplosion = false);
     });
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(context.l10n.bonusChestReward(bonusChestCoins, bonusChestHints))),
+      SnackBar(content: Text(context.l10n.bonusChestReward(_rewardText(reward)))),
     );
   }
 
@@ -922,7 +952,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       canClaim
                           ? context.l10n.chestAvailable
                           : bonus
-                              ? context.l10n.bonusChestTitle
+                              ? context.l10n.bonusChestTitle(
+                                  videoChestsPerDay - _videoChestsToday,
+                                  videoChestsPerDay,
+                                )
                               : context.l10n.chestClaimed,
                       style: GoogleFonts.oswald(fontWeight: FontWeight.w700, 
                         color: canClaim || bonus ? Colors.amberAccent : Colors.white60,
@@ -933,8 +966,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       canClaim
                           ? context.l10n.chestTapToClaim
                           : bonus
-                              ? context.l10n.bonusChestBody(bonusChestCoins, bonusChestHints)
-                              : context.l10n.chestComeBack,
+                              ? context.l10n.bonusChestBody(_rewardText(_nextVideoReward))
+                              : _timeToNextChest().isEmpty
+                                  ? context.l10n.chestComeBack
+                                  : context.l10n.nextChestIn(_timeToNextChest()),
                       style: const TextStyle(color: Colors.white54, fontSize: 12),
                     ),
                   ],
@@ -959,7 +994,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           child: CircularProgressIndicator(strokeWidth: 2.5, color: kOutline),
                         )
                       : _outlinedText(
-                          canClaim ? context.l10n.chestOpen : context.l10n.bonusChestWatch,
+                          canClaim ? context.l10n.chestOpen : '📺 ${context.l10n.bonusChestWatch}',
                           14,
                           stroke: 3.5,
                         ),

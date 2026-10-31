@@ -63,6 +63,7 @@ flutter:
     - assets/images/bg_landscape.png
     - assets/images/fighters/
     - assets/images/monsters/
+    - assets/images/flyers/
     - assets/images/dragon.png
     - assets/images/mini_forest_guardian.png
     - assets/images/mini_cave_bat.png

@@ -344,7 +344,7 @@ class _HangmanGameState extends State<_HangmanGame> {
 
   @override
   Widget build(BuildContext context) {
-    // En vez del muñeco clásico, un monstruo que se acerca con cada fallo.
+    // En vez del muñeco clásico, el dragón que se acerca con cada fallo.
     final danger = _mistakes / maxMistakes;
     return Padding(
       padding: const EdgeInsets.fromLTRB(14, 6, 14, 18),
@@ -370,10 +370,22 @@ class _HangmanGameState extends State<_HangmanGame> {
             ],
           ),
           const SizedBox(height: 8),
-          AnimatedScale(
-            scale: 0.8 + danger * 0.7,
-            duration: const Duration(milliseconds: 300),
-            child: const Text('👹', style: TextStyle(fontSize: 54)),
+          // El dragón crece (se acerca) con cada fallo y se pone rojo al final.
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 350),
+            curve: Curves.easeOutBack,
+            height: 110 + danger * 70,
+            child: ColorFiltered(
+              colorFilter: ColorFilter.mode(
+                Color.lerp(Colors.transparent, const Color(0x88FF2A2A), danger)!,
+                BlendMode.srcATop,
+              ),
+              child: Image.asset(
+                'assets/images/dragon.png',
+                fit: BoxFit.contain,
+                errorBuilder: (_, _, _) => const Text('🐉', style: TextStyle(fontSize: 64)),
+              ),
+            ),
           ),
           const SizedBox(height: 14),
           Wrap(

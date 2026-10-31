@@ -1,0 +1,19 @@
+CRIATURAS VOLADORAS DEL MAPA
+============================
+
+Una criatura por mundo, con DOS dibujos para el aleteo:
+
+  flyer_w1_1.png  Bosque  - alas ARRIBA
+  flyer_w1_2.png  Bosque  - alas ABAJO
+  flyer_w2_1.png  Cavernas - alas ARRIBA
+  flyer_w2_2.png  Cavernas - alas ABAJO
+  flyer_w3_1.png  Islas    - alas ARRIBA
+  flyer_w3_2.png  Islas    - alas ABAJO
+  flyer_w4_1.png  Volcan   - alas ARRIBA
+  flyer_w4_2.png  Volcan   - alas ABAJO
+
+Formato: PNG con fondo transparente, 576 x 576 px, la criatura MIRANDO A LA
+IZQUIERDA, vista de perfil, centrada y del mismo tamaño en los dos dibujos
+(solo cambian las alas). El juego la voltea sola cuando vuela a la derecha.
+
+Mientras falte alguna, el juego usa el monstruo de ese mundo.

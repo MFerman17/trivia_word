@@ -264,10 +264,29 @@ class QuestionRepository {
     }
   }
 
+  /// Preguntas IGUALES para todos los jugadores (torneo semanal).
+  ///
+  /// Con la misma [seed] (semilla) salen las mismas preguntas en el mismo
+  /// orden y con las opciones en el mismo orden, en cualquier teléfono. No
+  /// tocan el historial de preguntas vistas del modo aventura.
+  static List<Question> seeded({
+    required int difficulty,
+    required int count,
+    required int seed,
+  }) {
+    final pool = List<Question>.of(
+      _pools[difficulty.clamp(minDifficulty, maxDifficulty)] ?? const [],
+    )..sort((a, b) => a.id.compareTo(b.id));
+    if (pool.isEmpty || count <= 0) return [];
+    final random = Random(seed);
+    pool.shuffle(random);
+    return [for (final q in pool.take(count)) _shuffled(q, random)];
+  }
+
   /// Baraja las opciones y recalcula cuál es la correcta.
-  static Question _shuffled(Question question) {
+  static Question _shuffled(Question question, [Random? random]) {
     final correct = question.options[question.correctIndex];
-    final options = List<String>.of(question.options)..shuffle(_random);
+    final options = List<String>.of(question.options)..shuffle(random ?? _random);
     return Question(
       id: question.id,
       worldId: question.worldId,

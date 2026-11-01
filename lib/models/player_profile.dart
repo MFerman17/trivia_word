@@ -29,6 +29,15 @@ class PlayerProfile {
   /// Llaves doradas: abren una pelea aunque falten estrellas (tienda).
   int goldenKeys;
 
+  /// Copas ganadas en el torneo semanal: {'gold': n, 'silver': n, 'bronze': n}.
+  Map<String, int> trophies;
+
+  /// Última semana de torneo cuyo premio ya se cobró (id de la semana).
+  /// Va en el guardado de la nube para no cobrarlo dos veces al reinstalar.
+  String tournamentClaimed;
+
+  int get totalTrophies => trophies.values.fold(0, (a, b) => a + b);
+
   bool get needsWelcome => country.isEmpty;
 
   PlayerProfile({
@@ -50,7 +59,10 @@ class PlayerProfile {
     Map<String, int>? fighterUpgrades,
     this.country = '',
     this.goldenKeys = 0,
+    Map<String, int>? trophies,
+    this.tournamentClaimed = '',
   })  : fighterUpgrades = fighterUpgrades ?? {},
+        trophies = trophies ?? {},
         ownedAvatarCharacters = ownedAvatarCharacters ?? ['explorador'],
         ownedAvatarFrames = ownedAvatarFrames ?? ['basico'],
         ownedAvatarAccessories =
@@ -112,6 +124,8 @@ class PlayerProfile {
       if (country.isNotEmpty) 'country': country,
       // Solo si tiene alguna (mismo motivo que fighterUpgrades).
       if (goldenKeys > 0) 'goldenKeys': goldenKeys,
+      if (trophies.values.any((n) => n > 0)) 'trophies': trophies,
+      if (tournamentClaimed.isNotEmpty) 'tournamentClaimed': tournamentClaimed,
     };
   }
 
@@ -146,6 +160,9 @@ class PlayerProfile {
       fighterUpgrades: _readIntMap(map['fighterUpgrades']),
       country: map['country'] is String ? map['country'] as String : '',
       goldenKeys: map['goldenKeys'] is int ? map['goldenKeys'] as int : 0,
+      trophies: _readIntMap(map['trophies']),
+      tournamentClaimed:
+          map['tournamentClaimed'] is String ? map['tournamentClaimed'] as String : '',
     );
   }
 

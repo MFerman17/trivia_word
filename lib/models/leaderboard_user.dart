@@ -5,7 +5,11 @@ class LeaderboardUser {
   final int trophies;
   final String avatarEmoji;
 
+  /// Copas ganadas en el torneo semanal.
+  final int cups;
+
   LeaderboardUser({
+    this.cups = 0,
     required this.rank,
     required this.name,
     required this.countryFlag,

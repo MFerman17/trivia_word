@@ -13,7 +13,7 @@ service cloud.firestore {
             'name', 'coins', 'experience', 'stars', 'updatedAt'
           ])
           && data.keys().hasOnly([
-            'name', 'coins', 'experience', 'stars', 'updatedAt', 'country'
+            'name', 'coins', 'experience', 'stars', 'updatedAt', 'country', 'cups'
           ])
           && data.name is string
           && data.name.size() >= 1
@@ -29,6 +29,8 @@ service cloud.firestore {
           && data.stars <= 360
           // País (opcional): código ISO de 2 letras para la bandera.
           && (!('country' in data) || (data.country is string && data.country.size() == 2))
+          // Copas del torneo semanal (opcional). Como mucho una por semana.
+          && (!('cups' in data) || (data.cups is int && data.cups >= 0 && data.cups <= 520))
           && data.updatedAt == request.time;
       }
 
@@ -61,7 +63,7 @@ service cloud.firestore {
             'letterHints', 'totalStars', 'lastDailyReward', 'avatarCharacterId',
             'avatarFrameId', 'avatarAccessoryId', 'ownedAvatarCharacters',
             'ownedAvatarFrames', 'ownedAvatarAccessories', 'fighterUpgrades',
-            'country', 'goldenKeys'
+            'country', 'goldenKeys', 'trophies', 'tournamentClaimed'
           ])
           && profile.name is string
           && profile.name.size() <= 20
@@ -99,6 +101,11 @@ service cloud.firestore {
           && (!('country' in profile) || (profile.country is string && profile.country.size() == 2))
           // Llaves doradas (opcional).
           && (!('goldenKeys' in profile) || (profile.goldenKeys is int && profile.goldenKeys >= 0 && profile.goldenKeys <= 99))
+          // Copas del torneo (opcional): { gold, silver, bronze }.
+          && (!('trophies' in profile) || (
+               profile.trophies is map
+               && profile.trophies.keys().hasOnly(['gold', 'silver', 'bronze'])))
+          && (!('tournamentClaimed' in profile) || (profile.tournamentClaimed is string && profile.tournamentClaimed.size() <= 20))
           && data.stages is map
           && data.stages.size() <= 500
           && data.quests is list
@@ -111,6 +118,100 @@ service cloud.firestore {
       allow create, update: if ownsSave() && validSave();
       // Permite al jugador borrar su propio guardado (requisito de borrado de datos de Google Play).
       allow delete: if ownsSave();
+    }
+
+    // =================================================================
+    // TORNEO SEMANAL: tournaments/{semana}/leagues/{liga}/entries/{uid}
+    // =================================================================
+    // {semana} = milisegundos del lunes 00:00 UTC en que empieza.
+    // Cada intento se apunta al EMPEZAR (attempts + 1) y se entrega al
+    // terminar (finished = true), al menos 20 s después y como mucho 15 min.
+    match /tournaments/{weekId}/leagues/{league}/entries/{userId} {
+      function ownsEntry() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      // La semana del documento es la de la ruta, empieza un lunes a las
+      // 00:00 UTC y todavía no ha terminado.
+      function inWeek(d) {
+        return d.weekStart is timestamp
+          && string(d.weekStart.toMillis()) == weekId
+          && d.weekStart.dayOfWeek() == 1
+          && d.weekStart.hours() == 0
+          && d.weekStart.minutes() == 0
+          && d.weekStart.seconds() == 0
+          && request.time >= d.weekStart
+          && request.time < d.weekStart + duration.value(7, 'd');
+      }
+
+      function validShape(d) {
+        return d.keys().hasAll([
+            'name', 'league', 'score', 'attempts', 'finished', 'startedAt', 'weekStart', 'updatedAt'
+          ])
+          && d.keys().hasOnly([
+            'name', 'country', 'league', 'score', 'attempts', 'finished', 'startedAt', 'weekStart', 'updatedAt'
+          ])
+          && d.name is string && d.name.size() >= 1 && d.name.size() <= 20
+          && (!('country' in d) || (d.country is string && d.country.size() == 2))
+          && d.league == league
+          && league in ['bronze', 'silver', 'gold', 'diamond']
+          // 10 preguntas x 225 puntos como máximo.
+          && d.score is int && d.score >= 0 && d.score <= 2250
+          // 3 intentos gratis + 2 por video.
+          && d.attempts is int && d.attempts >= 1 && d.attempts <= 5
+          && d.finished is bool
+          && d.startedAt is timestamp
+          && d.updatedAt == request.time;
+      }
+
+      // La liga debe ser la que corresponde a las estrellas del jugador en
+      // el ranking global (igual que en el juego: 0, 60, 150 y 260).
+      function leagueMatchesStars() {
+        let path = /databases/$(database)/documents/leaderboard/$(request.auth.uid);
+        let stars = exists(path) ? get(path).data.stars : 0;
+        return (league == 'bronze' && stars < 60)
+          || (league == 'silver' && stars >= 60 && stars < 150)
+          || (league == 'gold' && stars >= 150 && stars < 260)
+          || (league == 'diamond' && stars >= 260);
+      }
+
+      allow read: if request.auth != null;
+
+      // Primer intento de la semana.
+      allow create: if ownsEntry()
+        && validShape(request.resource.data)
+        && inWeek(request.resource.data)
+        && request.resource.data.attempts == 1
+        && request.resource.data.score == 0
+        && request.resource.data.finished == false
+        && request.resource.data.startedAt == request.time
+        && leagueMatchesStars();
+
+      allow update: if ownsEntry()
+        && validShape(request.resource.data)
+        && inWeek(request.resource.data)
+        && request.resource.data.league == resource.data.league
+        && request.resource.data.weekStart == resource.data.weekStart
+        && (
+          // Empezar otro intento: suma uno y no toca la puntuación.
+          (request.resource.data.attempts == resource.data.attempts + 1
+            && request.resource.data.score == resource.data.score
+            && request.resource.data.finished == false
+            && request.resource.data.startedAt == request.time)
+          ||
+          // Entregar el intento en curso: solo una vez, ni demasiado rápido
+          // ni demasiado tarde, y la puntuación solo puede subir.
+          (request.resource.data.attempts == resource.data.attempts
+            && resource.data.finished == false
+            && request.resource.data.finished == true
+            && request.resource.data.startedAt == resource.data.startedAt
+            && request.resource.data.score >= resource.data.score
+            && request.time > resource.data.startedAt + duration.value(20, 's')
+            && request.time < resource.data.startedAt + duration.value(15, 'm'))
+        );
+
+      // Borrado de datos del jugador.
+      allow delete: if ownsEntry();
     }
   }
 }

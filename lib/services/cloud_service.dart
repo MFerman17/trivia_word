@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../models/player_profile.dart';
 import 'save_service.dart';
+import 'tournament_service.dart';
 
 enum GoogleAccountResult { linked, cancelled, failed }
 
@@ -68,6 +69,7 @@ class CloudService {
         // Las reglas de Firestore permiten a cada jugador borrar lo suyo.
         await _db.collection('leaderboard').doc(user.uid).delete();
         await _db.collection('player_saves').doc(user.uid).delete();
+        await TournamentService.deleteMyEntries(user.uid);
       } catch (e) {
         debugPrint('No se pudieron borrar los datos de la nube: $e');
         return false;
@@ -244,6 +246,8 @@ class CloudService {
         'stars': totalStars,
         // País para la bandera del ranking (solo si el jugador lo eligió).
         if (profile.country.length == 2) 'country': profile.country,
+        // Copas del torneo semanal, para enseñarlas junto al nombre.
+        if (profile.totalTrophies > 0) 'cups': profile.totalTrophies,
         'updatedAt': FieldValue.serverTimestamp(),
       }, SetOptions(merge: true));
 

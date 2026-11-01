@@ -73,6 +73,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       EntranceFlip(index: 0, child: _buildXpPanel()),
                       const SizedBox(height: 16),
                       _buildStatsGrid(),
+                      const SizedBox(height: 16),
+                      EntranceFlip(index: 4, child: _buildTrophies()),
                       const SizedBox(height: 20),
                       EntranceFlip(index: 5, child: _buildGoogleButton()),
                     ],
@@ -82,6 +84,57 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // VITRINA DE COPAS del torneo semanal
+  // ---------------------------------------------------------------
+  Widget _buildTrophies() {
+    Widget cup(String emoji, String key) {
+      final count = _profile.trophies[key] ?? 0;
+      return Expanded(
+        child: Opacity(
+          opacity: count > 0 ? 1 : 0.35,
+          child: Column(
+            children: [
+              Text(emoji, style: const TextStyle(fontSize: 34)),
+              OutlinedGameText('x$count', size: 18, font: GameFont.oswald),
+            ],
+          ),
+        ),
+      );
+    }
+
+    return Panel3D(
+      accent: WM.gold,
+      radius: 18,
+      child: Column(
+        children: [
+          OutlinedGameText(
+            context.l10n.trophyCaseTitle,
+            size: 16,
+            font: GameFont.oswald,
+            colors: const [Color(0xFFFFF1B0), WM.gold],
+          ),
+          const SizedBox(height: 8),
+          Row(
+            children: [
+              cup('🏆', 'gold'),
+              cup('🥈', 'silver'),
+              cup('🥉', 'bronze'),
+            ],
+          ),
+          if (_profile.totalTrophies == 0) ...[
+            const SizedBox(height: 6),
+            Text(
+              context.l10n.trophyCaseEmpty,
+              textAlign: TextAlign.center,
+              style: GoogleFonts.oswald(color: Colors.white60, fontSize: 12),
+            ),
+          ],
+        ],
       ),
     );
   }

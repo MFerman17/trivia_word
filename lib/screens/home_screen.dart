@@ -18,6 +18,8 @@ import '../l10n/l10n.dart';
 import '../widgets/lives_widgets.dart';
 import '../services/ad_service.dart';
 import 'welcome_screen.dart';
+import 'tournament_screen.dart';
+import '../services/tournament_service.dart';
 
 // Color de contorno común para todo el estilo "juego"
 const Color kOutline = Color(0xFF0D0326);
@@ -112,6 +114,17 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     await SaveService.savePlayerData(_profile!);
     await CloudService.syncProfileToCloud(_profile!);
 
+    // Premio del torneo de la semana pasada (una sola vez).
+    if (mounted && !_prizeChecked) {
+      _prizeChecked = true;
+      final prize = await TournamentService.claimLastWeekPrize();
+      if (prize != null && mounted) {
+        await showTournamentPrize(context, prize);
+        final updated = await SaveService.loadPlayerData();
+        if (mounted) setState(() => _profile = updated);
+      }
+    }
+
     // Primera vez (o jugador de antes sin país): pedir alias y país.
     if (mounted && _profile!.needsWelcome && !_welcomeShown) {
       _welcomeShown = true;
@@ -128,6 +141,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   /// Para no abrir la bienvenida dos veces si el perfil se recarga.
   bool _welcomeShown = false;
+
+  /// El premio del torneo se mira una vez por apertura de la portada.
+  bool _prizeChecked = false;
 
   // ---------------------------------------------------------------
   // COFRES POR VIDEO
@@ -473,6 +489,20 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                             await Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => const LeaderboardScreen()),
+                            );
+                            _loadUserProfile();
+                          },
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: _buildMenuCard(
+                          title: context.l10n.menuTournament,
+                          icon: Icons.emoji_events_rounded,
+                          onTap: () async {
+                            await Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const TournamentScreen()),
                             );
                             _loadUserProfile();
                           },
@@ -902,9 +932,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         children: [
           Icon(icon, color: kCyan, size: 26),
           const SizedBox(height: 2),
-          Text(
-            title,
-            style: GoogleFonts.anton(fontSize: 15, letterSpacing: 1.2, color: kBone),
+          // Con 4 botones el texto se encoge si no cabe.
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title,
+              style: GoogleFonts.anton(fontSize: 15, letterSpacing: 1.2, color: kBone),
+            ),
           ),
         ],
       ),

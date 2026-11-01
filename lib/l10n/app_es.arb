@@ -2110,5 +2110,224 @@
       }
     },
     "description": "EN: Next chest in {time}"
+  },
+  "menuTournament": "TORNEO",
+  "@menuTournament": {
+    "description": "EN: TOURNEY"
+  },
+  "leagueBronze": "Bronce",
+  "@leagueBronze": {
+    "description": "EN: Bronze"
+  },
+  "leagueSilver": "Plata",
+  "@leagueSilver": {
+    "description": "EN: Silver"
+  },
+  "leagueGold": "Oro",
+  "@leagueGold": {
+    "description": "EN: Gold"
+  },
+  "leagueDiamond": "Diamante",
+  "@leagueDiamond": {
+    "description": "EN: Diamond"
+  },
+  "leagueLabel": "LIGA {name}",
+  "@leagueLabel": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    },
+    "description": "EN: {name} LEAGUE"
+  },
+  "tournamentTitle": "TORNEO SEMANAL",
+  "@tournamentTitle": {
+    "description": "EN: WEEKLY TOURNAMENT"
+  },
+  "tournamentResultTitle": "¡RESULTADO DEL TORNEO!",
+  "@tournamentResultTitle": {
+    "description": "EN: TOURNAMENT RESULT!"
+  },
+  "tournamentResultBody": "Quedaste en el puesto #{rank} de la liga {league} la semana pasada.",
+  "@tournamentResultBody": {
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      },
+      "league": {
+        "type": "String"
+      }
+    },
+    "description": "EN: You finished #{rank} in the {league} league last week."
+  },
+  "tournamentOffline": "No se pudo conectar con el torneo. Revisa tu conexión.",
+  "@tournamentOffline": {
+    "description": "EN: Couldn't reach the tournament. Check your connection."
+  },
+  "tournamentEndsDays": "Termina en {days} d {hours} h",
+  "@tournamentEndsDays": {
+    "placeholders": {
+      "days": {
+        "type": "int"
+      },
+      "hours": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Ends in {days} d {hours} h"
+  },
+  "tournamentEndsHours": "Termina en {hours} h {minutes} min",
+  "@tournamentEndsHours": {
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Ends in {hours} h {minutes} min"
+  },
+  "tournamentBest": "Mejor",
+  "@tournamentBest": {
+    "description": "EN: Best"
+  },
+  "tournamentRank": "Puesto",
+  "@tournamentRank": {
+    "description": "EN: Rank"
+  },
+  "tournamentAttempts": "Intentos",
+  "@tournamentAttempts": {
+    "description": "EN: Tries"
+  },
+  "tournamentRules": "{count} preguntas, {seconds} s cada una. Puntúan los aciertos, la rapidez y las rachas. Cuenta tu mejor intento.",
+  "@tournamentRules": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
+    },
+    "description": "EN: {count} questions, {seconds} s each. Correct answers, speed and streaks score. Your best try counts."
+  },
+  "tournamentPlay": "¡JUGAR! (intento {attempt})",
+  "@tournamentPlay": {
+    "placeholders": {
+      "attempt": {
+        "type": "int"
+      }
+    },
+    "description": "EN: PLAY! (try {attempt})"
+  },
+  "tournamentExtraAttempt": "+1 INTENTO CON VIDEO",
+  "@tournamentExtraAttempt": {
+    "description": "EN: +1 TRY WITH A VIDEO"
+  },
+  "tournamentNoAttempts": "Ya usaste tus intentos de esta semana. ¡Vuelve el lunes!",
+  "@tournamentNoAttempts": {
+    "description": "EN: You've used your tries this week. Come back on Monday!"
+  },
+  "tournamentPrizesTitle": "PREMIOS AL TERMINAR LA SEMANA",
+  "@tournamentPrizesTitle": {
+    "description": "EN: PRIZES AT THE END OF THE WEEK"
+  },
+  "tournamentPrizeGold": "1.º: copa de oro",
+  "@tournamentPrizeGold": {
+    "description": "EN: 1st: gold cup"
+  },
+  "tournamentPrizeSilver": "2.º y 3.º: copa de plata",
+  "@tournamentPrizeSilver": {
+    "description": "EN: 2nd and 3rd: silver cup"
+  },
+  "tournamentPrizeBronze": "4.º al 10.º: copa de bronce",
+  "@tournamentPrizeBronze": {
+    "description": "EN: 4th to 10th: bronze cup"
+  },
+  "tournamentPrizeParticipant": "Resto de participantes",
+  "@tournamentPrizeParticipant": {
+    "description": "EN: Everyone else who played"
+  },
+  "tournamentPrizesNote": "El premio se cobra solo al abrir el juego la semana siguiente.",
+  "@tournamentPrizesNote": {
+    "description": "EN: The prize is collected automatically when you open the game next week."
+  },
+  "tournamentRankingTitle": "CLASIFICACIÓN · LIGA {league}",
+  "@tournamentRankingTitle": {
+    "placeholders": {
+      "league": {
+        "type": "String"
+      }
+    },
+    "description": "EN: STANDINGS · {league} LEAGUE"
+  },
+  "tournamentEmpty": "Aún no ha jugado nadie esta semana. ¡Sé el primero!",
+  "@tournamentEmpty": {
+    "description": "EN: Nobody has played yet this week. Be the first!"
+  },
+  "tournamentRunDone": "¡INTENTO TERMINADO!",
+  "@tournamentRunDone": {
+    "description": "EN: TRY FINISHED!"
+  },
+  "tournamentRunSummary": "{correct} de {total} aciertos",
+  "@tournamentRunSummary": {
+    "placeholders": {
+      "correct": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    },
+    "description": "EN: {correct} of {total} correct"
+  },
+  "tournamentSaveFailed": "No se pudo guardar la puntuación (sin conexión).",
+  "@tournamentSaveFailed": {
+    "description": "EN: Couldn't save the score (no connection)."
+  },
+  "tournamentExitTitle": "¿Salir del intento?",
+  "@tournamentExitTitle": {
+    "description": "EN: Leave this try?"
+  },
+  "tournamentExitBody": "El intento ya cuenta: se guardarán los puntos que llevas.",
+  "@tournamentExitBody": {
+    "description": "EN: This try already counts: the points you have so far will be saved."
+  },
+  "tournamentKeepPlaying": "SEGUIR",
+  "@tournamentKeepPlaying": {
+    "description": "EN: KEEP PLAYING"
+  },
+  "tournamentLeave": "SALIR",
+  "@tournamentLeave": {
+    "description": "EN: LEAVE"
+  },
+  "tournamentNoQuestions": "No hay preguntas disponibles.",
+  "@tournamentNoQuestions": {
+    "description": "EN: No questions available."
+  },
+  "tournamentQuestionOf": "Pregunta {current}/{total}",
+  "@tournamentQuestionOf": {
+    "placeholders": {
+      "current": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Question {current}/{total}"
+  },
+  "tournamentSaving": "Guardando tu puntuación…",
+  "@tournamentSaving": {
+    "description": "EN: Saving your score…"
+  },
+  "trophyCaseTitle": "VITRINA DE COPAS",
+  "@trophyCaseTitle": {
+    "description": "EN: TROPHY CASE"
+  },
+  "trophyCaseEmpty": "Gana copas quedando entre los 10 primeros del torneo semanal.",
+  "@trophyCaseEmpty": {
+    "description": "EN: Win cups by finishing in the top 10 of the weekly tournament."
   }
 }

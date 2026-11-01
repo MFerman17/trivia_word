@@ -95,6 +95,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                           rank: index + 1,
                           name: name,
                           countryFlag: Countries.flag(item['country'] as String?),
+                          cups: (item['cups'] as num?)?.toInt() ?? 0,
                           trophies: item['stars'] ?? 0, // las estrellas son el ranking
                           avatarEmoji: name == _userName ? '🎮' : _getAvatarForName(name),
                         );
@@ -223,6 +224,10 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                   colors: isMe ? const [Color(0xFFFFF1B0), WM.gold] : const [Colors.white, WM.bone],
                 ),
               ),
+              if (user.cups > 0) ...[
+                const SizedBox(width: 3),
+                Text('🏆${user.cups}', style: const TextStyle(fontSize: 12, color: WM.gold)),
+              ],
             ],
           ),
           const SizedBox(height: 4),
@@ -410,6 +415,11 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                         colors: isMe ? const [Color(0xFFFFF1B0), WM.gold] : const [Colors.white, WM.bone],
                       ),
                     ),
+                    // Copas del torneo semanal junto al nombre.
+                    if (user.cups > 0) ...[
+                      const SizedBox(width: 4),
+                      Text('🏆${user.cups}', style: const TextStyle(fontSize: 13, color: WM.gold)),
+                    ],
                   ],
                 ),
                 if (isMe)

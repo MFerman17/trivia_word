@@ -1,5 +1,6 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Música y efectos de sonido del juego.
@@ -74,6 +75,7 @@ class AudioService {
   static Future<void> init() async {
     if (_initialized) return;
     _initialized = true;
+    await _loadAvailableAudio();
     try {
       final prefs = await SharedPreferences.getInstance();
       final legacyMuted = prefs.getBool(_legacyMuteKey) ?? false;
@@ -175,7 +177,7 @@ class AudioService {
       return; // Se recuerda la pista para cuando se active la música.
     }
 
-    for (final file in [soundFileName, ...fallbacks]) {
+    for (final file in [soundFileName, ...fallbacks].where(_exists)) {
       try {
         await _bgmPlayer.stop();
         if (request != _bgmRequest) return; // Ya se pidió otra música.
@@ -245,8 +247,13 @@ class AudioService {
   /// Reproduce un efecto. Si el archivo no existe, prueba con [fallback].
   static Future<void> playSfx(String soundFileName, {String? fallback}) async {
     if (!sfxOn || sfxVolume <= 0) return;
+    // Solo se intentan los archivos que existen: así un sonido opcional que
+    // aún no se ha añadido (select.mp3, round_win.mp3...) pasa directo a su
+    // reserva, sin error ni retraso.
+    final files = [soundFileName, ?fallback].where(_exists).toList();
+    if (files.isEmpty) return;
     final player = _pickSfxPlayer();
-    for (final file in [soundFileName, ?fallback]) {
+    for (final file in files) {
       try {
         await player.stop();
         // Se repite el contexto en cada efecto (no cuesta nada si ya está
@@ -262,6 +269,24 @@ class AudioService {
       }
     }
   }
+
+  /// Archivos de audio que de verdad hay en el juego (null = no se sabe).
+  static Set<String>? _availableAudio;
+
+  static Future<void> _loadAvailableAudio() async {
+    try {
+      final manifest = await AssetManifest.loadFromAssetBundle(rootBundle);
+      _availableAudio = {
+        for (final asset in manifest.listAssets())
+          if (asset.startsWith('assets/audio/')) asset.substring('assets/audio/'.length),
+      };
+    } catch (e) {
+      debugPrint('🎵 No se pudo leer la lista de audios: $e');
+    }
+  }
+
+  /// Si no se pudo leer la lista, se intenta igualmente.
+  static bool _exists(String file) => _availableAudio?.contains(file) ?? true;
 
   /// Elige un reproductor LIBRE para el efecto. Solo si los 6 están sonando
   /// a la vez se reutiliza el siguiente de la rueda (cortando su efecto).

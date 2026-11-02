@@ -87,7 +87,10 @@ class MiniChallengesScreen extends StatelessWidget {
           ),
         ],
       ),
-      child: ListTile(
+      // Material transparente: el efecto al tocar se ve sobre el fondo.
+      child: Material(
+        type: MaterialType.transparency,
+        child: ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         leading: SizedBox(
           width: 68,
@@ -132,6 +135,7 @@ class MiniChallengesScreen extends StatelessWidget {
           );
         },
       ),
+      )
     );
   }
 }

@@ -295,12 +295,16 @@ class _CountryPickerState extends State<_CountryPicker> {
     return DraggableScrollableSheet(
       initialChildSize: 0.8,
       maxChildSize: 0.95,
-      builder: (context, scroll) => Container(
-        decoration: const BoxDecoration(
-          color: Color(0xFF1A0F40),
+      // Material (y no un Container con color): los ListTile pintan su
+      // efecto al tocar sobre el Material más cercano. Con un Container de
+      // color encima, Flutter avisa de que ese efecto quedaría oculto.
+      builder: (context, scroll) => Material(
+        color: const Color(0xFF1A0F40),
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
-          border: Border(top: BorderSide(color: WM.cyan, width: 2)),
+          side: BorderSide(color: WM.cyan, width: 2),
         ),
+        clipBehavior: Clip.antiAlias,
         child: Column(
           children: [
             Padding(

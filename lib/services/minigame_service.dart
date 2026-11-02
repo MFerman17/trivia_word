@@ -6,7 +6,7 @@ import 'cloud_service.dart';
 import 'save_service.dart';
 
 /// Minijuegos disponibles. Cada portal del mapa ofrece uno.
-enum MinigameType { memory, hangman }
+enum MinigameType { memory, hangman, wordSearch, wordForge }
 
 /// Premio de un minijuego.
 class MinigameReward {

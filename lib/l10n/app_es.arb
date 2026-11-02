@@ -2329,5 +2329,46 @@
   "trophyCaseEmpty": "Gana copas quedando entre los 10 primeros del torneo semanal.",
   "@trophyCaseEmpty": {
     "description": "EN: Win cups by finishing in the top 10 of the weekly tournament."
+  },
+  "minigameWordSearch": "SOPA DE LETRAS",
+  "@minigameWordSearch": {
+    "description": "EN: WORD SEARCH"
+  },
+  "minigameWordForge": "FORJA DE PALABRAS",
+  "@minigameWordForge": {
+    "description": "EN: WORD FORGE"
+  },
+  "wordSearchRules": "Arrastra el dedo sobre las letras para marcar las palabras del tema, en cualquier dirección.",
+  "@wordSearchRules": {
+    "description": "EN: Drag your finger over the letters to mark the theme words, in any direction."
+  },
+  "forgeRules": "Forma palabras con las fichas. Encuentra {goal} antes de que se acabe el tiempo.",
+  "@forgeRules": {
+    "placeholders": {
+      "goal": {
+        "type": "int"
+      }
+    },
+    "description": "EN: Make words with the tiles. Find {goal} before time runs out."
+  },
+  "forgeGood": "¡Bien!",
+  "@forgeGood": {
+    "description": "EN: Nice!"
+  },
+  "forgeMasterWord": "¡PALABRA MAESTRA!",
+  "@forgeMasterWord": {
+    "description": "EN: MASTER WORD!"
+  },
+  "forgeNotValid": "Esa no está en la lista",
+  "@forgeNotValid": {
+    "description": "EN: That one isn't on the list"
+  },
+  "forgeAlreadyFound": "Ya la encontraste",
+  "@forgeAlreadyFound": {
+    "description": "EN: You already found it"
+  },
+  "forgeCheck": "COMPROBAR",
+  "@forgeCheck": {
+    "description": "EN: CHECK"
   }
 }

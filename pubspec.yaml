@@ -64,6 +64,7 @@ flutter:
     - assets/images/fighters/
     - assets/images/monsters/
     - assets/images/flyers/
+    - assets/minigames/
     - assets/images/dragon.png
     - assets/images/mini_forest_guardian.png
     - assets/images/mini_cave_bat.png

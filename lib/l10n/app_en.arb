@@ -495,5 +495,14 @@
   "tournamentQuestionOf": "Question {current}/{total}",
   "tournamentSaving": "Saving your score…",
   "trophyCaseTitle": "TROPHY CASE",
-  "trophyCaseEmpty": "Win cups by finishing in the top 10 of the weekly tournament."
+  "trophyCaseEmpty": "Win cups by finishing in the top 10 of the weekly tournament.",
+  "minigameWordSearch": "WORD SEARCH",
+  "minigameWordForge": "WORD FORGE",
+  "wordSearchRules": "Drag your finger over the letters to mark the theme words, in any direction.",
+  "forgeRules": "Make words with the tiles. Find {goal} before time runs out.",
+  "forgeGood": "Nice!",
+  "forgeMasterWord": "MASTER WORD!",
+  "forgeNotValid": "That one isn't on the list",
+  "forgeAlreadyFound": "You already found it",
+  "forgeCheck": "CHECK"
 }

@@ -2102,6 +2102,706 @@
       ],
       "correctIndex": 0,
       "explanation": "«Hexa» significa seis: el hexágono tiene seis lados, como las celdas de una colmena."
+    },
+    {
+      "id": "es-3-151",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que significa «lugar donde se guardan libros»?",
+      "options": [
+        "Biblioteca",
+        "Vivlioteca",
+        "Bibloteca",
+        "Biblioteka"
+      ],
+      "correctIndex": 0,
+      "explanation": "Biblioteca: con b al principio y en «-blio-»."
+    },
+    {
+      "id": "es-3-152",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "¿Cómo se escribe? «Mañana ___ a la playa.»",
+      "options": [
+        "iremos",
+        "hiremos",
+        "yremos",
+        "iremoz"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las formas de «ir» no llevan h."
+    },
+    {
+      "id": "es-3-153",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal que da miel?",
+      "options": [
+        "Abeja",
+        "Aveja",
+        "Abeha",
+        "Avea"
+      ],
+      "correctIndex": 0,
+      "explanation": "Abeja: con b y con j."
+    },
+    {
+      "id": "es-3-154",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "¿Cómo se escribe? «El ___ cantaba en la rama.»",
+      "options": [
+        "pájaro",
+        "pájaró",
+        "pajaro",
+        "pájharo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pájaro es esdrújula: siempre lleva tilde."
+    },
+    {
+      "id": "es-3-155",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el lugar donde se cocina?",
+      "options": [
+        "Cocina",
+        "Kocina",
+        "Cozina",
+        "Cosina"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cocina: con c antes de o y antes de i."
+    },
+    {
+      "id": "es-3-156",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra está bien acentuada?",
+      "options": [
+        "Camión",
+        "Camíon",
+        "Camion",
+        "Cámion"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aguda acabada en n: lleva tilde en la o."
+    },
+    {
+      "id": "es-3-157",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase lleva tilde «más»?",
+      "options": [
+        "Quiero más pan",
+        "Quiero pan, mas no hay",
+        "No mas pan",
+        "Mas tarde"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Más» con tilde indica cantidad."
+    },
+    {
+      "id": "es-3-158",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Me ___ un pastel de cumpleaños.»",
+      "options": [
+        "hicieron",
+        "isieron",
+        "hizieron",
+        "icieron"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hicieron» viene de «hacer»: con h y con c."
+    },
+    {
+      "id": "es-3-159",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «___ que estudiar para el examen.»",
+      "options": [
+        "Hay",
+        "Ahí",
+        "Ay",
+        "Ai"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hay» es del verbo haber."
+    },
+    {
+      "id": "es-3-160",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Deja la mochila ___, junto a la puerta.»",
+      "options": [
+        "ahí",
+        "hay",
+        "ay",
+        "ai"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ahí» indica un lugar."
+    },
+    {
+      "id": "es-3-161",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Se me cayó el ___ de la mano.»",
+      "options": [
+        "vaso",
+        "baso",
+        "vazo",
+        "bazo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El vaso para beber se escribe con v."
+    },
+    {
+      "id": "es-3-162",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre la tarta es correcta?",
+      "options": [
+        "Se la di a ella",
+        "La di la tarta a ella",
+        "Se lo di a ella la tarta",
+        "La dí a ella"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con complemento indirecto «le» se convierte en «se»: «se la di»."
+    },
+    {
+      "id": "es-3-163",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre la visita es correcta?",
+      "options": [
+        "Pienso que vendrá mañana",
+        "Pienso de que vendrá mañana",
+        "Pienso que de vendrá mañana",
+        "Pienso de vendrá mañana"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Pensar» no lleva «de» delante de «que» (dequeísmo)."
+    },
+    {
+      "id": "es-3-164",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si ___ tiempo, iría al cine.»",
+      "options": [
+        "tuviera",
+        "tendría",
+        "tengo",
+        "tenga"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con «si» condicional se usa «tuviera»."
+    },
+    {
+      "id": "es-3-165",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me alegro de que ___ venido.»",
+      "options": [
+        "hayas",
+        "has",
+        "habías",
+        "hubieras sido"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Me alegro de que» pide subjuntivo: «hayas»."
+    },
+    {
+      "id": "es-3-166",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es un sinónimo de «veloz»?",
+      "options": [
+        "Rápido",
+        "Lento",
+        "Pesado",
+        "Tranquilo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Veloz y rápido significan lo mismo."
+    },
+    {
+      "id": "es-3-167",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «generoso»?",
+      "options": [
+        "Tacaño",
+        "Amable",
+        "Rico",
+        "Alegre"
+      ],
+      "correctIndex": 0,
+      "explanation": "El generoso comparte; el tacaño no."
+    },
+    {
+      "id": "es-3-168",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es un sinónimo de «enorme»?",
+      "options": [
+        "Gigantesco",
+        "Diminuto",
+        "Estrecho",
+        "Ligero"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ambos significan muy grande."
+    },
+    {
+      "id": "es-3-169",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «perezoso»?",
+      "options": [
+        "Que no le gusta esforzarse",
+        "Que corre mucho",
+        "Que habla mucho",
+        "Que es muy valiente"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una persona perezosa evita trabajar."
+    },
+    {
+      "id": "es-3-170",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un «archipiélago»?",
+      "options": [
+        "Un grupo de islas",
+        "Un río muy largo",
+        "Una montaña alta",
+        "Un desierto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Canarias es un archipiélago."
+    },
+    {
+      "id": "es-3-171",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Completa el refrán: «A quien madruga, Dios le…»",
+      "options": [
+        "ayuda",
+        "castiga",
+        "despierta",
+        "regala"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien empieza temprano tiene ventaja."
+    },
+    {
+      "id": "es-3-172",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «estar en las nubes»?",
+      "options": [
+        "Estar distraído",
+        "Viajar en avión",
+        "Estar muy contento",
+        "Tener frío"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien está en las nubes no presta atención."
+    },
+    {
+      "id": "es-3-173",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Pez es a agua como pájaro es a…",
+      "options": [
+        "aire",
+        "nido",
+        "pluma",
+        "árbol"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pez se mueve en el agua; el pájaro, en el aire."
+    },
+    {
+      "id": "es-3-174",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Pintor es a cuadro como escritor es a…",
+      "options": [
+        "libro",
+        "pincel",
+        "museo",
+        "tinta"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pintor crea cuadros; el escritor, libros."
+    },
+    {
+      "id": "es-3-175",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no pertenece al grupo: Marte, Venus, Luna, Júpiter?",
+      "options": [
+        "Luna",
+        "Marte",
+        "Venus",
+        "Júpiter"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Luna es un satélite; los demás son planetas."
+    },
+    {
+      "id": "es-3-176",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no pertenece al grupo: violín, arpa, trompeta, guitarra?",
+      "options": [
+        "trompeta",
+        "violín",
+        "arpa",
+        "guitarra"
+      ],
+      "correctIndex": 0,
+      "explanation": "La trompeta es de viento; las demás son de cuerda."
+    },
+    {
+      "id": "es-3-177",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 100, 81, 64, 49, …",
+      "options": [
+        "36",
+        "25",
+        "40",
+        "42"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son cuadrados que bajan: 10², 9², 8², 7², 6²."
+    },
+    {
+      "id": "es-3-178",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 3, 6, 12, 24, …",
+      "options": [
+        "48",
+        "30",
+        "36",
+        "42"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número se duplica."
+    },
+    {
+      "id": "es-3-179",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Ana es mayor que Luis y Luis es mayor que Eva. ¿Quién es la menor?",
+      "options": [
+        "Eva",
+        "Ana",
+        "Luis",
+        "No se sabe"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ana > Luis > Eva."
+    },
+    {
+      "id": "es-3-180",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si hoy es martes, ¿qué día será dentro de tres días?",
+      "options": [
+        "Viernes",
+        "Jueves",
+        "Sábado",
+        "Miércoles"
+      ],
+      "correctIndex": 0,
+      "explanation": "Martes + 3 = viernes."
+    },
+    {
+      "id": "es-3-181",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un libro cuesta 8 €. ¿Cuánto cuestan 4 libros?",
+      "options": [
+        "32 €",
+        "28 €",
+        "36 €",
+        "12 €"
+      ],
+      "correctIndex": 0,
+      "explanation": "4 × 8 = 32."
+    },
+    {
+      "id": "es-3-182",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un tren sale a las 10:40 y tarda 50 minutos. ¿A qué hora llega?",
+      "options": [
+        "11:30",
+        "11:20",
+        "11:40",
+        "11:10"
+      ],
+      "correctIndex": 0,
+      "explanation": "10:40 + 20 min = 11:00, + 30 min = 11:30."
+    },
+    {
+      "id": "es-3-183",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 12 × 5?",
+      "options": [
+        "60",
+        "50",
+        "55",
+        "65"
+      ],
+      "correctIndex": 0,
+      "explanation": "12 × 5 = 60."
+    },
+    {
+      "id": "es-3-184",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué fracción equivale a 0,5?",
+      "options": [
+        "1/2",
+        "1/5",
+        "2/5",
+        "3/4"
+      ],
+      "correctIndex": 0,
+      "explanation": "0,5 es la mitad: 1/2."
+    },
+    {
+      "id": "es-3-185",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos grados tiene un ángulo recto?",
+      "options": [
+        "90",
+        "45",
+        "180",
+        "100"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un ángulo recto mide 90 grados."
+    },
+    {
+      "id": "es-3-186",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el perímetro de un cuadrado de 6 cm de lado?",
+      "options": [
+        "24 cm",
+        "36 cm",
+        "12 cm",
+        "18 cm"
+      ],
+      "correctIndex": 0,
+      "explanation": "4 lados × 6 cm = 24 cm."
+    },
+    {
+      "id": "es-3-187",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos números es primo?",
+      "options": [
+        "13",
+        "15",
+        "21",
+        "9"
+      ],
+      "correctIndex": 0,
+      "explanation": "13 solo se divide entre 1 y entre sí mismo."
+    },
+    {
+      "id": "es-3-188",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es el 10 % de 300?",
+      "options": [
+        "30",
+        "3",
+        "10",
+        "300"
+      ],
+      "correctIndex": 0,
+      "explanation": "El 10 % es la décima parte: 300 ÷ 10 = 30."
+    },
+    {
+      "id": "es-3-189",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos centímetros tiene un metro?",
+      "options": [
+        "100",
+        "10",
+        "1000",
+        "60"
+      ],
+      "correctIndex": 0,
+      "explanation": "1 m = 100 cm."
+    },
+    {
+      "id": "es-3-190",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 1000 − 250?",
+      "options": [
+        "750",
+        "650",
+        "850",
+        "700"
+      ],
+      "correctIndex": 0,
+      "explanation": "1000 − 250 = 750."
+    },
+    {
+      "id": "es-3-191",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué gas necesitan las plantas para hacer la fotosíntesis?",
+      "options": [
+        "Dióxido de carbono",
+        "Oxígeno",
+        "Helio",
+        "Nitrógeno"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las plantas toman CO₂ y liberan oxígeno."
+    },
+    {
+      "id": "es-3-192",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos huesos tiene aproximadamente un adulto?",
+      "options": [
+        "206",
+        "106",
+        "306",
+        "156"
+      ],
+      "correctIndex": 0,
+      "explanation": "El esqueleto adulto tiene unos 206 huesos."
+    },
+    {
+      "id": "es-3-193",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Noruega?",
+      "options": [
+        "Oslo",
+        "Estocolmo",
+        "Copenhague",
+        "Helsinki"
+      ],
+      "correctIndex": 0,
+      "explanation": "Oslo es la capital de Noruega."
+    },
+    {
+      "id": "es-3-194",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué río pasa por Zaragoza?",
+      "options": [
+        "El Ebro",
+        "El Tajo",
+        "El Guadalquivir",
+        "El Miño"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Ebro atraviesa Zaragoza."
+    },
+    {
+      "id": "es-3-195",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización construyó las pirámides de Giza?",
+      "options": [
+        "La egipcia",
+        "La romana",
+        "La griega",
+        "La azteca"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las construyeron los antiguos egipcios."
+    },
+    {
+      "id": "es-3-196",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas casillas tiene un tablero de ajedrez?",
+      "options": [
+        "64",
+        "81",
+        "100",
+        "48"
+      ],
+      "correctIndex": 0,
+      "explanation": "8 × 8 = 64 casillas."
+    },
+    {
+      "id": "es-3-197",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Quién pintó «Las Meninas»?",
+      "options": [
+        "Diego Velázquez",
+        "Francisco de Goya",
+        "El Greco",
+        "Joan Miró"
+      ],
+      "correctIndex": 0,
+      "explanation": "Velázquez la pintó en 1656."
+    },
+    {
+      "id": "es-3-198",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un mural?",
+      "options": [
+        "Una pintura hecha en una pared",
+        "Una estatua pequeña",
+        "Una canción popular",
+        "Un tipo de baile"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los murales se pintan sobre muros."
+    },
+    {
+      "id": "es-3-199",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué arquitecto diseñó la Sagrada Familia?",
+      "options": [
+        "Antoni Gaudí",
+        "Santiago Calatrava",
+        "Rafael Moneo",
+        "Le Corbusier"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gaudí trabajó en ella desde 1883."
+    },
+    {
+      "id": "es-3-200",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué colores se mezclan para obtener naranja?",
+      "options": [
+        "Rojo y amarillo",
+        "Azul y rojo",
+        "Azul y amarillo",
+        "Negro y blanco"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rojo + amarillo = naranja."
     }
   ]
 }

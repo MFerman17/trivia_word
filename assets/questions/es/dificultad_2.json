@@ -2102,6 +2102,146 @@
       ],
       "correctIndex": 0,
       "explanation": "La paloma blanca se usa como símbolo de la paz."
+    },
+    {
+      "id": "es-2-151",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 8 × 7?",
+      "options": [
+        "56",
+        "54",
+        "48",
+        "63"
+      ],
+      "correctIndex": 0,
+      "explanation": "8 × 7 = 56."
+    },
+    {
+      "id": "es-2-152",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la mitad de 90?",
+      "options": [
+        "45",
+        "40",
+        "35",
+        "50"
+      ],
+      "correctIndex": 0,
+      "explanation": "90 ÷ 2 = 45."
+    },
+    {
+      "id": "es-2-153",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos minutos hay en media hora?",
+      "options": [
+        "30",
+        "15",
+        "50",
+        "60"
+      ],
+      "correctIndex": 0,
+      "explanation": "Una hora tiene 60 minutos; la mitad son 30."
+    },
+    {
+      "id": "es-2-154",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos lados tiene un pentágono?",
+      "options": [
+        "5",
+        "6",
+        "4",
+        "8"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Penta\" significa cinco."
+    },
+    {
+      "id": "es-2-155",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos números es impar?",
+      "options": [
+        "17",
+        "12",
+        "20",
+        "34"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los impares no se pueden dividir en dos partes iguales."
+    },
+    {
+      "id": "es-2-156",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Quién pintó la «Mona Lisa»?",
+      "options": [
+        "Leonardo da Vinci",
+        "Pablo Picasso",
+        "Vincent van Gogh",
+        "Salvador Dalí"
+      ],
+      "correctIndex": 0,
+      "explanation": "Leonardo la pintó a principios del siglo XVI."
+    },
+    {
+      "id": "es-2-157",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llama el cuadro que muestra el retrato de una persona?",
+      "options": [
+        "Retrato",
+        "Paisaje",
+        "Bodegón",
+        "Mapa"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un retrato representa a una persona."
+    },
+    {
+      "id": "es-2-158",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué color sale al mezclar rojo y blanco?",
+      "options": [
+        "Rosa",
+        "Morado",
+        "Marrón",
+        "Gris"
+      ],
+      "correctIndex": 0,
+      "explanation": "El blanco aclara el rojo y sale rosa."
+    },
+    {
+      "id": "es-2-159",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas cuerdas suele tener una guitarra española?",
+      "options": [
+        "6",
+        "4",
+        "5",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "La guitarra clásica tiene seis cuerdas."
+    },
+    {
+      "id": "es-2-160",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un bodegón en pintura?",
+      "options": [
+        "Un cuadro de objetos quietos",
+        "Un retrato de un rey",
+        "Un paisaje de mar",
+        "Una estatua"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los bodegones muestran frutas, flores o cosas."
     }
   ]
 }

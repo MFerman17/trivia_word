@@ -2102,6 +2102,706 @@
       ],
       "correctIndex": 0,
       "explanation": "La guitarra clásica tiene seis cuerdas; el bajo eléctrico suele tener cuatro."
+    },
+    {
+      "id": "es-4-151",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el sustantivo derivado de «exhibir»?",
+      "options": [
+        "Exhibición",
+        "Exibición",
+        "Exhivición",
+        "Exhibisión"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mantiene la h y la b de «exhibir»."
+    },
+    {
+      "id": "es-4-152",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la palabra que significa «persona que no ve»?",
+      "options": [
+        "Invidente",
+        "Imbidente",
+        "Invidiente",
+        "Imvidente"
+      ],
+      "correctIndex": 0,
+      "explanation": "Antes de v se escribe n: in-vi-den-te."
+    },
+    {
+      "id": "es-4-153",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El agua ___ por la ventana abierta.»",
+      "options": [
+        "entró",
+        "entro",
+        "éntro",
+        "entrò"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pretérito aguda acabada en vocal: lleva tilde."
+    },
+    {
+      "id": "es-4-154",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que no se puede ver»?",
+      "options": [
+        "Invisible",
+        "Imbisible",
+        "Invisivle",
+        "Inbisible"
+      ],
+      "correctIndex": 0,
+      "explanation": "In- + visible: con n y con v."
+    },
+    {
+      "id": "es-4-155",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «llevar a cabo una acción»?",
+      "options": [
+        "Ejecutar",
+        "Egecutar",
+        "Ejekutar",
+        "Hejecutar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ejecutar se escribe con j."
+    },
+    {
+      "id": "es-4-156",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Mañana ___ el examen a primera hora.» (verbo hacer)",
+      "options": [
+        "haremos",
+        "aremos",
+        "haremoz",
+        "haréemos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las formas de «hacer» llevan h."
+    },
+    {
+      "id": "es-4-157",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra llana está bien acentuada?",
+      "options": [
+        "Lápiz",
+        "Lapíz",
+        "Lapiz",
+        "Lápíz"
+      ],
+      "correctIndex": 0,
+      "explanation": "Llana acabada en z: lleva tilde en la a."
+    },
+    {
+      "id": "es-4-158",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien escrito «sé»?",
+      "options": [
+        "No sé la respuesta",
+        "No se la respuesta",
+        "No sè la respuesta",
+        "No sé, la se respuesta"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sé» del verbo saber lleva tilde."
+    },
+    {
+      "id": "es-4-159",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estas palabras es esdrújula?",
+      "options": [
+        "Murciélago",
+        "Canción",
+        "Ventana",
+        "Reloj"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mur-cié-la-go: tónica en la antepenúltima."
+    },
+    {
+      "id": "es-4-160",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El ___ de la vaca es negro y blanco.»",
+      "options": [
+        "pelaje",
+        "pelage",
+        "pelahe",
+        "pellaje"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pelaje se escribe con j."
+    },
+    {
+      "id": "es-4-161",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Hay que ___ la verdad aunque duela.»",
+      "options": [
+        "decir",
+        "dezir",
+        "desir",
+        "deçir"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Decir» se escribe con c."
+    },
+    {
+      "id": "es-4-162",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «El barco quedó ___ en la arena.»",
+      "options": [
+        "varado",
+        "barado",
+        "barrado",
+        "varrado"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Varado» (encallado) se escribe con v."
+    },
+    {
+      "id": "es-4-163",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «La ___ de las olas me relaja.»",
+      "options": [
+        "ola",
+        "hola",
+        "olá",
+        "hóla"
+      ],
+      "correctIndex": 0,
+      "explanation": "La «ola» del mar va sin h; «hola» es un saludo."
+    },
+    {
+      "id": "es-4-164",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre el abuelo es correcta?",
+      "options": [
+        "Le dije a mi abuelo la verdad",
+        "La dije a mi abuelo la verdad",
+        "Lo dije a mi abuelo la verdad",
+        "Le dije a mi abuelo las verdad"
+      ],
+      "correctIndex": 0,
+      "explanation": "El complemento indirecto se marca con «le»."
+    },
+    {
+      "id": "es-4-165",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre el pastel es correcta?",
+      "options": [
+        "Cocí el pastel en el horno",
+        "Cocé el pastel en el horno",
+        "Cozí el pastel en el horno",
+        "Cocié el pastel en el horno"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pretérito de «cocer» es «cocí»."
+    },
+    {
+      "id": "es-4-166",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre el viaje es correcta?",
+      "options": [
+        "Íbamos a viajar en tren",
+        "Ibamos a viajar en tren",
+        "Íbanos a viajar en tren",
+        "Ibamos a biajar en tren"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Íbamos» es esdrújula y lleva tilde."
+    },
+    {
+      "id": "es-4-167",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ojalá ___ buen tiempo el sábado.»",
+      "options": [
+        "haga",
+        "hace",
+        "hará",
+        "hizo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ojalá» va con subjuntivo."
+    },
+    {
+      "id": "es-4-168",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Te lo explico para que lo ___.»",
+      "options": [
+        "entiendas",
+        "entiendes",
+        "entenderás",
+        "entendiste"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Para que» exige subjuntivo."
+    },
+    {
+      "id": "es-4-169",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «En cuanto ___ la lluvia, saldremos.»",
+      "options": [
+        "pare",
+        "para",
+        "parará",
+        "paró"
+      ],
+      "correctIndex": 0,
+      "explanation": "«En cuanto» referido al futuro va en subjuntivo."
+    },
+    {
+      "id": "es-4-170",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «perspicaz»?",
+      "options": [
+        "Agudo",
+        "Torpe",
+        "Distraído",
+        "Lento"
+      ],
+      "correctIndex": 0,
+      "explanation": "Perspicaz: que se da cuenta de las cosas con rapidez."
+    },
+    {
+      "id": "es-4-171",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «ínfimo»?",
+      "options": [
+        "Enorme",
+        "Mínimo",
+        "Diminuto",
+        "Escaso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ínfimo significa muy pequeño o el más bajo."
+    },
+    {
+      "id": "es-4-172",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «ávido»?",
+      "options": [
+        "Ansioso",
+        "Saciado",
+        "Indiferente",
+        "Tranquilo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ávido: que desea algo con intensidad."
+    },
+    {
+      "id": "es-4-173",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «ubicuo»?",
+      "options": [
+        "Que está en todas partes",
+        "Que es muy antiguo",
+        "Que está escondido",
+        "Que es muy pequeño"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los móviles son ubicuos hoy en día."
+    },
+    {
+      "id": "es-4-174",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un «neologismo»?",
+      "options": [
+        "Una palabra nueva en la lengua",
+        "Un error de ortografía",
+        "Una palabra antigua",
+        "Un tipo de poema"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Tuitear» fue en su día un neologismo."
+    },
+    {
+      "id": "es-4-175",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «tirar la toalla»?",
+      "options": [
+        "Rendirse",
+        "Secarse",
+        "Enfadarse",
+        "Ganar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Viene del boxeo: se lanza la toalla para abandonar."
+    },
+    {
+      "id": "es-4-176",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «más vale tarde que nunca»?",
+      "options": [
+        "Es mejor hacerlo tarde que no hacerlo",
+        "Hay que llegar siempre tarde",
+        "Nunca hay que esperar",
+        "Lo mejor es madrugar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aunque sea tarde, merece la pena hacerlo."
+    },
+    {
+      "id": "es-4-177",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Abeja es a colmena como hormiga es a…",
+      "options": [
+        "hormiguero",
+        "panal",
+        "nido",
+        "cueva"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las hormigas viven en hormigueros."
+    },
+    {
+      "id": "es-4-178",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Termómetro es a temperatura como balanza es a…",
+      "options": [
+        "peso",
+        "altura",
+        "tiempo",
+        "velocidad"
+      ],
+      "correctIndex": 0,
+      "explanation": "La balanza mide el peso."
+    },
+    {
+      "id": "es-4-179",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no pertenece al grupo: soneto, haiku, romance, sonata?",
+      "options": [
+        "sonata",
+        "soneto",
+        "haiku",
+        "romance"
+      ],
+      "correctIndex": 0,
+      "explanation": "La sonata es música; los demás son poemas."
+    },
+    {
+      "id": "es-4-180",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no pertenece al grupo: hierro, cobre, bronce, oro?",
+      "options": [
+        "bronce",
+        "hierro",
+        "cobre",
+        "oro"
+      ],
+      "correctIndex": 0,
+      "explanation": "El bronce es una aleación; los demás son elementos."
+    },
+    {
+      "id": "es-4-181",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 2, 6, 18, 54, …",
+      "options": [
+        "162",
+        "108",
+        "72",
+        "150"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número se multiplica por 3."
+    },
+    {
+      "id": "es-4-182",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? Z, X, V, T, …",
+      "options": [
+        "R",
+        "S",
+        "Q",
+        "U"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se retrocede de dos en dos."
+    },
+    {
+      "id": "es-4-183",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué ciudad se forma con las letras de «AMOR»?",
+      "options": [
+        "Roma",
+        "Lima",
+        "Mora",
+        "Oran"
+      ],
+      "correctIndex": 0,
+      "explanation": "A-M-O-R reordenadas forman ROMA."
+    },
+    {
+      "id": "es-4-184",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número se esconde dentro de «TRESILLO»?",
+      "options": [
+        "tres",
+        "uno",
+        "seis",
+        "diez"
+      ],
+      "correctIndex": 0,
+      "explanation": "TRES-illo esconde «tres»."
+    },
+    {
+      "id": "es-4-185",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Cinco amigos se dan la mano una vez cada uno con los demás. ¿Cuántos apretones hay?",
+      "options": [
+        "10",
+        "5",
+        "20",
+        "25"
+      ],
+      "correctIndex": 0,
+      "explanation": "5 × 4 ÷ 2 = 10."
+    },
+    {
+      "id": "es-4-186",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un grifo llena un depósito de 120 litros en 8 minutos. ¿Cuántos litros por minuto?",
+      "options": [
+        "15",
+        "12",
+        "16",
+        "20"
+      ],
+      "correctIndex": 0,
+      "explanation": "120 ÷ 8 = 15."
+    },
+    {
+      "id": "es-4-187",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Una receta lleva 3 huevos para 4 personas. ¿Cuántos huevos para 12?",
+      "options": [
+        "9",
+        "6",
+        "12",
+        "8"
+      ],
+      "correctIndex": 0,
+      "explanation": "12 es el triple de 4: 3 × 3 = 9."
+    },
+    {
+      "id": "es-4-188",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es el 15 % de 200?",
+      "options": [
+        "30",
+        "15",
+        "20",
+        "35"
+      ],
+      "correctIndex": 0,
+      "explanation": "El 10 % es 20 y el 5 % es 10: 30."
+    },
+    {
+      "id": "es-4-189",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la raíz cuadrada de 81?",
+      "options": [
+        "9",
+        "8",
+        "7",
+        "18"
+      ],
+      "correctIndex": 0,
+      "explanation": "9 × 9 = 81."
+    },
+    {
+      "id": "es-4-190",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto suman los ángulos de un triángulo?",
+      "options": [
+        "180°",
+        "90°",
+        "360°",
+        "270°"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los ángulos de todo triángulo suman 180°."
+    },
+    {
+      "id": "es-4-191",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "Resuelve: 3x + 5 = 20. ¿Cuánto vale x?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "15"
+      ],
+      "correctIndex": 0,
+      "explanation": "3x = 15, así que x = 5."
+    },
+    {
+      "id": "es-4-192",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué fracción es la mayor?",
+      "options": [
+        "3/4",
+        "2/3",
+        "5/8",
+        "7/12"
+      ],
+      "correctIndex": 0,
+      "explanation": "3/4 = 0,75 es mayor que las demás."
+    },
+    {
+      "id": "es-4-193",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es −5 + 8?",
+      "options": [
+        "3",
+        "−3",
+        "13",
+        "−13"
+      ],
+      "correctIndex": 0,
+      "explanation": "Desde −5, avanzar 8 lleva a 3."
+    },
+    {
+      "id": "es-4-194",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el área de un rectángulo de 6 m por 4 m?",
+      "options": [
+        "24 m²",
+        "20 m²",
+        "10 m²",
+        "28 m²"
+      ],
+      "correctIndex": 0,
+      "explanation": "Área = largo × ancho = 6 × 4."
+    },
+    {
+      "id": "es-4-195",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué gas forma la mayor parte del aire?",
+      "options": [
+        "El nitrógeno",
+        "El oxígeno",
+        "El dióxido de carbono",
+        "El argón"
+      ],
+      "correctIndex": 0,
+      "explanation": "Alrededor del 78 % del aire es nitrógeno."
+    },
+    {
+      "id": "es-4-196",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Quién descubrió la penicilina?",
+      "options": [
+        "Alexander Fleming",
+        "Louis Pasteur",
+        "Albert Einstein",
+        "Ramón y Cajal"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fleming la descubrió en 1928."
+    },
+    {
+      "id": "es-4-197",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Argentina?",
+      "options": [
+        "Buenos Aires",
+        "Santiago",
+        "Montevideo",
+        "Córdoba"
+      ],
+      "correctIndex": 0,
+      "explanation": "Buenos Aires está a orillas del Río de la Plata."
+    },
+    {
+      "id": "es-4-198",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Quién fue el primer presidente de Estados Unidos?",
+      "options": [
+        "George Washington",
+        "Abraham Lincoln",
+        "Thomas Jefferson",
+        "John Adams"
+      ],
+      "correctIndex": 0,
+      "explanation": "Washington fue presidente desde 1789."
+    },
+    {
+      "id": "es-4-199",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Quién pintó «La noche estrellada»?",
+      "options": [
+        "Vincent van Gogh",
+        "Claude Monet",
+        "Pablo Picasso",
+        "Frida Kahlo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Van Gogh la pintó en 1889."
+    },
+    {
+      "id": "es-4-200",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Con qué movimiento se asocia a Claude Monet?",
+      "options": [
+        "El impresionismo",
+        "El cubismo",
+        "El surrealismo",
+        "El barroco"
+      ],
+      "correctIndex": 0,
+      "explanation": "Su cuadro «Impresión, sol naciente» dio nombre al movimiento."
     }
   ]
 }

@@ -982,6 +982,146 @@
       ],
       "correctIndex": 0,
       "explanation": "El piano tiene teclas; la guitarra tiene cuerdas."
+    },
+    {
+      "id": "es-1-071",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 6 + 7?",
+      "options": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "6 + 7 = 13."
+    },
+    {
+      "id": "es-1-072",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos lados tiene un cuadrado?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un cuadrado tiene cuatro lados iguales."
+    },
+    {
+      "id": "es-1-073",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 5 × 2?",
+      "options": [
+        "10",
+        "7",
+        "12",
+        "25"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cinco veces dos son diez."
+    },
+    {
+      "id": "es-1-074",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número va entre el 19 y el 21?",
+      "options": [
+        "20",
+        "18",
+        "22",
+        "30"
+      ],
+      "correctIndex": 0,
+      "explanation": "Después del 19 viene el 20."
+    },
+    {
+      "id": "es-1-075",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas ruedas tienen dos bicicletas?",
+      "options": [
+        "4",
+        "2",
+        "3",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada bici tiene 2 ruedas: 2 + 2 = 4."
+    },
+    {
+      "id": "es-1-076",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Con qué se pinta normalmente un cuadro?",
+      "options": [
+        "Con un pincel",
+        "Con un martillo",
+        "Con una cuchara",
+        "Con una tijera"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pincel sirve para extender la pintura."
+    },
+    {
+      "id": "es-1-077",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué color sale al mezclar azul y amarillo?",
+      "options": [
+        "Verde",
+        "Morado",
+        "Naranja",
+        "Rosa"
+      ],
+      "correctIndex": 0,
+      "explanation": "Azul + amarillo = verde."
+    },
+    {
+      "id": "es-1-078",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué instrumento se toca soplando?",
+      "options": [
+        "La flauta",
+        "El tambor",
+        "El piano",
+        "La guitarra"
+      ],
+      "correctIndex": 0,
+      "explanation": "La flauta suena al soplar por ella."
+    },
+    {
+      "id": "es-1-079",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llama la persona que hace estatuas?",
+      "options": [
+        "Escultor",
+        "Cocinero",
+        "Cartero",
+        "Bombero"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los escultores modelan o tallan figuras."
+    },
+    {
+      "id": "es-1-080",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué colores son primarios en pintura?",
+      "options": [
+        "Rojo, azul y amarillo",
+        "Verde, negro y blanco",
+        "Rosa, gris y marrón",
+        "Naranja, verde y morado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con los primarios se pueden mezclar los demás colores."
     }
   ]
 }

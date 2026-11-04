@@ -1122,6 +1122,1784 @@
       ],
       "correctIndex": 0,
       "explanation": "Vivaldi compuso estos cuatro conciertos para violín hacia 1720."
+    },
+    {
+      "id": "es-5-081",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que no se puede sobornar»?",
+      "options": [
+        "Insobornable",
+        "Insovornable",
+        "Imsobornable",
+        "Insobornabe"
+      ],
+      "correctIndex": 0,
+      "explanation": "In- + sobornable: con n y con b."
+    },
+    {
+      "id": "es-5-082",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el sustantivo que significa «falta de interés»?",
+      "options": [
+        "Desidia",
+        "Decidia",
+        "Dezidia",
+        "Desídia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Desidia: con s y sin tilde."
+    },
+    {
+      "id": "es-5-083",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «perjudicar o hacer daño»?",
+      "options": [
+        "Lesionar",
+        "Lecionar",
+        "Lesionnar",
+        "Lezionar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lesión → lesionar, con s."
+    },
+    {
+      "id": "es-5-084",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El acusado ___ su inocencia ante el juez.» (verbo aducir)",
+      "options": [
+        "adujo",
+        "adució",
+        "aduzco",
+        "adujó"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los verbos en -ducir hacen el pretérito en -duje: adujo."
+    },
+    {
+      "id": "es-5-085",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer ___ el contrato.» (verbo prever, yo)",
+      "options": [
+        "preví",
+        "preveí",
+        "prevé",
+        "previé"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Prever» se conjuga como «ver»: preví."
+    },
+    {
+      "id": "es-5-086",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que se mueve con agilidad, ligero»?",
+      "options": [
+        "Ágil",
+        "Ájil",
+        "Agíl",
+        "Ágill"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ágil: con g y tilde en la a."
+    },
+    {
+      "id": "es-5-087",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el sustantivo que nombra la acción de «absolver»?",
+      "options": [
+        "Absolución",
+        "Absolusión",
+        "Avsolución",
+        "Absulución"
+      ],
+      "correctIndex": 0,
+      "explanation": "Absolver → absolución, con c."
+    },
+    {
+      "id": "es-5-088",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el lugar donde hay minerales o restos antiguos bajo tierra?",
+      "options": [
+        "Yacimiento",
+        "Llacimiento",
+        "Yazimiento",
+        "Iacimiento"
+      ],
+      "correctIndex": 0,
+      "explanation": "Yacimiento viene de «yacer»: con y."
+    },
+    {
+      "id": "es-5-089",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que tiende a olvidar»?",
+      "options": [
+        "Olvidadizo",
+        "Olbidadizo",
+        "Olvidadiso",
+        "Holvidadizo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Olvidar → olvidadizo, con v y con z."
+    },
+    {
+      "id": "es-5-090",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Es probable que ___ a llover esta tarde.» (verbo volver)",
+      "options": [
+        "vuelva",
+        "buelva",
+        "vuelba",
+        "vuelvá"
+      ],
+      "correctIndex": 0,
+      "explanation": "Volver se escribe con v en todas sus formas."
+    },
+    {
+      "id": "es-5-091",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra lleva tilde por romper un diptongo?",
+      "options": [
+        "Búho",
+        "Bueno",
+        "Cuidado",
+        "Pausa"
+      ],
+      "correctIndex": 0,
+      "explanation": "En «bú-ho» la u tónica rompe el diptongo."
+    },
+    {
+      "id": "es-5-092",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué forma verbal monosílaba está bien escrita?",
+      "options": [
+        "Fue",
+        "Fué",
+        "Dió",
+        "Vió"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los monosílabos como fue, dio o vio no llevan tilde."
+    },
+    {
+      "id": "es-5-093",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿En qué frase está bien escrito «aun»?",
+      "options": [
+        "Aun así, lo intentaré",
+        "Aún así, lo intentaré",
+        "Aun no ha llegado",
+        "Áun así, lo intentaré"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Aun» sin tilde equivale a «incluso»."
+    },
+    {
+      "id": "es-5-094",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estas llanas está mal acentuada?",
+      "options": [
+        "Examén",
+        "Joven",
+        "Imagen",
+        "Origen"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las llanas acabadas en n no llevan tilde: examen."
+    },
+    {
+      "id": "es-5-095",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el plural de «espécimen»?",
+      "options": [
+        "Especímenes",
+        "Especimenes",
+        "Espécimenes",
+        "Especímenés"
+      ],
+      "correctIndex": 0,
+      "explanation": "El acento cambia de sílaba: es-pe-cí-me-nes."
+    },
+    {
+      "id": "es-5-096",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué forma de «dé» está bien escrita?",
+      "options": [
+        "Espero que me dé una respuesta",
+        "Espero que me de una respuesta",
+        "Espero que mé de una respuesta",
+        "Espero que me dè una respuesta"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Dé» del verbo dar lleva tilde diacrítica."
+    },
+    {
+      "id": "es-5-097",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «El ___ del ciervo es enorme.»",
+      "options": [
+        "asta",
+        "hasta",
+        "hásta",
+        "azta"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Asta» es el cuerno; «hasta» es una preposición."
+    },
+    {
+      "id": "es-5-098",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Tiene mucho ___ en los brazos.»",
+      "options": [
+        "vello",
+        "bello",
+        "beyo",
+        "veyo"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vello» es el pelo; «bello» significa hermoso."
+    },
+    {
+      "id": "es-5-099",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Le dieron un ___ por su buen trabajo.»",
+      "options": [
+        "incentivo",
+        "insentivo",
+        "incentibo",
+        "inzentivo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Incentivo se escribe con c y con v."
+    },
+    {
+      "id": "es-5-100",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El juez dictó una ___ ejemplar.»",
+      "options": [
+        "sentencia",
+        "centencia",
+        "sentenzia",
+        "sentensia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sentencia: s inicial y c antes de i."
+    },
+    {
+      "id": "es-5-101",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «La comida estaba ___, le faltaba sal.»",
+      "options": [
+        "sosa",
+        "soza",
+        "zosa",
+        "sossa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Sosa» (sin sal) se escribe con s."
+    },
+    {
+      "id": "es-5-102",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El caballo ___ de su jinete.»",
+      "options": [
+        "recela",
+        "recelá",
+        "reçela",
+        "rezela"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Recelar» (desconfiar) se escribe con c."
+    },
+    {
+      "id": "es-5-103",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Hay que ___ las normas de convivencia.»",
+      "options": [
+        "acatar",
+        "hacatar",
+        "acattar",
+        "acatár"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Acatar» (obedecer) no lleva h."
+    },
+    {
+      "id": "es-5-104",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Se me ___ la piel al oír esa canción.»",
+      "options": [
+        "eriza",
+        "heriza",
+        "erisa",
+        "herisa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Erizar» no lleva h; «herir» sí."
+    },
+    {
+      "id": "es-5-105",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre la reunión es correcta?",
+      "options": [
+        "Se trataron varios temas",
+        "Se trató varios temas",
+        "Se tratáron varios temas",
+        "Se trataron varios tema"
+      ],
+      "correctIndex": 0,
+      "explanation": "En pasiva refleja el verbo concuerda con el sujeto: «temas»."
+    },
+    {
+      "id": "es-5-106",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre el pedido es correcta?",
+      "options": [
+        "Delante de mí había una cola",
+        "Delante mío había una cola",
+        "Delante de mi había una cola",
+        "Delante mía había una cola"
+      ],
+      "correctIndex": 0,
+      "explanation": "La RAE recomienda «delante de mí», con tilde en «mí»."
+    },
+    {
+      "id": "es-5-107",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre la tienda es correcta?",
+      "options": [
+        "Cerraron a las ocho",
+        "Cerrarón a las ocho",
+        "Cierraron a las ocho",
+        "Cerraron a las ochos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pretérito de «cerrar»: cerraron."
+    },
+    {
+      "id": "es-5-108",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre el examen es correcta?",
+      "options": [
+        "Espero que lo hayan hecho bien",
+        "Espero que lo hayan hacido bien",
+        "Espero que lo han hecho bien",
+        "Espero que lo hayan hechado bien"
+      ],
+      "correctIndex": 0,
+      "explanation": "El participio de «hacer» es «hecho»."
+    },
+    {
+      "id": "es-5-109",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre el libro es correcta?",
+      "options": [
+        "El libro se lo di a ellos",
+        "El libro se los di a ellos",
+        "El libro les lo di a ellos",
+        "El libro se lo dí a ellos"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Lo» se refiere al libro (singular); «di» no lleva tilde."
+    },
+    {
+      "id": "es-5-110",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre el estudio es correcta?",
+      "options": [
+        "Iré a pesar de que llueva",
+        "Iré a pesar que llueva",
+        "Iré apesar de que llueva",
+        "Iré a pesar de qué llueva"
+      ],
+      "correctIndex": 0,
+      "explanation": "La locución es «a pesar de que», separada."
+    },
+    {
+      "id": "es-5-111",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase sobre la espera es correcta?",
+      "options": [
+        "Había tres horas de espera",
+        "Habían tres horas de espera",
+        "Hubieron tres horas de espera",
+        "Habíamos tres horas de espera"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Haber» impersonal va siempre en singular."
+    },
+    {
+      "id": "es-5-112",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si me lo ___ dicho antes, habría ido.»",
+      "options": [
+        "hubieras",
+        "habrías",
+        "has",
+        "hayas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Condicional pasado: «si + hubiera(s) + participio»."
+    },
+    {
+      "id": "es-5-113",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Cuando ___ la carta, avísame.»",
+      "options": [
+        "llegue",
+        "llega",
+        "llegará",
+        "llegó"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cuando» referido al futuro va en subjuntivo."
+    },
+    {
+      "id": "es-5-114",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Le pedí que no ___ tan tarde.»",
+      "options": [
+        "volviera",
+        "volvía",
+        "vuelve",
+        "volverá"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Pedir que» exige subjuntivo, aquí en pasado."
+    },
+    {
+      "id": "es-5-115",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Dudo que ___ a tiempo.»",
+      "options": [
+        "lleguemos",
+        "llegamos",
+        "llegaremos",
+        "llegaríamos"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Dudar que» lleva subjuntivo."
+    },
+    {
+      "id": "es-5-116",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «No hay nadie que ___ tanto como ella.»",
+      "options": [
+        "sepa",
+        "sabe",
+        "sabrá",
+        "supo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con antecedente inexistente se usa subjuntivo."
+    },
+    {
+      "id": "es-5-117",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «En caso de que ___ problemas, llámame.»",
+      "options": [
+        "tengas",
+        "tienes",
+        "tendrás",
+        "tenías"
+      ],
+      "correctIndex": 0,
+      "explanation": "«En caso de que» exige subjuntivo."
+    },
+    {
+      "id": "es-5-118",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «acérrimo»?",
+      "options": [
+        "Tenaz",
+        "Indiferente",
+        "Tibio",
+        "Neutral"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un defensor acérrimo es muy firme y apasionado."
+    },
+    {
+      "id": "es-5-119",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «prolífico»?",
+      "options": [
+        "Improductivo",
+        "Fecundo",
+        "Abundante",
+        "Creativo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Prolífico: que produce mucho."
+    },
+    {
+      "id": "es-5-120",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «inocuo»?",
+      "options": [
+        "Inofensivo",
+        "Venenoso",
+        "Peligroso",
+        "Nocivo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo inocuo no hace daño."
+    },
+    {
+      "id": "es-5-121",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «diligente»?",
+      "options": [
+        "Negligente",
+        "Cuidadoso",
+        "Esmerado",
+        "Activo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Diligente: que hace las cosas con cuidado y rapidez."
+    },
+    {
+      "id": "es-5-122",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «obsoleto»?",
+      "options": [
+        "Anticuado",
+        "Moderno",
+        "Actual",
+        "Novedoso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Obsoleto: que ya no se usa."
+    },
+    {
+      "id": "es-5-123",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «afable»?",
+      "options": [
+        "Huraño",
+        "Amable",
+        "Cordial",
+        "Simpático"
+      ],
+      "correctIndex": 0,
+      "explanation": "Afable: agradable en el trato."
+    },
+    {
+      "id": "es-5-124",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «elocuente»?",
+      "options": [
+        "Persuasivo",
+        "Torpe",
+        "Callado",
+        "Confuso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Elocuente: que se expresa con eficacia."
+    },
+    {
+      "id": "es-5-125",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «acrecentar»?",
+      "options": [
+        "Menguar",
+        "Aumentar",
+        "Ampliar",
+        "Agrandar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Acrecentar es aumentar; menguar, disminuir."
+    },
+    {
+      "id": "es-5-126",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «serendipia»?",
+      "options": [
+        "Hallazgo valioso por casualidad",
+        "Tristeza profunda",
+        "Tipo de baile",
+        "Plan muy detallado"
+      ],
+      "correctIndex": 0,
+      "explanation": "La penicilina se descubrió por serendipia."
+    },
+    {
+      "id": "es-5-127",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «soslayar»?",
+      "options": [
+        "Evitar un asunto o dificultad",
+        "Mirar fijamente",
+        "Celebrar algo",
+        "Escribir deprisa"
+      ],
+      "correctIndex": 0,
+      "explanation": "Soslayar un problema es esquivarlo."
+    },
+    {
+      "id": "es-5-128",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un «palimpsesto»?",
+      "options": [
+        "Manuscrito reescrito sobre otro borrado",
+        "Un tipo de poema",
+        "Un mapa antiguo",
+        "Una moneda romana"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se borraba el texto antiguo para reutilizar el pergamino."
+    },
+    {
+      "id": "es-5-129",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «procaz»?",
+      "options": [
+        "Desvergonzado, atrevido",
+        "Muy inteligente",
+        "Muy lento",
+        "Muy rico"
+      ],
+      "correctIndex": 0,
+      "explanation": "Procaz: insolente o atrevido."
+    },
+    {
+      "id": "es-5-130",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «inexorable»?",
+      "options": [
+        "Que no se puede evitar ni detener",
+        "Que es muy frágil",
+        "Que es muy alegre",
+        "Que no tiene olor"
+      ],
+      "correctIndex": 0,
+      "explanation": "El paso del tiempo es inexorable."
+    },
+    {
+      "id": "es-5-131",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un «oxímoron»?",
+      "options": [
+        "Unir dos ideas opuestas",
+        "Un error ortográfico",
+        "Una palabra muy larga",
+        "Una rima perfecta"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Silencio atronador» es un oxímoron."
+    },
+    {
+      "id": "es-5-132",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «denostar»?",
+      "options": [
+        "Insultar o criticar con dureza",
+        "Demostrar algo",
+        "Esconder algo",
+        "Premiar a alguien"
+      ],
+      "correctIndex": 0,
+      "explanation": "Denostar es injuriar gravemente."
+    },
+    {
+      "id": "es-5-133",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «prístino»?",
+      "options": [
+        "Puro y original",
+        "Muy sucio",
+        "Muy moderno",
+        "Muy ruidoso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un paisaje prístino conserva su estado original."
+    },
+    {
+      "id": "es-5-134",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «cruzar el Rubicón»?",
+      "options": [
+        "Tomar una decisión sin vuelta atrás",
+        "Hacer un viaje",
+        "Cambiar de opinión",
+        "Ganar una carrera"
+      ],
+      "correctIndex": 0,
+      "explanation": "Julio César cruzó el río Rubicón en el 49 a. C."
+    },
+    {
+      "id": "es-5-135",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «una victoria pírrica»?",
+      "options": [
+        "Un triunfo que cuesta demasiado",
+        "Una victoria fácil",
+        "Una victoria por suerte",
+        "Una victoria naval"
+      ],
+      "correctIndex": 0,
+      "explanation": "El rey Pirro ganó batallas con enormes pérdidas."
+    },
+    {
+      "id": "es-5-136",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «talón de Aquiles»?",
+      "options": [
+        "El punto débil de alguien",
+        "Una herida leve",
+        "Una gran velocidad",
+        "Un calzado antiguo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Aquiles solo era vulnerable en el talón."
+    },
+    {
+      "id": "es-5-137",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «abrir la caja de Pandora»?",
+      "options": [
+        "Provocar muchos males inesperados",
+        "Encontrar un tesoro",
+        "Decir la verdad",
+        "Hacer un regalo"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el mito, Pandora liberó todos los males."
+    },
+    {
+      "id": "es-5-138",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Completa el refrán: «Quien mucho abarca…»",
+      "options": [
+        "poco aprieta",
+        "mucho gana",
+        "nada pierde",
+        "todo alcanza"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien intenta hacer demasiadas cosas no hace bien ninguna."
+    },
+    {
+      "id": "es-5-139",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «hacer de tripas corazón»?",
+      "options": [
+        "Sobreponerse a algo desagradable",
+        "Comer demasiado",
+        "Enamorarse",
+        "Ponerse enfermo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Es hacer un esfuerzo para superar el miedo o el asco."
+    },
+    {
+      "id": "es-5-140",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Entomología es a insectos como herpetología es a…",
+      "options": [
+        "Reptiles",
+        "Hongos",
+        "Minerales",
+        "Mamíferos"
+      ],
+      "correctIndex": 0,
+      "explanation": "La herpetología estudia reptiles y anfibios."
+    },
+    {
+      "id": "es-5-141",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Lexicógrafo es a diccionarios como cartógrafo es a…",
+      "options": [
+        "Mapas",
+        "Cartas",
+        "Leyes",
+        "Estrellas"
+      ],
+      "correctIndex": 0,
+      "explanation": "El cartógrafo elabora mapas."
+    },
+    {
+      "id": "es-5-142",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Germinar es a semilla como eclosionar es a…",
+      "options": [
+        "Huevo",
+        "Nido",
+        "Pluma",
+        "Raíz"
+      ],
+      "correctIndex": 0,
+      "explanation": "La semilla germina; el huevo eclosiona."
+    },
+    {
+      "id": "es-5-143",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Soneto es a catorce como haiku es a…",
+      "options": [
+        "Tres",
+        "Cinco",
+        "Siete",
+        "Diecisiete"
+      ],
+      "correctIndex": 0,
+      "explanation": "El soneto tiene 14 versos; el haiku, 3."
+    },
+    {
+      "id": "es-5-144",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Ígneo es a roca como cúmulo es a…",
+      "options": [
+        "Nube",
+        "Viento",
+        "Estrella",
+        "Río"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ígneo es un tipo de roca; cúmulo, un tipo de nube."
+    },
+    {
+      "id": "es-5-145",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué término no es una figura retórica? Metáfora, hipérbole, aliteración, párrafo.",
+      "options": [
+        "Párrafo",
+        "Metáfora",
+        "Hipérbole",
+        "Aliteración"
+      ],
+      "correctIndex": 0,
+      "explanation": "El párrafo es una unidad de texto, no una figura."
+    },
+    {
+      "id": "es-5-146",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué lengua no es romance? Español, italiano, francés, alemán.",
+      "options": [
+        "Alemán",
+        "Español",
+        "Italiano",
+        "Francés"
+      ],
+      "correctIndex": 0,
+      "explanation": "El alemán es germánica; las demás vienen del latín."
+    },
+    {
+      "id": "es-5-147",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué hueso no está en la pierna? Tibia, fémur, peroné, cúbito.",
+      "options": [
+        "Cúbito",
+        "Tibia",
+        "Fémur",
+        "Peroné"
+      ],
+      "correctIndex": 0,
+      "explanation": "El cúbito está en el antebrazo."
+    },
+    {
+      "id": "es-5-148",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué dios no es griego? Atenea, Zeus, Apolo, Odín.",
+      "options": [
+        "Odín",
+        "Atenea",
+        "Zeus",
+        "Apolo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Odín pertenece a la mitología nórdica."
+    },
+    {
+      "id": "es-5-149",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 2, 5, 10, 17, 26, …",
+      "options": [
+        "37",
+        "35",
+        "36",
+        "39"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son n² + 1: 6² + 1 = 37."
+    },
+    {
+      "id": "es-5-150",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 11, 21, 1211, …",
+      "options": [
+        "111221",
+        "112211",
+        "1221",
+        "2111"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada término describe el anterior: «un 1, un 2, dos 1»."
+    },
+    {
+      "id": "es-5-151",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? U, D, T, C, C, S, S, O, …",
+      "options": [
+        "N",
+        "D",
+        "O",
+        "S"
+      ],
+      "correctIndex": 0,
+      "explanation": "Iniciales de uno, dos, tres… ocho, nueve."
+    },
+    {
+      "id": "es-5-152",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 0, 1, 1, 2, 3, 5, 8, 13, …",
+      "options": [
+        "21",
+        "18",
+        "20",
+        "26"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es la suma de los dos anteriores (Fibonacci)."
+    },
+    {
+      "id": "es-5-153",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué país se forma con las letras de «ACUERDO»?",
+      "options": [
+        "Ecuador",
+        "Uruguay",
+        "Cuba",
+        "Corea"
+      ],
+      "correctIndex": 0,
+      "explanation": "A-C-U-E-R-D-O reordenadas forman ECUADOR."
+    },
+    {
+      "id": "es-5-154",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué verdura se forma con las letras de «CABELLO»?",
+      "options": [
+        "Cebolla",
+        "Calabaza",
+        "Lechuga",
+        "Acelga"
+      ],
+      "correctIndex": 0,
+      "explanation": "C-A-B-E-L-L-O reordenadas forman CEBOLLA."
+    },
+    {
+      "id": "es-5-155",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se forma con las letras de «SENTIDO» y significa «lo que nos depara el futuro»?",
+      "options": [
+        "Destino",
+        "Suerte",
+        "Sendero",
+        "Desenlace"
+      ],
+      "correctIndex": 0,
+      "explanation": "S-E-N-T-I-D-O reordenadas forman DESTINO."
+    },
+    {
+      "id": "es-5-156",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué personaje del mar se forma con las letras de «PATRIA»?",
+      "options": [
+        "Pirata",
+        "Marino",
+        "Capitán",
+        "Corsario"
+      ],
+      "correctIndex": 0,
+      "explanation": "P-A-T-R-I-A reordenadas forman PIRATA."
+    },
+    {
+      "id": "es-5-157",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué instrumento se forma con las letras de «ABIERTA»?",
+      "options": [
+        "Batería",
+        "Trompeta",
+        "Guitarra",
+        "Bandurria"
+      ],
+      "correctIndex": 0,
+      "explanation": "A-B-I-E-R-T-A reordenadas forman BATERÍA."
+    },
+    {
+      "id": "es-5-158",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número se esconde al principio de «DOSIS»?",
+      "options": [
+        "dos",
+        "uno",
+        "tres",
+        "seis"
+      ],
+      "correctIndex": 0,
+      "explanation": "DOS-is esconde «dos»."
+    },
+    {
+      "id": "es-5-159",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué astro se esconde al principio de «SOLDADO»?",
+      "options": [
+        "sol",
+        "luna",
+        "marte",
+        "cometa"
+      ],
+      "correctIndex": 0,
+      "explanation": "SOL-dado esconde «sol»."
+    },
+    {
+      "id": "es-5-160",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra se esconde al principio de «MARTILLO»?",
+      "options": [
+        "mar",
+        "sol",
+        "río",
+        "lago"
+      ],
+      "correctIndex": 0,
+      "explanation": "MAR-tillo esconde «mar»."
+    },
+    {
+      "id": "es-5-161",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «paralelepípedo»?",
+      "options": [
+        "7",
+        "6",
+        "8",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pa-ra-le-le-pí-pe-do: siete sílabas."
+    },
+    {
+      "id": "es-5-162",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿En qué palabra hay un triptongo?",
+      "options": [
+        "Buey",
+        "Puerta",
+        "Cielo",
+        "Raíz"
+      ],
+      "correctIndex": 0,
+      "explanation": "En «buey» hay tres vocales en una sílaba: uey."
+    },
+    {
+      "id": "es-5-163",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «otorrinolaringólogo»?",
+      "options": [
+        "9",
+        "8",
+        "10",
+        "7"
+      ],
+      "correctIndex": 0,
+      "explanation": "O-to-rri-no-la-rin-gó-lo-go: nueve sílabas."
+    },
+    {
+      "id": "es-5-164",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Es tan frágil que, si dices su nombre, se rompe. ¿Qué es?",
+      "options": [
+        "El silencio",
+        "El cristal",
+        "Un secreto",
+        "Una promesa"
+      ],
+      "correctIndex": 0,
+      "explanation": "Al nombrarlo, el silencio desaparece."
+    },
+    {
+      "id": "es-5-165",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tengo agujas y no sé coser, tengo números y no sé leer. ¿Qué soy?",
+      "options": [
+        "El reloj",
+        "El calendario",
+        "La brújula",
+        "El teléfono"
+      ],
+      "correctIndex": 0,
+      "explanation": "El reloj tiene agujas y números."
+    },
+    {
+      "id": "es-5-166",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Vuela sin alas, llora sin ojos. ¿Qué es?",
+      "options": [
+        "La nube",
+        "El viento",
+        "El pájaro",
+        "La lluvia"
+      ],
+      "correctIndex": 0,
+      "explanation": "La nube se mueve por el cielo y deja caer la lluvia."
+    },
+    {
+      "id": "es-5-167",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Un padre tiene cuatro veces la edad de su hijo. Dentro de 20 años tendrá el doble. ¿Cuántos años tiene el hijo?",
+      "options": [
+        "10",
+        "5",
+        "15",
+        "20"
+      ],
+      "correctIndex": 0,
+      "explanation": "4h + 20 = 2(h + 20), así que h = 10."
+    },
+    {
+      "id": "es-5-168",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Un caracol sube 3 m de día y resbala 2 m de noche. ¿Qué día sale de un pozo de 10 m?",
+      "options": [
+        "El día 8",
+        "El día 10",
+        "El día 7",
+        "El día 5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tras 7 noches está a 7 m; el día 8 sube a 10 m."
+    },
+    {
+      "id": "es-5-169",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si dos personas pintan dos vallas en dos horas, ¿cuántas vallas pintan seis personas en seis horas?",
+      "options": [
+        "18",
+        "6",
+        "12",
+        "36"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada persona pinta una valla cada 2 h: 6 personas × 3 vallas = 18."
+    },
+    {
+      "id": "es-5-170",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todas las etiquetas de tres cajas están mal. La caja A dice «oro». ¿Dónde NO puede estar el oro?",
+      "options": [
+        "En la caja A",
+        "En la caja B",
+        "En la caja C",
+        "En cualquiera"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si la etiqueta de A es falsa, el oro no está en A."
+    },
+    {
+      "id": "es-5-171",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un precio sube un 10 % y luego baja un 10 %. Respecto al inicial, queda…",
+      "options": [
+        "Un 1 % más bajo",
+        "Igual",
+        "Un 1 % más alto",
+        "Un 10 % más bajo"
+      ],
+      "correctIndex": 0,
+      "explanation": "100 → 110 → 99: un 1 % menos."
+    },
+    {
+      "id": "es-5-172",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un coche gasta 6 litros cada 100 km. ¿Cuántos litros para 350 km?",
+      "options": [
+        "21",
+        "18",
+        "24",
+        "35"
+      ],
+      "correctIndex": 0,
+      "explanation": "3,5 × 6 = 21."
+    },
+    {
+      "id": "es-5-173",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Un depósito se llena a 4 L/min y pierde 1 L/min. ¿Cuánto tarda en llenar 90 L?",
+      "options": [
+        "30 minutos",
+        "22,5 minutos",
+        "18 minutos",
+        "45 minutos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Llena a 3 L/min netos: 90 ÷ 3 = 30."
+    },
+    {
+      "id": "es-5-174",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos minutos tiene una semana completa?",
+      "options": [
+        "10 080",
+        "1440",
+        "8640",
+        "10 800"
+      ],
+      "correctIndex": 0,
+      "explanation": "7 × 24 × 60 = 10 080."
+    },
+    {
+      "id": "es-5-175",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 17 × 23?",
+      "options": [
+        "391",
+        "381",
+        "401",
+        "371"
+      ],
+      "correctIndex": 0,
+      "explanation": "17 × 23 = 340 + 51 = 391."
+    },
+    {
+      "id": "es-5-176",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto suman los ángulos interiores de un hexágono?",
+      "options": [
+        "720°",
+        "540°",
+        "360°",
+        "1080°"
+      ],
+      "correctIndex": 0,
+      "explanation": "(6 − 2) × 180° = 720°."
+    },
+    {
+      "id": "es-5-177",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la probabilidad de sacar un 6 con un dado normal?",
+      "options": [
+        "1/6",
+        "1/2",
+        "1/3",
+        "6/1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un caso favorable entre seis posibles."
+    },
+    {
+      "id": "es-5-178",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas aristas tiene un cubo?",
+      "options": [
+        "12",
+        "8",
+        "6",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un cubo tiene 12 aristas, 8 vértices y 6 caras."
+    },
+    {
+      "id": "es-5-179",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la mediana de 3, 8, 1, 9, 5?",
+      "options": [
+        "5",
+        "8",
+        "9",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ordenados: 1, 3, 5, 8, 9; el del medio es 5."
+    },
+    {
+      "id": "es-5-180",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 2 elevado a 10?",
+      "options": [
+        "1024",
+        "100",
+        "512",
+        "2048"
+      ],
+      "correctIndex": 0,
+      "explanation": "2¹⁰ = 1024."
+    },
+    {
+      "id": "es-5-181",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto mide la hipotenusa de un triángulo rectángulo de catetos 3 y 4?",
+      "options": [
+        "5",
+        "7",
+        "6",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "3² + 4² = 25 y √25 = 5."
+    },
+    {
+      "id": "es-5-182",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número es irracional?",
+      "options": [
+        "√2",
+        "0,5",
+        "3/4",
+        "√9"
+      ],
+      "correctIndex": 0,
+      "explanation": "√2 no se puede escribir como fracción; √9 = 3."
+    },
+    {
+      "id": "es-5-183",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 1/8 en decimal?",
+      "options": [
+        "0,125",
+        "0,18",
+        "0,8",
+        "0,25"
+      ],
+      "correctIndex": 0,
+      "explanation": "1 ÷ 8 = 0,125."
+    },
+    {
+      "id": "es-5-184",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el pH del agua pura a 25 °C?",
+      "options": [
+        "7",
+        "0",
+        "1",
+        "14"
+      ],
+      "correctIndex": 0,
+      "explanation": "El agua pura es neutra: pH 7."
+    },
+    {
+      "id": "es-5-185",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué capa de la atmósfera está la capa de ozono?",
+      "options": [
+        "En la estratosfera",
+        "En la troposfera",
+        "En la mesosfera",
+        "En la exosfera"
+      ],
+      "correctIndex": 0,
+      "explanation": "El ozono absorbe rayos UV en la estratosfera."
+    },
+    {
+      "id": "es-5-186",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué dice la segunda ley de Newton?",
+      "options": [
+        "Fuerza = masa × aceleración",
+        "Energía = masa × c²",
+        "Presión = fuerza × área",
+        "Velocidad = tiempo ÷ distancia"
+      ],
+      "correctIndex": 0,
+      "explanation": "F = m · a."
+    },
+    {
+      "id": "es-5-187",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué órgano produce la insulina?",
+      "options": [
+        "El páncreas",
+        "El tiroides",
+        "El hígado",
+        "El riñón"
+      ],
+      "correctIndex": 0,
+      "explanation": "El páncreas regula el azúcar en sangre."
+    },
+    {
+      "id": "es-5-188",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el símbolo químico del sodio?",
+      "options": [
+        "Na",
+        "So",
+        "Sd",
+        "S"
+      ],
+      "correctIndex": 0,
+      "explanation": "Na viene del latín «natrium»."
+    },
+    {
+      "id": "es-5-189",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué científico español ganó el Nobel por estudiar las neuronas?",
+      "options": [
+        "Santiago Ramón y Cajal",
+        "Severo Ochoa",
+        "Isaac Peral",
+        "Margarita Salas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ramón y Cajal lo recibió en 1906."
+    },
+    {
+      "id": "es-5-190",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Kazajistán?",
+      "options": [
+        "Astaná",
+        "Almaty",
+        "Taskent",
+        "Biskek"
+      ],
+      "correctIndex": 0,
+      "explanation": "Astaná es la capital desde 1997."
+    },
+    {
+      "id": "es-5-191",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el punto más profundo de los océanos?",
+      "options": [
+        "La fosa de las Marianas",
+        "La fosa de Java",
+        "La fosa de Puerto Rico",
+        "La fosa de Tonga"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tiene casi 11 000 m de profundidad."
+    },
+    {
+      "id": "es-5-192",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el lago más grande de África?",
+      "options": [
+        "El lago Victoria",
+        "El lago Tanganica",
+        "El lago Chad",
+        "El lago Malaui"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lo comparten Uganda, Kenia y Tanzania."
+    },
+    {
+      "id": "es-5-193",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Nueva Zelanda?",
+      "options": [
+        "Wellington",
+        "Auckland",
+        "Christchurch",
+        "Sídney"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wellington es la capital; Auckland, la ciudad más grande."
+    },
+    {
+      "id": "es-5-194",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué desierto ocupa gran parte del norte de Chile?",
+      "options": [
+        "El de Atacama",
+        "El Gobi",
+        "El Namib",
+        "El Mojave"
+      ],
+      "correctIndex": 0,
+      "explanation": "Es uno de los lugares más secos del planeta."
+    },
+    {
+      "id": "es-5-195",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué tratado puso fin a la Primera Guerra Mundial con Alemania?",
+      "options": [
+        "El de Versalles",
+        "El de París",
+        "El de Utrecht",
+        "El de Westfalia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se firmó en 1919."
+    },
+    {
+      "id": "es-5-196",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización inventó la escritura cuneiforme?",
+      "options": [
+        "La sumeria",
+        "La egipcia",
+        "La china",
+        "La griega"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los sumerios escribían en tablillas de arcilla."
+    },
+    {
+      "id": "es-5-197",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué imperio tuvo su capital en Constantinopla?",
+      "options": [
+        "El bizantino",
+        "El persa",
+        "El carolingio",
+        "El mogol"
+      ],
+      "correctIndex": 0,
+      "explanation": "Constantinopla (hoy Estambul) fue la capital bizantina."
+    },
+    {
+      "id": "es-5-198",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Quién completó la primera vuelta al mundo en 1522?",
+      "options": [
+        "Juan Sebastián Elcano",
+        "Fernando de Magallanes",
+        "Vasco da Gama",
+        "Hernán Cortés"
+      ],
+      "correctIndex": 0,
+      "explanation": "Magallanes murió en el viaje; Elcano lo terminó."
+    },
+    {
+      "id": "es-5-199",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué ciudad romana sepultó el Vesubio en el año 79?",
+      "options": [
+        "Pompeya",
+        "Mérida",
+        "Cartago",
+        "Troya"
+      ],
+      "correctIndex": 0,
+      "explanation": "La ceniza la cubrió y la conservó."
+    },
+    {
+      "id": "es-5-200",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué pieza del ajedrez solo se mueve en diagonal?",
+      "options": [
+        "El alfil",
+        "La torre",
+        "El caballo",
+        "El rey"
+      ],
+      "correctIndex": 0,
+      "explanation": "El alfil se desplaza en diagonal."
+    },
+    {
+      "id": "es-5-201",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién escribió «1984»?",
+      "options": [
+        "George Orwell",
+        "Aldous Huxley",
+        "Ray Bradbury",
+        "H. G. Wells"
+      ],
+      "correctIndex": 0,
+      "explanation": "Orwell la publicó en 1949."
+    },
+    {
+      "id": "es-5-202",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué técnica pictórica usa pequeños puntos de color?",
+      "options": [
+        "El puntillismo",
+        "El fresco",
+        "El collage",
+        "El grabado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Georges Seurat fue un gran puntillista."
+    },
+    {
+      "id": "es-5-203",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es el claroscuro en pintura?",
+      "options": [
+        "Contraste fuerte de luz y sombra",
+        "Pintar sobre yeso húmedo",
+        "Usar solo tonos azules",
+        "Pegar papeles al lienzo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Caravaggio dominaba el claroscuro."
+    },
+    {
+      "id": "es-5-204",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Quién pintó «El grito»?",
+      "options": [
+        "Edvard Munch",
+        "Egon Schiele",
+        "Francis Bacon",
+        "Gustav Klimt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Munch lo pintó en 1893."
+    },
+    {
+      "id": "es-5-205",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué pintora mexicana es famosa por sus autorretratos?",
+      "options": [
+        "Frida Kahlo",
+        "Remedios Varo",
+        "Leonora Carrington",
+        "María Izquierdo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Frida Kahlo pintó unos 55 autorretratos."
+    },
+    {
+      "id": "es-5-206",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "En música, ¿qué significa «piano» en una partitura?",
+      "options": [
+        "Suave",
+        "Fuerte",
+        "Rápido",
+        "Lento"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Piano» indica tocar con poca intensidad."
+    },
+    {
+      "id": "es-5-207",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Quién compuso la ópera «La flauta mágica»?",
+      "options": [
+        "Mozart",
+        "Verdi",
+        "Puccini",
+        "Wagner"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mozart la compuso en 1791."
     }
   ]
 }

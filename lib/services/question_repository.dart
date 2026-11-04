@@ -32,7 +32,7 @@ class QuestionRepository {
 
   /// Idiomas que tienen banco de preguntas. Al añadir uno nuevo, crear su
   /// carpeta en assets/questions/ y registrarla en pubspec.yaml.
-  static const List<String> availableLanguages = ['es'];
+  static const List<String> availableLanguages = ['es', 'en'];
 
   /// Lista cerrada de categorías: id del JSON -> nombre en español.
   /// El nombre que ve el jugador sale de los .arb (ver [categoryName]).

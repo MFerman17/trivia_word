@@ -1,0 +1,2835 @@
+{
+  "language": "en",
+  "difficulty": 3,
+  "version": 1,
+  "questions": [
+    {
+      "id": "en-3-001",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a word that means \"to get something\"?",
+      "options": [
+        "receive",
+        "recieve",
+        "receeve",
+        "receve"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rule: \"i before e, except after c\": re-c-e-i-ve."
+    },
+    {
+      "id": "en-3-002",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a person who lives next door?",
+      "options": [
+        "neighbour",
+        "nieghbour",
+        "neighbur",
+        "nayber"
+      ],
+      "correctIndex": 0,
+      "explanation": "N-e-i-g-h-b-o-u-r: \"neigh\" sounds like \"nay\". (In American English: neighbor.)"
+    },
+    {
+      "id": "en-3-003",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"It is ___ to wear a helmet.\"",
+      "options": [
+        "necessary",
+        "neccessary",
+        "necesary",
+        "neccesary"
+      ],
+      "correctIndex": 0,
+      "explanation": "One c, two s: ne-c-e-ss-ary."
+    },
+    {
+      "id": "en-3-004",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the opposite of \"begin\"?",
+      "options": [
+        "finish",
+        "finnish",
+        "finesh",
+        "fenish"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Finnish\" with two n's means from Finland."
+    },
+    {
+      "id": "en-3-005",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"The ___ was full of tourists.\"",
+      "options": [
+        "museum",
+        "musuem",
+        "museam",
+        "musium"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mu-se-um ends in -um."
+    },
+    {
+      "id": "en-3-006",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a word meaning \"strange\"?",
+      "options": [
+        "weird",
+        "wierd",
+        "weerd",
+        "wiered"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Weird\" breaks the \"i before e\" rule."
+    },
+    {
+      "id": "en-3-007",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"I was ___ by the loud noise.\"",
+      "options": [
+        "surprised",
+        "suprised",
+        "surprized",
+        "surprissed"
+      ],
+      "correctIndex": 0,
+      "explanation": "Don't forget the first r: sur-prised."
+    },
+    {
+      "id": "en-3-008",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the second month?",
+      "options": [
+        "February",
+        "Febuary",
+        "Februery",
+        "Febrary"
+      ],
+      "correctIndex": 0,
+      "explanation": "February has an r after the b: Feb-ru-ary."
+    },
+    {
+      "id": "en-3-009",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"She is a very ___ singer.\"",
+      "options": [
+        "talented",
+        "talanted",
+        "tallented",
+        "talentted"
+      ],
+      "correctIndex": 0,
+      "explanation": "Talent + -ed: t-a-l-e-n-t-e-d."
+    },
+    {
+      "id": "en-3-010",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a place to sleep while travelling?",
+      "options": [
+        "hotel",
+        "hottel",
+        "hotell",
+        "hotle"
+      ],
+      "correctIndex": 0,
+      "explanation": "H-o-t-e-l, with one t and one l."
+    },
+    {
+      "id": "en-3-011",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"We need to ___ the date of the trip.\"",
+      "options": [
+        "separate",
+        "seperate",
+        "separete",
+        "sepperate"
+      ],
+      "correctIndex": 0,
+      "explanation": "There's \"a rat\" in sep-a-rate."
+    },
+    {
+      "id": "en-3-012",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of something you keep to remember a holiday?",
+      "options": [
+        "souvenir",
+        "suvenir",
+        "souvineer",
+        "souvenier"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Souvenir\" comes from French."
+    },
+    {
+      "id": "en-3-013",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"I ___ my keys again!\"",
+      "options": [
+        "lost",
+        "losed",
+        "lossed",
+        "lozt"
+      ],
+      "correctIndex": 0,
+      "explanation": "The past of \"lose\" is \"lost\"."
+    },
+    {
+      "id": "en-3-014",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the season of falling leaves?",
+      "options": [
+        "autumn",
+        "autum",
+        "awtumn",
+        "otumn"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Autumn\" ends with a silent n."
+    },
+    {
+      "id": "en-3-015",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The ___ of the story is to be kind.\"",
+      "options": [
+        "moral",
+        "morale",
+        "morral",
+        "mural"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Moral\" is the lesson. \"Morale\" is team spirit."
+    },
+    {
+      "id": "en-3-016",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I need to ___ my bike to the fence.\"",
+      "options": [
+        "lock",
+        "loch",
+        "lok",
+        "look"
+      ],
+      "correctIndex": 0,
+      "explanation": "To \"lock\" means to close with a key."
+    },
+    {
+      "id": "en-3-017",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Turn ___ at the traffic lights.\"",
+      "options": [
+        "right",
+        "write",
+        "rite",
+        "wright"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Right\" is a direction. \"Write\" is what you do with a pen."
+    },
+    {
+      "id": "en-3-018",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Please ___ your name here.\"",
+      "options": [
+        "write",
+        "right",
+        "rite",
+        "wright"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Write\" means to put words on paper."
+    },
+    {
+      "id": "en-3-019",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The ___ of the ship gave orders.\"",
+      "options": [
+        "captain",
+        "capten",
+        "captin",
+        "caption"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Captain\" is the leader. A \"caption\" is text under a picture."
+    },
+    {
+      "id": "en-3-020",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"This dress costs a lot; it's ___ expensive.\"",
+      "options": [
+        "quite",
+        "quiet",
+        "quit",
+        "quiete"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Quite\" means \"fairly\". \"Quiet\" means silent."
+    },
+    {
+      "id": "en-3-021",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Please be ___ in the library.\"",
+      "options": [
+        "quiet",
+        "quite",
+        "quit",
+        "quait"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Quiet\" means making little noise."
+    },
+    {
+      "id": "en-3-022",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I'd rather walk ___ take the bus.\"",
+      "options": [
+        "than",
+        "then",
+        "thann",
+        "thane"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Than\" compares. \"Then\" talks about time."
+    },
+    {
+      "id": "en-3-023",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"First we eat, ___ we play.\"",
+      "options": [
+        "then",
+        "than",
+        "thin",
+        "them"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Then\" means \"after that\"."
+    },
+    {
+      "id": "en-3-024",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The weather will ___ our plans.\"",
+      "options": [
+        "affect",
+        "effect",
+        "afect",
+        "efect"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Affect\" is usually the verb; \"effect\" the noun."
+    },
+    {
+      "id": "en-3-025",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The medicine had a strong ___.\"",
+      "options": [
+        "effect",
+        "affect",
+        "efect",
+        "afect"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Effect\" is the result of something."
+    },
+    {
+      "id": "en-3-026",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Don't ___ your phone!\"",
+      "options": [
+        "lose",
+        "loose",
+        "loss",
+        "loos"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Lose\" means to misplace. \"Loose\" means not tight."
+    },
+    {
+      "id": "en-3-027",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"My shoelace is ___.\"",
+      "options": [
+        "loose",
+        "lose",
+        "loss",
+        "luse"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Loose\" means not tight."
+    },
+    {
+      "id": "en-3-028",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"___ coat is this?\"",
+      "options": [
+        "Whose",
+        "Who's",
+        "Hose",
+        "Whos"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Whose\" asks who owns something. \"Who's\" = \"who is\"."
+    },
+    {
+      "id": "en-3-029",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about Sam and me is correct?",
+      "options": [
+        "Sam and I went to the cinema.",
+        "Me and Sam went to the cinema.",
+        "Sam and me went to the cinema.",
+        "Myself and Sam went to the cinema."
+      ],
+      "correctIndex": 0,
+      "explanation": "As the subject, use \"I\": you would say \"I went\"."
+    },
+    {
+      "id": "en-3-030",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the team is correct?",
+      "options": [
+        "Each player has a number.",
+        "Each player have a number.",
+        "Each players has a number.",
+        "Each of player has a number."
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Each\" takes a singular verb: \"has\"."
+    },
+    {
+      "id": "en-3-031",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about a gift is correct?",
+      "options": [
+        "She gave it to my brother and me.",
+        "She gave it to my brother and I.",
+        "She gave it to I and my brother.",
+        "She gave it to my brother and myself."
+      ],
+      "correctIndex": 0,
+      "explanation": "After \"to\" use \"me\": \"gave it to me\"."
+    },
+    {
+      "id": "en-3-032",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about bread is correct?",
+      "options": [
+        "There is less bread today.",
+        "There is fewer bread today.",
+        "There are fewer bread today.",
+        "There is lesser bread today."
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"less\" with things you can't count, like bread."
+    },
+    {
+      "id": "en-3-033",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about apples is correct?",
+      "options": [
+        "There are fewer apples now.",
+        "There are less apples now.",
+        "There is fewer apples now.",
+        "There are lesser apples now."
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"fewer\" with things you can count, like apples."
+    },
+    {
+      "id": "en-3-034",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the past is correct?",
+      "options": [
+        "I have already eaten.",
+        "I have already ate.",
+        "I have already eat.",
+        "I already have ate."
+      ],
+      "correctIndex": 0,
+      "explanation": "After \"have\" use the past participle: \"eaten\"."
+    },
+    {
+      "id": "en-3-035",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about winning a race is correct?",
+      "options": [
+        "If I were faster, I would win.",
+        "If I was faster, I will win.",
+        "If I am faster, I would win.",
+        "If I were faster, I will win."
+      ],
+      "correctIndex": 0,
+      "explanation": "Imaginary situations use \"were... would\"."
+    },
+    {
+      "id": "en-3-036",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the dog is correct?",
+      "options": [
+        "The dog is lying on the sofa.",
+        "The dog is laying on the sofa.",
+        "The dog is lieing on the sofa.",
+        "The dog is layed on the sofa."
+      ],
+      "correctIndex": 0,
+      "explanation": "To rest flat is \"lie\" → \"lying\"."
+    },
+    {
+      "id": "en-3-037",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about homework is correct?",
+      "options": [
+        "Neither of them has finished.",
+        "Neither of them have finish.",
+        "Neither of them has finish.",
+        "Neither of them haves finished."
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Neither\" is singular: \"has finished\"."
+    },
+    {
+      "id": "en-3-038",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the weather is correct?",
+      "options": [
+        "It's colder today than yesterday.",
+        "Its colder today then yesterday.",
+        "It's more colder today than yesterday.",
+        "It's coldest today than yesterday."
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"it's\" (it is), \"colder\" and \"than\"."
+    },
+    {
+      "id": "en-3-039",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"By the time we arrived, the film ___ started.\"",
+      "options": [
+        "had already",
+        "has already",
+        "already",
+        "will already"
+      ],
+      "correctIndex": 0,
+      "explanation": "An earlier past action uses \"had\" + past participle."
+    },
+    {
+      "id": "en-3-040",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"I'm looking forward ___ you.\"",
+      "options": [
+        "to seeing",
+        "to see",
+        "seeing",
+        "for seeing"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Look forward to\" is followed by -ing."
+    },
+    {
+      "id": "en-3-041",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"She has been studying ___ three hours.\"",
+      "options": [
+        "for",
+        "since",
+        "from",
+        "during"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"for\" with a length of time."
+    },
+    {
+      "id": "en-3-042",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"If it rains, we ___ stay at home.\"",
+      "options": [
+        "will",
+        "would",
+        "were",
+        "did"
+      ],
+      "correctIndex": 0,
+      "explanation": "Real future conditions use \"if... will\"."
+    },
+    {
+      "id": "en-3-043",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"The book ___ I read was exciting.\"",
+      "options": [
+        "that",
+        "who",
+        "where",
+        "whom"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"that\" or \"which\" for things."
+    },
+    {
+      "id": "en-3-044",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"The man ___ lives next door is a pilot.\"",
+      "options": [
+        "who",
+        "which",
+        "where",
+        "what"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"who\" for people."
+    },
+    {
+      "id": "en-3-045",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"This is the house ___ I was born.\"",
+      "options": [
+        "where",
+        "which",
+        "who",
+        "when"
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"where\" for places."
+    },
+    {
+      "id": "en-3-046",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"He is interested ___ astronomy.\"",
+      "options": [
+        "in",
+        "on",
+        "at",
+        "about"
+      ],
+      "correctIndex": 0,
+      "explanation": "We say \"interested in\"."
+    },
+    {
+      "id": "en-3-047",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"Neither the teacher ___ the pupils knew the answer.\"",
+      "options": [
+        "nor",
+        "or",
+        "and",
+        "but"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Neither\" goes with \"nor\"."
+    },
+    {
+      "id": "en-3-048",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"I wish I ___ fly.\"",
+      "options": [
+        "could",
+        "can",
+        "will",
+        "may"
+      ],
+      "correctIndex": 0,
+      "explanation": "After \"I wish\" we use the past form: \"could\"."
+    },
+    {
+      "id": "en-3-049",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"rapid\"?",
+      "options": [
+        "swift",
+        "sluggish",
+        "calm",
+        "steady"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Swift\" and \"rapid\" both mean fast."
+    },
+    {
+      "id": "en-3-050",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"generous\"?",
+      "options": [
+        "selfish",
+        "kind",
+        "giving",
+        "wealthy"
+      ],
+      "correctIndex": 0,
+      "explanation": "A generous person shares; a selfish one does not."
+    },
+    {
+      "id": "en-3-051",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"furious\"?",
+      "options": [
+        "angry",
+        "calm",
+        "amused",
+        "bored"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Furious\" means very angry."
+    },
+    {
+      "id": "en-3-052",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"victory\"?",
+      "options": [
+        "defeat",
+        "triumph",
+        "success",
+        "prize"
+      ],
+      "correctIndex": 0,
+      "explanation": "A victory is a win; a defeat is a loss."
+    },
+    {
+      "id": "en-3-053",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"purchase\"?",
+      "options": [
+        "buy",
+        "sell",
+        "borrow",
+        "lend"
+      ],
+      "correctIndex": 0,
+      "explanation": "To purchase is to buy."
+    },
+    {
+      "id": "en-3-054",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"permanent\"?",
+      "options": [
+        "temporary",
+        "lasting",
+        "constant",
+        "stable"
+      ],
+      "correctIndex": 0,
+      "explanation": "Permanent lasts forever; temporary lasts a short time."
+    },
+    {
+      "id": "en-3-055",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"vanish\"?",
+      "options": [
+        "disappear",
+        "appear",
+        "arrive",
+        "shine"
+      ],
+      "correctIndex": 0,
+      "explanation": "To vanish is to disappear."
+    },
+    {
+      "id": "en-3-056",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"expand\"?",
+      "options": [
+        "shrink",
+        "grow",
+        "stretch",
+        "swell"
+      ],
+      "correctIndex": 0,
+      "explanation": "Expand means get bigger; shrink means get smaller."
+    },
+    {
+      "id": "en-3-057",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"courageous\"?",
+      "options": [
+        "brave",
+        "timid",
+        "nervous",
+        "careless"
+      ],
+      "correctIndex": 0,
+      "explanation": "Courageous people are brave."
+    },
+    {
+      "id": "en-3-058",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"rough\"?",
+      "options": [
+        "smooth",
+        "hard",
+        "sharp",
+        "bumpy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sandpaper is rough; glass is smooth."
+    },
+    {
+      "id": "en-3-059",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"reluctant\" mean?",
+      "options": [
+        "Not willing",
+        "Very excited",
+        "Very fast",
+        "Lucky"
+      ],
+      "correctIndex": 0,
+      "explanation": "A reluctant person doesn't want to do something."
+    },
+    {
+      "id": "en-3-060",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"ancient\" mean?",
+      "options": [
+        "Very old",
+        "Very small",
+        "Very rich",
+        "Very loud"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ancient things come from long ago."
+    },
+    {
+      "id": "en-3-061",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is a \"biography\"?",
+      "options": [
+        "A book about someone's life",
+        "A book of maps",
+        "A science report",
+        "A book of jokes"
+      ],
+      "correctIndex": 0,
+      "explanation": "A biography tells the life story of a person."
+    },
+    {
+      "id": "en-3-062",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"transparent\" mean?",
+      "options": [
+        "You can see through it",
+        "It is very heavy",
+        "It shines in the dark",
+        "It is very hot"
+      ],
+      "correctIndex": 0,
+      "explanation": "Glass and clear water are transparent."
+    },
+    {
+      "id": "en-3-063",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"predict\" mean?",
+      "options": [
+        "Say what will happen",
+        "Remember the past",
+        "Draw a picture",
+        "Count again"
+      ],
+      "correctIndex": 0,
+      "explanation": "Weather forecasters predict the weather."
+    },
+    {
+      "id": "en-3-064",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is a \"nocturnal\" animal?",
+      "options": [
+        "One active at night",
+        "One that eats plants",
+        "One that lives in water",
+        "One that flies"
+      ],
+      "correctIndex": 0,
+      "explanation": "Owls and bats are nocturnal."
+    },
+    {
+      "id": "en-3-065",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"ignore\" mean?",
+      "options": [
+        "Pay no attention",
+        "Listen carefully",
+        "Shout loudly",
+        "Explain clearly"
+      ],
+      "correctIndex": 0,
+      "explanation": "If you ignore something, you act as if it isn't there."
+    },
+    {
+      "id": "en-3-066",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is a \"volcano\"?",
+      "options": [
+        "A mountain that can erupt",
+        "A deep lake",
+        "A strong wind",
+        "A big wave"
+      ],
+      "correctIndex": 0,
+      "explanation": "Volcanoes can throw out lava, ash and gas."
+    },
+    {
+      "id": "en-3-067",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"to let the cat out of the bag\" mean?",
+      "options": [
+        "To reveal a secret",
+        "To free a pet",
+        "To go shopping",
+        "To make a mess"
+      ],
+      "correctIndex": 0,
+      "explanation": "It means telling something that was supposed to be secret."
+    },
+    {
+      "id": "en-3-068",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Complete the saying: \"The early bird catches the ___.\"",
+      "options": [
+        "worm",
+        "fish",
+        "bus",
+        "cold"
+      ],
+      "correctIndex": 0,
+      "explanation": "People who start early get the best chances."
+    },
+    {
+      "id": "en-3-069",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"to be under the weather\" mean?",
+      "options": [
+        "To feel ill",
+        "To be outside",
+        "To be very happy",
+        "To be soaked"
+      ],
+      "correctIndex": 0,
+      "explanation": "If you are under the weather, you feel a bit sick."
+    },
+    {
+      "id": "en-3-070",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Complete the saying: \"Actions speak louder than ___.\"",
+      "options": [
+        "words",
+        "music",
+        "people",
+        "thunder"
+      ],
+      "correctIndex": 0,
+      "explanation": "What you do matters more than what you say."
+    },
+    {
+      "id": "en-3-071",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"to cost an arm and a leg\" mean?",
+      "options": [
+        "To be very expensive",
+        "To be dangerous",
+        "To hurt a lot",
+        "To be free"
+      ],
+      "correctIndex": 0,
+      "explanation": "Something that costs an arm and a leg is very expensive."
+    },
+    {
+      "id": "en-3-072",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Complete the saying: \"Don't count your chickens before they ___.\"",
+      "options": [
+        "hatch",
+        "eat",
+        "sleep",
+        "run"
+      ],
+      "correctIndex": 0,
+      "explanation": "Don't celebrate before something has actually happened."
+    },
+    {
+      "id": "en-3-073",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"to hit the books\" mean?",
+      "options": [
+        "To study hard",
+        "To throw books",
+        "To build shelves",
+        "To read a comic"
+      ],
+      "correctIndex": 0,
+      "explanation": "It is an informal way to say \"study\"."
+    },
+    {
+      "id": "en-3-074",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Complete the saying: \"When in Rome, do as the ___ do.\"",
+      "options": [
+        "Romans",
+        "tourists",
+        "Greeks",
+        "kings"
+      ],
+      "correctIndex": 0,
+      "explanation": "Follow the customs of the place you are visiting."
+    },
+    {
+      "id": "en-3-075",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Author is to book as composer is to...",
+      "options": [
+        "symphony",
+        "painting",
+        "statue",
+        "novel"
+      ],
+      "correctIndex": 0,
+      "explanation": "Authors write books; composers write music."
+    },
+    {
+      "id": "en-3-076",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Thermometer is to temperature as clock is to...",
+      "options": [
+        "time",
+        "weight",
+        "distance",
+        "speed"
+      ],
+      "correctIndex": 0,
+      "explanation": "A thermometer measures temperature; a clock measures time."
+    },
+    {
+      "id": "en-3-077",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Caterpillar is to butterfly as tadpole is to...",
+      "options": [
+        "frog",
+        "fish",
+        "snake",
+        "duck"
+      ],
+      "correctIndex": 0,
+      "explanation": "A caterpillar becomes a butterfly; a tadpole becomes a frog."
+    },
+    {
+      "id": "en-3-078",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Flock is to sheep as swarm is to...",
+      "options": [
+        "bees",
+        "wolves",
+        "cows",
+        "fish"
+      ],
+      "correctIndex": 0,
+      "explanation": "A group of sheep is a flock; a group of bees is a swarm."
+    },
+    {
+      "id": "en-3-079",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Fast is to faster as good is to...",
+      "options": [
+        "better",
+        "gooder",
+        "best",
+        "well"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Better\" is the comparative of \"good\"."
+    },
+    {
+      "id": "en-3-080",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Painter is to brush as writer is to...",
+      "options": [
+        "pen",
+        "canvas",
+        "camera",
+        "chisel"
+      ],
+      "correctIndex": 0,
+      "explanation": "A painter uses a brush; a writer uses a pen."
+    },
+    {
+      "id": "en-3-081",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Hungry is to eat as tired is to...",
+      "options": [
+        "sleep",
+        "run",
+        "drink",
+        "cook"
+      ],
+      "correctIndex": 0,
+      "explanation": "When you are hungry you eat; when tired you sleep."
+    },
+    {
+      "id": "en-3-082",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Pilot is to plane as captain is to...",
+      "options": [
+        "ship",
+        "train",
+        "bike",
+        "rocket"
+      ],
+      "correctIndex": 0,
+      "explanation": "A pilot flies a plane; a captain commands a ship."
+    },
+    {
+      "id": "en-3-083",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: Mercury, Venus, Moon, Mars?",
+      "options": [
+        "Moon",
+        "Mercury",
+        "Venus",
+        "Mars"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Moon is a satellite; the others are planets."
+    },
+    {
+      "id": "en-3-084",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: noun, verb, adjective, comma?",
+      "options": [
+        "comma",
+        "noun",
+        "verb",
+        "adjective"
+      ],
+      "correctIndex": 0,
+      "explanation": "A comma is punctuation; the others are word types."
+    },
+    {
+      "id": "en-3-085",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: violin, cello, trumpet, harp?",
+      "options": [
+        "trumpet",
+        "violin",
+        "cello",
+        "harp"
+      ],
+      "correctIndex": 0,
+      "explanation": "A trumpet is a brass instrument; the others have strings."
+    },
+    {
+      "id": "en-3-086",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: oak, pine, tulip, maple?",
+      "options": [
+        "tulip",
+        "oak",
+        "pine",
+        "maple"
+      ],
+      "correctIndex": 0,
+      "explanation": "A tulip is a flower; the others are trees."
+    },
+    {
+      "id": "en-3-087",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: centimetre, kilogram, metre, kilometre?",
+      "options": [
+        "kilogram",
+        "centimetre",
+        "metre",
+        "kilometre"
+      ],
+      "correctIndex": 0,
+      "explanation": "A kilogram measures weight; the others measure length."
+    },
+    {
+      "id": "en-3-088",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: happy, joyful, cheerful, gloomy?",
+      "options": [
+        "gloomy",
+        "happy",
+        "joyful",
+        "cheerful"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Gloomy\" means sad; the others mean happy."
+    },
+    {
+      "id": "en-3-089",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: Nile, Amazon, Sahara, Danube?",
+      "options": [
+        "Sahara",
+        "Nile",
+        "Amazon",
+        "Danube"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Sahara is a desert; the others are rivers."
+    },
+    {
+      "id": "en-3-090",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 1, 4, 9, 16, ...",
+      "options": [
+        "25",
+        "20",
+        "24",
+        "32"
+      ],
+      "correctIndex": 0,
+      "explanation": "These are square numbers: 1², 2², 3², 4², 5²."
+    },
+    {
+      "id": "en-3-091",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 2, 3, 5, 8, 12, ...",
+      "options": [
+        "17",
+        "15",
+        "16",
+        "18"
+      ],
+      "correctIndex": 0,
+      "explanation": "Add 1, 2, 3, 4, then 5."
+    },
+    {
+      "id": "en-3-092",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 81, 27, 9, 3, ...",
+      "options": [
+        "1",
+        "0",
+        "2",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "Divide by 3 each time."
+    },
+    {
+      "id": "en-3-093",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What letter comes next? Z, X, V, T, ...",
+      "options": [
+        "R",
+        "S",
+        "Q",
+        "U"
+      ],
+      "correctIndex": 0,
+      "explanation": "Go back two letters each time."
+    },
+    {
+      "id": "en-3-094",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 1, 1, 2, 3, 5, 8, ...",
+      "options": [
+        "13",
+        "11",
+        "12",
+        "16"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each number is the sum of the two before it."
+    },
+    {
+      "id": "en-3-095",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? J, F, M, A, M, J, ...",
+      "options": [
+        "J",
+        "A",
+        "S",
+        "D"
+      ],
+      "correctIndex": 0,
+      "explanation": "First letters of the months: June, then July."
+    },
+    {
+      "id": "en-3-096",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"LISTEN\" to make a word meaning \"without sound\".",
+      "options": [
+        "SILENT",
+        "TINSEL",
+        "INLETS",
+        "ENLIST"
+      ],
+      "correctIndex": 0,
+      "explanation": "L-I-S-T-E-N also spells S-I-L-E-N-T."
+    },
+    {
+      "id": "en-3-097",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"ACT\" to make a domestic animal.",
+      "options": [
+        "CAT",
+        "TAC",
+        "TEA",
+        "COT"
+      ],
+      "correctIndex": 0,
+      "explanation": "A-C-T also spells C-A-T."
+    },
+    {
+      "id": "en-3-098",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"DUSTY\" to make what you do at school.",
+      "options": [
+        "STUDY",
+        "DUSKY",
+        "STUDS",
+        "TUSKY"
+      ],
+      "correctIndex": 0,
+      "explanation": "D-U-S-T-Y also spells S-T-U-D-Y."
+    },
+    {
+      "id": "en-3-099",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"NIGHT\" to make an object or item.",
+      "options": [
+        "THING",
+        "TIGHT",
+        "THINK",
+        "THIGH"
+      ],
+      "correctIndex": 0,
+      "explanation": "N-I-G-H-T also spells T-H-I-N-G."
+    },
+    {
+      "id": "en-3-100",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"PEACH\" to make a word meaning \"low in price\".",
+      "options": [
+        "CHEAP",
+        "CHAPEL",
+        "PEACE",
+        "CHAPS"
+      ],
+      "correctIndex": 0,
+      "explanation": "P-E-A-C-H also spells C-H-E-A-P."
+    },
+    {
+      "id": "en-3-101",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which bird is hidden in \"BOWLING\"?",
+      "options": [
+        "owl",
+        "hen",
+        "crow",
+        "duck"
+      ],
+      "correctIndex": 0,
+      "explanation": "b-OWL-ing hides \"owl\"."
+    },
+    {
+      "id": "en-3-102",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which number is hidden in \"STONE\"?",
+      "options": [
+        "one",
+        "two",
+        "six",
+        "ten"
+      ],
+      "correctIndex": 0,
+      "explanation": "st-ONE hides \"one\"."
+    },
+    {
+      "id": "en-3-103",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which animal is hidden in \"PIGMENT\"?",
+      "options": [
+        "pig",
+        "hen",
+        "cat",
+        "ant"
+      ],
+      "correctIndex": 0,
+      "explanation": "PIG-ment hides \"pig\"."
+    },
+    {
+      "id": "en-3-104",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which body part is hidden in \"PEARLY\"?",
+      "options": [
+        "ear",
+        "eye",
+        "arm",
+        "leg"
+      ],
+      "correctIndex": 0,
+      "explanation": "p-EAR-ly hides \"ear\"."
+    },
+    {
+      "id": "en-3-105",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"information\"?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "In-for-ma-tion has four syllables."
+    },
+    {
+      "id": "en-3-106",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Which word has exactly three syllables?",
+      "options": [
+        "tomato",
+        "tea",
+        "apple",
+        "helicopter"
+      ],
+      "correctIndex": 0,
+      "explanation": "To-ma-to has three syllables."
+    },
+    {
+      "id": "en-3-107",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"photograph\"?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pho-to-graph has three syllables."
+    },
+    {
+      "id": "en-3-108",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Which word has only one syllable?",
+      "options": [
+        "strength",
+        "honey",
+        "animal",
+        "over"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Strength\" is long but it is said in one beat."
+    },
+    {
+      "id": "en-3-109",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What can travel around the world while staying in a corner?",
+      "options": [
+        "A stamp",
+        "A map",
+        "A plane",
+        "A clock"
+      ],
+      "correctIndex": 0,
+      "explanation": "A stamp stays in the corner of an envelope."
+    },
+    {
+      "id": "en-3-110",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What has cities but no houses, and rivers but no water?",
+      "options": [
+        "A map",
+        "A painting",
+        "A globe of glass",
+        "A story"
+      ],
+      "correctIndex": 0,
+      "explanation": "A map shows cities and rivers without the real things."
+    },
+    {
+      "id": "en-3-111",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What belongs to you but other people use it more?",
+      "options": [
+        "Your name",
+        "Your shoes",
+        "Your bed",
+        "Your phone"
+      ],
+      "correctIndex": 0,
+      "explanation": "Other people say your name more than you do."
+    },
+    {
+      "id": "en-3-112",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What has to be broken before you can use it?",
+      "options": [
+        "An egg",
+        "A key",
+        "A glass",
+        "A chair"
+      ],
+      "correctIndex": 0,
+      "explanation": "You crack an egg to cook it."
+    },
+    {
+      "id": "en-3-113",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "I am full of holes but I can still hold water. What am I?",
+      "options": [
+        "A sponge",
+        "A net",
+        "A sieve",
+        "A bucket"
+      ],
+      "correctIndex": 0,
+      "explanation": "A sponge soaks up water through its holes."
+    },
+    {
+      "id": "en-3-114",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What can you catch but never throw?",
+      "options": [
+        "A cold",
+        "A ball",
+        "A fish",
+        "A bus"
+      ],
+      "correctIndex": 0,
+      "explanation": "You can catch a cold but you can't throw it."
+    },
+    {
+      "id": "en-3-115",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "If all roses are flowers and some flowers fade quickly, which is true?",
+      "options": [
+        "Some roses may fade quickly",
+        "All roses fade quickly",
+        "No roses fade",
+        "Roses are not flowers"
+      ],
+      "correctIndex": 0,
+      "explanation": "We only know SOME flowers fade, so roses might or might not."
+    },
+    {
+      "id": "en-3-116",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Jo is in front of Max. Max is in front of Lia. Who is last?",
+      "options": [
+        "Lia",
+        "Jo",
+        "Max",
+        "Cannot know"
+      ],
+      "correctIndex": 0,
+      "explanation": "Order: Jo, Max, Lia."
+    },
+    {
+      "id": "en-3-117",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "A clock shows 3:00. What time will it show after 10 hours?",
+      "options": [
+        "1:00",
+        "13:00",
+        "12:00",
+        "2:00"
+      ],
+      "correctIndex": 0,
+      "explanation": "3 + 10 = 13, which on a 12-hour clock is 1:00."
+    },
+    {
+      "id": "en-3-118",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "A ball is red, blue or green. It is not red and it is not blue. What colour is it?",
+      "options": [
+        "Green",
+        "Red",
+        "Blue",
+        "Cannot know"
+      ],
+      "correctIndex": 0,
+      "explanation": "Only green is left."
+    },
+    {
+      "id": "en-3-119",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Ben has two sisters. Each sister has one brother. How many brothers are there?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Both sisters share the same brother: Ben."
+    },
+    {
+      "id": "en-3-120",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Yesterday was Sunday. What day will it be the day after tomorrow?",
+      "options": [
+        "Wednesday",
+        "Tuesday",
+        "Monday",
+        "Thursday"
+      ],
+      "correctIndex": 0,
+      "explanation": "Today is Monday, tomorrow Tuesday, then Wednesday."
+    },
+    {
+      "id": "en-3-121",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "A book costs £8. How much do 5 books cost?",
+      "options": [
+        "£40",
+        "£35",
+        "£45",
+        "£13"
+      ],
+      "correctIndex": 0,
+      "explanation": "5 × 8 = 40."
+    },
+    {
+      "id": "en-3-122",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "A bus leaves at 8:45 and the trip takes 35 minutes. When does it arrive?",
+      "options": [
+        "9:20",
+        "9:10",
+        "9:25",
+        "9:15"
+      ],
+      "correctIndex": 0,
+      "explanation": "8:45 + 15 min = 9:00, + 20 min = 9:20."
+    },
+    {
+      "id": "en-3-123",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Emma reads 12 pages a day. How many pages does she read in a week?",
+      "options": [
+        "84",
+        "72",
+        "96",
+        "74"
+      ],
+      "correctIndex": 0,
+      "explanation": "12 × 7 = 84."
+    },
+    {
+      "id": "en-3-124",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "A shirt costs £20 and is 25% off. What is the new price?",
+      "options": [
+        "£15",
+        "£5",
+        "£18",
+        "£16"
+      ],
+      "correctIndex": 0,
+      "explanation": "25% of 20 is 5; 20 - 5 = 15."
+    },
+    {
+      "id": "en-3-125",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "A garden is 6 m long and 4 m wide. What is its area?",
+      "options": [
+        "24 m²",
+        "20 m²",
+        "10 m²",
+        "28 m²"
+      ],
+      "correctIndex": 0,
+      "explanation": "Area = length × width = 6 × 4."
+    },
+    {
+      "id": "en-3-126",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Tom is 3 times as old as his sister, who is 4. How old is Tom?",
+      "options": [
+        "12",
+        "7",
+        "10",
+        "16"
+      ],
+      "correctIndex": 0,
+      "explanation": "3 × 4 = 12."
+    },
+    {
+      "id": "en-3-127",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How much is 15 × 4?",
+      "options": [
+        "60",
+        "45",
+        "50",
+        "64"
+      ],
+      "correctIndex": 0,
+      "explanation": "15 × 4 = 60."
+    },
+    {
+      "id": "en-3-128",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "What is 3/4 written as a percentage?",
+      "options": [
+        "75%",
+        "34%",
+        "70%",
+        "43%"
+      ],
+      "correctIndex": 0,
+      "explanation": "3 ÷ 4 = 0.75 = 75%."
+    },
+    {
+      "id": "en-3-129",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "What is the perimeter of a square with sides of 5 cm?",
+      "options": [
+        "20 cm",
+        "25 cm",
+        "10 cm",
+        "15 cm"
+      ],
+      "correctIndex": 0,
+      "explanation": "A square has 4 equal sides: 4 × 5 = 20."
+    },
+    {
+      "id": "en-3-130",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How many degrees are in a right angle?",
+      "options": [
+        "90",
+        "45",
+        "180",
+        "360"
+      ],
+      "correctIndex": 0,
+      "explanation": "A right angle measures 90°."
+    },
+    {
+      "id": "en-3-131",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "Which is a prime number?",
+      "options": [
+        "7",
+        "9",
+        "15",
+        "21"
+      ],
+      "correctIndex": 0,
+      "explanation": "7 can only be divided by 1 and itself."
+    },
+    {
+      "id": "en-3-132",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How much is 0.5 + 0.25?",
+      "options": [
+        "0.75",
+        "0.30",
+        "0.525",
+        "0.705"
+      ],
+      "correctIndex": 0,
+      "explanation": "Half plus a quarter is three quarters: 0.75."
+    },
+    {
+      "id": "en-3-133",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How many centimetres are in a metre?",
+      "options": [
+        "100",
+        "10",
+        "1000",
+        "60"
+      ],
+      "correctIndex": 0,
+      "explanation": "1 m = 100 cm."
+    },
+    {
+      "id": "en-3-134",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "What is 144 ÷ 12?",
+      "options": [
+        "12",
+        "14",
+        "11",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "12 × 12 = 144."
+    },
+    {
+      "id": "en-3-135",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which planet is known as the Red Planet?",
+      "options": [
+        "Mars",
+        "Jupiter",
+        "Venus",
+        "Saturn"
+      ],
+      "correctIndex": 0,
+      "explanation": "Iron-rich dust makes Mars look red."
+    },
+    {
+      "id": "en-3-136",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What do plants take in from the air to make food?",
+      "options": [
+        "Carbon dioxide",
+        "Oxygen",
+        "Nitrogen",
+        "Helium"
+      ],
+      "correctIndex": 0,
+      "explanation": "In photosynthesis plants use CO₂, water and light."
+    },
+    {
+      "id": "en-3-137",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which organ do we use to think?",
+      "options": [
+        "The brain",
+        "The liver",
+        "The heart",
+        "The lungs"
+      ],
+      "correctIndex": 0,
+      "explanation": "The brain controls thinking and the whole body."
+    },
+    {
+      "id": "en-3-138",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What is H₂O?",
+      "options": [
+        "Water",
+        "Salt",
+        "Oxygen",
+        "Sugar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Water is two hydrogen atoms and one oxygen atom."
+    },
+    {
+      "id": "en-3-139",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which is the largest planet in our solar system?",
+      "options": [
+        "Jupiter",
+        "Saturn",
+        "Earth",
+        "Neptune"
+      ],
+      "correctIndex": 0,
+      "explanation": "Jupiter is more than 11 times wider than Earth."
+    },
+    {
+      "id": "en-3-140",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "How many bones does an adult human have?",
+      "options": [
+        "206",
+        "106",
+        "306",
+        "156"
+      ],
+      "correctIndex": 0,
+      "explanation": "An adult skeleton has about 206 bones."
+    },
+    {
+      "id": "en-3-141",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What is the hardest natural material?",
+      "options": [
+        "Diamond",
+        "Gold",
+        "Iron",
+        "Granite"
+      ],
+      "correctIndex": 0,
+      "explanation": "Diamond is the hardest natural substance."
+    },
+    {
+      "id": "en-3-142",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What do we call animals that eat only plants?",
+      "options": [
+        "Herbivores",
+        "Carnivores",
+        "Omnivores",
+        "Predators"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cows and rabbits are herbivores."
+    },
+    {
+      "id": "en-3-143",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which sense do we use the tongue for?",
+      "options": [
+        "Taste",
+        "Smell",
+        "Hearing",
+        "Sight"
+      ],
+      "correctIndex": 0,
+      "explanation": "Taste buds are on the tongue."
+    },
+    {
+      "id": "en-3-144",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What is the boiling point of water at sea level?",
+      "options": [
+        "100 °C",
+        "50 °C",
+        "90 °C",
+        "120 °C"
+      ],
+      "correctIndex": 0,
+      "explanation": "Water boils at 100 °C at sea level."
+    },
+    {
+      "id": "en-3-145",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Japan?",
+      "options": [
+        "Tokyo",
+        "Kyoto",
+        "Osaka",
+        "Seoul"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tokyo is the capital of Japan."
+    },
+    {
+      "id": "en-3-146",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which river flows through London?",
+      "options": [
+        "The Thames",
+        "The Seine",
+        "The Rhine",
+        "The Danube"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Thames flows through London."
+    },
+    {
+      "id": "en-3-147",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Australia?",
+      "options": [
+        "Canberra",
+        "Sydney",
+        "Melbourne",
+        "Perth"
+      ],
+      "correctIndex": 0,
+      "explanation": "Canberra is the capital, not Sydney."
+    },
+    {
+      "id": "en-3-148",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the largest desert that is hot?",
+      "options": [
+        "Sahara",
+        "Gobi",
+        "Atacama",
+        "Kalahari"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Sahara is the largest hot desert."
+    },
+    {
+      "id": "en-3-149",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which country is both in Europe and Asia?",
+      "options": [
+        "Turkey",
+        "Spain",
+        "Japan",
+        "Egypt"
+      ],
+      "correctIndex": 0,
+      "explanation": "Turkey lies in both Europe and Asia."
+    },
+    {
+      "id": "en-3-150",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Canada?",
+      "options": [
+        "Ottawa",
+        "Toronto",
+        "Vancouver",
+        "Montreal"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ottawa is the capital of Canada."
+    },
+    {
+      "id": "en-3-151",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "In which ocean is Madagascar?",
+      "options": [
+        "Indian Ocean",
+        "Pacific Ocean",
+        "Atlantic Ocean",
+        "Arctic Ocean"
+      ],
+      "correctIndex": 0,
+      "explanation": "Madagascar lies off East Africa in the Indian Ocean."
+    },
+    {
+      "id": "en-3-152",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which mountains separate Spain and France?",
+      "options": [
+        "The Pyrenees",
+        "The Alps",
+        "The Andes",
+        "The Urals"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Pyrenees run along the border."
+    },
+    {
+      "id": "en-3-153",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Brazil?",
+      "options": [
+        "Brasília",
+        "Rio de Janeiro",
+        "São Paulo",
+        "Salvador"
+      ],
+      "correctIndex": 0,
+      "explanation": "Brasília became the capital in 1960."
+    },
+    {
+      "id": "en-3-154",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the smallest continent?",
+      "options": [
+        "Oceania",
+        "Europe",
+        "Antarctica",
+        "South America"
+      ],
+      "correctIndex": 0,
+      "explanation": "Oceania (Australia and nearby islands) is the smallest."
+    },
+    {
+      "id": "en-3-155",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "In which year did Columbus first reach the Americas?",
+      "options": [
+        "1492",
+        "1592",
+        "1392",
+        "1500"
+      ],
+      "correctIndex": 0,
+      "explanation": "He arrived in the Caribbean in 1492."
+    },
+    {
+      "id": "en-3-156",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Which empire built the Colosseum?",
+      "options": [
+        "The Roman Empire",
+        "The Greek Empire",
+        "The Persian Empire",
+        "The Ottoman Empire"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Colosseum was built in Rome in the 1st century."
+    },
+    {
+      "id": "en-3-157",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Who was the first President of the United States?",
+      "options": [
+        "George Washington",
+        "Abraham Lincoln",
+        "Thomas Jefferson",
+        "John Adams"
+      ],
+      "correctIndex": 0,
+      "explanation": "Washington became president in 1789."
+    },
+    {
+      "id": "en-3-158",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "What was the Great Wall of China built for?",
+      "options": [
+        "Protection from invaders",
+        "Holding water",
+        "Growing rice",
+        "Racing horses"
+      ],
+      "correctIndex": 0,
+      "explanation": "It protected China from attacks from the north."
+    },
+    {
+      "id": "en-3-159",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Which ship sank in 1912 after hitting an iceberg?",
+      "options": [
+        "The Titanic",
+        "The Mayflower",
+        "The Victory",
+        "The Beagle"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Titanic sank on its first voyage."
+    },
+    {
+      "id": "en-3-160",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Which civilisation built Machu Picchu?",
+      "options": [
+        "The Incas",
+        "The Aztecs",
+        "The Maya",
+        "The Romans"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Incas built it in the Andes of Peru."
+    },
+    {
+      "id": "en-3-161",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Who invented the printing press in Europe around 1440?",
+      "options": [
+        "Johannes Gutenberg",
+        "Thomas Edison",
+        "Galileo",
+        "Leonardo da Vinci"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gutenberg's press made books much cheaper."
+    },
+    {
+      "id": "en-3-162",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "In which year did the Second World War end?",
+      "options": [
+        "1945",
+        "1918",
+        "1939",
+        "1950"
+      ],
+      "correctIndex": 0,
+      "explanation": "It ended in 1945."
+    },
+    {
+      "id": "en-3-163",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "How many hours are there in two days?",
+      "options": [
+        "48",
+        "24",
+        "36",
+        "72"
+      ],
+      "correctIndex": 0,
+      "explanation": "2 × 24 = 48."
+    },
+    {
+      "id": "en-3-164",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "In which sport do you use a racket and a shuttlecock?",
+      "options": [
+        "Badminton",
+        "Tennis",
+        "Squash",
+        "Golf"
+      ],
+      "correctIndex": 0,
+      "explanation": "Badminton is played with a shuttlecock."
+    },
+    {
+      "id": "en-3-165",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "What is the main language spoken in Brazil?",
+      "options": [
+        "Portuguese",
+        "Spanish",
+        "Brazilian",
+        "French"
+      ],
+      "correctIndex": 0,
+      "explanation": "Brazil was a Portuguese colony."
+    },
+    {
+      "id": "en-3-166",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "How many years are there in a century?",
+      "options": [
+        "100",
+        "10",
+        "1000",
+        "50"
+      ],
+      "correctIndex": 0,
+      "explanation": "A century is 100 years."
+    },
+    {
+      "id": "en-3-167",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "Which is the fastest land animal?",
+      "options": [
+        "Cheetah",
+        "Lion",
+        "Horse",
+        "Antelope"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cheetahs can run at over 100 km/h."
+    },
+    {
+      "id": "en-3-168",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "What is the plural of \"child\"?",
+      "options": [
+        "children",
+        "childs",
+        "childes",
+        "childen"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Child\" has an irregular plural."
+    },
+    {
+      "id": "en-3-169",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "How many strings does a standard violin have?",
+      "options": [
+        "4",
+        "6",
+        "5",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "A violin has four strings."
+    },
+    {
+      "id": "en-3-170",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Which artist painted \"The Starry Night\"?",
+      "options": [
+        "Vincent van Gogh",
+        "Claude Monet",
+        "Pablo Picasso",
+        "Frida Kahlo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Van Gogh painted it in 1889."
+    },
+    {
+      "id": "en-3-171",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "What do we call a painting of fruit, flowers or objects?",
+      "options": [
+        "A still life",
+        "A portrait",
+        "A landscape",
+        "A mural"
+      ],
+      "correctIndex": 0,
+      "explanation": "A still life shows objects that do not move."
+    },
+    {
+      "id": "en-3-172",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "What is a \"mural\"?",
+      "options": [
+        "A painting on a wall",
+        "A small statue",
+        "A type of poem",
+        "A dance step"
+      ],
+      "correctIndex": 0,
+      "explanation": "Murals are painted directly on walls."
+    },
+    {
+      "id": "en-3-173",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Which are the \"cool\" colours?",
+      "options": [
+        "Blue, green and purple",
+        "Red, orange and yellow",
+        "Black and white",
+        "Pink and brown"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cool colours remind us of water and ice."
+    },
+    {
+      "id": "en-3-174",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Who composed the \"Moonlight Sonata\"?",
+      "options": [
+        "Beethoven",
+        "Mozart",
+        "Bach",
+        "Vivaldi"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ludwig van Beethoven wrote it in 1801."
+    },
+    {
+      "id": "en-3-175",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Which artist helped start the Cubism movement?",
+      "options": [
+        "Pablo Picasso",
+        "Rembrandt",
+        "Michelangelo",
+        "Turner"
+      ],
+      "correctIndex": 0,
+      "explanation": "Picasso helped create Cubism."
+    },
+    {
+      "id": "en-3-176",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "What is the art of beautiful handwriting called?",
+      "options": [
+        "Calligraphy",
+        "Photography",
+        "Pottery",
+        "Origami"
+      ],
+      "correctIndex": 0,
+      "explanation": "Calligraphy means beautiful writing."
+    },
+    {
+      "id": "en-3-177",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Who painted the ceiling of the Sistine Chapel?",
+      "options": [
+        "Michelangelo",
+        "Raphael",
+        "Donatello",
+        "Botticelli"
+      ],
+      "correctIndex": 0,
+      "explanation": "Michelangelo painted it between 1508 and 1512."
+    },
+    {
+      "id": "en-3-178",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a word meaning \"for certain\"?",
+      "options": [
+        "definitely",
+        "definately",
+        "defenitely",
+        "definitly"
+      ],
+      "correctIndex": 0,
+      "explanation": "It comes from \"finite\": de-fin-ite-ly."
+    },
+    {
+      "id": "en-3-179",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"I'm sorry for the ___.\"",
+      "options": [
+        "mistake",
+        "misstake",
+        "mistaik",
+        "mestake"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mis + take = mistake, with one s."
+    },
+    {
+      "id": "en-3-180",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of someone who studies at a school?",
+      "options": [
+        "pupil",
+        "pupill",
+        "pupel",
+        "peuple"
+      ],
+      "correctIndex": 0,
+      "explanation": "P-u-p-i-l, with one l."
+    },
+    {
+      "id": "en-3-181",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"The ___ was delicious.\"",
+      "options": [
+        "restaurant",
+        "restaraunt",
+        "resturant",
+        "restorant"
+      ],
+      "correctIndex": 0,
+      "explanation": "Res-tau-rant: \"tau\" in the middle."
+    },
+    {
+      "id": "en-3-182",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the first meal of the day?",
+      "options": [
+        "breakfast",
+        "brekfast",
+        "breakfest",
+        "brakefast"
+      ],
+      "correctIndex": 0,
+      "explanation": "Break + fast: you \"break\" the night's fast."
+    },
+    {
+      "id": "en-3-183",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I ___ the answer before the teacher asked.\"",
+      "options": [
+        "knew",
+        "new",
+        "gnu",
+        "knue"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Knew\" is the past of \"know\". \"New\" means not old."
+    },
+    {
+      "id": "en-3-184",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"We walked ___ the forest.\"",
+      "options": [
+        "through",
+        "threw",
+        "thru",
+        "though"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Through\" means from one side to the other. \"Threw\" is the past of throw."
+    },
+    {
+      "id": "en-3-185",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"She ___ the ball to me.\"",
+      "options": [
+        "threw",
+        "through",
+        "thrue",
+        "throw"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Threw\" is the past of \"throw\"."
+    },
+    {
+      "id": "en-3-186",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The ___ will arrive soon.\"",
+      "options": [
+        "mail",
+        "male",
+        "meil",
+        "mayl"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Mail\" means letters and parcels. \"Male\" means a boy or man."
+    },
+    {
+      "id": "en-3-187",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the meeting is correct?",
+      "options": [
+        "Everyone has brought their book.",
+        "Everyone have brought their book.",
+        "Everyone has brung their book.",
+        "Everyone have bring their book."
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Everyone\" is singular (\"has\") and the past participle is \"brought\"."
+    },
+    {
+      "id": "en-3-188",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the kitten is correct?",
+      "options": [
+        "It was so small that it hid in a hat.",
+        "It was so small what it hid in a hat.",
+        "It was such small that it hid in a hat.",
+        "It was so small than it hid in a hat."
+      ],
+      "correctIndex": 0,
+      "explanation": "The pattern is \"so + adjective + that\"."
+    },
+    {
+      "id": "en-3-189",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about music is correct?",
+      "options": [
+        "I enjoy listening to music.",
+        "I enjoy to listen to music.",
+        "I enjoy listen to music.",
+        "I enjoy listening music."
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Enjoy\" is followed by -ing, and we \"listen to\" something."
+    },
+    {
+      "id": "en-3-190",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"He apologised ___ being late.\"",
+      "options": [
+        "for",
+        "of",
+        "about",
+        "to"
+      ],
+      "correctIndex": 0,
+      "explanation": "We apologise \"for\" something."
+    },
+    {
+      "id": "en-3-191",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"She is the ___ student in the class.\"",
+      "options": [
+        "tallest",
+        "taller",
+        "most tall",
+        "more tallest"
+      ],
+      "correctIndex": 0,
+      "explanation": "To compare more than two, use -est."
+    },
+    {
+      "id": "en-3-192",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"I haven't seen him ___ last summer.\"",
+      "options": [
+        "since",
+        "for",
+        "ago",
+        "from"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Since\" + a point in time."
+    },
+    {
+      "id": "en-3-193",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"They ___ watching TV when the phone rang.\"",
+      "options": [
+        "were",
+        "was",
+        "are",
+        "did"
+      ],
+      "correctIndex": 0,
+      "explanation": "Past continuous with \"they\": \"were watching\"."
+    },
+    {
+      "id": "en-3-194",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"enormous\"?",
+      "options": [
+        "gigantic",
+        "minute",
+        "narrow",
+        "slight"
+      ],
+      "correctIndex": 0,
+      "explanation": "Both mean very, very big."
+    },
+    {
+      "id": "en-3-195",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"accept\"?",
+      "options": [
+        "refuse",
+        "receive",
+        "agree",
+        "allow"
+      ],
+      "correctIndex": 0,
+      "explanation": "To accept is to say yes; to refuse is to say no."
+    },
+    {
+      "id": "en-3-196",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"silent\"?",
+      "options": [
+        "mute",
+        "loud",
+        "crowded",
+        "busy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Both mean without sound."
+    },
+    {
+      "id": "en-3-197",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is an \"island\"?",
+      "options": [
+        "Land surrounded by water",
+        "A tall mountain",
+        "A deep valley",
+        "A river mouth"
+      ],
+      "correctIndex": 0,
+      "explanation": "An island has water all around it."
+    },
+    {
+      "id": "en-3-198",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"curious\" mean?",
+      "options": [
+        "Wanting to know things",
+        "Very angry",
+        "Very sleepy",
+        "Afraid of the dark"
+      ],
+      "correctIndex": 0,
+      "explanation": "Curious people ask lots of questions."
+    },
+    {
+      "id": "en-3-199",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"ally\" mean?",
+      "options": [
+        "A friend who helps you",
+        "An enemy",
+        "A narrow street",
+        "A type of metal"
+      ],
+      "correctIndex": 0,
+      "explanation": "Allies support each other."
+    },
+    {
+      "id": "en-3-200",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"once in a blue moon\" mean?",
+      "options": [
+        "Very rarely",
+        "Every night",
+        "During winter",
+        "At midnight"
+      ],
+      "correctIndex": 0,
+      "explanation": "Something that happens once in a blue moon almost never happens."
+    },
+    {
+      "id": "en-3-201",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Complete the saying: \"Two heads are better than ___.\"",
+      "options": [
+        "one",
+        "none",
+        "three",
+        "four"
+      ],
+      "correctIndex": 0,
+      "explanation": "Two people working together find better ideas."
+    },
+    {
+      "id": "en-3-202",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"to bite off more than you can chew\" mean?",
+      "options": [
+        "To try to do too much",
+        "To eat too fast",
+        "To lose a tooth",
+        "To speak rudely"
+      ],
+      "correctIndex": 0,
+      "explanation": "It means taking on a task that is too big for you."
+    }
+  ]
+}

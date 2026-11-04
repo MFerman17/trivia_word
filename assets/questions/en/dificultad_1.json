@@ -1,0 +1,1155 @@
+{
+  "language": "en",
+  "difficulty": 1,
+  "version": 1,
+  "questions": [
+    {
+      "id": "en-1-001",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"The ___ barked at the cat.\"",
+      "options": [
+        "dog",
+        "dogg",
+        "doge",
+        "dag"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Dog\" is spelled d-o-g."
+    },
+    {
+      "id": "en-1-002",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a person you like to play with?",
+      "options": [
+        "friend",
+        "freind",
+        "frend",
+        "friendd"
+      ],
+      "correctIndex": 0,
+      "explanation": "Remember: \"i before e\" in \"friend\": f-r-i-e-n-d."
+    },
+    {
+      "id": "en-1-003",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"I eat an ___ every day.\"",
+      "options": [
+        "apple",
+        "aple",
+        "appel",
+        "appul"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Apple\" has a double p: a-p-p-l-e."
+    },
+    {
+      "id": "en-1-004",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the place where children learn?",
+      "options": [
+        "school",
+        "scool",
+        "skool",
+        "schol"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"School\" has a silent h: s-c-h-o-o-l."
+    },
+    {
+      "id": "en-1-005",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"The ___ is shining today.\"",
+      "options": [
+        "sun",
+        "sunn",
+        "son",
+        "sen"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Sun\" (the star in the sky) is spelled s-u-n."
+    },
+    {
+      "id": "en-1-006",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the opposite of sad?",
+      "options": [
+        "happy",
+        "hapy",
+        "happie",
+        "hapee"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Happy\" has a double p and ends in y."
+    },
+    {
+      "id": "en-1-007",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"Birds can ___.\"",
+      "options": [
+        "fly",
+        "fli",
+        "flie",
+        "fligh"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Fly\" ends with a y."
+    },
+    {
+      "id": "en-1-008",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of what we drink when we are thirsty?",
+      "options": [
+        "water",
+        "watter",
+        "wotter",
+        "warter"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Water\" has just one t: w-a-t-e-r."
+    },
+    {
+      "id": "en-1-009",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I have ___ cats.\"",
+      "options": [
+        "two",
+        "too",
+        "to",
+        "tow"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Two\" is the number 2. \"Too\" means also; \"to\" shows direction."
+    },
+    {
+      "id": "en-1-010",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I can ___ the birds singing.\"",
+      "options": [
+        "hear",
+        "here",
+        "hair",
+        "heir"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Hear\" is what you do with your ears. \"Here\" means this place."
+    },
+    {
+      "id": "en-1-011",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The sky is ___.\"",
+      "options": [
+        "blue",
+        "blew",
+        "bloo",
+        "blu"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Blue\" is a colour. \"Blew\" is the past of \"blow\"."
+    },
+    {
+      "id": "en-1-012",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Please come over ___.\"",
+      "options": [
+        "here",
+        "hear",
+        "heir",
+        "hare"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Here\" means in this place."
+    },
+    {
+      "id": "en-1-013",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"A ___ has seven days.\"",
+      "options": [
+        "week",
+        "weak",
+        "wick",
+        "wake"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Week\" is seven days. \"Weak\" means not strong."
+    },
+    {
+      "id": "en-1-014",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I ___ a letter yesterday.\"",
+      "options": [
+        "wrote",
+        "rote",
+        "root",
+        "route"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Wrote\" is the past of \"write\"."
+    },
+    {
+      "id": "en-1-015",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about a red ball is correct?",
+      "options": [
+        "She has a red ball.",
+        "She have a red ball.",
+        "She haves a red ball.",
+        "She having a red ball."
+      ],
+      "correctIndex": 0,
+      "explanation": "With \"she\" we use \"has\"."
+    },
+    {
+      "id": "en-1-016",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about friends is correct?",
+      "options": [
+        "They are my friends.",
+        "They is my friends.",
+        "They am my friends.",
+        "They be my friends."
+      ],
+      "correctIndex": 0,
+      "explanation": "With \"they\" we use \"are\"."
+    },
+    {
+      "id": "en-1-017",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about mice is correct?",
+      "options": [
+        "I saw two mice.",
+        "I saw two mouses.",
+        "I saw two mouse.",
+        "I saw two mices."
+      ],
+      "correctIndex": 0,
+      "explanation": "The plural of \"mouse\" is \"mice\"."
+    },
+    {
+      "id": "en-1-018",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about going to school is correct?",
+      "options": [
+        "He goes to school.",
+        "He go to school.",
+        "He going to school.",
+        "He gos to school."
+      ],
+      "correctIndex": 0,
+      "explanation": "With \"he\" we add -es: \"goes\"."
+    },
+    {
+      "id": "en-1-019",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"The cat is ___ the box.\"",
+      "options": [
+        "in",
+        "of",
+        "at",
+        "by"
+      ],
+      "correctIndex": 0,
+      "explanation": "Something inside a box is \"in\" the box."
+    },
+    {
+      "id": "en-1-020",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"I brush my ___ every morning.\"",
+      "options": [
+        "teeth",
+        "tooths",
+        "teeths",
+        "tooth"
+      ],
+      "correctIndex": 0,
+      "explanation": "The plural of \"tooth\" is \"teeth\"."
+    },
+    {
+      "id": "en-1-021",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"We sleep at ___.\"",
+      "options": [
+        "night",
+        "noon",
+        "lunch",
+        "breakfast"
+      ],
+      "correctIndex": 0,
+      "explanation": "Most people sleep at night."
+    },
+    {
+      "id": "en-1-022",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"Fish live in the ___.\"",
+      "options": [
+        "water",
+        "sky",
+        "sand",
+        "trees"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fish live in water."
+    },
+    {
+      "id": "en-1-023",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"Yesterday I ___ to the park.\"",
+      "options": [
+        "went",
+        "go",
+        "goed",
+        "going"
+      ],
+      "correctIndex": 0,
+      "explanation": "The past of \"go\" is \"went\"."
+    },
+    {
+      "id": "en-1-024",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"A cow says ___.\"",
+      "options": [
+        "moo",
+        "woof",
+        "meow",
+        "quack"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cows say \"moo\"; dogs say \"woof\"."
+    },
+    {
+      "id": "en-1-025",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"hot\"?",
+      "options": [
+        "cold",
+        "warm",
+        "big",
+        "wet"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Cold\" is the opposite of \"hot\"."
+    },
+    {
+      "id": "en-1-026",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"big\"?",
+      "options": [
+        "large",
+        "tiny",
+        "thin",
+        "short"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Large\" and \"big\" mean the same thing."
+    },
+    {
+      "id": "en-1-027",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"up\"?",
+      "options": [
+        "down",
+        "in",
+        "over",
+        "top"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Down\" is the opposite of \"up\"."
+    },
+    {
+      "id": "en-1-028",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"happy\"?",
+      "options": [
+        "glad",
+        "sad",
+        "angry",
+        "tired"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Glad\" means happy."
+    },
+    {
+      "id": "en-1-029",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"open\"?",
+      "options": [
+        "closed",
+        "wide",
+        "empty",
+        "full"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Closed\" is the opposite of \"open\"."
+    },
+    {
+      "id": "en-1-030",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"quick\"?",
+      "options": [
+        "fast",
+        "slow",
+        "late",
+        "quiet"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Fast\" and \"quick\" mean the same."
+    },
+    {
+      "id": "en-1-031",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is a \"puppy\"?",
+      "options": [
+        "A baby dog",
+        "A baby cat",
+        "A small bird",
+        "A young cow"
+      ],
+      "correctIndex": 0,
+      "explanation": "A puppy is a young dog."
+    },
+    {
+      "id": "en-1-032",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"huge\" mean?",
+      "options": [
+        "Very big",
+        "Very small",
+        "Very old",
+        "Very fast"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Huge\" means very big."
+    },
+    {
+      "id": "en-1-033",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is a \"chef\"?",
+      "options": [
+        "A cook",
+        "A doctor",
+        "A pilot",
+        "A farmer"
+      ],
+      "correctIndex": 0,
+      "explanation": "A chef is a person who cooks, often in a restaurant."
+    },
+    {
+      "id": "en-1-034",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What do you use an \"umbrella\" for?",
+      "options": [
+        "To stay dry in the rain",
+        "To cut paper",
+        "To see far away",
+        "To tell the time"
+      ],
+      "correctIndex": 0,
+      "explanation": "An umbrella keeps the rain off you."
+    },
+    {
+      "id": "en-1-035",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Complete the saying: \"An apple a day keeps the ___ away.\"",
+      "options": [
+        "doctor",
+        "teacher",
+        "dentist",
+        "baker"
+      ],
+      "correctIndex": 0,
+      "explanation": "This saying means healthy food keeps you well."
+    },
+    {
+      "id": "en-1-036",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "Complete the saying: \"Better late than ___.\"",
+      "options": [
+        "never",
+        "early",
+        "sorry",
+        "soon"
+      ],
+      "correctIndex": 0,
+      "explanation": "It is better to do something late than not at all."
+    },
+    {
+      "id": "en-1-037",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Bird is to nest as bee is to...",
+      "options": [
+        "hive",
+        "flower",
+        "honey",
+        "tree"
+      ],
+      "correctIndex": 0,
+      "explanation": "A bird lives in a nest; a bee lives in a hive."
+    },
+    {
+      "id": "en-1-038",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Hand is to glove as foot is to...",
+      "options": [
+        "sock",
+        "hat",
+        "ring",
+        "scarf"
+      ],
+      "correctIndex": 0,
+      "explanation": "A glove covers a hand; a sock covers a foot."
+    },
+    {
+      "id": "en-1-039",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Day is to sun as night is to...",
+      "options": [
+        "moon",
+        "cloud",
+        "rain",
+        "wind"
+      ],
+      "correctIndex": 0,
+      "explanation": "We see the sun in the day and the moon at night."
+    },
+    {
+      "id": "en-1-040",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Cat is to kitten as dog is to...",
+      "options": [
+        "puppy",
+        "calf",
+        "cub",
+        "chick"
+      ],
+      "correctIndex": 0,
+      "explanation": "A baby cat is a kitten; a baby dog is a puppy."
+    },
+    {
+      "id": "en-1-041",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which one is NOT a fruit?",
+      "options": [
+        "carrot",
+        "banana",
+        "apple",
+        "grape"
+      ],
+      "correctIndex": 0,
+      "explanation": "A carrot is a vegetable."
+    },
+    {
+      "id": "en-1-042",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which one is NOT a colour?",
+      "options": [
+        "chair",
+        "red",
+        "green",
+        "yellow"
+      ],
+      "correctIndex": 0,
+      "explanation": "A chair is furniture, not a colour."
+    },
+    {
+      "id": "en-1-043",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which one is NOT an animal?",
+      "options": [
+        "rock",
+        "tiger",
+        "horse",
+        "rabbit"
+      ],
+      "correctIndex": 0,
+      "explanation": "A rock is not alive."
+    },
+    {
+      "id": "en-1-044",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which one does NOT fly?",
+      "options": [
+        "fish",
+        "eagle",
+        "butterfly",
+        "bee"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fish swim; they do not fly."
+    },
+    {
+      "id": "en-1-045",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 2, 4, 6, 8, ...",
+      "options": [
+        "10",
+        "9",
+        "12",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "The numbers go up by 2."
+    },
+    {
+      "id": "en-1-046",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? Monday, Tuesday, Wednesday, ...",
+      "options": [
+        "Thursday",
+        "Friday",
+        "Sunday",
+        "Saturday"
+      ],
+      "correctIndex": 0,
+      "explanation": "Thursday comes after Wednesday."
+    },
+    {
+      "id": "en-1-047",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What letter comes next? A, B, C, D, ...",
+      "options": [
+        "E",
+        "F",
+        "G",
+        "Z"
+      ],
+      "correctIndex": 0,
+      "explanation": "E comes after D in the alphabet."
+    },
+    {
+      "id": "en-1-048",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? January, February, March, ...",
+      "options": [
+        "April",
+        "May",
+        "June",
+        "December"
+      ],
+      "correctIndex": 0,
+      "explanation": "April is the fourth month."
+    },
+    {
+      "id": "en-1-049",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange the letters of \"TAC\" to make an animal.",
+      "options": [
+        "CAT",
+        "ACT",
+        "COW",
+        "BAT"
+      ],
+      "correctIndex": 0,
+      "explanation": "T-A-C rearranged gives C-A-T."
+    },
+    {
+      "id": "en-1-050",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange the letters of \"GDO\" to make an animal.",
+      "options": [
+        "DOG",
+        "GOD",
+        "COD",
+        "HOG"
+      ],
+      "correctIndex": 0,
+      "explanation": "G-D-O rearranged gives D-O-G."
+    },
+    {
+      "id": "en-1-051",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which small word is hidden in \"BUTTERFLY\"?",
+      "options": [
+        "butter",
+        "bird",
+        "flower",
+        "tree"
+      ],
+      "correctIndex": 0,
+      "explanation": "B-U-T-T-E-R-fly: \"butter\" is at the start."
+    },
+    {
+      "id": "en-1-052",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which word is hidden in \"STARFISH\"?",
+      "options": [
+        "star",
+        "moon",
+        "sun",
+        "sky"
+      ],
+      "correctIndex": 0,
+      "explanation": "STAR-fish: \"star\" is hidden at the start."
+    },
+    {
+      "id": "en-1-053",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"banana\"?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ba-na-na has three syllables."
+    },
+    {
+      "id": "en-1-054",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"cat\"?",
+      "options": [
+        "1",
+        "2",
+        "3",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Cat\" is said in one beat."
+    },
+    {
+      "id": "en-1-055",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"elephant\"?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "El-e-phant has three syllables."
+    },
+    {
+      "id": "en-1-056",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "I have hands but I cannot clap. What am I?",
+      "options": [
+        "A clock",
+        "A tree",
+        "A chair",
+        "A spoon"
+      ],
+      "correctIndex": 0,
+      "explanation": "A clock has hands that show the time."
+    },
+    {
+      "id": "en-1-057",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "I am yellow, I am long and monkeys love me. What am I?",
+      "options": [
+        "A banana",
+        "A lemon",
+        "A pencil",
+        "A corn cob"
+      ],
+      "correctIndex": 0,
+      "explanation": "Monkeys love yellow bananas."
+    },
+    {
+      "id": "en-1-058",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What has keys but cannot open doors?",
+      "options": [
+        "A piano",
+        "A car",
+        "A house",
+        "A box"
+      ],
+      "correctIndex": 0,
+      "explanation": "A piano has black and white keys."
+    },
+    {
+      "id": "en-1-059",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What gets wetter the more it dries?",
+      "options": [
+        "A towel",
+        "A sponge cake",
+        "A rock",
+        "A candle"
+      ],
+      "correctIndex": 0,
+      "explanation": "A towel gets wet while it dries you."
+    },
+    {
+      "id": "en-1-060",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Tom is taller than Sam. Sam is taller than Ben. Who is the shortest?",
+      "options": [
+        "Ben",
+        "Tom",
+        "Sam",
+        "All the same"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tom > Sam > Ben, so Ben is the shortest."
+    },
+    {
+      "id": "en-1-061",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "All birds have feathers. A robin is a bird. So a robin...",
+      "options": [
+        "has feathers",
+        "has fur",
+        "has scales",
+        "has no feathers"
+      ],
+      "correctIndex": 0,
+      "explanation": "If all birds have feathers, a robin does too."
+    },
+    {
+      "id": "en-1-062",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Lucy has 3 apples and buys 2 more. How many apples does she have?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "3 + 2 = 5."
+    },
+    {
+      "id": "en-1-063",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "There are 10 birds on a tree. 4 fly away. How many are left?",
+      "options": [
+        "6",
+        "14",
+        "4",
+        "7"
+      ],
+      "correctIndex": 0,
+      "explanation": "10 - 4 = 6."
+    },
+    {
+      "id": "en-1-064",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How much is 7 + 5?",
+      "options": [
+        "12",
+        "11",
+        "13",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "7 + 5 = 12."
+    },
+    {
+      "id": "en-1-065",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How many sides does a triangle have?",
+      "options": [
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "A triangle has three sides."
+    },
+    {
+      "id": "en-1-066",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How much is 3 × 4?",
+      "options": [
+        "12",
+        "7",
+        "10",
+        "14"
+      ],
+      "correctIndex": 0,
+      "explanation": "3 groups of 4 make 12."
+    },
+    {
+      "id": "en-1-067",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which planet do we live on?",
+      "options": [
+        "Earth",
+        "Mars",
+        "Venus",
+        "Jupiter"
+      ],
+      "correctIndex": 0,
+      "explanation": "We live on planet Earth."
+    },
+    {
+      "id": "en-1-068",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What do plants need from the sky to grow?",
+      "options": [
+        "Sunlight",
+        "Snow",
+        "Wind",
+        "Thunder"
+      ],
+      "correctIndex": 0,
+      "explanation": "Plants use sunlight to make their food."
+    },
+    {
+      "id": "en-1-069",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What does ice become when it melts?",
+      "options": [
+        "Water",
+        "Steam",
+        "Sand",
+        "Glass"
+      ],
+      "correctIndex": 0,
+      "explanation": "Melted ice turns into water."
+    },
+    {
+      "id": "en-1-070",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "How many legs does a spider have?",
+      "options": [
+        "8",
+        "6",
+        "4",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "Spiders have eight legs; insects have six."
+    },
+    {
+      "id": "en-1-071",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the biggest ocean on Earth?",
+      "options": [
+        "Pacific",
+        "Atlantic",
+        "Indian",
+        "Arctic"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Pacific Ocean is the largest."
+    },
+    {
+      "id": "en-1-072",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which country has the Eiffel Tower?",
+      "options": [
+        "France",
+        "Italy",
+        "Spain",
+        "Germany"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Eiffel Tower is in Paris, France."
+    },
+    {
+      "id": "en-1-073",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the coldest continent?",
+      "options": [
+        "Antarctica",
+        "Africa",
+        "Europe",
+        "Asia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Antarctica is covered in ice."
+    },
+    {
+      "id": "en-1-074",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "In which country are the pyramids of Giza?",
+      "options": [
+        "Egypt",
+        "Mexico",
+        "Greece",
+        "India"
+      ],
+      "correctIndex": 0,
+      "explanation": "The pyramids of Giza are in Egypt."
+    },
+    {
+      "id": "en-1-075",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Which animals lived on Earth millions of years ago and are now extinct?",
+      "options": [
+        "Dinosaurs",
+        "Cats",
+        "Horses",
+        "Dolphins"
+      ],
+      "correctIndex": 0,
+      "explanation": "Dinosaurs died out about 66 million years ago."
+    },
+    {
+      "id": "en-1-076",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Who was the first person to walk on the Moon?",
+      "options": [
+        "Neil Armstrong",
+        "Albert Einstein",
+        "Isaac Newton",
+        "Marco Polo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Neil Armstrong walked on the Moon in 1969."
+    },
+    {
+      "id": "en-1-077",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "How many days are there in a week?",
+      "options": [
+        "7",
+        "5",
+        "6",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "A week has seven days."
+    },
+    {
+      "id": "en-1-078",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "What colour do you get when you mix blue and yellow?",
+      "options": [
+        "Green",
+        "Purple",
+        "Orange",
+        "Pink"
+      ],
+      "correctIndex": 0,
+      "explanation": "Blue and yellow make green."
+    },
+    {
+      "id": "en-1-079",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "Which meal do we usually eat in the morning?",
+      "options": [
+        "Breakfast",
+        "Dinner",
+        "Supper",
+        "Lunch"
+      ],
+      "correctIndex": 0,
+      "explanation": "Breakfast is the first meal of the day."
+    },
+    {
+      "id": "en-1-080",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Which tool does a painter use to paint?",
+      "options": [
+        "A brush",
+        "A hammer",
+        "A spoon",
+        "A saw"
+      ],
+      "correctIndex": 0,
+      "explanation": "Painters spread paint with a brush."
+    },
+    {
+      "id": "en-1-081",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "What are red, blue and yellow called in painting?",
+      "options": [
+        "Primary colours",
+        "Dark colours",
+        "Cold colours",
+        "Mixed colours"
+      ],
+      "correctIndex": 0,
+      "explanation": "They are primary colours: you can mix them to make others."
+    },
+    {
+      "id": "en-1-082",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Which instrument has six strings and is played with the fingers?",
+      "options": [
+        "Guitar",
+        "Drum",
+        "Trumpet",
+        "Flute"
+      ],
+      "correctIndex": 0,
+      "explanation": "A guitar usually has six strings."
+    }
+  ]
+}

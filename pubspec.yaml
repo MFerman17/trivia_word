@@ -60,6 +60,7 @@ flutter:
   assets:
     - assets/audio/
     - assets/questions/es/
+    - assets/questions/en/
     - assets/images/bg_landscape.png
     - assets/images/fighters/
     - assets/images/monsters/

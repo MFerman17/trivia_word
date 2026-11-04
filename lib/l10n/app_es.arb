@@ -2370,5 +2370,13 @@
   "forgeCheck": "COMPROBAR",
   "@forgeCheck": {
     "description": "EN: CHECK"
+  },
+  "catMatematicas": "Matemáticas",
+  "@catMatematicas": {
+    "description": "EN: Math"
+  },
+  "catArte": "Arte",
+  "@catArte": {
+    "description": "EN: Art"
   }
 }

@@ -504,5 +504,7 @@
   "forgeMasterWord": "MASTER WORD!",
   "forgeNotValid": "That one isn't on the list",
   "forgeAlreadyFound": "You already found it",
-  "forgeCheck": "CHECK"
+  "forgeCheck": "CHECK",
+  "catMatematicas": "Math",
+  "catArte": "Art"
 }

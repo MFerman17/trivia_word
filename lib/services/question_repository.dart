@@ -56,11 +56,13 @@ class QuestionRepository {
     'adivinanzas': 'Adivinanzas',
     'deduccion': 'Deducción',
     'problemas': 'Problemas narrados',
+    'matematicas': 'Matemáticas',
     // Apoyo
     'ciencia': 'Ciencia',
     'geografia': 'Geografía',
     'historia': 'Historia',
     'cultura_general': 'Cultura general',
+    'arte': 'Arte',
   };
 
   /// Nombre de la categoría en el idioma del banco cargado.
@@ -90,6 +92,8 @@ class QuestionRepository {
       'geografia' => l.catGeografia,
       'historia' => l.catHistoria,
       'cultura_general' => l.catCulturaGeneral,
+      'matematicas' => l.catMatematicas,
+      'arte' => l.catArte,
       _ => categoryNames[id] ?? id,
     };
   }

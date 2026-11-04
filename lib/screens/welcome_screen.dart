@@ -128,6 +128,33 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   child: ListView(
                     padding: const EdgeInsets.fromLTRB(20, 18, 20, 28),
                     children: [
+                      // La primera vez se puede elegir el idioma aquí mismo.
+                      if (!widget.editing && LocaleService.availableLanguages.length > 1) ...[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            for (final lang in LocaleService.availableLanguages)
+                              Padding(
+                                padding: const EdgeInsets.symmetric(horizontal: 4),
+                                child: ChoiceChip(
+                                  label: Text(LocaleService.nativeNames[lang] ?? lang.toUpperCase()),
+                                  selected: lang == LocaleService.languageCode,
+                                  selectedColor: WM.cyan,
+                                  labelStyle: GoogleFonts.oswald(
+                                    color: lang == LocaleService.languageCode ? WM.outline : Colors.white,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                  backgroundColor: const Color(0xFF3A2A7A),
+                                  onSelected: (_) async {
+                                    await LocaleService.setLanguage(lang);
+                                    if (mounted) setState(() => _error = null);
+                                  },
+                                ),
+                              ),
+                          ],
+                        ),
+                        const SizedBox(height: 12),
+                      ],
                       if (!widget.editing) ...[
                         OutlinedGameText(
                           l.welcomeTitle,

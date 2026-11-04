@@ -20,6 +20,7 @@ import '../services/ad_service.dart';
 import 'welcome_screen.dart';
 import 'tournament_screen.dart';
 import '../services/tournament_service.dart';
+import '../services/locale_service.dart';
 
 // Color de contorno común para todo el estilo "juego"
 const Color kOutline = Color(0xFF0D0326);
@@ -395,6 +396,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          // Idioma a la vista (solo si hay más de uno).
+                          if (LocaleService.availableLanguages.length > 1) ...[
+                            _buildLanguageButton(),
+                            const SizedBox(width: 10),
+                          ],
                           _buildSoundButton(),
                           const SizedBox(width: 10),
                           _buildSettingsButton(),
@@ -873,6 +879,73 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       );
 
   // Altavoz: silencia o activa música y efectos, igual que en el mapa.
+  /// Botón de idioma: muestra el idioma actual (ES, EN...) y al tocarlo deja
+  /// elegir otro. Cambia los textos Y el banco de preguntas a la vez.
+  Widget _buildLanguageButton() {
+    return GestureDetector(
+      onTap: () async {
+        AudioService.playButtonClick();
+        final code = await showModalBottomSheet<String>(
+          context: context,
+          backgroundColor: const Color(0xFF1A0F40),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.vertical(top: Radius.circular(22)),
+          ),
+          builder: (sheetContext) => SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 12),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    context.l10n.languageTitle,
+                    style: GoogleFonts.anton(color: kCyan, fontSize: 20, letterSpacing: 1.2),
+                  ),
+                  const SizedBox(height: 10),
+                  for (final lang in LocaleService.availableLanguages)
+                    ListTile(
+                      leading: Text(_languageFlag(lang), style: const TextStyle(fontSize: 26)),
+                      title: Text(
+                        LocaleService.nativeNames[lang] ?? lang.toUpperCase(),
+                        style: GoogleFonts.oswald(color: Colors.white, fontSize: 18),
+                      ),
+                      trailing: lang == LocaleService.languageCode
+                          ? const Icon(Icons.check_rounded, color: kCyan)
+                          : null,
+                      onTap: () => Navigator.of(sheetContext).pop(lang),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        );
+        if (code == null || code == LocaleService.languageCode) return;
+        await LocaleService.setLanguage(code);
+        if (mounted) setState(() {});
+      },
+      child: Container(
+        width: 46,
+        height: 46,
+        alignment: Alignment.center,
+        decoration: _roundButtonDecoration(),
+        child: Text(
+          LocaleService.languageCode.toUpperCase(),
+          style: GoogleFonts.anton(color: kCyan, fontSize: 16, letterSpacing: 1),
+        ),
+      ),
+    );
+  }
+
+  static String _languageFlag(String code) => switch (code) {
+        'es' => '🇪🇸',
+        'en' => '🇬🇧',
+        'pt' => '🇵🇹',
+        'fr' => '🇫🇷',
+        'it' => '🇮🇹',
+        'de' => '🇩🇪',
+        _ => '🌐',
+      };
+
   Widget _buildSoundButton() {
     final muted = AudioService.isMuted;
     return GestureDetector(

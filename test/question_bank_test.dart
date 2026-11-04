@@ -14,15 +14,17 @@ import 'package:words_and_monsters/services/question_repository.dart';
 /// Mínimo de preguntas por dificultad para lanzar (una partida completa
 /// sin repetir) y meta final (para rejugar sin repetir).
 const minimumForLaunch = {1: 70, 2: 150, 3: 150, 4: 150, 5: 80};
-const finalTarget = {1: 120, 2: 250, 3: 250, 4: 250, 5: 150};
+// Con 10 niveles por capítulo el recorrido pide unas 185 de dificultad 3 y 4
+// y unas 210 de dificultad 5 (ver Fase E).
+const finalTarget = {1: 120, 2: 250, 3: 250, 4: 250, 5: 250};
 
 /// Reparto previsto de temas.
 const groups = {
   'Lengua': ['ortografia', 'tildes', 'homofonos', 'detectar_error',
       'completar_frase', 'sinonimos_antonimos', 'significado', 'refranes'],
   'Lógica con palabras': ['analogias', 'intruso', 'series', 'anagramas',
-      'palabra_oculta', 'silabas', 'adivinanzas', 'deduccion', 'problemas'],
-  'Apoyo': ['ciencia', 'geografia', 'historia', 'cultura_general'],
+      'palabra_oculta', 'silabas', 'adivinanzas', 'deduccion', 'problemas', 'matematicas'],
+  'Apoyo': ['ciencia', 'geografia', 'historia', 'cultura_general', 'arte'],
 };
 const expectedShare = {'Lengua': 45, 'Lógica con palabras': 35, 'Apoyo': 20};
 

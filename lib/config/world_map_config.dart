@@ -1,5 +1,12 @@
 import 'package:flutter/material.dart';
 
+import '../services/asset_catalog.dart';
+
+/// Número de mundos del juego. Para añadir uno: su entrada en kWorldMaps,
+/// su nombre (worldNameN), su jefe (bossWorldN), sus mini retos (miniN1-3),
+/// sus historias (storyN1-3) y sus monstruos en QuestionBank.
+const int kWorldCount = 6;
+
 /// Niveles por capítulo y capítulos por mundo (3 x 10 = 30 niveles).
 /// El último nivel de cada capítulo es una pelea (ver FighterService).
 const int kLevelsPerChapter = 10;
@@ -22,11 +29,20 @@ class MapSegment {
   final bool mirrored;
   final List<Offset> nodes;
 
+  /// Tramo que se usa mientras la imagen de [asset] no exista en el juego
+  /// (mundos nuevos cuyas imágenes aún no se han hecho).
+  final MapSegment? fallback;
+
   const MapSegment({
     required this.asset,
     required this.nodes,
     this.mirrored = false,
+    this.fallback,
   });
+
+  /// Este tramo si su imagen existe; si no, el de reserva.
+  MapSegment get resolved =>
+      fallback == null || AssetCatalog.has(asset) ? this : fallback!.resolved;
 
   Offset nodeAt(int i) {
     final p = nodes[i];
@@ -130,6 +146,17 @@ const List<Offset> _volcan3 = [
   Offset(0.478, 0.412),
 ];
 
+// ---------- Mundos 5 y 6: Desierto y Glaciar ----------
+// Posiciones provisionales (sendero en zigzag por la franja central, como
+// pide la guía de estilo). Se miden de nuevo cuando lleguen las imágenes.
+const List<Offset> _provisional = [
+  Offset(0.500, 0.780),
+  Offset(0.400, 0.640),
+  Offset(0.560, 0.510),
+  Offset(0.430, 0.380),
+  Offset(0.520, 0.250),
+];
+
 // =================================================================
 // MUNDOS (capítulo 1 abajo, capítulo 3 arriba)
 // Los nombres respetan mayúsculas: Flutter distingue 'Bosque_1' de 'bosque_1'.
@@ -155,4 +182,44 @@ final Map<int, List<MapSegment>> kWorldMaps = {
     MapSegment(asset: 'assets/images/Volcan_2.png', nodes: _volcan2),
     MapSegment(asset: 'assets/images/Volcan_3.png', nodes: _volcan3),
   ],
+  // Las imágenes nuevas van en assets/images/maps/. Mientras no estén, se
+  // ve el mapa de reserva (volcán para el desierto, islas para el glaciar).
+  5: const [
+    MapSegment(
+      asset: 'assets/images/maps/Desierto_1.png',
+      nodes: _provisional,
+      fallback: MapSegment(asset: 'assets/images/Volcan_1.png', nodes: _volcan1),
+    ),
+    MapSegment(
+      asset: 'assets/images/maps/Desierto_2.png',
+      nodes: _provisional,
+      fallback: MapSegment(asset: 'assets/images/Volcan_2.png', nodes: _volcan2),
+    ),
+    MapSegment(
+      asset: 'assets/images/maps/Desierto_3.png',
+      nodes: _provisional,
+      fallback: MapSegment(asset: 'assets/images/Volcan_3.png', nodes: _volcan3),
+    ),
+  ],
+  6: const [
+    MapSegment(
+      asset: 'assets/images/maps/Glaciar_1.png',
+      nodes: _provisional,
+      fallback: MapSegment(asset: 'assets/images/Islas_1.png', nodes: _islas1),
+    ),
+    MapSegment(
+      asset: 'assets/images/maps/Glaciar_2.png',
+      nodes: _provisional,
+      fallback: MapSegment(asset: 'assets/images/Islas_2.png', nodes: _islas2),
+    ),
+    MapSegment(
+      asset: 'assets/images/maps/Glaciar_3.png',
+      nodes: _provisional,
+      fallback: MapSegment(asset: 'assets/images/Islas_3.png', nodes: _islas3),
+    ),
+  ],
 };
+
+/// Tramos de un mundo, ya con los de reserva donde falte la imagen.
+List<MapSegment> worldSegments(int world) =>
+    (kWorldMaps[world] ?? kWorldMaps[1]!).map((s) => s.resolved).toList();

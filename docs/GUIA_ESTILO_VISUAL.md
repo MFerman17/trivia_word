@@ -160,5 +160,18 @@ Carpeta: `assets/images/icons/`.
 5. Mundos 5 y 6 completos (sección 5).
 6. Opcional: versiones más cubiertas de la maga y la guardiana (luchadores y avatares).
 
+### ¿En qué carpeta va cada imagen nueva?
+
+| Imágenes | Carpeta |
+|---|---|
+| Mapas `Desierto_1/2/3.png`, `Glaciar_1/2/3.png` | `assets/images/maps/` |
+| `mini_sand_scarab.png`, `mini_frost_yeti.png`, `word_devourer.png` **y todas sus poses** | `assets/images/monsters/` |
+| `flyer_w5_1/2.png`, `flyer_w6_1/2.png` | `assets/images/flyers/` |
+| Iconos `icon_*.png` | `assets/images/icons/` |
+| Mapas rehechos de los mundos 1-4, `adventurer.png`, `dragon.png` | `assets/images/` (sustituyen a los actuales, mismo nombre) |
+
+Mientras una imagen nueva no esté, el juego usa otra de reserva (por ejemplo,
+el mapa del volcán para el desierto), así que se pueden ir subiendo de a poco.
+
 **Al terminar, súbelas a GitHub (o pásamelas) y yo las reviso.** Ajusto tamaños,
 recortes y nombres por código para que encajen sin "saltos".

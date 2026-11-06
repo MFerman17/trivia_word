@@ -83,6 +83,42 @@ class ChapterStoryService {
         narrative: l.story43Narrative,
         objective: l.story43Objective,
       ),
+      '5_1' => ChapterStory(
+        heading: l.story51Heading,
+        destination: l.story51Destination,
+        narrative: l.story51Narrative,
+        objective: l.story51Objective,
+      ),
+      '5_2' => ChapterStory(
+        heading: l.story52Heading,
+        destination: l.story52Destination,
+        narrative: l.story52Narrative,
+        objective: l.story52Objective,
+      ),
+      '5_3' => ChapterStory(
+        heading: l.story53Heading,
+        destination: l.story53Destination,
+        narrative: l.story53Narrative,
+        objective: l.story53Objective,
+      ),
+      '6_1' => ChapterStory(
+        heading: l.story61Heading,
+        destination: l.story61Destination,
+        narrative: l.story61Narrative,
+        objective: l.story61Objective,
+      ),
+      '6_2' => ChapterStory(
+        heading: l.story62Heading,
+        destination: l.story62Destination,
+        narrative: l.story62Narrative,
+        objective: l.story62Objective,
+      ),
+      '6_3' => ChapterStory(
+        heading: l.story63Heading,
+        destination: l.story63Destination,
+        narrative: l.story63Narrative,
+        objective: l.story63Objective,
+      ),
       _ => null,
     };
   }

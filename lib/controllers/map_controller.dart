@@ -17,7 +17,7 @@ class MapController extends ChangeNotifier {
 
     stagesProgress.clear();
 
-    for (int w = 1; w <= 4; w++) {
+    for (int w = 1; w <= kWorldCount; w++) {
       for (int c = 1; c <= kChaptersPerWorld; c++) {
         for (int l = 1; l <= kLevelsPerChapter; l++) {
           final p = await SaveService.getStageProgress(w, c, l);
@@ -62,11 +62,11 @@ class MapController extends ChangeNotifier {
       await SaveService.saveStageProgress(p);
     }
 
-    for (int w = 1; w <= 4; w++) {
+    for (int w = 1; w <= kWorldCount; w++) {
       for (int c = 1; c <= kChaptersPerWorld; c++) {
         final next = c < kChaptersPerWorld
             ? getProgressForNode(w, c + 1, 1)
-            : (w < 4 ? getProgressForNode(w + 1, 1, 1) : null);
+            : (w < kWorldCount ? getProgressForNode(w + 1, 1, 1) : null);
         final last = getProgressForNode(w, c, kLevelsPerChapter);
         final oldFight = getProgressForNode(w, c, kNodesPerSegment);
         if (next != null && next.isUnlocked && last.stars == 0 && oldFight.stars > 0) {

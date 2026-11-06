@@ -386,7 +386,9 @@ class ProceduralQuestionService {
           1 => 'el bosque',
           2 => 'las cavernas',
           3 => 'las islas flotantes',
-          _ => 'el volcán',
+          4 => 'el volcán',
+          5 => 'el desierto',
+          _ => 'el glaciar',
         };
         final collected = 10 * difficulty + serial % (15 * difficulty);
         final found = 2 + difficulty + serial % (5 * difficulty);

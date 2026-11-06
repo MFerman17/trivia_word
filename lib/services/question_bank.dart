@@ -4,6 +4,7 @@ import 'procedural_question_service.dart';
 import 'question_repository.dart';
 import '../l10n/l10n.dart';
 import '../config/world_map_config.dart';
+import 'asset_catalog.dart';
 
 class QuestionBank {
   /// Dificultad de un nivel (1 = 7-8 años ... 5 = adulto culto).
@@ -55,7 +56,7 @@ class QuestionBank {
       difficulty: difficulty,
       enemyName: enemyName,
       enemyEmoji: isWorldBoss ? '🐉' : isChapterBoss ? '👹' : '👾',
-      enemyAsset: worldCreatureAsset(world),
+      enemyAsset: isWorldBoss ? worldBossAsset(world) : worldCreatureAsset(world),
       backgroundAsset: worldBackgroundAsset(world, chapter),
       enemyHealth: isWorldBoss
           ? 180
@@ -77,9 +78,11 @@ class QuestionBank {
       [l.mini21, l.mini22, l.mini23],
       [l.mini31, l.mini32, l.mini33],
       [l.mini41, l.mini42, l.mini43],
+      [l.mini51, l.mini52, l.mini53],
+      [l.mini61, l.mini62, l.mini63],
     ];
-    const emojisByWorld = ['🧌', '🦇', '🪽', '🦎'];
-    final worldIndex = (world - 1).clamp(0, 3).toInt();
+    const emojisByWorld = ['🧌', '🦇', '🪽', '🦎', '🪲', '❄️'];
+    final worldIndex = (world - 1).clamp(0, kWorldCount - 1).toInt();
     final challengeIndex = (challenge - 1).clamp(0, 2).toInt();
 
     return LevelConfig(
@@ -100,23 +103,33 @@ class QuestionBank {
     );
   }
 
+  /// Monstruo de cada mundo. Los de los mundos 5 y 6 van en
+  /// assets/images/monsters/ (con sus poses al lado); mientras no existan
+  /// se usa el monstruo de un mundo parecido.
   static String worldCreatureAsset(int world) => switch (world) {
     1 => 'assets/images/mini_forest_guardian.png',
     2 => 'assets/images/mini_cave_bat.png',
     3 => 'assets/images/mini_sky_familiar.png',
     4 => 'assets/images/mini_lava_salamander.png',
+    5 => AssetCatalog.pick('assets/images/monsters/mini_sand_scarab.png',
+        'assets/images/mini_lava_salamander.png'),
+    6 => AssetCatalog.pick('assets/images/monsters/mini_frost_yeti.png',
+        'assets/images/mini_cave_bat.png'),
     _ => 'assets/images/mini_forest_guardian.png',
   };
 
+  /// Jefe del último nivel de cada mundo. El del Glaciar es el villano de
+  /// la historia, el Devorador de Palabras; los demás usan su monstruo.
+  static String worldBossAsset(int world) => world == kWorldCount
+      ? AssetCatalog.pick('assets/images/monsters/word_devourer.png',
+          worldCreatureAsset(world))
+      : worldCreatureAsset(world);
+
+  /// Fondo de cada capítulo: la imagen de su tramo del mapa (o la de
+  /// reserva, si la del mundo nuevo aún no existe).
   static String worldBackgroundAsset(int world, int chapter) {
-    final chapterNumber = chapter.clamp(1, 3).toInt();
-    return switch (world) {
-      1 => 'assets/images/Bosque_$chapterNumber.png',
-      2 => 'assets/images/Cavernas_$chapterNumber.png',
-      3 => 'assets/images/Islas_$chapterNumber.png',
-      4 => 'assets/images/Volcan_$chapterNumber.png',
-      _ => 'assets/images/Bosque_1.png',
-    };
+    final segments = worldSegments(world.clamp(1, kWorldCount).toInt());
+    return segments[chapter.clamp(1, segments.length).toInt() - 1].asset;
   }
 
   static String _worldBossName(int world) => switch (world) {
@@ -124,6 +137,8 @@ class QuestionBank {
     2 => L10n.current.bossWorld2,
     3 => L10n.current.bossWorld3,
     4 => L10n.current.bossWorld4,
+    5 => L10n.current.bossWorld5,
+    6 => L10n.current.bossWorld6,
     _ => L10n.current.bossWorldDefault,
   };
 

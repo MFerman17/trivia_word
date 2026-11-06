@@ -473,8 +473,7 @@ class _MapScreenState extends State<MapScreen>
     return ListenableBuilder(
       listenable: _controller,
       builder: (context, _) {
-        final segments =
-            kWorldMaps[_controller.selectedWorld] ?? kWorldMaps[1]!;
+        final segments = worldSegments(_controller.selectedWorld);
 
         return Scaffold(
           backgroundColor: kOutline,
@@ -1052,7 +1051,9 @@ class _MapScreenState extends State<MapScreen>
         1 => context.l10n.worldName1,
         2 => context.l10n.worldName2,
         3 => context.l10n.worldName3,
-        _ => context.l10n.worldName4,
+        4 => context.l10n.worldName4,
+        5 => context.l10n.worldName5,
+        _ => context.l10n.worldName6,
       };
 
   Widget _buildWorldSelector() {
@@ -1062,7 +1063,7 @@ class _MapScreenState extends State<MapScreen>
       color: Colors.black.withValues(alpha: 0.4),
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
-        itemCount: kWorldMaps.length,
+        itemCount: kWorldCount,
         padding: const EdgeInsets.symmetric(horizontal: 12),
         itemBuilder: (context, index) {
           final worldNum = index + 1;

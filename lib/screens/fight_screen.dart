@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../config/world_map_config.dart';
 import '../controllers/fight_controller.dart';
 import '../models/question.dart';
 import '../services/audio_service.dart';
@@ -981,7 +982,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     // Primera vez que se vence al jefe final de un mundo (que no sea el
     // último): el mapa pasará solo al mundo siguiente y contará su historia.
     final int? nextWorld =
-        f.isFinal && f.firstWin && f.worldId < 4 ? f.worldId + 1 : null;
+        f.isFinal && f.firstWin && f.worldId < kWorldCount ? f.worldId + 1 : null;
     showDialog<void>(
       context: context,
       barrierDismissible: false,

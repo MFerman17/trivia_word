@@ -23,10 +23,10 @@ service cloud.firestore {
           && data.experience is int
           && data.experience >= 0
           // Si añadimos mundos o niveles, ajustar este máximo
-          // (4 mundos x 30 niveles x 3 estrellas = 360).
+          // (6 mundos x 30 niveles x 3 estrellas = 540).
           && data.stars is int
           && data.stars >= 0
-          && data.stars <= 360
+          && data.stars <= 540
           // País (opcional): código ISO de 2 letras para la bandera.
           && (!('country' in data) || (data.country is string && data.country.size() == 2))
           // Copas del torneo semanal (opcional). Como mucho una por semana.
@@ -82,7 +82,7 @@ service cloud.firestore {
           // Mismo máximo que el ranking (mundos x niveles x 3 estrellas).
           && profile.totalStars is int
           && profile.totalStars >= 0
-          && profile.totalStars <= 360
+          && profile.totalStars <= 540
           && profile.avatarCharacterId is string
           && profile.avatarFrameId is string
           && profile.avatarAccessoryId is string

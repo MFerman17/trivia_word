@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'l10n/l10n.dart';
 import 'screens/home_screen.dart';
+import 'services/asset_catalog.dart';
 import 'services/cloud_service.dart';
 import 'services/audio_service.dart';
 import 'services/locale_service.dart';
@@ -33,6 +34,8 @@ Future<void> main() async {
     debugPrint('❌ Error al inicializar Firebase: $e\n$st');
   }
 
+  // Lista de imágenes incluidas (para usar otras de reserva si faltan).
+  await AssetCatalog.init();
   // Idioma del juego (guardado o el del teléfono) y su banco de preguntas.
   await LocaleService.init();
   await QuestionRepository.load(language: LocaleService.languageCode);

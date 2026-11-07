@@ -169,17 +169,28 @@ const List<Offset> _desierto3 = [
   Offset(0.491, 0.176),
 ];
 
-// ---------- Mundo 6: Glaciar ----------
-// Posiciones provisionales (sendero en zigzag por la franja central, como
-// pide la guía de estilo). Se miden de nuevo cuando lleguen las imágenes.
-const List<Offset> _provisional = [
-  Offset(0.500, 0.780),
-  Offset(0.400, 0.640),
-  Offset(0.560, 0.510),
-  Offset(0.430, 0.380),
-  Offset(0.520, 0.250),
+// ---------- Mundo 6: Glaciar (medido sobre las imágenes nuevas) ----------
+const List<Offset> _glaciar1 = [
+  Offset(0.657, 0.817),
+  Offset(0.601, 0.633),
+  Offset(0.540, 0.470),
+  Offset(0.440, 0.296),
+  Offset(0.358, 0.144),
 ];
-
+const List<Offset> _glaciar2 = [
+  Offset(0.644, 0.817),
+  Offset(0.598, 0.633),
+  Offset(0.529, 0.462),
+  Offset(0.436, 0.288),
+  Offset(0.353, 0.128),
+];
+const List<Offset> _glaciar3 = [
+  Offset(0.644, 0.837),
+  Offset(0.598, 0.649),
+  Offset(0.543, 0.470),
+  Offset(0.440, 0.293),
+  Offset(0.353, 0.139),
+];
 // =================================================================
 // MUNDOS (capítulo 1 abajo, capítulo 3 arriba)
 // Los nombres respetan mayúsculas: Flutter distingue 'Bosque_1' de 'bosque_1'.
@@ -227,17 +238,17 @@ final Map<int, List<MapSegment>> kWorldMaps = {
   6: const [
     MapSegment(
       asset: 'assets/images/maps/Glaciar_1.png',
-      nodes: _provisional,
+      nodes: _glaciar1,
       fallback: MapSegment(asset: 'assets/images/Islas_1.png', nodes: _islas1),
     ),
     MapSegment(
       asset: 'assets/images/maps/Glaciar_2.png',
-      nodes: _provisional,
+      nodes: _glaciar2,
       fallback: MapSegment(asset: 'assets/images/Islas_2.png', nodes: _islas2),
     ),
     MapSegment(
       asset: 'assets/images/maps/Glaciar_3.png',
-      nodes: _provisional,
+      nodes: _glaciar3,
       fallback: MapSegment(asset: 'assets/images/Islas_3.png', nodes: _islas3),
     ),
   ],

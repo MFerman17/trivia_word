@@ -63,18 +63,18 @@ const List<Offset> _bosque1 = [
   Offset(0.533, 0.290),
 ];
 const List<Offset> _bosque2 = [
-  Offset(0.478, 0.821),
-  Offset(0.305, 0.525),
-  Offset(0.495, 0.494),
-  Offset(0.630, 0.371),
-  Offset(0.488, 0.196),
+  Offset(0.551, 0.758),
+  Offset(0.405, 0.627),
+  Offset(0.537, 0.510),
+  Offset(0.437, 0.387),
+  Offset(0.533, 0.292),
 ];
 const List<Offset> _bosque3 = [
-  Offset(0.385, 0.745),
-  Offset(0.579, 0.703),
-  Offset(0.444, 0.563),
-  Offset(0.341, 0.447),
-  Offset(0.432, 0.270),
+  Offset(0.535, 0.762),
+  Offset(0.395, 0.623),
+  Offset(0.611, 0.502),
+  Offset(0.442, 0.386),
+  Offset(0.530, 0.291),
 ];
 
 // ---------- Mundo 2: Cavernas ----------

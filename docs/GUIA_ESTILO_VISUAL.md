@@ -110,11 +110,20 @@ el texto.
   si algún día quieres rehacerla, y para que ChatGPT vea cómo son las otras
   dos del mismo mundo (cópiala en la conversación como referencia).
 
-**Truco para que los 3 mapas de un mundo combinen:** pide los mapas del mismo
-mundo en la misma conversación. Si vas a rehacer solo uno (por ejemplo,
-`Bosque_1`), sube primero a ChatGPT el que se mantiene (`Bosque_2.png`) y
-escribe: *"Mismo mundo, mismo estilo, misma luz y misma paleta que esta
-imagen; solo cambia el lugar."*
+**Todos los mapas se rehacen con ChatGPT.** Los mapas actuales se hicieron con
+Bing y por eso no combinan con los personajes. Para que los 12 mapas de los
+mundos 1-4 y los 6 nuevos parezcan del mismo artista:
+
+1. Haz primero **un solo mapa** (`Bosque_1`) y revisa que cumple el bloque de
+   estilo: imagen completa hasta los bordes, 5 plataformas redondas en la franja
+   central. Pásamelo y lo pruebo en el juego antes de seguir.
+2. Si está bien, usa ese mapa como **imagen de referencia** de todos los demás:
+   *"Mismo estilo, misma luz y mismo tipo de sendero y plataformas que esta
+   imagen; solo cambian el lugar y los colores del mundo."*
+3. Pide los 3 mapas de cada mundo seguidos, en la misma conversación.
+
+Los monstruos, luchadores y avatares se mantienen: ya son de ChatGPT y son la
+referencia de estilo.
 
 ### Mundo 1 · Bosque
 
@@ -124,7 +133,7 @@ guarda el primer fragmento.
 | Imagen | Estado | Descripción para añadir al bloque de estilo |
 |---|---|---|
 | `Bosque_1.png` (mapa) | ✏️ Rehacer | Entrada de un bosque antiguo y brumoso: árboles enormes de troncos retorcidos y musgo, arroyos estrechos que brillan en turquesa, setas luminosas y faroles de madera con luz cálida a los lados del sendero. Al fondo, arriba, la luz se hace más intensa entre los árboles. |
-| `Bosque_2.png` (mapa) | ✅ Mantener | El corazón del bosque: raíces gigantes que cruzan el camino, un río turquesa con puentes de madera, niebla baja y una luz azul que late bajo los árboles. |
+| `Bosque_2.png` (mapa) | ✏️ Rehacer | El corazón del bosque: raíces gigantes que cruzan el sendero, un río turquesa que serpentea con puentes de madera, niebla baja entre los troncos, setas luminosas y una luz azul que late bajo los árboles. Mismo bosque que el capítulo 1, más oscuro y profundo. |
 | `Bosque_3.png` (mapa) | ✏️ Rehacer | Lo más profundo del bosque: árboles todavía más grandes y oscuros, piedras antiguas con runas turquesa alineadas en círculo, y arriba del todo un gran portal de piedra cubierto de raíces, encendido por dentro. Más peligro: zarzas y ojos que brillan entre las sombras. |
 | `mini_forest_guardian.png` + poses | ✅ Mantener | Guardián del bosque: criatura de madera y musgo con ojos turquesa. |
 
@@ -136,8 +145,8 @@ Cavernas espera tras un puente sobre el abismo.
 | Imagen | Estado | Descripción para añadir al bloque de estilo |
 |---|---|---|
 | `Cavernas_1.png` (mapa) | ✏️ Rehacer | Entrada a una caverna enorme vista desde arriba: paredes de roca gris y violeta que rodean toda la imagen, antorchas en el sendero, los primeros cristales azules y violetas asomando entre las rocas, charcos que reflejan su luz. Arriba, la boca oscura de un túnel. |
-| `Cavernas_2.png` (mapa) | ✅ Mantener | El eco de los cristales: cristales gigantes azules y violetas, cascadas subterráneas, puentes de madera entre plataformas de roca y niebla al fondo. |
-| `Cavernas_3.png` (mapa) | ✅ Mantener | El puente subterráneo: agua turquesa brillante, cristales enormes, restos de esqueletos antiguos en las paredes y un portal de cristal violeta arriba, donde espera el coloso. |
+| `Cavernas_2.png` (mapa) | ✏️ Rehacer | El eco de los cristales: un túnel ancho con cristales gigantes azules y violetas en las paredes, cascadas subterráneas que caen a pozas brillantes, puentes de madera entre plataformas de roca y niebla al fondo. |
+| `Cavernas_3.png` (mapa) | ✏️ Rehacer | El puente subterráneo: un gran puente de piedra sobre un abismo con agua turquesa brillante al fondo, cristales enormes, restos de esqueletos antiguos en las paredes y, arriba, un portal de cristal violeta donde espera el coloso. El capítulo más peligroso de las cavernas. |
 | `mini_cave_bat.png` + poses | ✅ Mantener | Murciélago de cristal con alas translúcidas violetas. |
 
 ### Mundo 3 · Islas Flotantes
@@ -148,8 +157,8 @@ el Señor de las Islas guarda el fragmento en una tormenta de cristal.
 | Imagen | Estado | Descripción para añadir al bloque de estilo |
 |---|---|---|
 | `Islas_1.png` (mapa) | ✏️ Rehacer | Varias islas de roca y hierba flotando en un mar de nubes lilas que llena toda la imagen hasta los bordes, unidas por puentes colgantes de cuerda; cascadas que caen de las islas al vacío, cielo de amanecer en azul y rosa. Arriba, una isla más alta con unas ruinas pequeñas. |
-| `Islas_2.png` (mapa) | ✅ Mantener | Las corrientes del cielo: islas con ruinas de piedra, cascadas azules, puentes de madera y nubes violetas alrededor. |
-| `Islas_3.png` (mapa) | ✅ Mantener | La tormenta de cristal: las mismas islas de noche, rayos azules, nubes de tormenta y un río de luz que sube entre las islas. |
+| `Islas_2.png` (mapa) | ✏️ Rehacer | Las corrientes del cielo: islas flotantes más altas con ruinas de piedra antiguas, cascadas azules que caen al vacío, puentes de madera y cuerda, remolinos de viento visibles y nubes violetas que llenan toda la imagen. |
+| `Islas_3.png` (mapa) | ✏️ Rehacer | La tormenta de cristal: las mismas islas de noche bajo una tormenta azul, rayos, nubes oscuras que llenan el cielo, cristales flotando y un río de luz que sube entre las islas hacia la más alta. |
 | `mini_sky_familiar.png` + poses | ✅ Mantener | Familiar del cielo: criatura alada azul y blanca. |
 
 ### Mundo 4 · Volcán
@@ -161,8 +170,8 @@ Palabras.
 | Imagen | Estado | Descripción para añadir al bloque de estilo |
 |---|---|---|
 | `Volcan_1.png` (mapa) | ✏️ Rehacer | Ladera de un volcán que despierta: suelo de roca negra y ceniza que llena toda la imagen, grietas finas de lava naranja, columnas de humo, árboles quemados, y runas antiguas grabadas en el sendero que brillan en turquesa. Arriba, a lo lejos, la cima del volcán echando humo. |
-| `Volcan_2.png` (mapa) | ✅ Mantener | El río de magma: rocas negras cortadas por ríos de lava, puentes de piedra con runas turquesa y humo. |
-| `Volcan_3.png` (mapa) | ✅ Mantener | El corazón del volcán: cráter en erupción, lava por todas partes, cielo rojo y el esqueleto de una criatura gigante. |
+| `Volcan_2.png` (mapa) | ✏️ Rehacer | El río de magma: rocas negras cortadas por ríos de lava naranja brillante, puentes de piedra con runas turquesa, columnas de humo y ceniza en el aire, todo hasta los bordes de la imagen. |
+| `Volcan_3.png` (mapa) | ✏️ Rehacer | El corazón del volcán: dentro del cráter en erupción, lava por todas partes, cielo rojo, chispas y el esqueleto de una criatura gigante junto al sendero. El capítulo más peligroso del volcán. |
 | `mini_lava_salamander.png` + poses | ✅ Mantener | Salamandra de lava con escamas negras y grietas naranjas. |
 
 ### Mundo 5 · Desierto de las Runas (nuevo)

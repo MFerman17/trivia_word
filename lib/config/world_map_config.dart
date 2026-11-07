@@ -102,71 +102,71 @@ const List<Offset> _cavernas3 = [
 
 // ---------- Mundo 3: Islas Flotantes ----------
 const List<Offset> _islas1 = [
-  Offset(0.208, 0.686),
-  Offset(0.507, 0.686),
-  Offset(0.769, 0.481),
-  Offset(0.356, 0.372),
-  Offset(0.622, 0.221),
+  Offset(0.497, 0.793),
+  Offset(0.401, 0.614),
+  Offset(0.566, 0.465),
+  Offset(0.385, 0.296),
+  Offset(0.507, 0.152),
 ];
 const List<Offset> _islas2 = [
-  Offset(0.190, 0.537),
-  Offset(0.315, 0.308),
-  Offset(0.513, 0.449),
-  Offset(0.705, 0.622),
-  Offset(0.860, 0.353),
+  Offset(0.502, 0.841),
+  Offset(0.415, 0.617),
+  Offset(0.552, 0.462),
+  Offset(0.409, 0.296),
+  Offset(0.500, 0.128),
 ];
 const List<Offset> _islas3 = [
-  Offset(0.208, 0.686),
-  Offset(0.507, 0.686),
-  Offset(0.769, 0.478),
-  Offset(0.356, 0.372),
-  Offset(0.622, 0.221),
+  Offset(0.497, 0.825),
+  Offset(0.411, 0.628),
+  Offset(0.558, 0.473),
+  Offset(0.406, 0.308),
+  Offset(0.511, 0.157),
 ];
 
 // ---------- Mundo 4: Volcán ----------
 const List<Offset> _volcan1 = [
-  Offset(0.534, 0.729),
-  Offset(0.377, 0.561),
-  Offset(0.564, 0.462),
-  Offset(0.424, 0.356),
-  Offset(0.558, 0.248),
+  Offset(0.500, 0.809),
+  Offset(0.411, 0.612),
+  Offset(0.566, 0.468),
+  Offset(0.399, 0.304),
+  Offset(0.502, 0.152),
 ];
 const List<Offset> _volcan2 = [
-  Offset(0.154, 0.413),
-  Offset(0.367, 0.519),
-  Offset(0.537, 0.375),
-  Offset(0.672, 0.530),
-  Offset(0.828, 0.417),
+  Offset(0.507, 0.809),
+  Offset(0.406, 0.593),
+  Offset(0.572, 0.429),
+  Offset(0.401, 0.288),
+  Offset(0.499, 0.136),
 ];
 const List<Offset> _volcan3 = [
-  Offset(0.154, 0.405),
-  Offset(0.375, 0.497),
-  Offset(0.535, 0.346),
-  Offset(0.668, 0.505),
-  Offset(0.828, 0.371),
+  Offset(0.500, 0.821),
+  Offset(0.422, 0.630),
+  Offset(0.559, 0.470),
+  Offset(0.422, 0.313),
+  Offset(0.500, 0.141),
 ];
 
 // ---------- Mundo 5: Desierto (medido sobre las imágenes nuevas) ----------
 const List<Offset> _desierto1 = [
-  Offset(0.491, 0.825),
-  Offset(0.459, 0.569),
-  Offset(0.516, 0.385),
-  Offset(0.494, 0.244),
-  Offset(0.588, 0.144),
+  Offset(0.500, 0.801),
+  Offset(0.425, 0.601),
+  Offset(0.548, 0.446),
+  Offset(0.425, 0.284),
+  Offset(0.499, 0.147),
 ];
 const List<Offset> _desierto2 = [
-  Offset(0.085, 0.665),
-  Offset(0.290, 0.565),
-  Offset(0.515, 0.462),
-  Offset(0.737, 0.370),
-  Offset(0.917, 0.278),
+  Offset(0.500, 0.841),
+  Offset(0.406, 0.641),
+  Offset(0.559, 0.473),
+  Offset(0.406, 0.304),
+  Offset(0.499, 0.144),
 ];
 const List<Offset> _desierto3 = [
-  Offset(0.411, 0.745),
-  Offset(0.585, 0.601),
-  Offset(0.467, 0.473),
-  Offset(0.657, 0.372),
-  Offset(0.638, 0.272),
+  Offset(0.502, 0.833),
+  Offset(0.411, 0.609),
+  Offset(0.558, 0.457),
+  Offset(0.404, 0.313),
+  Offset(0.491, 0.176),
 ];
 
 // ---------- Mundo 6: Glaciar ----------

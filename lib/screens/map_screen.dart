@@ -61,7 +61,12 @@ class _SegmentLayout {
   /// Tamaño de los círculos en este tramo.
   final double nodeSize;
 
+  /// Alto del tramo. Normalmente ancho x kSegmentHeightFactor; menos si las
+  /// plataformas de la imagen están muy separadas a lo ancho (ver compute).
+  final double height;
+
   const _SegmentLayout({
+    required this.height,
     required this.imageWidth,
     required this.imageHeight,
     required this.imageLeft,
@@ -77,6 +82,9 @@ class _SegmentLayout {
   ///    imagen dos plataformas están muy juntas, se achican un poco los
   ///    círculos de ese tramo en vez de moverlos (moverlos los sacaba de
   ///    sus plataformas, sobre todo en Islas y Volcán).
+  /// 4. Si las plataformas están tan separadas a lo ancho que no caben en el
+  ///    recorte, se amplía menos la imagen: el tramo queda más bajo, pero
+  ///    todos los niveles se ven enteros.
   factory _SegmentLayout.compute({
     required MapSegment segment,
     required double aspect,
@@ -84,9 +92,6 @@ class _SegmentLayout {
     required double height,
     required double nodeSize,
   }) {
-    final imageWidth = math.max(width, height * aspect);
-    final imageHeight = imageWidth / aspect;
-
     final count = math.min(segment.nodes.length, kNodesPerSegment);
     final raw = [for (int i = 0; i < count; i++) segment.nodeAt(i)];
 
@@ -95,6 +100,15 @@ class _SegmentLayout {
       minX = math.min(minX, p.dx);
       maxX = math.max(maxX, p.dx);
     }
+
+    var imageWidth = math.max(width, height * aspect);
+    // Fracción de la imagen que hace falta ver: de la primera a la última
+    // plataforma, más medio círculo y un margen a cada lado.
+    final needed = math.min(1.0, (maxX - minX) + (nodeSize + 24) / imageWidth);
+    if (width / imageWidth < needed) imageWidth = width / needed;
+    final imageHeight = imageWidth / aspect;
+    height = math.min(height, imageHeight);
+
     final visible = width / imageWidth; // fracción de la imagen que se ve
     final center = ((minX + maxX) / 2).clamp(visible / 2, 1 - visible / 2).toDouble();
     final imageLeft = (center - visible / 2) * imageWidth;
@@ -115,6 +129,7 @@ class _SegmentLayout {
     final size = math.min(nodeSize, closest - kNodeGap).clamp(34.0, nodeSize).toDouble();
 
     return _SegmentLayout(
+      height: height,
       imageWidth: imageWidth,
       imageHeight: imageHeight,
       imageLeft: imageLeft,
@@ -553,7 +568,7 @@ class _MapScreenState extends State<MapScreen>
             ),
         ];
 
-        _scheduleScrollToCurrent(parts, layouts, height, constraints.maxHeight, currentIndex);
+        _scheduleScrollToCurrent(parts, layouts, constraints.maxHeight, currentIndex);
 
         return SingleChildScrollView(
           controller: _scroll,
@@ -567,7 +582,7 @@ class _MapScreenState extends State<MapScreen>
                     segment: _segmentFor(segments[parts[i].chapter - 1], parts[i].part),
                     layout: layouts[i],
                     width: width,
-                    height: height,
+                    height: layouts[i].height,
                     isTop: i == 0,
                     currentIndex: currentIndex,
                   ),
@@ -610,7 +625,6 @@ class _MapScreenState extends State<MapScreen>
   void _scheduleScrollToCurrent(
     List<({int chapter, int part})> parts,
     List<_SegmentLayout> layouts,
-    double segmentHeight,
     double viewportHeight,
     int currentIndex,
   ) {
@@ -629,7 +643,7 @@ class _MapScreenState extends State<MapScreen>
     for (; index < parts.length; index++) {
       final p = parts[index];
       if (p.chapter == chapter && p.part == part) break;
-      offset += segmentHeight;
+      offset += layouts[index].height;
       if (p.part == 0) offset += kChapterBannerHeight;
     }
     if (index >= layouts.length) return;

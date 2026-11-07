@@ -60,8 +60,10 @@ Orientación: de perfil 3/4, MIRANDO A LA IZQUIERDA.
 | `NOMBRE_idle_hurt1.png` | Igual que idle, con algún rasguño |
 | `NOMBRE_idle_hurt2.png` | Igual que idle, muy golpeado (moretones, vendas) |
 
-Frase útil para las poses: *"Mismo personaje, misma escala y misma posición en
-la imagen; solo cambia la postura."*
+Frase útil para las poses: *"Mismo personaje, misma escala, misma posición en
+la imagen y mirando a la IZQUIERDA; solo cambia la postura."* Si alguna sale
+mirando a la derecha, no pasa nada: se puede voltear, pero todas las poses de un
+mismo monstruo deben mirar al mismo lado.
 
 ---
 
@@ -185,8 +187,8 @@ persigue por el desierto hasta su fortaleza en el glaciar, donde es el jefe fina
 | `Desierto_1.png` (mapa) | 🆕 Nuevo | Dunas doradas con columnas caídas cubiertas de runas que brillan en turquesa; un oasis pequeño abajo. |
 | `Desierto_2.png` (mapa) | 🆕 Nuevo | Ruinas de una ciudad antigua medio enterrada en la arena, arcos y escaleras con letras grabadas. |
 | `Desierto_3.png` (mapa) | 🆕 Nuevo | Templo gigante en la arena bajo una tormenta de arena, con runas apagándose (el Devorador ya pasó). |
-| `mini_sand_scarab.png` + poses | 🆕 Nuevo | **Escarabajo de arena**: escarabajo grande con caparazón dorado lleno de runas turquesa, patas de bronce, ojos grandes y amistosos-pícaros. Ataca lanzando arena. |
-| `flyer_w5_1/2.png` | 🆕 Nuevo | **Halcón de arena**: halcón dorado con plumas que se deshacen en arena, alas arriba / alas abajo. |
+| `mini_sand_scarab.png` + poses | 🆕 Nuevo | **Escarabajo de arena**: escarabajo grande con caparazón dorado lleno de runas turquesa, patas de bronce, ojos grandes y amistosos-pícaros. Ataca lanzando arena. **Mirando a la IZQUIERDA** (en todas las poses). |
+| `flyer_w5_1/2.png` | 🆕 Nuevo | **Halcón de arena**: halcón dorado con plumas que se deshacen en arena, alas arriba / alas abajo. **Mirando a la IZQUIERDA** (en todas las poses). |
 
 ### Mundo 6 · Glaciar Eterno (nuevo)
 
@@ -195,9 +197,9 @@ persigue por el desierto hasta su fortaleza en el glaciar, donde es el jefe fina
 | `Glaciar_1.png` (mapa) | 🆕 Nuevo | Llanura helada con lagos congelados, pinos nevados y auroras verdes y violetas en el cielo. |
 | `Glaciar_2.png` (mapa) | 🆕 Nuevo | Cuevas de hielo azul con puentes de hielo y letras congeladas dentro de los bloques. |
 | `Glaciar_3.png` (mapa) | 🆕 Nuevo | Fortaleza de hielo oscuro del Devorador de Palabras, con libros congelados y runas apagadas. |
-| `mini_frost_yeti.png` + poses | 🆕 Nuevo | **Yeti de escarcha**: yeti pequeño y robusto, pelaje blanco-azulado, cristales de hielo en hombros, bufanda turquesa. Ataca con bolas de nieve. |
-| `flyer_w6_1/2.png` | 🆕 Nuevo | **Búho de hielo**: búho blanco con plumas de cristal de hielo, alas arriba / alas abajo. |
-| `word_devourer.png` + poses | 🆕 Nuevo | **El Devorador de Palabras** (jefe final): criatura de sombra con capa hecha de páginas arrancadas, letras que flotan hacia su boca, ojos violetas. Imponente pero no terrorífico (13+). |
+| `mini_frost_yeti.png` + poses | 🆕 Nuevo | **Yeti de escarcha**: yeti pequeño y robusto, pelaje blanco-azulado, cristales de hielo en hombros, bufanda turquesa. Ataca con bolas de nieve. **Mirando a la IZQUIERDA** (en todas las poses). |
+| `flyer_w6_1/2.png` | 🆕 Nuevo | **Búho de hielo**: búho blanco con plumas de cristal de hielo, alas arriba / alas abajo. **Mirando a la IZQUIERDA** (en todas las poses). |
+| `word_devourer.png` + poses | 🆕 Nuevo | **El Devorador de Palabras** (jefe final): criatura de sombra con capa hecha de páginas arrancadas, letras que flotan hacia su boca, ojos violetas. Imponente pero no terrorífico (13+). **Mirando a la IZQUIERDA** (en todas las poses). |
 
 ---
 

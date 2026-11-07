@@ -56,11 +56,11 @@ class MapSegment {
 
 // ---------- Mundo 1: Bosque ----------
 const List<Offset> _bosque1 = [
-  Offset(0.543, 0.769),
-  Offset(0.419, 0.647),
-  Offset(0.534, 0.535),
-  Offset(0.446, 0.417),
-  Offset(0.530, 0.325),
+  Offset(0.551, 0.752),
+  Offset(0.405, 0.626),
+  Offset(0.537, 0.506),
+  Offset(0.437, 0.386),
+  Offset(0.533, 0.290),
 ];
 const List<Offset> _bosque2 = [
   Offset(0.478, 0.821),

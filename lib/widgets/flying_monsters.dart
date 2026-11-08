@@ -13,7 +13,6 @@ import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import '../services/vibration_service.dart';
 import 'game_icon.dart';
-import 'game_icon.dart';
 
 /// Monstruos que cruzan el mapa volando y lanzan cosas.
 ///

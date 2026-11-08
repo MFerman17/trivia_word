@@ -14,6 +14,7 @@ import '../services/save_service.dart';
 import '../services/tournament_service.dart';
 import '../services/vibration_service.dart';
 import '../widgets/game_3d.dart';
+import '../widgets/game_icon.dart';
 
 /// Nombre traducido de una liga.
 String leagueName(BuildContext context, League league) => switch (league) {
@@ -254,7 +255,7 @@ class _TournamentScreenState extends State<TournamentScreen> {
               Socket3D(
                 size: 60,
                 color: WM.gold,
-                child: Text(_league.emoji, style: const TextStyle(fontSize: 30)),
+                child: GameIcon(_league.emoji, size: 30),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -350,7 +351,7 @@ class _TournamentScreenState extends State<TournamentScreen> {
       ),
       child: Column(
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 18)),
+          GameIcon(emoji, size: 18),
           OutlinedGameText(value, size: 18, font: GameFont.oswald),
           Text(label, style: GoogleFonts.oswald(color: Colors.white54, fontSize: 11)),
         ],
@@ -365,12 +366,12 @@ class _TournamentScreenState extends State<TournamentScreen> {
         padding: const EdgeInsets.symmetric(vertical: 3),
         child: Row(
           children: [
-            Text(emoji, style: const TextStyle(fontSize: 20)),
+            GameIcon(emoji, size: 20),
             const SizedBox(width: 8),
             Expanded(
               child: Text(label, style: GoogleFonts.oswald(color: Colors.white, fontSize: 14)),
             ),
-            Text(
+            GameText(
               prize.gems > 0 ? '${prize.coins} 🪙  ${prize.gems} 💎' : '${prize.coins} 🪙',
               style: GoogleFonts.oswald(color: WM.gold, fontSize: 14, fontWeight: FontWeight.w700),
             ),
@@ -449,7 +450,7 @@ class _TournamentScreenState extends State<TournamentScreen> {
               style: GoogleFonts.anton(color: mine ? WM.gold : Colors.white70, fontSize: 15),
             ),
           ),
-          SizedBox(width: 22, child: Text(medal, style: const TextStyle(fontSize: 15))),
+          SizedBox(width: 22, child: GameIcon(medal, size: 15)),
           Text(Countries.flag(item['country'] as String?), style: const TextStyle(fontSize: 16)),
           const SizedBox(width: 6),
           Expanded(

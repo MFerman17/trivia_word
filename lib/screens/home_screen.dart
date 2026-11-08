@@ -21,6 +21,7 @@ import 'welcome_screen.dart';
 import 'tournament_screen.dart';
 import '../services/tournament_service.dart';
 import '../services/locale_service.dart';
+import '../widgets/game_icon.dart';
 
 // Color de contorno común para todo el estilo "juego"
 const Color kOutline = Color(0xFF0D0326);
@@ -233,7 +234,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     });
     if (!mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(context.l10n.bonusChestReward(_rewardText(reward)))),
+      SnackBar(content: GameText(context.l10n.bonusChestReward(_rewardText(reward)))),
     );
   }
 
@@ -269,7 +270,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
         ),
         title: Row(
           children: [
-            const Text('🎁 ', style: TextStyle(fontSize: 24)),
+            const GameIcon('🎁 ', size: 24),
             Text(
               context.l10n.dailyRewardTitle,
               style: GoogleFonts.oswald(fontWeight: FontWeight.w700, color: Colors.white, fontSize: 22),
@@ -289,7 +290,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
               children: [
                 Chip(
                   backgroundColor: const Color(0xFF2B2B48),
-                  avatar: const Text('🪙'),
+                  avatar: const GameIcon('🪙', size: 16),
                   label: Text(
                     '+$rewardCoins',
                     style: const TextStyle(color: Colors.amber, fontWeight: FontWeight.bold),
@@ -297,7 +298,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 ),
                 Chip(
                   backgroundColor: const Color(0xFF2B2B48),
-                  avatar: const Text('🧪'),
+                  avatar: const GameIcon('🧪', size: 16),
                   label: Text(
                     '+$rewardPotions',
                     style: const TextStyle(color: Colors.redAccent, fontWeight: FontWeight.bold),
@@ -545,7 +546,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   static const double kAdventurerSink = 18;
   static const double kDragonShift = 0.33; // antes 0.24: más a la derecha
   static const double kTopGap = 6;
-  static const double kDragonAspect = 1.49; // ancho / alto de dragon.png
+  static const double kDragonAspect = 1.10; // ancho / alto de dragon.png (nuevo, ChatGPT)
 
   Widget _buildCharacters({
     required double screenWidth,
@@ -1049,7 +1050,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
           child: Row(
             children: [
-              Text(canClaim ? '🎁' : bonus ? '📺' : '🔒', style: const TextStyle(fontSize: 28)),
+              GameIcon(canClaim ? '🎁' : bonus ? '📺' : '🔒', size: 28),
               const SizedBox(width: 10),
               Expanded(
                 child: Column(
@@ -1069,7 +1070,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         fontSize: 16,
                       ),
                     ),
-                    Text(
+                    GameText(
                       canClaim
                           ? context.l10n.chestTapToClaim
                           : bonus
@@ -1123,7 +1124,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       ),
       child: Row(
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 12)),
+          GameIcon(emoji, size: 12),
           const SizedBox(width: 3),
           Text(
             value,

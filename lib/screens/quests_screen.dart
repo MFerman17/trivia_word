@@ -9,6 +9,7 @@ import '../services/save_service.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/game_3d.dart';
 import '../l10n/l10n.dart';
+import '../widgets/game_icon.dart';
 
 class QuestsScreen extends StatefulWidget {
   const QuestsScreen({super.key});
@@ -162,7 +163,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
           Socket3D(
             size: 54,
             color: WM.gold,
-            child: const Text('📜', style: TextStyle(fontSize: 24)),
+            child: const GameIcon('📜', size: 24),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -270,7 +271,7 @@ class _QuestsScreenState extends State<QuestsScreen> {
                   Socket3D(
                     size: 56,
                     color: accent,
-                    child: Text(quest.emoji, style: const TextStyle(fontSize: 26)),
+                    child: GameIcon(quest.emoji, size: 26),
                   ),
                   const SizedBox(width: 12),
                   Expanded(

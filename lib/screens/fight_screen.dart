@@ -13,6 +13,7 @@ import '../widgets/monster_poses.dart';
 import '../widgets/player_avatar.dart';
 import 'shop_screen.dart';
 import '../l10n/l10n.dart';
+import '../widgets/game_icon.dart';
 
 /// Pelea tipo "Street Fighter": el avatar del jugador contra el monstruo,
 /// en vista lateral, al mejor de 3 rounds. Las preguntas son los golpes.
@@ -551,7 +552,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                 height: height,
                 fit: BoxFit.contain,
                 errorBuilder: (_, _, _) =>
-                    Text(_fight.config.enemyEmoji, style: TextStyle(fontSize: height * 0.5)),
+                    GameIcon(_fight.config.enemyEmoji, size: height * 0.5),
               ),
             ),
     );
@@ -636,7 +637,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
           opacity: (1 - (t - 0.22) / 0.5).clamp(0.0, 1.0),
           child: Transform.scale(
             scale: 0.6 + (t - 0.22) * (special ? 4 : 2.4),
-            child: Text(special ? '🌟' : '💥', style: const TextStyle(fontSize: 48)),
+            child: GameIcon(special ? '🌟' : '💥', size: 48),
           ),
         ),
       ),
@@ -819,7 +820,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(emoji, style: const TextStyle(fontSize: 15)),
+          GameIcon(emoji, size: 15),
           const SizedBox(width: 4),
           OutlinedGameText(label, size: 15, font: GameFont.oswald),
         ],
@@ -858,7 +859,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('⚡', style: TextStyle(fontSize: 15)),
+              const GameIcon('⚡', size: 15),
               const SizedBox(width: 4),
               OutlinedGameText(
                 _fight.superReady ? context.l10n.superReady : context.l10n.superLabel,
@@ -1155,7 +1156,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Text('👊', style: TextStyle(fontSize: 16)),
+                      const GameIcon('👊', size: 16),
                       const SizedBox(width: 6),
                       OutlinedGameText(context.l10n.upgradeFighter, size: 16, font: GameFont.oswald),
                     ],

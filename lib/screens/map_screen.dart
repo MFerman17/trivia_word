@@ -19,6 +19,7 @@ import '../services/question_bank.dart';
 import '../services/save_service.dart';
 import '../services/minigame_service.dart';
 import 'minigame_screen.dart';
+import '../widgets/game_icon.dart';
 
 // Colores coherentes con el estilo del juego
 const Color kOutline = Color(0xFF0D0326);
@@ -384,7 +385,7 @@ class _MapScreenState extends State<MapScreen>
                 colors: const [Color(0xFFFFF1B0), WM.gold],
               ),
               const SizedBox(height: 10),
-              const Text('🔒', style: TextStyle(fontSize: 40)),
+              const GameIcon('🔒', size: 40),
               const SizedBox(height: 8),
               Text(
                 context.l10n.starsNeeded(required, missing),
@@ -408,7 +409,7 @@ class _MapScreenState extends State<MapScreen>
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        const Text('🗝️', style: TextStyle(fontSize: 18)),
+                        const GameIcon('🗝️', size: 18),
                         const SizedBox(width: 8),
                         OutlinedGameText(
                           context.l10n.useGoldenKey(keys),
@@ -1037,7 +1038,7 @@ class _MapScreenState extends State<MapScreen>
                 ),
                 child: Row(
                   children: [
-                    const Text('⭐', style: TextStyle(fontSize: 16)),
+                    const GameIcon('⭐', size: 16),
                     const SizedBox(width: 6),
                     Text(
                       '${_controller.totalStars}',

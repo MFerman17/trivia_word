@@ -13,6 +13,7 @@
 // =====================================================================
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'game_icon.dart';
 
 /// Paleta y medidas comunes del juego.
 class WM {
@@ -569,7 +570,7 @@ class Chip3D extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(emoji, style: TextStyle(fontSize: fontSize * 0.9)),
+          GameIcon(emoji, size: fontSize * 0.9),
           SizedBox(width: fontSize * 0.3),
           Text(
             text,

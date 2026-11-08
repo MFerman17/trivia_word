@@ -11,6 +11,7 @@ import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 import '../l10n/l10n.dart';
 import '../services/cheer_service.dart';
+import '../widgets/game_icon.dart';
 
 class GameScreen extends StatefulWidget {
   final int worldId;
@@ -431,7 +432,7 @@ class _GameScreenState extends State<GameScreen> {
                     child: Socket3D(
                       size: 76,
                       color: danger,
-                      child: Text('💔', style: TextStyle(fontSize: 34)),
+                      child: GameIcon('💔', size: 34),
                     ),
                   ),
                   const SizedBox(height: 12),
@@ -474,7 +475,7 @@ class _GameScreenState extends State<GameScreen> {
                                     const SizedBox(width: 8),
                                     // El emoji va fuera del texto con contorno
                                     // (si no, se dibujaría triplicado)
-                                    const Text('+1 ❤️', style: TextStyle(fontSize: 16)),
+                                    const GameText('+1 ❤️', style: TextStyle(fontSize: 16)),
                                   ],
                                 ),
                         ),
@@ -502,7 +503,7 @@ class _GameScreenState extends State<GameScreen> {
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text('🧪', style: TextStyle(fontSize: 18)),
+                          const GameIcon('🧪', size: 18),
                           const SizedBox(width: 8),
                           OutlinedGameText(
                             potions > 0 ? context.l10n.usePotionCount(potions) : context.l10n.noPotions,
@@ -1018,7 +1019,7 @@ class _GameScreenState extends State<GameScreen> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Text('🧪', style: TextStyle(fontSize: 16)),
+                const GameIcon('🧪', size: 16),
                 const SizedBox(width: 6),
                 OutlinedGameText(context.l10n.potionCount(potions), size: 14, font: GameFont.oswald),
               ],
@@ -1035,7 +1036,7 @@ class _GameScreenState extends State<GameScreen> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(freeHint ? '🦉' : '💡', style: const TextStyle(fontSize: 16)),
+                GameIcon(freeHint ? '🦉' : '💡', size: 16),
                 const SizedBox(width: 6),
                 OutlinedGameText(context.l10n.hintCount(hints), size: 14, font: GameFont.oswald),
               ],

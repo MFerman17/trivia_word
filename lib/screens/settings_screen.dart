@@ -11,6 +11,7 @@ import '../services/question_repository.dart';
 import '../services/vibration_service.dart';
 import '../widgets/game_3d.dart';
 import 'home_screen.dart';
+import '../widgets/game_icon.dart';
 
 /// Dirección pública de la política de privacidad (GitHub Pages, carpeta docs/).
 const String privacyPolicyUrl = 'https://mferman17.github.io/trivia_word/privacidad.html';
@@ -145,7 +146,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               Socket3D(
                 size: 44,
                 color: VibrationService.enabled ? WM.cyan : const Color(0xFF4A4660),
-                child: const Text('📳', style: TextStyle(fontSize: 19)),
+                child: const GameIcon('📳', size: 19),
               ),
               const SizedBox(width: 10),
               Expanded(
@@ -190,7 +191,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         Socket3D(
           size: 44,
           color: enabled ? WM.cyan : const Color(0xFF4A4660),
-          child: Text(emoji, style: const TextStyle(fontSize: 19)),
+          child: GameIcon(emoji, size: 19),
         ),
         const SizedBox(width: 10),
         Expanded(

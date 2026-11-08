@@ -6,6 +6,7 @@ import '../models/player_profile.dart';
 import 'game_3d.dart';
 import 'monster_poses.dart';
 import 'player_avatar.dart';
+import 'game_icon.dart';
 
 /// Escenario del combate: el monstruo grande, "de pie" sobre un pedestal,
 /// con sensación de 3D, y el jugador pequeño en la esquina.
@@ -472,7 +473,7 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
                   scale: 0.6 + hitT * 1.8,
                   child: Opacity(
                     opacity: (1 - hitT / 0.6).clamp(0.0, 1.0),
-                    child: const Text('💥', style: TextStyle(fontSize: 54)),
+                    child: const GameIcon('💥', size: 54),
                   ),
                 ),
               ),
@@ -484,7 +485,7 @@ class _BattleArenaState extends State<BattleArena> with TickerProviderStateMixin
                   opacity: math.sin((attackT - 0.35) / 0.5 * math.pi).clamp(0.0, 1.0),
                   child: Transform.scale(
                     scale: 1 + (attackT - 0.35) * 2,
-                    child: const Text('💢', style: TextStyle(fontSize: 44)),
+                    child: const GameIcon('💢', size: 44),
                   ),
                 ),
               ),

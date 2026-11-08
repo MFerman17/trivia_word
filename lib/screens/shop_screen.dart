@@ -11,6 +11,7 @@ import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
 import '../l10n/l10n.dart';
+import '../widgets/game_icon.dart';
 
 enum _CosmeticSlot { character, frame, accessory }
 
@@ -513,7 +514,7 @@ class _ShopScreenState extends State<ShopScreen>
         Socket3D(
           size: 40,
           color: color,
-          child: Text(icon, style: const TextStyle(fontSize: 18)),
+          child: GameIcon(icon, size: 18),
         ),
         const SizedBox(width: 10),
         Column(
@@ -688,7 +689,7 @@ class _ShopScreenState extends State<ShopScreen>
                 ),
                 if (!owned && !_isFree(option)) ...[
                   const SizedBox(width: 10),
-                  Text(option.coins > 0 ? '🪙' : '💎', style: const TextStyle(fontSize: 18)),
+                  GameIcon(option.coins > 0 ? '🪙' : '💎', size: 18),
                   const SizedBox(width: 4),
                   OutlinedGameText(
                     '${option.coins > 0 ? option.coins : option.gems}',
@@ -956,7 +957,7 @@ class _ShopScreenState extends State<ShopScreen>
             Socket3D(
               size: 54,
               color: accent,
-              child: Text(upgrade.emoji, style: const TextStyle(fontSize: 24)),
+              child: GameIcon(upgrade.emoji, size: 24),
             ),
             const SizedBox(width: 12),
             Expanded(
@@ -1001,7 +1002,7 @@ class _ShopScreenState extends State<ShopScreen>
                     : Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text('🪙', style: TextStyle(fontSize: 13)),
+                          const GameIcon('🪙', size: 13),
                           const SizedBox(width: 3),
                           Flexible(
                             child: OutlinedGameText('$cost', size: 15, font: GameFont.oswald),
@@ -1073,7 +1074,7 @@ class _ShopScreenState extends State<ShopScreen>
               Socket3D(
                 size: 56,
                 color: currency,
-                child: Text(offer.emoji, style: const TextStyle(fontSize: 26)),
+                child: GameIcon(offer.emoji, size: 26),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -1114,7 +1115,7 @@ class _ShopScreenState extends State<ShopScreen>
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Text(offer.payWithGems ? '💎' : '🪙', style: const TextStyle(fontSize: 14)),
+                    GameIcon(offer.payWithGems ? '💎' : '🪙', size: 14),
                     const SizedBox(width: 4),
                     OutlinedGameText('${offer.price}', size: 17),
                   ],
@@ -1211,7 +1212,7 @@ class _ShopScreenState extends State<ShopScreen>
             Socket3D(
               size: 56,
               color: WM.gold,
-              child: Text(emoji, style: const TextStyle(fontSize: 26)),
+              child: GameIcon(emoji, size: 26),
             ),
             const SizedBox(width: 12),
             Expanded(

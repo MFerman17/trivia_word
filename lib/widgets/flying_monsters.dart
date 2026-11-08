@@ -12,6 +12,8 @@ import '../services/asset_catalog.dart';
 import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import '../services/vibration_service.dart';
+import 'game_icon.dart';
+import 'game_icon.dart';
 
 /// Monstruos que cruzan el mapa volando y lanzan cosas.
 ///
@@ -299,7 +301,7 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
         width: size,
         height: size,
         fit: BoxFit.contain,
-        errorBuilder: (_, _, _) => const Text('🐉', style: TextStyle(fontSize: 50)),
+        errorBuilder: (_, _, _) => const GameIcon('🐉', size: 50),
       ),
     );
     // Las criaturas miran a la izquierda: si vuelan hacia la derecha se voltean.
@@ -356,7 +358,7 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
         child: IgnorePointer(
           child: Opacity(
             opacity: opacity,
-            child: Text(
+            child: GameText(
               m.text!,
               textAlign: TextAlign.center,
               style: GoogleFonts.anton(

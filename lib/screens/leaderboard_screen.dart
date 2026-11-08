@@ -10,6 +10,7 @@ import '../widgets/game_3d.dart';
 import '../l10n/l10n.dart';
 import '../services/audio_service.dart';
 import '../data/countries.dart';
+import '../widgets/game_icon.dart';
 
 class LeaderboardScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -135,7 +136,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const Text('🏆', style: TextStyle(fontSize: 48)),
+              const GameIcon('🏆', size: 48),
               const SizedBox(height: 8),
               OutlinedGameText(context.l10n.noHeroesYet, size: 22),
               const SizedBox(height: 6),
@@ -226,7 +227,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
               ),
               if (user.cups > 0) ...[
                 const SizedBox(width: 3),
-                Text('🏆${user.cups}', style: const TextStyle(fontSize: 12, color: WM.gold)),
+                GameText('🏆${user.cups}', style: const TextStyle(fontSize: 12, color: WM.gold)),
               ],
             ],
           ),
@@ -418,7 +419,7 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
                     // Copas del torneo semanal junto al nombre.
                     if (user.cups > 0) ...[
                       const SizedBox(width: 4),
-                      Text('🏆${user.cups}', style: const TextStyle(fontSize: 13, color: WM.gold)),
+                      GameText('🏆${user.cups}', style: const TextStyle(fontSize: 13, color: WM.gold)),
                     ],
                   ],
                 ),

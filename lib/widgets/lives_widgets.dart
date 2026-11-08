@@ -10,6 +10,7 @@ import '../services/lives_service.dart';
 import '../services/save_service.dart';
 import 'game_3d.dart';
 import '../l10n/l10n.dart';
+import 'game_icon.dart';
 
 /// "mm:ss" para el contador de la siguiente vida.
 String formatLifeTimer(Duration d) {
@@ -250,7 +251,7 @@ class _OutOfLivesDialogState extends State<_OutOfLivesDialog> {
               colors: const [Color(0xFFFFB3BA), danger],
             ),
             const SizedBox(height: 8),
-            const Text('💔', style: TextStyle(fontSize: 40)),
+            const GameIcon('💔', size: 40),
             const SizedBox(height: 6),
             Text(
               next == null
@@ -328,7 +329,7 @@ class _OutOfLivesDialogState extends State<_OutOfLivesDialog> {
             : Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(emoji, style: const TextStyle(fontSize: 17)),
+                  GameIcon(emoji, size: 17),
                   const SizedBox(width: 8),
                   Flexible(
                     child: OutlinedGameText(label, size: 15, font: GameFont.oswald),

@@ -11,6 +11,7 @@ import '../services/audio_service.dart';
 import '../services/locale_service.dart';
 import '../services/minigame_service.dart';
 import '../widgets/game_3d.dart';
+import '../widgets/game_icon.dart';
 
 /// Pantalla de un portal: juega el minijuego y, al terminar, entrega el
 /// premio y vuelve al mapa (devuelve true si se jugó).
@@ -62,7 +63,7 @@ class _MinigameScreenState extends State<MinigameScreen> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(won ? '🏆' : '🙂', style: const TextStyle(fontSize: 46)),
+              GameIcon(won ? '🏆' : '🙂', size: 46),
               const SizedBox(height: 6),
               OutlinedGameText(
                 won ? context.l10n.minigameWon : context.l10n.minigameLost,
@@ -369,10 +370,7 @@ class _HangmanGameState extends State<_HangmanGame> {
               for (var i = 0; i < maxMistakes; i++)
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 3),
-                  child: Text(
-                    i < maxMistakes - _mistakes ? '❤️' : '🖤',
-                    style: const TextStyle(fontSize: 20),
-                  ),
+                  child: GameIcon(i < maxMistakes - _mistakes ? '❤️' : '🖤', size: 20),
                 ),
             ],
           ),
@@ -390,7 +388,7 @@ class _HangmanGameState extends State<_HangmanGame> {
               child: Image.asset(
                 'assets/images/dragon.png',
                 fit: BoxFit.contain,
-                errorBuilder: (_, _, _) => const Text('🐉', style: TextStyle(fontSize: 64)),
+                errorBuilder: (_, _, _) => const GameIcon('🐉', size: 64),
               ),
             ),
           ),

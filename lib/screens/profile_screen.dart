@@ -10,6 +10,7 @@ import '../l10n/l10n.dart';
 import '../data/countries.dart';
 import '../services/audio_service.dart';
 import 'welcome_screen.dart';
+import '../widgets/game_icon.dart';
 
 class ProfileScreen extends StatefulWidget {
   final PlayerProfile? playerProfile;
@@ -99,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           opacity: count > 0 ? 1 : 0.35,
           child: Column(
             children: [
-              Text(emoji, style: const TextStyle(fontSize: 34)),
+              GameIcon(emoji, size: 34),
               OutlinedGameText('x$count', size: 18, font: GameFont.oswald),
             ],
           ),
@@ -351,7 +352,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Socket3D(
             size: 48,
             color: color,
-            child: Text(emoji, style: const TextStyle(fontSize: 21)),
+            child: GameIcon(emoji, size: 21),
           ),
           const SizedBox(width: 10),
           Expanded(

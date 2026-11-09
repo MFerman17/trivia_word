@@ -6,12 +6,14 @@ import '../models/level_config.dart';
 import '../models/question.dart';
 import '../services/ad_service.dart';
 import '../services/audio_service.dart';
+import '../widgets/screen_shake.dart';
 import '../widgets/battle_arena.dart';
 import '../widgets/game_3d.dart';
-import '../widgets/particle_explosion.dart';
 import '../l10n/l10n.dart';
 import '../services/cheer_service.dart';
 import '../widgets/game_icon.dart';
+import '../widgets/victory_fx.dart';
+import '../widgets/tutorial_overlay.dart';
 
 class GameScreen extends StatefulWidget {
   final int worldId;
@@ -63,7 +65,7 @@ class _GameScreenState extends State<GameScreen> {
       isMiniChallenge: widget.isMiniChallenge,
     );
     _controller.addListener(_onControllerUpdate);
-    _controller.loadInitialData();
+    _controller.loadInitialData().then((_) => _maybeShowTutorial());
     // Precarga un anuncio al empezar la batalla, para que si el jugador
     // pierde y quiere revivir, el video salga al instante y no tras varios
     // segundos de espera (justo cuando es más fácil que se rinda).
@@ -75,6 +77,43 @@ class _GameScreenState extends State<GameScreen> {
     _controller.removeListener(_onControllerUpdate);
     _controller.dispose();
     super.dispose();
+  }
+
+  // Zonas que el tutorial ilumina.
+  final GlobalKey _arenaKey = GlobalKey();
+  final GlobalKey _questionKey = GlobalKey();
+  final GlobalKey _answersKey = GlobalKey();
+  final GlobalKey _actionsKey = GlobalKey();
+
+  /// Tutorial de los niveles 1, 2 y 3 del primer capítulo (una sola vez).
+  Future<void> _maybeShowTutorial() async {
+    if (widget.isMiniChallenge) return;
+    final level = widget.levelNumber;
+    if (!await TutorialService.pending(world: widget.worldId, chapter: widget.chapterId, level: level)) {
+      return;
+    }
+    // Espera a que la batalla se dibuje para poder medir sus zonas.
+    await Future<void>.delayed(const Duration(milliseconds: 700));
+    if (!mounted || _controller.currentQuestion == null) return;
+    final l = context.l10n;
+    final steps = switch (level) {
+      1 => [
+          TutorialStep(target: _arenaKey, text: l.tutorial1Monster),
+          TutorialStep(target: _questionKey, text: l.tutorial1Question),
+          TutorialStep(target: _answersKey, text: l.tutorial1Answers),
+        ],
+      2 => [
+          TutorialStep(target: _actionsKey, text: l.tutorial2Hint),
+          TutorialStep(target: _arenaKey, text: l.tutorial2Stars),
+        ],
+      _ => [
+          TutorialStep(target: _actionsKey, text: l.tutorial3Potion),
+          TutorialStep(target: null, text: l.tutorial3Fights),
+        ],
+    };
+    await TutorialService.markSeen(level);
+    if (!mounted) return;
+    await showTutorial(context, steps);
   }
 
   void _onControllerUpdate() {
@@ -132,109 +171,74 @@ class _GameScreenState extends State<GameScreen> {
   }
 
   void _showVictoryDialog() {
-    // Una campanilla por cada estrella ganada, después de la fanfarria.
-    if (!_controller.isMiniChallenge) {
-      for (var i = 0; i < _controller.starsEarned; i++) {
-        Future.delayed(Duration(milliseconds: 1100 + i * 380), () {
-          if (mounted) AudioService.playStar();
-        });
-      }
-    }
-    showDialog(
+    final mini = _controller.isMiniChallenge;
+    final rewarded = !mini || _controller.miniRewardGranted;
+    final stars = mini ? 0 : _controller.starsEarned;
+    final countersAt = mini ? const Duration(milliseconds: 450) : victoryCountersDelay(stars);
+    showVictoryDialog<void>(
       context: context,
-      barrierDismissible: false,
-      builder: (dialogContext) => AlertDialog(
-        backgroundColor: const Color(0xFF1E1B4B),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(20),
-          side: const BorderSide(color: Colors.amber, width: 2),
-        ),
-        title: Text(
-          context.l10n.epicVictory,
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            color: Colors.amber,
-            fontWeight: FontWeight.bold,
-            fontSize: 22,
-          ),
-        ),
-        content: ParticleExplosion(
-          trigger: true,
-          particleEmoji: '🪙',
-          particleCount: 35,
-          type: ExplosionType.rain,
-          child: Container(
-            padding: const EdgeInsets.all(24),
-            decoration: BoxDecoration(
-              color: const Color(0xFF1F1D36),
-              borderRadius: BorderRadius.circular(20),
+      builder: (dialogContext) => Panel3D(
+        accent: WM.gold,
+        glow: 0.7,
+        radius: 22,
+        padding: const EdgeInsets.fromLTRB(18, 18, 18, 14),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            OutlinedGameText(
+              context.l10n.epicVictory,
+              size: 28,
+              letterSpacing: 2,
+              colors: const [Color(0xFFFFF1B0), WM.gold],
             ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  _controller.isMiniChallenge && !_controller.miniRewardGranted
-                      ? context.l10n.dailyRewardTaken
-                      : context.l10n.coinsReward(_controller.coinsReward),
-                  style: GoogleFonts.poppins(
-                    color: Colors.yellowAccent,
-                    fontSize: 16,
-                  ),
-                ),
-                if (!_controller.isMiniChallenge ||
-                    _controller.miniRewardGranted)
-                  Text(
-                    context.l10n.xpReward(_controller.xpReward),
-                    style: GoogleFonts.poppins(
-                      color: Colors.cyanAccent,
-                      fontSize: 16,
-                    ),
-                  ),
-                if (!_controller.isMiniChallenge) ...[
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: List.generate(3, (index) {
-                      return Icon(
-                        index < _controller.starsEarned
-                            ? Icons.star
-                            : Icons.star_border,
-                        color: Colors.amber,
-                        size: 36,
-                      );
-                    }),
+            if (!mini) ...[
+              const SizedBox(height: 10),
+              VictoryStars(earned: stars),
+            ],
+            const SizedBox(height: 14),
+            if (rewarded)
+              Wrap(
+                spacing: 8,
+                runSpacing: 8,
+                alignment: WrapAlignment.center,
+                children: [
+                  CountUpChip(emoji: '🪙', value: _controller.coinsReward, delay: countersAt, sound: true),
+                  CountUpChip(
+                    emoji: '✨',
+                    value: _controller.xpReward,
+                    suffix: ' XP',
+                    accent: WM.cyan,
+                    delay: countersAt + const Duration(milliseconds: 250),
                   ),
                 ],
-              ],
-            ),
-          ),
-        ),
-        actions: [
-          Center(
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.amber),
-              onPressed: () async {
-                AudioService.playButtonClick();
-                Navigator.of(dialogContext).pop();
-                if (_controller.chapterStory != null) {
-                  await Future<void>.delayed(
-                    const Duration(milliseconds: 120),
-                  );
-                  if (!mounted) return;
-                  await _showChapterStoryDialog();
-                }
-                if (mounted) Navigator.of(context).pop();
-              },
-              child: Text(
-                context.l10n.continueButton,
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
+              )
+            else
+              Text(
+                context.l10n.dailyRewardTaken,
+                textAlign: TextAlign.center,
+                style: GoogleFonts.oswald(color: Colors.white70, fontSize: 14),
+              ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              child: Pressable3D(
+                onTap: () async {
+                  AudioService.playButtonClick();
+                  Navigator.of(dialogContext).pop();
+                  if (_controller.chapterStory != null) {
+                    await Future<void>.delayed(const Duration(milliseconds: 120));
+                    if (!mounted) return;
+                    await _showChapterStoryDialog();
+                  }
+                  if (mounted) Navigator.of(context).pop();
+                },
+                color: WM.gold,
+                height: 50,
+                child: OutlinedGameText(context.l10n.continueButton, size: 18, font: GameFont.oswald),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -612,7 +616,11 @@ class _GameScreenState extends State<GameScreen> {
 
         final currentQuestion = _controller.currentQuestion;
 
-        return Scaffold(
+        return ScreenShake(
+          trigger: _attackCount,
+          // El zarpazo del monstruo llega a mitad de su animación (~0,3 s).
+          delay: const Duration(milliseconds: 300),
+          child: Scaffold(
           backgroundColor: WM.outline,
           body: Stack(
             fit: StackFit.expand,
@@ -653,7 +661,7 @@ class _GameScreenState extends State<GameScreen> {
               ),
             ],
           ),
-        );
+        ));
       },
     );
   }
@@ -721,7 +729,9 @@ class _GameScreenState extends State<GameScreen> {
       padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
       child: Column(
         children: [
-          BattleArena(
+          KeyedSubtree(
+            key: _arenaKey,
+            child: BattleArena(
             enemyAsset: _controller.config.enemyAsset,
             enemyEmoji: _controller.config.enemyEmoji,
             enemyName: _controller.config.enemyName,
@@ -739,16 +749,17 @@ class _GameScreenState extends State<GameScreen> {
             // Más bajo mientras se lee la explicación, para que quepa.
             compact: _controller.isAnswered,
           ),
+          ),
           if (_controller.monsterReaction != null) ...[
             const SizedBox(height: 8),
             _buildMonsterReaction(),
           ],
           const SizedBox(height: 10),
-          _buildQuestionCard(currentQuestion),
+          KeyedSubtree(key: _questionKey, child: _buildQuestionCard(currentQuestion)),
           const SizedBox(height: 12),
-          Expanded(child: _buildAnswers(currentQuestion)),
+          Expanded(child: KeyedSubtree(key: _answersKey, child: _buildAnswers(currentQuestion))),
           const SizedBox(height: 8),
-          _buildBottomActions(),
+          KeyedSubtree(key: _actionsKey, child: _buildBottomActions()),
         ],
       ),
     );

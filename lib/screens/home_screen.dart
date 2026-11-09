@@ -11,6 +11,8 @@ import 'quests_screen.dart';
 import 'settings_screen.dart';
 import '../services/audio_service.dart';
 import '../services/save_service.dart';
+import '../services/streak_service.dart';
+import '../widgets/streak_calendar.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
 import '../services/cloud_service.dart';
@@ -127,6 +129,11 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       }
     }
 
+    // Racha de 7 días: el número del botón y, una vez por apertura, el
+    // calendario si hoy queda premio por reclamar.
+    final streak = await StreakService.status();
+    if (mounted) setState(() => _streak = streak);
+
     // Primera vez (o jugador de antes sin país): pedir alias y país.
     if (mounted && _profile!.needsWelcome && !_welcomeShown) {
       _welcomeShown = true;
@@ -139,6 +146,84 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       );
       if (mounted) setState(() {});
     }
+
+    if (mounted && !_streakShown && (_streak?.canClaim ?? false) && !_profile!.needsWelcome) {
+      _streakShown = true;
+      await _openStreak();
+    }
+  }
+
+  /// Racha de hoy (null mientras carga).
+  StreakStatus? _streak;
+
+  /// El calendario se abre solo una vez por apertura de la portada.
+  bool _streakShown = false;
+
+  Future<void> _openStreak() async {
+    if (_profile == null) return;
+    await showStreakCalendar(context, _profile!);
+    final updated = await SaveService.loadPlayerData();
+    final streak = await StreakService.status();
+    if (!mounted) return;
+    updated.totalStars = _profile!.totalStars;
+    setState(() {
+      _profile = updated;
+      _streak = streak;
+    });
+    await CloudService.syncProfileToCloud(updated);
+  }
+
+  /// Botón redondo con la llama y el día de la racha. Un punto rojo avisa
+  /// de que hoy hay premio sin reclamar.
+  Widget _buildStreakButton() {
+    final s = _streak;
+    final pending = s?.canClaim ?? false;
+    // Si hoy no se ha reclamado, el número es el de los días ya hechos.
+    final days = s == null ? 0 : (pending ? (s.lost ? 0 : s.day - 1) : s.day);
+    return Tooltip(
+      message: context.l10n.streakButton,
+      child: GestureDetector(
+        onTap: () {
+          AudioService.playButtonClick();
+          _openStreak();
+        },
+        child: Stack(
+          clipBehavior: Clip.none,
+          children: [
+            Container(
+              width: 46,
+              height: 46,
+              decoration: _roundButtonDecoration(),
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const Text('🔥', style: TextStyle(fontSize: 15)),
+                  Text(
+                    '$days',
+                    style: GoogleFonts.anton(color: const Color(0xFFFFB35C), fontSize: 15),
+                  ),
+                ],
+              ),
+            ),
+            if (pending)
+              Positioned(
+                right: -2,
+                top: -2,
+                child: Container(
+                  width: 14,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    color: Colors.redAccent,
+                    shape: BoxShape.circle,
+                    border: Border.all(color: kOutline, width: 2),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
   }
 
   /// Para no abrir la bienvenida dos veces si el perfil se recarga.
@@ -397,6 +482,8 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          _buildStreakButton(),
+                          const SizedBox(width: 10),
                           // Idioma a la vista (solo si hay más de uno).
                           if (LocaleService.availableLanguages.length > 1) ...[
                             _buildLanguageButton(),

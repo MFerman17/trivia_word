@@ -2514,5 +2514,83 @@
   "story63Objective": "Tu leyenda queda escrita. Vuelve a los mundos para conseguir todas las estrellas.",
   "@story63Objective": {
     "description": "EN: Your legend is written. Return to the worlds to earn every star."
+  },
+  "streakTitle": "RACHA DIARIA",
+  "@streakTitle": {
+    "description": "EN: DAILY STREAK"
+  },
+  "streakSubtitle": "Entra cada día: el día 7 trae el gran premio",
+  "@streakSubtitle": {
+    "description": "EN: Play every day: day 7 brings the big prize"
+  },
+  "streakLost": "Te saltaste un día y la racha vuelve a empezar. ¡A por los 7 días!",
+  "@streakLost": {
+    "description": "EN: You missed a day, so your streak starts again. Go for all 7 days!"
+  },
+  "streakClaim": "RECLAMAR",
+  "@streakClaim": {
+    "description": "EN: CLAIM"
+  },
+  "streakDay": "Día {day}",
+  "@streakDay": {
+    "description": "EN: Day {day}",
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "streakComeBack": "Vuelve mañana para el día {day}",
+  "@streakComeBack": {
+    "description": "EN: Come back tomorrow for day {day}",
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  },
+  "streakButton": "Racha diaria",
+  "@streakButton": {
+    "description": "EN: Daily streak"
+  },
+  "tutorialSkip": "Saltar",
+  "@tutorialSkip": {
+    "description": "EN: Skip"
+  },
+  "tutorialNext": "SIGUIENTE",
+  "@tutorialNext": {
+    "description": "EN: NEXT"
+  },
+  "tutorialPlay": "¡A JUGAR!",
+  "@tutorialPlay": {
+    "description": "EN: LET'S PLAY!"
+  },
+  "tutorial1Monster": "¡Hola! Soy tu guía. Este monstruo te corta el paso: para vencerlo tienes que acertar preguntas. Su barra de vida baja con cada acierto.",
+  "@tutorial1Monster": {
+    "description": "EN: Hi! I'm your guide. This monster blocks your way: answer questions correctly to beat it. Its health bar drops with every right answer."
+  },
+  "tutorial1Question": "Aquí está la pregunta. Léela con calma: no hay prisa.",
+  "@tutorial1Question": {
+    "description": "EN: Here is the question. Read it calmly: there's no rush."
+  },
+  "tutorial1Answers": "Toca la respuesta correcta para atacar. Si fallas, el monstruo te ataca a ti y pierdes vida.",
+  "@tutorial1Answers": {
+    "description": "EN: Tap the right answer to attack. If you miss, the monster attacks you and you lose health."
+  },
+  "tutorial2Hint": "¿Dudas? Una pista 💡 elimina una respuesta incorrecta. Las consigues en la tienda, en cofres y en misiones.",
+  "@tutorial2Hint": {
+    "description": "EN: Not sure? A hint 💡 removes one wrong answer. You get them in the shop, in chests and in quests."
+  },
+  "tutorial2Stars": "Sin fallos ganas 3 estrellas ⭐, con 1 fallo 2, y con más, 1. ¡Ve a por las 3!",
+  "@tutorial2Stars": {
+    "description": "EN: No mistakes earns 3 stars ⭐, 1 mistake earns 2, more earns 1. Go for all 3!"
+  },
+  "tutorial3Potion": "Si te queda poca vida, bebe una poción 🧪 para curarte en mitad del combate.",
+  "@tutorial3Potion": {
+    "description": "EN: If your health is low, drink a potion 🧪 to heal in the middle of a fight."
+  },
+  "tutorial3Fights": "Al final de cada capítulo te espera un guardián. Para retarlo necesitas estrellas, así que procura ganarlas en cada nivel.",
+  "@tutorial3Fights": {
+    "description": "EN: A guardian waits at the end of each chapter. You need stars to challenge it, so try to earn them in every level."
   }
 }

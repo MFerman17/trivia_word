@@ -8,6 +8,8 @@ import '../controllers/fight_controller.dart';
 import '../models/question.dart';
 import '../services/audio_service.dart';
 import '../services/fighter_service.dart';
+import '../widgets/screen_shake.dart';
+import '../widgets/victory_fx.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/monster_poses.dart';
 import '../widgets/player_avatar.dart';
@@ -171,7 +173,9 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
             body: Center(child: CircularProgressIndicator(color: WM.cyan)),
           );
         }
-        return Scaffold(
+        return ScreenShake(
+          trigger: _fight.playerMaxHp - _fight.playerHp,
+          child: Scaffold(
           backgroundColor: WM.outline,
           body: Stack(
             fit: StackFit.expand,
@@ -199,7 +203,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               _buildOverlay(),
             ],
           ),
-        );
+        ));
       },
     );
   }
@@ -984,14 +988,10 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     // último): el mapa pasará solo al mundo siguiente y contará su historia.
     final int? nextWorld =
         f.isFinal && f.firstWin && f.worldId < kWorldCount ? f.worldId + 1 : null;
-    showDialog<void>(
+    final countersAt = victoryCountersDelay(f.starsEarned);
+    showVictoryDialog<void>(
       context: context,
-      barrierDismissible: false,
-      barrierColor: Colors.black.withValues(alpha: 0.75),
-      builder: (dialogContext) => Dialog(
-        backgroundColor: Colors.transparent,
-        insetPadding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Panel3D(
+      builder: (dialogContext) => Panel3D(
           accent: WM.gold,
           glow: 0.7,
           radius: 22,
@@ -1006,23 +1006,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                 colors: const [Color(0xFFFFF1B0), WM.gold],
               ),
               const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  for (var i = 0; i < 3; i++)
-                    TweenAnimationBuilder<double>(
-                      tween: Tween(begin: 0, end: 1),
-                      duration: Duration(milliseconds: 500 + i * 300),
-                      curve: Curves.elasticOut,
-                      builder: (context, s, child) => Transform.scale(scale: s, child: child),
-                      child: Icon(
-                        i < f.starsEarned ? Icons.star_rounded : Icons.star_border_rounded,
-                        color: i < f.starsEarned ? WM.gold : Colors.white30,
-                        size: 46,
-                      ),
-                    ),
-                ],
-              ),
+              VictoryStars(earned: f.starsEarned),
               const SizedBox(height: 6),
               Text(
                 f.enemyRounds == 0 ? context.l10n.flawlessWin : context.l10n.won21,
@@ -1039,10 +1023,21 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                 runSpacing: 8,
                 alignment: WrapAlignment.center,
                 children: [
-                  Chip3D(emoji: '🪙', text: '+${f.coinsEarned}', accent: WM.gold),
-                  Chip3D(emoji: '✨', text: '+${f.xpEarned} XP', accent: WM.cyan),
+                  CountUpChip(emoji: '🪙', value: f.coinsEarned, delay: countersAt, sound: true),
+                  CountUpChip(
+                    emoji: '✨',
+                    value: f.xpEarned,
+                    suffix: ' XP',
+                    accent: WM.cyan,
+                    delay: countersAt + const Duration(milliseconds: 250),
+                  ),
                   if (f.gemsEarned > 0)
-                    Chip3D(emoji: '💎', text: '+${f.gemsEarned}', accent: WM.violet),
+                    CountUpChip(
+                      emoji: '💎',
+                      value: f.gemsEarned,
+                      accent: WM.violet,
+                      delay: countersAt + const Duration(milliseconds: 500),
+                    ),
                 ],
               ),
               if (!f.firstWin) ...[
@@ -1086,7 +1081,6 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
             ],
           ),
         ),
-      ),
     );
   }
 

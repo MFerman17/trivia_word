@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'l10n/l10n.dart';
 import 'screens/home_screen.dart';
+import 'widgets/game_transitions.dart';
 import 'services/asset_catalog.dart';
 import 'services/cloud_service.dart';
 import 'services/audio_service.dart';
@@ -91,7 +92,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       builder: (context, locale, _) => MaterialApp(
         title: 'Words & Monsters',
         debugShowCheckedModeBanner: false,
-        theme: ThemeData.dark(),
+        theme: ThemeData.dark().copyWith(pageTransitionsTheme: kGamePageTransitions),
         locale: locale,
         supportedLocales: LocaleService.supportedLocales,
         localizationsDelegates: const [

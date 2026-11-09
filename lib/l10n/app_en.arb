@@ -540,5 +540,22 @@
   "story63Heading": "Adventure complete!",
   "story63Destination": "The words return home",
   "story63Narrative": "The Devourer dissolves into a whirlwind of pages. The words fly back to the six worlds and the desert runes light up again. Your name is written in every one of them.",
-  "story63Objective": "Your legend is written. Return to the worlds to earn every star."
+  "story63Objective": "Your legend is written. Return to the worlds to earn every star.",
+  "streakTitle": "DAILY STREAK",
+  "streakSubtitle": "Play every day: day 7 brings the big prize",
+  "streakLost": "You missed a day, so your streak starts again. Go for all 7 days!",
+  "streakClaim": "CLAIM",
+  "streakDay": "Day {day}",
+  "streakComeBack": "Come back tomorrow for day {day}",
+  "streakButton": "Daily streak",
+  "tutorialSkip": "Skip",
+  "tutorialNext": "NEXT",
+  "tutorialPlay": "LET'S PLAY!",
+  "tutorial1Monster": "Hi! I'm your guide. This monster blocks your way: answer questions correctly to beat it. Its health bar drops with every right answer.",
+  "tutorial1Question": "Here is the question. Read it calmly: there's no rush.",
+  "tutorial1Answers": "Tap the right answer to attack. If you miss, the monster attacks you and you lose health.",
+  "tutorial2Hint": "Not sure? A hint 💡 removes one wrong answer. You get them in the shop, in chests and in quests.",
+  "tutorial2Stars": "No mistakes earns 3 stars ⭐, 1 mistake earns 2, more earns 1. Go for all 3!",
+  "tutorial3Potion": "If your health is low, drink a potion 🧪 to heal in the middle of a fight.",
+  "tutorial3Fights": "A guardian waits at the end of each chapter. You need stars to challenge it, so try to earn them in every level."
 }

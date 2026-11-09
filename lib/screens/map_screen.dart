@@ -10,6 +10,7 @@ import 'game_screen.dart';
 import 'mini_challenges_screen.dart';
 import '../l10n/l10n.dart';
 import '../services/fighter_service.dart';
+import '../widgets/unlock_burst.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/flying_monsters.dart';
 import 'fight_screen.dart';
@@ -249,6 +250,10 @@ class _MapScreenState extends State<MapScreen>
 
     AudioService.stopBgm(); // El combate pone su propia música al cargar.
 
+    // Niveles abiertos antes de jugar: al volver se comparan para animar los
+    // que se acaban de desbloquear.
+    final unlockedBefore = _unlockedKeys(worldId);
+
     Navigator.push(
       context,
       MaterialPageRoute(
@@ -269,6 +274,17 @@ class _MapScreenState extends State<MapScreen>
       _scrolledWorld = null;
       await _controller.loadAllProgress();
       AudioService.playMapMusic();
+      final fresh = _unlockedKeys(worldId).difference(unlockedBefore);
+      if (fresh.isNotEmpty && mounted) {
+        setState(() => _justUnlocked = fresh);
+        // Suena cuando el mapa ya ha vuelto a centrarse en el nivel nuevo.
+        Future.delayed(const Duration(milliseconds: 650), () {
+          if (mounted) AudioService.playStar();
+        });
+        Future.delayed(const Duration(milliseconds: 2600), () {
+          if (mounted) setState(() => _justUnlocked = {});
+        });
+      }
       // La pelea final devuelve el número del mundo siguiente: se pasa a él
       // y se cuenta su historia, para que el jugador sepa que ya avanzó.
       if (result is int && mounted) {
@@ -277,6 +293,16 @@ class _MapScreenState extends State<MapScreen>
       }
     });
   }
+
+  /// Niveles acabados de desbloquear (se animan una vez al volver al mapa).
+  Set<String> _justUnlocked = {};
+
+  /// Claves "capítulo-nivel" de los niveles abiertos de un mundo.
+  Set<String> _unlockedKeys(int world) => {
+        for (int c = 1; c <= kChaptersPerWorld; c++)
+          for (int l = 1; l <= kLevelsPerChapter; l++)
+            if (_controller.getProgressForNode(world, c, l).isUnlocked) '$c-$l',
+      };
 
   /// Presentación del mundo nuevo, con su paisaje y su historia.
   void _showNewWorld(int world) {
@@ -1193,6 +1219,11 @@ class _MapScreenState extends State<MapScreen>
     // Solo el nivel actual "late", para guiar la vista del jugador
     if (isCurrent) {
       circle = ScaleTransition(scale: _pulseScale, child: circle);
+    }
+
+    // Recién desbloqueado: el candado salta y el nivel aparece con un destello.
+    if (_justUnlocked.contains('${progress.chapterId}-${progress.levelNumber}')) {
+      circle = UnlockBurst(size: nodeSize, child: circle);
     }
 
     // Placa pegada a la parte de abajo del círculo: así se ve claramente a

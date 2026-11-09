@@ -198,7 +198,7 @@ class _TutorialViewState extends State<_TutorialView> {
             left: 16,
             right: 16,
             top: below ? (rect == null ? screen.height * 0.35 : rect.bottom + 12) : null,
-            bottom: below ? null : screen.height - rect!.top + 12,
+            bottom: below ? null : screen.height - rect.top + 12,
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 250),
               child: KeyedSubtree(key: ValueKey(_index), child: bubble),

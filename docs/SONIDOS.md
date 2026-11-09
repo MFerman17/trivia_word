@@ -8,7 +8,7 @@ Consejos para ElevenLabs (Sound Effects): duración corta (0,5-2 s), estilo
 "fantasy mobile game", sin voces, y que no sea más fuerte que los demás.
 
 | Archivo | Cuándo suena | Ahora suena | Idea para el prompt |
-|---|---|---|---|
+| --- | --- | --- | --- |
 | `select.mp3` | Tocar una casilla en la tienda | button_click | Soft magical UI tick, short wooden tap with a tiny sparkle |
 | `round_win.mp3` | Ganar una ronda en una pelea | level_up | Short triumphant brass sting, 1 second, fantasy game |
 | `unlock.mp3` | Nivel desbloqueado en el mapa | star | Metal padlock clicking open followed by a bright magical chime |

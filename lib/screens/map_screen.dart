@@ -45,7 +45,17 @@ const double kSegmentHeightFactor = 1.3;
 const double kChapterBannerHeight = 46;
 
 /// Aire mínimo entre dos niveles (además del tamaño del círculo).
-const double kNodeGap = 10;
+const double kNodeGap = 8;
+
+/// Tamaño de los niveles respecto a las plataformas de la imagen.
+/// Las plataformas de abajo miden ~10 % del ancho de la imagen y, por la
+/// perspectiva, las de arriba bastante menos. El círculo del nivel ocupa
+/// el 90 % de la plataforma de abajo y se achica hacia arriba igual que
+/// ellas (hasta el 62 %), así parece "posado" en cada una.
+const double kNodeToImage = 0.09;
+const double kNodeTopScale = 0.62;
+const double kNodeMin = 38;
+const double kNodeMax = 84;
 
 /// Cómo se dibuja un tramo: qué parte de la imagen se ve y dónde va cada nivel.
 class _SegmentLayout {
@@ -60,8 +70,11 @@ class _SegmentLayout {
   /// Centro de cada nivel, en píxeles dentro del tramo.
   final List<Offset> nodes;
 
-  /// Tamaño de los círculos en este tramo.
+  /// Tamaño del círculo más grande del tramo (para colocar el portal).
   final double nodeSize;
+
+  /// Tamaño de cada círculo (los de arriba, más pequeños por la perspectiva).
+  final List<double> sizes;
 
   /// Alto del tramo. Normalmente ancho x kSegmentHeightFactor; menos si las
   /// plataformas de la imagen están muy separadas a lo ancho (ver compute).
@@ -75,6 +88,7 @@ class _SegmentLayout {
     required this.imageTop,
     required this.nodes,
     required this.nodeSize,
+    required this.sizes,
   });
 
   /// 1. La imagen se escala para cubrir el tramo (como BoxFit.cover).
@@ -106,7 +120,7 @@ class _SegmentLayout {
     var imageWidth = math.max(width, height * aspect);
     // Fracción de la imagen que hace falta ver: de la primera a la última
     // plataforma, más medio círculo y un margen a cada lado.
-    final needed = math.min(1.0, (maxX - minX) + (nodeSize + 24) / imageWidth);
+    final needed = math.min(1.0, (maxX - minX) + kNodeToImage + 24 / imageWidth);
     if (width / imageWidth < needed) imageWidth = width / needed;
     final imageHeight = imageWidth / aspect;
     height = math.min(height, imageHeight);
@@ -121,14 +135,19 @@ class _SegmentLayout {
         Offset(p.dx * imageWidth - imageLeft, p.dy * imageHeight - imageTop),
     ];
 
-    // Distancia entre los dos niveles más cercanos del tramo.
-    double closest = double.infinity;
+    // Tamaño de cada nivel: proporcional a la imagen y más pequeño cuanto
+    // más arriba (y = 0,8 abajo del todo; y = 0,15 arriba del todo).
+    // Si otro nivel queda demasiado cerca, se achica para no tocarlo.
+    final sizes = <double>[];
     for (int i = 0; i < pts.length; i++) {
-      for (int j = i + 1; j < pts.length; j++) {
-        closest = math.min(closest, (pts[j] - pts[i]).distance);
+      final depth = ((raw[i].dy - 0.15) / 0.65).clamp(0.0, 1.0);
+      final perspective = kNodeTopScale + (1 - kNodeTopScale) * depth;
+      var size = imageWidth * kNodeToImage * perspective;
+      for (int j = 0; j < pts.length; j++) {
+        if (j != i) size = math.min(size, (pts[j] - pts[i]).distance - kNodeGap);
       }
+      sizes.add(size.clamp(kNodeMin, kNodeMax).toDouble());
     }
-    final size = math.min(nodeSize, closest - kNodeGap).clamp(34.0, nodeSize).toDouble();
 
     return _SegmentLayout(
       height: height,
@@ -137,7 +156,8 @@ class _SegmentLayout {
       imageLeft: imageLeft,
       imageTop: imageTop,
       nodes: pts,
-      nodeSize: size,
+      nodeSize: sizes.reduce(math.max),
+      sizes: sizes,
     );
   }
 }
@@ -574,7 +594,8 @@ class _MapScreenState extends State<MapScreen>
       builder: (context, constraints) {
         final width = math.min(constraints.maxWidth, kMaxMapWidth);
         final height = width * kSegmentHeightFactor;
-        final nodeSize = (width * 0.13).clamp(44.0, 60.0).toDouble();
+        // Margen del recorte: el círculo más grande posible.
+        const nodeSize = kNodeMax;
         final world = _controller.selectedWorld;
         final currentIndex = _currentLevelIndex(world, segments.length);
 
@@ -768,7 +789,7 @@ class _MapScreenState extends State<MapScreen>
               chapter: chapter,
               index: part * kNodesPerSegment + i,
               position: layout.nodes[i],
-              nodeSize: layout.nodeSize,
+              nodeSize: layout.sizes[i],
               currentIndex: currentIndex,
             ),
         ],

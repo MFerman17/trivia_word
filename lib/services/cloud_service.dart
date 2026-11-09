@@ -4,6 +4,8 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import '../models/player_profile.dart';
 import 'save_service.dart';
+import 'daily_challenge_service.dart';
+import 'tower_service.dart';
 import 'tournament_service.dart';
 
 enum GoogleAccountResult { linked, cancelled, failed }
@@ -70,6 +72,8 @@ class CloudService {
         await _db.collection('leaderboard').doc(user.uid).delete();
         await _db.collection('player_saves').doc(user.uid).delete();
         await TournamentService.deleteMyEntries(user.uid);
+        await DailyChallengeService.deleteMyEntries(user.uid);
+        await TowerService.deleteMyEntry(user.uid);
       } catch (e) {
         debugPrint('No se pudieron borrar los datos de la nube: $e');
         return false;

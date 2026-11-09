@@ -213,5 +213,91 @@ service cloud.firestore {
       // Borrado de datos del jugador.
       allow delete: if ownsEntry();
     }
+    // RETO DIARIO: un intento por jugador y día (00:00-24:00 UTC).
+    // Estructura: daily/{dayId}/entries/{uid}; dayId = milisegundos del
+    // día a las 00:00 UTC (igual que el campo dayStart).
+    match /daily/{dayId}/entries/{userId} {
+      function ownsDaily() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function inDay(d) {
+        return d.dayStart is timestamp
+          && string(d.dayStart.toMillis()) == dayId
+          && d.dayStart.hours() == 0
+          && d.dayStart.minutes() == 0
+          && d.dayStart.seconds() == 0
+          && request.time >= d.dayStart
+          && request.time < d.dayStart + duration.value(1, 'd');
+      }
+
+      function validDaily(d) {
+        return d.keys().hasAll(['name', 'score', 'correct', 'finished', 'startedAt', 'dayStart', 'updatedAt'])
+          && d.keys().hasOnly(['name', 'country', 'score', 'correct', 'finished', 'startedAt', 'dayStart', 'updatedAt'])
+          && d.name is string && d.name.size() >= 1 && d.name.size() <= 20
+          && (!('country' in d) || (d.country is string && d.country.size() == 2))
+          // 5 preguntas x 225 puntos como máximo.
+          && d.score is int && d.score >= 0 && d.score <= 1125
+          && d.correct is int && d.correct >= 0 && d.correct <= 5
+          && d.finished is bool
+          && d.startedAt is timestamp
+          && d.updatedAt == request.time;
+      }
+
+      allow read: if request.auth != null;
+
+      // Empezar: se apunta antes de jugar, con 0 puntos.
+      allow create: if ownsDaily()
+        && validDaily(request.resource.data)
+        && inDay(request.resource.data)
+        && request.resource.data.score == 0
+        && request.resource.data.correct == 0
+        && request.resource.data.finished == false
+        && request.resource.data.startedAt == request.time;
+
+      // Entregar: una sola vez, ni demasiado rápido ni demasiado tarde.
+      // (Puede entregarse un poco después de medianoche si se empezó antes.)
+      allow update: if ownsDaily()
+        && validDaily(request.resource.data)
+        && resource.data.finished == false
+        && request.resource.data.finished == true
+        && request.resource.data.dayStart == resource.data.dayStart
+        && request.resource.data.startedAt == resource.data.startedAt
+        && request.time > resource.data.startedAt + duration.value(10, 's')
+        && request.time < resource.data.startedAt + duration.value(10, 'm');
+
+      allow delete: if ownsDaily();
+    }
+
+    // TORRE INFINITA: récord (piso más alto) de cada jugador.
+    match /tower/{userId} {
+      function ownsTower() {
+        return request.auth != null && request.auth.uid == userId;
+      }
+
+      function validTower(d) {
+        return d.keys().hasAll(['name', 'bestFloor', 'updatedAt'])
+          && d.keys().hasOnly(['name', 'country', 'bestFloor', 'updatedAt'])
+          && d.name is string && d.name.size() >= 1 && d.name.size() <= 20
+          && (!('country' in d) || (d.country is string && d.country.size() == 2))
+          && d.bestFloor is int && d.bestFloor >= 1 && d.bestFloor <= 1000
+          && d.updatedAt == request.time;
+      }
+
+      allow read: if request.auth != null;
+      // Primer récord: con un tope razonable para una primera subida.
+      allow create: if ownsTower()
+        && validTower(request.resource.data)
+        && request.resource.data.bestFloor <= 300;
+      // El récord solo puede subir, y como mucho 1 piso cada 3 segundos
+      // desde la última vez (cada piso es una pregunta contestada).
+      allow update: if ownsTower()
+        && validTower(request.resource.data)
+        && request.resource.data.bestFloor > resource.data.bestFloor
+        && request.time > resource.data.updatedAt
+          + duration.value((request.resource.data.bestFloor - resource.data.bestFloor) * 3, 's');
+      allow delete: if ownsTower();
+    }
+
   }
 }

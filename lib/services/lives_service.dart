@@ -83,6 +83,14 @@ class LivesService {
     return left.isNegative ? Duration.zero : left;
   }
 
+  /// Momento en que las vidas estarán llenas (null si ya lo están).
+  /// Lo usan las notificaciones para avisar "¡vidas llenas!".
+  static DateTime? get fullAt {
+    final start = _refillStart;
+    if (isFull || start == null) return null;
+    return start.add(refillTime * (maxLives - lives.value));
+  }
+
   /// Igual que [timeToNextLife] pero sin sumar vidas: se puede usar
   /// mientras se dibuja una pantalla (no avisa a nadie).
   static Duration? get timeToNextLifeCached {

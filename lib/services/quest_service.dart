@@ -17,6 +17,10 @@ enum QuestEvent {
   shopPurchase,
   upgradeBought,
   miniChallengeWon,
+  dailyChallenge, // reto diario jugado
+  towerFloors, // pisos subidos en la Torre (amount = cuántos)
+  streakCompleted, // racha de 7 días completada
+  worldBossWon, // jefe final de un mundo vencido por primera vez
 }
 
 class QuestService {
@@ -34,6 +38,10 @@ class QuestService {
     QuestEvent.shopPurchase: ['buy_shop_item_1'],
     QuestEvent.upgradeBought: ['buy_upgrade_1'],
     QuestEvent.miniChallengeWon: ['mini_challenge_3'],
+    QuestEvent.dailyChallenge: ['daily_challenge_today', 'daily_challenge_7'],
+    QuestEvent.towerFloors: ['tower_floors_50', 'tower_floors_300'],
+    QuestEvent.streakCompleted: ['streak_7'],
+    QuestEvent.worldBossWon: ['worlds_6'],
   };
 
   // Plantillas de misiones. Primero las diarias (se renuevan cada día),
@@ -76,6 +84,15 @@ class QuestService {
         targetAmount: 2,
         rewardCoins: 50,
         emoji: '💡',
+        daily: true,
+      ),
+      QuestModel(
+        id: 'daily_challenge_today',
+        title: 'Reto del día',
+        description: 'Juega el reto diario hoy',
+        targetAmount: 1,
+        rewardCoins: 50,
+        emoji: '📅',
         daily: true,
       ),
       // ---- LOGROS ----
@@ -186,6 +203,51 @@ class QuestService {
         rewardCoins: 150,
         rewardGems: 2,
         emoji: '💪',
+      ),
+      QuestModel(
+        id: 'daily_challenge_7',
+        title: 'Retador',
+        description: 'Juega 7 retos diarios',
+        targetAmount: 7,
+        rewardCoins: 300,
+        rewardGems: 3,
+        emoji: '📅',
+      ),
+      QuestModel(
+        id: 'tower_floors_50',
+        title: 'Escalador',
+        description: 'Sube 50 pisos en la Torre infinita',
+        targetAmount: 50,
+        rewardCoins: 300,
+        rewardGems: 3,
+        emoji: '🗼',
+      ),
+      QuestModel(
+        id: 'tower_floors_300',
+        title: 'Señor de la Torre',
+        description: 'Sube 300 pisos en la Torre infinita',
+        targetAmount: 300,
+        rewardCoins: 800,
+        rewardGems: 6,
+        emoji: '🏯',
+      ),
+      QuestModel(
+        id: 'streak_7',
+        title: 'Constancia',
+        description: 'Completa una racha de 7 días',
+        targetAmount: 1,
+        rewardCoins: 400,
+        rewardGems: 4,
+        emoji: '🔥',
+      ),
+      QuestModel(
+        id: 'worlds_6',
+        title: 'Leyenda de las Palabras',
+        description: 'Vence a los 6 jefes finales',
+        targetAmount: 6,
+        rewardCoins: 1500,
+        rewardGems: 10,
+        emoji: '👑',
       ),
     ];
   }

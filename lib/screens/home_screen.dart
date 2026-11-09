@@ -12,6 +12,7 @@ import 'settings_screen.dart';
 import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import '../services/streak_service.dart';
+import '../services/notification_service.dart';
 import '../widgets/streak_calendar.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
@@ -21,6 +22,7 @@ import '../widgets/lives_widgets.dart';
 import '../services/ad_service.dart';
 import 'welcome_screen.dart';
 import 'tournament_screen.dart';
+import 'challenges_screen.dart';
 import '../services/tournament_service.dart';
 import '../services/locale_service.dart';
 import '../widgets/game_icon.dart';
@@ -151,6 +153,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       _streakShown = true;
       await _openStreak();
     }
+
+    // Permiso de notificaciones: una sola vez, ya dentro del juego (no
+    // nada más abrirlo), cuando ya se entiende para qué sirven.
+    if (mounted && !_profile!.needsWelcome) await NotificationService.askPermissionOnce();
   }
 
   /// Racha de hoy (null mientras carga).
@@ -591,12 +597,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                       const SizedBox(width: 10),
                       Expanded(
                         child: _buildMenuCard(
-                          title: context.l10n.menuTournament,
+                          // Reto diario, Torre infinita y Torneo, juntos.
+                          title: context.l10n.menuChallenges,
                           icon: Icons.emoji_events_rounded,
                           onTap: () async {
                             await Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => const TournamentScreen()),
+                              MaterialPageRoute(builder: (context) => const ChallengesScreen()),
                             );
                             _loadUserProfile();
                           },

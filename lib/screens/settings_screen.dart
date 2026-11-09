@@ -9,6 +9,7 @@ import '../services/lives_service.dart';
 import '../services/locale_service.dart';
 import '../services/question_repository.dart';
 import '../services/vibration_service.dart';
+import '../services/notification_service.dart';
 import '../widgets/game_3d.dart';
 import 'home_screen.dart';
 import '../widgets/game_icon.dart';
@@ -163,6 +164,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 value: VibrationService.enabled,
                 onChanged: (value) async {
                   await VibrationService.setEnabled(value);
+                  if (mounted) setState(() {});
+                },
+                activeThumbColor: WM.bone,
+                activeTrackColor: WM.cyan,
+                inactiveThumbColor: Colors.white54,
+                inactiveTrackColor: WM.outline,
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
+          // Notificaciones: vidas llenas, cofre listo y racha.
+          Row(
+            children: [
+              Socket3D(
+                size: 44,
+                color: NotificationService.enabled ? WM.cyan : const Color(0xFF4A4660),
+                child: const GameIcon('🔔', size: 19),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  context.l10n.settingsNotifications,
+                  style: GoogleFonts.oswald(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              Switch(
+                value: NotificationService.enabled,
+                onChanged: (value) async {
+                  await NotificationService.setEnabled(value);
                   if (mounted) setState(() {});
                 },
                 activeThumbColor: WM.bone,

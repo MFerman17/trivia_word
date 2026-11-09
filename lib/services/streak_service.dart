@@ -1,6 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/player_profile.dart';
+import 'quest_service.dart';
 import 'save_service.dart';
 
 /// Premio de un día de la racha.
@@ -79,6 +80,7 @@ class StreakService {
     profile.healthPotions += r.potions;
     profile.goldenKeys += r.keys;
     await SaveService.savePlayerData(profile);
+    if (s.day == rewards.length) QuestService.track(QuestEvent.streakCompleted);
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setInt(_dayKey, s.day);

@@ -2592,5 +2592,276 @@
   "tutorial3Fights": "Al final de cada capítulo te espera un guardián. Para retarlo necesitas estrellas, así que procura ganarlas en cada nivel.",
   "@tutorial3Fights": {
     "description": "EN: A guardian waits at the end of each chapter. You need stars to challenge it, so try to earn them in every level."
+  },
+  "menuChallenges": "DESAFÍOS",
+  "@menuChallenges": {
+    "description": "EN: CHALLENGES"
+  },
+  "challengesTitle": "DESAFÍOS",
+  "@challengesTitle": {
+    "description": "EN: CHALLENGES"
+  },
+  "challengesDailyBody": "5 preguntas, las mismas para todos. Un intento al día.",
+  "@challengesDailyBody": {
+    "description": "EN: 5 questions, the same for everyone. One try a day."
+  },
+  "challengesDailyReady": "¡Disponible! Juega el de hoy",
+  "@challengesDailyReady": {
+    "description": "EN: Available! Play today's challenge"
+  },
+  "challengesTowerBody": "Sube pisos sin final hasta perder tus 3 vidas.",
+  "@challengesTowerBody": {
+    "description": "EN: Climb endless floors until you lose your 3 lives."
+  },
+  "challengesTowerStatus": "Récord: piso {best} · Subidas hoy: {runs}",
+  "@challengesTowerStatus": {
+    "description": "EN: Record: floor {best} · Climbs today: {runs}",
+    "placeholders": {
+      "best": {
+        "type": "int"
+      },
+      "runs": {
+        "type": "int"
+      }
+    }
+  },
+  "challengesTournamentBody": "10 preguntas contra el reloj y ligas por estrellas. Premios cada lunes.",
+  "@challengesTournamentBody": {
+    "description": "EN: 10 timed questions and leagues by stars. Prizes every Monday."
+  },
+  "dailyTitle": "RETO DIARIO",
+  "@dailyTitle": {
+    "description": "EN: DAILY CHALLENGE"
+  },
+  "dailyHeadline": "El reto de hoy",
+  "@dailyHeadline": {
+    "description": "EN: Today's challenge"
+  },
+  "dailyNextIn": "Nuevo reto en {hours} h {minutes} min",
+  "@dailyNextIn": {
+    "description": "EN: New challenge in {hours} h {minutes} min",
+    "placeholders": {
+      "hours": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "dailyNeedsInternet": "No se pudo empezar. Comprueba tu conexión (o ya jugaste hoy).",
+  "@dailyNeedsInternet": {
+    "description": "EN: Couldn't start. Check your connection (or you already played today)."
+  },
+  "dailyExitBody": "Si sales ahora, el reto de hoy cuenta como jugado con los puntos que lleves.",
+  "@dailyExitBody": {
+    "description": "EN: If you leave now, today's challenge counts as played with your current points."
+  },
+  "dailyPerfect": "¡RETO PERFECTO!",
+  "@dailyPerfect": {
+    "description": "EN: PERFECT CHALLENGE!"
+  },
+  "dailyYourRank": "Vas el #{rank} de hoy",
+  "@dailyYourRank": {
+    "description": "EN: You're #{rank} today",
+    "placeholders": {
+      "rank": {
+        "type": "int"
+      }
+    }
+  },
+  "dailyRankingTitle": "CLASIFICACIÓN DE HOY",
+  "@dailyRankingTitle": {
+    "description": "EN: TODAY'S RANKING"
+  },
+  "dailyRankingEmpty": "Nadie ha jugado todavía hoy. ¡Sé el primero!",
+  "@dailyRankingEmpty": {
+    "description": "EN: Nobody has played yet today. Be the first!"
+  },
+  "dailyScore": "Puntos",
+  "@dailyScore": {
+    "description": "EN: Points"
+  },
+  "dailyCorrect": "Aciertos",
+  "@dailyCorrect": {
+    "description": "EN: Correct"
+  },
+  "dailyRules": "{count} preguntas, de fácil a difícil, {seconds} s cada una. Puntos por acertar, por rapidez y por racha.",
+  "@dailyRules": {
+    "description": "EN: {count} questions, from easy to hard, {seconds} s each. Points for right answers, speed and streaks.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "dailyDone": "YA JUGASTE HOY",
+  "@dailyDone": {
+    "description": "EN: ALREADY PLAYED TODAY"
+  },
+  "dailyPlay": "JUGAR EL RETO",
+  "@dailyPlay": {
+    "description": "EN: PLAY THE CHALLENGE"
+  },
+  "towerTitle": "TORRE INFINITA",
+  "@towerTitle": {
+    "description": "EN: ENDLESS TOWER"
+  },
+  "towerHeadline": "¿Hasta dónde llegas?",
+  "@towerHeadline": {
+    "description": "EN: How high can you go?"
+  },
+  "towerSubtitle": "Cada acierto es un piso más",
+  "@towerSubtitle": {
+    "description": "EN: Every right answer is one more floor"
+  },
+  "towerFloor": "Piso {floor}",
+  "@towerFloor": {
+    "description": "EN: Floor {floor}",
+    "placeholders": {
+      "floor": {
+        "type": "int"
+      }
+    }
+  },
+  "towerExitBody": "Si sales ahora, la subida termina en el piso al que hayas llegado.",
+  "@towerExitBody": {
+    "description": "EN: If you leave now, your climb ends at the floor you reached."
+  },
+  "towerNewRecord": "¡NUEVO RÉCORD!",
+  "@towerNewRecord": {
+    "description": "EN: NEW RECORD!"
+  },
+  "towerRunOver": "FIN DE LA SUBIDA",
+  "@towerRunOver": {
+    "description": "EN: CLIMB OVER"
+  },
+  "towerFloorsClimbed": "pisos subidos",
+  "@towerFloorsClimbed": {
+    "description": "EN: floors climbed"
+  },
+  "towerRankingTitle": "RÉCORDS DE LA TORRE",
+  "@towerRankingTitle": {
+    "description": "EN: TOWER RECORDS"
+  },
+  "towerRankingEmpty": "Todavía no hay récords. ¡Estrena la torre!",
+  "@towerRankingEmpty": {
+    "description": "EN: No records yet. Be the first to climb!"
+  },
+  "towerBest": "Récord",
+  "@towerBest": {
+    "description": "EN: Record"
+  },
+  "towerRunsLeft": "Subidas hoy",
+  "@towerRunsLeft": {
+    "description": "EN: Climbs today"
+  },
+  "towerRules": "{lives} vidas y {seconds} s por pregunta. Cada fallo quita una vida; cuanto más alto, más difícil.",
+  "@towerRules": {
+    "description": "EN: {lives} lives and {seconds} s per question. Each mistake costs a life; the higher you go, the harder it gets.",
+    "placeholders": {
+      "lives": {
+        "type": "int"
+      },
+      "seconds": {
+        "type": "int"
+      }
+    }
+  },
+  "towerClimb": "¡SUBIR!",
+  "@towerClimb": {
+    "description": "EN: CLIMB!"
+  },
+  "towerVideoRun": "📺 VER VIDEO: OTRA SUBIDA",
+  "@towerVideoRun": {
+    "description": "EN: 📺 WATCH A VIDEO: ONE MORE CLIMB"
+  },
+  "towerComeBack": "Vuelve mañana para subir otra vez",
+  "@towerComeBack": {
+    "description": "EN: Come back tomorrow to climb again"
+  },
+  "questDailyChallenge": "Reto del día",
+  "@questDailyChallenge": {
+    "description": "EN: Challenge of the day"
+  },
+  "questDailyChallengeDesc": "Juega el reto diario hoy",
+  "@questDailyChallengeDesc": {
+    "description": "EN: Play the daily challenge today"
+  },
+  "questChallenger": "Retador",
+  "@questChallenger": {
+    "description": "EN: Challenger"
+  },
+  "questChallengerDesc": "Juega 7 retos diarios",
+  "@questChallengerDesc": {
+    "description": "EN: Play 7 daily challenges"
+  },
+  "questTower50": "Escalador",
+  "@questTower50": {
+    "description": "EN: Climber"
+  },
+  "questTower50Desc": "Sube 50 pisos en la Torre infinita",
+  "@questTower50Desc": {
+    "description": "EN: Climb 50 floors in the Endless Tower"
+  },
+  "questTower300": "Señor de la Torre",
+  "@questTower300": {
+    "description": "EN: Lord of the Tower"
+  },
+  "questTower300Desc": "Sube 300 pisos en la Torre infinita",
+  "@questTower300Desc": {
+    "description": "EN: Climb 300 floors in the Endless Tower"
+  },
+  "questStreak7": "Constancia",
+  "@questStreak7": {
+    "description": "EN: Dedication"
+  },
+  "questStreak7Desc": "Completa una racha de 7 días",
+  "@questStreak7Desc": {
+    "description": "EN: Complete a 7-day streak"
+  },
+  "questWorlds6": "Leyenda de las Palabras",
+  "@questWorlds6": {
+    "description": "EN: Legend of Words"
+  },
+  "questWorlds6Desc": "Vence a los 6 jefes finales",
+  "@questWorlds6Desc": {
+    "description": "EN: Defeat all 6 final bosses"
+  },
+  "settingsNotifications": "Avisos (vidas, cofre, racha)",
+  "@settingsNotifications": {
+    "description": "EN: Reminders (lives, chest, streak)"
+  },
+  "notifLivesTitle": "❤️ ¡Vidas llenas!",
+  "@notifLivesTitle": {
+    "description": "EN: ❤️ Lives refilled!"
+  },
+  "notifLivesBody": "Tus vidas ya están recargadas. Los monstruos te esperan.",
+  "@notifLivesBody": {
+    "description": "EN: Your lives are full again. The monsters are waiting."
+  },
+  "notifChestTitle": "🎁 Tu cofre diario está listo",
+  "@notifChestTitle": {
+    "description": "EN: 🎁 Your daily chest is ready"
+  },
+  "notifChestBody": "Entra a abrirlo: monedas y pociones gratis.",
+  "@notifChestBody": {
+    "description": "EN: Come and open it: free coins and potions."
+  },
+  "notifDailyTitle": "🔥 ¡No pierdas tu racha!",
+  "@notifDailyTitle": {
+    "description": "EN: 🔥 Don't lose your streak!"
+  },
+  "notifDailyBody": "Hoy toca el día {day} de tu racha, y el reto diario ya está listo.",
+  "@notifDailyBody": {
+    "description": "EN: Day {day} of your streak is waiting, and today's challenge is ready.",
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
   }
 }

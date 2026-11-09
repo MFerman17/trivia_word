@@ -424,6 +424,8 @@ class FightController extends ChangeNotifier {
     }
     QuestService.track(QuestEvent.levelWon);
     QuestService.track(QuestEvent.fightWon);
+    // Jefe final de un mundo vencido por primera vez.
+    if (isFinal && firstWin) QuestService.track(QuestEvent.worldBossWon);
     if (starsEarned == 3) QuestService.track(QuestEvent.perfectLevel);
     QuestService.track(QuestEvent.starsEarned, amount: starsEarned - previous.stars);
 

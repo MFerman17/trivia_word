@@ -220,6 +220,12 @@ class _QuestsScreenState extends State<QuestsScreen> {
       'mini_challenge_3' => (title: l.questMiniChallenge, description: l.questMiniChallengeDesc),
       'use_hint_5' => (title: l.questUseHints, description: l.questUseHintsDesc),
       'buy_upgrade_1' => (title: l.questBuyUpgrade, description: l.questBuyUpgradeDesc),
+      'daily_challenge_today' => (title: l.questDailyChallenge, description: l.questDailyChallengeDesc),
+      'daily_challenge_7' => (title: l.questChallenger, description: l.questChallengerDesc),
+      'tower_floors_50' => (title: l.questTower50, description: l.questTower50Desc),
+      'tower_floors_300' => (title: l.questTower300, description: l.questTower300Desc),
+      'streak_7' => (title: l.questStreak7, description: l.questStreak7Desc),
+      'worlds_6' => (title: l.questWorlds6, description: l.questWorlds6Desc),
       _ => (title: quest.title, description: quest.description),
     };
   }

@@ -6,6 +6,7 @@ import 'firebase_options.dart';
 import 'l10n/l10n.dart';
 import 'screens/home_screen.dart';
 import 'widgets/game_transitions.dart';
+import 'services/notification_service.dart';
 import 'services/asset_catalog.dart';
 import 'services/cloud_service.dart';
 import 'services/audio_service.dart';
@@ -46,6 +47,8 @@ Future<void> main() async {
   await LivesService.init();
   // Vibración en los golpes (se puede desactivar en Ajustes).
   await VibrationService.init();
+  // Avisos locales (vidas llenas, cofre, racha).
+  await NotificationService.init();
 
   runApp(MyApp(initError: initError));
 }
@@ -76,6 +79,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    // Al salir se programan los avisos; al volver, se quitan.
+    NotificationService.onLifecycle(state);
     if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
       AudioService.pauseForBackground();
     } else if (state == AppLifecycleState.resumed) {

@@ -104,7 +104,7 @@ class _TowerScreenState extends State<TowerScreen> {
   Future<void> _showResult(int floors, bool record) {
     final coins = TowerService.coinsFor(floors);
     final gems = TowerService.gemsFor(floors);
-    record ? AudioService.playVictorySound() : AudioService.playLevelUp();
+    record ? AudioService.playRecord() : AudioService.playLevelUp();
     return showVictoryDialog<void>(
       context: context,
       confetti: record,

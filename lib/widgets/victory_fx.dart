@@ -34,6 +34,7 @@ Future<T?> showVictoryDialog<T>({
   required WidgetBuilder builder,
   bool confetti = true,
 }) {
+  if (confetti) AudioService.playConfetti();
   return showGeneralDialog<T>(
     context: context,
     barrierDismissible: false,

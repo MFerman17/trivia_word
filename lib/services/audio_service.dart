@@ -386,6 +386,22 @@ class AudioService {
   /// Al entrar al ranking (aparece el podio).
   static Future<void> playPodium() => playSfx('podium.mp3');
 
+  // Sonidos de la fase de pulido y enganche. Si el archivo propio aún no
+  // existe, suena uno parecido de los que ya hay (no hace falta tocar código
+  // al añadirlos: basta con dejar el .mp3 en assets/audio/).
+
+  /// Nivel desbloqueado en el mapa (candado que salta).
+  static Future<void> playUnlock() => playSfx('unlock.mp3', fallback: 'star.mp3');
+
+  /// Premio de la racha diaria.
+  static Future<void> playStreakClaim() => playSfx('streak.mp3', fallback: 'chest_open.mp3');
+
+  /// Récord nuevo en la Torre o reto diario perfecto.
+  static Future<void> playRecord() => playSfx('record.mp3', fallback: 'victory.mp3');
+
+  /// Confeti de la victoria (un "pop" festivo).
+  static Future<void> playConfetti() => playSfx('confetti.mp3', fallback: 'success.mp3');
+
   // =================================================================
   // AJUSTES
   // =================================================================

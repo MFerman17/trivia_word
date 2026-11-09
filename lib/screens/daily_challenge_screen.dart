@@ -95,7 +95,7 @@ class _DailyChallengeScreenState extends State<DailyChallengeScreen> {
     final coins = DailyChallengeService.coinsFor(r.correct);
     final gems = DailyChallengeService.gemsFor(r.correct);
     final perfect = r.correct >= DailyChallengeService.questionCount;
-    AudioService.playVictorySound();
+    perfect ? AudioService.playRecord() : AudioService.playVictorySound();
     return showVictoryDialog<void>(
       context: context,
       confetti: perfect,

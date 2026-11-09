@@ -57,7 +57,7 @@ class _StreakDialogState extends State<_StreakDialog> {
     final reward = await StreakService.claim(widget.profile);
     if (!mounted) return;
     if (reward != null) {
-      AudioService.playChestOpen();
+      AudioService.playStreakClaim();
       Future.delayed(const Duration(milliseconds: 350), AudioService.playCoins);
     }
     setState(() {

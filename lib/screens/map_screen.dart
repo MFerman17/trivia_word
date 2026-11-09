@@ -299,7 +299,7 @@ class _MapScreenState extends State<MapScreen>
         setState(() => _justUnlocked = fresh);
         // Suena cuando el mapa ya ha vuelto a centrarse en el nivel nuevo.
         Future.delayed(const Duration(milliseconds: 650), () {
-          if (mounted) AudioService.playStar();
+          if (mounted) AudioService.playUnlock();
         });
         Future.delayed(const Duration(milliseconds: 2600), () {
           if (mounted) setState(() => _justUnlocked = {});

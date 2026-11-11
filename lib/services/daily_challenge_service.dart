@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/player_profile.dart';
 import '../models/question.dart';
 import 'cloud_service.dart';
+import 'analytics_service.dart';
 import 'question_repository.dart';
 import 'save_service.dart';
 import 'tournament_service.dart';
@@ -169,6 +170,7 @@ class DailyChallengeService {
   /// Entrega la puntuación y da el premio (una vez al día).
   /// Devuelve si se guardó en la clasificación.
   static Future<bool> submit({required int score, required int correct}) async {
+    AnalyticsService.dailyChallenge(score, correct);
     final started = _runStartedAt;
     if (started != null) {
       final wait = minRunTime - DateTime.now().difference(started);

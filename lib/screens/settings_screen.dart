@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -9,6 +10,7 @@ import '../services/lives_service.dart';
 import '../services/locale_service.dart';
 import '../services/question_repository.dart';
 import '../services/vibration_service.dart';
+import '../services/vip_service.dart';
 import '../services/notification_service.dart';
 import '../widgets/game_3d.dart';
 import 'home_screen.dart';
@@ -365,6 +367,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
               ),
             ),
           ],
+          if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) ...[
+            const SizedBox(height: 12),
+            SizedBox(
+              width: double.infinity,
+              child: Pressable3D(
+                onTap: _restoring ? null : _restorePurchases,
+                color: WM.violet,
+                height: 42,
+                child: _restoring
+                    ? const SizedBox(
+                        width: 20,
+                        height: 20,
+                        child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
+                      )
+                    : OutlinedGameText(context.l10n.vipRestore, size: 15, font: GameFont.oswald),
+              ),
+            ),
+          ],
           const SizedBox(height: 12),
           SizedBox(
             width: double.infinity,
@@ -392,6 +412,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
   }
 
   bool _deleting = false;
+  bool _restoring = false;
+
+  /// Pide a Google Play las compras de esta cuenta (p. ej. en un teléfono
+  /// nuevo). La respuesta llega aparte, así que se espera unos segundos.
+  Future<void> _restorePurchases() async {
+    AudioService.playButtonClick();
+    setState(() => _restoring = true);
+    await VipService.restore();
+    for (var i = 0; i < 10 && !VipService.isVip; i++) {
+      await Future<void>.delayed(const Duration(milliseconds: 500));
+    }
+    if (!mounted) return;
+    setState(() => _restoring = false);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(VipService.isVip ? context.l10n.vipRestored : context.l10n.vipNotFound),
+    ));
+  }
 
   Future<void> _confirmDeleteData() async {
     const danger = Color(0xFFFF4D5E);

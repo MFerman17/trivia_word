@@ -2,14 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+import '../config/ads_config.dart';
+import 'age_gate_service.dart';
+import 'analytics_service.dart';
+import 'vip_service.dart';
 
 /// Rewarded AdMob ads used by the Android shop.
 /// Google sample IDs are deliberately used until production IDs are supplied.
 class AdService {
   static const String _testRewardedAndroidId =
       'ca-app-pub-3940256099942544/5224354917';
+  // El ID real se pega en lib/config/ads_config.dart. Se puede seguir
+  // pasando al compilar con --dart-define, que tiene prioridad.
   static const String _productionRewardedAndroidId = String.fromEnvironment(
     'ADMOB_REWARDED_ANDROID_ID',
+    defaultValue: kAdmobRewardedAndroidId,
   );
 
   static String get _rewardedAndroidId => kReleaseMode
@@ -22,6 +31,9 @@ class AdService {
 
   static Future<void> initialize() {
     if (defaultTargetPlatform != TargetPlatform.android) return Future.value();
+    // Hasta saber la edad no se pide ningún anuncio (se vuelve a llamar
+    // cuando el jugador responde la pantalla de edad).
+    if (!AgeGateService.answered) return Future.value();
     return _initialization ??= _initialize();
   }
 
@@ -33,6 +45,15 @@ class AdService {
       await _gatherConsent();
       if (!await ConsentInformation.instance.canRequestAds()) return;
       await MobileAds.instance.initialize();
+      // Menores de 13: anuncios para niños (sin personalizar, aptos para
+      // todos). Resto: como mucho contenido para adolescentes ("T"), porque
+      // el juego lo puede jugar cualquiera.
+      await MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
+        tagForChildDirectedTreatment: AgeGateService.isChild
+            ? TagForChildDirectedTreatment.yes
+            : TagForChildDirectedTreatment.unspecified,
+        maxAdContentRating: AgeGateService.isChild ? MaxAdContentRating.g : MaxAdContentRating.t,
+      ));
       await _loadRewardedAd();
     } catch (error) {
       debugPrint('No se pudo inicializar AdMob: $error');
@@ -43,7 +64,9 @@ class AdService {
   static Future<void> _gatherConsent() {
     final done = Completer<void>();
     ConsentInformation.instance.requestConsentInfoUpdate(
-      ConsentRequestParameters(),
+      // Para menores no se muestra el formulario de consentimiento: sus
+      // anuncios ya van sin personalizar.
+      ConsentRequestParameters(tagForUnderAgeOfConsent: AgeGateService.isChild),
       () {
         ConsentForm.loadAndShowConsentFormIfRequired((FormError? error) {
           if (error != null) debugPrint('Formulario de consentimiento: ${error.message}');
@@ -80,7 +103,42 @@ class AdService {
     return done.future;
   }
 
+  // ------------------------------------------------------------------
+  // LÍMITES DIARIOS
+  // Algunos premios por video no tenían tope (pociones y pistas de la
+  // tienda, vida extra). Con el Pase VIP serían infinitos, y además ver
+  // demasiados videos seguidos hace que AdMob pague menos por cada uno.
+  // ------------------------------------------------------------------
+
+  /// Topes: pociones y pistas de la tienda (cada una) y vida extra.
+  static const int shopVideosPerDay = 5;
+  static const int lifeVideosPerDay = 5;
+
+  static String _limitKey(String placement) {
+    final n = DateTime.now();
+    return 'adlimit_${placement}_${n.year}-${n.month}-${n.day}';
+  }
+
+  /// Cuántas veces quedan hoy para [placement] con un tope de [max].
+  static Future<int> remainingToday(String placement, int max) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      return (max - (prefs.getInt(_limitKey(placement)) ?? 0)).clamp(0, max);
+    } catch (_) {
+      return max;
+    }
+  }
+
+  static Future<void> _countUse(String placement) async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      final key = _limitKey(placement);
+      await prefs.setInt(key, (prefs.getInt(key) ?? 0) + 1);
+    } catch (_) {}
+  }
+
   static Future<void> _loadRewardedAd() async {
+    if (VipService.isVip) return; // el VIP no necesita videos cargados
     if (_rewardedAndroidId.isEmpty || _isLoading || _cachedAd != null) return;
     _isLoading = true;
     final loaded = Completer<void>();
@@ -110,8 +168,27 @@ class AdService {
     );
   }
 
-  /// Returns true only after AdMob reports that the user earned the reward.
-  static Future<bool> showRewardedAd() async {
+  /// Devuelve true solo cuando AdMob confirma que el jugador vio el video
+  /// entero, o al instante si tiene el Pase VIP.
+  ///
+  /// [placement] es el sitio del juego (para la analítica). Si se da
+  /// [dailyLimit], también se respeta un tope de veces al día.
+  static Future<bool> showRewardedAd({String placement = 'other', int? dailyLimit}) async {
+    if (dailyLimit != null && await remainingToday(placement, dailyLimit) <= 0) return false;
+    final earned = await _showRewardedAd();
+    if (earned) {
+      AnalyticsService.adReward(placement, vip: VipService.isVip);
+      if (dailyLimit != null) await _countUse(placement);
+    }
+    return earned;
+  }
+
+  static Future<bool> _showRewardedAd() async {
+    if (VipService.isVip) {
+      // Una pausa breve para que se note que "pasó algo".
+      await Future<void>.delayed(const Duration(milliseconds: 400));
+      return true;
+    }
     if (defaultTargetPlatform != TargetPlatform.android ||
         _rewardedAndroidId.isEmpty) {
       return false;

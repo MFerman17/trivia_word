@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.0.1+2
+version: 1.1.0+3
 
 environment:
   sdk: ^3.12.2
@@ -40,6 +40,16 @@ dependencies:
   cloud_firestore: ^6.10.0
   google_sign_in: ^7.2.0
   google_mobile_ads: ^9.1.0
+  # Mediación de AdMob (bidding): Unity y Meta pujan por cada video y gana
+  # el que más paga. Solo se activan cuando se configuran en AdMob →
+  # Mediación; mientras tanto no hacen nada. La versión la elige
+  # `flutter pub get` según la de google_mobile_ads.
+  gma_mediation_unity: any
+  gma_mediation_meta: any
+  # Analítica: niveles, abandono, videos, retención.
+  firebase_analytics: ^12.0.0
+  # Compras dentro de la app (Pase VIP) con Google Play Billing.
+  in_app_purchase: ^3.2.0
   # Avisos locales (vidas llenas, cofre, racha). timezone lo necesita para
   # programarlos a una hora concreta.
   flutter_local_notifications: ^22.3.3
@@ -65,7 +75,7 @@ flutter:
     - assets/audio/
     - assets/questions/es/
     - assets/questions/en/
-    - assets/images/bg_landscape.png
+    - assets/images/bg_landscape.jpg
     - assets/images/fighters/
     - assets/images/monsters/
     - assets/images/flyers/
@@ -81,15 +91,15 @@ flutter:
     - assets/images/avatar_explorer.png
     - assets/images/avatar_mage.png
     - assets/images/avatar_guardian.png
-    - assets/images/Bosque_1.png
-    - assets/images/Bosque_2.png
-    - assets/images/Bosque_3.png
-    - assets/images/Cavernas_1.png
-    - assets/images/Cavernas_2.png
-    - assets/images/Cavernas_3.png
-    - assets/images/Islas_1.png
-    - assets/images/Islas_2.png
-    - assets/images/Islas_3.png
-    - assets/images/Volcan_1.png
-    - assets/images/Volcan_2.png
-    - assets/images/Volcan_3.png
+    - assets/images/Bosque_1.jpg
+    - assets/images/Bosque_2.jpg
+    - assets/images/Bosque_3.jpg
+    - assets/images/Cavernas_1.jpg
+    - assets/images/Cavernas_2.jpg
+    - assets/images/Cavernas_3.jpg
+    - assets/images/Islas_1.jpg
+    - assets/images/Islas_2.jpg
+    - assets/images/Islas_3.jpg
+    - assets/images/Volcan_1.jpg
+    - assets/images/Volcan_2.jpg
+    - assets/images/Volcan_3.jpg

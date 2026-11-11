@@ -8,6 +8,7 @@ import '../services/audio_service.dart';
 import '../services/question_bank.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
+import '../services/analytics_service.dart';
 import '../services/cloud_service.dart';
 import '../services/chapter_story_service.dart';
 import '../services/companion_service.dart';
@@ -53,6 +54,19 @@ class GameController extends ChangeNotifier {
   int starsEarned = 1;
   /// Premios del nivel, con el bonus del compañero (brújula / libro).
   int get coinsReward => CompanionService.coins(profile, isMiniChallenge ? 15 : 50);
+
+  /// Si ya se duplicaron las monedas de esta victoria con un video.
+  bool coinsDoubled = false;
+
+  /// Premio del botón "x2": vuelve a dar las monedas de la victoria.
+  /// Solo una vez por victoria.
+  Future<void> doubleCoins() async {
+    final p = profile;
+    if (coinsDoubled || p == null) return;
+    coinsDoubled = true;
+    p.coins += coinsReward;
+    await SaveService.savePlayerData(p);
+  }
   int get xpReward => CompanionService.xp(profile, isMiniChallenge ? 10 : 40);
 
   /// Búho: una pista gratis por nivel. Hada: el primer fallo no quita vida.
@@ -97,6 +111,9 @@ class GameController extends ChangeNotifier {
     LivesService.refresh();
     playerHp = LivesService.lives.value;
     status = GameStatus.playing;
+    if (!isMiniChallenge) {
+      AnalyticsService.levelStart(world: worldId, chapter: chapterId, level: levelNumber);
+    }
     AudioService.playBattleMusic(boss: isBossBattle);
     // Rugido del monstruo al aparecer (los jefes tienen su propia entrada).
     Future.delayed(const Duration(milliseconds: 400), () {
@@ -327,6 +344,13 @@ class GameController extends ChangeNotifier {
     final before = await SaveService.getStageProgress(worldId, chapterId, levelNumber);
     if (starsEarned == 3) QuestService.track(QuestEvent.perfectLevel);
     QuestService.track(QuestEvent.starsEarned, amount: starsEarned - before.stars);
+    AnalyticsService.levelEnd(
+      world: worldId,
+      chapter: chapterId,
+      level: levelNumber,
+      success: true,
+      stars: starsEarned,
+    );
 
     // 2. Guardar las estrellas del nivel actual localmente
     StageProgress currentProgress = StageProgress(
@@ -380,6 +404,9 @@ class GameController extends ChangeNotifier {
   void _handleDefeat() {
     if (_isDisposed) return;
     status = GameStatus.defeat;
+    if (!isMiniChallenge) {
+      AnalyticsService.levelEnd(world: worldId, chapter: chapterId, level: levelNumber, success: false);
+    }
     AudioService.playDefeatSound();
     notifyListeners();
   }

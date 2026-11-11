@@ -185,7 +185,7 @@ class _TournamentScreenState extends State<TournamentScreen> {
   Future<void> _watchVideo() async {
     if (_busy) return;
     setState(() => _busy = true);
-    final earned = await AdService.showRewardedAd();
+    final earned = await AdService.showRewardedAd(placement: 'tournament');
     if (earned) await TournamentService.addVideoAttempt();
     if (!mounted) return;
     setState(() => _busy = false);

@@ -1040,12 +1040,34 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                     ),
                 ],
               ),
+              if (f.coinsEarned > 0)
+                DoubleRewardButton(
+                  coins: f.coinsEarned,
+                  onRewarded: f.doubleCoins,
+                  delay: countersAt + const Duration(milliseconds: 1500),
+                ),
               if (!f.firstWin) ...[
                 const SizedBox(height: 8),
                 Text(
                   context.l10n.reducedReward,
                   textAlign: TextAlign.center,
                   style: GoogleFonts.oswald(color: Colors.white38, fontSize: 12),
+                ),
+              ],
+              // Último jefe del último mundo vencido por primera vez: aviso de
+              // que vienen más mundos y qué se puede seguir jugando.
+              if (f.isFinal && f.firstWin && f.worldId == kWorldCount) ...[
+                const SizedBox(height: 14),
+                OutlinedGameText(
+                  context.l10n.allWorldsDoneTitle,
+                  size: 20,
+                  colors: const [Color(0xFFB8F7FF), WM.cyan],
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  context.l10n.allWorldsDoneBody,
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13, height: 1.3),
                 ),
               ],
               // La historia del mundo nuevo la cuenta el mapa al llegar.

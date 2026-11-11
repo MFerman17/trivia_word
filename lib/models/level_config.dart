@@ -37,7 +37,7 @@ class LevelConfig {
     this.enemyName = 'Criatura del sendero',
     this.enemyEmoji = '👾',
     this.enemyAsset = 'assets/images/mini_forest_guardian.png',
-    this.backgroundAsset = 'assets/images/Bosque_1.png',
+    this.backgroundAsset = 'assets/images/Bosque_1.jpg',
     this.isMiniChallenge = false,
     this.correctAnswersToDefeat = 2,
   });

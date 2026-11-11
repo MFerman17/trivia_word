@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../models/player_profile.dart';
@@ -7,6 +8,7 @@ import '../services/companion_service.dart';
 import '../services/fighter_service.dart';
 import '../services/quest_service.dart';
 import '../services/save_service.dart';
+import '../services/vip_service.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
@@ -409,15 +411,23 @@ class _ShopScreenState extends State<ShopScreen>
     }
   }
 
-  Future<void> _watchAdForReward(String rewardName, VoidCallback reward) async {
+  Future<void> _watchAdForReward(String placement, String rewardName, VoidCallback reward) async {
     if (_isBusy) return;
+    if (await AdService.remainingToday(placement, AdService.shopVideosPerDay) <= 0) {
+      if (mounted) _showMessage(context.l10n.dailyLimitReached, error: true);
+      return;
+    }
+    if (!mounted) return;
     setState(() {
       _isBusy = true;
       _loadingAd = rewardName;
     });
     final previousProfile = profile.toJson();
     try {
-      final earned = await AdService.showRewardedAd();
+      final earned = await AdService.showRewardedAd(
+        placement: placement,
+        dailyLimit: AdService.shopVideosPerDay,
+      );
       if (!mounted) return;
 
       if (earned) {
@@ -1139,6 +1149,11 @@ class _ShopScreenState extends State<ShopScreen>
           context.l10n.adRewardsTitle,
           context.l10n.adRewardsSubtitle,
         ),
+        if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android)
+          ValueListenableBuilder<bool>(
+            valueListenable: VipService.owned,
+            builder: (context, vip, _) => _buildVipCard(vip),
+          ),
         EntranceFlip(
           index: 0,
           child: _buildRewardCard(
@@ -1146,8 +1161,8 @@ class _ShopScreenState extends State<ShopScreen>
             title: context.l10n.adPotionTitle,
             description: context.l10n.adPotionDesc,
             rewardName: context.l10n.adPotionReward,
-            onPressed: () =>
-                _watchAdForReward(context.l10n.adPotionReward, () => profile.healthPotions++),
+            onPressed: () => _watchAdForReward(
+                'shop_potion', context.l10n.adPotionReward, () => profile.healthPotions++),
           ),
         ),
         EntranceFlip(
@@ -1157,8 +1172,8 @@ class _ShopScreenState extends State<ShopScreen>
             title: context.l10n.adHintTitle,
             description: context.l10n.adHintDesc,
             rewardName: context.l10n.adHintReward,
-            onPressed: () =>
-                _watchAdForReward(context.l10n.adHintReward, () => profile.letterHints++),
+            onPressed: () => _watchAdForReward(
+                'shop_hint', context.l10n.adHintReward, () => profile.letterHints++),
           ),
         ),
         const SizedBox(height: 6),
@@ -1188,6 +1203,85 @@ class _ShopScreenState extends State<ShopScreen>
           ),
         ),
       ],
+    );
+  }
+
+  // ---------------------------------------------------------------
+  // PASE VIP: compra única que da los premios de video al instante
+  // ---------------------------------------------------------------
+  bool _buyingVip = false;
+
+  Future<void> _buyVip() async {
+    if (_buyingVip) return;
+    AudioService.playButtonClick();
+    if (VipService.product == null) {
+      _showMessage(context.l10n.vipUnavailable, error: true);
+      return;
+    }
+    setState(() => _buyingVip = true);
+    final ok = await VipService.buy();
+    if (!mounted) return;
+    setState(() => _buyingVip = false);
+    if (ok) {
+      AudioService.playConfetti();
+      _showMessage(context.l10n.vipThanks);
+    }
+  }
+
+  Widget _buildVipCard(bool vip) {
+    final price = VipService.product?.price;
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 14),
+      child: Panel3D(
+        accent: WM.violet,
+        depth: 6,
+        radius: 17,
+        glow: vip ? 0.2 : 0.5,
+        padding: const EdgeInsets.all(14),
+        child: Row(
+          children: [
+            const Socket3D(
+              size: 56,
+              color: WM.violet,
+              child: Icon(Icons.workspace_premium_rounded, color: WM.gold, size: 30),
+            ),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  OutlinedGameText(context.l10n.vipTitle, size: 17, colors: const [Color(0xFFFFF1B0), WM.gold]),
+                  const SizedBox(height: 2),
+                  Text(
+                    vip ? context.l10n.vipActive : context.l10n.vipDesc,
+                    style: GoogleFonts.oswald(color: vip ? WM.green : Colors.white70, fontSize: 12),
+                  ),
+                ],
+              ),
+            ),
+            if (!vip) ...[
+              const SizedBox(width: 10),
+              Pressable3D(
+                slanted: true,
+                onTap: _buyingVip ? null : _buyVip,
+                color: WM.violet,
+                height: 40,
+                depth: 5,
+                radius: 8,
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: _buyingVip
+                    ? const SizedBox(
+                        width: 18,
+                        height: 18,
+                        child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
+                      )
+                    : OutlinedGameText(price ?? context.l10n.vipBuy, size: 14, font: GameFont.oswald),
+              ),
+            ] else
+              const Icon(Icons.check_circle_rounded, color: WM.green, size: 30),
+          ],
+        ),
+      ),
     );
   }
 

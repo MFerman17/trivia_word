@@ -2863,5 +2863,74 @@
         "type": "int"
       }
     }
+  },
+  "doubleCoins": "x2 MONEDAS  (+{coins})",
+  "@doubleCoins": {
+    "description": "EN: x2 COINS  (+{coins})",
+    "placeholders": {
+      "coins": {
+        "type": "int"
+      }
+    }
+  },
+  "dailyLimitReached": "Ya usaste todos los de hoy. ¡Vuelve mañana!",
+  "@dailyLimitReached": {
+    "description": "EN: You've used all of today's. Come back tomorrow!"
+  },
+  "vipTitle": "PASE VIP",
+  "@vipTitle": {
+    "description": "EN: VIP PASS"
+  },
+  "vipDesc": "Todos los premios de video al instante, sin ver anuncios. Un solo pago, para siempre.",
+  "@vipDesc": {
+    "description": "EN: Every video reward instantly, no ads to watch. One payment, forever."
+  },
+  "vipActive": "¡VIP activo! Los premios de video son instantáneos.",
+  "@vipActive": {
+    "description": "EN: VIP active! Video rewards are instant."
+  },
+  "vipBuy": "COMPRAR",
+  "@vipBuy": {
+    "description": "EN: BUY"
+  },
+  "vipUnavailable": "La tienda de Google Play no está disponible ahora. Prueba más tarde.",
+  "@vipUnavailable": {
+    "description": "EN: The Google Play store isn't available right now. Try again later."
+  },
+  "vipThanks": "¡Gracias! Tu Pase VIP ya está activo.",
+  "@vipThanks": {
+    "description": "EN: Thank you! Your VIP Pass is now active."
+  },
+  "vipRestore": "RESTAURAR COMPRAS",
+  "@vipRestore": {
+    "description": "EN: RESTORE PURCHASES"
+  },
+  "vipRestored": "Pase VIP restaurado.",
+  "@vipRestored": {
+    "description": "EN: VIP Pass restored."
+  },
+  "vipNotFound": "No se encontraron compras en esta cuenta de Google.",
+  "@vipNotFound": {
+    "description": "EN: No purchases were found for this Google account."
+  },
+  "ageTitle": "¿EN QUÉ AÑO NACISTE?",
+  "@ageTitle": {
+    "description": "EN: WHAT YEAR WERE YOU BORN?"
+  },
+  "ageSubtitle": "Solo lo usamos para mostrarte contenido adecuado. El año no se guarda.",
+  "@ageSubtitle": {
+    "description": "EN: We only use it to show you suitable content. The year isn't stored."
+  },
+  "ageConfirm": "CONFIRMAR",
+  "@ageConfirm": {
+    "description": "EN: CONFIRM"
+  },
+  "allWorldsDoneTitle": "¡SALVASTE LOS 6 MUNDOS!",
+  "@allWorldsDoneTitle": {
+    "description": "EN: YOU SAVED ALL 6 WORLDS!"
+  },
+  "allWorldsDoneBody": "Pronto llegarán mundos nuevos. Mientras tanto, sigue jugando el Desafío diario y la Torre infinita.",
+  "@allWorldsDoneBody": {
+    "description": "EN: New worlds are coming soon. Meanwhile, keep playing the Daily Challenge and the Endless Tower."
   }
 }

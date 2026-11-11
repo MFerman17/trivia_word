@@ -1,14 +1,11 @@
 # Anuncios recompensados en Android
 
-La tienda usa anuncios recompensados de Google Mobile Ads. En compilaciones de
-depuración se usan los IDs de prueba oficiales de Google; no generan ingresos.
+Ver `docs/PUBLICAR_GOOGLE_PLAY.md`, pasos 3 a 3d (IDs reales, app-ads.txt,
+mediación y Pase VIP).
 
-Antes de publicar, configura el ID real de aplicación de AdMob como propiedad de
-Gradle `ADMOB_APP_ID` y el ID del bloque recompensado mediante
-`--dart-define=ADMOB_REWARDED_ANDROID_ID=...`. El código de producción no carga
-un anuncio si falta el ID real del bloque.
-
-No guardes credenciales de cuenta ni claves privadas en el repositorio. Los IDs
-de aplicación y de bloque de AdMob son identificadores de configuración, no
-contraseñas. Añade el consentimiento de anuncios correspondiente a los países
-de distribución antes de activar anuncios reales.
+- En debug se usan siempre los IDs de prueba de Google (no generan ingresos).
+- ID del bloque recompensado: `lib/config/ads_config.dart`.
+- ID de la app: `android/gradle.properties` → `ADMOB_APP_ID`.
+- Cada video indica su sitio (`placement`) para la analítica.
+- Topes diarios: 5 pociones y 5 pistas por video en la tienda, 5 vidas.
+- Con el Pase VIP los premios se dan sin video (mismos topes).

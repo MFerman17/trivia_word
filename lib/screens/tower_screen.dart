@@ -58,7 +58,7 @@ class _TowerScreenState extends State<TowerScreen> {
   Future<void> _watchVideo() async {
     if (_busy) return;
     setState(() => _busy = true);
-    final earned = await AdService.showRewardedAd();
+    final earned = await AdService.showRewardedAd(placement: 'tower');
     if (earned) await TowerService.addVideoRun();
     if (!mounted) return;
     setState(() => _busy = false);

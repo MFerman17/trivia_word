@@ -2,7 +2,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../l10n/l10n.dart';
+import '../services/ad_service.dart';
 import '../services/audio_service.dart';
+import '../services/vip_service.dart';
 import 'game_3d.dart';
 import 'game_icon.dart';
 
@@ -12,6 +15,7 @@ import 'game_icon.dart';
 //   - VictoryStars: las estrellas aparecen de una en una, con sonido.
 //   - CountUpChip:  el premio cuenta desde 0 hasta su valor.
 //   - ConfettiLayer: confeti que cae sobre toda la pantalla.
+//   - DoubleRewardButton: "x2 con un video" (o al instante con el VIP).
 //   - showVictoryDialog: abre el diálogo con confeti detrás y una entrada
 //     con rebote, para que todos los "¡Victoria!" se sientan iguales.
 // =====================================================================
@@ -231,6 +235,130 @@ class _CountUpChipState extends State<CountUpChip> with SingleTickerProviderStat
           child: Chip3D(emoji: widget.emoji, text: '+$v${widget.suffix}', accent: widget.accent),
         );
       },
+    );
+  }
+}
+
+// ---------------------------------------------------------------------
+// DUPLICAR EL PREMIO CON UN VIDEO
+// Aparece cuando terminan de contar los premios. Es el anuncio que mejor
+// funciona en los juegos: llega en el mejor momento (acabas de ganar) y
+// es totalmente voluntario. Con el Pase VIP se duplica sin video.
+// ---------------------------------------------------------------------
+class DoubleRewardButton extends StatefulWidget {
+  const DoubleRewardButton({
+    super.key,
+    required this.coins,
+    required this.onRewarded,
+    this.delay = Duration.zero,
+  });
+
+  /// Monedas extra que se ganan (las mismas de la victoria).
+  final int coins;
+
+  /// Da el premio (lo guarda el controlador del nivel o la pelea).
+  final Future<void> Function() onRewarded;
+
+  /// Cuándo aparece (después de que cuenten los premios).
+  final Duration delay;
+
+  @override
+  State<DoubleRewardButton> createState() => _DoubleRewardButtonState();
+}
+
+enum _DoubleState { hidden, ready, busy, done, failed }
+
+class _DoubleRewardButtonState extends State<DoubleRewardButton> {
+  _DoubleState _state = _DoubleState.hidden;
+
+  @override
+  void initState() {
+    super.initState();
+    Future.delayed(widget.delay, () {
+      if (mounted && _state == _DoubleState.hidden) setState(() => _state = _DoubleState.ready);
+    });
+  }
+
+  Future<void> _tap() async {
+    if (_state != _DoubleState.ready) return;
+    AudioService.playButtonClick();
+    setState(() => _state = _DoubleState.busy);
+    final earned = await AdService.showRewardedAd(placement: 'double_reward');
+    if (!mounted) return;
+    if (!earned) {
+      setState(() => _state = _DoubleState.failed);
+      return;
+    }
+    await widget.onRewarded();
+    if (!mounted) return;
+    setState(() => _state = _DoubleState.done);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final l = context.l10n;
+    final Widget child = switch (_state) {
+      _DoubleState.hidden => const SizedBox(key: ValueKey('hidden'), height: 0),
+      _DoubleState.done => Padding(
+          key: const ValueKey('done'),
+          padding: const EdgeInsets.only(top: 10),
+          child: CountUpChip(emoji: '🪙', value: widget.coins, accent: WM.green, sound: true),
+        ),
+      _DoubleState.failed => Padding(
+          key: const ValueKey('failed'),
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(
+            l.noVideosNow,
+            textAlign: TextAlign.center,
+            style: const TextStyle(color: Colors.white54, fontSize: 12),
+          ),
+        ),
+      _ => Padding(
+          key: const ValueKey('button'),
+          padding: const EdgeInsets.only(top: 12),
+          child: SizedBox(
+            width: double.infinity,
+            child: Pulse(
+              amount: 0.03,
+              child: Pressable3D(
+                onTap: _tap,
+                color: WM.violet,
+                height: 46,
+                child: _state == _DoubleState.busy
+                    ? const SizedBox(
+                        width: 22,
+                        height: 22,
+                        child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
+                      )
+                    : Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            VipService.isVip ? Icons.workspace_premium_rounded : Icons.ondemand_video_rounded,
+                            color: Colors.white,
+                            size: 20,
+                          ),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: OutlinedGameText(
+                                l.doubleCoins(widget.coins),
+                                size: 16,
+                                font: GameFont.oswald,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+              ),
+            ),
+          ),
+        ),
+    };
+    return AnimatedSize(
+      duration: const Duration(milliseconds: 250),
+      child: AnimatedSwitcher(duration: const Duration(milliseconds: 300), child: child),
     );
   }
 }

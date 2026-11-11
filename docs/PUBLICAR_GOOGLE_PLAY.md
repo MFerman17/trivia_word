@@ -12,6 +12,10 @@ aquí está lo que hay que hacer **fuera del código** (Firebase, AdMob, Play Co
   «Privacidad de anuncios» en Ajustes.
 - Botón **Borrar mis datos** en Ajustes → Cuenta y datos (lo exige Google Play).
 - Páginas públicas en `docs/`: `privacidad.html` y `borrar-datos.html`.
+- **Fase G:** `targetSdk 36`; borrado de cuenta que vuelve a pedir Google si
+  hace falta; pantalla de edad neutral; botón «x2 monedas con un video» tras
+  cada victoria; **Pase VIP** (compra única); Firebase Analytics; mediación
+  Unity + Meta; topes diarios en los videos de pociones, pistas y vidas.
 
 ## 0. Correo de contacto
 
@@ -116,11 +120,77 @@ no podrás publicar actualizaciones con facilidad: guárdala en dos sitios
    ```
 
 3. Crea un **bloque de anuncios recompensado** y copia su ID
-   (`ca-app-pub-XXXX/ZZZZ`). Se pasa al compilar (paso 5).
+   (`ca-app-pub-XXXX/ZZZZ`). Pégalo en `lib/config/ads_config.dart`
+   (`kAdmobRewardedAndroidId`). Si se queda vacío, la versión publicada no
+   muestra anuncios.
 4. AdMob → **Privacidad y mensajes** → RGPD → crea el mensaje de
    consentimiento para la app y publícalo. Es el aviso que el juego muestra al
    abrir en Europa.
 5. Cuando la app esté publicada, vincúlala en AdMob con su ficha de Google Play.
+
+### 3b. app-ads.txt (después de publicar)
+
+Es un archivo de texto que dice "estos son los vendedores autorizados de mis
+anuncios". Sin él, muchos anunciantes no pujan y se gana menos.
+
+1. AdMob → Apps → Words & Monsters → **app-ads.txt** → copia la línea
+   (`google.com, pub-XXXX, DIRECT, f08c47fec0942fa0`).
+2. Tiene que estar en la **raíz** del sitio web que pongas como "sitio web
+   del desarrollador" en la ficha de Google Play. Con GitHub Pages, la raíz
+   es `https://mferman17.github.io/`, así que hace falta un repositorio
+   público llamado exactamente **`MFerman17.github.io`** con el archivo
+   `app-ads.txt` dentro. (Ese mismo repo puede alojar las páginas de
+   privacidad, y así el repo del juego puede pasar a ser privado.)
+3. En la ficha de Play Console, *sitio web* = `https://mferman17.github.io`.
+4. Cuando actives Unity y Meta, sus paneles te dan más líneas: se añaden
+   al mismo archivo.
+
+### 3c. Mediación: Unity Ads y Meta (después de publicar)
+
+El código ya incluye los adaptadores (`gma_mediation_unity`,
+`gma_mediation_meta`). Funcionan por **bidding**: en cada video, AdMob,
+Unity y Meta pujan y gana quien más paga. No cuesta nada.
+
+- **Unity:** Unity Grow → Monetización → *Agregar aplicación* (con el enlace
+  de Play) → copia el **Game ID** y crea una ubicación *Rewarded* con
+  bidding. En AdMob → Mediación → *Crear grupo de mediación* → formato
+  *Recompensado*, Android → *Añadir fuente de anuncios* → **Unity Ads
+  (bidding)** → pega Game ID y el ID de la ubicación.
+- **Meta:** business.facebook.com/pub/start → elige tu negocio → añade la
+  app (con el enlace de Play) → revisión → crea una ubicación *Rewarded
+  video* y elige **AdMob** como plataforma de mediación. En el mismo grupo de
+  AdMob → *Añadir fuente* → **Meta Audience Network (bidding)** → pega el ID
+  de la ubicación.
+- AdMob → Privacidad y mensajes → **RGPD** → *Socios publicitarios*: añade
+  Unity y Meta a la lista (si no, en Europa no se les pide permiso y no
+  pujan).
+
+### 3d. Pase VIP (compra integrada)
+
+1. Play Console → **Configuración → Perfil de pagos**: crea el perfil de
+   comerciante (datos fiscales y banco donde Google te paga).
+2. Sube al menos una versión del `.aab` (aunque sea a prueba interna):
+   Play no deja crear productos hasta ver que la app usa Google Play Billing.
+3. **Monetizar → Productos → Productos integrados → Crear producto**:
+   - ID: **`vip_pass`** (exactamente así; está en `vip_service.dart`).
+   - Nombre: *Pase VIP*. Descripción: *Todos los premios de video al
+     instante, sin ver anuncios.*
+   - Precio: por ejemplo 2,99 € (Play lo convierte a cada país).
+   - **Activar**.
+4. Para probarlo sin pagar: Play Console → Configuración → **Pruebas de
+   licencias** → añade tu correo. Tus compras saldrán como "de prueba".
+
+### 3e. Firebase Analytics
+
+Firebase → tu proyecto → **Analytics** → *Habilitar Google Analytics* (si no
+lo está). Los datos tardan hasta 24 h en aparecer. Para verlos al momento
+mientras pruebas: Analytics → **DebugView** y en el PC:
+`adb shell setprop debug.firebase.analytics.app com.mferman.wordsandmonsters`.
+
+Eventos del juego: `level_start`, `level_end` (success, stars),
+`world_complete`, `tutorial_complete`, `ad_reward` (placement),
+`daily_challenge`, `tower_run`, `streak_claim`, `vip_purchase`.
+La retención (día 1/7/30) la calcula Firebase sola.
 
 ## 4. Icono
 
@@ -144,7 +214,7 @@ vuelvan a generar.
    flutter clean
    flutter pub get
    flutter gen-l10n
-   flutter build appbundle --release --dart-define=ADMOB_REWARDED_ANDROID_ID=ca-app-pub-XXXX/ZZZZ
+   flutter build appbundle --release
    ```
 
 3. El archivo para subir queda en
@@ -221,12 +291,16 @@ abajo) y al menos 2 capturas del teléfono (portada, mapa, combate, pelea).
 - **Anuncios:** Sí, contiene anuncios.
 - **Acceso a la app:** toda la funcionalidad está disponible sin credenciales
   especiales.
-- **Público objetivo:** 13–15, 16–17 y 18+ (no menores de 13).
+- **Público objetivo:** 13–15, 16–17 y 18+ (no menores de 13). Aun así, el
+  juego pregunta el año de nacimiento la primera vez (pantalla de edad
+  neutral): si alguien menor de 13 lo juega, sus anuncios son para niños y
+  no se envía analítica. Si Google pregunta si la app «puede atraer a
+  niños», responde que sí y menciona esa pantalla.
 - **Clasificación de contenido (cuestionario IARC):** juego; violencia de
   fantasía/dibujos animados leve (golpes a monstruos, sin sangre); sin
   lenguaje ofensivo, sin contenido sexual, sin apuestas; interacción entre
   usuarios: no (el ranking solo muestra nombre y puntos); compras dentro de la
-  app: no (las monedas y gemas se ganan jugando).
+  app: **sí** (Pase VIP; las monedas y gemas se ganan jugando).
 - **ID de publicidad:** Sí, se usa para publicidad (AdMob).
 - **Eliminación de cuentas:** URL de borrar datos del paso 6.
 - **Seguridad de los datos** (revísalo con la guía de AdMob/Firebase de
@@ -236,6 +310,10 @@ abajo) y al menos 2 capturas del teléfono (portada, mapa, combate, pelea).
   - *Información personal → Correo electrónico* (opcional, al vincular
     Google): gestión de la cuenta y funcionalidad.
   - *Actividad en la app → Otras acciones* (avance del juego): funcionalidad.
+  - *Actividad en la app → Interacciones con la app* (Firebase Analytics):
+    analíticas.
+  - *Información financiera → Historial de compras* (Pase VIP): funcionalidad
+    de la app.
   - *Identificadores del dispositivo u otros* (Firebase y AdMob): funcionalidad,
     publicidad y prevención de fraude. AdMob los comparte con Google para
     anuncios.

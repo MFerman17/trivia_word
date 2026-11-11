@@ -215,7 +215,16 @@ class _OutOfLivesDialogState extends State<_OutOfLivesDialog> {
     final adsSupported = !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
     final earned = !adsSupported && kDebugMode
         ? await Future<bool>.delayed(const Duration(seconds: 1), () => true)
-        : await AdService.showRewardedAd();
+        : await AdService.showRewardedAd(placement: 'life', dailyLimit: AdService.lifeVideosPerDay);
+    if (!mounted) return;
+    if (!earned && await AdService.remainingToday('life', AdService.lifeVideosPerDay) <= 0) {
+      if (!mounted) return;
+      setState(() {
+        _busy = false;
+        _error = context.l10n.dailyLimitReached;
+      });
+      return;
+    }
     if (!mounted) return;
     if (earned) {
       LivesService.addLives(1);

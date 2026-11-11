@@ -123,7 +123,7 @@ class GameBackground extends StatelessWidget {
       fit: StackFit.expand,
       children: [
         Image.asset(
-          'assets/images/bg_landscape.png',
+          'assets/images/bg_landscape.jpg',
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) =>
               const ColoredBox(color: WM.panelBottom),

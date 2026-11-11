@@ -6,6 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../models/player_profile.dart';
 import '../models/question.dart';
 import 'cloud_service.dart';
+import 'analytics_service.dart';
 import 'question_repository.dart';
 import 'save_service.dart';
 
@@ -129,6 +130,7 @@ class TowerService {
   /// Cierra una subida: da el premio y, si es récord, lo guarda (en el
   /// teléfono y en la clasificación). Devuelve si fue un récord nuevo.
   static Future<bool> finishRun(int floors) async {
+    AnalyticsService.towerRun(floors);
     final profile = await SaveService.loadPlayerData();
     profile.coins += coinsFor(floors);
     profile.gems += gemsFor(floors);

@@ -250,5 +250,9 @@ Carpeta: `assets/images/icons/`.
 Mientras una imagen nueva no esté, el juego usa otra de reserva (por ejemplo,
 el mapa del volcán para el desierto), así que se pueden ir subiendo de a poco.
 
+**Formato en el juego:** los mapas y el fondo `bg_landscape` se guardan en
+**JPG** (pesan 4 veces menos; no tienen transparencia). Si un mapa nuevo llega
+en PNG, se convierte a JPG con el mismo nombre antes de usarlo.
+
 **Al terminar, súbelas a GitHub (o pásamelas) y yo las reviso.** Ajusto tamaños,
 recortes y nombres por código para que encajen sin "saltos".

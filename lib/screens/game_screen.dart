@@ -13,6 +13,7 @@ import '../l10n/l10n.dart';
 import '../services/cheer_service.dart';
 import '../widgets/game_icon.dart';
 import '../widgets/victory_fx.dart';
+import '../services/analytics_service.dart';
 import '../widgets/tutorial_overlay.dart';
 
 class GameScreen extends StatefulWidget {
@@ -114,6 +115,7 @@ class _GameScreenState extends State<GameScreen> {
     await TutorialService.markSeen(level);
     if (!mounted) return;
     await showTutorial(context, steps);
+    if (level == 3) AnalyticsService.tutorialComplete();
   }
 
   void _onControllerUpdate() {
@@ -217,6 +219,12 @@ class _GameScreenState extends State<GameScreen> {
                 context.l10n.dailyRewardTaken,
                 textAlign: TextAlign.center,
                 style: GoogleFonts.oswald(color: Colors.white70, fontSize: 14),
+              ),
+            if (rewarded && _controller.coinsReward > 0)
+              DoubleRewardButton(
+                coins: _controller.coinsReward,
+                onRewarded: _controller.doubleCoins,
+                delay: countersAt + const Duration(milliseconds: 1300),
               ),
             const SizedBox(height: 16),
             SizedBox(
@@ -354,7 +362,7 @@ class _GameScreenState extends State<GameScreen> {
       await Future<void>.delayed(const Duration(seconds: 1));
       return true;
     }
-    return AdService.showRewardedAd();
+    return AdService.showRewardedAd(placement: 'revive');
   }
 
   void _showReviveDialog() {

@@ -613,5 +613,21 @@
   "notifChestTitle": "🎁 Your daily chest is ready",
   "notifChestBody": "Come and open it: free coins and potions.",
   "notifDailyTitle": "🔥 Don't lose your streak!",
-  "notifDailyBody": "Day {day} of your streak is waiting, and today's challenge is ready."
+  "notifDailyBody": "Day {day} of your streak is waiting, and today's challenge is ready.",
+  "doubleCoins": "x2 COINS  (+{coins})",
+  "dailyLimitReached": "You've used all of today's. Come back tomorrow!",
+  "vipTitle": "VIP PASS",
+  "vipDesc": "Every video reward instantly, no ads to watch. One payment, forever.",
+  "vipActive": "VIP active! Video rewards are instant.",
+  "vipBuy": "BUY",
+  "vipUnavailable": "The Google Play store isn't available right now. Try again later.",
+  "vipThanks": "Thank you! Your VIP Pass is now active.",
+  "vipRestore": "RESTORE PURCHASES",
+  "vipRestored": "VIP Pass restored.",
+  "vipNotFound": "No purchases were found for this Google account.",
+  "ageTitle": "WHAT YEAR WERE YOU BORN?",
+  "ageSubtitle": "We only use it to show you suitable content. The year isn't stored.",
+  "ageConfirm": "CONFIRM",
+  "allWorldsDoneTitle": "YOU SAVED ALL 6 WORLDS!",
+  "allWorldsDoneBody": "New worlds are coming soon. Meanwhile, keep playing the Daily Challenge and the Endless Tower."
 }

@@ -197,59 +197,59 @@ const List<Offset> _glaciar3 = [
 // =================================================================
 final Map<int, List<MapSegment>> kWorldMaps = {
   1: const [
-    MapSegment(asset: 'assets/images/Bosque_1.png', nodes: _bosque1),
-    MapSegment(asset: 'assets/images/Bosque_2.png', nodes: _bosque2),
-    MapSegment(asset: 'assets/images/Bosque_3.png', nodes: _bosque3),
+    MapSegment(asset: 'assets/images/Bosque_1.jpg', nodes: _bosque1),
+    MapSegment(asset: 'assets/images/Bosque_2.jpg', nodes: _bosque2),
+    MapSegment(asset: 'assets/images/Bosque_3.jpg', nodes: _bosque3),
   ],
   2: const [
-    MapSegment(asset: 'assets/images/Cavernas_1.png', nodes: _cavernas1),
-    MapSegment(asset: 'assets/images/Cavernas_2.png', nodes: _cavernas2),
-    MapSegment(asset: 'assets/images/Cavernas_3.png', nodes: _cavernas3),
+    MapSegment(asset: 'assets/images/Cavernas_1.jpg', nodes: _cavernas1),
+    MapSegment(asset: 'assets/images/Cavernas_2.jpg', nodes: _cavernas2),
+    MapSegment(asset: 'assets/images/Cavernas_3.jpg', nodes: _cavernas3),
   ],
   3: const [
-    MapSegment(asset: 'assets/images/Islas_1.png', nodes: _islas1),
-    MapSegment(asset: 'assets/images/Islas_2.png', nodes: _islas2),
-    MapSegment(asset: 'assets/images/Islas_3.png', nodes: _islas3),
+    MapSegment(asset: 'assets/images/Islas_1.jpg', nodes: _islas1),
+    MapSegment(asset: 'assets/images/Islas_2.jpg', nodes: _islas2),
+    MapSegment(asset: 'assets/images/Islas_3.jpg', nodes: _islas3),
   ],
   4: const [
-    MapSegment(asset: 'assets/images/Volcan_1.png', nodes: _volcan1),
-    MapSegment(asset: 'assets/images/Volcan_2.png', nodes: _volcan2),
-    MapSegment(asset: 'assets/images/Volcan_3.png', nodes: _volcan3),
+    MapSegment(asset: 'assets/images/Volcan_1.jpg', nodes: _volcan1),
+    MapSegment(asset: 'assets/images/Volcan_2.jpg', nodes: _volcan2),
+    MapSegment(asset: 'assets/images/Volcan_3.jpg', nodes: _volcan3),
   ],
   // Las imágenes nuevas van en assets/images/maps/. Mientras no estén, se
   // ve el mapa de reserva (volcán para el desierto, islas para el glaciar).
   5: const [
     MapSegment(
-      asset: 'assets/images/maps/Desierto_1.png',
+      asset: 'assets/images/maps/Desierto_1.jpg',
       nodes: _desierto1,
-      fallback: MapSegment(asset: 'assets/images/Volcan_1.png', nodes: _volcan1),
+      fallback: MapSegment(asset: 'assets/images/Volcan_1.jpg', nodes: _volcan1),
     ),
     MapSegment(
-      asset: 'assets/images/maps/Desierto_2.png',
+      asset: 'assets/images/maps/Desierto_2.jpg',
       nodes: _desierto2,
-      fallback: MapSegment(asset: 'assets/images/Volcan_2.png', nodes: _volcan2),
+      fallback: MapSegment(asset: 'assets/images/Volcan_2.jpg', nodes: _volcan2),
     ),
     MapSegment(
-      asset: 'assets/images/maps/Desierto_3.png',
+      asset: 'assets/images/maps/Desierto_3.jpg',
       nodes: _desierto3,
-      fallback: MapSegment(asset: 'assets/images/Volcan_3.png', nodes: _volcan3),
+      fallback: MapSegment(asset: 'assets/images/Volcan_3.jpg', nodes: _volcan3),
     ),
   ],
   6: const [
     MapSegment(
-      asset: 'assets/images/maps/Glaciar_1.png',
+      asset: 'assets/images/maps/Glaciar_1.jpg',
       nodes: _glaciar1,
-      fallback: MapSegment(asset: 'assets/images/Islas_1.png', nodes: _islas1),
+      fallback: MapSegment(asset: 'assets/images/Islas_1.jpg', nodes: _islas1),
     ),
     MapSegment(
-      asset: 'assets/images/maps/Glaciar_2.png',
+      asset: 'assets/images/maps/Glaciar_2.jpg',
       nodes: _glaciar2,
-      fallback: MapSegment(asset: 'assets/images/Islas_2.png', nodes: _islas2),
+      fallback: MapSegment(asset: 'assets/images/Islas_2.jpg', nodes: _islas2),
     ),
     MapSegment(
-      asset: 'assets/images/maps/Glaciar_3.png',
+      asset: 'assets/images/maps/Glaciar_3.jpg',
       nodes: _glaciar3,
-      fallback: MapSegment(asset: 'assets/images/Islas_3.png', nodes: _islas3),
+      fallback: MapSegment(asset: 'assets/images/Islas_3.jpg', nodes: _islas3),
     ),
   ],
 };

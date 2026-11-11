@@ -17,6 +17,7 @@ import '../services/quest_service.dart';
 import '../services/question_bank.dart';
 import '../services/question_repository.dart';
 import '../services/save_service.dart';
+import '../services/analytics_service.dart';
 import '../services/lives_service.dart';
 import '../l10n/l10n.dart';
 import '../services/vibration_service.dart';
@@ -116,6 +117,18 @@ class FightController extends ChangeNotifier {
   // --- Resultado ---
   int starsEarned = 0;
   int coinsEarned = 0;
+
+  /// Si ya se duplicaron las monedas de esta victoria con un video.
+  bool coinsDoubled = false;
+
+  /// Premio del botón "x2": vuelve a dar las monedas de la victoria.
+  Future<void> doubleCoins() async {
+    final p = profile;
+    if (coinsDoubled || p == null || coinsEarned <= 0) return;
+    coinsDoubled = true;
+    p.coins += coinsEarned;
+    await SaveService.savePlayerData(p);
+  }
   int xpEarned = 0;
 
   /// Búho: una pista gratis por pelea. Fénix: te levanta una vez por pelea.
@@ -143,6 +156,7 @@ class FightController extends ChangeNotifier {
     playerHp = playerMaxHp;
     if (_disposed) return;
     AudioService.playBattleMusic(boss: true);
+    AnalyticsService.levelStart(world: worldId, chapter: chapterId, level: levelNumber);
     _startRound();
   }
 
@@ -425,7 +439,17 @@ class FightController extends ChangeNotifier {
     QuestService.track(QuestEvent.levelWon);
     QuestService.track(QuestEvent.fightWon);
     // Jefe final de un mundo vencido por primera vez.
-    if (isFinal && firstWin) QuestService.track(QuestEvent.worldBossWon);
+    if (isFinal && firstWin) {
+      QuestService.track(QuestEvent.worldBossWon);
+      AnalyticsService.worldComplete(worldId);
+    }
+    AnalyticsService.levelEnd(
+        world: worldId,
+        chapter: chapterId,
+        level: levelNumber,
+        success: true,
+        stars: starsEarned,
+        fight: true);
     if (starsEarned == 3) QuestService.track(QuestEvent.perfectLevel);
     QuestService.track(QuestEvent.starsEarned, amount: starsEarned - previous.stars);
 
@@ -467,6 +491,8 @@ class FightController extends ChangeNotifier {
     // otra cosa: se rellena en cada round).
     LivesService.loseLife();
     phase = FightPhase.defeat;
+    AnalyticsService.levelEnd(
+        world: worldId, chapter: chapterId, level: levelNumber, success: false, fight: true);
     notifyListeners();
     AudioService.playDefeatSound();
   }

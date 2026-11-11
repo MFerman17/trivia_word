@@ -20,6 +20,9 @@ import '../services/cloud_service.dart';
 import '../l10n/l10n.dart';
 import '../widgets/lives_widgets.dart';
 import '../services/ad_service.dart';
+import '../services/age_gate_service.dart';
+import '../services/analytics_service.dart';
+import '../widgets/age_gate.dart';
 import 'welcome_screen.dart';
 import 'tournament_screen.dart';
 import 'challenges_screen.dart';
@@ -62,12 +65,13 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   void initState() {
     super.initState();
+    // Primero la edad (una sola vez) y luego los anuncios: en Europa, el
+    // aviso de consentimiento sale al abrir el juego (no en mitad de una
+    // batalla). También deja un video precargado.
+    _ageReady = _askAgeThenStartAds();
     _loadUserProfile();
     // Música propia de la portada (y de las pantallas que se abren desde aquí).
     AudioService.playMenuMusic();
-    // Anuncios: en Europa, el aviso de consentimiento sale al abrir el juego
-    // (no en mitad de una batalla). También deja un video precargado.
-    AdService.initialize();
 
     _dragonController = AnimationController(
       vsync: this,
@@ -120,6 +124,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     await SaveService.savePlayerData(_profile!);
     await CloudService.syncProfileToCloud(_profile!);
 
+    // La pantalla de edad va antes que cualquier otro aviso (premio del
+    // torneo, alias y país, racha).
+    await _ageReady;
+
     // Premio del torneo de la semana pasada (una sola vez).
     if (mounted && !_prizeChecked) {
       _prizeChecked = true;
@@ -157,6 +165,19 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     // Permiso de notificaciones: una sola vez, ya dentro del juego (no
     // nada más abrirlo), cuando ya se entiende para qué sirven.
     if (mounted && !_profile!.needsWelcome) await NotificationService.askPermissionOnce();
+  }
+
+  /// Termina cuando ya se sabe la edad del jugador.
+  late Future<void> _ageReady;
+
+  Future<void> _askAgeThenStartAds() async {
+    if (!AgeGateService.answered) {
+      await WidgetsBinding.instance.endOfFrame;
+      if (!mounted) return;
+      await showAgeGate(context);
+    }
+    await AnalyticsService.applyAge();
+    AdService.initialize();
   }
 
   /// Racha de hoy (null mientras carga).
@@ -296,7 +317,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   Future<void> _claimBonusChest() async {
     if (_loadingBonusAd || !_bonusChestAvailable) return;
     setState(() => _loadingBonusAd = true);
-    final earned = await AdService.showRewardedAd();
+    final earned = await AdService.showRewardedAd(placement: 'bonus_chest');
     if (!mounted) return;
     setState(() => _loadingBonusAd = false);
     if (!earned) {
@@ -439,7 +460,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           // ===========================================================
           Positioned.fill(
             child: Image.asset(
-              'assets/images/bg_landscape.png',
+              'assets/images/bg_landscape.jpg',
               fit: BoxFit.cover,
               alignment: Alignment.center,
             ),

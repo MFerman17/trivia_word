@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,6 +17,8 @@ import 'services/question_repository.dart';
 import 'services/save_service.dart';
 import 'services/lives_service.dart';
 import 'services/vibration_service.dart';
+import 'services/vip_service.dart';
+import 'services/age_gate_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -49,6 +53,11 @@ Future<void> main() async {
   await VibrationService.init();
   // Avisos locales (vidas llenas, cofre, racha).
   await NotificationService.init();
+  // Edad (menor de 13 o no), para pedir los anuncios adecuados.
+  await AgeGateService.init();
+  // Pase VIP: lee si ya lo tiene y pregunta a Google Play (sin esperar,
+  // para no retrasar la portada).
+  unawaited(VipService.init());
 
   runApp(MyApp(initError: initError));
 }

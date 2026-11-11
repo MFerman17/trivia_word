@@ -10,4 +10,4 @@
 ///
 /// El ID de la APP (el que lleva "~") va en otro sitio:
 /// android/gradle.properties → ADMOB_APP_ID=ca-app-pub-...~...
-const String kAdmobRewardedAndroidId = '';
+const String kAdmobRewardedAndroidId = 'ca-app-pub-6178963883167960/8856016335';

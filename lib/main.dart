@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'firebase_options.dart';
 import 'l10n/l10n.dart';
 import 'screens/home_screen.dart';
@@ -29,6 +30,7 @@ Future<void> main() async {
       options: DefaultFirebaseOptions.currentPlatform,
     );
     SaveService.onLocalSaveChanged = CloudService.syncFullSave;
+    _setUpCrashlytics();
     debugPrint('🔥 Firebase inicializado correctamente');
     if (kDebugMode) {
       final o = Firebase.app().options;
@@ -60,6 +62,26 @@ Future<void> main() async {
   unawaited(VipService.init());
 
   runApp(MyApp(initError: initError));
+}
+
+/// CRASHLYTICS: si el juego se cierra o falla algo, Firebase recibe el
+/// error exacto (pantalla, línea de código, modelo de teléfono). Así se
+/// pueden arreglar fallos que los testers o jugadores no saben explicar.
+///
+/// Solo en Android y en versiones release: en debug los errores ya se ven
+/// en la consola de VS Code, y así no se mezclan con los de los jugadores.
+void _setUpCrashlytics() {
+  if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) return;
+  final crashlytics = FirebaseCrashlytics.instance;
+  crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
+  if (!kReleaseMode) return;
+  // Errores de Flutter (al dibujar pantallas).
+  FlutterError.onError = crashlytics.recordFlutterFatalError;
+  // Errores en código asíncrono que nadie capturó.
+  WidgetsBinding.instance.platformDispatcher.onError = (error, stack) {
+    crashlytics.recordError(error, stack, fatal: true);
+    return true;
+  };
 }
 
 class MyApp extends StatefulWidget {

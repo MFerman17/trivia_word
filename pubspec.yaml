@@ -48,6 +48,8 @@ dependencies:
   gma_mediation_meta: any
   # Analítica: niveles, abandono, videos, retención.
   firebase_analytics: ^12.0.0
+  # Informes de cierres y errores (Android). Solo en versiones release.
+  firebase_crashlytics: ^5.0.0
   # Compras dentro de la app (Pase VIP) con Google Play Billing.
   in_app_purchase: ^3.2.0
   # Avisos locales (vidas llenas, cofre, racha). timezone lo necesita para

@@ -180,6 +180,13 @@ Unity y Meta pujan y gana quien más paga. No cuesta nada.
 4. Para probarlo sin pagar: Play Console → Configuración → **Pruebas de
    licencias** → añade tu correo. Tus compras saldrán como "de prueba".
 
+### 3f. Crashlytics (errores y cierres)
+
+Firebase → tu proyecto → **Crashlytics** → *Habilitar*. Solo recoge errores
+de versiones **release** (las de Google Play), no de las APK debug. Cada
+error llega con la pantalla, la línea de código y el modelo de teléfono.
+Pásame la captura del error y lo arreglo.
+
 ### 3e. Firebase Analytics
 
 Firebase → tu proyecto → **Analytics** → *Habilitar Google Analytics* (si no
@@ -314,6 +321,8 @@ abajo) y al menos 2 capturas del teléfono (portada, mapa, combate, pelea).
     analíticas.
   - *Información financiera → Historial de compras* (Pase VIP): funcionalidad
     de la app.
+  - *Información y rendimiento de la app → Registros de fallos y
+    Diagnósticos* (Crashlytics): analíticas.
   - *Identificadores del dispositivo u otros* (Firebase y AdMob): funcionalidad,
     publicidad y prevención de fraude. AdMob los comparte con Google para
     anuncios.

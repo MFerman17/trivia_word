@@ -49,9 +49,11 @@ class AdService {
       // todos). Resto: como mucho contenido para adolescentes ("T"), porque
       // el juego lo puede jugar cualquiera.
       await MobileAds.instance.updateRequestConfiguration(RequestConfiguration(
-        tagForChildDirectedTreatment: AgeGateService.isChild
-            ? TagForChildDirectedTreatment.yes
-            : TagForChildDirectedTreatment.unspecified,
+        // Sustituye a los antiguos tagForChildDirectedTreatment y
+        // tagForUnderAgeOfConsent (obsoletos desde google_mobile_ads 9).
+        ageRestrictedTreatment: AgeGateService.isChild
+            ? AgeRestrictedTreatment.child
+            : AgeRestrictedTreatment.unspecified,
         maxAdContentRating: AgeGateService.isChild ? MaxAdContentRating.g : MaxAdContentRating.t,
       ));
       await _loadRewardedAd();

@@ -78,13 +78,9 @@ class CloudService {
         debugPrint('No se pudieron borrar los datos de la nube: $e');
         return false;
       }
-      try {
-        await user.delete(); // borra la cuenta (anónima o de Google) en Firebase
-      } catch (e) {
-        // Firebase puede pedir un inicio de sesión reciente para borrar una
-        // cuenta de Google. Los datos ya están borrados: basta con cerrar sesión.
-        debugPrint('No se pudo borrar la cuenta, se cierra la sesión: $e');
-      }
+      // Google Play exige que la CUENTA también se borre, no solo los datos.
+      // Si falla, se avisa al jugador (antes se daba por borrada igualmente).
+      if (!await _deleteAuthAccount(user)) return false;
       try {
         await _auth.signOut();
         await GoogleSignIn.instance.signOut();
@@ -92,6 +88,41 @@ class CloudService {
     }
     await SaveService.clearLocalData();
     return true;
+  }
+
+  /// Borra la cuenta de Firebase. Si la cuenta es de Google y Firebase pide
+  /// un inicio de sesión reciente ('requires-recent-login'), se le pide al
+  /// jugador que elija de nuevo su cuenta de Google y se reintenta.
+  static Future<bool> _deleteAuthAccount(User user) async {
+    try {
+      await user.delete();
+      return true;
+    } on FirebaseAuthException catch (e) {
+      if (e.code != 'requires-recent-login') {
+        debugPrint('No se pudo borrar la cuenta (${e.code}): ${e.message}');
+        return false;
+      }
+    } catch (e) {
+      debugPrint('No se pudo borrar la cuenta: $e');
+      return false;
+    }
+    try {
+      if (kIsWeb) {
+        await user.reauthenticateWithPopup(GoogleAuthProvider());
+      } else {
+        _googleInitialization ??= GoogleSignIn.instance.initialize();
+        await _googleInitialization;
+        final googleUser = await GoogleSignIn.instance.authenticate();
+        final idToken = googleUser.authentication.idToken;
+        if (idToken == null) return false;
+        await user.reauthenticateWithCredential(GoogleAuthProvider.credential(idToken: idToken));
+      }
+      await user.delete();
+      return true;
+    } catch (e) {
+      debugPrint('No se pudo confirmar la cuenta para borrarla: $e');
+      return false;
+    }
   }
 
   /// Descarga el guardado al abrir el juego. La copia local se conserva si

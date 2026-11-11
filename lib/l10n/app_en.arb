@@ -348,7 +348,7 @@
   "deleteDataConfirm": "YES, DELETE",
   "cancel": "Cancel",
   "deleteDataDone": "Your data has been deleted. The game starts over.",
-  "deleteDataFailed": "Your data couldn't be deleted. Check your connection and try again.",
+  "deleteDataFailed": "Your data or account couldn't be deleted. Check your connection and try again (if you use Google, pick your account when asked).",
   "adPrivacyOptions": "AD PRIVACY OPTIONS",
   "worldName1": "Forest",
   "worldName2": "Caverns",

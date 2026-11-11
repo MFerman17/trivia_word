@@ -1599,7 +1599,7 @@
   "@deleteDataDone": {
     "description": "EN: Your data has been deleted. The game starts over."
   },
-  "deleteDataFailed": "No se pudieron borrar los datos. Comprueba tu conexión e inténtalo de nuevo.",
+  "deleteDataFailed": "No se pudieron borrar los datos o la cuenta. Comprueba tu conexión e inténtalo de nuevo (si usas Google, elige tu cuenta cuando se te pida).",
   "@deleteDataFailed": {
     "description": "EN: Your data couldn't be deleted. Check your connection and try again."
   },

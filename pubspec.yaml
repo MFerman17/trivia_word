@@ -40,12 +40,12 @@ dependencies:
   cloud_firestore: ^6.10.0
   google_sign_in: ^7.2.0
   google_mobile_ads: ^9.1.0
-  # Mediación de AdMob (bidding): Unity y Meta pujan por cada video y gana
-  # el que más paga. Solo se activan cuando se configuran en AdMob →
-  # Mediación; mientras tanto no hacen nada. La versión la elige
-  # `flutter pub get` según la de google_mobile_ads.
+  # Mediación de AdMob (bidding): Unity puja por cada video contra AdMob y
+  # gana el que más paga. Solo se activa al configurarlo en AdMob →
+  # Mediación. La versión la elige `flutter pub get` según google_mobile_ads.
+  # Meta Audience Network NO se usa: no está certificado para el programa
+  # Families de Google Play (el juego puede atraer a niños).
   gma_mediation_unity: any
-  gma_mediation_meta: any
   # Analítica: niveles, abandono, videos, retención.
   firebase_analytics: ^12.0.0
   # Informes de cierres y errores (Android). Solo en versiones release.

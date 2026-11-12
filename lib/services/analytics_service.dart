@@ -1,5 +1,6 @@
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:in_app_purchase/in_app_purchase.dart';
 
@@ -42,14 +43,24 @@ class AnalyticsService {
     }
   }
 
-  /// Firebase mide sesiones y retención por su cuenta; para menores de 13
-  /// se apaga del todo. Se llama al saber la edad.
+  /// La analítica y los informes de errores empiezan APAGADOS (ver
+  /// AndroidManifest.xml): no se envía nada antes de saber la edad. Esto se
+  /// llama justo después de la pantalla de edad (y en cada arranque) y los
+  /// enciende solo si el jugador no es menor de 13.
   static Future<void> applyAge() async {
+    if (Firebase.apps.isEmpty || !AgeGateService.answered) return;
+    final allowed = !AgeGateService.isChild;
     try {
-      if (Firebase.apps.isEmpty) return;
-      await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(!AgeGateService.isChild);
+      await FirebaseAnalytics.instance.setAnalyticsCollectionEnabled(allowed);
     } catch (e) {
       debugPrint('Analítica: no se pudo aplicar la edad: $e');
+    }
+    if (!kIsWeb && defaultTargetPlatform == TargetPlatform.android) {
+      try {
+        await FirebaseCrashlytics.instance.setCrashlyticsCollectionEnabled(allowed && kReleaseMode);
+      } catch (e) {
+        debugPrint('Crashlytics: no se pudo aplicar la edad: $e');
+      }
     }
   }
 

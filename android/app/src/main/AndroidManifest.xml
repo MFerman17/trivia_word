@@ -9,6 +9,15 @@
         android:label="Words &amp; Monsters"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- Analítica e informes de errores APAGADOS al arrancar: se
+             encienden solo cuando el jugador responde la pantalla de edad
+             y no es menor de 13 (AnalyticsService.applyAge). -->
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_crashlytics_collection_enabled"
+            android:value="false" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="${ADMOB_APP_ID}" />

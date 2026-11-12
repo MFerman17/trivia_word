@@ -2932,5 +2932,9 @@
   "allWorldsDoneBody": "Pronto llegarán mundos nuevos. Mientras tanto, sigue jugando el Desafío diario y la Torre infinita.",
   "@allWorldsDoneBody": {
     "description": "EN: New worlds are coming soon. Meanwhile, keep playing the Daily Challenge and the Endless Tower."
+  },
+  "playerIdLabel": "Tu ID de jugador (para pedir el borrado por correo):",
+  "@playerIdLabel": {
+    "description": "EN: Your player ID (to request deletion by email):"
   }
 }

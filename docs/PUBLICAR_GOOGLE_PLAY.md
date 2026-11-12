@@ -15,7 +15,7 @@ aquí está lo que hay que hacer **fuera del código** (Firebase, AdMob, Play Co
 - **Fase G:** `targetSdk 36`; borrado de cuenta que vuelve a pedir Google si
   hace falta; pantalla de edad neutral; botón «x2 monedas con un video» tras
   cada victoria; **Pase VIP** (compra única); Firebase Analytics; mediación
-  Unity + Meta; topes diarios en los videos de pociones, pistas y vidas.
+  Unity; topes diarios en los videos de pociones, pistas y vidas.
 
 ## 0. Correo de contacto
 
@@ -142,28 +142,26 @@ anuncios". Sin él, muchos anunciantes no pujan y se gana menos.
    `app-ads.txt` dentro. (Ese mismo repo puede alojar las páginas de
    privacidad, y así el repo del juego puede pasar a ser privado.)
 3. En la ficha de Play Console, *sitio web* = `https://mferman17.github.io`.
-4. Cuando actives Unity y Meta, sus paneles te dan más líneas: se añaden
+4. Cuando actives Unity, su panel te dan más líneas: se añaden
    al mismo archivo.
 
-### 3c. Mediación: Unity Ads y Meta (después de publicar)
+### 3c. Mediación: Unity Ads (después de publicar)
 
-El código ya incluye los adaptadores (`gma_mediation_unity`,
-`gma_mediation_meta`). Funcionan por **bidding**: en cada video, AdMob,
-Unity y Meta pujan y gana quien más paga. No cuesta nada.
+El código ya incluye el adaptador de Unity (`gma_mediation_unity`). Funciona
+por **bidding**: en cada video, AdMob y Unity pujan y gana quien más paga.
+No cuesta nada.
 
 - **Unity:** Unity Grow → Monetización → *Agregar aplicación* (con el enlace
   de Play) → copia el **Game ID** y crea una ubicación *Rewarded* con
   bidding. En AdMob → Mediación → *Crear grupo de mediación* → formato
   *Recompensado*, Android → *Añadir fuente de anuncios* → **Unity Ads
   (bidding)** → pega Game ID y el ID de la ubicación.
-- **Meta:** business.facebook.com/pub/start → elige tu negocio → añade la
-  app (con el enlace de Play) → revisión → crea una ubicación *Rewarded
-  video* y elige **AdMob** como plataforma de mediación. En el mismo grupo de
-  AdMob → *Añadir fuente* → **Meta Audience Network (bidding)** → pega el ID
-  de la ubicación.
-- AdMob → Privacidad y mensajes → **RGPD** → *Socios publicitarios*: añade
-  Unity y Meta a la lista (si no, en Europa no se les pide permiso y no
-  pujan).
+- AdMob → Privacidad y mensajería → **Reglamentos europeos → Configuración**
+  → socios publicitarios: añade **Unity** (si no, en Europa no se le pide
+  permiso y no puja).
+- **Meta Audience Network no se usa:** no está en la lista de SDKs de
+  anuncios certificados para *Families* de Google Play, y el juego (monstruos,
+  colores) puede atraer a niños. AdMob y Unity sí están certificados.
 
 ### 3d. Pase VIP (compra integrada)
 
@@ -258,30 +256,33 @@ rama `main`, carpeta `/docs` → Save. En unos minutos estarán en:
 
 **Descripción breve (máx. 80):**
 
-> Palabras, lógica y monstruos: responde bien y salva cuatro mundos de fantasía.
+> Palabras, lógica y monstruos: responde bien y salva seis mundos de fantasía.
 
 **Descripción completa:**
 
 > ¿Cuánto sabes de palabras? En Words & Monsters cada respuesta es un golpe:
-> acierta para derrotar a los monstruos y avanza por el Bosque, las Cavernas,
-> las Islas Flotantes y el Volcán.
+> acierta para derrotar a los monstruos y recorre seis mundos: el Bosque, las
+> Cavernas, las Islas Flotantes, el Volcán, el Desierto de las Runas y el
+> Glaciar Eterno, hasta enfrentarte al Devorador de Palabras.
 >
-> 📚 600 preguntas de ortografía, tildes, sinónimos, refranes, analogías,
-> anagramas, adivinanzas, lógica y cultura general, que se vuelven más
-> difíciles a medida que avanzas.
+> 📚 Más de 1.200 preguntas de ortografía, tildes, sinónimos, refranes,
+> analogías, anagramas, adivinanzas, lógica y cultura general, que se vuelven
+> más difíciles a medida que avanzas.
 >
 > ⚔️ Peleas al estilo de los juegos de lucha: responde rápido para dar patadas,
 > encadena combos y lanza tu ataque SUPER contra los guardianes y el jefe
 > final de cada mundo.
 >
-> ⭐ Consigue estrellas para desbloquear las peleas, completa misiones, abre el
-> cofre diario y mejora tu luchador.
+> 🔥 Cada día, algo nuevo: Desafío diario con ranking mundial, Torre infinita
+> para batir tu récord, racha de 7 días con premios y cofre diario.
+>
+> 🏆 Torneo semanal por ligas, misiones y logros.
 >
 > 🧙 Personaliza tu héroe con personajes, marcos y accesorios.
 >
-> 🏆 Compite en el ranking y guarda tu avance con tu cuenta de Google.
+> ☁️ Guarda tu avance con tu cuenta de Google y sigue en otro teléfono.
 >
-> Para todas las edades: aprende jugando, sin darte cuenta.
+> Aprende jugando, sin darte cuenta.
 
 **Gráficos necesarios:** icono 512×512, gráfico destacado 1024×500 (prompt
 abajo) y al menos 2 capturas del teléfono (portada, mapa, combate, pelea).

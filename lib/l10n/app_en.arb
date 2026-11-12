@@ -629,5 +629,6 @@
   "ageSubtitle": "We only use it to show you suitable content. The year isn't stored.",
   "ageConfirm": "CONFIRM",
   "allWorldsDoneTitle": "YOU SAVED ALL 6 WORLDS!",
-  "allWorldsDoneBody": "New worlds are coming soon. Meanwhile, keep playing the Daily Challenge and the Endless Tower."
+  "allWorldsDoneBody": "New worlds are coming soon. Meanwhile, keep playing the Daily Challenge and the Endless Tower.",
+  "playerIdLabel": "Your player ID (to request deletion by email):"
 }

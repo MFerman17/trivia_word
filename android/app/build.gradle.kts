@@ -68,6 +68,13 @@ android {
             signingConfig = if (keystorePropertiesFile.exists()) {
                 signingConfigs.getByName("release")
             } else {
+                // Aviso visible en la consola: un .aab firmado con la llave de
+                // pruebas lo RECHAZA Google Play al subirlo.
+                logger.warn(
+                    "AVISO: no existe android/key.properties. La versión release se " +
+                        "firma con la llave de PRUEBAS y Google Play no la aceptará. " +
+                        "Ver docs/PUBLICAR_GOOGLE_PLAY.md, paso 2."
+                )
                 signingConfigs.getByName("debug")
             }
         }

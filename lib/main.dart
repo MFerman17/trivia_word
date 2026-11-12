@@ -70,11 +70,12 @@ Future<void> main() async {
 ///
 /// Solo en Android y en versiones release: en debug los errores ya se ven
 /// en la consola de VS Code, y así no se mezclan con los de los jugadores.
+/// El ENVÍO empieza apagado (AndroidManifest) y se enciende al saber que
+/// el jugador no es menor de 13 (AnalyticsService.applyAge).
 void _setUpCrashlytics() {
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) return;
-  final crashlytics = FirebaseCrashlytics.instance;
-  crashlytics.setCrashlyticsCollectionEnabled(kReleaseMode);
   if (!kReleaseMode) return;
+  final crashlytics = FirebaseCrashlytics.instance;
   // Errores de Flutter (al dibujar pantallas).
   FlutterError.onError = crashlytics.recordFlutterFatalError;
   // Errores en código asíncrono que nadie capturó.

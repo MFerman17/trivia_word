@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../l10n/l10n.dart';
@@ -351,6 +352,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
             privacyPolicyUrl,
             style: GoogleFonts.oswald(color: WM.cyan, fontSize: 13),
           ),
+          // ID de jugador: con él se puede pedir el borrado por correo
+          // aunque la partida sea anónima (sin cuenta de Google).
+          if (FirebaseAuth.instance.currentUser?.uid case final uid?) ...[
+            const SizedBox(height: 10),
+            Text(
+              context.l10n.playerIdLabel,
+              style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
+            ),
+            SelectableText(
+              uid,
+              style: GoogleFonts.robotoMono(color: Colors.white54, fontSize: 12),
+            ),
+          ],
           if (_showAdPrivacy) ...[
             const SizedBox(height: 12),
             SizedBox(

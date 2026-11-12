@@ -55,7 +55,7 @@ flutter test
 
 ## Monetización
 
-- Videos **voluntarios** con premio (AdMob + mediación Unity y Meta).
+- Videos **voluntarios** con premio (AdMob + mediación con Unity Ads).
 - Botón «x2 monedas» tras cada victoria.
 - **Pase VIP** (`vip_pass`, compra única): los premios de video se dan sin
   ver el anuncio.

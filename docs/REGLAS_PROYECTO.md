@@ -7,7 +7,7 @@ Las mismas están en las instrucciones del Proyecto "Words & Monsters" de ChatGP
 
 Juego móvil de trivia en Flutter, para todas las edades. Multilenguaje: idioma base español de España, luego inglés y otros.
 Estilo fantasía oscura. Primero se publica en Android.
-4 mundos (Bosque, Cavernas, Islas Flotantes, Volcán) x 3 capítulos x 5 niveles.
+6 mundos (Bosque, Cavernas, Islas Flotantes, Volcán, Desierto de las Runas, Glaciar Eterno) x 3 capítulos x 10 niveles.
 El nivel 5 de cada capítulo es una pelea tipo Street Fighter (guardián); la del capítulo 3 es la batalla final del mundo.
 Para entrar a cada pelea hace falta un mínimo de estrellas en ese mundo (ver lib/services/fighter_service.dart).
 

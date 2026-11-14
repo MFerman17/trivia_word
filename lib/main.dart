@@ -19,6 +19,7 @@ import 'services/save_service.dart';
 import 'services/lives_service.dart';
 import 'services/vibration_service.dart';
 import 'services/vip_service.dart';
+import 'services/narrator_service.dart';
 import 'services/age_gate_service.dart';
 
 Future<void> main() async {
@@ -49,6 +50,7 @@ Future<void> main() async {
   await QuestionRepository.load(language: LocaleService.languageCode);
   // Prepara el audio (música en bucle, volumen, silencio guardado).
   await AudioService.init();
+  await NarratorService.init();
   // Vidas globales (suma las que se recargaron con la app cerrada).
   await LivesService.init();
   // Vibración en los golpes (se puede desactivar en Ajustes).

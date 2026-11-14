@@ -4,3 +4,8 @@ Nombre = idPersonaje_pose.png
   idPersonaje: explorador, maga, guardian
   pose: idle (quieto), attack (golpea), hit (recibe), win (victoria), lose (derrota)
 Si falta una pose, la pelea usa assets/images/adventurer.png.
+
+Moretones (opcional): idPersonaje_idle_hurt1.png (algo golpeado) e
+idPersonaje_idle_hurt2.png (muy golpeado). Se usan con la pose "idle" cuando
+la vida del round baja del 66 % y del 33 %. Si faltan, se usa idle normal.
+Prompt: docs/GUIA_ESTILO_VISUAL.md, "Luchadores del jugador con moretones".

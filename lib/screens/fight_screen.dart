@@ -8,9 +8,12 @@ import '../controllers/fight_controller.dart';
 import '../models/question.dart';
 import '../services/audio_service.dart';
 import '../services/fighter_service.dart';
+import '../services/narrator_service.dart';
 import '../widgets/screen_shake.dart';
 import '../widgets/victory_fx.dart';
 import '../widgets/game_3d.dart';
+import '../widgets/leave_dialog.dart';
+import '../widgets/sound_button.dart';
 import '../widgets/monster_poses.dart';
 import '../widgets/player_avatar.dart';
 import 'shop_screen.dart';
@@ -103,12 +106,13 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     final id = _fight.profile?.avatarCharacterId;
     if (_posesCached || id == null) return;
     _posesCached = true;
-    for (final pose in PlayerAvatar.fighterPoses) {
-      precacheImage(
-        AssetImage(PlayerAvatar.fighterAssetFor(id, pose: pose)),
-        context,
-        onError: (_, _) {}, // Si falta una pose, se usa la de reserva.
-      );
+    for (final asset in [
+      for (final pose in PlayerAvatar.fighterPoses) PlayerAvatar.fighterAssetFor(id, pose: pose),
+      PlayerAvatar.fighterAssetWithDamage(id, 'idle', 1),
+      PlayerAvatar.fighterAssetWithDamage(id, 'idle', 2),
+    ]) {
+      // Si falta una pose, se usa la de reserva.
+      precacheImage(AssetImage(asset), context, onError: (_, _) {});
     }
     for (final asset in [
       for (final pose in MonsterPoses.poses) MonsterPoses.assetFor(_fight.config.enemyAsset, pose),
@@ -173,7 +177,13 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
             body: Center(child: CircularProgressIndicator(color: WM.cyan)),
           );
         }
-        return ScreenShake(
+        return PopScope(
+          // El botón "atrás" del teléfono también pregunta antes de salir.
+          canPop: !_fight.inProgress,
+          onPopInvokedWithResult: (didPop, _) {
+            if (!didPop) _confirmLeave();
+          },
+          child: ScreenShake(
           trigger: _fight.playerMaxHp - _fight.playerHp,
           child: Scaffold(
           backgroundColor: WM.outline,
@@ -194,6 +204,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               SafeArea(
                 child: Column(
                   children: [
+                    _buildTopBar(),
                     _buildHud(),
                     Expanded(child: _buildStage()),
                     _buildControls(),
@@ -203,8 +214,58 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               _buildOverlay(),
             ],
           ),
-        ));
+        )));
       },
+    );
+  }
+
+  // =================================================================
+  // BARRA SUPERIOR: volver al mapa y sonido
+  // =================================================================
+  bool _leaving = false;
+
+  /// Pregunta si quiere abandonar. Mientras se decide, el reloj se para
+  /// (no es justo perder tiempo por pulsar el botón). Abandonar una pelea
+  /// cuesta una vida, igual que perderla.
+  Future<void> _confirmLeave() async {
+    if (_leaving) return;
+    if (!_fight.inProgress) {
+      Navigator.of(context).pop();
+      return;
+    }
+    _fight.pause();
+    final leave = await showLeaveConfirm(
+      context,
+      title: context.l10n.leaveFightTitle,
+      body: context.l10n.leaveFightBody,
+    );
+    if (!mounted) return;
+    if (leave) {
+      _leaving = true;
+      _fight.abandon();
+      Navigator.of(context).pop();
+    } else {
+      _fight.resume();
+    }
+  }
+
+  Widget _buildTopBar() {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(10, 4, 4, 0),
+      child: Row(
+        children: [
+          Pressable3D(
+            onTap: _confirmLeave,
+            color: const Color(0xFF3A2A7A),
+            height: 34,
+            depth: 4,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: const Icon(Icons.arrow_back_rounded, color: WM.bone, size: 20),
+          ),
+          const Spacer(),
+          const SoundToggleButton(onColor: WM.gold, compact: true),
+        ],
+      ),
     );
   }
 
@@ -526,8 +587,14 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     double squash = 0,
   }) {
     final profile = _fight.profile;
+    final characterId = profile?.avatarCharacterId ?? 'explorador';
     final asset = isPlayer
-        ? PlayerAvatar.fighterAssetFor(profile?.avatarCharacterId ?? 'explorador', pose: pose)
+        // El jugador quieto también muestra moretones según su vida.
+        ? PlayerAvatar.fighterAssetWithDamage(
+            characterId,
+            pose,
+            MonsterPoses.damageLevel(_fight.playerHp, _fight.playerMaxHp),
+          )
         // El monstruo quieto muestra moretones según la vida del round.
         : MonsterPoses.assetWithDamage(
             _fight.config.enemyAsset,
@@ -545,7 +612,14 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
       // Si falta la pose: el jugador usa el aventurero de la portada y el
       // monstruo su imagen normal.
       errorBuilder: (_, _, _) => isPlayer
-          ? Image.asset('assets/images/adventurer.png', height: height, fit: BoxFit.contain)
+          // Jugador: sin moretones → pose normal → aventurero de la portada.
+          ? Image.asset(
+              PlayerAvatar.fighterAssetFor(characterId, pose: pose),
+              height: height,
+              fit: BoxFit.contain,
+              errorBuilder: (_, _, _) =>
+                  Image.asset('assets/images/adventurer.png', height: height, fit: BoxFit.contain),
+            )
           // Monstruo: sin moretones → pose normal → imagen base → emoji.
           : Image.asset(
               MonsterPoses.assetFor(_fight.config.enemyAsset, pose),
@@ -989,6 +1063,16 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
     final int? nextWorld =
         f.isFinal && f.firstWin && f.worldId < kWorldCount ? f.worldId + 1 : null;
     final countersAt = victoryCountersDelay(f.starsEarned);
+    // Si el diálogo trae historia, el narrador empieza cuando terminan las
+    // estrellas y los premios (para no pisar esos sonidos). Si el jugador
+    // pulsa CONTINUAR antes, ya no empieza.
+    var dialogOpen = true;
+    final story = f.chapterStory;
+    if (story != null && nextWorld == null) {
+      Future.delayed(countersAt + const Duration(milliseconds: 1600), () {
+        if (dialogOpen && mounted) NarratorService.tellStory(f.worldId, f.chapterId, story);
+      });
+    }
     showVictoryDialog<void>(
       context: context,
       builder: (dialogContext) => Panel3D(
@@ -1091,6 +1175,8 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
                 child: Pressable3D(
                   onTap: () {
                     AudioService.playButtonClick();
+                    dialogOpen = false;
+                    NarratorService.stop();
                     Navigator.of(dialogContext).pop();
                     // Devuelve al mapa el mundo al que hay que pasar (o nada).
                     Navigator.of(context).pop(nextWorld);

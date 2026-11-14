@@ -13,6 +13,7 @@ import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import '../services/streak_service.dart';
 import '../services/notification_service.dart';
+import '../widgets/sound_button.dart';
 import '../widgets/streak_calendar.dart';
 import '../widgets/particle_explosion.dart';
 import '../widgets/player_avatar.dart';
@@ -1063,20 +1064,18 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
       };
 
   Widget _buildSoundButton() {
-    final muted = AudioService.isMuted;
-    return GestureDetector(
-      onTap: () {
-        AudioService.toggleMute();
-        setState(() {});
-      },
-      child: Container(
-        width: 46,
-        height: 46,
-        decoration: _roundButtonDecoration(),
-        child: Icon(
-          muted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
-          color: muted ? Colors.redAccent : kCyan,
-          size: 24,
+    return SoundToggleButton(
+      builder: (context, muted, toggle) => GestureDetector(
+        onTap: toggle,
+        child: Container(
+          width: 46,
+          height: 46,
+          decoration: _roundButtonDecoration(),
+          child: Icon(
+            muted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
+            color: muted ? Colors.redAccent : kCyan,
+            size: 24,
+          ),
         ),
       ),
     );

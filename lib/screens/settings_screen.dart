@@ -12,6 +12,7 @@ import '../services/locale_service.dart';
 import '../services/question_repository.dart';
 import '../services/vibration_service.dart';
 import '../services/vip_service.dart';
+import '../services/narrator_service.dart';
 import '../services/notification_service.dart';
 import '../widgets/game_3d.dart';
 import 'home_screen.dart';
@@ -142,6 +143,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
               AudioService.setSfxVolume(value, save: true);
               AudioService.playButtonClick();
             },
+          ),
+          const SizedBox(height: 8),
+          // Narrador: voz que lee las historias de los capítulos y mundos.
+          Row(
+            children: [
+              Socket3D(
+                size: 44,
+                color: NarratorService.enabled ? WM.cyan : const Color(0xFF4A4660),
+                child: const Icon(Icons.record_voice_over_rounded, color: Colors.white, size: 20),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  context.l10n.settingsNarrator,
+                  style: GoogleFonts.oswald(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+              Switch(
+                value: NarratorService.enabled,
+                onChanged: (value) async {
+                  await NarratorService.setEnabled(value);
+                  if (mounted) setState(() {});
+                },
+                activeThumbColor: WM.bone,
+                activeTrackColor: WM.cyan,
+                inactiveThumbColor: Colors.white54,
+                inactiveTrackColor: WM.outline,
+              ),
+            ],
           ),
           const SizedBox(height: 8),
           // Vibración: al activarla, el teléfono da un golpe de prueba.

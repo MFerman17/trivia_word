@@ -67,6 +67,45 @@ mismo monstruo deben mirar al mismo lado.
 
 ---
 
+### Luchadores del jugador con moretones (pendiente)
+
+En las peleas, los monstruos ya muestran rasguños y vendas cuando les queda
+poca vida. Los luchadores del jugador necesitan lo mismo: **6 imágenes**
+(2 por personaje). Se piden en la misma conversación en la que esté la pose
+`idle` de ese personaje, para que salga idéntico.
+
+| Archivo | Cómo debe verse |
+|---|---|
+| `explorador_idle_hurt1.png` | Igual que `explorador_idle.png`, algo golpeado |
+| `explorador_idle_hurt2.png` | Igual que `explorador_idle.png`, muy golpeado |
+| `maga_idle_hurt1.png` | Igual que `maga_idle.png`, algo golpeada |
+| `maga_idle_hurt2.png` | Igual que `maga_idle.png`, muy golpeada |
+| `guardian_idle_hurt1.png` | Igual que `guardian_idle.png`, algo golpeada |
+| `guardian_idle_hurt2.png` | Igual que `guardian_idle.png`, muy golpeada |
+
+Prompt (cambiar NOMBRE por el personaje y adjuntar su `_idle.png`):
+
+```
+Mismo personaje que la imagen adjunta (NOMBRE de Words & Monsters), misma
+escala, misma posición en la imagen, misma postura en guardia y MIRANDO A LA
+DERECHA. Solo cambia el daño:
+- hurt1 (algo golpeado): un par de rasguños en la mejilla, una curita
+  (tirita) en la frente o la nariz, la ropa un poco sucia, expresión cansada
+  pero decidida.
+- hurt2 (muy golpeado): moretón morado en un ojo, dos o tres curitas,
+  una venda en el brazo, la ropa rasgada en un borde, respiración agitada
+  (hombros algo caídos), sudor, pero sigue en guardia.
+Tono de dibujo animado, nada de sangre ni heridas abiertas (juego para 13+).
+PNG con fondo TRANSPARENTE, cuerpo completo, sin texto ni sombra en el suelo.
+```
+
+Los luchadores miran a la **derecha** (están a la izquierda en la pelea),
+al revés que los monstruos. Al terminar, súbelas a la rama `imagenes` en
+`assets/images/fighters/`: yo las recorto al mismo encuadre que las demás
+poses (576 x 768) y las paso a `main`.
+
+---
+
 ## 3. Bloque de estilo — MAPAS DE MUNDO
 
 ```

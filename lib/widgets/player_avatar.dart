@@ -24,6 +24,15 @@ class PlayerAvatar extends StatelessWidget {
   static String fighterAssetFor(String characterId, {String pose = 'idle'}) =>
       'assets/images/fighters/${characterId}_$pose.png';
 
+  /// Pose "quieto" con moretones y vendas, igual que los monstruos:
+  /// fighters/ID_idle_hurt1.png (algo golpeado, vida por debajo del 66 %) y
+  /// ID_idle_hurt2.png (muy golpeado, por debajo del 33 %). Para el resto
+  /// de poses, o sin daño, la pose normal.
+  static String fighterAssetWithDamage(String characterId, String pose, int damage) {
+    if (pose != 'idle' || damage <= 0) return fighterAssetFor(characterId, pose: pose);
+    return 'assets/images/fighters/${characterId}_idle_hurt$damage.png';
+  }
+
   static const Map<String, String> _characterFallbacks = {
     'explorador': '🧝',
     'maga': '🧙‍♀️',

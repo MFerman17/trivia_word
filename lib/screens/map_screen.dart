@@ -11,11 +11,13 @@ import 'mini_challenges_screen.dart';
 import '../l10n/l10n.dart';
 import '../services/fighter_service.dart';
 import '../widgets/unlock_burst.dart';
+import '../widgets/sound_button.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/flying_monsters.dart';
 import 'fight_screen.dart';
 import '../widgets/lives_widgets.dart';
 import '../services/chapter_story_service.dart';
+import '../services/narrator_service.dart';
 import '../services/question_bank.dart';
 import '../services/save_service.dart';
 import '../services/minigame_service.dart';
@@ -211,8 +213,6 @@ class _MapScreenState extends State<MapScreen>
     _loadPortals();
   }
 
-  bool _isMuted = AudioService.isMuted;
-
   @override
   void initState() {
     super.initState();
@@ -327,6 +327,7 @@ class _MapScreenState extends State<MapScreen>
   /// Presentación del mundo nuevo, con su paisaje y su historia.
   void _showNewWorld(int world) {
     final story = ChapterStoryService.afterChapter(world - 1, 3);
+    // Se calla al cerrar la presentación (con el botón o tocando fuera).
     showDialog<void>(
       context: context,
       barrierColor: Colors.black.withValues(alpha: 0.8),
@@ -401,8 +402,9 @@ class _MapScreenState extends State<MapScreen>
           ),
         ),
       ),
-    );
+    ).then((_) => NarratorService.stop());
     AudioService.playPageFlip();
+    if (story != null) NarratorService.tellStory(world - 1, 3, story);
   }
   /// Aviso cuando aún no hay estrellas suficientes para una pelea.
   /// Devuelve true si el jugador decide usar una llave dorada.
@@ -1059,21 +1061,7 @@ class _MapScreenState extends State<MapScreen>
                   );
                 },
               ),
-              IconButton(
-                icon: Icon(
-                  _isMuted
-                      ? Icons.volume_off_rounded
-                      : Icons.volume_up_rounded,
-                  color: _isMuted ? Colors.redAccent : Colors.amberAccent,
-                  size: 24,
-                ),
-                onPressed: () {
-                  AudioService.toggleMute();
-                  setState(() {
-                    _isMuted = AudioService.isMuted;
-                  });
-                },
-              ),
+              const SoundToggleButton(onColor: Colors.amberAccent),
               Container(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 5),

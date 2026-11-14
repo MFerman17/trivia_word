@@ -146,6 +146,28 @@ class FightController extends ChangeNotifier {
   Timer? _clock;
   bool _disposed = false;
 
+  /// Reloj parado (mientras se pregunta "¿quieres abandonar?").
+  bool _paused = false;
+
+  /// Si la pelea sigue en juego (para pedir confirmación al salir).
+  bool get inProgress =>
+      phase != FightPhase.loading && phase != FightPhase.victory && phase != FightPhase.defeat;
+
+  void pause() => _paused = true;
+  void resume() => _paused = false;
+
+  /// El jugador abandona a mitad de pelea: cuenta como derrota y cuesta
+  /// una vida (si no, se podría salir justo antes de perder para no
+  /// pagarla). No se muestra el diálogo de derrota: se vuelve al mapa.
+  void abandon() {
+    if (!inProgress) return;
+    _clock?.cancel();
+    _disposed = true; // corta los golpes y preguntas pendientes
+    LivesService.loseLife();
+    AnalyticsService.levelEnd(
+        world: worldId, chapter: chapterId, level: levelNumber, success: false, fight: true);
+  }
+
   // =================================================================
   // INICIO
   // =================================================================
@@ -207,7 +229,7 @@ class FightController extends ChangeNotifier {
   void _startClock() {
     _clock?.cancel();
     _clock = Timer.periodic(const Duration(milliseconds: 100), (_) {
-      if (_disposed || phase != FightPhase.question) return;
+      if (_disposed || phase != FightPhase.question || _paused) return;
       timeLeft = math.max(0, timeLeft - 0.1);
       if (timeLeft <= 0) {
         _clock?.cancel();

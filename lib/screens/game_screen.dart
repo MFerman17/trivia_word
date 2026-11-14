@@ -8,12 +8,15 @@ import '../services/ad_service.dart';
 import '../services/audio_service.dart';
 import '../widgets/screen_shake.dart';
 import '../widgets/battle_arena.dart';
+import '../widgets/leave_dialog.dart';
+import '../widgets/sound_button.dart';
 import '../widgets/game_3d.dart';
 import '../l10n/l10n.dart';
 import '../services/cheer_service.dart';
 import '../widgets/game_icon.dart';
 import '../widgets/victory_fx.dart';
 import '../services/analytics_service.dart';
+import '../services/narrator_service.dart';
 import '../widgets/tutorial_overlay.dart';
 
 class GameScreen extends StatefulWidget {
@@ -36,7 +39,6 @@ class GameScreen extends StatefulWidget {
 
 class _GameScreenState extends State<GameScreen> {
   late GameController _controller;
-  bool _isMuted = AudioService.isMuted;
 
   // Evita abrir dos diálogos de fin de partida a la vez: el controlador
   // avisa (notifyListeners) muchas veces, y cada aviso con el estado
@@ -256,6 +258,7 @@ class _GameScreenState extends State<GameScreen> {
     if (story == null || !mounted) return;
 
     AudioService.playPageFlip();
+    NarratorService.tellStory(_controller.worldId, _controller.chapterId, story);
     await showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -343,6 +346,7 @@ class _GameScreenState extends State<GameScreen> {
         ],
       ),
     );
+    NarratorService.stop();
   }
 
   // =================================================================
@@ -624,7 +628,13 @@ class _GameScreenState extends State<GameScreen> {
 
         final currentQuestion = _controller.currentQuestion;
 
-        return ScreenShake(
+        return PopScope(
+          // El botón "atrás" del teléfono también pregunta antes de salir.
+          canPop: _controller.status != GameStatus.playing,
+          onPopInvokedWithResult: (didPop, _) {
+            if (!didPop) _confirmLeave();
+          },
+          child: ScreenShake(
           trigger: _attackCount,
           // El zarpazo del monstruo llega a mitad de su animación (~0,3 s).
           delay: const Duration(milliseconds: 300),
@@ -669,9 +679,30 @@ class _GameScreenState extends State<GameScreen> {
               ),
             ],
           ),
-        ));
+        )));
       },
     );
+  }
+
+  bool _leaving = false;
+
+  /// Pregunta si quiere salir a mitad de nivel. Salir no cuesta una vida
+  /// extra (las que perdió fallando ya se descontaron), pero se pierde el
+  /// avance del nivel.
+  Future<void> _confirmLeave() async {
+    if (_leaving) return;
+    if (_controller.status != GameStatus.playing) {
+      Navigator.of(context).pop();
+      return;
+    }
+    final leave = await showLeaveConfirm(
+      context,
+      title: context.l10n.leaveLevelTitle,
+      body: context.l10n.leaveLevelBody,
+    );
+    if (!mounted || !leave) return;
+    _leaving = true;
+    Navigator.of(context).pop();
   }
 
   // ---------------------------------------------------------------
@@ -683,7 +714,7 @@ class _GameScreenState extends State<GameScreen> {
       child: Row(
         children: [
           Pressable3D(
-            onTap: () => Navigator.maybePop(context),
+            onTap: _confirmLeave,
             color: const Color(0xFF3A2A7A),
             height: 38,
             depth: 5,
@@ -700,17 +731,7 @@ class _GameScreenState extends State<GameScreen> {
               letterSpacing: 1.5,
             ),
           ),
-          IconButton(
-            visualDensity: VisualDensity.compact,
-            icon: Icon(
-              _isMuted ? Icons.volume_off_rounded : Icons.volume_up_rounded,
-              color: _isMuted ? Colors.redAccent : WM.gold,
-            ),
-            onPressed: () {
-              AudioService.toggleMute();
-              setState(() => _isMuted = AudioService.isMuted);
-            },
-          ),
+          const SoundToggleButton(onColor: WM.gold, compact: true),
           // Vidas: el corazón que se pierde "late" al vaciarse.
           for (var i = 0; i < _controller.maxPlayerHp; i++)
             AnimatedScale(

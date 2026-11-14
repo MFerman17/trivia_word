@@ -38,6 +38,16 @@ class AudioService {
   /// "Silencio total": lo usan los botones de altavoz del mapa y del combate.
   static bool get isMuted => !musicOn && !sfxOn;
 
+  /// El mismo dato, pero "escuchable": todos los botones de altavoz lo
+  /// observan y se redibujan solos cuando cambia en CUALQUIER pantalla.
+  ///
+  /// Error corregido: antes cada pantalla guardaba su propia copia al
+  /// abrirse. Si se silenciaba en la batalla y se volvía al mapa, el botón
+  /// del mapa seguía mostrando el estado viejo.
+  static final ValueNotifier<bool> mutedNotifier = ValueNotifier(false);
+
+  static void _notifyMuted() => mutedNotifier.value = isMuted;
+
   /// Ajuste de volumen propio de cada pista, para que todas suenen
   /// equilibradas aunque los archivos vengan grabados más fuertes o más
   /// flojos. 1.0 = sin cambio. Medido en LUFS (sonoridad percibida):
@@ -83,6 +93,7 @@ class AudioService {
       sfxOn = prefs.getBool(_sfxOnKey) ?? !legacyMuted;
       musicVolume = prefs.getDouble(_musicVolumeKey) ?? musicVolume;
       sfxVolume = prefs.getDouble(_sfxVolumeKey) ?? sfxVolume;
+      _notifyMuted();
 
       await _bgmPlayer.setReleaseMode(ReleaseMode.loop);
       await _bgmPlayer.setVolume(musicVolume);
@@ -125,6 +136,10 @@ class AudioService {
     ),
     iOS: AudioContextIOS(category: AVAudioSessionCategory.ambient),
   );
+
+  /// Ajuste de "turno" de los efectos: suenan sin pausar la música. Lo usa
+  /// también el narrador.
+  static AudioContext get effectsContext => _effectsContext;
 
   static Future<void> _configureAudioFocus() async {
     if (kIsWeb) return; // En el navegador no existe ese turno.
@@ -187,6 +202,9 @@ class AudioService {
           volume: _effectiveMusicVolume,
           ctx: kIsWeb ? null : _musicContext,
         );
+        // Cargar el archivo tarda un poco: si mientras tanto el jugador
+        // silenció el juego, se para aquí (si no, sonaría en silencio).
+        if (!musicOn) await _bgmPlayer.pause();
         return;
       } catch (e) {
         debugPrint('🎵 No se pudo reproducir la música $file: $e');
@@ -408,6 +426,7 @@ class AudioService {
 
   static Future<void> setMusicOn(bool value) async {
     musicOn = value;
+    _notifyMuted();
     if (!value) {
       await _bgmPlayer.pause();
     } else {
@@ -418,6 +437,7 @@ class AudioService {
 
   static Future<void> setSfxOn(bool value) async {
     sfxOn = value;
+    _notifyMuted();
     if (!value) {
       for (final player in _sfxPlayers) {
         player.stop();
@@ -440,6 +460,16 @@ class AudioService {
     sfxVolume = value.clamp(0.0, 1.0);
     if (save) await _save();
   }
+
+  /// Baja la música mientras habla el narrador (y la recupera al acabar).
+  static Future<void> duckMusic(bool on) async {
+    try {
+      await _bgmPlayer.setVolume(_effectiveMusicVolume * (on ? 0.3 : 1.0));
+    } catch (_) {}
+  }
+
+  /// Para el narrador: si un audio existe en assets/audio/.
+  static bool hasAudio(String file) => _availableAudio?.contains(file) ?? false;
 
   /// Botón de altavoz: silencia o activa todo (música y efectos).
   static void toggleMute() {

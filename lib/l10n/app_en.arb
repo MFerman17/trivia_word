@@ -630,5 +630,12 @@
   "ageConfirm": "CONFIRM",
   "allWorldsDoneTitle": "YOU SAVED ALL 6 WORLDS!",
   "allWorldsDoneBody": "New worlds are coming soon. Meanwhile, keep playing the Daily Challenge and the Endless Tower.",
-  "playerIdLabel": "Your player ID (to request deletion by email):"
+  "playerIdLabel": "Your player ID (to request deletion by email):",
+  "leaveKeepPlaying": "KEEP PLAYING",
+  "leaveConfirm": "Back to the map",
+  "leaveFightTitle": "LEAVE THE FIGHT?",
+  "leaveFightBody": "If you leave now, the fight counts as lost and you lose a life.",
+  "leaveLevelTitle": "LEAVE THE LEVEL?",
+  "leaveLevelBody": "You'll lose your progress in this level. Lives you already lost won't come back.",
+  "settingsNarrator": "Narrator voice"
 }

@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.1.0+3
+version: 1.1.1+4
 
 environment:
   sdk: ^3.12.2
@@ -52,6 +52,8 @@ dependencies:
   firebase_crashlytics: ^5.0.0
   # Compras dentro de la app (Pase VIP) con Google Play Billing.
   in_app_purchase: ^3.2.0
+  # Voz del narrador cuando no hay grabación (texto a voz del teléfono).
+  flutter_tts: ^4.2.0
   # Avisos locales (vidas llenas, cofre, racha). timezone lo necesita para
   # programarlos a una hora concreta.
   flutter_local_notifications: ^22.3.3
@@ -75,6 +77,9 @@ flutter:
   # Configuración de recursos (assets)
   assets:
     - assets/audio/
+    # Grabaciones del narrador (story_M_C.mp3). Ver docs/NARRADOR.md.
+    - assets/audio/voice/es/
+    - assets/audio/voice/en/
     - assets/questions/es/
     - assets/questions/en/
     - assets/images/bg_landscape.jpg

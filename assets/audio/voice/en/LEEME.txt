@@ -1,0 +1,2 @@
+Grabaciones del narrador en este idioma: story_M_C.mp3
+(M = mundo, C = capitulo). Ver docs/NARRADOR.md.

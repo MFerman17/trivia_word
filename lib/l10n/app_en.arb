@@ -637,5 +637,22 @@
   "leaveFightBody": "If you leave now, the fight counts as lost and you lose a life.",
   "leaveLevelTitle": "LEAVE THE LEVEL?",
   "leaveLevelBody": "You'll lose your progress in this level. Lives you already lost won't come back.",
-  "settingsNarrator": "Narrator voice"
+  "settingsNarrator": "Narrator voice",
+  "forgeTimeUp": "Time's up! These were the words",
+  "minigameScramble": "WORD SCRAMBLE",
+  "minigameSpelling": "SPELLED RIGHT?",
+  "minigameSnake": "LETTER SNAKE",
+  "scrambleRules": "Unscramble the letters to form the word in the clue. Get {goal} out of {total}.",
+  "scrambleWrong": "Not that one, try again",
+  "scrambleWas": "It was: {word}",
+  "scrambleSkip": "SKIP",
+  "spellingRules": "Is it spelled right? Answer {total} words without losing your 3 lives.",
+  "spellingRight": "RIGHT",
+  "spellingWrong": "WRONG",
+  "spellingYes": "Correct!",
+  "spellingNo": "Oops! Not quite",
+  "spellingCorrection": "It's spelled: {word}",
+  "snakeRules": "Guide the snake and eat the letters in order to spell the {count} words.",
+  "snakeCrash": "Crash! −5 s",
+  "snakeWrongLetter": "Wrong letter −3 s"
 }

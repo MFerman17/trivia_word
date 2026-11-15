@@ -12,6 +12,9 @@ import 'settings_screen.dart';
 import '../services/audio_service.dart';
 import '../services/save_service.dart';
 import '../services/streak_service.dart';
+import '../services/tower_service.dart';
+import '../services/daily_challenge_service.dart';
+import '../services/quest_service.dart';
 import '../services/notification_service.dart';
 import '../widgets/sound_button.dart';
 import '../widgets/streak_calendar.dart';
@@ -124,6 +127,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
     await SaveService.savePlayerData(_profile!);
     await CloudService.syncProfileToCloud(_profile!);
+    _loadPending();
 
     // La pantalla de edad va antes que cualquier otro aviso (premio del
     // torneo, alias y país, racha).
@@ -183,6 +187,31 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
 
   /// Racha de hoy (null mientras carga).
   StreakStatus? _streak;
+
+  // AVISOS DE PENDIENTES: un círculo rojo con un número en los botones del
+  // menú, para que el jugador vea de un vistazo qué le queda por hacer.
+  /// Misiones completadas cuyo premio aún no se ha reclamado.
+  int _pendingQuests = 0;
+
+  /// Desafíos disponibles hoy: reto diario sin jugar y subidas a la torre.
+  int _pendingChallenges = 0;
+
+  Future<void> _loadPending() async {
+    try {
+      final quests = await QuestService.loadQuests();
+      final readyQuests = quests.where((q) => q.isCompleted && !q.isClaimed).length;
+      var challenges = 0;
+      if (!await DailyChallengeService.playedToday()) challenges++;
+      if (await TowerService.runsLeft() > 0) challenges++;
+      if (!mounted) return;
+      setState(() {
+        _pendingQuests = readyQuests;
+        _pendingChallenges = challenges;
+      });
+    } catch (e) {
+      debugPrint('Portada: no se pudieron leer los pendientes: $e');
+    }
+  }
 
   /// El calendario se abre solo una vez por apertura de la portada.
   bool _streakShown = false;
@@ -593,6 +622,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                         child: _buildMenuCard(
                           title: context.l10n.menuQuests,
                           icon: Icons.assignment_rounded,
+                          badge: _pendingQuests,
                           onTap: () async {
                             await Navigator.push(
                               context,
@@ -622,6 +652,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                           // Reto diario, Torre infinita y Torneo, juntos.
                           title: context.l10n.menuChallenges,
                           icon: Icons.emoji_events_rounded,
+                          badge: _pendingChallenges,
                           onTap: () async {
                             await Navigator.push(
                               context,
@@ -1109,8 +1140,9 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     required String title,
     required IconData icon,
     required VoidCallback onTap,
+    int badge = 0,
   }) {
-    return _buildSlantButton(
+    final card = _buildSlantButton(
       height: 70,
       fill: const Color(0xE61A0845),
       border: kCyan.withValues(alpha: 0.8),
@@ -1130,6 +1162,34 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           ),
         ],
       ),
+    );
+    if (badge <= 0) return card;
+    return Stack(
+      clipBehavior: Clip.none,
+      children: [
+        card,
+        Positioned(
+          right: 2,
+          top: -6,
+          child: IgnorePointer(
+            child: Container(
+              constraints: const BoxConstraints(minWidth: 22),
+              height: 22,
+              padding: const EdgeInsets.symmetric(horizontal: 5),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: Colors.redAccent,
+                borderRadius: BorderRadius.circular(11),
+                border: Border.all(color: kOutline, width: 2),
+              ),
+              child: Text(
+                badge > 9 ? '9+' : '$badge',
+                style: GoogleFonts.anton(color: Colors.white, fontSize: 12, height: 1.1),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 

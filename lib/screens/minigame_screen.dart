@@ -7,11 +7,14 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../l10n/l10n.dart';
+import '../services/ad_service.dart';
 import '../services/audio_service.dart';
 import '../services/locale_service.dart';
 import '../services/minigame_service.dart';
+import '../services/save_service.dart';
 import '../widgets/game_3d.dart';
 import '../widgets/game_icon.dart';
+import 'minigame_word_games.dart';
 
 /// Pantalla de un portal: juega el minijuego y, al terminar, entrega el
 /// premio y vuelve al mapa (devuelve true si se jugó).
@@ -114,6 +117,9 @@ class _MinigameScreenState extends State<MinigameScreen> {
       MinigameType.hangman => context.l10n.minigameHangman,
       MinigameType.wordSearch => context.l10n.minigameWordSearch,
       MinigameType.wordForge => context.l10n.minigameWordForge,
+      MinigameType.scramble => context.l10n.minigameScramble,
+      MinigameType.spelling => context.l10n.minigameSpelling,
+      MinigameType.snake => context.l10n.minigameSnake,
     };
     return Scaffold(
       backgroundColor: WM.outline,
@@ -128,6 +134,9 @@ class _MinigameScreenState extends State<MinigameScreen> {
                   MinigameType.hangman => _HangmanGame(onFinished: _onFinished),
                   MinigameType.wordSearch => _WordSearchGame(onFinished: _onFinished),
                   MinigameType.wordForge => _WordForgeGame(onFinished: _onFinished),
+                  MinigameType.scramble => ScrambleGame(onFinished: _onFinished),
+                  MinigameType.spelling => SpellingGame(onFinished: _onFinished),
+                  MinigameType.snake => SnakeGame(onFinished: _onFinished),
                 },
               ),
             ],
@@ -453,8 +462,8 @@ class _HangmanGameState extends State<_HangmanGame> {
 // =====================================================================
 // Reloj compartido por los juegos con tiempo
 // =====================================================================
-class _Countdown extends StatelessWidget {
-  const _Countdown({required this.seconds, required this.total});
+class MinigameCountdown extends StatelessWidget {
+  const MinigameCountdown({super.key, required this.seconds, required this.total});
   final int seconds;
   final int total;
 
@@ -655,7 +664,7 @@ class _WordSearchGameState extends State<_WordSearchGame> {
           const SizedBox(height: 6),
           OutlinedGameText(_theme, size: 20, colors: const [Color(0xFFFFF1B0), WM.gold]),
           const SizedBox(height: 6),
-          _Countdown(seconds: _seconds, total: totalSeconds),
+          MinigameCountdown(seconds: _seconds, total: totalSeconds),
           const SizedBox(height: 10),
           Expanded(
             child: Center(
@@ -790,6 +799,19 @@ class _WordForgeGameState extends State<_WordForgeGame> {
   bool _done = false;
   bool _loading = true;
 
+  /// Se acabó el tiempo: se enseñan todas las palabras posibles y el
+  /// jugador decide cuándo seguir (antes el juego se cerraba de golpe y no
+  /// se podía ver qué palabras había).
+  bool _timeUp = false;
+
+  /// Comodín: letras reveladas de cada palabra (desde el principio).
+  final Map<String, int> _revealed = {};
+  int _hints = 0;
+  bool _hintBusy = false;
+
+  /// Reloj parado mientras se ve un video del comodín.
+  bool _paused = false;
+
   int get _goal => math.min(maxGoal, _words.length);
 
   @override
@@ -816,16 +838,83 @@ class _WordForgeGameState extends State<_WordForgeGame> {
     } catch (e) {
       debugPrint('No se pudo cargar la forja de palabras: $e');
     }
+    _hints = (await SaveService.loadPlayerData()).letterHints;
     if (!mounted) return;
     setState(() => _loading = false);
     _timer = Timer.periodic(const Duration(seconds: 1), (_) {
-      if (!mounted || _done) return;
+      if (!mounted || _done || _paused) return;
       setState(() => _seconds--);
-      if (_seconds <= 0) {
-        _done = true;
-        widget.onFinished(false);
-      }
+      if (_seconds <= 0) _onTimeUp();
     });
+  }
+
+  void _onTimeUp() {
+    AudioService.playWrong();
+    setState(() {
+      _done = true;
+      _timeUp = true;
+      _picked.clear();
+      _message = context.l10n.forgeTimeUp;
+      _messageGood = false;
+    });
+  }
+
+  // ---------------------------------------------------------------
+  // COMODÍN: revela la siguiente letra de una palabra escondida.
+  // Sigue con la misma palabra hasta completarla (si se revela entera,
+  // cuenta como encontrada). Gasta una pista 💡 del inventario; si no
+  // quedan, se puede ganar con un video (máximo 5 al día).
+  // ---------------------------------------------------------------
+  String? _hintTarget() {
+    final pending = [for (final w in _words) if (!_found.contains(w)) w];
+    if (pending.isEmpty) return null;
+    final started = pending.where((w) => (_revealed[w] ?? 0) > 0).toList();
+    if (started.isNotEmpty) return started.first;
+    final shortest = pending.map((w) => w.length).reduce(math.min);
+    final options = pending.where((w) => w.length == shortest).toList();
+    return options[_rnd.nextInt(options.length)];
+  }
+
+  Future<void> _useHint() async {
+    if (_done || _hintBusy) return;
+    final target = _hintTarget();
+    if (target == null) return;
+    AudioService.playButtonClick();
+    setState(() => _hintBusy = true);
+    final profile = await SaveService.loadPlayerData();
+    var ok = false;
+    if (profile.letterHints > 0) {
+      profile.letterHints--;
+      await SaveService.savePlayerData(profile);
+      ok = true;
+    } else {
+      _paused = true;
+      ok = await AdService.showRewardedAd(placement: 'forge_hint', dailyLimit: 5);
+      _paused = false;
+    }
+    if (!mounted) return;
+    setState(() {
+      _hintBusy = false;
+      _hints = profile.letterHints;
+      if (!ok) {
+        _message = context.l10n.noVideosNow;
+        _messageGood = false;
+        return;
+      }
+      final shown = (_revealed[target] ?? 0) + 1;
+      _revealed[target] = shown;
+      _message = null;
+      if (shown >= target.length) _found.add(target);
+    });
+    if (ok) AudioService.playSuccess();
+    _checkWin();
+  }
+
+  void _checkWin() {
+    if (_found.length >= _goal && !_done) {
+      _done = true;
+      Future.delayed(const Duration(milliseconds: 600), () => widget.onFinished(true));
+    }
   }
 
   String get _current => _picked.map((i) => _letters[i]).join();
@@ -875,10 +964,7 @@ class _WordForgeGameState extends State<_WordForgeGame> {
       }
       _picked.clear();
     });
-    if (_found.length >= _goal && !_done) {
-      _done = true;
-      Future.delayed(const Duration(milliseconds: 600), () => widget.onFinished(true));
-    }
+    _checkWin();
   }
 
   @override
@@ -900,7 +986,7 @@ class _WordForgeGameState extends State<_WordForgeGame> {
             style: GoogleFonts.oswald(color: Colors.white70, fontSize: 13),
           ),
           const SizedBox(height: 8),
-          _Countdown(seconds: _seconds, total: totalSeconds),
+          MinigameCountdown(seconds: _seconds, total: totalSeconds),
           const SizedBox(height: 8),
           Chip3D(
             emoji: '🔨',
@@ -961,6 +1047,20 @@ class _WordForgeGameState extends State<_WordForgeGame> {
             ],
           ),
           const SizedBox(height: 12),
+          if (_timeUp)
+            SizedBox(
+              width: double.infinity,
+              child: Pressable3D(
+                onTap: () {
+                  AudioService.playButtonClick();
+                  widget.onFinished(false);
+                },
+                color: WM.cyan,
+                height: 46,
+                child: OutlinedGameText(context.l10n.continueButton, size: 17, font: GameFont.oswald),
+              ),
+            )
+          else
           Row(
             children: [
               Expanded(
@@ -983,6 +1083,32 @@ class _WordForgeGameState extends State<_WordForgeGame> {
                 ),
               ),
               const SizedBox(width: 8),
+              // Comodín: muestra cuántas pistas quedan (o un video si no hay).
+              Expanded(
+                child: Pressable3D(
+                  onTap: _hintBusy ? null : _useHint,
+                  color: const Color(0xFF6B4BD8),
+                  height: 46,
+                  padding: EdgeInsets.zero,
+                  child: _hintBusy
+                      ? const SizedBox(
+                          width: 18,
+                          height: 18,
+                          child: CircularProgressIndicator(strokeWidth: 2.5, color: Colors.white),
+                        )
+                      : Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const GameIcon('💡', size: 18),
+                            const SizedBox(width: 2),
+                            _hints > 0
+                                ? OutlinedGameText('$_hints', size: 14, font: GameFont.oswald)
+                                : const Icon(Icons.ondemand_video_rounded, color: WM.bone, size: 16),
+                          ],
+                        ),
+                ),
+              ),
+              const SizedBox(width: 8),
               Expanded(
                 flex: 2,
                 child: Pressable3D(
@@ -999,22 +1125,42 @@ class _WordForgeGameState extends State<_WordForgeGame> {
     );
   }
 
+  /// Hueco de una palabra: encontrada (verde), perdida al acabar el tiempo
+  /// (naranja, con la palabra a la vista) o escondida (con las letras que
+  /// haya revelado el comodín).
   Widget _slot(String word) {
     final found = _found.contains(word);
+    final missed = _timeUp && !found;
+    final shown = _revealed[word] ?? 0;
+    final text = found || missed
+        ? word
+        : [for (var i = 0; i < word.length; i++) i < shown ? word[i] : '_'].join(' ');
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
       decoration: BoxDecoration(
-        color: found ? const Color(0xFF1E8C3A) : WM.outline,
+        color: found
+            ? const Color(0xFF1E8C3A)
+            : missed
+                ? const Color(0xFF8A4B12)
+                : WM.outline,
         borderRadius: BorderRadius.circular(8),
-        border: Border.all(color: found ? WM.green : Colors.white24),
+        border: Border.all(
+          color: found
+              ? WM.green
+              : missed
+                  ? const Color(0xFFFFA24C)
+                  : shown > 0
+                      ? const Color(0xFFB79BFF)
+                      : Colors.white24,
+        ),
       ),
       child: Text(
-        found ? word : List.filled(word.length, '_').join(' '),
+        text,
         style: GoogleFonts.oswald(
-          color: found ? Colors.white : Colors.white54,
+          color: found || missed ? Colors.white : (shown > 0 ? const Color(0xFFD9CCFF) : Colors.white54),
           fontSize: 14,
           fontWeight: FontWeight.w700,
-          letterSpacing: found ? 1.5 : 0,
+          letterSpacing: found || missed ? 1.5 : 0,
         ),
       ),
     );

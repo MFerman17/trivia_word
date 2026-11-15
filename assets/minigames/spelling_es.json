@@ -1,0 +1,308 @@
+{
+ "items": [
+  {
+   "right": "HABÍA",
+   "wrong": "ABÍA"
+  },
+  {
+   "right": "VAMOS",
+   "wrong": "BAMOS"
+  },
+  {
+   "right": "ÍBAMOS",
+   "wrong": "ÍVAMOS"
+  },
+  {
+   "right": "HUBIERA",
+   "wrong": "UBIERA"
+  },
+  {
+   "right": "EXCEPCIÓN",
+   "wrong": "ESCEPCIÓN"
+  },
+  {
+   "right": "EXTRAÑO",
+   "wrong": "ESTRAÑO"
+  },
+  {
+   "right": "EXPLICAR",
+   "wrong": "ESPLICAR"
+  },
+  {
+   "right": "BICICLETA",
+   "wrong": "VICICLETA"
+  },
+  {
+   "right": "VIAJE",
+   "wrong": "VIAGE"
+  },
+  {
+   "right": "COGER",
+   "wrong": "COJER"
+  },
+  {
+   "right": "TRAJE",
+   "wrong": "TRAGE"
+  },
+  {
+   "right": "GENTE",
+   "wrong": "JENTE"
+  },
+  {
+   "right": "JIRAFA",
+   "wrong": "GIRAFA"
+  },
+  {
+   "right": "AUTOMÓVIL",
+   "wrong": "AUTOMÓBIL"
+  },
+  {
+   "right": "HIPÓTESIS",
+   "wrong": "IPÓTESIS"
+  },
+  {
+   "right": "ZANAHORIA",
+   "wrong": "ZANAORIA"
+  },
+  {
+   "right": "HORMIGA",
+   "wrong": "ORMIGA"
+  },
+  {
+   "right": "AHORA",
+   "wrong": "AORA"
+  },
+  {
+   "right": "PROHIBIDO",
+   "wrong": "PROIBIDO"
+  },
+  {
+   "right": "BÚHO",
+   "wrong": "BUHO"
+  },
+  {
+   "right": "ÁRBOL",
+   "wrong": "ARBOL"
+  },
+  {
+   "right": "CAMIÓN",
+   "wrong": "CAMION"
+  },
+  {
+   "right": "LÁPIZ",
+   "wrong": "LAPIZ"
+  },
+  {
+   "right": "EXAMEN",
+   "wrong": "EXÁMEN"
+  },
+  {
+   "right": "JOVEN",
+   "wrong": "JÓVEN"
+  },
+  {
+   "right": "JÓVENES",
+   "wrong": "JOVENES"
+  },
+  {
+   "right": "RÉGIMEN",
+   "wrong": "REGIMEN"
+  },
+  {
+   "right": "CARÁCTER",
+   "wrong": "CARACTER"
+  },
+  {
+   "right": "FUE",
+   "wrong": "FUÉ"
+  },
+  {
+   "right": "VIO",
+   "wrong": "VIÓ"
+  },
+  {
+   "right": "DIO",
+   "wrong": "DIÓ"
+  },
+  {
+   "right": "HÉROE",
+   "wrong": "HEROE"
+  },
+  {
+   "right": "OBVIO",
+   "wrong": "OVIO"
+  },
+  {
+   "right": "ABSORBER",
+   "wrong": "ABSORVER"
+  },
+  {
+   "right": "HERVIR",
+   "wrong": "HERBIR"
+  },
+  {
+   "right": "ESCRIBIR",
+   "wrong": "ESCRIVIR"
+  },
+  {
+   "right": "RECIBIR",
+   "wrong": "RECIVIR"
+  },
+  {
+   "right": "ACCIÓN",
+   "wrong": "ACIÓN"
+  },
+  {
+   "right": "DIRECCIÓN",
+   "wrong": "DIRECIÓN"
+  },
+  {
+   "right": "OBJETO",
+   "wrong": "OBGETO"
+  },
+  {
+   "right": "TEJER",
+   "wrong": "TEGER"
+  },
+  {
+   "right": "MÁGICO",
+   "wrong": "MÁJICO"
+  },
+  {
+   "right": "ÁGIL",
+   "wrong": "ÁJIL"
+  },
+  {
+   "right": "VEINTE",
+   "wrong": "BEINTE"
+  },
+  {
+   "right": "VOLVER",
+   "wrong": "BOLVER"
+  },
+  {
+   "right": "BUSCAR",
+   "wrong": "VUSCAR"
+  },
+  {
+   "right": "AUXILIO",
+   "wrong": "AUSILIO"
+  },
+  {
+   "right": "CONCIENCIA",
+   "wrong": "CONSIENCIA"
+  },
+  {
+   "right": "HACER",
+   "wrong": "HASER"
+  },
+  {
+   "right": "DECIR",
+   "wrong": "DESIR"
+  },
+  {
+   "right": "HUÉSPED",
+   "wrong": "UÉSPED"
+  },
+  {
+   "right": "ENVIAR",
+   "wrong": "EMVIAR"
+  },
+  {
+   "right": "IMPOSIBLE",
+   "wrong": "INPOSIBLE"
+  },
+  {
+   "right": "AMBULANCIA",
+   "wrong": "AMVULANCIA"
+  },
+  {
+   "right": "PÁJARO",
+   "wrong": "PAJARO"
+  },
+  {
+   "right": "MURCIÉLAGO",
+   "wrong": "MURCIELAGO"
+  },
+  {
+   "right": "TELÉFONO",
+   "wrong": "TELEFONO"
+  },
+  {
+   "right": "SANDÍA",
+   "wrong": "SANDIA"
+  },
+  {
+   "right": "PAÍS",
+   "wrong": "PAIS"
+  },
+  {
+   "right": "RAÍZ",
+   "wrong": "RAIZ"
+  },
+  {
+   "right": "MAÍZ",
+   "wrong": "MAIZ"
+  },
+  {
+   "right": "GUITARRA",
+   "wrong": "GITARRA"
+  },
+  {
+   "right": "PINGÜINO",
+   "wrong": "PINGUINO"
+  },
+  {
+   "right": "VERGÜENZA",
+   "wrong": "VERGUENZA"
+  },
+  {
+   "right": "HUECO",
+   "wrong": "UECO"
+  },
+  {
+   "right": "ALCOHOL",
+   "wrong": "ALCOL"
+  },
+  {
+   "right": "ZAPATO",
+   "wrong": "SAPATO"
+  },
+  {
+   "right": "CEREZA",
+   "wrong": "SEREZA"
+  },
+  {
+   "right": "COCINA",
+   "wrong": "COSINA"
+  },
+  {
+   "right": "NIEVE",
+   "wrong": "NIEBE"
+  },
+  {
+   "right": "LLAVE",
+   "wrong": "YAVE"
+  },
+  {
+   "right": "LLUVIA",
+   "wrong": "YUVIA"
+  },
+  {
+   "right": "CABALLO",
+   "wrong": "CABAYO"
+  },
+  {
+   "right": "AYER",
+   "wrong": "ALLER"
+  },
+  {
+   "right": "OJALÁ",
+   "wrong": "OJALA"
+  },
+  {
+   "right": "ADIÓS",
+   "wrong": "ADIOS"
+  }
+ ]
+}

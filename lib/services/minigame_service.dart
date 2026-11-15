@@ -6,7 +6,7 @@ import 'cloud_service.dart';
 import 'save_service.dart';
 
 /// Minijuegos disponibles. Cada portal del mapa ofrece uno.
-enum MinigameType { memory, hangman, wordSearch, wordForge }
+enum MinigameType { memory, hangman, wordSearch, wordForge, scramble, spelling, snake }
 
 /// Premio de un minijuego.
 class MinigameReward {
@@ -67,10 +67,17 @@ class MinigameService {
 
   static String portalKey(int world, int chapter, int level) => _key(world, chapter, level);
 
-  /// Cada portal tiene su juego fijo, alternando por el mapa.
+  /// Cada portal tiene su juego fijo. Se numeran los portales en orden
+  /// por todo el mapa (mundo 1 capítulo 1 primero…) y se reparten los
+  /// juegos en ciclo, así todos aparecen el mismo número de veces.
+  ///
+  /// (La fórmula anterior multiplicaba el mundo por 7: con 7 juegos el
+  /// mundo dejaba de contar y dos juegos no salían nunca.)
   static MinigameType typeFor(int world, int chapter, int level) {
-    final index = (world * 7 + chapter * 3 + level ~/ kNodesPerSegment) % MinigameType.values.length;
-    return MinigameType.values[index];
+    final portalsPerChapter = kSegmentsPerChapter;
+    final portal = level ~/ kNodesPerSegment - 1; // 0 = el del nivel 5, 1 = el del 10
+    final index = ((world - 1) * kChaptersPerWorld + (chapter - 1)) * portalsPerChapter + portal;
+    return MinigameType.values[index % MinigameType.values.length];
   }
 
   /// El premio crece con el mundo. Ganar da el premio completo; perder,

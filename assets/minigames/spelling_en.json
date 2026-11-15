@@ -1,0 +1,280 @@
+{
+ "items": [
+  {
+   "right": "DEFINITELY",
+   "wrong": "DEFINATELY"
+  },
+  {
+   "right": "RECEIVE",
+   "wrong": "RECIEVE"
+  },
+  {
+   "right": "SEPARATE",
+   "wrong": "SEPERATE"
+  },
+  {
+   "right": "BELIEVE",
+   "wrong": "BELEIVE"
+  },
+  {
+   "right": "ACCOMMODATE",
+   "wrong": "ACCOMODATE"
+  },
+  {
+   "right": "OCCURRED",
+   "wrong": "OCCURED"
+  },
+  {
+   "right": "NECESSARY",
+   "wrong": "NECESARY"
+  },
+  {
+   "right": "EMBARRASS",
+   "wrong": "EMBARASS"
+  },
+  {
+   "right": "CALENDAR",
+   "wrong": "CALENDER"
+  },
+  {
+   "right": "BEGINNING",
+   "wrong": "BEGINING"
+  },
+  {
+   "right": "TOMORROW",
+   "wrong": "TOMMOROW"
+  },
+  {
+   "right": "WEIRD",
+   "wrong": "WIERD"
+  },
+  {
+   "right": "FRIEND",
+   "wrong": "FREIND"
+  },
+  {
+   "right": "BUSINESS",
+   "wrong": "BUISNESS"
+  },
+  {
+   "right": "GOVERNMENT",
+   "wrong": "GOVERMENT"
+  },
+  {
+   "right": "ENVIRONMENT",
+   "wrong": "ENVIROMENT"
+  },
+  {
+   "right": "RHYTHM",
+   "wrong": "RYTHM"
+  },
+  {
+   "right": "CEMETERY",
+   "wrong": "CEMETARY"
+  },
+  {
+   "right": "CONSCIOUS",
+   "wrong": "CONCIOUS"
+  },
+  {
+   "right": "EXISTENCE",
+   "wrong": "EXISTANCE"
+  },
+  {
+   "right": "INDEPENDENT",
+   "wrong": "INDEPENDANT"
+  },
+  {
+   "right": "LIBRARY",
+   "wrong": "LIBARY"
+  },
+  {
+   "right": "FEBRUARY",
+   "wrong": "FEBUARY"
+  },
+  {
+   "right": "PRONUNCIATION",
+   "wrong": "PRONOUNCIATION"
+  },
+  {
+   "right": "RESTAURANT",
+   "wrong": "RESTARAUNT"
+  },
+  {
+   "right": "VACUUM",
+   "wrong": "VACCUM"
+  },
+  {
+   "right": "WEDNESDAY",
+   "wrong": "WENSDAY"
+  },
+  {
+   "right": "MISSPELL",
+   "wrong": "MISPELL"
+  },
+  {
+   "right": "PERSEVERANCE",
+   "wrong": "PERSEVERENCE"
+  },
+  {
+   "right": "PRIVILEGE",
+   "wrong": "PRIVELEGE"
+  },
+  {
+   "right": "QUESTIONNAIRE",
+   "wrong": "QUESTIONAIRE"
+  },
+  {
+   "right": "RECOMMEND",
+   "wrong": "RECCOMEND"
+  },
+  {
+   "right": "SUCCESSFUL",
+   "wrong": "SUCESSFUL"
+  },
+  {
+   "right": "SURPRISE",
+   "wrong": "SUPRISE"
+  },
+  {
+   "right": "THRESHOLD",
+   "wrong": "THRESHHOLD"
+  },
+  {
+   "right": "UNTIL",
+   "wrong": "UNTILL"
+  },
+  {
+   "right": "ACQUIRE",
+   "wrong": "AQUIRE"
+  },
+  {
+   "right": "ADDRESS",
+   "wrong": "ADRESS"
+  },
+  {
+   "right": "APPARENT",
+   "wrong": "APPARANT"
+  },
+  {
+   "right": "ARGUMENT",
+   "wrong": "ARGUEMENT"
+  },
+  {
+   "right": "BEAUTIFUL",
+   "wrong": "BEAUTIFULL"
+  },
+  {
+   "right": "COLLEAGUE",
+   "wrong": "COLLEGUE"
+  },
+  {
+   "right": "COMMITTEE",
+   "wrong": "COMITTEE"
+  },
+  {
+   "right": "DISAPPOINT",
+   "wrong": "DISSAPOINT"
+  },
+  {
+   "right": "EXCEED",
+   "wrong": "EXCEDE"
+  },
+  {
+   "right": "FOREIGN",
+   "wrong": "FORIEGN"
+  },
+  {
+   "right": "GRATEFUL",
+   "wrong": "GREATFUL"
+  },
+  {
+   "right": "GUARANTEE",
+   "wrong": "GAURANTEE"
+  },
+  {
+   "right": "IMMEDIATELY",
+   "wrong": "IMMEDIATLY"
+  },
+  {
+   "right": "KNOWLEDGE",
+   "wrong": "KNOWLEGE"
+  },
+  {
+   "right": "MAINTENANCE",
+   "wrong": "MAINTAINANCE"
+  },
+  {
+   "right": "MILLENNIUM",
+   "wrong": "MILLENIUM"
+  },
+  {
+   "right": "OCCASION",
+   "wrong": "OCASSION"
+  },
+  {
+   "right": "PUBLICLY",
+   "wrong": "PUBLICALLY"
+  },
+  {
+   "right": "RECEIPT",
+   "wrong": "RECIEPT"
+  },
+  {
+   "right": "SCISSORS",
+   "wrong": "SISSORS"
+  },
+  {
+   "right": "TRULY",
+   "wrong": "TRUELY"
+  },
+  {
+   "right": "VEGETABLE",
+   "wrong": "VEGTABLE"
+  },
+  {
+   "right": "WHICH",
+   "wrong": "WICH"
+  },
+  {
+   "right": "ACROSS",
+   "wrong": "ACCROSS"
+  },
+  {
+   "right": "ALMOST",
+   "wrong": "ALLMOST"
+  },
+  {
+   "right": "DIFFERENT",
+   "wrong": "DIFFRENT"
+  },
+  {
+   "right": "FINALLY",
+   "wrong": "FINALY"
+  },
+  {
+   "right": "GRAMMAR",
+   "wrong": "GRAMMER"
+  },
+  {
+   "right": "HEIGHT",
+   "wrong": "HIEGHT"
+  },
+  {
+   "right": "INTERRUPT",
+   "wrong": "INTERUPT"
+  },
+  {
+   "right": "LIAISON",
+   "wrong": "LIASON"
+  },
+  {
+   "right": "MINIATURE",
+   "wrong": "MINATURE"
+  },
+  {
+   "right": "NOTICEABLE",
+   "wrong": "NOTICABLE"
+  }
+ ]
+}

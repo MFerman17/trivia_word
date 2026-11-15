@@ -1,0 +1,252 @@
+{
+ "words": [
+  {
+   "word": "ABEJA",
+   "hint": "Insecto que fabrica miel"
+  },
+  {
+   "word": "ARENA",
+   "hint": "Granos que forman las playas y los desiertos"
+  },
+  {
+   "word": "BOSQUE",
+   "hint": "Lugar con muchos árboles"
+  },
+  {
+   "word": "CABALLO",
+   "hint": "Animal que se monta y relincha"
+  },
+  {
+   "word": "CAMISA",
+   "hint": "Prenda con botones y cuello"
+  },
+  {
+   "word": "CASTILLO",
+   "hint": "Edificio con torres donde vivían los reyes"
+  },
+  {
+   "word": "CEREBRO",
+   "hint": "Órgano con el que pensamos"
+  },
+  {
+   "word": "CIUDAD",
+   "hint": "Población grande con muchas calles"
+  },
+  {
+   "word": "COHETE",
+   "hint": "Nave que viaja al espacio"
+  },
+  {
+   "word": "CUCHARA",
+   "hint": "Cubierto para tomar la sopa"
+  },
+  {
+   "word": "ESPADA",
+   "hint": "Arma de hoja larga de metal"
+  },
+  {
+   "word": "ESPEJO",
+   "hint": "Superficie en la que te ves reflejado"
+  },
+  {
+   "word": "ESTRELLA",
+   "hint": "Brilla en el cielo por la noche"
+  },
+  {
+   "word": "FUEGO",
+   "hint": "Da luz y calor cuando algo arde"
+  },
+  {
+   "word": "GALLETA",
+   "hint": "Dulce horneado y crujiente"
+  },
+  {
+   "word": "GIGANTE",
+   "hint": "Personaje enorme de los cuentos"
+  },
+  {
+   "word": "GUITARRA",
+   "hint": "Instrumento de seis cuerdas"
+  },
+  {
+   "word": "HELADO",
+   "hint": "Postre frío y cremoso"
+  },
+  {
+   "word": "HORMIGA",
+   "hint": "Insecto pequeño que vive en colonias"
+  },
+  {
+   "word": "JIRAFA",
+   "hint": "Animal de cuello muy largo"
+  },
+  {
+   "word": "LIBRO",
+   "hint": "Tiene páginas y se lee"
+  },
+  {
+   "word": "LLAVE",
+   "hint": "Sirve para abrir una cerradura"
+  },
+  {
+   "word": "MANZANA",
+   "hint": "Fruta roja o verde que cayó sobre Newton"
+  },
+  {
+   "word": "MARIPOSA",
+   "hint": "Insecto de alas de colores"
+  },
+  {
+   "word": "MOCHILA",
+   "hint": "Bolsa que se lleva a la espalda"
+  },
+  {
+   "word": "MONEDA",
+   "hint": "Dinero de metal"
+  },
+  {
+   "word": "NARANJA",
+   "hint": "Es una fruta y también un color"
+  },
+  {
+   "word": "PALOMA",
+   "hint": "Ave blanca, símbolo de la paz"
+  },
+  {
+   "word": "PANTALLA",
+   "hint": "Parte del televisor donde se ve la imagen"
+  },
+  {
+   "word": "PARAGUAS",
+   "hint": "Te protege de la lluvia"
+  },
+  {
+   "word": "PAYASO",
+   "hint": "Hace reír en el circo"
+  },
+  {
+   "word": "PELOTA",
+   "hint": "Objeto redondo para jugar"
+  },
+  {
+   "word": "PINCEL",
+   "hint": "Herramienta para pintar"
+  },
+  {
+   "word": "PIRATA",
+   "hint": "Navegante que busca tesoros"
+  },
+  {
+   "word": "PLANETA",
+   "hint": "La Tierra es uno de ellos"
+  },
+  {
+   "word": "PUENTE",
+   "hint": "Sirve para cruzar un río"
+  },
+  {
+   "word": "RELOJ",
+   "hint": "Marca la hora"
+  },
+  {
+   "word": "SILLA",
+   "hint": "Mueble para sentarse"
+  },
+  {
+   "word": "SOMBRERO",
+   "hint": "Se lleva en la cabeza para protegerse del sol"
+  },
+  {
+   "word": "TESORO",
+   "hint": "Cofre lleno de oro y joyas"
+  },
+  {
+   "word": "TIJERAS",
+   "hint": "Sirven para cortar papel"
+  },
+  {
+   "word": "TORMENTA",
+   "hint": "Lluvia fuerte con rayos y truenos"
+  },
+  {
+   "word": "TORTUGA",
+   "hint": "Animal lento con caparazón"
+  },
+  {
+   "word": "TRIGO",
+   "hint": "Cereal con el que se hace el pan"
+  },
+  {
+   "word": "VENTANA",
+   "hint": "Abertura en la pared para que entre la luz"
+  },
+  {
+   "word": "ZAPATO",
+   "hint": "Calzado que cubre el pie"
+  },
+  {
+   "word": "ESCALERA",
+   "hint": "Tiene peldaños para subir"
+  },
+  {
+   "word": "DIAMANTE",
+   "hint": "Piedra preciosa muy dura"
+  },
+  {
+   "word": "CORONA",
+   "hint": "La lleva el rey en la cabeza"
+  },
+  {
+   "word": "BALLENA",
+   "hint": "El animal más grande del mar"
+  },
+  {
+   "word": "CANGURO",
+   "hint": "Salta y lleva a su cría en una bolsa"
+  },
+  {
+   "word": "ELEFANTE",
+   "hint": "Animal con trompa y colmillos"
+  },
+  {
+   "word": "DESIERTO",
+   "hint": "Lugar seco con dunas de arena"
+  },
+  {
+   "word": "TECLADO",
+   "hint": "Tiene teclas para escribir"
+  },
+  {
+   "word": "CARTERO",
+   "hint": "Persona que reparte las cartas"
+  },
+  {
+   "word": "BOMBERO",
+   "hint": "Persona que apaga incendios"
+  },
+  {
+   "word": "ABUELA",
+   "hint": "La madre de tu madre o de tu padre"
+  },
+  {
+   "word": "CEBOLLA",
+   "hint": "Hortaliza que hace llorar al cortarla"
+  },
+  {
+   "word": "PIMIENTA",
+   "hint": "Especia que pica"
+  },
+  {
+   "word": "QUESO",
+   "hint": "Alimento que se hace con leche"
+  },
+  {
+   "word": "CANDADO",
+   "hint": "Cierra con llave una puerta o una cadena"
+  },
+  {
+   "word": "ESCUELA",
+   "hint": "Lugar donde los niños aprenden"
+  }
+ ]
+}

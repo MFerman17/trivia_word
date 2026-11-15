@@ -2964,5 +2964,101 @@
   "settingsNarrator": "Voz del narrador",
   "@settingsNarrator": {
     "description": "EN: Narrator voice"
+  },
+  "forgeTimeUp": "¡Se acabó el tiempo! Estas eran las palabras",
+  "@forgeTimeUp": {
+    "description": "EN: Time's up! These were the words"
+  },
+  "minigameScramble": "LETRAS REVUELTAS",
+  "@minigameScramble": {
+    "description": "EN: WORD SCRAMBLE"
+  },
+  "minigameSpelling": "¿BIEN ESCRITA?",
+  "@minigameSpelling": {
+    "description": "EN: SPELLED RIGHT?"
+  },
+  "minigameSnake": "SERPIENTE DE LETRAS",
+  "@minigameSnake": {
+    "description": "EN: LETTER SNAKE"
+  },
+  "scrambleRules": "Ordena las letras para formar la palabra de la pista. Acierta {goal} de {total}.",
+  "@scrambleRules": {
+    "description": "EN: Unscramble the letters to form the word in the clue. Get {goal} out of {total}.",
+    "placeholders": {
+      "goal": {
+        "type": "int"
+      },
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "scrambleWrong": "No es esa, prueba otra vez",
+  "@scrambleWrong": {
+    "description": "EN: Not that one, try again"
+  },
+  "scrambleWas": "Era: {word}",
+  "@scrambleWas": {
+    "description": "EN: It was: {word}",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "scrambleSkip": "SALTAR",
+  "@scrambleSkip": {
+    "description": "EN: SKIP"
+  },
+  "spellingRules": "¿Está bien escrita? Responde {total} palabras sin perder las 3 vidas.",
+  "@spellingRules": {
+    "description": "EN: Is it spelled right? Answer {total} words without losing your 3 lives.",
+    "placeholders": {
+      "total": {
+        "type": "int"
+      }
+    }
+  },
+  "spellingRight": "BIEN",
+  "@spellingRight": {
+    "description": "EN: RIGHT"
+  },
+  "spellingWrong": "MAL",
+  "@spellingWrong": {
+    "description": "EN: WRONG"
+  },
+  "spellingYes": "¡Correcto!",
+  "@spellingYes": {
+    "description": "EN: Correct!"
+  },
+  "spellingNo": "¡Uy! No era así",
+  "@spellingNo": {
+    "description": "EN: Oops! Not quite"
+  },
+  "spellingCorrection": "Se escribe: {word}",
+  "@spellingCorrection": {
+    "description": "EN: It's spelled: {word}",
+    "placeholders": {
+      "word": {
+        "type": "String"
+      }
+    }
+  },
+  "snakeRules": "Guía a la serpiente y come las letras en orden para formar las {count} palabras.",
+  "@snakeRules": {
+    "description": "EN: Guide the snake and eat the letters in order to spell the {count} words.",
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "snakeCrash": "¡Choque! −5 s",
+  "@snakeCrash": {
+    "description": "EN: Crash! −5 s"
+  },
+  "snakeWrongLetter": "Letra equivocada −3 s",
+  "@snakeWrongLetter": {
+    "description": "EN: Wrong letter −3 s"
   }
 }

@@ -5,6 +5,11 @@ import '../config/world_map_config.dart';
 
 class MapController extends ChangeNotifier {
   int selectedWorld = 1;
+
+  /// Si ya se decidió qué mundo enseñar (al abrir el mapa, o porque el
+  /// jugador eligió uno). El progreso se vuelve a cargar al terminar cada
+  /// nivel, y eso no debe cambiarle el mundo que está mirando.
+  bool _worldChosen = false;
   int totalStars = 0;
   bool isLoading = true;
 
@@ -28,8 +33,24 @@ class MapController extends ChangeNotifier {
     await _migrateFrom5Levels();
 
     totalStars = await SaveService.getTotalStarsObtained();
+    // Al abrir el mapa se muestra el mundo que queda por superar, no el
+    // mundo 1. Para volver a un mundo anterior, se elige abajo.
+    if (!_worldChosen) {
+      selectedWorld = currentWorld;
+      _worldChosen = true;
+    }
     isLoading = false;
     notifyListeners();
+  }
+
+  /// El mundo en curso: el más alto que ya está abierto (cada mundo se abre
+  /// al vencer al jefe del anterior, así que es el que queda por superar).
+  /// Si el jugador ya los terminó todos, el último.
+  int get currentWorld {
+    for (var w = kWorldCount; w > 1; w--) {
+      if (isWorldUnlocked(w)) return w;
+    }
+    return 1;
   }
 
   /// Partidas guardadas cuando los capítulos tenían 5 niveles.
@@ -89,6 +110,7 @@ class MapController extends ChangeNotifier {
 
   /// Cambia el mundo seleccionado en el mapa
   void selectWorld(int worldNum) {
+    _worldChosen = true;
     if (selectedWorld != worldNum) {
       selectedWorld = worldNum;
       notifyListeners();

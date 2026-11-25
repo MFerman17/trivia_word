@@ -202,8 +202,10 @@ class FightController extends ChangeNotifier {
 
   Question _takeQuestion() {
     if (_queue.isEmpty) {
+      // De una en una: antes se sacaban 10 y todas contaban como vistas
+      // aunque la pelea solo usara unas pocas, y el banco se gastaba antes.
       _queue.addAll(
-        QuestionRepository.draw(difficulty: difficulty, count: 10, exclude: _usedIds),
+        QuestionRepository.draw(difficulty: difficulty, count: 1, exclude: _usedIds),
       );
       if (_queue.isEmpty) {
         // Reserva: el generador de siempre si el banco no cargó.

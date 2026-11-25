@@ -20,8 +20,14 @@ import '../models/question.dart';
 /// para una partida, las opciones se barajan.
 ///
 /// Para que las preguntas cambien de verdad al avanzar:
-///  - Se recuerdan las preguntas ya vistas (en todos los niveles) y no se
-///    repiten hasta agotar las de esa dificultad.
+///  - Se cuenta cuántas veces ha salido cada pregunta, y NINGUNA sale más
+///    de 2 veces mientras queden otras ([maxShows]).
+///  - Orden de preferencia al elegir:
+///      1. Nunca vistas de la dificultad del nivel.
+///      2. Nunca vistas de las 2 dificultades siguientes (así, si se acaban,
+///         el jugador nota que sube el nivel en vez de ver repeticiones).
+///      3. Vistas una sola vez, empezando por las más antiguas.
+///      4. Solo si el banco entero ya salió 2 veces: las menos recientes.
 ///  - Se priorizan las categorías que el jugador ha visto menos últimamente,
 ///    para que cada nivel mezcle tipos de pregunta distintos.
 class QuestionRepository {
@@ -99,6 +105,13 @@ class QuestionRepository {
   }
 
   static const String _seenKeyPrefix = 'seen_questions_';
+  static const String _shownKeyPrefix = 'shown_counts_';
+
+  /// Veces máximas que sale una pregunta mientras queden otras sin agotar.
+  static const int maxShows = 2;
+
+  /// Cuántas dificultades por encima se miran antes de repetir.
+  static const int _harderSteps = 2;
   static const String _recentCategoriesKeyPrefix = 'recent_categories_';
 
   /// Cuántas categorías recientes se recuerdan para variar la mezcla.
@@ -109,8 +122,14 @@ class QuestionRepository {
   static String _language = 'es';
   static final Map<int, List<Question>> _pools = {};
 
-  /// IDs vistos, en orden (el primero es el más antiguo).
+  /// IDs vistos, en orden (el primero es el más antiguo). Sirve para saber
+  /// qué pregunta se vio hace más tiempo.
   static final List<String> _seen = [];
+
+  /// Veces que ha salido cada pregunta (por ID).
+  static final Map<String, int> _shown = {};
+
+  static int timesShown(String id) => _shown[id] ?? 0;
   static final List<String> _recentCategories = [];
 
   static bool get isLoaded => _pools.values.any((pool) => pool.isNotEmpty);
@@ -144,6 +163,20 @@ class QuestionRepository {
       _seen
         ..clear()
         ..addAll(prefs.getStringList('$_seenKeyPrefix$_language') ?? const []);
+      _shown.clear();
+      final counts = prefs.getStringList('$_shownKeyPrefix$_language');
+      if (counts == null) {
+        // Partida de antes de contar: lo ya visto cuenta como 1 vez.
+        for (final id in _seen) {
+          _shown[id] = 1;
+        }
+      } else {
+        for (final entry in counts) {
+          final cut = entry.lastIndexOf('=');
+          if (cut <= 0) continue;
+          _shown[entry.substring(0, cut)] = int.tryParse(entry.substring(cut + 1)) ?? 1;
+        }
+      }
       _recentCategories
         ..clear()
         ..addAll(prefs.getStringList('$_recentCategoriesKeyPrefix$_language') ?? const []);
@@ -186,37 +219,87 @@ class QuestionRepository {
     Set<String> exclude = const {},
     String? preferCategory,
   }) {
-    final pool = _pools[difficulty.clamp(minDifficulty, maxDifficulty)] ?? const [];
+    final base = difficulty.clamp(minDifficulty, maxDifficulty).toInt();
+    final pool = _pools[base] ?? const <Question>[];
     if (pool.isEmpty || count <= 0) return [];
 
-    var candidates = pool
-        .where((q) => !exclude.contains(q.id) && !_seen.contains(q.id))
-        .toList();
-
-    // Si quedan pocas sin ver, se "olvidan" las vistas de esta dificultad
-    // (salvo las de la partida actual) y se vuelve a empezar el ciclo.
-    if (candidates.length < count) {
-      final poolIds = pool.map((q) => q.id).toSet();
-      _seen.removeWhere(poolIds.contains);
-      candidates = pool.where((q) => !exclude.contains(q.id)).toList();
-    }
-
+    final taken = <String>{...exclude};
     final picked = <Question>[];
     final usedCategories = <String>[];
-    while (picked.length < count && candidates.isNotEmpty) {
-      final category = picked.isEmpty && preferCategory != null &&
-              candidates.any((q) => q.category == preferCategory)
-          ? preferCategory
-          : _leastRecentCategory(candidates, usedCategories);
-      final options = candidates.where((q) => q.category == category).toList();
-      final question = options[_random.nextInt(options.length)];
-      candidates.remove(question);
-      picked.add(question);
-      usedCategories.add(category);
+    // Antigüedad: posición en el historial (menor = visto hace más tiempo).
+    final age = {for (var i = 0; i < _seen.length; i++) _seen[i]: i};
+    final levels = [
+      for (var d = base; d <= min(base + _harderSteps, maxDifficulty); d++) d,
+    ];
+
+    // Rondas 1 y 2: nunca vistas (dificultad del nivel y luego más
+    // difíciles); después, vistas una vez (las más antiguas primero).
+    for (var times = 0; times < maxShows && picked.length < count; times++) {
+      for (final d in levels) {
+        if (picked.length >= count) break;
+        final candidates = [
+          for (final q in _pools[d] ?? const <Question>[])
+            if (!taken.contains(q.id) && timesShown(q.id) == times) q,
+        ];
+        _pickInto(
+          candidates,
+          count: count,
+          picked: picked,
+          taken: taken,
+          usedCategories: usedCategories,
+          preferCategory: preferCategory,
+          age: times == 0 ? null : age,
+        );
+      }
+    }
+
+    // Último recurso: todo el banco cercano ya salió 2 veces. Se usan las
+    // de la dificultad del nivel que hace más tiempo que no salen.
+    if (picked.length < count) {
+      final rest = [for (final q in pool) if (!taken.contains(q.id)) q]
+        ..sort((a, b) => (age[a.id] ?? -1).compareTo(age[b.id] ?? -1));
+      for (final q in rest) {
+        if (picked.length >= count) break;
+        picked.add(q);
+        taken.add(q.id);
+      }
     }
 
     _remember(picked);
     return picked.map(_shuffled).toList();
+  }
+
+  /// Añade a [picked] preguntas de [candidates], variando la categoría.
+  /// Con [age], dentro de cada categoría elige la vista hace más tiempo; sin
+  /// ella (preguntas nuevas), una al azar.
+  static void _pickInto(
+    List<Question> candidates, {
+    required int count,
+    required List<Question> picked,
+    required Set<String> taken,
+    required List<String> usedCategories,
+    String? preferCategory,
+    Map<String, int>? age,
+  }) {
+    while (picked.length < count && candidates.isNotEmpty) {
+      final category = picked.isEmpty &&
+              preferCategory != null &&
+              candidates.any((q) => q.category == preferCategory)
+          ? preferCategory
+          : _leastRecentCategory(candidates, usedCategories);
+      final options = candidates.where((q) => q.category == category).toList();
+      final Question question;
+      if (age == null) {
+        question = options[_random.nextInt(options.length)];
+      } else {
+        options.sort((a, b) => (age[a.id] ?? -1).compareTo(age[b.id] ?? -1));
+        question = options.first;
+      }
+      candidates.remove(question);
+      picked.add(question);
+      taken.add(question.id);
+      usedCategories.add(category);
+    }
   }
 
   /// Elige la categoría menos vista últimamente entre las disponibles.
@@ -245,11 +328,8 @@ class QuestionRepository {
     for (final question in picked) {
       _seen.remove(question.id);
       _seen.add(question.id);
+      _shown[question.id] = timesShown(question.id) + 1;
       _recentCategories.add(question.category);
-    }
-    final totalQuestions = _pools.values.fold<int>(0, (sum, pool) => sum + pool.length);
-    while (_seen.length > totalQuestions) {
-      _seen.removeAt(0);
     }
     while (_recentCategories.length > _recentCategoryMemory) {
       _recentCategories.removeAt(0);
@@ -261,6 +341,8 @@ class QuestionRepository {
     try {
       final prefs = await SharedPreferences.getInstance();
       await prefs.setStringList('$_seenKeyPrefix$_language', List.of(_seen));
+      await prefs.setStringList(
+          '$_shownKeyPrefix$_language', [for (final e in _shown.entries) '${e.key}=${e.value}']);
       await prefs.setStringList(
           '$_recentCategoriesKeyPrefix$_language', List.of(_recentCategories));
     } catch (error) {

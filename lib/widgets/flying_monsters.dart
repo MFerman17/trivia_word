@@ -113,10 +113,10 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
         2 => 'mini_cave_bat',
         3 => 'mini_sky_familiar',
         4 => 'mini_lava_salamander',
-        5 => AssetCatalog.has('assets/images/monsters/mini_sand_scarab_idle.png')
+        5 => AssetCatalog.has('assets/images/monsters/mini_sand_scarab_idle.webp')
             ? 'mini_sand_scarab'
             : 'mini_lava_salamander',
-        6 => AssetCatalog.has('assets/images/monsters/mini_frost_yeti_idle.png')
+        6 => AssetCatalog.has('assets/images/monsters/mini_frost_yeti_idle.webp')
             ? 'mini_frost_yeti'
             : 'mini_cave_bat',
         _ => 'mini_forest_guardian',
@@ -166,7 +166,7 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
         fromLeft: _rnd.nextBool(),
         y: 0.15 + _rnd.nextDouble() * 0.45,
         wave: 18 + _rnd.nextDouble() * 22,
-        asset: 'assets/images/flyers/flyer_w${widget.world.clamp(1, kWorldCount)}_1.png',
+        asset: 'assets/images/flyers/flyer_w${widget.world.clamp(1, kWorldCount)}_1.webp',
         isDragon: dragon,
         shots: shots,
       );
@@ -292,11 +292,11 @@ class _FlyingMonstersState extends State<FlyingMonsters> with SingleTickerProvid
     // Si aún no existen las imágenes de la criatura voladora del mundo, se
     // usa el monstruo del mundo, que "aletea" estirándose un poco.
     final flapUp = (_now.inMilliseconds ~/ 140).isEven;
-    final frame = 'assets/images/flyers/flyer_w${widget.world.clamp(1, kWorldCount)}_${flapUp || hit ? 1 : 2}.png';
+    final frame = 'assets/images/flyers/flyer_w${widget.world.clamp(1, kWorldCount)}_${flapUp || hit ? 1 : 2}.webp';
     final fallback = Transform.scale(
       scaleY: hit ? 1 : (flapUp ? 1.0 : 0.88),
       child: Image.asset(
-        'assets/images/monsters/${_monsterName}_${hit ? 'hit' : 'idle'}.png',
+        'assets/images/monsters/${_monsterName}_${hit ? 'hit' : 'idle'}.webp',
         width: size,
         height: size,
         fit: BoxFit.contain,

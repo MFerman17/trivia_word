@@ -295,3 +295,7 @@ en PNG, se convierte a JPG con el mismo nombre antes de usarlo.
 
 **Al terminar, súbelas a GitHub (o pásamelas) y yo las reviso.** Ajusto tamaños,
 recortes y nombres por código para que encajen sin "saltos".
+
+## Formato de las imágenes
+
+El juego carga las imágenes en **WebP**, que pesa 3-4 veces menos que PNG con la misma calidad visible. Genera las imágenes en PNG como siempre, colócalas en su carpeta con el nombre indicado y ejecuta `python tools/optimizar_imagenes.py`: las convierte a `.webp` y borra el PNG. Las de moretones (`_idle_hurt1/2`) funcionan aunque se queden en PNG, pero conviene convertirlas igual.

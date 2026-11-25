@@ -490,7 +490,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
           // ===========================================================
           Positioned.fill(
             child: Image.asset(
-              'assets/images/bg_landscape.jpg',
+              'assets/images/bg_landscape.webp',
               fit: BoxFit.cover,
               alignment: Alignment.center,
             ),
@@ -693,7 +693,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   static const double kAdventurerSink = 18;
   static const double kDragonShift = 0.33; // antes 0.24: más a la derecha
   static const double kTopGap = 6;
-  static const double kDragonAspect = 1.10; // ancho / alto de dragon.png (nuevo, ChatGPT)
+  static const double kDragonAspect = 1.10; // ancho / alto de dragon.webp (nuevo, ChatGPT)
 
   Widget _buildCharacters({
     required double screenWidth,
@@ -735,7 +735,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     height: dragonH,
                     width: dragonW,
                     child: Image.asset(
-                      'assets/images/dragon.png',
+                      'assets/images/dragon.webp',
                       fit: BoxFit.contain,
                       alignment: Alignment.bottomRight,
                     ),
@@ -759,7 +759,7 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                     width: screenWidth * 0.46,
                     height: adventurerH,
                     child: Image.asset(
-                      'assets/images/adventurer.png',
+                      'assets/images/adventurer.webp',
                       fit: BoxFit.contain,
                       alignment: Alignment.bottomLeft,
                     ),

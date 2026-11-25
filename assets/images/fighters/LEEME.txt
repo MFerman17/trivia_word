@@ -9,3 +9,7 @@ Moretones (opcional): idPersonaje_idle_hurt1.png (algo golpeado) e
 idPersonaje_idle_hurt2.png (muy golpeado). Se usan con la pose "idle" cuando
 la vida del round baja del 66 % y del 33 %. Si faltan, se usa idle normal.
 Prompt: docs/GUIA_ESTILO_VISUAL.md, "Luchadores del jugador con moretones".
+
+FORMATO: el juego usa .webp (pesa mucho menos). Puedes dejar aquí el PNG que
+te dé ChatGPT y luego ejecutar:  python tools/optimizar_imagenes.py
+Eso lo convierte a .webp con el mismo nombre y borra el PNG.

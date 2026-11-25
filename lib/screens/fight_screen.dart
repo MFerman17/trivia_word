@@ -618,7 +618,7 @@ class _FightScreenState extends State<FightScreen> with TickerProviderStateMixin
               height: height,
               fit: BoxFit.contain,
               errorBuilder: (_, _, _) =>
-                  Image.asset('assets/images/adventurer.png', height: height, fit: BoxFit.contain),
+                  Image.asset('assets/images/adventurer.webp', height: height, fit: BoxFit.contain),
             )
           // Monstruo: sin moretones → pose normal → imagen base → emoji.
           : Image.asset(

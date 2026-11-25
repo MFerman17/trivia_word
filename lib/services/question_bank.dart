@@ -107,21 +107,21 @@ class QuestionBank {
   /// assets/images/monsters/ (con sus poses al lado); mientras no existan
   /// se usa el monstruo de un mundo parecido.
   static String worldCreatureAsset(int world) => switch (world) {
-    1 => 'assets/images/mini_forest_guardian.png',
-    2 => 'assets/images/mini_cave_bat.png',
-    3 => 'assets/images/mini_sky_familiar.png',
-    4 => 'assets/images/mini_lava_salamander.png',
-    5 => AssetCatalog.pick('assets/images/monsters/mini_sand_scarab.png',
-        'assets/images/mini_lava_salamander.png'),
-    6 => AssetCatalog.pick('assets/images/monsters/mini_frost_yeti.png',
-        'assets/images/mini_cave_bat.png'),
-    _ => 'assets/images/mini_forest_guardian.png',
+    1 => 'assets/images/mini_forest_guardian.webp',
+    2 => 'assets/images/mini_cave_bat.webp',
+    3 => 'assets/images/mini_sky_familiar.webp',
+    4 => 'assets/images/mini_lava_salamander.webp',
+    5 => AssetCatalog.pick('assets/images/monsters/mini_sand_scarab.webp',
+        'assets/images/mini_lava_salamander.webp'),
+    6 => AssetCatalog.pick('assets/images/monsters/mini_frost_yeti.webp',
+        'assets/images/mini_cave_bat.webp'),
+    _ => 'assets/images/mini_forest_guardian.webp',
   };
 
   /// Jefe del último nivel de cada mundo. El del Glaciar es el villano de
   /// la historia, el Devorador de Palabras; los demás usan su monstruo.
   static String worldBossAsset(int world) => world == kWorldCount
-      ? AssetCatalog.pick('assets/images/monsters/word_devourer.png',
+      ? AssetCatalog.pick('assets/images/monsters/word_devourer.webp',
           worldCreatureAsset(world))
       : worldCreatureAsset(world);
 

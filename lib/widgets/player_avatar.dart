@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/player_profile.dart';
+import '../services/asset_catalog.dart';
 
 class PlayerAvatar extends StatelessWidget {
   const PlayerAvatar({
@@ -12,25 +13,25 @@ class PlayerAvatar extends StatelessWidget {
   final double radius;
 
   static const Map<String, String> _characterAssets = {
-    'explorador': 'assets/images/avatar_explorer.png',
-    'maga': 'assets/images/avatar_mage.png',
-    'guardian': 'assets/images/avatar_guardian.png',
+    'explorador': 'assets/images/avatar_explorer.webp',
+    'maga': 'assets/images/avatar_mage.webp',
+    'guardian': 'assets/images/avatar_guardian.webp',
   };
 
-  /// Poses de lucha de cuerpo entero: assets/images/fighters/ID_POSE.png
-  /// (por ejemplo, fighters/explorador_attack.png).
+  /// Poses de lucha de cuerpo entero: assets/images/fighters/ID_POSE.webp
+  /// (por ejemplo, fighters/explorador_attack.webp).
   static const List<String> fighterPoses = ['idle', 'attack', 'hit', 'win', 'lose'];
 
   static String fighterAssetFor(String characterId, {String pose = 'idle'}) =>
-      'assets/images/fighters/${characterId}_$pose.png';
+      'assets/images/fighters/${characterId}_$pose.webp';
 
   /// Pose "quieto" con moretones y vendas, igual que los monstruos:
-  /// fighters/ID_idle_hurt1.png (algo golpeado, vida por debajo del 66 %) y
-  /// ID_idle_hurt2.png (muy golpeado, por debajo del 33 %). Para el resto
+  /// fighters/ID_idle_hurt1.webp (algo golpeado, vida por debajo del 66 %) y
+  /// ID_idle_hurt2.webp (muy golpeado, por debajo del 33 %). Para el resto
   /// de poses, o sin daño, la pose normal.
   static String fighterAssetWithDamage(String characterId, String pose, int damage) {
     if (pose != 'idle' || damage <= 0) return fighterAssetFor(characterId, pose: pose);
-    return 'assets/images/fighters/${characterId}_idle_hurt$damage.png';
+    return AssetCatalog.resolve('assets/images/fighters/${characterId}_idle_hurt$damage.webp');
   }
 
   static const Map<String, String> _characterFallbacks = {

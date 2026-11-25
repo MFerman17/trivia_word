@@ -59,9 +59,9 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
 
   String _portraitFor(String name) {
     const portraits = [
-      'assets/images/avatar_mage.png',
-      'assets/images/avatar_guardian.png',
-      'assets/images/avatar_explorer.png',
+      'assets/images/avatar_mage.webp',
+      'assets/images/avatar_guardian.webp',
+      'assets/images/avatar_explorer.webp',
     ];
     final nameValue = name.codeUnits.fold<int>(0, (total, unit) => total + unit);
     return portraits[nameValue % portraits.length];

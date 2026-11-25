@@ -9,3 +9,7 @@ Moretones (opcional): versiones de la pose "quieto" con el monstruo golpeado.
   NOMBRE_idle_hurt1.png  -> algo golpeado (vida por debajo del 66 %)
   NOMBRE_idle_hurt2.png  -> muy golpeado (vida por debajo del 33 %)
 Mismo tamaño y misma posición que NOMBRE_idle.png.
+
+FORMATO: el juego usa .webp (pesa mucho menos). Puedes dejar aquí el PNG que
+te dé ChatGPT y luego ejecutar:  python tools/optimizar_imagenes.py
+Eso lo convierte a .webp con el mismo nombre y borra el PNG.

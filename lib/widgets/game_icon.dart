@@ -39,7 +39,7 @@ class GameIcon extends StatelessWidget {
   static String? assetFor(String emoji) {
     final name = kGameIcons[emoji.trim()];
     if (name == null) return null;
-    final asset = 'assets/images/icons/icon_$name.png';
+    final asset = 'assets/images/icons/icon_$name.webp';
     return AssetCatalog.has(asset) ? asset : null;
   }
 

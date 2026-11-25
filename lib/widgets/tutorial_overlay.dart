@@ -117,7 +117,7 @@ class _TutorialViewState extends State<_TutorialView> {
               // El explorador es quien explica.
               ClipOval(
                 child: Image.asset(
-                  'assets/images/adventurer.png',
+                  'assets/images/adventurer.webp',
                   width: 44,
                   height: 44,
                   fit: BoxFit.cover,

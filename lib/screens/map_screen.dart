@@ -745,7 +745,7 @@ class _MapScreenState extends State<MapScreen>
                 segment.asset,
                 fit: BoxFit.fill,
                 errorBuilder: (context, error, stackTrace) => Image.asset(
-                  'assets/images/bg_landscape.jpg',
+                  'assets/images/bg_landscape.webp',
                   fit: BoxFit.cover,
                 ),
               ),

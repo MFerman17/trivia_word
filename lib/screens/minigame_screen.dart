@@ -395,7 +395,7 @@ class _HangmanGameState extends State<_HangmanGame> {
                 BlendMode.srcATop,
               ),
               child: Image.asset(
-                'assets/images/dragon.png',
+                'assets/images/dragon.webp',
                 fit: BoxFit.contain,
                 errorBuilder: (_, _, _) => const GameIcon('🐉', size: 64),
               ),

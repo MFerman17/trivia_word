@@ -17,7 +17,7 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 # In Windows, build-name is used as the major, minor, and patch parts
 # of the product and file versions while build-number is used as the build suffix.
-version: 1.2.3+8
+version: 1.2.4+9
 
 environment:
   sdk: ^3.12.2
@@ -82,31 +82,31 @@ flutter:
     - assets/audio/voice/en/
     - assets/questions/es/
     - assets/questions/en/
-    - assets/images/bg_landscape.jpg
+    - assets/images/bg_landscape.webp
     - assets/images/fighters/
     - assets/images/monsters/
     - assets/images/flyers/
     - assets/images/maps/
     - assets/images/icons/
     - assets/minigames/
-    - assets/images/dragon.png
-    - assets/images/mini_forest_guardian.png
-    - assets/images/mini_cave_bat.png
-    - assets/images/mini_sky_familiar.png
-    - assets/images/mini_lava_salamander.png
-    - assets/images/adventurer.png
-    - assets/images/avatar_explorer.png
-    - assets/images/avatar_mage.png
-    - assets/images/avatar_guardian.png
-    - assets/images/Bosque_1.jpg
-    - assets/images/Bosque_2.jpg
-    - assets/images/Bosque_3.jpg
-    - assets/images/Cavernas_1.jpg
-    - assets/images/Cavernas_2.jpg
-    - assets/images/Cavernas_3.jpg
-    - assets/images/Islas_1.jpg
-    - assets/images/Islas_2.jpg
-    - assets/images/Islas_3.jpg
-    - assets/images/Volcan_1.jpg
-    - assets/images/Volcan_2.jpg
-    - assets/images/Volcan_3.jpg
+    - assets/images/dragon.webp
+    - assets/images/mini_forest_guardian.webp
+    - assets/images/mini_cave_bat.webp
+    - assets/images/mini_sky_familiar.webp
+    - assets/images/mini_lava_salamander.webp
+    - assets/images/adventurer.webp
+    - assets/images/avatar_explorer.webp
+    - assets/images/avatar_mage.webp
+    - assets/images/avatar_guardian.webp
+    - assets/images/Bosque_1.webp
+    - assets/images/Bosque_2.webp
+    - assets/images/Bosque_3.webp
+    - assets/images/Cavernas_1.webp
+    - assets/images/Cavernas_2.webp
+    - assets/images/Cavernas_3.webp
+    - assets/images/Islas_1.webp
+    - assets/images/Islas_2.webp
+    - assets/images/Islas_3.webp
+    - assets/images/Volcan_1.webp
+    - assets/images/Volcan_2.webp
+    - assets/images/Volcan_3.webp

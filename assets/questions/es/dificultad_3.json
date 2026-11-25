@@ -2802,6 +2802,706 @@
       ],
       "correctIndex": 0,
       "explanation": "Rojo + amarillo = naranja."
+    },
+    {
+      "id": "es-3-201",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el instrumento para ver cosas muy lejanas?",
+      "options": [
+        "Telescopio",
+        "Telezcopio",
+        "Telescópio",
+        "Telesscopio"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Telescopio» se escribe con s antes de la c y sin tilde."
+    },
+    {
+      "id": "es-3-202",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la persona que vive cerca de tu casa?",
+      "options": [
+        "Vecino",
+        "Becino",
+        "Vezino",
+        "Vecíno"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vecino» se escribe con v y con c delante de i."
+    },
+    {
+      "id": "es-3-203",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El cocinero ___ la sopa antes de servirla.»",
+      "options": [
+        "probó",
+        "provó",
+        "probo",
+        "prové"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Probar» se escribe con b, y «probó» lleva tilde por ser aguda."
+    },
+    {
+      "id": "es-3-204",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «llevar algo de un sitio a otro»?",
+      "options": [
+        "Trasladar",
+        "Transladar",
+        "Traslladar",
+        "Trazladar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se escribe «trasladar», sin n: «transladar» es incorrecto."
+    },
+    {
+      "id": "es-3-205",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El mago ___ en una nube de humo.»",
+      "options": [
+        "desapareció",
+        "desaparezió",
+        "desaparecio",
+        "dezapareció"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Desapareció» lleva c delante de i y tilde por ser aguda."
+    },
+    {
+      "id": "es-3-206",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «volumen»?",
+      "options": [
+        "Volúmenes",
+        "Volumenes",
+        "Volúmenés",
+        "Voluménes"
+      ],
+      "correctIndex": 0,
+      "explanation": "En plural se vuelve esdrújula: vo-LÚ-me-nes, y lleva tilde."
+    },
+    {
+      "id": "es-3-207",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «¿___ vamos este verano de vacaciones?»",
+      "options": [
+        "Adónde",
+        "Adonde",
+        "A dondé",
+        "Hadónde"
+      ],
+      "correctIndex": 0,
+      "explanation": "En las preguntas, «adónde» lleva tilde."
+    },
+    {
+      "id": "es-3-208",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estas palabras es aguda?",
+      "options": [
+        "Algodón",
+        "Árbol",
+        "Lápiz",
+        "Música"
+      ],
+      "correctIndex": 0,
+      "explanation": "al-go-DÓN: la fuerza va en la última sílaba."
+    },
+    {
+      "id": "es-3-209",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Por la tarde me tomo un ___ con limón.»",
+      "options": [
+        "té",
+        "te",
+        "tè",
+        "thé"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Té», la bebida, lleva tilde; «te», el pronombre, no."
+    },
+    {
+      "id": "es-3-210",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «origen»?",
+      "options": [
+        "Orígenes",
+        "Origenes",
+        "Origénes",
+        "Oríjenes"
+      ],
+      "correctIndex": 0,
+      "explanation": "En plural se vuelve esdrújula: o-RÍ-ge-nes, y lleva tilde."
+    },
+    {
+      "id": "es-3-211",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Tengo un ___ en el pie de tanto andar.»",
+      "options": [
+        "callo",
+        "cayo",
+        "cayó",
+        "calló"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Callo» es piel endurecida; «cayo», un islote; «cayó», del verbo caer."
+    },
+    {
+      "id": "es-3-212",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «¡___ sorpresa tan bonita!»",
+      "options": [
+        "Vaya",
+        "Valla",
+        "Baya",
+        "Balla"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vaya» expresa sorpresa; «valla» es una cerca y «baya», un fruto."
+    },
+    {
+      "id": "es-3-213",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Subieron las maletas a la ___ del coche.»",
+      "options": [
+        "baca",
+        "vaca",
+        "vacca",
+        "baka"
+      ],
+      "correctIndex": 0,
+      "explanation": "La «baca» es el portaequipajes del techo del coche; la «vaca», el animal."
+    },
+    {
+      "id": "es-3-214",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «¿___ conmigo al cine esta tarde?»",
+      "options": [
+        "Vienes",
+        "Bienes",
+        "Viénes",
+        "Bienés"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vienes», del verbo venir, va con v; «bienes» son cosas que se poseen."
+    },
+    {
+      "id": "es-3-215",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase el verbo no concuerda con «gente»?",
+      "options": [
+        "La gente están contentos",
+        "La gente está contenta",
+        "Los vecinos están contentos",
+        "Todos están contentos"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Gente» es singular, aunque nombre a muchos: «la gente está»."
+    },
+    {
+      "id": "es-3-216",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase usa una expresión incorrecta?",
+      "options": [
+        "Contra más estudio, más aprendo",
+        "Cuanto más estudio, más aprendo",
+        "Si estudio, aprendo",
+        "Estudio y aprendo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lo correcto es «cuanto más…, más…»; «contra más» es un vulgarismo."
+    },
+    {
+      "id": "es-3-217",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase sobra una coma?",
+      "options": [
+        "Mi hermano, come pizza",
+        "Mi hermano come pizza",
+        "Luis, ven aquí",
+        "Compré pan, leche y huevos"
+      ],
+      "correctIndex": 0,
+      "explanation": "No se pone coma entre el sujeto y el verbo."
+    },
+    {
+      "id": "es-3-218",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si hubieras estudiado, ___ aprobado.»",
+      "options": [
+        "habrías",
+        "habías",
+        "habrás",
+        "has"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Si hubieras…» pide «habrías» (o «hubieras») en la otra parte de la frase."
+    },
+    {
+      "id": "es-3-219",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me pidió que le ___ un vaso de agua.»",
+      "options": [
+        "trajera",
+        "traje",
+        "traeré",
+        "traía"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tras «me pidió que» el verbo va en subjuntivo: «trajera»."
+    },
+    {
+      "id": "es-3-220",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Sal a jugar después de que ___ los deberes.»",
+      "options": [
+        "termines",
+        "terminas",
+        "terminarás",
+        "terminaste"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Después de que» con una acción futura pide subjuntivo: «termines»."
+    },
+    {
+      "id": "es-3-221",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «ocultar»?",
+      "options": [
+        "Esconder",
+        "Mostrar",
+        "Buscar",
+        "Perder"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ocultar y esconder significan lo mismo."
+    },
+    {
+      "id": "es-3-222",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «ascender»?",
+      "options": [
+        "Descender",
+        "Subir",
+        "Escalar",
+        "Avanzar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ascender es subir; descender, bajar."
+    },
+    {
+      "id": "es-3-223",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «insólito»?",
+      "options": [
+        "Muy poco común",
+        "Muy aburrido",
+        "Muy antiguo",
+        "Muy ruidoso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Algo insólito es raro, algo que no suele pasar."
+    },
+    {
+      "id": "es-3-224",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un antónimo?",
+      "options": [
+        "Palabra de significado contrario",
+        "Palabra que suena igual",
+        "Palabra muy larga",
+        "Palabra extranjera"
+      ],
+      "correctIndex": 0,
+      "explanation": "Frío y caliente son antónimos: significan lo contrario."
+    },
+    {
+      "id": "es-3-225",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «estar como pez en el agua»?",
+      "options": [
+        "Sentirse muy cómodo",
+        "Estar empapado",
+        "Saber nadar",
+        "Tener frío"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice de quien está a gusto en un lugar o situación."
+    },
+    {
+      "id": "es-3-226",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Hoja es a árbol como pétalo es a…",
+      "options": [
+        "flor",
+        "raíz",
+        "fruto",
+        "tallo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las hojas forman parte del árbol y los pétalos, de la flor."
+    },
+    {
+      "id": "es-3-227",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Rey es a reino como presidente es a…",
+      "options": [
+        "república",
+        "palacio",
+        "corona",
+        "ejército"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un rey gobierna un reino y un presidente, una república."
+    },
+    {
+      "id": "es-3-228",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Agua es a sed como comida es a…",
+      "options": [
+        "hambre",
+        "sueño",
+        "frío",
+        "cansancio"
+      ],
+      "correctIndex": 0,
+      "explanation": "El agua quita la sed y la comida, el hambre."
+    },
+    {
+      "id": "es-3-229",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es sinónimo de «hablar»? Charlar, conversar, callar, dialogar.",
+      "options": [
+        "Callar",
+        "Charlar",
+        "Conversar",
+        "Dialogar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Callar es lo contrario de hablar."
+    },
+    {
+      "id": "es-3-230",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal no es un mamífero? Delfín, murciélago, pingüino, ballena.",
+      "options": [
+        "Pingüino",
+        "Delfín",
+        "Murciélago",
+        "Ballena"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pingüino es un ave, aunque no vuele."
+    },
+    {
+      "id": "es-3-231",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número no es múltiplo de 5? 15, 25, 32, 40.",
+      "options": [
+        "32",
+        "15",
+        "25",
+        "40"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los múltiplos de 5 acaban en 0 o en 5; 32 no."
+    },
+    {
+      "id": "es-3-232",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 2, 4, 7, 11, …",
+      "options": [
+        "16",
+        "15",
+        "14",
+        "17"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se suma 1, luego 2, 3, 4… y ahora 5: 11 + 5 = 16."
+    },
+    {
+      "id": "es-3-233",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 5, 8, 14, 23, …",
+      "options": [
+        "35",
+        "32",
+        "30",
+        "38"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se suma 3, luego 6, luego 9… y ahora 12: 23 + 12 = 35."
+    },
+    {
+      "id": "es-3-234",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué planeta se forma con las letras de «TRAME»?",
+      "options": [
+        "Marte",
+        "Tierra",
+        "Venus",
+        "Saturno"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con T, R, A, M, E se forma «Marte»."
+    },
+    {
+      "id": "es-3-235",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué instrumento se forma con las letras de «PARA»?",
+      "options": [
+        "Arpa",
+        "Piano",
+        "Flauta",
+        "Tambor"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con P, A, R, A se forma «arpa»."
+    },
+    {
+      "id": "es-3-236",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué metal se esconde al principio de «PLATAFORMA»?",
+      "options": [
+        "Plata",
+        "Oro",
+        "Hierro",
+        "Cobre"
+      ],
+      "correctIndex": 0,
+      "explanation": "PLATA-forma empieza por el metal plata."
+    },
+    {
+      "id": "es-3-237",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte del cuerpo se esconde dentro de «ABRAZO»?",
+      "options": [
+        "Brazo",
+        "Codo",
+        "Mano",
+        "Hombro"
+      ],
+      "correctIndex": 0,
+      "explanation": "a-BRAZO lleva dentro la palabra «brazo»."
+    },
+    {
+      "id": "es-3-238",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «hipopótamo»?",
+      "options": [
+        "5",
+        "4",
+        "6",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "hi-po-pó-ta-mo: cinco sílabas."
+    },
+    {
+      "id": "es-3-239",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tiene corona y no es rey, tiene escamas y no es pez. ¿Qué es?",
+      "options": [
+        "La piña",
+        "La sirena",
+        "El dragón",
+        "La cebolla"
+      ],
+      "correctIndex": 0,
+      "explanation": "La piña tiene hojas como una corona y la piel parece escamas."
+    },
+    {
+      "id": "es-3-240",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los alumnos de 3.º B llevan uniforme. Carla no lleva uniforme. ¿Qué podemos afirmar?",
+      "options": [
+        "Carla no es de 3.º B",
+        "Carla es de 3.º B",
+        "Carla es profesora",
+        "No se sabe nada"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si fuera de 3.º B llevaría uniforme; como no lo lleva, no es de esa clase."
+    },
+    {
+      "id": "es-3-241",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llama el proceso con el que las plantas fabrican su alimento usando la luz?",
+      "options": [
+        "Fotosíntesis",
+        "Respiración",
+        "Digestión",
+        "Evaporación"
+      ],
+      "correctIndex": 0,
+      "explanation": "En la fotosíntesis las plantas usan luz, agua y dióxido de carbono."
+    },
+    {
+      "id": "es-3-242",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos animales es un marsupial?",
+      "options": [
+        "El canguro",
+        "El oso",
+        "El delfín",
+        "El búho"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los marsupiales, como el canguro, llevan a sus crías en una bolsa."
+    },
+    {
+      "id": "es-3-243",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte del ojo se hace más grande o más pequeña según la luz?",
+      "options": [
+        "La pupila",
+        "La pestaña",
+        "La ceja",
+        "El párpado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con poca luz la pupila se agranda para dejar entrar más luz."
+    },
+    {
+      "id": "es-3-244",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Rusia?",
+      "options": [
+        "Moscú",
+        "San Petersburgo",
+        "Kiev",
+        "Varsovia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Moscú es la capital de Rusia."
+    },
+    {
+      "id": "es-3-245",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué río pasa por París?",
+      "options": [
+        "El Sena",
+        "El Támesis",
+        "El Rin",
+        "El Danubio"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Sena atraviesa París; el Támesis pasa por Londres."
+    },
+    {
+      "id": "es-3-246",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué continente está Argentina?",
+      "options": [
+        "América",
+        "África",
+        "Asia",
+        "Oceanía"
+      ],
+      "correctIndex": 0,
+      "explanation": "Argentina está en América del Sur."
+    },
+    {
+      "id": "es-3-247",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué científico formuló la ley de la gravitación universal?",
+      "options": [
+        "Isaac Newton",
+        "Albert Einstein",
+        "Galileo Galilei",
+        "Nicolás Copérnico"
+      ],
+      "correctIndex": 0,
+      "explanation": "Isaac Newton publicó la ley de la gravitación universal en 1687."
+    },
+    {
+      "id": "es-3-248",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué civilización inventó el papel?",
+      "options": [
+        "La china",
+        "La romana",
+        "La griega",
+        "La egipcia"
+      ],
+      "correctIndex": 0,
+      "explanation": "El papel se inventó en China; los egipcios usaban papiro, que es distinto."
+    },
+    {
+      "id": "es-3-249",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿En qué deporte se usa un bate y se corre por unas bases?",
+      "options": [
+        "El béisbol",
+        "El rugby",
+        "El balonmano",
+        "El voleibol"
+      ],
+      "correctIndex": 0,
+      "explanation": "En el béisbol se batea la pelota y se corre de base en base."
+    },
+    {
+      "id": "es-3-250",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿En qué ciudad está el museo del Louvre?",
+      "options": [
+        "París",
+        "Londres",
+        "Roma",
+        "Madrid"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Louvre, en París, guarda la «Mona Lisa»."
     }
   ]
 }

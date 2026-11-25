@@ -2242,6 +2242,1266 @@
       ],
       "correctIndex": 0,
       "explanation": "Los bodegones muestran frutas, flores o cosas."
+    },
+    {
+      "id": "es-2-161",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el animal con trompa y grandes orejas?",
+      "options": [
+        "Elefante",
+        "Elefanté",
+        "Helefante",
+        "Elefantte"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Elefante» se escribe con f y sin tilde."
+    },
+    {
+      "id": "es-2-162",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el mueble donde guardas la ropa?",
+      "options": [
+        "Armario",
+        "Harmario",
+        "Armárío",
+        "Armarrio"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Armario» se escribe sin h y con una sola r en cada sílaba."
+    },
+    {
+      "id": "es-2-163",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el insecto que brilla de noche?",
+      "options": [
+        "Luciérnaga",
+        "Lucierniga",
+        "Luziérnaga",
+        "Lucíernaga"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Luciérnaga» lleva c delante de i y tilde en la e: lu-CIÉR-na-ga."
+    },
+    {
+      "id": "es-2-164",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer ___ un dibujo para mi madre.»",
+      "options": [
+        "hice",
+        "ice",
+        "hize",
+        "hicé"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hice» viene del verbo hacer: lleva h al principio y c delante de e."
+    },
+    {
+      "id": "es-2-165",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «pez»?",
+      "options": [
+        "Peces",
+        "Pezes",
+        "Pecés",
+        "Pezs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras que acaban en z forman el plural con -ces: pez, peces."
+    },
+    {
+      "id": "es-2-166",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la persona que cuida a los enfermos en el hospital?",
+      "options": [
+        "Enfermero",
+        "Enfermerro",
+        "Henfermero",
+        "Enfermeró"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Enfermero» se escribe sin h y con una sola r en cada sílaba."
+    },
+    {
+      "id": "es-2-167",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Mi hermano ___ muy bien al baloncesto.»",
+      "options": [
+        "juega",
+        "jüega",
+        "hjuega",
+        "juegua"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Juega», del verbo jugar, se escribe con j y sin diéresis."
+    },
+    {
+      "id": "es-2-168",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «El tren ___ a las nueve en punto.»",
+      "options": [
+        "salió",
+        "salio",
+        "salío",
+        "zalió"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Salió» es aguda y termina en vocal: lleva tilde en la o."
+    },
+    {
+      "id": "es-2-169",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el aparato que sirve para hablar a distancia?",
+      "options": [
+        "Teléfono",
+        "Telefono",
+        "Teléfonó",
+        "Telèfono"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Teléfono» es esdrújula: te-LÉ-fo-no. Las esdrújulas siempre llevan tilde."
+    },
+    {
+      "id": "es-2-170",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el aparato donde vemos programas y películas en casa?",
+      "options": [
+        "Televisión",
+        "Television",
+        "Televisíon",
+        "Télevision"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Televisión» es aguda y termina en n: lleva tilde en la o."
+    },
+    {
+      "id": "es-2-171",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estas palabras lleva tilde?",
+      "options": [
+        "Azúcar",
+        "Mesa",
+        "Pelo",
+        "Casa"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Azúcar» es llana y termina en r, no en n, s ni vocal: lleva tilde."
+    },
+    {
+      "id": "es-2-172",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el día que va después del martes?",
+      "options": [
+        "Miércoles",
+        "Miercoles",
+        "Miércolés",
+        "Miércóles"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Miércoles» es esdrújula: MIÉR-co-les. Lleva tilde en la e."
+    },
+    {
+      "id": "es-2-173",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer mi hermana ___ a casa muy tarde.»",
+      "options": [
+        "llegó",
+        "llego",
+        "llegò",
+        "yegó"
+      ],
+      "correctIndex": 0,
+      "explanation": "En pasado, «llegó» es aguda y termina en vocal: lleva tilde."
+    },
+    {
+      "id": "es-2-174",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Los ciudadanos van a ___ en las elecciones.»",
+      "options": [
+        "votar",
+        "botar",
+        "vótar",
+        "bhotar"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Votar» es elegir en unas elecciones; «botar» es hacer saltar una pelota."
+    },
+    {
+      "id": "es-2-175",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Mi abuela me ___ un jersey de lana.»",
+      "options": [
+        "cosió",
+        "coció",
+        "cosio",
+        "cozió"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cosió», con s, viene de coser; «coció», con c, de cocer (cocinar)."
+    },
+    {
+      "id": "es-2-176",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Voy ___ comprar pan.»",
+      "options": [
+        "a",
+        "ha",
+        "ah",
+        "á"
+      ],
+      "correctIndex": 0,
+      "explanation": "«A» es una preposición; «ha» viene del verbo haber."
+    },
+    {
+      "id": "es-2-177",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «¡___, qué daño me he hecho!»",
+      "options": [
+        "Ay",
+        "Hay",
+        "Ahí",
+        "Ai"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Ay» expresa dolor; «hay» viene de haber y «ahí» indica un lugar."
+    },
+    {
+      "id": "es-2-178",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Me puse ___ abrigo nuevo.»",
+      "options": [
+        "mi",
+        "mí",
+        "mý",
+        "mii"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Mi», sin tilde, acompaña a un nombre; «mí», con tilde, va tras una preposición."
+    },
+    {
+      "id": "es-2-179",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase lleva una palabra con una falta?",
+      "options": [
+        "La sopa está muy vuena",
+        "La sopa está muy buena",
+        "El zumo está muy frío",
+        "El pan está recién hecho"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Buena» se escribe con b."
+    },
+    {
+      "id": "es-2-180",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase no concuerdan las palabras?",
+      "options": [
+        "Los niño juegan en el patio",
+        "Los niños juegan en el patio",
+        "La niña juega en el patio",
+        "El niño juega en el patio"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con «los», el nombre también va en plural: «los niños»."
+    },
+    {
+      "id": "es-2-181",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Cuál de estas palabras está mal escrita?",
+      "options": [
+        "Zapatiya",
+        "Zapatilla",
+        "Tortilla",
+        "Mantequilla"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Zapatilla» se escribe con ll, igual que «tortilla»."
+    },
+    {
+      "id": "es-2-182",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase tiene un error con el verbo?",
+      "options": [
+        "Yo sabo nadar",
+        "Yo sé nadar",
+        "Tú sabes nadar",
+        "Ella sabe nadar"
+      ],
+      "correctIndex": 0,
+      "explanation": "El verbo saber es irregular: se dice «yo sé», no «yo sabo»."
+    },
+    {
+      "id": "es-2-183",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase falta una tilde?",
+      "options": [
+        "El tren salio tarde",
+        "El tren salió tarde",
+        "La niña comió pan",
+        "Mi gato duerme mucho"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Salió» es aguda y acaba en vocal: necesita tilde."
+    },
+    {
+      "id": "es-2-184",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase confunde «hay» y «ahí»?",
+      "options": [
+        "Ahí muchos niños en el parque",
+        "Hay muchos niños en el parque",
+        "Ahí está tu mochila",
+        "¡Ay, qué susto!"
+      ],
+      "correctIndex": 0,
+      "explanation": "Para decir que existe algo se usa «hay», del verbo haber."
+    },
+    {
+      "id": "es-2-185",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer nosotros ___ un castillo de arena.»",
+      "options": [
+        "construimos",
+        "construímos",
+        "construyimos",
+        "construimo"
+      ],
+      "correctIndex": 0,
+      "explanation": "En pasado se dice «nosotros construimos», sin tilde."
+    },
+    {
+      "id": "es-2-186",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si llueve, ___ el paraguas.»",
+      "options": [
+        "llevaré",
+        "llevé",
+        "llevaba",
+        "llevara"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Si llueve» habla del futuro, así que va «llevaré»."
+    },
+    {
+      "id": "es-2-187",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Las flores ___ muy bonitas en primavera.»",
+      "options": [
+        "están",
+        "está",
+        "estamos",
+        "estás"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Las flores» es plural: el verbo también, «están»."
+    },
+    {
+      "id": "es-2-188",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Mientras yo leía, mi hermano ___ la tele.»",
+      "options": [
+        "veía",
+        "ve",
+        "verá",
+        "vio"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son dos acciones a la vez en el pasado: «leía» y «veía»."
+    },
+    {
+      "id": "es-2-189",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Mañana ___ sol, según el pronóstico.»",
+      "options": [
+        "hará",
+        "hizo",
+        "hacía",
+        "hiciera"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Mañana» pide el futuro: «hará»."
+    },
+    {
+      "id": "es-2-190",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me gusta ___ cuentos antes de dormir.»",
+      "options": [
+        "leer",
+        "leo",
+        "leído",
+        "leyendo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Después de «me gusta» va el verbo sin conjugar: «leer»."
+    },
+    {
+      "id": "es-2-191",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «hermoso»?",
+      "options": [
+        "Bello",
+        "Feo",
+        "Raro",
+        "Pequeño"
+      ],
+      "correctIndex": 0,
+      "explanation": "Hermoso y bello son sinónimos."
+    },
+    {
+      "id": "es-2-192",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «ruidoso»?",
+      "options": [
+        "Silencioso",
+        "Fuerte",
+        "Alegre",
+        "Grande"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lo que no hace ruido es silencioso."
+    },
+    {
+      "id": "es-2-193",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «regalo»?",
+      "options": [
+        "Obsequio",
+        "Castigo",
+        "Juguete",
+        "Paquete"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un obsequio es un regalo."
+    },
+    {
+      "id": "es-2-194",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «limpio»?",
+      "options": [
+        "Sucio",
+        "Mojado",
+        "Nuevo",
+        "Brillante"
+      ],
+      "correctIndex": 0,
+      "explanation": "Limpio y sucio son antónimos."
+    },
+    {
+      "id": "es-2-195",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra significa lo mismo que «terminar»?",
+      "options": [
+        "Acabar",
+        "Empezar",
+        "Seguir",
+        "Esperar"
+      ],
+      "correctIndex": 0,
+      "explanation": "Terminar y acabar significan lo mismo."
+    },
+    {
+      "id": "es-2-196",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es lo contrario de «encender»?",
+      "options": [
+        "Apagar",
+        "Prender",
+        "Calentar",
+        "Abrir"
+      ],
+      "correctIndex": 0,
+      "explanation": "La luz se enciende y se apaga."
+    },
+    {
+      "id": "es-2-197",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «madrugar»?",
+      "options": [
+        "Levantarse muy temprano",
+        "Acostarse tarde",
+        "Dormir la siesta",
+        "Comer mucho"
+      ],
+      "correctIndex": 0,
+      "explanation": "Madrugar es levantarse muy pronto, al amanecer."
+    },
+    {
+      "id": "es-2-198",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un «astronauta»?",
+      "options": [
+        "Persona que viaja al espacio",
+        "Persona que cuida plantas",
+        "Persona que hace pan",
+        "Persona que conduce trenes"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los astronautas viajan en naves espaciales."
+    },
+    {
+      "id": "es-2-199",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «sediento»?",
+      "options": [
+        "Que tiene sed",
+        "Que tiene sueño",
+        "Que tiene frío",
+        "Que tiene prisa"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sediento es quien tiene ganas de beber."
+    },
+    {
+      "id": "es-2-200",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué es un «mapa»?",
+      "options": [
+        "Un dibujo de un territorio",
+        "Un libro de cuentos",
+        "Un instrumento musical",
+        "Un aparato para medir"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un mapa representa un lugar visto desde arriba."
+    },
+    {
+      "id": "es-2-201",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «El que la sigue…»",
+      "options": [
+        "la consigue",
+        "la pierde",
+        "se cansa",
+        "la olvida"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien insiste con constancia acaba consiguiendo lo que quiere."
+    },
+    {
+      "id": "es-2-202",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Completa el refrán: «A mal tiempo…»",
+      "options": [
+        "buena cara",
+        "mala cara",
+        "paraguas",
+        "buen abrigo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ante los problemas, es mejor tener buen ánimo."
+    },
+    {
+      "id": "es-2-203",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Zapato es a pie como sombrero es a…",
+      "options": [
+        "cabeza",
+        "mano",
+        "cuello",
+        "pierna"
+      ],
+      "correctIndex": 0,
+      "explanation": "El zapato se pone en el pie y el sombrero, en la cabeza."
+    },
+    {
+      "id": "es-2-204",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Médico es a hospital como maestro es a…",
+      "options": [
+        "escuela",
+        "tienda",
+        "granja",
+        "cocina"
+      ],
+      "correctIndex": 0,
+      "explanation": "El médico trabaja en el hospital y el maestro, en la escuela."
+    },
+    {
+      "id": "es-2-205",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Caliente es a fuego como frío es a…",
+      "options": [
+        "hielo",
+        "sol",
+        "horno",
+        "arena"
+      ],
+      "correctIndex": 0,
+      "explanation": "El fuego quema y el hielo enfría."
+    },
+    {
+      "id": "es-2-206",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Perro es a cachorro como gato es a…",
+      "options": [
+        "gatito",
+        "ternero",
+        "pollito",
+        "potro"
+      ],
+      "correctIndex": 0,
+      "explanation": "La cría del perro es el cachorro y la del gato, el gatito."
+    },
+    {
+      "id": "es-2-207",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Tres es a triángulo como cuatro es a…",
+      "options": [
+        "cuadrado",
+        "círculo",
+        "pentágono",
+        "línea"
+      ],
+      "correctIndex": 0,
+      "explanation": "El triángulo tiene tres lados y el cuadrado, cuatro."
+    },
+    {
+      "id": "es-2-208",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un mueble? Mesa, silla, armario, manzana.",
+      "options": [
+        "Manzana",
+        "Mesa",
+        "Silla",
+        "Armario"
+      ],
+      "correctIndex": 0,
+      "explanation": "La manzana es una fruta; los demás son muebles."
+    },
+    {
+      "id": "es-2-209",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número no es par? 2, 8, 7, 10.",
+      "options": [
+        "7",
+        "2",
+        "8",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "El 7 no se puede dividir en dos partes iguales: es impar."
+    },
+    {
+      "id": "es-2-210",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal no tiene plumas? Gallina, loro, gato, pato.",
+      "options": [
+        "Gato",
+        "Gallina",
+        "Loro",
+        "Pato"
+      ],
+      "correctIndex": 0,
+      "explanation": "El gato tiene pelo; los demás son aves y tienen plumas."
+    },
+    {
+      "id": "es-2-211",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es una profesión? Médico, bombero, pizarra, cocinero.",
+      "options": [
+        "Pizarra",
+        "Médico",
+        "Bombero",
+        "Cocinero"
+      ],
+      "correctIndex": 0,
+      "explanation": "La pizarra es un objeto de clase, no una profesión."
+    },
+    {
+      "id": "es-2-212",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es una estación? Primavera, verano, otoño, febrero.",
+      "options": [
+        "Febrero",
+        "Primavera",
+        "Verano",
+        "Otoño"
+      ],
+      "correctIndex": 0,
+      "explanation": "Febrero es un mes; los demás son estaciones del año."
+    },
+    {
+      "id": "es-2-213",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 10, 20, 30, 40, …",
+      "options": [
+        "50",
+        "45",
+        "60",
+        "41"
+      ],
+      "correctIndex": 0,
+      "explanation": "La serie suma 10 cada vez: 40 + 10 = 50."
+    },
+    {
+      "id": "es-2-214",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 50, 45, 40, 35, …",
+      "options": [
+        "30",
+        "25",
+        "34",
+        "36"
+      ],
+      "correctIndex": 0,
+      "explanation": "La serie resta 5 cada vez: 35 − 5 = 30."
+    },
+    {
+      "id": "es-2-215",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué letra sigue? A, E, I, O, …",
+      "options": [
+        "U",
+        "Y",
+        "P",
+        "A"
+      ],
+      "correctIndex": 0,
+      "explanation": "Son las vocales en orden: a, e, i, o, u."
+    },
+    {
+      "id": "es-2-216",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué mes va después de noviembre?",
+      "options": [
+        "Diciembre",
+        "Octubre",
+        "Enero",
+        "Septiembre"
+      ],
+      "correctIndex": 0,
+      "explanation": "Noviembre es el mes 11 y diciembre, el 12."
+    },
+    {
+      "id": "es-2-217",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se forma con las letras de «TARA»?",
+      "options": [
+        "Rata",
+        "Pato",
+        "Rana",
+        "Toro"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con T, A, R, A se forma «rata»."
+    },
+    {
+      "id": "es-2-218",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué fruta se forma con las letras de «PARE»?",
+      "options": [
+        "Pera",
+        "Uva",
+        "Lima",
+        "Kiwi"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con P, A, R, E se forma «pera»."
+    },
+    {
+      "id": "es-2-219",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se esconde al final de «PELIGROSO»?",
+      "options": [
+        "Oso",
+        "Pez",
+        "Gato",
+        "Lobo"
+      ],
+      "correctIndex": 0,
+      "explanation": "peligr-OSO termina con la palabra «oso»."
+    },
+    {
+      "id": "es-2-220",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se esconde al final de «ZAPATO»?",
+      "options": [
+        "Pato",
+        "Gato",
+        "Oso",
+        "Pez"
+      ],
+      "correctIndex": 0,
+      "explanation": "za-PATO termina con la palabra «pato»."
+    },
+    {
+      "id": "es-2-221",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte del cuerpo se esconde al principio de «BOCADILLO»?",
+      "options": [
+        "Boca",
+        "Ojo",
+        "Pie",
+        "Codo"
+      ],
+      "correctIndex": 0,
+      "explanation": "BOCA-dillo empieza por la palabra «boca»."
+    },
+    {
+      "id": "es-2-222",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Ordena las sílabas para formar un animal: RA · JI · FA",
+      "options": [
+        "Jirafa",
+        "Farija",
+        "Rajifa",
+        "Fajira"
+      ],
+      "correctIndex": 0,
+      "explanation": "JI-RA-FA: jirafa."
+    },
+    {
+      "id": "es-2-223",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «bicicleta»?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "6"
+      ],
+      "correctIndex": 0,
+      "explanation": "bi-ci-cle-ta: cuatro sílabas."
+    },
+    {
+      "id": "es-2-224",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tiene ojos de gato, orejas de gato y maúlla como un gato, pero no es un gato. ¿Qué es?",
+      "options": [
+        "La gata",
+        "El tigre",
+        "El león",
+        "El perro"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lo tiene todo de gato sin ser un gato… ¡porque es una gata!"
+    },
+    {
+      "id": "es-2-225",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Tiene dientes y no muerde, y peina el pelo de la gente. ¿Qué es?",
+      "options": [
+        "El peine",
+        "El cepillo de dientes",
+        "La tijera",
+        "El cocodrilo"
+      ],
+      "correctIndex": 0,
+      "explanation": "El peine tiene «dientes» para peinar."
+    },
+    {
+      "id": "es-2-226",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Sube llena y baja vacía; si no se da prisa, la sopa se enfría. ¿Qué es?",
+      "options": [
+        "La cuchara",
+        "El plato",
+        "La olla",
+        "El vaso"
+      ],
+      "correctIndex": 0,
+      "explanation": "La cuchara sube a la boca llena de sopa y baja vacía."
+    },
+    {
+      "id": "es-2-227",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los pájaros tienen plumas. Piolín es un pájaro. ¿Qué sabemos?",
+      "options": [
+        "Piolín tiene plumas",
+        "Piolín es amarillo",
+        "Piolín no vuela",
+        "Piolín vive en un nido"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si todos los pájaros tienen plumas, Piolín también."
+    },
+    {
+      "id": "es-2-228",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Marta llega antes que Luis y después que Sara. ¿Quién llega primero?",
+      "options": [
+        "Sara",
+        "Marta",
+        "Luis",
+        "Llegan a la vez"
+      ],
+      "correctIndex": 0,
+      "explanation": "El orden es Sara, Marta y Luis."
+    },
+    {
+      "id": "es-2-229",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Si mañana es miércoles, ¿qué día fue ayer?",
+      "options": [
+        "Lunes",
+        "Martes",
+        "Domingo",
+        "Jueves"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si mañana es miércoles, hoy es martes y ayer fue lunes."
+    },
+    {
+      "id": "es-2-230",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Una araña tiene 8 patas. ¿Cuántas patas tienen 3 arañas?",
+      "options": [
+        "24",
+        "11",
+        "16",
+        "32"
+      ],
+      "correctIndex": 0,
+      "explanation": "8 × 3 = 24 patas."
+    },
+    {
+      "id": "es-2-231",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Lucas tiene 15 canicas y pierde 6. ¿Cuántas le quedan?",
+      "options": [
+        "9",
+        "21",
+        "8",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "15 − 6 = 9 canicas."
+    },
+    {
+      "id": "es-2-232",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Una pizza tiene 8 trozos y la comparten 4 amigos. ¿Cuántos trozos come cada uno?",
+      "options": [
+        "2",
+        "4",
+        "3",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "8 ÷ 4 = 2 trozos para cada uno."
+    },
+    {
+      "id": "es-2-233",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuánto es 9 × 3?",
+      "options": [
+        "27",
+        "24",
+        "30",
+        "36"
+      ],
+      "correctIndex": 0,
+      "explanation": "9 × 3 = 27."
+    },
+    {
+      "id": "es-2-234",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el animal más grande del mundo?",
+      "options": [
+        "La ballena azul",
+        "El elefante",
+        "El tiburón blanco",
+        "La jirafa"
+      ],
+      "correctIndex": 0,
+      "explanation": "La ballena azul puede medir más de 25 metros."
+    },
+    {
+      "id": "es-2-235",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué órgano usamos para pensar?",
+      "options": [
+        "El cerebro",
+        "El corazón",
+        "El estómago",
+        "El hígado"
+      ],
+      "correctIndex": 0,
+      "explanation": "El cerebro controla lo que pensamos, sentimos y hacemos."
+    },
+    {
+      "id": "es-2-236",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué hacen muchos osos durante el invierno?",
+      "options": [
+        "Hibernan",
+        "Migran al sur",
+        "Cambian de piel",
+        "Ponen huevos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pasan el invierno descansando en su guarida: hibernan."
+    },
+    {
+      "id": "es-2-237",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál de estos animales es nocturno?",
+      "options": [
+        "El búho",
+        "La gallina",
+        "La vaca",
+        "La mariposa"
+      ],
+      "correctIndex": 0,
+      "explanation": "El búho caza de noche y duerme de día."
+    },
+    {
+      "id": "es-2-238",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal cambia de color para esconderse?",
+      "options": [
+        "El camaleón",
+        "El conejo",
+        "El caballo",
+        "El pato"
+      ],
+      "correctIndex": 0,
+      "explanation": "El camaleón cambia el color de su piel para camuflarse o comunicarse."
+    },
+    {
+      "id": "es-2-239",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Francia?",
+      "options": [
+        "París",
+        "Londres",
+        "Roma",
+        "Berlín"
+      ],
+      "correctIndex": 0,
+      "explanation": "París es la capital de Francia; allí está la Torre Eiffel."
+    },
+    {
+      "id": "es-2-240",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué río es el más caudaloso del mundo?",
+      "options": [
+        "El Amazonas",
+        "El Nilo",
+        "El Ebro",
+        "El Danubio"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Amazonas, en América del Sur, lleva más agua que ningún otro río."
+    },
+    {
+      "id": "es-2-241",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué país está la ciudad de Londres?",
+      "options": [
+        "Reino Unido",
+        "Francia",
+        "Irlanda",
+        "Alemania"
+      ],
+      "correctIndex": 0,
+      "explanation": "Londres es la capital del Reino Unido."
+    },
+    {
+      "id": "es-2-242",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué país viven canguros en libertad?",
+      "options": [
+        "Australia",
+        "Brasil",
+        "Canadá",
+        "India"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los canguros solo viven en libertad en Australia y sus alrededores."
+    },
+    {
+      "id": "es-2-243",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llamaban los luchadores del Coliseo de Roma?",
+      "options": [
+        "Gladiadores",
+        "Caballeros",
+        "Samuráis",
+        "Vikingos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los gladiadores luchaban en el Coliseo ante el público."
+    },
+    {
+      "id": "es-2-244",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué inventaron los hermanos Wright en 1903?",
+      "options": [
+        "El avión",
+        "El coche",
+        "El tren",
+        "El submarino"
+      ],
+      "correctIndex": 0,
+      "explanation": "En 1903 los hermanos Wright hicieron volar el primer avión a motor."
+    },
+    {
+      "id": "es-2-245",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué guerreros de Japón luchaban con una espada llamada katana?",
+      "options": [
+        "Los samuráis",
+        "Los vikingos",
+        "Los romanos",
+        "Los piratas"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los samuráis eran los guerreros del antiguo Japón."
+    },
+    {
+      "id": "es-2-246",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos días tiene febrero cuando el año no es bisiesto?",
+      "options": [
+        "28",
+        "30",
+        "29",
+        "31"
+      ],
+      "correctIndex": 0,
+      "explanation": "Febrero tiene 28 días, y 29 en los años bisiestos."
+    },
+    {
+      "id": "es-2-247",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Qué fiesta se celebra el 25 de diciembre?",
+      "options": [
+        "La Navidad",
+        "El Año Nuevo",
+        "Halloween",
+        "La Pascua"
+      ],
+      "correctIndex": 0,
+      "explanation": "El 25 de diciembre es el día de Navidad."
+    },
+    {
+      "id": "es-2-248",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos años tiene un siglo?",
+      "options": [
+        "100",
+        "10",
+        "1000",
+        "50"
+      ],
+      "correctIndex": 0,
+      "explanation": "Un siglo son cien años."
+    },
+    {
+      "id": "es-2-249",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué color sale al mezclar azul y rojo?",
+      "options": [
+        "Morado",
+        "Verde",
+        "Naranja",
+        "Marrón"
+      ],
+      "correctIndex": 0,
+      "explanation": "Azul y rojo mezclados dan morado o violeta."
+    },
+    {
+      "id": "es-2-250",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se llama la persona que dirige una orquesta?",
+      "options": [
+        "Director",
+        "Pintor",
+        "Escultor",
+        "Bailarín"
+      ],
+      "correctIndex": 0,
+      "explanation": "El director de orquesta marca el ritmo a los músicos con su batuta."
     }
   ]
 }

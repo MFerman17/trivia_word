@@ -2802,6 +2802,720 @@
       ],
       "correctIndex": 0,
       "explanation": "Su cuadro «Impresión, sol naciente» dio nombre al movimiento."
+    },
+    {
+      "id": "es-4-201",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el adjetivo que significa «que no se puede vencer»?",
+      "options": [
+        "Invencible",
+        "Imbencible",
+        "Invensible",
+        "Imvencible"
+      ],
+      "correctIndex": 0,
+      "explanation": "Delante de v se escribe n, no m: invencible."
+    },
+    {
+      "id": "es-4-202",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el sustantivo derivado de «conducir»?",
+      "options": [
+        "Conducción",
+        "Condución",
+        "Conducsión",
+        "Conduczión"
+      ],
+      "correctIndex": 0,
+      "explanation": "Como en «reducción», lleva dos ces: conducción."
+    },
+    {
+      "id": "es-4-203",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Ayer los alumnos ___ el examen con calma.» (verbo hacer)",
+      "options": [
+        "hicieron",
+        "hiceron",
+        "izieron",
+        "hicierón"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hicieron», de hacer: con h, con c y sin tilde."
+    },
+    {
+      "id": "es-4-204",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe la persona que no come carne?",
+      "options": [
+        "Vegetariano",
+        "Vejetariano",
+        "Begetariano",
+        "Vegetarianno"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Vegetariano» viene de «vegetal»: con v y con g."
+    },
+    {
+      "id": "es-4-205",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el sustantivo que significa «falta de algo necesario»?",
+      "options": [
+        "Carencia",
+        "Carensia",
+        "Karencia",
+        "Carenzia"
+      ],
+      "correctIndex": 0,
+      "explanation": "Las palabras acabadas en -encia se escriben con c: carencia, paciencia."
+    },
+    {
+      "id": "es-4-206",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cómo se escribe el verbo que significa «soltar una carcajada»?",
+      "options": [
+        "Reír",
+        "Reir",
+        "Réir",
+        "Rëír"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Reír» lleva tilde en la í para marcar el hiato: re-ír."
+    },
+    {
+      "id": "es-4-207",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «álbum»?",
+      "options": [
+        "Álbumes",
+        "Álbums",
+        "Albumes",
+        "Álbunes"
+      ],
+      "correctIndex": 0,
+      "explanation": "El plural recomendado es «álbumes», esdrújula y con tilde."
+    },
+    {
+      "id": "es-4-208",
+      "category": "tildes",
+      "type": "fillInBlank",
+      "prompt": "Completa: «No sé ___ irme, si ahora o más tarde.»",
+      "options": [
+        "cuándo",
+        "cuando",
+        "cuàndo",
+        "quándo"
+      ],
+      "correctIndex": 0,
+      "explanation": "En las preguntas indirectas, «cuándo» lleva tilde."
+    },
+    {
+      "id": "es-4-209",
+      "category": "tildes",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el plural de «crimen»?",
+      "options": [
+        "Crímenes",
+        "Crimenes",
+        "Crímenés",
+        "Criménes"
+      ],
+      "correctIndex": 0,
+      "explanation": "En plural se vuelve esdrújula: CRÍ-me-nes, y lleva tilde."
+    },
+    {
+      "id": "es-4-210",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «No ___ la mesa con el cuchillo.»",
+      "options": [
+        "rayes",
+        "ralles",
+        "rallés",
+        "rayés"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Rayar» es hacer rayas; «rallar» es desmenuzar con el rallador."
+    },
+    {
+      "id": "es-4-211",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Recogimos una ___ en el bosque.»",
+      "options": [
+        "seta",
+        "zeta",
+        "ceta",
+        "setá"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Seta» es un hongo; «zeta» es el nombre de la letra z."
+    },
+    {
+      "id": "es-4-212",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «Los esclavos se ___ contra el emperador.»",
+      "options": [
+        "rebelaron",
+        "revelaron",
+        "rebelarón",
+        "rebeláron"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Rebelarse» es sublevarse; «revelar» es descubrir un secreto."
+    },
+    {
+      "id": "es-4-213",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Completa: «La puerta del castillo era de ___.»",
+      "options": [
+        "hierro",
+        "yerro",
+        "hierrro",
+        "iero"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Hierro» es el metal; «yerro» significa error."
+    },
+    {
+      "id": "es-4-214",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué frase usa mal una preposición?",
+      "options": [
+        "Voy en casa de mi tía",
+        "Voy a casa de mi tía",
+        "Estoy en casa de mi tía",
+        "Vengo de casa de mi tía"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con verbos de movimiento hacia un lugar se usa «a»: «voy a casa»."
+    },
+    {
+      "id": "es-4-215",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué oración usa mal el gerundio?",
+      "options": [
+        "Cayó al suelo, rompiéndose el brazo",
+        "Se cayó y se rompió el brazo",
+        "Salió corriendo",
+        "Llegó cantando"
+      ],
+      "correctIndex": 0,
+      "explanation": "El gerundio no debe expresar algo posterior: mejor «se cayó y se rompió»."
+    },
+    {
+      "id": "es-4-216",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿Qué forma del verbo «traer» es incorrecta?",
+      "options": [
+        "Traí",
+        "Traje",
+        "Traigo",
+        "Traía"
+      ],
+      "correctIndex": 0,
+      "explanation": "El pasado de traer es «traje»; «traí» es incorrecto."
+    },
+    {
+      "id": "es-4-217",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "¿En qué frase se confunde «sino» con «si no»?",
+      "options": [
+        "No vino él, si no su hermano",
+        "No vino él, sino su hermano",
+        "Si no vienes, me enfado",
+        "No quiero té, sino café"
+      ],
+      "correctIndex": 0,
+      "explanation": "Para oponer dos ideas se escribe «sino», junto."
+    },
+    {
+      "id": "es-4-218",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Si yo ___ tú, aceptaría la oferta.»",
+      "options": [
+        "fuera",
+        "era",
+        "sería",
+        "sea"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Si» con «aceptaría» pide el imperfecto de subjuntivo: «si yo fuera tú»."
+    },
+    {
+      "id": "es-4-219",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Habla más alto para que todos te ___.»",
+      "options": [
+        "oigan",
+        "oyen",
+        "oirán",
+        "oían"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Para que» va con subjuntivo: «para que te oigan»."
+    },
+    {
+      "id": "es-4-220",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Completa: «Me hubiera gustado que ___ a la boda.»",
+      "options": [
+        "vinieras",
+        "vienes",
+        "vendrás",
+        "venías"
+      ],
+      "correctIndex": 0,
+      "explanation": "Tras «me hubiera gustado que» se usa el imperfecto de subjuntivo: «vinieras»."
+    },
+    {
+      "id": "es-4-221",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra es sinónimo de «meticuloso»?",
+      "options": [
+        "Minucioso",
+        "Descuidado",
+        "Rápido",
+        "Generoso"
+      ],
+      "correctIndex": 0,
+      "explanation": "Meticuloso y minucioso: que cuida hasta el último detalle."
+    },
+    {
+      "id": "es-4-222",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es el antónimo de «arrogante»?",
+      "options": [
+        "Humilde",
+        "Orgulloso",
+        "Altivo",
+        "Soberbio"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lo contrario del arrogante es el humilde."
+    },
+    {
+      "id": "es-4-223",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «perplejo»?",
+      "options": [
+        "Muy desconcertado",
+        "Muy contento",
+        "Muy cansado",
+        "Muy enfadado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Quien está perplejo no sabe qué pensar ante algo inesperado."
+    },
+    {
+      "id": "es-4-224",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "¿Qué significa «matar dos pájaros de un tiro»?",
+      "options": [
+        "Lograr dos cosas con una acción",
+        "Cazar mucho",
+        "Ser muy agresivo",
+        "Fallar dos veces"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se dice cuando con un solo esfuerzo se consiguen dos objetivos."
+    },
+    {
+      "id": "es-4-225",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Autor es a novela como director es a…",
+      "options": [
+        "película",
+        "actor",
+        "cine",
+        "cámara"
+      ],
+      "correctIndex": 0,
+      "explanation": "El autor crea la novela y el director, la película."
+    },
+    {
+      "id": "es-4-226",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Herbívoro es a plantas como carnívoro es a…",
+      "options": [
+        "carne",
+        "frutas",
+        "semillas",
+        "hierba"
+      ],
+      "correctIndex": 0,
+      "explanation": "El herbívoro come plantas y el carnívoro, carne."
+    },
+    {
+      "id": "es-4-227",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Oro es a metal como diamante es a…",
+      "options": [
+        "mineral",
+        "madera",
+        "líquido",
+        "gas"
+      ],
+      "correctIndex": 0,
+      "explanation": "El oro es un metal y el diamante, un mineral."
+    },
+    {
+      "id": "es-4-228",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es sinónimo de «rápido»? Veloz, raudo, ágil, pausado.",
+      "options": [
+        "Pausado",
+        "Veloz",
+        "Raudo",
+        "Ágil"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Pausado» significa lento: es lo contrario de rápido."
+    },
+    {
+      "id": "es-4-229",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué país no está en América del Sur? Perú, Chile, Honduras, Uruguay.",
+      "options": [
+        "Honduras",
+        "Perú",
+        "Chile",
+        "Uruguay"
+      ],
+      "correctIndex": 0,
+      "explanation": "Honduras está en América Central."
+    },
+    {
+      "id": "es-4-230",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "¿Qué palabra no es un verbo? Cantar, beber, vivir, cantante.",
+      "options": [
+        "Cantante",
+        "Cantar",
+        "Beber",
+        "Vivir"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Cantante» es un sustantivo: la persona que canta."
+    },
+    {
+      "id": "es-4-231",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 2, 3, 5, 8, 12, …",
+      "options": [
+        "17",
+        "15",
+        "16",
+        "20"
+      ],
+      "correctIndex": 0,
+      "explanation": "Se suma 1, 2, 3, 4… y ahora 5: 12 + 5 = 17."
+    },
+    {
+      "id": "es-4-232",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 96, 48, 24, 12, …",
+      "options": [
+        "6",
+        "8",
+        "4",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número es la mitad del anterior: 12 ÷ 2 = 6."
+    },
+    {
+      "id": "es-4-233",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "¿Qué número sigue? 1, 4, 13, 40, …",
+      "options": [
+        "121",
+        "80",
+        "120",
+        "160"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cada número se multiplica por 3 y se le suma 1: 40 × 3 + 1 = 121."
+    },
+    {
+      "id": "es-4-234",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué país se forma con las letras de «LAITIA»?",
+      "options": [
+        "Italia",
+        "Haití",
+        "Malta",
+        "Chile"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con L, A, I, T, I, A se forma «Italia»."
+    },
+    {
+      "id": "es-4-235",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se forma con las letras de «GRITE»?",
+      "options": [
+        "Tigre",
+        "Gato",
+        "Toro",
+        "Grillo"
+      ],
+      "correctIndex": 0,
+      "explanation": "Con G, R, I, T, E se forma «tigre»."
+    },
+    {
+      "id": "es-4-236",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué parte del cuerpo se esconde al principio de «ESPALDARAZO»?",
+      "options": [
+        "Espalda",
+        "Codo",
+        "Mano",
+        "Rodilla"
+      ],
+      "correctIndex": 0,
+      "explanation": "ESPALDA-razo empieza por la palabra «espalda»."
+    },
+    {
+      "id": "es-4-237",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "¿Qué animal se esconde dentro de «GRATAMENTE»?",
+      "options": [
+        "Rata",
+        "Gato",
+        "Mono",
+        "Oso"
+      ],
+      "correctIndex": 0,
+      "explanation": "g-RATA-mente lleva dentro la palabra «rata»."
+    },
+    {
+      "id": "es-4-238",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántas sílabas tiene «Mediterráneo»?",
+      "options": [
+        "6",
+        "5",
+        "7",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Me-di-te-rrá-ne-o: la e y la o finales van en sílabas distintas."
+    },
+    {
+      "id": "es-4-239",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "Su madre es tartamuda y su padre buen cantor; tiene el vestido blanco y amarillo el corazón. ¿Qué es?",
+      "options": [
+        "El huevo",
+        "El pollito",
+        "La gallina",
+        "El queso"
+      ],
+      "correctIndex": 0,
+      "explanation": "La gallina cacarea, el gallo canta, y el huevo es blanco con yema amarilla."
+    },
+    {
+      "id": "es-4-240",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Todos los lunes hay mercado en la plaza. Hoy no hay mercado. ¿Qué se deduce?",
+      "options": [
+        "Hoy no es lunes",
+        "Hoy es lunes",
+        "Mañana hay mercado",
+        "Ayer hubo mercado"
+      ],
+      "correctIndex": 0,
+      "explanation": "Si hoy fuera lunes habría mercado; como no lo hay, hoy no es lunes."
+    },
+    {
+      "id": "es-4-241",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Luis es el padre de Ana, y Ana es la madre de Pedro. ¿Qué es Luis de Pedro?",
+      "options": [
+        "Su abuelo",
+        "Su padre",
+        "Su tío",
+        "Su hermano"
+      ],
+      "correctIndex": 0,
+      "explanation": "El padre de la madre de Pedro es su abuelo."
+    },
+    {
+      "id": "es-4-242",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué gas es necesario para que haya fuego?",
+      "options": [
+        "El oxígeno",
+        "El helio",
+        "El nitrógeno",
+        "El neón"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sin oxígeno no hay combustión: por eso una manta apaga las llamas."
+    },
+    {
+      "id": "es-4-243",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuántos planetas tiene el sistema solar?",
+      "options": [
+        "8",
+        "9",
+        "7",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "Desde 2006 son 8: Plutón pasó a considerarse un planeta enano."
+    },
+    {
+      "id": "es-4-244",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué órgano produce la bilis?",
+      "options": [
+        "El hígado",
+        "El páncreas",
+        "El riñón",
+        "El estómago"
+      ],
+      "correctIndex": 0,
+      "explanation": "El hígado produce la bilis, que ayuda a digerir las grasas."
+    },
+    {
+      "id": "es-4-245",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Cuál es la capital de Brasil?",
+      "options": [
+        "Brasilia",
+        "Río de Janeiro",
+        "São Paulo",
+        "Buenos Aires"
+      ],
+      "correctIndex": 0,
+      "explanation": "Desde 1960 la capital de Brasil es Brasilia."
+    },
+    {
+      "id": "es-4-246",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿Qué cordillera se considera la frontera entre Europa y Asia?",
+      "options": [
+        "Los Urales",
+        "Los Alpes",
+        "Los Andes",
+        "Los Pirineos"
+      ],
+      "correctIndex": 0,
+      "explanation": "Los montes Urales, en Rusia, separan Europa de Asia."
+    },
+    {
+      "id": "es-4-247",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué país está el monte Kilimanjaro?",
+      "options": [
+        "Tanzania",
+        "Kenia",
+        "Egipto",
+        "Sudáfrica"
+      ],
+      "correctIndex": 0,
+      "explanation": "El Kilimanjaro, la montaña más alta de África, está en Tanzania."
+    },
+    {
+      "id": "es-4-248",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿En qué año terminó la Segunda Guerra Mundial?",
+      "options": [
+        "1945",
+        "1939",
+        "1918",
+        "1950"
+      ],
+      "correctIndex": 0,
+      "explanation": "La Segunda Guerra Mundial terminó en 1945."
+    },
+    {
+      "id": "es-4-249",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "¿Quién fue el primer ser humano en viajar al espacio?",
+      "options": [
+        "Yuri Gagarin",
+        "Neil Armstrong",
+        "Buzz Aldrin",
+        "John Glenn"
+      ],
+      "correctIndex": 0,
+      "explanation": "El soviético Yuri Gagarin orbitó la Tierra en 1961."
+    },
+    {
+      "id": "es-4-250",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "¿Quién escribió «El principito»?",
+      "options": [
+        "Antoine de Saint-Exupéry",
+        "Julio Verne",
+        "Victor Hugo",
+        "Albert Camus"
+      ],
+      "correctIndex": 0,
+      "explanation": "«El principito» lo escribió el francés Antoine de Saint-Exupéry en 1943."
+    },
+    {
+      "id": "es-4-251",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "¿Qué escultor francés creó «El pensador»?",
+      "options": [
+        "Auguste Rodin",
+        "Edgar Degas",
+        "Claude Monet",
+        "Henri Matisse"
+      ],
+      "correctIndex": 0,
+      "explanation": "«El pensador» es una de las esculturas más famosas de Rodin."
     }
   ]
 }

@@ -2830,6 +2830,678 @@
       ],
       "correctIndex": 0,
       "explanation": "Don't risk everything on a single plan."
+    },
+    {
+      "id": "en-4-203",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a word meaning \"the natural world around us\"?",
+      "options": [
+        "environment",
+        "enviroment",
+        "envirnoment",
+        "environmant"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Environment\" keeps the n of \"environ\" before -ment."
+    },
+    {
+      "id": "en-4-204",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"The ___ voted to build a new library.\"",
+      "options": [
+        "committee",
+        "commitee",
+        "comittee",
+        "committe"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Committee\" has a double m, a double t and a double e."
+    },
+    {
+      "id": "en-4-205",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a word meaning \"from another country\"?",
+      "options": [
+        "foreign",
+        "foriegn",
+        "foregin",
+        "forein"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Foreign\" breaks the \"i before e\" rule: f-o-r-e-i-g-n."
+    },
+    {
+      "id": "en-4-206",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"She worked hard to ___ her dream.\"",
+      "options": [
+        "achieve",
+        "acheive",
+        "achive",
+        "atchieve"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Achieve\" follows \"i before e except after c\"."
+    },
+    {
+      "id": "en-4-207",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a word meaning \"to make something seem bigger than it is\"?",
+      "options": [
+        "exaggerate",
+        "exagerate",
+        "exaggarate",
+        "exxagerate"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Exaggerate\" has a double g and only one x."
+    },
+    {
+      "id": "en-4-208",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The thunder came after a flash of ___.\"",
+      "options": [
+        "lightning",
+        "lightening",
+        "litening",
+        "lighting"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Lightning\" is the flash in a storm; \"lightening\" means making lighter."
+    },
+    {
+      "id": "en-4-209",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The police finally caught the ___ thief.\"",
+      "options": [
+        "serial",
+        "cereal",
+        "serrial",
+        "cereale"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Serial\" means one after another; \"cereal\" is a breakfast food."
+    },
+    {
+      "id": "en-4-210",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The horse ate a bucket of ___.\"",
+      "options": [
+        "hay",
+        "hey",
+        "hai",
+        "haye"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Hay\" is dried grass; \"hey\" is a greeting."
+    },
+    {
+      "id": "en-4-211",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Drivers must not ___ the speed limit.\"",
+      "options": [
+        "exceed",
+        "accede",
+        "excede",
+        "exseed"
+      ],
+      "correctIndex": 0,
+      "explanation": "To \"exceed\" is to go beyond; to \"accede\" is to agree to something."
+    },
+    {
+      "id": "en-4-212",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Dogs have a very strong ___ of smell.\"",
+      "options": [
+        "sense",
+        "cents",
+        "scents",
+        "sens"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Sense\" is an ability like smell; \"cents\" are coins and \"scents\" are smells."
+    },
+    {
+      "id": "en-4-213",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the new job is correct?",
+      "options": [
+        "She was given the job.",
+        "She was gave the job.",
+        "She was give the job.",
+        "She was gived the job."
+      ],
+      "correctIndex": 0,
+      "explanation": "The passive uses \"was\" plus the past participle \"given\"."
+    },
+    {
+      "id": "en-4-214",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the test results is correct?",
+      "options": [
+        "The results were surprising.",
+        "The results was surprising.",
+        "The results is surprising.",
+        "The results be surprising."
+      ],
+      "correctIndex": 0,
+      "explanation": "The subject \"results\" is plural, so the verb is \"were\"."
+    },
+    {
+      "id": "en-4-215",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about Madrid and Seville is correct?",
+      "options": [
+        "Madrid is larger than Seville.",
+        "Madrid is more larger than Seville.",
+        "Madrid is largest than Seville.",
+        "Madrid is larger then Seville."
+      ],
+      "correctIndex": 0,
+      "explanation": "Use \"larger than\": never \"more larger\", and \"than\", not \"then\"."
+    },
+    {
+      "id": "en-4-216",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the museum visitors is correct?",
+      "options": [
+        "The number of visitors has increased.",
+        "The number of visitors have increased.",
+        "The numbers of visitor has increased.",
+        "A number of visitors has increased."
+      ],
+      "correctIndex": 0,
+      "explanation": "\"The number of\" takes a singular verb; \"a number of\" takes a plural one."
+    },
+    {
+      "id": "en-4-217",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"If you heat ice, it ___.\"",
+      "options": [
+        "melts",
+        "melted",
+        "would melt",
+        "had melted"
+      ],
+      "correctIndex": 0,
+      "explanation": "For facts that are always true we use the present: \"it melts\"."
+    },
+    {
+      "id": "en-4-218",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"Neither the pupils nor the teacher ___ ready.\"",
+      "options": [
+        "is",
+        "are",
+        "were",
+        "be"
+      ],
+      "correctIndex": 0,
+      "explanation": "With \"neither… nor\", the verb agrees with the nearer subject: \"teacher is\"."
+    },
+    {
+      "id": "en-4-219",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"He is the man ___ car was stolen.\"",
+      "options": [
+        "whose",
+        "who's",
+        "who",
+        "which"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Whose\" shows possession; \"who's\" means \"who is\"."
+    },
+    {
+      "id": "en-4-220",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"brief\"?",
+      "options": [
+        "short",
+        "long",
+        "loud",
+        "boring"
+      ],
+      "correctIndex": 0,
+      "explanation": "A brief meeting is a short one."
+    },
+    {
+      "id": "en-4-221",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"rare\"?",
+      "options": [
+        "common",
+        "unusual",
+        "raw",
+        "precious"
+      ],
+      "correctIndex": 0,
+      "explanation": "Something rare is hard to find; something common is everywhere."
+    },
+    {
+      "id": "en-4-222",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"contemporary\" mean?",
+      "options": [
+        "Belonging to the present time",
+        "Very old",
+        "Lasting a short time",
+        "Made of wood"
+      ],
+      "correctIndex": 0,
+      "explanation": "Contemporary art is art of our own time."
+    },
+    {
+      "id": "en-4-223",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"eavesdrop\" mean?",
+      "options": [
+        "To listen secretly to others",
+        "To fall from a roof",
+        "To drop something",
+        "To speak loudly"
+      ],
+      "correctIndex": 0,
+      "explanation": "To eavesdrop is to secretly listen to a private conversation."
+    },
+    {
+      "id": "en-4-224",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"to let sleeping dogs lie\" mean?",
+      "options": [
+        "To avoid stirring up an old problem",
+        "To let pets rest",
+        "To be lazy",
+        "To tell lies"
+      ],
+      "correctIndex": 0,
+      "explanation": "It means not to bring up a problem that has calmed down."
+    },
+    {
+      "id": "en-4-225",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Author is to novel as poet is to...",
+      "options": [
+        "poem",
+        "song",
+        "play",
+        "painting"
+      ],
+      "correctIndex": 0,
+      "explanation": "An author writes novels and a poet writes poems."
+    },
+    {
+      "id": "en-4-226",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Fish is to school as wolf is to...",
+      "options": [
+        "pack",
+        "flock",
+        "herd",
+        "swarm"
+      ],
+      "correctIndex": 0,
+      "explanation": "A group of fish is a school and a group of wolves is a pack."
+    },
+    {
+      "id": "en-4-227",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Seismograph is to earthquakes as barometer is to...",
+      "options": [
+        "air pressure",
+        "rain",
+        "heat",
+        "light"
+      ],
+      "correctIndex": 0,
+      "explanation": "A seismograph measures earthquakes and a barometer, air pressure."
+    },
+    {
+      "id": "en-4-228",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: Paris, Berlin, Madrid, Sydney?",
+      "options": [
+        "Sydney",
+        "Paris",
+        "Berlin",
+        "Madrid"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sydney is not a capital city; Australia's capital is Canberra."
+    },
+    {
+      "id": "en-4-229",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: kilometre, mile, litre, metre?",
+      "options": [
+        "litre",
+        "kilometre",
+        "mile",
+        "metre"
+      ],
+      "correctIndex": 0,
+      "explanation": "A litre measures volume; the others measure length."
+    },
+    {
+      "id": "en-4-230",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: shark, salmon, dolphin, tuna?",
+      "options": [
+        "dolphin",
+        "shark",
+        "salmon",
+        "tuna"
+      ],
+      "correctIndex": 0,
+      "explanation": "A dolphin is a mammal; the others are fish."
+    },
+    {
+      "id": "en-4-231",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 1, 4, 16, 64, ...",
+      "options": [
+        "256",
+        "128",
+        "100",
+        "192"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each number is four times the one before."
+    },
+    {
+      "id": "en-4-232",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 3, 6, 11, 18, 27, ...",
+      "options": [
+        "38",
+        "36",
+        "37",
+        "40"
+      ],
+      "correctIndex": 0,
+      "explanation": "Add 3, then 5, 7, 9… and now 11: 27 + 11 = 38."
+    },
+    {
+      "id": "en-4-233",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What letter comes next? A, C, F, J, ...",
+      "options": [
+        "O",
+        "N",
+        "P",
+        "M"
+      ],
+      "correctIndex": 0,
+      "explanation": "Move on 2, then 3, then 4 letters… and now 5: J + 5 = O."
+    },
+    {
+      "id": "en-4-234",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"SALT\" to make a word meaning \"final\".",
+      "options": [
+        "LAST",
+        "SLAT",
+        "LOTS",
+        "LATE"
+      ],
+      "correctIndex": 0,
+      "explanation": "S, A, L, T can spell \"last\"."
+    },
+    {
+      "id": "en-4-235",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"ANGEL\" to make a word used in geometry.",
+      "options": [
+        "ANGLE",
+        "GLEAN",
+        "ANKLE",
+        "BAGEL"
+      ],
+      "correctIndex": 0,
+      "explanation": "A, N, G, E, L can spell \"angle\"."
+    },
+    {
+      "id": "en-4-236",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which insect is hidden in \"BEETROOT\"?",
+      "options": [
+        "bee",
+        "ant",
+        "fly",
+        "moth"
+      ],
+      "correctIndex": 0,
+      "explanation": "BEE-troot has the word \"bee\" inside it."
+    },
+    {
+      "id": "en-4-237",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which animal is hidden in \"PIRATE\"?",
+      "options": [
+        "rat",
+        "cat",
+        "ape",
+        "pig"
+      ],
+      "correctIndex": 0,
+      "explanation": "pi-RAT-e has the word \"rat\" inside it."
+    },
+    {
+      "id": "en-4-238",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"alligator\"?",
+      "options": [
+        "4",
+        "3",
+        "5",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "al-li-ga-tor: four syllables."
+    },
+    {
+      "id": "en-4-239",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What has thirteen hearts but no other organs?",
+      "options": [
+        "A deck of cards",
+        "An octopus",
+        "A hospital",
+        "A valentine"
+      ],
+      "correctIndex": 0,
+      "explanation": "A deck of cards has 13 cards of hearts."
+    },
+    {
+      "id": "en-4-240",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What goes all the way around a garden but never moves?",
+      "options": [
+        "A fence",
+        "A dog",
+        "A child",
+        "A mouse"
+      ],
+      "correctIndex": 0,
+      "explanation": "A fence surrounds the garden without moving."
+    },
+    {
+      "id": "en-4-241",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "All bloops are razzies and all razzies are lazzies. Which must be true?",
+      "options": [
+        "All bloops are lazzies",
+        "All lazzies are bloops",
+        "No bloops are lazzies",
+        "All lazzies are razzies"
+      ],
+      "correctIndex": 0,
+      "explanation": "If every bloop is a razzie and every razzie is a lazzie, every bloop is a lazzie."
+    },
+    {
+      "id": "en-4-242",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What is the chemical symbol for oxygen?",
+      "options": [
+        "O",
+        "Ox",
+        "Og",
+        "Om"
+      ],
+      "correctIndex": 0,
+      "explanation": "Oxygen is written with a single capital O."
+    },
+    {
+      "id": "en-4-243",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which planet is famous for its Great Red Spot?",
+      "options": [
+        "Jupiter",
+        "Mars",
+        "Saturn",
+        "Neptune"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Great Red Spot is a giant storm on Jupiter."
+    },
+    {
+      "id": "en-4-244",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which part of the eye controls how much light enters it?",
+      "options": [
+        "The iris",
+        "The lens",
+        "The retina",
+        "The eyelash"
+      ],
+      "correctIndex": 0,
+      "explanation": "The coloured iris makes the pupil bigger or smaller."
+    },
+    {
+      "id": "en-4-245",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Mexico?",
+      "options": [
+        "Mexico City",
+        "Cancún",
+        "Guadalajara",
+        "Lima"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mexico City is the capital of Mexico."
+    },
+    {
+      "id": "en-4-246",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which mountain range is often seen as the border between Europe and Asia?",
+      "options": [
+        "The Urals",
+        "The Alps",
+        "The Andes",
+        "The Pyrenees"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Ural Mountains, in Russia, divide Europe from Asia."
+    },
+    {
+      "id": "en-4-247",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "In which country is Mount Kilimanjaro?",
+      "options": [
+        "Tanzania",
+        "Kenya",
+        "Egypt",
+        "South Africa"
+      ],
+      "correctIndex": 0,
+      "explanation": "Kilimanjaro, Africa's highest mountain, is in Tanzania."
+    },
+    {
+      "id": "en-4-248",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "In which year did the First World War begin?",
+      "options": [
+        "1914",
+        "1918",
+        "1939",
+        "1905"
+      ],
+      "correctIndex": 0,
+      "explanation": "The First World War began in 1914 and ended in 1918."
+    },
+    {
+      "id": "en-4-249",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Who first reached the top of Everest with Tenzing Norgay in 1953?",
+      "options": [
+        "Edmund Hillary",
+        "Neil Armstrong",
+        "Roald Amundsen",
+        "George Mallory"
+      ],
+      "correctIndex": 0,
+      "explanation": "Edmund Hillary and Tenzing Norgay reached the summit in 1953."
+    },
+    {
+      "id": "en-4-250",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Who wrote \"The Little Prince\"?",
+      "options": [
+        "Antoine de Saint-Exupéry",
+        "Jules Verne",
+        "Victor Hugo",
+        "Albert Camus"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"The Little Prince\" was written by Antoine de Saint-Exupéry in 1943."
     }
   ]
 }

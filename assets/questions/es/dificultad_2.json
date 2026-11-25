@@ -2443,7 +2443,7 @@
       "id": "es-2-175",
       "category": "homofonos",
       "type": "homophones",
-      "prompt": "Completa: «Mi abuela me ___ un jersey de lana.»",
+      "prompt": "Completa: «Mi abuela me ___ un botón en la camisa.»",
       "options": [
         "cosió",
         "coció",
@@ -2630,7 +2630,7 @@
         "veía",
         "ve",
         "verá",
-        "vio"
+        "veremos"
       ],
       "correctIndex": 0,
       "explanation": "Son dos acciones a la vez en el pasado: «leía» y «veía»."

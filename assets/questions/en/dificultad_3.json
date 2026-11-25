@@ -2830,6 +2830,678 @@
       ],
       "correctIndex": 0,
       "explanation": "It means taking on a task that is too big for you."
+    },
+    {
+      "id": "en-3-203",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a building where films are shown?",
+      "options": [
+        "cinema",
+        "sinema",
+        "cinemma",
+        "cinama"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Cinema\" starts with a c that sounds like s."
+    },
+    {
+      "id": "en-3-204",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"The ___ forecast says it will rain.\"",
+      "options": [
+        "weather",
+        "whether",
+        "wether",
+        "weathre"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Weather\" is about rain and sun; \"whether\" means \"if\"."
+    },
+    {
+      "id": "en-3-205",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the eighth month?",
+      "options": [
+        "August",
+        "Agust",
+        "Augost",
+        "Augusst"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"August\" is spelled A-u-g-u-s-t, with a capital letter."
+    },
+    {
+      "id": "en-3-206",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"I was ___ to see my old friend.\"",
+      "options": [
+        "delighted",
+        "dilighted",
+        "delited",
+        "delightted"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Delighted\" has the -igh- spelling, like \"light\"."
+    },
+    {
+      "id": "en-3-207",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of a person who travels into space?",
+      "options": [
+        "astronaut",
+        "astronot",
+        "astranaut",
+        "astronought"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Astronaut\" comes from Greek words for \"star\" and \"sailor\"."
+    },
+    {
+      "id": "en-3-208",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I don't know ___ to laugh or cry.\"",
+      "options": [
+        "whether",
+        "weather",
+        "wether",
+        "wheather"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Whether\" means \"if\"; \"weather\" is rain or sunshine."
+    },
+    {
+      "id": "en-3-209",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"She has a ___ throat and cannot sing.\"",
+      "options": [
+        "sore",
+        "saw",
+        "soar",
+        "sor"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Sore\" means painful."
+    },
+    {
+      "id": "en-3-210",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The eagle began to ___ above the hills.\"",
+      "options": [
+        "soar",
+        "sore",
+        "saw",
+        "sower"
+      ],
+      "correctIndex": 0,
+      "explanation": "To \"soar\" is to fly high in the sky."
+    },
+    {
+      "id": "en-3-211",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"A ___ is a female deer.\"",
+      "options": [
+        "doe",
+        "dough",
+        "do",
+        "doh"
+      ],
+      "correctIndex": 0,
+      "explanation": "A \"doe\" is a female deer; \"dough\" is used to make bread."
+    },
+    {
+      "id": "en-3-212",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Knead the ___ before you bake the bread.\"",
+      "options": [
+        "dough",
+        "doe",
+        "do",
+        "dow"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Dough\" is the mixture of flour and water that becomes bread."
+    },
+    {
+      "id": "en-3-213",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about visiting Rome is correct?",
+      "options": [
+        "We have been to Rome twice.",
+        "We have went to Rome twice.",
+        "We has been to Rome twice.",
+        "We been to Rome twice."
+      ],
+      "correctIndex": 0,
+      "explanation": "The present perfect is \"have been\": \"we have been\"."
+    },
+    {
+      "id": "en-3-214",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the lost keys is correct?",
+      "options": [
+        "I can't find my keys anywhere.",
+        "I can't find my keys nowhere.",
+        "I can't find my key's anywhere.",
+        "I can't found my keys anywhere."
+      ],
+      "correctIndex": 0,
+      "explanation": "Avoid double negatives: \"can't ... anywhere\", not \"can't ... nowhere\"."
+    },
+    {
+      "id": "en-3-215",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the broken vase is correct?",
+      "options": [
+        "The vase was broken by the cat.",
+        "The vase was broke by the cat.",
+        "The vase was breaked by the cat.",
+        "The vase broken by the cat was."
+      ],
+      "correctIndex": 0,
+      "explanation": "The past participle of \"break\" is \"broken\"."
+    },
+    {
+      "id": "en-3-216",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about staying at home is correct?",
+      "options": [
+        "I should have stayed at home.",
+        "I should of stayed at home.",
+        "I should have stay at home.",
+        "I should has stayed at home."
+      ],
+      "correctIndex": 0,
+      "explanation": "It is \"should have\", not \"should of\": they only sound alike."
+    },
+    {
+      "id": "en-3-217",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"If I had wings, I ___ fly to the moon.\"",
+      "options": [
+        "would",
+        "will",
+        "can",
+        "did"
+      ],
+      "correctIndex": 0,
+      "explanation": "An imaginary situation with \"if I had\" takes \"would\"."
+    },
+    {
+      "id": "en-3-218",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"She has lived here ___ she was a child.\"",
+      "options": [
+        "since",
+        "for",
+        "from",
+        "during"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Since\" marks the starting point of something that continues."
+    },
+    {
+      "id": "en-3-219",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"This bag is ___ heavy for me to carry.\"",
+      "options": [
+        "too",
+        "enough",
+        "much",
+        "many"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Too heavy to carry\" means more heavy than I can manage."
+    },
+    {
+      "id": "en-3-220",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"By the time I got home, everyone ___ to bed.\"",
+      "options": [
+        "had gone",
+        "has gone",
+        "goes",
+        "will go"
+      ],
+      "correctIndex": 0,
+      "explanation": "The past perfect \"had gone\" shows it happened before I got home."
+    },
+    {
+      "id": "en-3-221",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"accurate\"?",
+      "options": [
+        "correct",
+        "careless",
+        "quick",
+        "rough"
+      ],
+      "correctIndex": 0,
+      "explanation": "Something accurate is correct and exact."
+    },
+    {
+      "id": "en-3-222",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"guilty\"?",
+      "options": [
+        "innocent",
+        "sorry",
+        "angry",
+        "proud"
+      ],
+      "correctIndex": 0,
+      "explanation": "If you are not guilty, you are innocent."
+    },
+    {
+      "id": "en-3-223",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"hesitate\" mean?",
+      "options": [
+        "To pause before acting",
+        "To run quickly",
+        "To shout loudly",
+        "To laugh"
+      ],
+      "correctIndex": 0,
+      "explanation": "When you hesitate, you stop for a moment because you are unsure."
+    },
+    {
+      "id": "en-3-224",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"to be in the same boat\" mean?",
+      "options": [
+        "To share the same difficult situation",
+        "To go sailing",
+        "To be very wet",
+        "To travel together"
+      ],
+      "correctIndex": 0,
+      "explanation": "People \"in the same boat\" face the same problem."
+    },
+    {
+      "id": "en-3-225",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Kitten is to cat as cub is to...",
+      "options": [
+        "bear",
+        "dog",
+        "cow",
+        "horse"
+      ],
+      "correctIndex": 0,
+      "explanation": "A kitten is a young cat and a cub is a young bear."
+    },
+    {
+      "id": "en-3-226",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Library is to books as gallery is to...",
+      "options": [
+        "paintings",
+        "films",
+        "animals",
+        "plants"
+      ],
+      "correctIndex": 0,
+      "explanation": "Libraries hold books and galleries show paintings."
+    },
+    {
+      "id": "en-3-227",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Cold is to freeze as hot is to...",
+      "options": [
+        "boil",
+        "cool",
+        "rain",
+        "frost"
+      ],
+      "correctIndex": 0,
+      "explanation": "Very cold water freezes and very hot water boils."
+    },
+    {
+      "id": "en-3-228",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: Mars, Jupiter, Sun, Venus?",
+      "options": [
+        "Sun",
+        "Mars",
+        "Jupiter",
+        "Venus"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Sun is a star; the others are planets."
+    },
+    {
+      "id": "en-3-229",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: carrot, potato, onion, apple?",
+      "options": [
+        "apple",
+        "carrot",
+        "potato",
+        "onion"
+      ],
+      "correctIndex": 0,
+      "explanation": "An apple is a fruit; the others are vegetables."
+    },
+    {
+      "id": "en-3-230",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: whisper, shout, yell, scream?",
+      "options": [
+        "whisper",
+        "shout",
+        "yell",
+        "scream"
+      ],
+      "correctIndex": 0,
+      "explanation": "Whispering is quiet; the others are loud."
+    },
+    {
+      "id": "en-3-231",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 1, 4, 7, 10, ...",
+      "options": [
+        "13",
+        "12",
+        "14",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "The numbers go up by 3 each time."
+    },
+    {
+      "id": "en-3-232",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 64, 32, 16, 8, ...",
+      "options": [
+        "4",
+        "2",
+        "6",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each number is half of the one before."
+    },
+    {
+      "id": "en-3-233",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 2, 4, 8, 14, 22, ...",
+      "options": [
+        "32",
+        "30",
+        "28",
+        "36"
+      ],
+      "correctIndex": 0,
+      "explanation": "Add 2, then 4, 6, 8… and now 10: 22 + 10 = 32."
+    },
+    {
+      "id": "en-3-234",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"SPOT\" to make a word for cooking containers.",
+      "options": [
+        "POTS",
+        "TOPS",
+        "STOP",
+        "POST"
+      ],
+      "correctIndex": 0,
+      "explanation": "S, P, O, T can spell \"pots\", which we cook in."
+    },
+    {
+      "id": "en-3-235",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange \"NOTE\" to make a word for the quality of a sound.",
+      "options": [
+        "TONE",
+        "TUNE",
+        "SONG",
+        "BEAT"
+      ],
+      "correctIndex": 0,
+      "explanation": "N, O, T, E can also spell \"tone\"."
+    },
+    {
+      "id": "en-3-236",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which bird is hidden in \"THEN\"?",
+      "options": [
+        "hen",
+        "owl",
+        "crow",
+        "duck"
+      ],
+      "correctIndex": 0,
+      "explanation": "t-HEN has the word \"hen\" inside it."
+    },
+    {
+      "id": "en-3-237",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which body part is hidden in \"SHIPS\"?",
+      "options": [
+        "hip",
+        "lip",
+        "arm",
+        "toe"
+      ],
+      "correctIndex": 0,
+      "explanation": "s-HIP-s has the word \"hip\" inside it."
+    },
+    {
+      "id": "en-3-238",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"kangaroo\"?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "kan-ga-roo: three syllables."
+    },
+    {
+      "id": "en-3-239",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What can you break without touching it?",
+      "options": [
+        "A promise",
+        "A glass",
+        "A stick",
+        "An egg"
+      ],
+      "correctIndex": 0,
+      "explanation": "You break a promise by not doing what you said."
+    },
+    {
+      "id": "en-3-240",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "I have a head and a foot but no body, and you sleep on me. What am I?",
+      "options": [
+        "A bed",
+        "A pillow",
+        "A sock",
+        "A shoe"
+      ],
+      "correctIndex": 0,
+      "explanation": "A bed has a head end and a foot end."
+    },
+    {
+      "id": "en-3-241",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Sam is older than Kim but younger than Joe. Who is the oldest?",
+      "options": [
+        "Joe",
+        "Sam",
+        "Kim",
+        "Nobody"
+      ],
+      "correctIndex": 0,
+      "explanation": "Joe is older than Sam, and Sam is older than Kim."
+    },
+    {
+      "id": "en-3-242",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What is the largest organ of the human body?",
+      "options": [
+        "The skin",
+        "The liver",
+        "The heart",
+        "The brain"
+      ],
+      "correctIndex": 0,
+      "explanation": "The skin covers the whole body: it is our largest organ."
+    },
+    {
+      "id": "en-3-243",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which gas do plants give out that we need to breathe?",
+      "options": [
+        "Oxygen",
+        "Carbon dioxide",
+        "Nitrogen",
+        "Helium"
+      ],
+      "correctIndex": 0,
+      "explanation": "Plants take in carbon dioxide and give out oxygen."
+    },
+    {
+      "id": "en-3-244",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What type of animal is a frog?",
+      "options": [
+        "An amphibian",
+        "A reptile",
+        "A mammal",
+        "A fish"
+      ],
+      "correctIndex": 0,
+      "explanation": "Frogs live in water when young and on land as adults: they are amphibians."
+    },
+    {
+      "id": "en-3-245",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Germany?",
+      "options": [
+        "Berlin",
+        "Munich",
+        "Vienna",
+        "Hamburg"
+      ],
+      "correctIndex": 0,
+      "explanation": "Berlin is the capital of Germany."
+    },
+    {
+      "id": "en-3-246",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "In which country is the city of Venice?",
+      "options": [
+        "Italy",
+        "France",
+        "Greece",
+        "Spain"
+      ],
+      "correctIndex": 0,
+      "explanation": "Venice, the city of canals, is in Italy."
+    },
+    {
+      "id": "en-3-247",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Russia?",
+      "options": [
+        "Moscow",
+        "Saint Petersburg",
+        "Kyiv",
+        "Warsaw"
+      ],
+      "correctIndex": 0,
+      "explanation": "Moscow is the capital of Russia."
+    },
+    {
+      "id": "en-3-248",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Which ancient people built the Parthenon in Athens?",
+      "options": [
+        "The Greeks",
+        "The Romans",
+        "The Egyptians",
+        "The Vikings"
+      ],
+      "correctIndex": 0,
+      "explanation": "The ancient Greeks built the Parthenon as a temple to Athena."
+    },
+    {
+      "id": "en-3-249",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "Which sport uses a bat and four bases?",
+      "options": [
+        "Baseball",
+        "Rugby",
+        "Hockey",
+        "Volleyball"
+      ],
+      "correctIndex": 0,
+      "explanation": "In baseball, players hit the ball and run around the bases."
+    },
+    {
+      "id": "en-3-250",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "In which city is the Louvre museum?",
+      "options": [
+        "Paris",
+        "London",
+        "Rome",
+        "Madrid"
+      ],
+      "correctIndex": 0,
+      "explanation": "The Louvre, in Paris, is home to the \"Mona Lisa\"."
     }
   ]
 }

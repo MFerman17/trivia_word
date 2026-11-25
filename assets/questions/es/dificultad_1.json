@@ -1466,9 +1466,9 @@
       "prompt": "Tengo cuatro patas y no puedo andar, tengo cabecera y no sé hablar. ¿Qué soy?",
       "options": [
         "La cama",
-        "La mesa",
+        "El armario",
         "El perro",
-        "La silla"
+        "La lámpara"
       ],
       "correctIndex": 0,
       "explanation": "La cama tiene patas y una cabecera, pero ni anda ni habla."

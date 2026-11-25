@@ -2228,6 +2228,1280 @@
       ],
       "correctIndex": 0,
       "explanation": "W-O-N also spells N-O-W."
+    },
+    {
+      "id": "en-2-160",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the day after Thursday?",
+      "options": [
+        "Friday",
+        "Firday",
+        "Fryday",
+        "Fridey"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Friday\" is spelled F-r-i-d-a-y."
+    },
+    {
+      "id": "en-2-161",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the number 12?",
+      "options": [
+        "twelve",
+        "twelf",
+        "twelv",
+        "tweleve"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Twelve\" ends in -ve, like \"five\"."
+    },
+    {
+      "id": "en-2-162",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"My little ___ is five years old.\"",
+      "options": [
+        "brother",
+        "bruther",
+        "brothre",
+        "brather"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Brother\" is spelled with an o, even though it sounds like \"u\"."
+    },
+    {
+      "id": "en-2-163",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the animal with a very long neck?",
+      "options": [
+        "giraffe",
+        "girafe",
+        "jiraffe",
+        "giraf"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Giraffe\" has one r, a double f and an e at the end."
+    },
+    {
+      "id": "en-2-164",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"We bought fresh bread at the ___.\"",
+      "options": [
+        "bakery",
+        "bakary",
+        "bakerry",
+        "bakeri"
+      ],
+      "correctIndex": 0,
+      "explanation": "A \"bakery\" is where a baker works: bake + -ery."
+    },
+    {
+      "id": "en-2-165",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the meal you eat in the evening?",
+      "options": [
+        "dinner",
+        "diner",
+        "dinnar",
+        "dinnerr"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Dinner\" has a double n; a \"diner\" is a small restaurant."
+    },
+    {
+      "id": "en-2-166",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"Please be ___ with that glass.\"",
+      "options": [
+        "careful",
+        "carefull",
+        "carful",
+        "carefool"
+      ],
+      "correctIndex": 0,
+      "explanation": "The ending -ful has only one l: careful, helpful, hopeful."
+    },
+    {
+      "id": "en-2-167",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the people who teach at school?",
+      "options": [
+        "teachers",
+        "teechers",
+        "teachors",
+        "techers"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Teachers\" comes from \"teach\" + -er + -s."
+    },
+    {
+      "id": "en-2-168",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"I ___ my grandma yesterday.\"",
+      "options": [
+        "visited",
+        "visitted",
+        "vissited",
+        "visted"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Visit\" + -ed: the t is not doubled because the stress is on \"vis\"."
+    },
+    {
+      "id": "en-2-169",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the opposite of \"easy\"?",
+      "options": [
+        "difficult",
+        "dificult",
+        "difficalt",
+        "diffikult"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Difficult\" has a double f."
+    },
+    {
+      "id": "en-2-170",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"We swam in the ___ on holiday.\"",
+      "options": [
+        "sea",
+        "see",
+        "seat",
+        "sees"
+      ],
+      "correctIndex": 0,
+      "explanation": "The \"sea\" is salt water; to \"see\" is to look."
+    },
+    {
+      "id": "en-2-171",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Can you ___ the ship on the horizon?\"",
+      "options": [
+        "see",
+        "sea",
+        "sie",
+        "cee"
+      ],
+      "correctIndex": 0,
+      "explanation": "To \"see\" is to look with your eyes."
+    },
+    {
+      "id": "en-2-172",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The ___ of my shoe came off.\"",
+      "options": [
+        "sole",
+        "soul",
+        "sol",
+        "sowl"
+      ],
+      "correctIndex": 0,
+      "explanation": "The \"sole\" is the bottom of a shoe; the \"soul\" is the spirit."
+    },
+    {
+      "id": "en-2-173",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"This present is ___ you.\"",
+      "options": [
+        "for",
+        "four",
+        "fore",
+        "fur"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"For\" shows who something is meant for; \"four\" is the number 4."
+    },
+    {
+      "id": "en-2-174",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The cat has ___ kittens.\"",
+      "options": [
+        "four",
+        "for",
+        "fore",
+        "fower"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Four\" is the number 4."
+    },
+    {
+      "id": "en-2-175",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"We had to ___ for the bus in the rain.\"",
+      "options": [
+        "wait",
+        "weight",
+        "wate",
+        "whait"
+      ],
+      "correctIndex": 0,
+      "explanation": "To \"wait\" is to stay until something happens; \"weight\" is how heavy something is."
+    },
+    {
+      "id": "en-2-176",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"The baby's ___ was three kilos.\"",
+      "options": [
+        "weight",
+        "wait",
+        "wieght",
+        "whait"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Weight\" is how heavy something is."
+    },
+    {
+      "id": "en-2-177",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"There is a ___ in my sock.\"",
+      "options": [
+        "hole",
+        "whole",
+        "holl",
+        "hoel"
+      ],
+      "correctIndex": 0,
+      "explanation": "A \"hole\" is a gap; \"whole\" means complete."
+    },
+    {
+      "id": "en-2-178",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the biscuits is correct?",
+      "options": [
+        "There are two biscuits left.",
+        "There is two biscuits left.",
+        "There are two biscuit left.",
+        "There two biscuits are left."
+      ],
+      "correctIndex": 0,
+      "explanation": "With a plural, use \"there are\": \"there are two biscuits\"."
+    },
+    {
+      "id": "en-2-179",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about going swimming is correct?",
+      "options": [
+        "We went swimming yesterday.",
+        "We goed swimming yesterday.",
+        "We go swimming yesterday.",
+        "We wented swimming yesterday."
+      ],
+      "correctIndex": 0,
+      "explanation": "The past of \"go\" is \"went\"."
+    },
+    {
+      "id": "en-2-180",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the sheep is correct?",
+      "options": [
+        "The sheep are in the field.",
+        "The sheeps are in the field.",
+        "The sheep is in the fields are.",
+        "The sheepes are in the field."
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Sheep\" is the same in singular and plural."
+    },
+    {
+      "id": "en-2-181",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the box is correct?",
+      "options": [
+        "The box is heavier than the bag.",
+        "The box is more heavy than the bag.",
+        "The box is heavyer than the bag.",
+        "The box is heavier then the bag."
+      ],
+      "correctIndex": 0,
+      "explanation": "Heavy becomes \"heavier\", and comparisons use \"than\"."
+    },
+    {
+      "id": "en-2-182",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about spiders is correct?",
+      "options": [
+        "She doesn't like spiders.",
+        "She don't like spiders.",
+        "She doesn't likes spiders.",
+        "She not like spiders."
+      ],
+      "correctIndex": 0,
+      "explanation": "With \"she\", use \"doesn't\" followed by the plain verb \"like\"."
+    },
+    {
+      "id": "en-2-183",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about the party is correct?",
+      "options": [
+        "Everyone was having fun.",
+        "Everyone were having fun.",
+        "Everyone having fun was.",
+        "Everyone was have fun."
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Everyone\" is singular, so it takes \"was\"."
+    },
+    {
+      "id": "en-2-184",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"I have never ___ a real elephant.\"",
+      "options": [
+        "seen",
+        "saw",
+        "see",
+        "seeing"
+      ],
+      "correctIndex": 0,
+      "explanation": "After \"have\", use the past participle: \"have seen\"."
+    },
+    {
+      "id": "en-2-185",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"This is ___ than I thought.\"",
+      "options": [
+        "easier",
+        "easyer",
+        "more easy",
+        "easiest"
+      ],
+      "correctIndex": 0,
+      "explanation": "Easy becomes \"easier\" when comparing two things."
+    },
+    {
+      "id": "en-2-186",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"We go to the beach ___ summer.\"",
+      "options": [
+        "in",
+        "on",
+        "at",
+        "by"
+      ],
+      "correctIndex": 0,
+      "explanation": "We use \"in\" with seasons: in summer, in winter."
+    },
+    {
+      "id": "en-2-187",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"There isn't ___ milk in the fridge.\"",
+      "options": [
+        "much",
+        "many",
+        "a",
+        "few"
+      ],
+      "correctIndex": 0,
+      "explanation": "Milk cannot be counted, so we use \"much\"."
+    },
+    {
+      "id": "en-2-188",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"He ___ football every Saturday.\"",
+      "options": [
+        "plays",
+        "play",
+        "playing",
+        "to play"
+      ],
+      "correctIndex": 0,
+      "explanation": "With \"he\" in the present, the verb takes -s: \"he plays\"."
+    },
+    {
+      "id": "en-2-189",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"Look! It ___ snowing.\"",
+      "options": [
+        "is",
+        "are",
+        "am",
+        "be"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"It is snowing\": \"it\" takes \"is\"."
+    },
+    {
+      "id": "en-2-190",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"scared\"?",
+      "options": [
+        "afraid",
+        "brave",
+        "happy",
+        "angry"
+      ],
+      "correctIndex": 0,
+      "explanation": "Scared and afraid mean the same."
+    },
+    {
+      "id": "en-2-191",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"heavy\"?",
+      "options": [
+        "light",
+        "strong",
+        "thick",
+        "hard"
+      ],
+      "correctIndex": 0,
+      "explanation": "Something heavy weighs a lot; something light weighs little."
+    },
+    {
+      "id": "en-2-192",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"rich\"?",
+      "options": [
+        "wealthy",
+        "poor",
+        "kind",
+        "busy"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rich and wealthy both mean having a lot of money."
+    },
+    {
+      "id": "en-2-193",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"polite\"?",
+      "options": [
+        "rude",
+        "nice",
+        "kind",
+        "gentle"
+      ],
+      "correctIndex": 0,
+      "explanation": "A polite person has good manners; a rude person does not."
+    },
+    {
+      "id": "en-2-194",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"hurry\"?",
+      "options": [
+        "rush",
+        "wait",
+        "rest",
+        "stop"
+      ],
+      "correctIndex": 0,
+      "explanation": "To hurry is to rush."
+    },
+    {
+      "id": "en-2-195",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"win\"?",
+      "options": [
+        "lose",
+        "play",
+        "try",
+        "score"
+      ],
+      "correctIndex": 0,
+      "explanation": "In a game you either win or lose."
+    },
+    {
+      "id": "en-2-196",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is an \"author\"?",
+      "options": [
+        "A person who writes books",
+        "A person who paints",
+        "A person who sings",
+        "A person who cooks"
+      ],
+      "correctIndex": 0,
+      "explanation": "An author writes books or stories."
+    },
+    {
+      "id": "en-2-197",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"brave\" mean?",
+      "options": [
+        "Not afraid of danger",
+        "Very tired",
+        "Very hungry",
+        "Not very tall"
+      ],
+      "correctIndex": 0,
+      "explanation": "A brave person faces danger without running away."
+    },
+    {
+      "id": "en-2-198",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is a \"calendar\"?",
+      "options": [
+        "A chart of days and months",
+        "A kind of clock",
+        "A cooking pot",
+        "A school book"
+      ],
+      "correctIndex": 0,
+      "explanation": "A calendar shows the days, weeks and months of the year."
+    },
+    {
+      "id": "en-2-199",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What does \"thirsty\" mean?",
+      "options": [
+        "Wanting a drink",
+        "Wanting to sleep",
+        "Feeling cold",
+        "Feeling sad"
+      ],
+      "correctIndex": 0,
+      "explanation": "When you are thirsty, you need something to drink."
+    },
+    {
+      "id": "en-2-200",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Complete the saying: \"Two wrongs don't make a ___.\"",
+      "options": [
+        "right",
+        "wrong",
+        "mistake",
+        "rule"
+      ],
+      "correctIndex": 0,
+      "explanation": "Doing something bad back to someone does not fix the first bad thing."
+    },
+    {
+      "id": "en-2-201",
+      "category": "refranes",
+      "type": "multipleChoice",
+      "prompt": "What does \"as busy as a bee\" mean?",
+      "options": [
+        "Very busy",
+        "Very angry",
+        "Very sleepy",
+        "Very small"
+      ],
+      "correctIndex": 0,
+      "explanation": "Bees work all day long, so a very busy person is \"as busy as a bee\"."
+    },
+    {
+      "id": "en-2-202",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Puppy is to dog as calf is to...",
+      "options": [
+        "cow",
+        "horse",
+        "sheep",
+        "goat"
+      ],
+      "correctIndex": 0,
+      "explanation": "A puppy is a young dog and a calf is a young cow."
+    },
+    {
+      "id": "en-2-203",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Up is to down as in is to...",
+      "options": [
+        "out",
+        "over",
+        "on",
+        "under"
+      ],
+      "correctIndex": 0,
+      "explanation": "Up and down are opposites, and so are in and out."
+    },
+    {
+      "id": "en-2-204",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Book is to read as song is to...",
+      "options": [
+        "sing",
+        "write",
+        "draw",
+        "cook"
+      ],
+      "correctIndex": 0,
+      "explanation": "We read books and sing songs."
+    },
+    {
+      "id": "en-2-205",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Hand is to finger as foot is to...",
+      "options": [
+        "toe",
+        "knee",
+        "heel",
+        "leg"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fingers are on hands and toes are on feet."
+    },
+    {
+      "id": "en-2-206",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Breakfast is to morning as dinner is to...",
+      "options": [
+        "evening",
+        "noon",
+        "dawn",
+        "lunch"
+      ],
+      "correctIndex": 0,
+      "explanation": "We eat breakfast in the morning and dinner in the evening."
+    },
+    {
+      "id": "en-2-207",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: lion, tiger, cheetah, cow?",
+      "options": [
+        "cow",
+        "lion",
+        "tiger",
+        "cheetah"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lions, tigers and cheetahs are wild cats; a cow is not."
+    },
+    {
+      "id": "en-2-208",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: January, March, Sunday, May?",
+      "options": [
+        "Sunday",
+        "January",
+        "March",
+        "May"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sunday is a day; the others are months."
+    },
+    {
+      "id": "en-2-209",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: red, yellow, happy, blue?",
+      "options": [
+        "happy",
+        "red",
+        "yellow",
+        "blue"
+      ],
+      "correctIndex": 0,
+      "explanation": "Happy is a feeling; the others are colours."
+    },
+    {
+      "id": "en-2-210",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which word does NOT belong: spoon, fork, knife, pillow?",
+      "options": [
+        "pillow",
+        "spoon",
+        "fork",
+        "knife"
+      ],
+      "correctIndex": 0,
+      "explanation": "A pillow is for sleeping; the others are cutlery."
+    },
+    {
+      "id": "en-2-211",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which number does NOT belong: 2, 4, 9, 8?",
+      "options": [
+        "9",
+        "2",
+        "4",
+        "8"
+      ],
+      "correctIndex": 0,
+      "explanation": "9 is odd; the others are even."
+    },
+    {
+      "id": "en-2-212",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 4, 8, 12, 16, ...",
+      "options": [
+        "20",
+        "18",
+        "24",
+        "22"
+      ],
+      "correctIndex": 0,
+      "explanation": "The numbers go up by 4 each time."
+    },
+    {
+      "id": "en-2-213",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 50, 40, 30, 20, ...",
+      "options": [
+        "10",
+        "15",
+        "0",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "The numbers go down by 10 each time."
+    },
+    {
+      "id": "en-2-214",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 3, 5, 7, 9, ...",
+      "options": [
+        "11",
+        "10",
+        "12",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "The numbers go up by 2 each time."
+    },
+    {
+      "id": "en-2-215",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What letter comes next? Z, Y, X, W, ...",
+      "options": [
+        "V",
+        "U",
+        "A",
+        "T"
+      ],
+      "correctIndex": 0,
+      "explanation": "The alphabet is going backwards: Z, Y, X, W, V."
+    },
+    {
+      "id": "en-2-216",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 2, 20, 200, ...",
+      "options": [
+        "2000",
+        "400",
+        "220",
+        "2200"
+      ],
+      "correctIndex": 0,
+      "explanation": "Each number is ten times the one before."
+    },
+    {
+      "id": "en-2-217",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange the letters of \"TAR\" to make an animal.",
+      "options": [
+        "RAT",
+        "CAT",
+        "BAT",
+        "ANT"
+      ],
+      "correctIndex": 0,
+      "explanation": "T, A, R can be rearranged to spell \"rat\"."
+    },
+    {
+      "id": "en-2-218",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange the letters of \"ARM\" to make a male sheep.",
+      "options": [
+        "RAM",
+        "EWE",
+        "GOAT",
+        "LAMB"
+      ],
+      "correctIndex": 0,
+      "explanation": "A male sheep is a \"ram\": R, A, M."
+    },
+    {
+      "id": "en-2-219",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange the letters of \"POTS\" to make a word meaning \"halt\".",
+      "options": [
+        "STOP",
+        "SPOT",
+        "TOPS",
+        "POST"
+      ],
+      "correctIndex": 0,
+      "explanation": "P, O, T, S can spell \"stop\", which means halt."
+    },
+    {
+      "id": "en-2-220",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which animal is hidden in \"BRAT\"?",
+      "options": [
+        "rat",
+        "cat",
+        "bat",
+        "ant"
+      ],
+      "correctIndex": 0,
+      "explanation": "b-RAT has the word \"rat\" inside it."
+    },
+    {
+      "id": "en-2-221",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which body part is hidden in \"ARMY\"?",
+      "options": [
+        "arm",
+        "leg",
+        "toe",
+        "ear"
+      ],
+      "correctIndex": 0,
+      "explanation": "ARM-y starts with the word \"arm\"."
+    },
+    {
+      "id": "en-2-222",
+      "category": "palabra_oculta",
+      "type": "multipleChoice",
+      "prompt": "Which number is hidden in \"BONE\"?",
+      "options": [
+        "one",
+        "two",
+        "six",
+        "ten"
+      ],
+      "correctIndex": 0,
+      "explanation": "b-ONE has the word \"one\" inside it."
+    },
+    {
+      "id": "en-2-223",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"butterfly\"?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "but-ter-fly: three syllables."
+    },
+    {
+      "id": "en-2-224",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"umbrella\"?",
+      "options": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "um-brel-la: three syllables."
+    },
+    {
+      "id": "en-2-225",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "Which word has exactly one syllable?",
+      "options": [
+        "dog",
+        "apple",
+        "tiger",
+        "pencil"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Dog\" is said in one beat; the others have two."
+    },
+    {
+      "id": "en-2-226",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What gets bigger the more you take away from it?",
+      "options": [
+        "A hole",
+        "A cake",
+        "A pile of sand",
+        "A balloon"
+      ],
+      "correctIndex": 0,
+      "explanation": "The more you dig out of a hole, the bigger it gets."
+    },
+    {
+      "id": "en-2-227",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What has a bark but no bite?",
+      "options": [
+        "A tree",
+        "A dog",
+        "A wolf",
+        "A fox"
+      ],
+      "correctIndex": 0,
+      "explanation": "A tree has bark on its trunk, but it cannot bite."
+    },
+    {
+      "id": "en-2-228",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What goes up when the rain comes down?",
+      "options": [
+        "An umbrella",
+        "A kite",
+        "A balloon",
+        "A bird"
+      ],
+      "correctIndex": 0,
+      "explanation": "We put our umbrellas up when it rains."
+    },
+    {
+      "id": "en-2-229",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "Lily is younger than Max. Max is younger than Zoe. Who is the youngest?",
+      "options": [
+        "Lily",
+        "Max",
+        "Zoe",
+        "They are the same age"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lily is younger than Max, who is younger than Zoe, so Lily is the youngest."
+    },
+    {
+      "id": "en-2-230",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "All cats have whiskers. Tom is a cat. What do we know?",
+      "options": [
+        "Tom has whiskers",
+        "Tom is black",
+        "Tom likes fish",
+        "Tom is old"
+      ],
+      "correctIndex": 0,
+      "explanation": "If all cats have whiskers, Tom has whiskers too."
+    },
+    {
+      "id": "en-2-231",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "A spider has 8 legs. How many legs do 2 spiders have?",
+      "options": [
+        "16",
+        "10",
+        "8",
+        "18"
+      ],
+      "correctIndex": 0,
+      "explanation": "8 + 8 = 16 legs."
+    },
+    {
+      "id": "en-2-232",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "Jack has 25 marbles and loses 9. How many does he have left?",
+      "options": [
+        "16",
+        "14",
+        "34",
+        "15"
+      ],
+      "correctIndex": 0,
+      "explanation": "25 − 9 = 16 marbles."
+    },
+    {
+      "id": "en-2-233",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which planet is closest to the Sun?",
+      "options": [
+        "Mercury",
+        "Venus",
+        "Earth",
+        "Mars"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mercury is the closest planet to the Sun."
+    },
+    {
+      "id": "en-2-234",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What do we call an animal that eats only meat?",
+      "options": [
+        "A carnivore",
+        "A herbivore",
+        "An omnivore",
+        "A vegetarian"
+      ],
+      "correctIndex": 0,
+      "explanation": "Carnivores, like lions, eat meat."
+    },
+    {
+      "id": "en-2-235",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "How many legs does an insect have?",
+      "options": [
+        "6",
+        "8",
+        "4",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "All insects have six legs."
+    },
+    {
+      "id": "en-2-236",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What do we call water falling from clouds?",
+      "options": [
+        "Rain",
+        "Fog",
+        "Steam",
+        "Dew"
+      ],
+      "correctIndex": 0,
+      "explanation": "Water that falls from clouds is rain."
+    },
+    {
+      "id": "en-2-237",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which organs help us breathe?",
+      "options": [
+        "The lungs",
+        "The heart",
+        "The stomach",
+        "The liver"
+      ],
+      "correctIndex": 0,
+      "explanation": "We breathe air in and out with our lungs."
+    },
+    {
+      "id": "en-2-238",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of Spain?",
+      "options": [
+        "Madrid",
+        "Barcelona",
+        "Lisbon",
+        "Seville"
+      ],
+      "correctIndex": 0,
+      "explanation": "Madrid is the capital of Spain."
+    },
+    {
+      "id": "en-2-239",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is the capital of France?",
+      "options": [
+        "Paris",
+        "Lyon",
+        "Rome",
+        "Brussels"
+      ],
+      "correctIndex": 0,
+      "explanation": "Paris is the capital of France."
+    },
+    {
+      "id": "en-2-240",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "On which continent is China?",
+      "options": [
+        "Asia",
+        "Africa",
+        "Europe",
+        "Oceania"
+      ],
+      "correctIndex": 0,
+      "explanation": "China is in Asia."
+    },
+    {
+      "id": "en-2-241",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Which country do kangaroos come from?",
+      "options": [
+        "Australia",
+        "Brazil",
+        "India",
+        "Canada"
+      ],
+      "correctIndex": 0,
+      "explanation": "Kangaroos live in the wild in Australia."
+    },
+    {
+      "id": "en-2-242",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "What is a very large area of salt water called?",
+      "options": [
+        "An ocean",
+        "A lake",
+        "A river",
+        "A pond"
+      ],
+      "correctIndex": 0,
+      "explanation": "Oceans are huge areas of salt water."
+    },
+    {
+      "id": "en-2-243",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "Who fought in the Roman Colosseum?",
+      "options": [
+        "Gladiators",
+        "Knights",
+        "Samurai",
+        "Vikings"
+      ],
+      "correctIndex": 0,
+      "explanation": "Gladiators fought in the Colosseum to entertain crowds."
+    },
+    {
+      "id": "en-2-244",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "What were the Japanese warriors who carried swords called?",
+      "options": [
+        "Samurai",
+        "Vikings",
+        "Knights",
+        "Spartans"
+      ],
+      "correctIndex": 0,
+      "explanation": "The samurai were the warriors of old Japan."
+    },
+    {
+      "id": "en-2-245",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "What did people use to light their homes before electricity?",
+      "options": [
+        "Candles",
+        "Light bulbs",
+        "Neon signs",
+        "Battery torches"
+      ],
+      "correctIndex": 0,
+      "explanation": "Before electricity, people used candles and oil lamps."
+    },
+    {
+      "id": "en-2-246",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "How many days are there in a leap year?",
+      "options": [
+        "366",
+        "365",
+        "360",
+        "364"
+      ],
+      "correctIndex": 0,
+      "explanation": "A leap year has an extra day, 29 February: 366 days."
+    },
+    {
+      "id": "en-2-247",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "Which holiday is celebrated on 25 December?",
+      "options": [
+        "Christmas",
+        "Easter",
+        "New Year",
+        "Halloween"
+      ],
+      "correctIndex": 0,
+      "explanation": "Christmas Day is on 25 December."
+    },
+    {
+      "id": "en-2-248",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "What do you call a baby kangaroo?",
+      "options": [
+        "A joey",
+        "A cub",
+        "A kid",
+        "A calf"
+      ],
+      "correctIndex": 0,
+      "explanation": "A baby kangaroo is called a joey."
+    },
+    {
+      "id": "en-2-249",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "What colour do you get when you mix blue and red?",
+      "options": [
+        "Purple",
+        "Green",
+        "Orange",
+        "Brown"
+      ],
+      "correctIndex": 0,
+      "explanation": "Blue and red make purple."
+    },
+    {
+      "id": "en-2-250",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "What do you call the person who leads an orchestra?",
+      "options": [
+        "The conductor",
+        "The composer",
+        "The drummer",
+        "The singer"
+      ],
+      "correctIndex": 0,
+      "explanation": "The conductor leads the orchestra with a baton."
     }
   ]
 }

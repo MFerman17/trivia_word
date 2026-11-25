@@ -1150,6 +1150,538 @@
       ],
       "correctIndex": 0,
       "explanation": "A guitar usually has six strings."
+    },
+    {
+      "id": "en-1-083",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the animal that says \"quack\"?",
+      "options": [
+        "duck",
+        "duk",
+        "duc",
+        "duckk"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Duck\" ends in -ck, like \"clock\" and \"sock\"."
+    },
+    {
+      "id": "en-1-084",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"I ride my ___ to school.\"",
+      "options": [
+        "bike",
+        "byke",
+        "bicke",
+        "biek"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Bike\" ends in a silent e that makes the i say its name."
+    },
+    {
+      "id": "en-1-085",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the colour of grass?",
+      "options": [
+        "green",
+        "grean",
+        "gren",
+        "greene"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Green\" has a double e in the middle."
+    },
+    {
+      "id": "en-1-086",
+      "category": "ortografia",
+      "type": "fillInBlank",
+      "prompt": "How do you spell it? \"My ___ reads me a story every night.\"",
+      "options": [
+        "mother",
+        "muther",
+        "mothur",
+        "mothre"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Mother\" is spelled with an o, even though it sounds like \"u\"."
+    },
+    {
+      "id": "en-1-087",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the number 3?",
+      "options": [
+        "three",
+        "thre",
+        "tree",
+        "threy"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Three\" starts with th and ends with a double e."
+    },
+    {
+      "id": "en-1-088",
+      "category": "ortografia",
+      "type": "multipleChoice",
+      "prompt": "Which is the right spelling of the room where you cook food?",
+      "options": [
+        "kitchen",
+        "kichen",
+        "kitchin",
+        "citchen"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Kitchen\" has a silent t before the ch."
+    },
+    {
+      "id": "en-1-089",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I ___ a big dog in the park.\"",
+      "options": [
+        "saw",
+        "sore",
+        "soar",
+        "sow"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Saw\" is the past of \"see\"; \"sore\" means painful and \"soar\" means to fly high."
+    },
+    {
+      "id": "en-1-090",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"I ___ three biscuits after lunch.\"",
+      "options": [
+        "ate",
+        "eight",
+        "ait",
+        "eigth"
+      ],
+      "correctIndex": 0,
+      "explanation": "\"Ate\" is the past of \"eat\"; \"eight\" is the number 8."
+    },
+    {
+      "id": "en-1-091",
+      "category": "homofonos",
+      "type": "homophones",
+      "prompt": "Complete: \"Our cat has a long fluffy ___.\"",
+      "options": [
+        "tail",
+        "tale",
+        "tall",
+        "tael"
+      ],
+      "correctIndex": 0,
+      "explanation": "A \"tail\" is on an animal; a \"tale\" is a story."
+    },
+    {
+      "id": "en-1-092",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about a sleeping cat is correct?",
+      "options": [
+        "The cat is sleeping.",
+        "The cat are sleeping.",
+        "The cat sleeping is.",
+        "The cat is sleep."
+      ],
+      "correctIndex": 0,
+      "explanation": "One cat takes \"is\", and \"sleep\" becomes \"sleeping\"."
+    },
+    {
+      "id": "en-1-093",
+      "category": "detectar_error",
+      "type": "errorDetection",
+      "prompt": "Which sentence about three apples is correct?",
+      "options": [
+        "I have three apples.",
+        "I has three apples.",
+        "I have three apple.",
+        "I three apples have."
+      ],
+      "correctIndex": 0,
+      "explanation": "With \"I\" we say \"have\", and more than one apple is \"apples\"."
+    },
+    {
+      "id": "en-1-094",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"We wear a coat when it is ___.\"",
+      "options": [
+        "cold",
+        "hot",
+        "sunny and warm",
+        "dry and hot"
+      ],
+      "correctIndex": 0,
+      "explanation": "A coat keeps us warm when it is cold."
+    },
+    {
+      "id": "en-1-095",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"Birds build ___ in trees.\"",
+      "options": [
+        "nests",
+        "holes",
+        "boxes",
+        "webs"
+      ],
+      "correctIndex": 0,
+      "explanation": "Birds build nests to lay their eggs in."
+    },
+    {
+      "id": "en-1-096",
+      "category": "completar_frase",
+      "type": "fillInBlank",
+      "prompt": "Complete: \"I wash my hands with soap and ___.\"",
+      "options": [
+        "water",
+        "sand",
+        "milk",
+        "juice"
+      ],
+      "correctIndex": 0,
+      "explanation": "We wash our hands with soap and water."
+    },
+    {
+      "id": "en-1-097",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"early\"?",
+      "options": [
+        "late",
+        "soon",
+        "first",
+        "fast"
+      ],
+      "correctIndex": 0,
+      "explanation": "If you are not early, you are late."
+    },
+    {
+      "id": "en-1-098",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "Which word means the same as \"shut\"?",
+      "options": [
+        "close",
+        "open",
+        "push",
+        "pull"
+      ],
+      "correctIndex": 0,
+      "explanation": "To shut a door is to close it."
+    },
+    {
+      "id": "en-1-099",
+      "category": "sinonimos_antonimos",
+      "type": "multipleChoice",
+      "prompt": "What is the opposite of \"old\" when we talk about things?",
+      "options": [
+        "new",
+        "big",
+        "slow",
+        "tall"
+      ],
+      "correctIndex": 0,
+      "explanation": "An old toy is the opposite of a new toy."
+    },
+    {
+      "id": "en-1-100",
+      "category": "significado",
+      "type": "multipleChoice",
+      "prompt": "What is a \"kitten\"?",
+      "options": [
+        "A baby cat",
+        "A small dog",
+        "A kind of bird",
+        "A toy"
+      ],
+      "correctIndex": 0,
+      "explanation": "A kitten is a young cat."
+    },
+    {
+      "id": "en-1-101",
+      "category": "refranes",
+      "type": "fillInBlank",
+      "prompt": "Complete the saying: \"Look before you ___.\"",
+      "options": [
+        "leap",
+        "sleep",
+        "eat",
+        "speak"
+      ],
+      "correctIndex": 0,
+      "explanation": "It means think carefully before you act."
+    },
+    {
+      "id": "en-1-102",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? 10, 20, 30, 40, ...",
+      "options": [
+        "50",
+        "45",
+        "60",
+        "41"
+      ],
+      "correctIndex": 0,
+      "explanation": "The numbers go up by 10 each time."
+    },
+    {
+      "id": "en-1-103",
+      "category": "series",
+      "type": "multipleChoice",
+      "prompt": "What comes next? Monday, Wednesday, Friday, ...",
+      "options": [
+        "Sunday",
+        "Saturday",
+        "Tuesday",
+        "Thursday"
+      ],
+      "correctIndex": 0,
+      "explanation": "The list skips one day each time: Friday, (Saturday), Sunday."
+    },
+    {
+      "id": "en-1-104",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which one is NOT a vegetable?",
+      "options": [
+        "banana",
+        "carrot",
+        "potato",
+        "pea"
+      ],
+      "correctIndex": 0,
+      "explanation": "A banana is a fruit; the others are vegetables."
+    },
+    {
+      "id": "en-1-105",
+      "category": "intruso",
+      "type": "multipleChoice",
+      "prompt": "Which one is NOT a shape?",
+      "options": [
+        "apple",
+        "circle",
+        "square",
+        "triangle"
+      ],
+      "correctIndex": 0,
+      "explanation": "An apple is a fruit; the others are shapes."
+    },
+    {
+      "id": "en-1-106",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Cow is to milk as hen is to...",
+      "options": [
+        "egg",
+        "feather",
+        "chick",
+        "farm"
+      ],
+      "correctIndex": 0,
+      "explanation": "Cows give milk and hens lay eggs."
+    },
+    {
+      "id": "en-1-107",
+      "category": "analogias",
+      "type": "multipleChoice",
+      "prompt": "Bird is to sky as fish is to...",
+      "options": [
+        "sea",
+        "tree",
+        "nest",
+        "sand"
+      ],
+      "correctIndex": 0,
+      "explanation": "Birds fly in the sky and fish swim in the sea."
+    },
+    {
+      "id": "en-1-108",
+      "category": "adivinanzas",
+      "type": "multipleChoice",
+      "prompt": "What has four legs but cannot walk?",
+      "options": [
+        "A table",
+        "A dog",
+        "A cat",
+        "A horse"
+      ],
+      "correctIndex": 0,
+      "explanation": "A table has four legs but never moves."
+    },
+    {
+      "id": "en-1-109",
+      "category": "matematicas",
+      "type": "multipleChoice",
+      "prompt": "How much is 6 + 8?",
+      "options": [
+        "14",
+        "13",
+        "15",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "6 + 8 = 14."
+    },
+    {
+      "id": "en-1-110",
+      "category": "problemas",
+      "type": "multipleChoice",
+      "prompt": "There are 7 ducks on a pond and 3 more arrive. How many ducks are there now?",
+      "options": [
+        "10",
+        "4",
+        "9",
+        "11"
+      ],
+      "correctIndex": 0,
+      "explanation": "7 + 3 = 10 ducks."
+    },
+    {
+      "id": "en-1-111",
+      "category": "silabas",
+      "type": "multipleChoice",
+      "prompt": "How many syllables are in \"rabbit\"?",
+      "options": [
+        "2",
+        "1",
+        "3",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "rab-bit: two syllables."
+    },
+    {
+      "id": "en-1-112",
+      "category": "anagramas",
+      "type": "multipleChoice",
+      "prompt": "Rearrange the letters of \"WOC\" to make an animal.",
+      "options": [
+        "COW",
+        "OWL",
+        "CAT",
+        "DOG"
+      ],
+      "correctIndex": 0,
+      "explanation": "W, O, C can be rearranged to spell \"cow\"."
+    },
+    {
+      "id": "en-1-113",
+      "category": "deduccion",
+      "type": "multipleChoice",
+      "prompt": "If today is Monday, what day is tomorrow?",
+      "options": [
+        "Tuesday",
+        "Sunday",
+        "Wednesday",
+        "Friday"
+      ],
+      "correctIndex": 0,
+      "explanation": "The day after Monday is Tuesday."
+    },
+    {
+      "id": "en-1-114",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which animal gives us wool?",
+      "options": [
+        "The sheep",
+        "The cow",
+        "The pig",
+        "The hen"
+      ],
+      "correctIndex": 0,
+      "explanation": "Wool comes from the thick coat of sheep."
+    },
+    {
+      "id": "en-1-115",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "What do caterpillars turn into?",
+      "options": [
+        "Butterflies",
+        "Bees",
+        "Spiders",
+        "Birds"
+      ],
+      "correctIndex": 0,
+      "explanation": "A caterpillar makes a chrysalis and comes out as a butterfly."
+    },
+    {
+      "id": "en-1-116",
+      "category": "ciencia",
+      "type": "multipleChoice",
+      "prompt": "Which sense do we use our ears for?",
+      "options": [
+        "Hearing",
+        "Sight",
+        "Smell",
+        "Taste"
+      ],
+      "correctIndex": 0,
+      "explanation": "We hear with our ears."
+    },
+    {
+      "id": "en-1-117",
+      "category": "geografia",
+      "type": "multipleChoice",
+      "prompt": "Where do polar bears live in the wild?",
+      "options": [
+        "The Arctic",
+        "Antarctica",
+        "The desert",
+        "The jungle"
+      ],
+      "correctIndex": 0,
+      "explanation": "Polar bears live near the North Pole; there are none in Antarctica."
+    },
+    {
+      "id": "en-1-118",
+      "category": "historia",
+      "type": "multipleChoice",
+      "prompt": "What did knights wear to protect themselves in battle?",
+      "options": [
+        "Armour",
+        "Swimsuits",
+        "Pyjamas",
+        "Raincoats"
+      ],
+      "correctIndex": 0,
+      "explanation": "Knights wore metal armour."
+    },
+    {
+      "id": "en-1-119",
+      "category": "cultura_general",
+      "type": "multipleChoice",
+      "prompt": "How many hours are there in a day?",
+      "options": [
+        "24",
+        "12",
+        "10",
+        "60"
+      ],
+      "correctIndex": 0,
+      "explanation": "A whole day and night lasts 24 hours."
+    },
+    {
+      "id": "en-1-120",
+      "category": "arte",
+      "type": "multipleChoice",
+      "prompt": "Which instrument do you play by hitting it with sticks?",
+      "options": [
+        "A drum",
+        "A violin",
+        "A flute",
+        "A piano"
+      ],
+      "correctIndex": 0,
+      "explanation": "You play a drum by hitting it with sticks."
     }
   ]
 }
